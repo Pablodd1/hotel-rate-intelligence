@@ -62,7 +62,18 @@ def make_handler(cfg):
             self.end_headers()
             self.wfile.write(body)
 
+        def _authorized(self):
+            key = cfg["dashboard"].get("auth_key") or ""
+            if not key:
+                return True
+            from urllib.parse import urlparse, parse_qs
+            q = parse_qs(urlparse(self.path).query)
+            return q.get("k", [""])[0] == key
+
         def do_GET(self):
+            if not self._authorized():
+                self._json({"error": "unauthorized"}, 401)
+                return
             if self.path == "/" or self.path.startswith("/index.html"):
                 body = DASHBOARD.encode()
                 self.send_response(200)
@@ -83,6 +94,9 @@ def make_handler(cfg):
                 conn.close()
 
         def do_POST(self):
+            if not self._authorized():
+                self._json({"error": "unauthorized"}, 401)
+                return
             if not self.path.startswith("/api/rates"):
                 self._json({"error": "not found"}, 404)
                 return

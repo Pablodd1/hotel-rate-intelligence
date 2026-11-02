@@ -16,7 +16,7 @@ DEFAULTS = {
     },
     "sources": {"hotel_sites": True, "ota": False},
     "telegram": {"bot_token": "", "chat_id": ""},
-    "dashboard": {"host": "127.0.0.1", "port": 8317},
+    "dashboard": {"host": "127.0.0.1", "port": 8317, "auth_key": ""},
 }
 
 
