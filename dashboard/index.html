@@ -596,7 +596,8 @@ async function renderSalesTab(){
   const hid=STATE.selectedHotelId||4;
   let pitch=STATE.pitches[String(hid)];
   if(!pitch){
-    const r=await fetch(`/api/pitch?hotel_id=${hid}`);
+    const k=new URLSearchParams(location.search).get('k');
+    const r=await fetch(`/api/pitch?hotel_id=${hid}${k?`&k=${encodeURIComponent(k)}`:''}`);
     if(r.ok){pitch=await r.json();STATE.pitches[String(hid)]=pitch;}
   }
   if(!pitch||!pitch.hotel)return;

@@ -5,6 +5,9 @@ non-static request with the REAL path — no rewrite path-collapsing.
 
     GET /api/summary?k=<key>   KPIs, movers, prospects, runs
     GET /api/hotels?k=<key>    comp set with contacts
+    GET /api/pitches?k=<key>   per-hotel personalized sales kits
+    GET /api/stage?k=<key>     hotels snapshot (stage read)
+    POST /api/stage            acknowledged, not persisted (stateless)
     POST /api/rates            acknowledged, not persisted (stateless)
 
 Static dashboard is served from outputDirectory=dashboard by Vercel.
@@ -46,7 +49,23 @@ def app(environ, start_response):
 
     if path.startswith("/api/summary"):
         return _reply(start_response, "200 OK", _load("snapshot_summary.json"))
+    is_single_pitch = path == "/api/pitch" or path.startswith("/api/pitch/")
+    if is_single_pitch:
+        hid = (params.get("hotel_id") or [""])[0]
+        pitches = json.loads(_load("snapshot_pitches.json"))
+        if hid in pitches:
+            return _reply(start_response, "200 OK", json.dumps(pitches[hid]))
+        return _reply(start_response, "404 Not Found",
+                      json.dumps({"error": "no pitch for hotel_id", "hotel_id": hid}, indent=1))
+    if path.startswith("/api/pitches"):
+        return _reply(start_response, "200 OK", _load("snapshot_pitches.json"))
     if path.startswith("/api/hotels"):
+        return _reply(start_response, "200 OK", _load("snapshot_hotels.json"))
+    if path.startswith("/api/stage"):
+        if environ.get("REQUEST_METHOD") == "POST":
+            return _reply(start_response, "200 OK", json.dumps({
+                "ok": True,
+                "note": "stateless deploy: stage updates persist on the self-hosted instance"}))
         return _reply(start_response, "200 OK", _load("snapshot_hotels.json"))
     if path.startswith("/api/rates") and environ.get("REQUEST_METHOD") == "POST":
         return _reply(start_response, "200 OK", json.dumps({
