@@ -15,7 +15,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
 from . import db as dbmod
-from .sales_engine import build_hotel_pitch, PRICING_TIERS
+from .sales_engine import build_hotel_pitch, build_printable_audit_html, PRICING_TIERS, LOCAL_ROUTES, MIAMI_COMPRESSION_EVENTS
 
 DASH_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dashboard", "index.html")
 
@@ -153,6 +153,15 @@ def make_handler(cfg):
                 elif path.startswith("/api/pitch"):
                     hid = int((q.get("hotel_id") or [1])[0])
                     self._json(build_hotel_pitch(conn, hid))
+                elif path.startswith("/audit") or path.startswith("/api/audit"):
+                    hid = int((q.get("hotel_id") or [1])[0])
+                    pitch = build_hotel_pitch(conn, hid)
+                    body = build_printable_audit_html(pitch).encode("utf-8")
+                    self.send_response(200)
+                    self.send_header("Content-Type", "text/html; charset=utf-8")
+                    self.send_header("Content-Length", str(len(body)))
+                    self.end_headers()
+                    self.wfile.write(body)
                 else:
                     self._json({"error": "not found"}, 404)
             finally:

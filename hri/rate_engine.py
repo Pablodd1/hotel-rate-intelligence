@@ -21,25 +21,26 @@ _JSONLD_CACHE = {}
 
 
 def fetch_xotelo_catalog(location_key="g34439", timeout=10):
-    """Fetch and cache Xotelo's live hotel catalog (price ranges + review ratings)."""
-    if location_key in _CATALOG_CACHE:
-        return _CATALOG_CACHE[location_key]
+    """Fetch and cache Xotelo's live hotel catalog for Miami Beach (g34439) + Miami Mainland (g34438)."""
+    if "ALL" in _CATALOG_CACHE:
+        return _CATALOG_CACHE["ALL"]
     by_key = {}
-    for offset in (0, 100, 200):
-        try:
-            url = f"https://data.xotelo.com/api/list?location_key={location_key}&offset={offset}&limit=100"
-            r = cr.get(url, timeout=timeout)
-            if r.status_code != 200:
+    for loc in ("g34439", "g34438"):
+        for offset in (0, 100, 200):
+            try:
+                url = f"https://data.xotelo.com/api/list?location_key={loc}&offset={offset}&limit=100"
+                r = cr.get(url, timeout=timeout)
+                if r.status_code != 200:
+                    break
+                items = ((r.json() or {}).get("result") or {}).get("list") or []
+                if not items:
+                    break
+                for it in items:
+                    if it.get("key"):
+                        by_key[it["key"]] = it
+            except Exception:
                 break
-            items = ((r.json() or {}).get("result") or {}).get("list") or []
-            if not items:
-                break
-            for it in items:
-                if it.get("key"):
-                    by_key[it["key"]] = it
-        except Exception:
-            break
-    _CATALOG_CACHE[location_key] = by_key
+    _CATALOG_CACHE["ALL"] = by_key
     return by_key
 
 

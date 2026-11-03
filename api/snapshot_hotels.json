@@ -1,7 +1,7 @@
 {
  "hotels": [
   {
-   "id": 5,
+   "id": 41,
    "name": "1 Hotel South Beach",
    "area": "South Beach",
    "website": "https://www.1hotels.com/south-beach",
@@ -18,7 +18,7 @@
    "price_min": 750.0,
    "price_max": 2769.0,
    "deal_stage": "new",
-   "created": 1793722219.0740256,
+   "created": 1793731050.6356113,
    "contacts": [
     {
      "kind": "address",
@@ -36,6 +36,11 @@
      "context": "/south-beach/gather/meetings"
     },
     {
+     "kind": "instagram",
+     "value": "@1hotels",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Director of Revenue Management",
      "context": "executive-target"
@@ -51,7 +56,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 6,
+   "contact_count": 7,
    "price": 2439.0,
    "prev_price": 1687.0,
    "delta_pct": 44.6,
@@ -95,7 +100,7 @@
    "est_annual_upside": 7755700
   },
   {
-   "id": 17,
+   "id": 19,
    "name": "Andaz Miami Beach (formerly The Confidante)",
    "area": "Mid-Beach",
    "website": "https://www.hyatt.com/andaz/miaaz-andaz-miami-beach",
@@ -112,7 +117,7 @@
    "price_min": 507.0,
    "price_max": 1407.0,
    "deal_stage": "new",
-   "created": 1793722219.2792532,
+   "created": 1793731050.2880466,
    "contacts": [
     {
      "kind": "address",
@@ -125,6 +130,11 @@
      "context": "/contact"
     },
     {
+     "kind": "instagram",
+     "value": "@andazmiamibeach",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Director of Commercial Services",
      "context": "executive-target"
@@ -135,7 +145,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 4,
+   "contact_count": 5,
    "price": 1296.0,
    "prev_price": 576.0,
    "delta_pct": 125.0,
@@ -162,16 +172,16 @@
      "tax": 181.44
     },
     {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 1296.0,
+     "tax": 181.44
+    },
+    {
      "code": "Vio",
      "name": "Vio.com",
      "rate": 1305.0,
      "tax": 182.7
-    },
-    {
-     "code": "CtripTA",
-     "name": "Trip.com",
-     "rate": 1432.0,
-     "tax": 200.48
     }
    ],
    "score": 55,
@@ -179,7 +189,95 @@
    "est_annual_upside": 4121100
   },
   {
-   "id": 21,
+   "id": 10,
+   "name": "Arlo Wynwood Miami",
+   "area": "Miami (Wynwood / Downtown)",
+   "website": "https://www.arlohotels.com/arlo-wynwood/",
+   "booking_url": null,
+   "stars": 4.5,
+   "est_rooms": 217,
+   "brand": "independent",
+   "latitude": 25.7985,
+   "longitude": -80.1972,
+   "xotelo_key": "g34438-d24889567",
+   "booking_engine": "SynXis / Arlo",
+   "review_rating": 4.6,
+   "review_count": 315,
+   "price_min": 155.0,
+   "price_max": 568.0,
+   "deal_stage": "new",
+   "created": 1793731050.1437597,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "2217 NW Miami Court, Miami, FL 33127",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "sales@arlohotels.com",
+     "context": "/contact"
+    },
+    {
+     "kind": "email",
+     "value": "wynwood@arlohotels.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "instagram",
+     "value": "@arlowynwood",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "Director of Revenue Strategy",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(786) 522-6600",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 6,
+   "price": 628.0,
+   "prev_price": 332.0,
+   "delta_pct": 89.2,
+   "checkin": "2026-12-03",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -7.2,
+   "ota_channels": [
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 583.0,
+     "tax": 81.62
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 628,
+     "tax": 88
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 634.0,
+     "tax": 88.76
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 635.0,
+     "tax": 88.9
+    }
+   ],
+   "score": 81,
+   "tier": "hot",
+   "est_annual_upside": 1969700
+  },
+  {
+   "id": 23,
    "name": "Avalon Hotel South Beach",
    "area": "South Beach",
    "website": "https://www.avalonhotel.com/",
@@ -196,7 +294,7 @@
    "price_min": 153.0,
    "price_max": 578.0,
    "deal_stage": "new",
-   "created": 1793722219.3421276,
+   "created": 1793731050.348842,
    "contacts": [
     {
      "kind": "address",
@@ -214,6 +312,11 @@
      "context": "homepage"
     },
     {
+     "kind": "instagram",
+     "value": "@avalonhotelsouthbeach",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager & Revenue Manager",
      "context": "executive-target"
@@ -224,7 +327,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 660.0,
    "prev_price": 307.0,
    "delta_pct": 115.0,
@@ -256,7 +359,7 @@
    "est_annual_upside": 543800
   },
   {
-   "id": 23,
+   "id": 25,
    "name": "Beacon South Beach Hotel",
    "area": "South Beach",
    "website": "https://www.beaconsouthbeach.com/",
@@ -273,7 +376,7 @@
    "price_min": 106.0,
    "price_max": 385.0,
    "deal_stage": "new",
-   "created": 1793722219.377304,
+   "created": 1793731050.3744152,
    "contacts": [
     {
      "kind": "address",
@@ -291,6 +394,11 @@
      "context": "homepage"
     },
     {
+     "kind": "instagram",
+     "value": "@beaconsouthbeach",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager & Director of Revenue",
      "context": "executive-target"
@@ -301,19 +409,19 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 352.0,
-   "prev_price": 186.0,
-   "delta_pct": 89.2,
+   "prev_price": 193.0,
+   "delta_pct": 82.4,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -28.4,
+   "undercut_pct": -28.7,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 252.0,
-     "tax": 35.28
+     "rate": 251.0,
+     "tax": 35.14
     },
     {
      "code": "CtripTA",
@@ -339,7 +447,7 @@
    "est_annual_upside": 381600
   },
   {
-   "id": 9,
+   "id": 15,
    "name": "Casa Faena",
    "area": "Mid-Beach",
    "website": "https://www.faena.com/miami-beach/stay/casa-faena",
@@ -356,7 +464,7 @@
    "price_min": 209.0,
    "price_max": 469.0,
    "deal_stage": "new",
-   "created": 1793722219.148877,
+   "created": 1793731050.2173269,
    "contacts": [
     {
      "kind": "address",
@@ -374,6 +482,11 @@
      "context": "/contact"
     },
     {
+     "kind": "instagram",
+     "value": "@casafaena",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Hotel Manager & Revenue Analyst",
      "context": "executive-target"
@@ -389,7 +502,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 6,
+   "contact_count": 7,
    "price": 313.0,
    "prev_price": 299.0,
    "delta_pct": 4.7,
@@ -427,7 +540,7 @@
    "est_annual_upside": 226200
   },
   {
-   "id": 22,
+   "id": 24,
    "name": "Cavalier South Beach Hotel",
    "area": "South Beach",
    "website": "https://www.cavalierhotel.com/",
@@ -444,7 +557,7 @@
    "price_min": 130.0,
    "price_max": 445.0,
    "deal_stage": "new",
-   "created": 1793722219.3610098,
+   "created": 1793731050.3637524,
    "contacts": [
     {
      "kind": "address",
@@ -462,6 +575,11 @@
      "context": "/contact"
     },
     {
+     "kind": "instagram",
+     "value": "@cavaliersouthbeach",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Boutique Cluster General Manager",
      "context": "executive-target"
@@ -472,7 +590,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 502.0,
    "prev_price": 262.0,
    "delta_pct": 91.6,
@@ -516,7 +634,7 @@
    "est_annual_upside": 326500
   },
   {
-   "id": 15,
+   "id": 13,
    "name": "Circa 39 Hotel",
    "area": "Mid-Beach",
    "website": "https://www.circa39.com/",
@@ -533,7 +651,7 @@
    "price_min": 161.0,
    "price_max": 589.0,
    "deal_stage": "new",
-   "created": 1793722219.2480266,
+   "created": 1793731050.1878612,
    "contacts": [
     {
      "kind": "address",
@@ -551,6 +669,11 @@
      "context": "homepage"
     },
     {
+     "kind": "instagram",
+     "value": "@circa39hotel",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager & Director of Sales",
      "context": "executive-target"
@@ -566,20 +689,14 @@
      "context": "/hotel/directions/"
     }
    ],
-   "contact_count": 6,
+   "contact_count": 7,
    "price": 856.0,
    "prev_price": 278.0,
    "delta_pct": 207.9,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -13.2,
+   "undercut_pct": -5.8,
    "ota_channels": [
-    {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 743.0,
-     "tax": 104.02
-    },
     {
      "code": "IHG",
      "name": "IHG",
@@ -616,7 +733,95 @@
    "est_annual_upside": 1237300
   },
   {
-   "id": 12,
+   "id": 42,
+   "name": "Clevelander South Beach Hotel",
+   "area": "South Beach",
+   "website": "https://www.clevelander.com/",
+   "booking_url": null,
+   "stars": 3.5,
+   "est_rooms": 60,
+   "brand": "independent",
+   "latitude": 25.7808,
+   "longitude": -80.1306,
+   "xotelo_key": "g34439-d85102",
+   "booking_engine": "SynXis / Direct",
+   "review_rating": 4.1,
+   "review_count": 2092,
+   "price_min": 127.0,
+   "price_max": 431.0,
+   "deal_stage": "new",
+   "created": 1793731050.650938,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "1020 Ocean Drive, Miami Beach, FL 33139",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "info@clevelander.com",
+     "context": "/contact"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@clevelander.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "instagram",
+     "value": "@clevelandersobe",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "General Manager & Hotel Revenue Lead",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(305) 532-4006",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 6,
+   "price": 335.0,
+   "prev_price": 163.0,
+   "delta_pct": 105.5,
+   "checkin": "2026-12-03",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -12.5,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 293.0,
+     "tax": 41.02
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 332.0,
+     "tax": 46.48
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 335,
+     "tax": 47
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 354.0,
+     "tax": 49.56
+    }
+   ],
+   "score": 100,
+   "tier": "hot",
+   "est_annual_upside": 290500
+  },
+  {
+   "id": 36,
    "name": "Esme Miami Beach",
    "area": "South Beach",
    "website": "https://www.esmehotel.com/",
@@ -633,7 +838,7 @@
    "price_min": 135.0,
    "price_max": 501.0,
    "deal_stage": "new",
-   "created": 1793722219.2003906,
+   "created": 1793731050.5432537,
    "contacts": [
     {
      "kind": "address",
@@ -656,6 +861,11 @@
      "context": "/gather/"
     },
     {
+     "kind": "instagram",
+     "value": "@esmehotel",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Director of Revenue & Distribution",
      "context": "executive-target"
@@ -666,25 +876,25 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 6,
+   "contact_count": 7,
    "price": 692.0,
    "prev_price": 248.0,
    "delta_pct": 179.0,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -10.1,
+   "undercut_pct": -44.2,
    "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 386.0,
+     "tax": 54.04
+    },
     {
      "code": "CtripTA",
      "name": "Trip.com",
      "rate": 622.0,
      "tax": 87.08
-    },
-    {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 633.0,
-     "tax": 88.62
     },
     {
      "code": "DIRECT",
@@ -695,12 +905,6 @@
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 706.0,
-     "tax": 98.84
-    },
-    {
-     "code": "Agoda",
-     "name": "Agoda.com",
      "rate": 706.0,
      "tax": 98.84
     },
@@ -716,7 +920,95 @@
    "est_annual_upside": 1450300
   },
   {
-   "id": 18,
+   "id": 11,
+   "name": "Eurostars Langford Downtown Miami",
+   "area": "Miami (Wynwood / Downtown)",
+   "website": "https://www.eurostarshotels.co.uk/eurostars-langford.html",
+   "booking_url": null,
+   "stars": 4.0,
+   "est_rooms": 126,
+   "brand": "independent",
+   "latitude": 25.7731,
+   "longitude": -80.1908,
+   "xotelo_key": "g34438-d8778365",
+   "booking_engine": "Direct / Eurostars CRS",
+   "review_rating": 4.0,
+   "review_count": 722,
+   "price_min": 141.0,
+   "price_max": 517.0,
+   "deal_stage": "new",
+   "created": 1793731050.1548035,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "121 SE 1st Street, Miami, FL 33131",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "info@langfordhotelmiami.com",
+     "context": "/contact"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@langfordhotelmiami.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "instagram",
+     "value": "@eurostarslangford",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "General Manager & Revenue Lead",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(305) 420-2200",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 6,
+   "price": 485.0,
+   "prev_price": 287.0,
+   "delta_pct": 69.0,
+   "checkin": "2026-12-03",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -18.1,
+   "ota_channels": [
+    {
+     "code": "DerbySoft",
+     "name": "Official Site",
+     "rate": 397.0,
+     "tax": 55.58
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 471.0,
+     "tax": 65.94
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 471.0,
+     "tax": 65.94
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 485,
+     "tax": 68
+    }
+   ],
+   "score": 91,
+   "tier": "hot",
+   "est_annual_upside": 883300
+  },
+  {
+   "id": 17,
    "name": "Faena Hotel Miami Beach",
    "area": "Mid-Beach",
    "website": "https://www.faena.com/miami-beach",
@@ -733,7 +1025,7 @@
    "price_min": 995.0,
    "price_max": 2916.0,
    "deal_stage": "new",
-   "created": 1793722219.2918692,
+   "created": 1793731050.2533226,
    "contacts": [
     {
      "kind": "address",
@@ -751,6 +1043,11 @@
      "context": "homepage"
     },
     {
+     "kind": "instagram",
+     "value": "@faena",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Director of Revenue Optimization",
      "context": "executive-target"
@@ -764,11 +1061,6 @@
      "kind": "phone",
      "value": "(305) 535-4697",
      "context": "homepage"
-    },
-    {
-     "kind": "phone",
-     "value": "(786) 646-1250",
-     "context": "/contact-us"
     }
    ],
    "contact_count": 7,
@@ -809,7 +1101,89 @@
    "est_annual_upside": 5505700
   },
   {
-   "id": 3,
+   "id": 6,
+   "name": "Grand Beach Hotel Surfside / Miami Beach",
+   "area": "North Beach",
+   "website": "https://www.grandbeachhotel.com/",
+   "booking_url": null,
+   "stars": 4.0,
+   "est_rooms": 268,
+   "brand": "independent",
+   "latitude": 25.8245,
+   "longitude": -80.1219,
+   "xotelo_key": "g34439-d1200086",
+   "booking_engine": "TravelClick / iHotelier",
+   "review_rating": 4.1,
+   "review_count": 8346,
+   "price_min": 235.0,
+   "price_max": 643.0,
+   "deal_stage": "new",
+   "created": 1793731050.0911744,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "4835 Collins Avenue, Miami Beach, FL 33140",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@grandbeachhotel.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "sales@grandbeachhotel.com",
+     "context": "/meetings"
+    },
+    {
+     "kind": "instagram",
+     "value": "@grandbeachhotel",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "Director of Revenue Management",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(305) 538-8666",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 6,
+   "price": 518.0,
+   "prev_price": 306.0,
+   "delta_pct": 69.3,
+   "checkin": "2026-12-03",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -2.9,
+   "ota_channels": [
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 503.0,
+     "tax": 70.42
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 513,
+     "tax": 70
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 518,
+     "tax": 73
+    }
+   ],
+   "score": 86,
+   "tier": "hot",
+   "est_annual_upside": 1647200
+  },
+  {
+   "id": 22,
    "name": "Hotel Astor",
    "area": "South Beach",
    "website": "https://www.hotelastor.com/",
@@ -826,7 +1200,7 @@
    "price_min": 144.0,
    "price_max": 290.0,
    "deal_stage": "new",
-   "created": 1793722219.0448403,
+   "created": 1793731050.3330572,
    "contacts": [
     {
      "kind": "address",
@@ -844,6 +1218,11 @@
      "context": "homepage"
     },
     {
+     "kind": "instagram",
+     "value": "@hotelastormiami",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Property Manager / Revenue Lead",
      "context": "executive-target"
@@ -854,7 +1233,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 186.0,
    "prev_price": 151.0,
    "delta_pct": 23.2,
@@ -892,7 +1271,7 @@
    "est_annual_upside": 112900
   },
   {
-   "id": 27,
+   "id": 32,
    "name": "Hotel Greystone",
    "area": "South Beach",
    "website": "https://www.greystonehotel.com/",
@@ -909,7 +1288,7 @@
    "price_min": 231.0,
    "price_max": 562.0,
    "deal_stage": "new",
-   "created": 1793722219.445014,
+   "created": 1793731050.4805815,
    "contacts": [
     {
      "kind": "address",
@@ -932,6 +1311,11 @@
      "context": "/events"
     },
     {
+     "kind": "instagram",
+     "value": "@hotelgreystone",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager & Commercial Lead",
      "context": "executive-target"
@@ -942,10 +1326,10 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 6,
+   "contact_count": 7,
    "price": 791.0,
-   "prev_price": 284.0,
-   "delta_pct": 178.5,
+   "prev_price": 281.0,
+   "delta_pct": 181.5,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
    "undercut_pct": -17.2,
@@ -980,7 +1364,7 @@
    "est_annual_upside": 1040400
   },
   {
-   "id": 24,
+   "id": 31,
    "name": "Hotel Victor South Beach",
    "area": "South Beach",
    "website": "https://www.hotelvictorsouthbeach.com/",
@@ -997,7 +1381,7 @@
    "price_min": 252.0,
    "price_max": 834.0,
    "deal_stage": "new",
-   "created": 1793722219.3914797,
+   "created": 1793731050.467523,
    "contacts": [
     {
      "kind": "address",
@@ -1015,6 +1399,11 @@
      "context": "/contact"
     },
     {
+     "kind": "instagram",
+     "value": "@hotelvictorsobe",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager / Revenue Director",
      "context": "executive-target"
@@ -1025,7 +1414,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 560.0,
    "prev_price": 352.0,
    "delta_pct": 59.1,
@@ -1063,7 +1452,7 @@
    "est_annual_upside": 736600
   },
   {
-   "id": 29,
+   "id": 35,
    "name": "Lennox Hotel Miami Beach",
    "area": "South Beach",
    "website": "https://www.lennoxmiamibeach.com/",
@@ -1080,7 +1469,7 @@
    "price_min": 211.0,
    "price_max": 625.0,
    "deal_stage": "new",
-   "created": 1793722219.4766932,
+   "created": 1793731050.5260806,
    "contacts": [
     {
      "kind": "address",
@@ -1098,6 +1487,11 @@
      "context": "/contact"
     },
     {
+     "kind": "instagram",
+     "value": "@lennoxmiamibeach",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager & Revenue Manager",
      "context": "executive-target"
@@ -1108,25 +1502,25 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 784.0,
    "prev_price": 262.0,
    "delta_pct": 199.2,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -24.7,
+   "undercut_pct": -32.4,
    "ota_channels": [
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 530.0,
+     "tax": 74.2
+    },
     {
      "code": "CtripTA",
      "name": "Trip.com",
      "rate": 590.0,
      "tax": 82.6
-    },
-    {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 697.0,
-     "tax": 97.58
     },
     {
      "code": "BookingCom",
@@ -1152,7 +1546,7 @@
    "est_annual_upside": 1348500
   },
   {
-   "id": 20,
+   "id": 29,
    "name": "Life House, South of Fifth",
    "area": "South Beach",
    "website": "https://www.lifehousehotels.com/hotels/miami-beach/south-of-fifth",
@@ -1169,7 +1563,7 @@
    "price_min": 275.0,
    "price_max": 660.0,
    "deal_stage": "new",
-   "created": 1793722219.326248,
+   "created": 1793731050.4320414,
    "contacts": [
     {
      "kind": "address",
@@ -1187,6 +1581,11 @@
      "context": "homepage"
     },
     {
+     "kind": "instagram",
+     "value": "@lifehousehotels",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager / Revenue Operations",
      "context": "executive-target"
@@ -1197,7 +1596,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 471.0,
    "prev_price": 433.0,
    "delta_pct": 8.8,
@@ -1235,7 +1634,7 @@
    "est_annual_upside": 177000
   },
   {
-   "id": 16,
+   "id": 18,
    "name": "Miami Beach EDITION",
    "area": "Mid-Beach",
    "website": "https://www.editionhotels.com/miami-beach",
@@ -1252,7 +1651,7 @@
    "price_min": 702.0,
    "price_max": 2473.0,
    "deal_stage": "new",
-   "created": 1793722219.2658045,
+   "created": 1793731050.2720163,
    "contacts": [
     {
      "kind": "address",
@@ -1270,6 +1669,11 @@
      "context": "/miami-beach/meetings"
     },
     {
+     "kind": "instagram",
+     "value": "@miamibeachedition",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Director of Revenue Management",
      "context": "executive-target"
@@ -1280,13 +1684,13 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
-   "price": 2657.0,
+   "contact_count": 6,
+   "price": 2895.0,
    "prev_price": 796.0,
-   "delta_pct": 233.8,
+   "delta_pct": 263.7,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -10.8,
+   "undercut_pct": -18.2,
    "ota_channels": [
     {
      "code": "Marriott1",
@@ -1301,36 +1705,36 @@
      "tax": 331.66
     },
     {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 2735.0,
+     "tax": 382.9
+    },
+    {
      "code": "DIRECT",
      "name": "Direct Website (BAR)",
-     "rate": 2657,
-     "tax": 372
+     "rate": 2895,
+     "tax": 405
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 2684.0,
-     "tax": 375.76
+     "rate": 2924.0,
+     "tax": 409.36
     },
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 2684.0,
-     "tax": 375.76
-    },
-    {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 2685.0,
-     "tax": 375.9
+     "rate": 2924.0,
+     "tax": 409.36
     }
    ],
    "score": 46,
    "tier": "warm",
-   "est_annual_upside": 8448900
+   "est_annual_upside": 9205800
   },
   {
-   "id": 8,
+   "id": 39,
    "name": "National Hotel, An Oceanfront Resort",
    "area": "South Beach",
    "website": "https://www.nationalhotel.com/",
@@ -1347,7 +1751,7 @@
    "price_min": 271.0,
    "price_max": 879.0,
    "deal_stage": "new",
-   "created": 1793722219.1276407,
+   "created": 1793731050.596237,
    "contacts": [
     {
      "kind": "address",
@@ -1370,6 +1774,11 @@
      "context": "/events-meetings/"
     },
     {
+     "kind": "instagram",
+     "value": "@nationalhotelmiami",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Area Director of Revenue Management",
      "context": "executive-target"
@@ -1385,19 +1794,31 @@
      "context": "/events-meetings/"
     }
    ],
-   "contact_count": 7,
-   "price": 990.0,
-   "prev_price": 409.0,
-   "delta_pct": 142.1,
+   "contact_count": 8,
+   "price": 787.0,
+   "prev_price": 416.0,
+   "delta_pct": 89.2,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -33.1,
+   "undercut_pct": -15.9,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
      "rate": 662.0,
      "tax": 92.68
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 742.0,
+     "tax": 103.88
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 787,
+     "tax": 110
     },
     {
      "code": "TravelClickCPA",
@@ -1410,26 +1831,108 @@
      "name": "Trip.com",
      "rate": 874.0,
      "tax": 122.36
-    },
-    {
-     "code": "BookingCom",
-     "name": "Booking.com",
-     "rate": 934.0,
-     "tax": 130.76
-    },
-    {
-     "code": "DIRECT",
-     "name": "Direct Website (BAR)",
-     "rate": 990,
-     "tax": 139
     }
    ],
    "score": 96,
    "tier": "hot",
-   "est_annual_upside": 2175000
+   "est_annual_upside": 1729000
   },
   {
-   "id": 19,
+   "id": 4,
+   "name": "Oceanside Hotel + Suites",
+   "area": "North Beach",
+   "website": "https://www.oceansidehotelmiami.com/",
+   "booking_url": null,
+   "stars": 3.5,
+   "est_rooms": 100,
+   "brand": "independent",
+   "latitude": 25.8442,
+   "longitude": -80.1214,
+   "xotelo_key": "g34439-d10263831",
+   "booking_engine": "Mews / Direct",
+   "review_rating": 3.7,
+   "review_count": 786,
+   "price_min": 73.0,
+   "price_max": 231.0,
+   "deal_stage": "new",
+   "created": 1793731050.061305,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "6084 Collins Avenue, Miami Beach, FL 33140",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "info@oceansidehotelmiami.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@oceansidehotelmiami.com",
+     "context": "/contact"
+    },
+    {
+     "kind": "instagram",
+     "value": "@oceansidehotel",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "General Manager & Revenue Manager",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(305) 763-8146",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 6,
+   "price": 268.0,
+   "prev_price": 125.0,
+   "delta_pct": 114.4,
+   "checkin": "2026-12-03",
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0,
+   "ota_channels": [
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 268,
+     "tax": 38
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 268.0,
+     "tax": 37.52
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 268.0,
+     "tax": 37.52
+    },
+    {
+     "code": "TravelClickCPA",
+     "name": "Official Hotel",
+     "rate": 268.0,
+     "tax": 37.52
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 272.0,
+     "tax": 38.08
+    }
+   ],
+   "score": 100,
+   "tier": "hot",
+   "est_annual_upside": 387400
+  },
+  {
+   "id": 14,
    "name": "Palihouse Miami Beach",
    "area": "Mid-Beach",
    "website": "https://www.palisociety.com/hotels/miami-beach",
@@ -1446,7 +1949,7 @@
    "price_min": 203.0,
    "price_max": 576.0,
    "deal_stage": "new",
-   "created": 1793722219.3105328,
+   "created": 1793731050.2012424,
    "contacts": [
     {
      "kind": "address",
@@ -1464,6 +1967,11 @@
      "context": "/contact"
     },
     {
+     "kind": "instagram",
+     "value": "@palisociety",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager & Regional Revenue Lead",
      "context": "executive-target"
@@ -1474,10 +1982,10 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 936.0,
-   "prev_price": 272.0,
-   "delta_pct": 244.1,
+   "prev_price": 308.0,
+   "delta_pct": 203.9,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
    "undercut_pct": -2.9,
@@ -1518,9 +2026,9 @@
    "est_annual_upside": 960600
   },
   {
-   "id": 14,
+   "id": 5,
    "name": "Palm Tree Club Miami Beach",
-   "area": "North/Mid-Beach",
+   "area": "North Beach",
    "website": "https://www.palmtreeclubmiami.com/",
    "booking_url": null,
    "stars": 3.5,
@@ -1535,11 +2043,11 @@
    "price_min": 101.0,
    "price_max": 294.0,
    "deal_stage": "new",
-   "created": 1793722219.2323484,
+   "created": 1793731050.0756986,
    "contacts": [
     {
      "kind": "address",
-     "value": "1819 79th Street Causeway, Miami Beach, FL 33141",
+     "value": "1819 79th Street Causeway, North Bay Village, FL 33141",
      "context": "homepage"
     },
     {
@@ -1553,6 +2061,11 @@
      "context": "/contact"
     },
     {
+     "kind": "instagram",
+     "value": "@palmtreeclubmiami",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager / Revenue Operations",
      "context": "executive-target"
@@ -1563,10 +2076,10 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 438.0,
-   "prev_price": 149.0,
-   "delta_pct": 194.0,
+   "prev_price": 146.0,
+   "delta_pct": 200.0,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
    "undercut_pct": -12.8,
@@ -1596,12 +2109,100 @@
      "tax": 61.46
     }
    ],
-   "score": 91,
+   "score": 100,
    "tier": "hot",
    "est_annual_upside": 747000
   },
   {
-   "id": 6,
+   "id": 3,
+   "name": "Park Royal Miami Beach",
+   "area": "North Beach",
+   "website": "https://www.parkroyalmiamibeach.com/",
+   "booking_url": null,
+   "stars": 3.5,
+   "est_rooms": 42,
+   "brand": "independent",
+   "latitude": 25.8522,
+   "longitude": -80.1243,
+   "xotelo_key": "g34439-d12189838",
+   "booking_engine": "SynXis / Direct",
+   "review_rating": 4.2,
+   "review_count": 426,
+   "price_min": 119.0,
+   "price_max": 301.0,
+   "deal_stage": "new",
+   "created": 1793731050.0483198,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "6800 Indian Creek Drive, Miami Beach, FL 33141",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "frontdesk@parkroyalmiamibeach.com",
+     "context": "/contact"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@parkroyalmiamibeach.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "instagram",
+     "value": "@parkroyalhotels",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "General Manager & Front Office Lead",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(305) 866-4621",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 6,
+   "price": 181.0,
+   "prev_price": 170.0,
+   "delta_pct": 6.5,
+   "checkin": "2026-12-03",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -5.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda / Wholesale",
+     "rate": 172,
+     "tax": 24
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 177,
+     "tax": 25
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 181,
+     "tax": 25
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 183,
+     "tax": 26
+    }
+   ],
+   "score": 100,
+   "tier": "hot",
+   "est_annual_upside": 109900
+  },
+  {
+   "id": 21,
    "name": "Pelican Hotel",
    "area": "South Beach",
    "website": "https://pelicanhotel.com/",
@@ -1618,7 +2219,7 @@
    "price_min": 187.0,
    "price_max": 495.0,
    "deal_stage": "new",
-   "created": 1793722219.0904737,
+   "created": 1793731050.3154497,
    "contacts": [
     {
      "kind": "address",
@@ -1641,6 +2242,11 @@
      "context": "/hotel/"
     },
     {
+     "kind": "instagram",
+     "value": "@pelicanhotelmiami",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager / Boutique Operations",
      "context": "executive-target"
@@ -1656,10 +2262,10 @@
      "context": "/contact/"
     }
    ],
-   "contact_count": 7,
+   "contact_count": 8,
    "price": 363.0,
-   "prev_price": 294.0,
-   "delta_pct": 23.5,
+   "prev_price": 204.0,
+   "delta_pct": 77.9,
    "checkin": "2026-12-03",
    "parity_status": "PARITY",
    "undercut_pct": 0.0,
@@ -1695,6 +2301,100 @@
   },
   {
    "id": 1,
+   "name": "Seaside All Suites Hotel",
+   "area": "North Beach",
+   "website": "https://www.seasideallsuiteshotel.com/",
+   "booking_url": null,
+   "stars": 3.5,
+   "est_rooms": 45,
+   "brand": "independent",
+   "latitude": 25.8602,
+   "longitude": -80.1211,
+   "xotelo_key": "g34439-d7722355",
+   "booking_engine": "Cloudbeds / SBG",
+   "review_rating": 4.0,
+   "review_count": 996,
+   "price_min": 84.0,
+   "price_max": 261.0,
+   "deal_stage": "new",
+   "created": 1793731050.0201004,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "7500 Collins Avenue, Miami Beach, FL 33141",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "info@seasideallsuiteshotel.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@sbghotels.com",
+     "context": "/contact"
+    },
+    {
+     "kind": "instagram",
+     "value": "@sbghotels",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "Property Manager / North Beach Operations",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(305) 866-7033",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 6,
+   "price": 224.0,
+   "prev_price": 145.0,
+   "delta_pct": 54.5,
+   "checkin": "2026-12-03",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -4.9,
+   "ota_channels": [
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 213.0,
+     "tax": 29.82
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 224,
+     "tax": 31
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 229.0,
+     "tax": 32.06
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 229.0,
+     "tax": 32.06
+    },
+    {
+     "code": "TravelClickCPA",
+     "name": "Official Hotel",
+     "rate": 229.0,
+     "tax": 32.06
+    }
+   ],
+   "score": 100,
+   "tier": "hot",
+   "est_annual_upside": 145700
+  },
+  {
+   "id": 38,
    "name": "The Betsy Hotel, South Beach",
    "area": "South Beach",
    "website": "https://www.thebetsyhotel.com/",
@@ -1711,7 +2411,7 @@
    "price_min": 418.0,
    "price_max": 1593.0,
    "deal_stage": "new",
-   "created": 1793722219.0020356,
+   "created": 1793731050.566438,
    "contacts": [
     {
      "kind": "address",
@@ -1734,6 +2434,11 @@
      "context": "/gather/meetings-events"
     },
     {
+     "kind": "instagram",
+     "value": "@thebetsyhotel",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "VP of Revenue & Distribution / General Manager",
      "context": "executive-target"
@@ -1754,7 +2459,7 @@
      "context": "/contact"
     }
    ],
-   "contact_count": 8,
+   "contact_count": 9,
    "price": 1558.0,
    "prev_price": 686.0,
    "delta_pct": 127.1,
@@ -1767,6 +2472,12 @@
      "name": "Trip.com",
      "rate": 1487.0,
      "tax": 208.18
+    },
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 1510.0,
+     "tax": 211.4
     },
     {
      "code": "BookingCom",
@@ -1792,7 +2503,90 @@
    "est_annual_upside": 2927500
   },
   {
-   "id": 4,
+   "id": 9,
+   "name": "The Biscayne Hotel (MiMo)",
+   "area": "Miami (MiMo / Biscayne)",
+   "website": "https://www.thebiscaynehotel.com/",
+   "booking_url": null,
+   "stars": 3.5,
+   "est_rooms": 32,
+   "brand": "independent",
+   "latitude": 25.8315,
+   "longitude": -80.1848,
+   "xotelo_key": "g34438-d26332658",
+   "booking_engine": "Little Hotelier / Direct",
+   "review_rating": 3.8,
+   "review_count": 16,
+   "price_min": 66.0,
+   "price_max": 174.0,
+   "deal_stage": "new",
+   "created": 1793731050.1294603,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "6060 Biscayne Boulevard, Miami, FL 33137",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@thebiscaynehotel.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "instagram",
+     "value": "@thebiscaynehotel",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "Owner / Property Manager",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(305) 758-4522",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 5,
+   "price": 111.0,
+   "prev_price": 117.0,
+   "delta_pct": -5.1,
+   "checkin": "2026-12-03",
+   "parity_status": "PARITY",
+   "undercut_pct": -0.9,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda / Wholesale",
+     "rate": 110,
+     "tax": 15
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 111,
+     "tax": 16
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 111,
+     "tax": 16
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 112,
+     "tax": 16
+    }
+   ],
+   "score": 85,
+   "tier": "hot",
+   "est_annual_upside": 51300
+  },
+  {
+   "id": 20,
    "name": "The Colony Hotel",
    "area": "South Beach",
    "website": "https://colonymiami.com/",
@@ -1809,7 +2603,7 @@
    "price_min": 135.0,
    "price_max": 378.0,
    "deal_stage": "new",
-   "created": 1793722219.0585124,
+   "created": 1793731050.3004422,
    "contacts": [
     {
      "kind": "address",
@@ -1827,6 +2621,11 @@
      "context": "/contact.html"
     },
     {
+     "kind": "instagram",
+     "value": "@colonymiami",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager / Front Office Director",
      "context": "executive-target"
@@ -1842,10 +2641,10 @@
      "context": "/contact.html"
     }
    ],
-   "contact_count": 6,
+   "contact_count": 7,
    "price": 371.0,
-   "prev_price": 220.0,
-   "delta_pct": 68.6,
+   "prev_price": 216.0,
+   "delta_pct": 71.8,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
    "undercut_pct": -11.6,
@@ -1880,7 +2679,7 @@
    "est_annual_upside": 268100
   },
   {
-   "id": 13,
+   "id": 40,
    "name": "The Goodtime Hotel",
    "area": "South Beach",
    "website": "https://www.thegoodtimehotel.com/",
@@ -1897,7 +2696,7 @@
    "price_min": 145.0,
    "price_max": 487.0,
    "deal_stage": "new",
-   "created": 1793722219.2149842,
+   "created": 1793731050.6123095,
    "contacts": [
     {
      "kind": "address",
@@ -1915,6 +2714,11 @@
      "context": "/meetings-events/"
     },
     {
+     "kind": "instagram",
+     "value": "@thegoodtimehotel",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Director of Sales & Revenue Strategy",
      "context": "executive-target"
@@ -1930,7 +2734,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 6,
+   "contact_count": 7,
    "price": 636.0,
    "prev_price": 225.0,
    "delta_pct": 182.7,
@@ -1980,7 +2784,7 @@
    "est_annual_upside": 2022400
   },
   {
-   "id": 11,
+   "id": 27,
    "name": "The Marlin Hotel",
    "area": "South Beach",
    "website": "https://themarlinhotel.com/",
@@ -1997,7 +2801,7 @@
    "price_min": 159.0,
    "price_max": 521.0,
    "deal_stage": "new",
-   "created": 1793722219.1848567,
+   "created": 1793731050.4060097,
    "contacts": [
     {
      "kind": "address",
@@ -2015,6 +2819,11 @@
      "context": "/contact-location"
     },
     {
+     "kind": "instagram",
+     "value": "@themarlinhotel",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager / Boutique Owner-Operator",
      "context": "executive-target"
@@ -2025,10 +2834,10 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 643.0,
-   "prev_price": 365.0,
-   "delta_pct": 76.2,
+   "prev_price": 389.0,
+   "delta_pct": 65.3,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
    "undercut_pct": -30.8,
@@ -2069,7 +2878,177 @@
    "est_annual_upside": 306700
   },
   {
-   "id": 25,
+   "id": 12,
+   "name": "The Mutiny Luxury Suites Hotel",
+   "area": "Miami (Wynwood / Downtown)",
+   "website": "https://www.mutinyhotel.com/",
+   "booking_url": null,
+   "stars": 4.0,
+   "est_rooms": 120,
+   "brand": "independent",
+   "latitude": 25.7279,
+   "longitude": -80.2392,
+   "xotelo_key": "g34438-d87137",
+   "booking_engine": "TravelClick / iHotelier",
+   "review_rating": 4.2,
+   "review_count": 1109,
+   "price_min": 181.0,
+   "price_max": 436.0,
+   "deal_stage": "new",
+   "created": 1793731050.1714532,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "2951 S Bayshore Drive, Coconut Grove, Miami, FL 33133",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@mutinyhotel.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "sales@mutinyhotel.com",
+     "context": "/contact"
+    },
+    {
+     "kind": "instagram",
+     "value": "@themutinyhotel",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "General Manager & Director of Revenue",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(305) 441-2100",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 6,
+   "price": 347.0,
+   "prev_price": 260.0,
+   "delta_pct": 33.5,
+   "checkin": "2026-12-03",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -11.0,
+   "ota_channels": [
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 309.0,
+     "tax": 43.26
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 334.0,
+     "tax": 46.76
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 347,
+     "tax": 49
+    }
+   ],
+   "score": 91,
+   "tier": "hot",
+   "est_annual_upside": 601900
+  },
+  {
+   "id": 8,
+   "name": "The New Yorker Boutique Hotel (MiMo)",
+   "area": "Miami (MiMo / Biscayne)",
+   "website": "https://www.newyorkermiami.com/",
+   "booking_url": null,
+   "stars": 3.5,
+   "est_rooms": 30,
+   "brand": "independent",
+   "latitude": 25.8355,
+   "longitude": -80.1844,
+   "xotelo_key": "g34438-d1758216",
+   "booking_engine": "Cloudbeds / Direct",
+   "review_rating": 3.4,
+   "review_count": 1051,
+   "price_min": 92.0,
+   "price_max": 201.0,
+   "deal_stage": "new",
+   "created": 1793731050.1176462,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "6500 Biscayne Boulevard, Miami, FL 33138",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "frontdesk@newyorkermiami.com",
+     "context": "/contact"
+    },
+    {
+     "kind": "email",
+     "value": "info@newyorkermiami.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "instagram",
+     "value": "@newyorkerhotelmiami",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "Owner-Operator & Front Desk Manager",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(305) 759-5823",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 6,
+   "price": 281.0,
+   "prev_price": 118.0,
+   "delta_pct": 138.1,
+   "checkin": "2026-12-03",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -37.4,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 176.0,
+     "tax": 24.64
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 184.0,
+     "tax": 25.76
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 268.0,
+     "tax": 37.52
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 281,
+     "tax": 39
+    }
+   ],
+   "score": 91,
+   "tier": "hot",
+   "est_annual_upside": 121800
+  },
+  {
+   "id": 16,
    "name": "The Palms Hotel & Spa",
    "area": "Mid-Beach",
    "website": "https://www.thepalmshotel.com/",
@@ -2086,7 +3065,7 @@
    "price_min": 276.0,
    "price_max": 850.0,
    "deal_stage": "new",
-   "created": 1793722219.4092703,
+   "created": 1793731050.232707,
    "contacts": [
     {
      "kind": "address",
@@ -2109,6 +3088,11 @@
      "context": "/meetings-and-events/"
     },
     {
+     "kind": "instagram",
+     "value": "@thepalmshotel",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "VP of Revenue Strategy & Distribution",
      "context": "executive-target"
@@ -2124,25 +3108,25 @@
      "context": "/contact-us/"
     }
    ],
-   "contact_count": 7,
+   "contact_count": 8,
    "price": 653.0,
    "prev_price": 405.0,
    "delta_pct": 61.2,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -6.4,
+   "undercut_pct": -2.9,
    "ota_channels": [
-    {
-     "code": "Agoda",
-     "name": "Agoda.com",
-     "rate": 611.0,
-     "tax": 85.54
-    },
     {
      "code": "BookingCom",
      "name": "Booking.com",
      "rate": 634.0,
      "tax": 88.76
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 647,
+     "tax": 89
     },
     {
      "code": "DIRECT",
@@ -2156,7 +3140,7 @@
    "est_annual_upside": 2076500
   },
   {
-   "id": 10,
+   "id": 34,
    "name": "The Plymouth South Beach",
    "area": "South Beach",
    "website": "https://www.theplymouth.com/",
@@ -2173,7 +3157,7 @@
    "price_min": 154.0,
    "price_max": 501.0,
    "deal_stage": "new",
-   "created": 1793722219.1676795,
+   "created": 1793731050.502932,
    "contacts": [
     {
      "kind": "address",
@@ -2196,6 +3180,11 @@
      "context": "/meetings"
     },
     {
+     "kind": "instagram",
+     "value": "@theplymouthmiami",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager & Director of Sales",
      "context": "executive-target"
@@ -2206,10 +3195,10 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 6,
+   "contact_count": 7,
    "price": 331.0,
-   "prev_price": 216.0,
-   "delta_pct": 53.2,
+   "prev_price": 229.0,
+   "delta_pct": 44.5,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
    "undercut_pct": -3.9,
@@ -2244,7 +3233,7 @@
    "est_annual_upside": 526300
   },
   {
-   "id": 28,
+   "id": 33,
    "name": "The Sagamore Hotel South Beach",
    "area": "South Beach",
    "website": "https://www.sagamoresouthbeach.com/",
@@ -2261,7 +3250,7 @@
    "price_min": 240.0,
    "price_max": 874.0,
    "deal_stage": "new",
-   "created": 1793722219.4618523,
+   "created": 1793731050.4956725,
    "contacts": [
     {
      "kind": "address",
@@ -2279,6 +3268,11 @@
      "context": "/events/"
     },
     {
+     "kind": "instagram",
+     "value": "@sagamorehotel",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Director of Revenue & Sales",
      "context": "executive-target"
@@ -2289,7 +3283,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 785.0,
    "prev_price": 389.0,
    "delta_pct": 101.8,
@@ -2327,7 +3321,7 @@
    "est_annual_upside": 1146000
   },
   {
-   "id": 2,
+   "id": 30,
    "name": "The Savoy Hotel & Beach Club",
    "area": "South Beach",
    "website": "https://www.savoyhotelmiami.com/",
@@ -2344,7 +3338,7 @@
    "price_min": 310.0,
    "price_max": 1023.0,
    "deal_stage": "new",
-   "created": 1793722219.0265536,
+   "created": 1793731050.4517257,
    "contacts": [
     {
      "kind": "address",
@@ -2367,6 +3361,11 @@
      "context": "/contact"
     },
     {
+     "kind": "instagram",
+     "value": "@savoyhotelmiami",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager & Revenue Director",
      "context": "executive-target"
@@ -2377,7 +3376,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 6,
+   "contact_count": 7,
    "price": 844.0,
    "prev_price": 385.0,
    "delta_pct": 119.2,
@@ -2415,7 +3414,7 @@
    "est_annual_upside": 914900
   },
   {
-   "id": 7,
+   "id": 37,
    "name": "The Standard Spa, Miami Beach",
    "area": "South Beach",
    "website": "https://www.standardhotels.com/Miami/properties/miami-beach",
@@ -2432,7 +3431,7 @@
    "price_min": 409.0,
    "price_max": 946.0,
    "deal_stage": "new",
-   "created": 1793722219.1081285,
+   "created": 1793731050.5599623,
    "contacts": [
     {
      "kind": "address",
@@ -2455,6 +3454,11 @@
      "context": "homepage"
     },
     {
+     "kind": "instagram",
+     "value": "@thestandardmiami",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "Director of Revenue & E-Commerce",
      "context": "executive-target"
@@ -2470,10 +3474,10 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 7,
+   "contact_count": 8,
    "price": 570.0,
-   "prev_price": 873.0,
-   "delta_pct": -34.7,
+   "prev_price": 672.0,
+   "delta_pct": -15.2,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
    "undercut_pct": -4.9,
@@ -2508,6 +3512,94 @@
    "est_annual_upside": 823900
   },
   {
+   "id": 7,
+   "name": "The Vagabond Hotel Miami (MiMo)",
+   "area": "Miami (MiMo / Biscayne)",
+   "website": "https://www.thevagabondhotelmiami.com/",
+   "booking_url": null,
+   "stars": 4.0,
+   "est_rooms": 45,
+   "brand": "independent",
+   "latitude": 25.8421,
+   "longitude": -80.1841,
+   "xotelo_key": "g34438-d6727321",
+   "booking_engine": "Cloudbeds / Direct",
+   "review_rating": 4.6,
+   "review_count": 721,
+   "price_min": 180.0,
+   "price_max": 315.0,
+   "deal_stage": "new",
+   "created": 1793731050.103129,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "7301 Biscayne Boulevard, Miami, FL 33138",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "info@thevagabondhotelmiami.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@thevagabondhotelmiami.com",
+     "context": "/contact"
+    },
+    {
+     "kind": "instagram",
+     "value": "@thevagabondhotel",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "General Manager / Boutique Owner",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(305) 400-8420",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 6,
+   "price": 299.0,
+   "prev_price": 178.0,
+   "delta_pct": 68.0,
+   "checkin": "2026-12-03",
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0,
+   "ota_channels": [
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 299,
+     "tax": 42
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 299.0,
+     "tax": 41.86
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 299.0,
+     "tax": 41.86
+    },
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 299.0,
+     "tax": 41.86
+    }
+   ],
+   "score": 85,
+   "tier": "hot",
+   "est_annual_upside": 194500
+  },
+  {
    "id": 26,
    "name": "Waldorf Towers South Beach",
    "area": "South Beach",
@@ -2525,7 +3617,7 @@
    "price_min": 152.0,
    "price_max": 426.0,
    "deal_stage": "new",
-   "created": 1793722219.4280682,
+   "created": 1793731050.3895845,
    "contacts": [
     {
      "kind": "address",
@@ -2543,6 +3635,11 @@
      "context": "homepage"
     },
     {
+     "kind": "instagram",
+     "value": "@waldorftowers",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager / Front Office",
      "context": "executive-target"
@@ -2553,10 +3650,10 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 481.0,
-   "prev_price": 213.0,
-   "delta_pct": 125.8,
+   "prev_price": 214.0,
+   "delta_pct": 124.8,
    "checkin": "2026-12-03",
    "parity_status": "UNDERCUT",
    "undercut_pct": -5.4,
@@ -2597,7 +3694,107 @@
    "est_annual_upside": 305900
   },
   {
-   "id": 30,
+   "id": 2,
+   "name": "Waterside Hotel & Suites",
+   "area": "North Beach",
+   "website": "https://www.watersidehotelmiamibeach.com/",
+   "booking_url": null,
+   "stars": 3.5,
+   "est_rooms": 49,
+   "brand": "independent",
+   "latitude": 25.8584,
+   "longitude": -80.1228,
+   "xotelo_key": "g34439-d11740991",
+   "booking_engine": "Cloudbeds / Direct",
+   "review_rating": 3.8,
+   "review_count": 334,
+   "price_min": 82.0,
+   "price_max": 206.0,
+   "deal_stage": "new",
+   "created": 1793731050.0340202,
+   "contacts": [
+    {
+     "kind": "address",
+     "value": "7310 Harding Avenue, Miami Beach, FL 33141",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "frontdesk@watersidehotelmiamibeach.com",
+     "context": "homepage"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@watersidehotelmiamibeach.com",
+     "context": "/contact"
+    },
+    {
+     "kind": "instagram",
+     "value": "@watersidehotelmiami",
+     "context": "social"
+    },
+    {
+     "kind": "person",
+     "value": "Owner / General Manager",
+     "context": "executive-target"
+    },
+    {
+     "kind": "phone",
+     "value": "(305) 868-9626",
+     "context": "homepage"
+    }
+   ],
+   "contact_count": 6,
+   "price": 248.0,
+   "prev_price": 131.0,
+   "delta_pct": 89.3,
+   "checkin": "2026-12-03",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -26.2,
+   "ota_channels": [
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 183.0,
+     "tax": 25.62
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 236.0,
+     "tax": 33.04
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 236.0,
+     "tax": 33.04
+    },
+    {
+     "code": "TravelClickCPA",
+     "name": "Official Hotel",
+     "rate": 236.0,
+     "tax": 33.04
+    },
+    {
+     "code": "Priceline",
+     "name": "Priceline",
+     "rate": 236.0,
+     "tax": 33.04
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 248,
+     "tax": 35
+    }
+   ],
+   "score": 100,
+   "tier": "hot",
+   "est_annual_upside": 175600
+  },
+  {
+   "id": 28,
    "name": "Z Ocean Hotel South Beach",
    "area": "South Beach",
    "website": "https://www.zoceanhotelsouthbeach.com/",
@@ -2614,7 +3811,7 @@
    "price_min": 259.0,
    "price_max": 472.0,
    "deal_stage": "new",
-   "created": 1793722219.4908595,
+   "created": 1793731050.421368,
    "contacts": [
     {
      "kind": "address",
@@ -2632,6 +3829,11 @@
      "context": "homepage"
     },
     {
+     "kind": "instagram",
+     "value": "@zoceanhotel",
+     "context": "social"
+    },
+    {
      "kind": "person",
      "value": "General Manager & Revenue Lead",
      "context": "executive-target"
@@ -2642,7 +3844,7 @@
      "context": "homepage"
     }
    ],
-   "contact_count": 5,
+   "contact_count": 6,
    "price": 391.0,
    "prev_price": 353.0,
    "delta_pct": 10.8,
