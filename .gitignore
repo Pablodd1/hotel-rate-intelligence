@@ -5,3 +5,4 @@ config.json
 .venv/
 *.log
 node_modules/
+graphify-out/
