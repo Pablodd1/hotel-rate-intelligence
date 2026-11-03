@@ -1,9 +1,11 @@
 {
   "outputDirectory": "dashboard",
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.py" }
+    { "source": "/", "destination": "/index.html" }
   ],
   "functions": {
-    "api/index.py": { "memory": 256, "maxDuration": 10 }
+    "api/summary.py": { "memory": 256, "maxDuration": 10 },
+    "api/hotels.py": { "memory": 256, "maxDuration": 10 },
+    "api/rates.py": { "memory": 256, "maxDuration": 10 }
   }
 }
