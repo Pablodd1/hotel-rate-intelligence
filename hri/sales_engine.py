@@ -453,6 +453,9 @@ def build_hotel_pitch(conn, hotel_id):
         },
     ]
 
+    xkey = hotel.get("xotelo_key") or "g34439-d85104"
+    verify_url = f"https://www.tripadvisor.com/Hotel_Review-{xkey}.html"
+
     return {
         "hotel": {
             "id": hid,
@@ -465,6 +468,7 @@ def build_hotel_pitch(conn, hotel_id):
             "est_rooms": rooms,
             "booking_engine": engine,
             "website": hotel.get("website"),
+            "verify_url": verify_url,
             "primary_email": primary_email,
             "primary_phone": primary_phone,
             "primary_address": primary_address,

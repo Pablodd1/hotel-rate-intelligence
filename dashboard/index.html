@@ -642,6 +642,7 @@ async function renderSalesTab(){
           <a class="pill em" href="mailto:${h.primary_email}">✉ ${h.primary_email}</a>
           <a class="pill ph" href="tel:${h.primary_phone}">📞 ${h.primary_phone}</a>
           ${h.instagram?`<span class="pill">📸 IG: ${h.instagram}</span>`:''}
+          ${h.verify_url?`<a class="pill" style="background:#1E5631;color:#fff" href="${h.verify_url}" target="_blank">🔍 Live OTA Proof ↗</a>`:''}
         </div>
         <div style="font-size:12px;color:var(--gold2);font-weight:600;margin-top:6px">Role: ${h.target_role} · Stack: ${h.booking_engine}</div>
       </div>
