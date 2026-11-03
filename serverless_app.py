@@ -18,7 +18,17 @@ from urllib.parse import parse_qs
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _API_DIR = os.path.join(_HERE, "api")
+_DASH_PATH = os.path.join(_HERE, "dashboard", "index.html")
 _KEY = os.environ.get("HRI_AUTH_KEY", "hri-miami-2026")
+_dash_cache = None
+
+
+def _dashboard():
+    global _dash_cache
+    if _dash_cache is None:
+        with open(_DASH_PATH, encoding="utf-8") as f:
+            _dash_cache = f.read().encode("utf-8")
+    return _dash_cache
 
 
 def _load(name):
@@ -46,6 +56,10 @@ def app(environ, start_response):
     if not key or key != _KEY:
         return _reply(start_response, "401 Unauthorized",
                       json.dumps({"error": "auth key required: ?k=<key>"}, indent=1))
+
+    if not path.startswith("/api/"):
+        return _reply(start_response, "200 OK", _dashboard(),
+                      ctype="text/html; charset=utf-8")
 
     if path.startswith("/api/summary"):
         return _reply(start_response, "200 OK", _load("snapshot_summary.json"))
