@@ -33,8 +33,12 @@ def _reply(start_response, status, body, ctype="application/json; charset=utf-8"
 
 
 def app(environ, start_response):
-    path = environ.get("PATH_INFO", "/")
+    # Vercel rewrites change PATH_INFO; RAW_URI/REQUEST_URI keep the original path
+    raw = environ.get("RAW_URI") or environ.get("REQUEST_URI") or environ.get("PATH_INFO", "/")
+    path = raw.split("?")[0]
     params = parse_qs(environ.get("QUERY_STRING", ""))
+    if not params and "?" in raw:
+        params = parse_qs(raw.split("?", 1)[1])
     key = (params.get("k") or [""])[0]
 
     if not key or key != _KEY:
