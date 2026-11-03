@@ -53,5 +53,9 @@ def app(environ, start_response):
         return _reply(start_response, "200 OK", json.dumps({
             "ok": True, "note": "stateless deploy: persisted on the self-hosted instance"}))
 
+    if path.startswith("/api/debug"):
+        return _reply(start_response, "200 OK", json.dumps(
+            {k: str(v)[:120] for k, v in sorted(environ.items())}, indent=1))
+
     return _reply(start_response, "404 Not Found",
                   json.dumps({"error": "unknown endpoint"}, indent=1))
