@@ -1,0 +1,802 @@
+[
+ {
+  "id": 21,
+  "name": "1 Hotel South Beach",
+  "area": "South Beach",
+  "website": "https://www.1hotels.com/south-beach",
+  "booking_url": null,
+  "stars": 5.0,
+  "est_rooms": 425,
+  "brand": "1 Hotels",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793657154.3722467,
+  "contacts": [
+   {
+    "kind": "address",
+    "value": "1 Hotel South Beach 2341 Collins Avenue",
+    "context": "homepage"
+   },
+   {
+    "kind": "address",
+    "value": "2341 Collins Avenue",
+    "context": "homepage"
+   },
+   {
+    "kind": "address",
+    "value": "33139 Get Directions Located on Collins Avenue",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 (305) 604-1000",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 (305) 768-1386",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 305 604 1000",
+    "context": "/south-beach/gather/meetings"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 305.604.1000",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 305.604.6792",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 833 623 0111",
+    "context": "/index%2ephp/our-locations"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 833 625 3111",
+    "context": "/south-beach/gather/meetings"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 833.625.3111",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "212.972.0277",
+    "context": "/south-beach/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "2129720277",
+    "context": "/south-beach/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "646.701.7042",
+    "context": "/south-beach/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "6467017042",
+    "context": "/south-beach/contact-us"
+   }
+  ],
+  "contact_count": 15
+ },
+ {
+  "id": 9,
+  "name": "Casa Faena",
+  "area": "Miami Beach",
+  "website": "https://casafaena.com/",
+  "booking_url": null,
+  "stars": 4.0,
+  "est_rooms": 50,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2163374,
+  "contacts": [],
+  "contact_count": 0
+ },
+ {
+  "id": 15,
+  "name": "Circa 39 Hotel",
+  "area": "Mid-Beach",
+  "website": "https://www.circa39.com/",
+  "booking_url": null,
+  "stars": 3.5,
+  "est_rooms": 100,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2231646,
+  "contacts": [
+   {
+    "kind": "address",
+    "value": "39 Hotel is Indian Creek Drive and 40th Street.",
+    "context": "/hotel/directions/"
+   },
+   {
+    "kind": "address",
+    "value": "3900 Collins Avenue",
+    "context": "/location/local-events/"
+   },
+   {
+    "kind": "email",
+    "value": "Sales@circa39.com",
+    "context": "homepage"
+   },
+   {
+    "kind": "email",
+    "value": "frontdesk@circa39.com",
+    "context": "/location/local-events/"
+   },
+   {
+    "kind": "email",
+    "value": "mailto:frontdesk@circa39.com",
+    "context": "/location/"
+   },
+   {
+    "kind": "phone",
+    "value": "(305) 538 4900",
+    "context": "/location/"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 (877) 824-7223",
+    "context": "/hotel/directions/"
+   },
+   {
+    "kind": "phone",
+    "value": "18778247223",
+    "context": "/location/local-events/"
+   },
+   {
+    "kind": "phone",
+    "value": "3055384900",
+    "context": "/location/local-events/"
+   },
+   {
+    "kind": "phone",
+    "value": "877-824-7223",
+    "context": "/location/local-events/"
+   },
+   {
+    "kind": "phone",
+    "value": "8778247223",
+    "context": "/location/local-events/"
+   }
+  ],
+  "contact_count": 11
+ },
+ {
+  "id": 12,
+  "name": "Esme Miami Beach",
+  "area": "South Beach",
+  "website": "https://hotelsme.com/",
+  "booking_url": null,
+  "stars": 4.0,
+  "est_rooms": 50,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2197473,
+  "contacts": [],
+  "contact_count": 0
+ },
+ {
+  "id": 18,
+  "name": "Faena Hotel Miami Beach",
+  "area": "Mid-Beach",
+  "website": "https://www.faena.com/miami-beach",
+  "booking_url": null,
+  "stars": 5.0,
+  "est_rooms": 170,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.226624,
+  "contacts": [
+   {
+    "kind": "address",
+    "value": "3201 Collins Ave",
+    "context": "homepage"
+   },
+   {
+    "kind": "address",
+    "value": "3201 Collins Avenue",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "address",
+    "value": "3500 Collins Avenue",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "email",
+    "value": "reservations-miamibeach@faena.com",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 212 545 8100",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 305 604 8485",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 305-534-8800",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+1-305-535-4697",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "1 212 545 8100",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "1 305 534 8800",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "1 305 535 4697",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "13055348800",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "13055354697",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "212 545 8500",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "2125458500",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "541140109000",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "541140109070",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "786 646 1250",
+    "context": "/contact-us"
+   },
+   {
+    "kind": "phone",
+    "value": "786646 250",
+    "context": "/contact-us"
+   }
+  ],
+  "contact_count": 19
+ },
+ {
+  "id": 3,
+  "name": "Hotel Astor",
+  "area": "South Beach",
+  "website": "https://www.hotelastor.com/",
+  "booking_url": null,
+  "stars": 3.5,
+  "est_rooms": 40,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2091858,
+  "contacts": [],
+  "contact_count": 0
+ },
+ {
+  "id": 20,
+  "name": "Life House, South of Fifth",
+  "area": "South Beach",
+  "website": "https://www.lifehousehotels.com/miami-beach",
+  "booking_url": null,
+  "stars": 3.5,
+  "est_rooms": 64,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2288775,
+  "contacts": [],
+  "contact_count": 0
+ },
+ {
+  "id": 16,
+  "name": "Miami Beach EDITION",
+  "area": "Mid-Beach",
+  "website": "https://www.editionhotels.com/miami-beach",
+  "booking_url": null,
+  "stars": 5.0,
+  "est_rooms": 300,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2242699,
+  "contacts": [],
+  "contact_count": 0
+ },
+ {
+  "id": 8,
+  "name": "National Hotel, An Oceanfront Resort",
+  "area": "South Beach",
+  "website": "https://www.nationalhotel.com/",
+  "booking_url": null,
+  "stars": 4.0,
+  "est_rooms": 150,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2152536,
+  "contacts": [
+   {
+    "kind": "address",
+    "value": "1677 Collins Avenue",
+    "context": "/meetings/"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 305 532 2311",
+    "context": "/events-meetings/"
+   },
+   {
+    "kind": "phone",
+    "value": "+1-305-532-2311",
+    "context": "/about-the-hotel/"
+   },
+   {
+    "kind": "phone",
+    "value": "+13054237246",
+    "context": "/events-meetings/"
+   },
+   {
+    "kind": "phone",
+    "value": "+13055322311",
+    "context": "/events-meetings/"
+   },
+   {
+    "kind": "phone",
+    "value": "305.423.7246",
+    "context": "/events-meetings/"
+   }
+  ],
+  "contact_count": 6
+ },
+ {
+  "id": 19,
+  "name": "Palihouse Miami Beach",
+  "area": "Miami Beach",
+  "website": "https://www.palihouse.com/miami-beach",
+  "booking_url": null,
+  "stars": 4.0,
+  "est_rooms": 80,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2277553,
+  "contacts": [],
+  "contact_count": 0
+ },
+ {
+  "id": 14,
+  "name": "Palm Tree Club Miami Beach",
+  "area": "Mid-Beach",
+  "website": "https://palmtreeclubmiamibeach.com/",
+  "booking_url": null,
+  "stars": 3.5,
+  "est_rooms": 80,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2220044,
+  "contacts": [],
+  "contact_count": 0
+ },
+ {
+  "id": 6,
+  "name": "Pelican Hotel",
+  "area": "South Beach",
+  "website": "https://pelicanhotel.com/",
+  "booking_url": null,
+  "stars": 3.5,
+  "est_rooms": 30,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2127209,
+  "contacts": [
+   {
+    "kind": "address",
+    "value": "3373 Contact us here LOCATION 826 Ocean Drive",
+    "context": "/hotel/"
+   },
+   {
+    "kind": "address",
+    "value": "3373 LOCATION 826 Ocean Drive",
+    "context": "/hotel/"
+   },
+   {
+    "kind": "address",
+    "value": "3373 Location 826 Ocean Drive",
+    "context": "homepage"
+   },
+   {
+    "kind": "address",
+    "value": "826 Ocean Drive",
+    "context": "/hotel/"
+   },
+   {
+    "kind": "address",
+    "value": "826 Ocean Drive.",
+    "context": "/hotel/"
+   },
+   {
+    "kind": "email",
+    "value": "info@pelicanhotel.com",
+    "context": "/hotel/"
+   },
+   {
+    "kind": "email",
+    "value": "reservation@pelicanhotel.com",
+    "context": "/hotel/"
+   },
+   {
+    "kind": "email",
+    "value": "restaurant@pelicanhotel.com",
+    "context": "/hotel/"
+   },
+   {
+    "kind": "phone",
+    "value": "+ 1 305 673 3373",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 305 699 7830",
+    "context": "/contact/"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 305-673-3373",
+    "context": "/hotel/"
+   },
+   {
+    "kind": "phone",
+    "value": "1 305 673 3373",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "305-673-3373",
+    "context": "/contact/"
+   }
+  ],
+  "contact_count": 13
+ },
+ {
+  "id": 1,
+  "name": "The Betsy Hotel, South Beach",
+  "area": "South Beach",
+  "website": "https://thebetsyhotel.com/",
+  "booking_url": null,
+  "stars": 4.5,
+  "est_rooms": 130,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2066443,
+  "contacts": [
+   {
+    "kind": "address",
+    "value": "1440 Ocean Drive",
+    "context": "/contact"
+   },
+   {
+    "kind": "email",
+    "value": "info@thebetsyhotel.com",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "(305) 760-6903",
+    "context": "/contact"
+   },
+   {
+    "kind": "phone",
+    "value": "(305)-673-0044",
+    "context": "/contact"
+   },
+   {
+    "kind": "phone",
+    "value": "(844) 539-2840",
+    "context": "/contact"
+   },
+   {
+    "kind": "phone",
+    "value": "(866) 792-3879",
+    "context": "/contact"
+   },
+   {
+    "kind": "phone",
+    "value": "+1-844-539-2840",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "844-539-2840",
+    "context": "/gather/meetings-events"
+   }
+  ],
+  "contact_count": 8
+ },
+ {
+  "id": 4,
+  "name": "The Colony Hotel",
+  "area": "South Beach",
+  "website": "https://colonymiami.com/",
+  "booking_url": null,
+  "stars": 3.0,
+  "est_rooms": 50,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2102604,
+  "contacts": [
+   {
+    "kind": "address",
+    "value": "05 Location Along the famed Ocean Drive",
+    "context": "homepage"
+   },
+   {
+    "kind": "address",
+    "value": "736 Ocean Drive",
+    "context": "homepage"
+   },
+   {
+    "kind": "email",
+    "value": "fd@colonymiami.com",
+    "context": "/contact.html"
+   },
+   {
+    "kind": "phone",
+    "value": "(+1) 786 380 4778",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+13056730088",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+17863804778",
+    "context": "/contact.html"
+   },
+   {
+    "kind": "phone",
+    "value": "305 673 0088",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "305.673.0088",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "786 380 4778",
+    "context": "/contact.html"
+   }
+  ],
+  "contact_count": 9
+ },
+ {
+  "id": 17,
+  "name": "The Confidante Miami Beach",
+  "area": "Mid-Beach",
+  "website": "https://www.hyatt.com/the-confidante",
+  "booking_url": null,
+  "stars": 4.0,
+  "est_rooms": 350,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2254705,
+  "contacts": [],
+  "contact_count": 0
+ },
+ {
+  "id": 13,
+  "name": "The Goodtime Hotel",
+  "area": "South Beach",
+  "website": "https://www.thegoodtimehotel.com/",
+  "booking_url": null,
+  "stars": 4.0,
+  "est_rooms": 266,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2208905,
+  "contacts": [
+   {
+    "kind": "address",
+    "value": "100 Washington Ave",
+    "context": "/meetings-events/"
+   },
+   {
+    "kind": "address",
+    "value": "601 Washington Avenue",
+    "context": "/about/"
+   },
+   {
+    "kind": "address",
+    "value": "695 Collins Court",
+    "context": "/about/"
+   },
+   {
+    "kind": "email",
+    "value": "info@thegoodtimehotel.com",
+    "context": "/meetings-events/"
+   },
+   {
+    "kind": "phone",
+    "value": "(786) 687-0234",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+1-786-687-0209",
+    "context": "/meetings-events/"
+   },
+   {
+    "kind": "phone",
+    "value": "786-687-0234",
+    "context": "homepage"
+   }
+  ],
+  "contact_count": 7
+ },
+ {
+  "id": 22,
+  "name": "The Marlin Hotel",
+  "area": "South Beach",
+  "website": "https://themarlinhotel.com/",
+  "booking_url": null,
+  "stars": 4.0,
+  "est_rooms": 80,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793657174.5950599,
+  "contacts": [
+   {
+    "kind": "address",
+    "value": "1200 Collins Avenue",
+    "context": "/contact-location"
+   },
+   {
+    "kind": "email",
+    "value": "concierge@themarlinhotel.com",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 305 695 3000",
+    "context": "homepage"
+   }
+  ],
+  "contact_count": 3
+ },
+ {
+  "id": 10,
+  "name": "The Plymouth South Beach",
+  "area": "South Beach",
+  "website": "https://theplymouth.com/",
+  "booking_url": null,
+  "stars": 4.0,
+  "est_rooms": 50,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2174637,
+  "contacts": [],
+  "contact_count": 0
+ },
+ {
+  "id": 2,
+  "name": "The Savoy Hotel & Beach Club",
+  "area": "South Beach",
+  "website": "https://www.savoyhotel.com/",
+  "booking_url": null,
+  "stars": 4.0,
+  "est_rooms": 75,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2080655,
+  "contacts": [],
+  "contact_count": 0
+ },
+ {
+  "id": 7,
+  "name": "The Standard Spa, Miami Beach",
+  "area": "South Beach",
+  "website": "https://www.standardhotels.com/spa-miami-beach",
+  "booking_url": null,
+  "stars": 4.5,
+  "est_rooms": 100,
+  "brand": "independent",
+  "latitude": null,
+  "longitude": null,
+  "created": 1793656664.2141273,
+  "contacts": [
+   {
+    "kind": "address",
+    "value": "40 Island Ave",
+    "context": "homepage"
+   },
+   {
+    "kind": "email",
+    "value": "Miami@standardmiami.com",
+    "context": "homepage"
+   },
+   {
+    "kind": "email",
+    "value": "marketing@standardmiami.com",
+    "context": "homepage"
+   },
+   {
+    "kind": "email",
+    "value": "membership@standardmiami.com",
+    "context": "homepage"
+   },
+   {
+    "kind": "email",
+    "value": "press@standardhotels.com",
+    "context": "/contacts/new"
+   },
+   {
+    "kind": "phone",
+    "value": "(786) 245-0880",
+    "context": "homepage"
+   },
+   {
+    "kind": "phone",
+    "value": "+1 (305) 673-1717",
+    "context": "homepage"
+   }
+  ],
+  "contact_count": 7
+ }
+]

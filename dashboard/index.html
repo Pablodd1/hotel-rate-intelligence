@@ -123,7 +123,9 @@ $('#greeting').textContent=greeting()+', Jasmel';
 $('#dateline').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})+' · Miami Beach comp set';
 
 async function refresh(){
-  const [sum,hot]=await Promise.all([fetch('/api/summary').then(r=>r.json()),fetch('/api/hotels').then(r=>r.json())]);
+  const k=new URLSearchParams(location.search).get('k');
+  const q=k?`?k=${encodeURIComponent(k)}`:'';
+  const [sum,hot]=await Promise.all([fetch('/api/summary'+q).then(r=>{if(!r.ok)throw new Error('auth');return r.json()}),fetch('/api/hotels'+q).then(r=>r.json())]);
   renderKpis(sum); renderChart(sum.rates); renderProspects(sum.prospects); renderComp(hotels=hot.hotels); renderRuns(sum.runs);
   $('#chart-sub').textContent=sum.currency+' · latest observation per hotel';
 }

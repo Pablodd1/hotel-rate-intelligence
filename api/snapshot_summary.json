@@ -1,0 +1,335 @@
+{
+ "market": "Miami Beach, FL",
+ "currency": "USD",
+ "kpis": {
+  "hotels": 20,
+  "contacts": 98,
+  "rates": 0,
+  "hot_prospects": 15
+ },
+ "rates": [],
+ "movers": [],
+ "prospects": [
+  {
+   "hotel_id": 4,
+   "score": 90,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "50 rooms \u2014 right-size for outsourced intel",
+    "3.0\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)",
+    "decision-maker contact captured"
+   ],
+   "name": "The Colony Hotel",
+   "area": "South Beach",
+   "stars": 3.0,
+   "est_rooms": 50
+  },
+  {
+   "hotel_id": 6,
+   "score": 90,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "30 rooms \u2014 right-size for outsourced intel",
+    "3.5\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)",
+    "decision-maker contact captured"
+   ],
+   "name": "Pelican Hotel",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 30
+  },
+  {
+   "hotel_id": 7,
+   "score": 90,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "100 rooms \u2014 right-size for outsourced intel",
+    "4.5\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)",
+    "decision-maker contact captured"
+   ],
+   "name": "The Standard Spa, Miami Beach",
+   "area": "South Beach",
+   "stars": 4.5,
+   "est_rooms": 100
+  },
+  {
+   "hotel_id": 22,
+   "score": 90,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "80 rooms \u2014 right-size for outsourced intel",
+    "4.0\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)",
+    "decision-maker contact captured"
+   ],
+   "name": "The Marlin Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 80
+  },
+  {
+   "hotel_id": 1,
+   "score": 78,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "130 rooms \u2014 borderline",
+    "4.5\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)",
+    "decision-maker contact captured"
+   ],
+   "name": "The Betsy Hotel, South Beach",
+   "area": "South Beach",
+   "stars": 4.5,
+   "est_rooms": 130
+  },
+  {
+   "hotel_id": 8,
+   "score": 78,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "150 rooms \u2014 borderline",
+    "4.0\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)",
+    "decision-maker contact captured"
+   ],
+   "name": "National Hotel, An Oceanfront Resort",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 150
+  },
+  {
+   "hotel_id": 2,
+   "score": 75,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "75 rooms \u2014 right-size for outsourced intel",
+    "4.0\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)"
+   ],
+   "name": "The Savoy Hotel & Beach Club",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 75
+  },
+  {
+   "hotel_id": 3,
+   "score": 75,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "40 rooms \u2014 right-size for outsourced intel",
+    "3.5\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)"
+   ],
+   "name": "Hotel Astor",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 40
+  },
+  {
+   "hotel_id": 10,
+   "score": 75,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "50 rooms \u2014 right-size for outsourced intel",
+    "4.0\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)"
+   ],
+   "name": "The Plymouth South Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 50
+  },
+  {
+   "hotel_id": 12,
+   "score": 75,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "50 rooms \u2014 right-size for outsourced intel",
+    "4.0\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)"
+   ],
+   "name": "Esme Miami Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 50
+  },
+  {
+   "hotel_id": 15,
+   "score": 75,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "100 rooms \u2014 right-size for outsourced intel",
+    "3.5\u2605 \u2014 most price-sensitive segment",
+    "decision-maker contact captured"
+   ],
+   "name": "Circa 39 Hotel",
+   "area": "Mid-Beach",
+   "stars": 3.5,
+   "est_rooms": 100
+  },
+  {
+   "hotel_id": 20,
+   "score": 75,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "64 rooms \u2014 right-size for outsourced intel",
+    "3.5\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)"
+   ],
+   "name": "Life House, South of Fifth",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 64
+  },
+  {
+   "hotel_id": 13,
+   "score": 70,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "4.0\u2605 \u2014 most price-sensitive segment",
+    "dense micro-market (South Beach)",
+    "decision-maker contact captured"
+   ],
+   "name": "The Goodtime Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 266
+  },
+  {
+   "hotel_id": 9,
+   "score": 60,
+   "tier": "warm",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "50 rooms \u2014 right-size for outsourced intel",
+    "4.0\u2605 \u2014 most price-sensitive segment"
+   ],
+   "name": "Casa Faena",
+   "area": "Miami Beach",
+   "stars": 4.0,
+   "est_rooms": 50
+  },
+  {
+   "hotel_id": 14,
+   "score": 60,
+   "tier": "warm",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "80 rooms \u2014 right-size for outsourced intel",
+    "3.5\u2605 \u2014 most price-sensitive segment"
+   ],
+   "name": "Palm Tree Club Miami Beach",
+   "area": "Mid-Beach",
+   "stars": 3.5,
+   "est_rooms": 80
+  },
+  {
+   "hotel_id": 19,
+   "score": 60,
+   "tier": "warm",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "80 rooms \u2014 right-size for outsourced intel",
+    "4.0\u2605 \u2014 most price-sensitive segment"
+   ],
+   "name": "Palihouse Miami Beach",
+   "area": "Miami Beach",
+   "stars": 4.0,
+   "est_rooms": 80
+  },
+  {
+   "hotel_id": 18,
+   "score": 48,
+   "tier": "warm",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "170 rooms \u2014 borderline",
+    "decision-maker contact captured"
+   ],
+   "name": "Faena Hotel Miami Beach",
+   "area": "Mid-Beach",
+   "stars": 5.0,
+   "est_rooms": 170
+  },
+  {
+   "hotel_id": 17,
+   "score": 40,
+   "tier": "watch",
+   "signals": [
+    "independent \u2014 no brand RMS desk",
+    "4.0\u2605 \u2014 most price-sensitive segment"
+   ],
+   "name": "The Confidante Miami Beach",
+   "area": "Mid-Beach",
+   "stars": 4.0,
+   "est_rooms": 350
+  },
+  {
+   "hotel_id": 21,
+   "score": 30,
+   "tier": "watch",
+   "signals": [
+    "dense micro-market (South Beach)",
+    "decision-maker contact captured"
+   ],
+   "name": "1 Hotel South Beach",
+   "area": "South Beach",
+   "stars": 5.0,
+   "est_rooms": 425
+  },
+  {
+   "hotel_id": 16,
+   "score": 25,
+   "tier": "watch",
+   "signals": [
+    "independent \u2014 no brand RMS desk"
+   ],
+   "name": "Miami Beach EDITION",
+   "area": "Mid-Beach",
+   "stars": 5.0,
+   "est_rooms": 300
+  }
+ ],
+ "runs": [
+  {
+   "id": 2,
+   "started": 1793675101.928492,
+   "finished": 1793675313.7724578,
+   "mode": "collect",
+   "status": "ok",
+   "hotels_attempted": 20,
+   "hotels_ok": 20,
+   "contacts_new": 196,
+   "rates_new": 0,
+   "notes": ""
+  },
+  {
+   "id": 1,
+   "started": 1793656669.0006332,
+   "finished": 1793656845.7026558,
+   "mode": "collect",
+   "status": "ok",
+   "hotels_attempted": 12,
+   "hotels_ok": 12,
+   "contacts_new": 92,
+   "rates_new": 0,
+   "notes": ""
+  }
+ ]
+}
