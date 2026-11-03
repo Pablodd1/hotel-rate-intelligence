@@ -2,14 +2,15 @@
 """Import a google-maps-scraper-kit CSV into HRI's `leads` table.
 
 The Maps kit gives breadth (every hotel in the city, with phones/emails/socials);
-the curated `hotels` comp set stays the 20-property deep-dive. `leads` is the
+the curated `hotels` comp set stays the 30-property deep-dive. `leads` is the
 top-of-funnel for outreach.
 
 Usage: python3 scripts/import_leads.py <csv> [--source-tag miami_beach_grid]
 """
-import csv, json, sqlite3, sys, time
+import csv, os, sqlite3, sys, time
 
-sys.path.insert(0, "/root/.openclaw/workspace/hotel-rate-intelligence")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT)
 from hri.config import load
 
 

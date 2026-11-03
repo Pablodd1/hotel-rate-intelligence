@@ -4,14 +4,15 @@
   "database": "data/hri.db",
   "stay": { "checkin_days_out": 30, "nights": 3, "adults": 2, "rooms": 1 },
   "collector": {
-    "max_hotels_per_run": 12,
-    "polite_delay_sec": [2, 5],
-    "request_timeout_sec": 25,
-    "max_contact_pages_per_hotel": 3
+    "max_hotels_per_run": 30,
+    "polite_delay_sec": [0.5, 1.5],
+    "request_timeout_sec": 18,
+    "max_contact_pages_per_hotel": 2
   },
   "sources": {
     "hotel_sites": true,
-    "ota": false
+    "ota": false,
+    "xotelo": true
   },
   "telegram": {
     "bot_token": "",

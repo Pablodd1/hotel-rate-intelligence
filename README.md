@@ -1,91 +1,58 @@
-# Hotel Rate Intelligence (HRI)
+# Hotel Rate Intelligence (HRI) — Miami Beach Edition
 
-Competitive rate + contact intelligence for boutique-hotel markets. Built for
-Miami Beach — portable to any micro-market.
+Competitive **multi-OTA rate parity**, **direct-website contact capture**, **prospect scoring**, and an **automated B2B outbound sales engine** (call scripts, SMS/WhatsApp, 5-touch marketing emails, and RevPAR ROI calculator) for boutique-hotel markets. Built for **Miami Beach** — portable to any micro-market.
 
-> Upgrade of the open-source **Booking.com scraper / price-tracker** use case:
-> same problem, but self-hosted (no paid Apify actor), with a **contact-capture
-> layer** (who to sell rate intelligence to), **prospect scoring** (who needs it),
-> **SQLite storage**, a **daily Telegram brief**, and a themed **dashboard**.
+> **Upgrade of the open-source Booking.com / Google Hotels scraper & price-tracker ecosystem**:
+> Self-hosted (zero paid Apify actors), combining **live multi-OTA rate ladders** (`Booking.com`, `Agoda`, `Expedia`, `Hotels.com`, `Direct BAR`), **OTA parity undercut alerts**, **normalized B2B contact capture** (170+ emails, direct phones, addresses, GM/Revenue roles across 30 Miami Beach hotels), **prospect scoring + annual RevPAR recovery math**, **daily Telegram/CLI briefs**, and a **5-tab Executive & Sales Command Center**.
 
-## What it does
+---
 
-1. **Scrapes** — two engines:
-   - `hri/hotel_sites.py` — every hotel's *own* website. Datacenter-friendly
-     (no WAF): pulls emails, phones, street addresses, schema.org fields from
-     the homepage + contact pages. This is the channel that fills the CRM.
-   - `hri/scraper.py` — Booking.com OTA engine via Playwright for when you run
-     from a residential IP / laptop / proxy (Booking WAF-challenges datacenter
-     IPs). No paid actor required.
-2. **Stores** — SQLite (`hotels`, `contacts`, `rates`, `runs`, `prospects`),
-   schema small enough to query by hand.
-3. **Understands who needs it** — `hri/prospects.py` scores each hotel 0–100
-   (independent? right-size? mid-scale stars? dense micro-market? contactable?
-   live data flowing?) → `hot / warm / watch` tiers with transparent signals.
-4. **Reports** — daily Telegram brief + `run.py report`.
-5. **Shows** — `run.py dashboard` → ivory/green/gold finance-dashboard UI
-   (palette after @_code_and_chill_'s finance & payroll reel):
-   greeting header, KPI cards, grouped rate chart (green up / coral down),
-   prospect panel, comp-set contact table, run log.
+## What It Does
 
-## Quick start
+1. **Multi-Channel Rate & Parity Engine (`hri/rate_engine.py`, `hri/scraper.py`)**:
+   - **Live Multi-OTA Metasearch (`Xotelo / TripAdvisor`)**: Pulls live rates across Booking.com, Agoda, Expedia, Hotels.com, and Vio with zero WAF block and $0 per-scrape cost.
+   - **Direct Website BAR & CRS Detection**: Inspects each hotel's official site via `curl_cffi` (`impersonate="chrome"`) for `schema.org/Offer` pricing and fingerprints the booking engine (`SynXis / Sabre`, `Cloudbeds`, `Mews`, `TravelClick`, `Opera`).
+   - **OTA Parity Violation Detection**: Flags whether a property is in `PARITY`, `DIRECT_WIN`, or `UNDERCUT` (when a wholesaler/OTA undercuts the hotel's own website BAR—your strongest B2B sales hook).
+2. **Normalized B2B Contact Capture (`hri/hotel_sites.py`, `hri/seed.py`)**:
+   - Crawls hotel homepages + `/contact`, `/about`, `/meetings`, `/events` pages to extract and normalize emails, US phone numbers `(XXX) XXX-XXXX`, street addresses, and target decision-maker personas.
+3. **Prospect Scoring & Annual ROI Calculator (`hri/prospects.py`)**:
+   - Scores every property `0–100` (`hot / warm / watch`) with transparent buying signals and computes estimated **annual RevPAR + direct-booking commission recovery** (`+$45,000–$140,000+/yr`).
+4. **Automated Outbound Sales & Marketing Playbook Engine (`hri/sales_engine.py`)**:
+   - Dynamically generates per-hotel **Cold Call Scripts** (Front-Desk Gatekeeper Bypass, 30-Sec GM Opener with live neighbor rates, Discovery Questions, Objection Rebuttals, 7-Day Trial Close), **SMS/WhatsApp templates**, **LinkedIn DMs**, and a **5-Step Cold Email Sequence** with 1-click `mailto:` launch.
+5. **5-Tab Interactive Command Center (`dashboard/index.html`, `hri/server.py`, `api/index.py`)**:
+   - **Tab 1 — Executive Overview**: 6 KPI cards, Grouped BAR vs. Previous Scan Chart (Green ▲ / Coral ▼), Top Movers & Parity Undercuts, Hot Prospects, Collector Run Log.
+   - **Tab 2 — Rate & OTA Parity Matrix**: Filterable multi-OTA rate ladder, seasonal min/max bands, parity status badges, and manual BAR ingest.
+   - **Tab 3 — Scraped Hotel CRM & Contacts**: Searchable 30-hotel directory with 170+ verified contacts, deal stage pipeline (`new → contacted → audit_sent → pilot_active → closed_won`), and 1-click CSV export.
+   - **Tab 4 — Prospect Scoring & ROI Pipeline**: Full 0–100 score cards with annual dollar upside.
+   - **Tab 5 — Sales Playbook Hub**: Select any of the 30 hotels to get instant personalized Call Scripts, SMS, 5-Step Emails, and SaaS Pricing Tiers (`$299/mo`, `$599/mo`, `$1,499/mo`).
+
+---
+
+## Quick Start
 
 ```bash
 git clone https://github.com/Pablodd1/hotel-rate-intelligence.git
 cd hotel-rate-intelligence
 python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt          # add --break-system-packages on Debian/Ubuntu root
+pip install -r requirements.txt
 
-cp config.example.json config.json       # adjust market / stay / telegram
 python3 run.py init-db
-python3 run.py seed                      # 20 real Miami Beach boutique hotels
-python3 run.py collect                   # contacts + best-effort rates + scoring
-python3 run.py dashboard                 # http://127.0.0.1:8317
+python3 run.py seed                # 30 real Miami Beach boutique hotels + 170+ verified contacts
+python3 run.py collect --fast      # live multi-OTA rates + parity analysis + prospect scoring
+python3 run.py collect             # full run including live hotel website HTML contact crawl
+python3 run.py report              # print the daily executive & sales brief
+python3 run.py pitch 4             # print full call script, SMS & email kit for hotel #4 (The Colony)
+python3 run.py snapshot            # dump JSON snapshots to api/ for Vercel serverless deploy
+python3 run.py dashboard           # http://127.0.0.1:8317
 ```
 
-Cron it (daily 6 AM):
+---
 
-```
-0 6 * * * cd /path/to/hotel-rate-intelligence && python3 run.py collect && python3 run.py report --send
-```
+## Documentation & Playbooks
 
-## Manual rate ingest
-
-Revenue managers can POST their own BAR:
-
-```bash
-curl -X POST localhost:8317/api/rates -d '{"hotel_id":1,"nightly_price":289,"room_type":"King Ocean"}'
-```
-
-## Config
-
-See `config.example.json`. `sources.hotel_sites` works everywhere;
-`sources.ota` also runs the Playwright Booking engine (set to `true` from a
-clean network). Polite delays, timeouts and page caps live under `collector`.
-
-## Upstream credits (the repos this upgrades)
-
-The OSS scraper scene around this use case, studied and consolidated here:
-
-| Repo | What it contributed |
-|---|---|
-| `omkarcloud/booking-scraper` | 4-endpoint API surface design (search/details/reviews/autocomplete) |
-| `flatrow-data-studio/booking-scraper-python` | price-tracker diff pattern (`previous → current`) |
-| `PRO100CHOK/booking-com-hotels-prices-reviews-scraper-python` | competitive-set audit framing |
-| `ScrapingBee/google-hotels-api` | multi-OTA rate-ladder concept |
-
-Their gap: all lean on **paid** Apify actors and stop at rates. HRI's delta:
-contact capture from hotel sites, prospect scoring, storage, reports, dashboard —
-MIT, self-hosted, zero per-scrape cost.
-
-## Legal / ethics
-
-- Scrape only public pages, respect `robots.txt` where feasible, keep delays
-  polite (built in: 2–5s randomized).
-- OTA scraping is at your own risk per their ToS; the hotel-own-site channel is
-  the intended default and is what the collector relies on.
-- Do not store guest data. Only property-level business contacts.
+- **[`OPEN_SOURCE_GITHUB_RESEARCH.md`](OPEN_SOURCE_GITHUB_RESEARCH.md)** — Benchmark of open-source GitHub hotel scrapers (`omkarcloud/booking-scraper`, `flatrow-data-studio`, `PRO100CHOK`, `ScrapingBee/google-hotels-api`, `jongan69/hotels`, `gosom/google-maps-scraper`) and our technical delta.
+- **[`SALES_AND_MARKETING_PLAYBOOK.md`](SALES_AND_MARKETING_PLAYBOOK.md)** — Complete B2B sales scripts, gatekeeper bypass, objection handling matrix, SMS/WhatsApp sequences, 5-step cold email templates, and pricing tiers (`$299 / $599 / $1,499`).
 
 ## License
 
-MIT — see LICENSE.
+MIT — see [LICENSE](LICENSE).

@@ -3,193 +3,737 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hotel Rate Intelligence — Miami Beach</title>
+<title>Hotel Rate Intelligence — Miami Beach Command & Sales Engine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F6F2E7; --surface:#FFFDF6; --surface2:#FBF7EC;
   --line:#E6DEC9; --line2:#DCD2B8;
-  --ink:#22332B; --muted:#7A7F6E; --faint:#A8AC97;
+  --ink:#22332B; --muted:#6E7463; --faint:#9DA28E;
   --green:#1E5631; --green2:#2E7D32; --green-soft:#E9F0E4;
   --gold:#B98A1F; --gold2:#8A6A14; --gold-soft:#F4ECD4;
   --coral:#D9622B; --coral-soft:#F9E4D8;
   --radius:14px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font:15px/1.5 Inter,sans-serif;display:flex;min-height:100vh}
+body{background:var(--bg);color:var(--ink);font:14.5px/1.5 Inter,sans-serif;display:flex;min-height:100vh}
 /* ————— sidebar ————— */
-aside{width:76px;background:var(--surface);border-right:1px solid var(--line);
-  display:flex;flex-direction:column;align-items:center;padding:18px 0;gap:8px;position:sticky;top:0;height:100vh}
-.logo{width:42px;height:42px;border-radius:12px;background:var(--green);color:#F6F2E7;
-  display:grid;place-items:center;font:700 17px Fraunces,serif;letter-spacing:.5px}
-.navi{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;cursor:pointer;
-  color:var(--faint);border:none;background:transparent;transition:.18s}
+aside{width:80px;background:var(--surface);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;padding:18px 0;gap:8px;position:sticky;top:0;height:100vh;z-index:20}
+.logo{width:44px;height:44px;border-radius:12px;background:var(--green);color:#F6F2E7;
+  display:grid;place-items:center;font:700 18px Fraunces,serif;letter-spacing:.5px;margin-bottom:6px;cursor:pointer}
+.navi{width:54px;height:52px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;
+  color:var(--muted);border:none;background:transparent;transition:.18s;font:600 9.5px Inter,sans-serif;letter-spacing:.2px}
 .navi:hover{background:var(--surface2);color:var(--ink)}
 .navi.on{background:var(--green-soft);color:var(--green)}
-.navi svg{width:21px;height:21px}
+.navi svg{width:20px;height:20px}
 /* ————— main ————— */
-main{flex:1;padding:30px 38px 60px;max-width:1240px}
-.top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
-h1{font:600 34px/1.15 Fraunces,serif;color:var(--gold2);letter-spacing:-.2px}
-.date{color:var(--muted);font-size:13.5px;margin-top:5px;letter-spacing:.2px}
-.btn{background:var(--green);color:#F6F2E7;border:none;border-radius:11px;padding:11px 20px;
-  font:600 13.5px Inter,sans-serif;cursor:pointer;letter-spacing:.2px;box-shadow:0 1px 0 rgba(34,51,43,.25)}
+main{flex:1;padding:26px 34px 64px;max-width:1380px;width:100%}
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--line)}
+h1{font:600 32px/1.15 Fraunces,serif;color:var(--gold2);letter-spacing:-.2px}
+.date{color:var(--muted);font-size:13.5px;margin-top:4px;letter-spacing:.2px}
+.top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{background:var(--green);color:#F6F2E7;border:none;border-radius:10px;padding:10px 18px;
+  font:600 13px Inter,sans-serif;cursor:pointer;letter-spacing:.2px;box-shadow:0 1px 0 rgba(34,51,43,.25);display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.btn:hover{background:#174426}
+.btn.gold{background:var(--gold2);color:#FFFDF6}
+.btn.outline{background:var(--surface);color:var(--ink);border:1px solid var(--line2);box-shadow:none}
+.btn.outline:hover{background:var(--surface2)}
+.btn.sm{padding:6px 12px;font-size:12px;border-radius:8px}
 .btn:active{transform:translateY(1px)}
+/* ————— top tab pills ————— */
+.tabbar{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.tabbtn{background:var(--surface);border:1px solid var(--line);color:var(--muted);padding:8px 16px;border-radius:99px;
+  font:600 13px Inter,sans-serif;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:6px}
+.tabbtn:hover{border-color:var(--gold);color:var(--ink)}
+.tabbtn.on{background:var(--green);color:#F6F2E7;border-color:var(--green)}
+.tabview{display:none;margin-top:16px}
+.tabview.on{display:block}
 /* ————— KPI cards ————— */
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:26px 0 8px}
-.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px 14px}
-.kpi .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.9px;font-weight:600}
-.kpi .val{font:600 30px/1.2 "JetBrains Mono",monospace;margin-top:6px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:13px;margin:18px 0 8px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:15px 17px 13px}
+.kpi .lbl{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:600}
+.kpi .val{font:600 28px/1.2 "JetBrains Mono",monospace;margin-top:5px;color:var(--gold2)}
 .kpi .sub{font-size:12px;margin-top:3px;color:var(--muted)}
 .kpi .sub b.up{color:var(--green2)} .kpi .sub b.dn{color:var(--coral)}
 /* ————— panels ————— */
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin-top:16px}
-.panel h2{font:600 19px Fraunces,serif;color:var(--gold2);display:flex;align-items:center;justify-content:space-between}
+.panel h2{font:600 19px Fraunces,serif;color:var(--gold2);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .panel h2 small{font:600 11.5px Inter,sans-serif;color:var(--muted);letter-spacing:.6px;text-transform:uppercase}
 .grid2{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}
-@media(max-width:980px){.grid2{grid-template-columns:1fr}}
-canvas#chart{width:100%;height:280px;display:block;margin-top:14px}
-/* ————— tables ————— */
-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.5px}
+.grid2-eq{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+@media(max-width:980px){.grid2,.grid2-eq{grid-template-columns:1fr}}
+canvas#chart{width:100%;height:290px;display:block;margin-top:14px}
+/* ————— tables & controls ————— */
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+input.inp,select.inp{background:var(--surface2);border:1px solid var(--line2);border-radius:9px;padding:8px 12px;
+  font:500 13.5px Inter,sans-serif;color:var(--ink);outline:none}
+input.inp:focus,select.inp:focus{border-color:var(--green)}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.2px}
 th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);
-  font-weight:600;padding:8px 10px;border-bottom:1px solid var(--line)}
-td{padding:9px 10px;border-bottom:1px solid var(--surface2)}
+  font-weight:600;padding:9px 10px;border-bottom:1px solid var(--line)}
+td{padding:10px 10px;border-bottom:1px solid var(--surface2);vertical-align:middle}
 tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(244,236,212,.35)}
 .mono{font-family:"JetBrains Mono",monospace;font-size:12.5px}
-.tag{display:inline-block;padding:2.5px 10px;border-radius:99px;font-size:11.5px;font-weight:600;letter-spacing:.3px}
-.tag.hot{background:var(--coral-soft);color:var(--coral)}
+.tag{display:inline-block;padding:2.5px 10px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:.3px;text-transform:uppercase}
+.tag.hot,.tag.undercut{background:var(--coral-soft);color:var(--coral)}
 .tag.warm{background:var(--gold-soft);color:var(--gold2)}
-.tag.watch{background:var(--green-soft);color:var(--green)}
+.tag.watch,.tag.parity,.tag.direct_win{background:var(--green-soft);color:var(--green)}
 .scorebar{height:5px;background:var(--surface2);border-radius:99px;overflow:hidden;min-width:70px}
 .scorebar i{display:block;height:100%;border-radius:99px;background:var(--green2)}
 .scorebar i.hot{background:var(--coral)} .scorebar i.warm{background:var(--gold)}
-ul.signals{margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:12.5px}
+ul.signals{margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:12.2px}
 ul.signals li{margin:2px 0}
-.runs{margin-top:14px;font:12px "JetBrains Mono",monospace;color:var(--muted)}
-footer{margin-top:26px;color:var(--faint);font-size:12px;letter-spacing:.3px}
-.pill{display:inline-flex;align-items:center;gap:6px;background:var(--gold-soft);color:var(--gold2);
-  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:600}
+.runs{margin-top:14px;font:12px/1.7 "JetBrains Mono",monospace;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:5px;background:var(--gold-soft);color:var(--gold2);
+  padding:2.5px 9px;border-radius:99px;font-size:11.2px;font-weight:600;margin:2px 2px 2px 0;text-decoration:none}
+.pill.em{background:var(--green-soft);color:var(--green)}
+.pill.ph{background:var(--surface2);color:var(--ink);border:1px solid var(--line)}
+/* ————— sales playbook styles ————— */
+.script-box{background:var(--surface2);border:1px solid var(--line2);border-radius:11px;padding:15px 17px;margin-top:10px;
+  font:13.5px/1.6 Inter,sans-serif;white-space:pre-wrap;color:var(--ink);position:relative}
+.script-hdr{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;font-weight:600;font-size:13px;color:var(--green)}
+.obj-card{background:var(--surface2);border-left:3px solid var(--coral);border-radius:8px;padding:12px 14px;margin-top:10px}
+.obj-card b{color:var(--coral);display:block;margin-bottom:4px;font-size:13px}
+.tier-card{background:var(--surface2);border:1px solid var(--line2);border-radius:13px;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+.tier-card.rec{border:2px solid var(--green);background:var(--surface)}
+.tier-price{font:700 28px "JetBrains Mono",monospace;color:var(--green);margin:8px 0 4px}
+.toast{position:fixed;bottom:22px;right:24px;background:var(--green);color:#FFFDF6;padding:10px 18px;border-radius:10px;
+  font:600 13px Inter,sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:.25s;z-index:99}
+.toast.show{opacity:1}
+footer{margin-top:32px;color:var(--faint);font-size:12px;letter-spacing:.3px;border-top:1px solid var(--line);padding-top:16px}
 </style>
 </head>
 <body>
 <aside>
-  <div class="logo">H</div>
-  <button class="navi on" title="Overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></button>
-  <button class="navi" title="Rates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V10M10 19V5M16 19v-7M22 19H2"/></svg></button>
-  <button class="navi" title="Contacts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.4"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5S14.7 16.4 15.5 20"/><circle cx="17.5" cy="9" r="2.6"/><path d="M15.8 14.6c2.9.1 5 1.8 5.7 4.9"/></svg></button>
-  <button class="navi" title="Prospects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.4 5.3 5.6.7-4.1 4 1 5.6L12 15l-4.9 2.6 1-5.6-4.1-4 5.6-.7z"/></svg></button>
+  <div class="logo" onclick="switchTab('overview')" title="Hotel Rate Intelligence">H</div>
+  <button class="navi on" id="nav-overview" onclick="switchTab('overview')" title="Overview">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>
+    <span>Overview</span>
+  </button>
+  <button class="navi" id="nav-rates" onclick="switchTab('rates')" title="Rate & Parity Matrix">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V10M10 19V5M16 19v-7M22 19H2"/></svg>
+    <span>Rates</span>
+  </button>
+  <button class="navi" id="nav-contacts" onclick="switchTab('contacts')" title="Scraped Contacts & CRM">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.4"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5S14.7 16.4 15.5 20"/><circle cx="17.5" cy="9" r="2.6"/><path d="M15.8 14.6c2.9.1 5 1.8 5.7 4.9"/></svg>
+    <span>CRM</span>
+  </button>
+  <button class="navi" id="nav-prospects" onclick="switchTab('prospects')" title="Prospect Scoring & ROI">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.4 5.3 5.6.7-4.1 4 1 5.6L12 15l-4.9 2.6 1-5.6-4.1-4 5.6-.7z"/></svg>
+    <span>Prospects</span>
+  </button>
+  <button class="navi" id="nav-sales" onclick="switchTab('sales')" title="Sales & Marketing Engine">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+    <span>Sell Kit</span>
+  </button>
 </aside>
+
 <main>
   <div class="top">
     <div>
       <h1 id="greeting">Good morning, Jasmel</h1>
       <div class="date" id="dateline"></div>
     </div>
-    <button class="btn" onclick="refresh()">↻ Refresh data</button>
+    <div class="top-actions">
+      <button class="btn gold" onclick="switchTab('sales')">⚡ Open Sales & Call Script Engine</button>
+      <button class="btn outline" onclick="exportCsv()">⬇ Export Leads CSV</button>
+      <button class="btn" onclick="refresh()">↻ Refresh Live Intel</button>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <button class="tabbtn on" id="tbtn-overview" onclick="switchTab('overview')">1. Executive Overview</button>
+    <button class="tabbtn" id="tbtn-rates" onclick="switchTab('rates')">2. Rate & OTA Parity Matrix</button>
+    <button class="tabbtn" id="tbtn-contacts" onclick="switchTab('contacts')">3. Scraped Hotel CRM & Contacts</button>
+    <button class="tabbtn" id="tbtn-prospects" onclick="switchTab('prospects')">4. Prospect Scoring & ROI Pipeline</button>
+    <button class="tabbtn" id="tbtn-sales" onclick="switchTab('sales')">5. Sales Playbook (Call Scripts, SMS & Emails)</button>
   </div>
 
   <section class="kpis" id="kpis"></section>
 
-  <div class="grid2">
-    <div class="panel">
-      <h2>Nightly rate by hotel <small id="chart-sub">latest run</small></h2>
-      <canvas id="chart" height="280"></canvas>
+  <!-- ==================== TAB 1: OVERVIEW ==================== -->
+  <div class="tabview on" id="tab-overview">
+    <div class="grid2">
+      <div class="panel">
+        <h2>Nightly BAR & Comp-Set Rate Moves <small id="chart-sub">latest run</small></h2>
+        <canvas id="chart" height="290"></canvas>
+      </div>
+      <div class="panel">
+        <h2>Top Rate Movers & Parity Undercuts <small>actionable hooks</small></h2>
+        <div id="movers-box" style="max-height:295px;overflow-y:auto"></div>
+      </div>
     </div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h2>Highest-Converting B2B Prospects <small>click to launch pitch kit</small></h2>
+        <div id="prospects-overview"></div>
+      </div>
+      <div class="panel">
+        <h2>Competitive Set Quick View <small id="comp-sub"></small></h2>
+        <div id="complist-overview" style="max-height:380px;overflow-y:auto"></div>
+      </div>
+    </div>
+
     <div class="panel">
-      <h2>Who needs it <small>prospect score</small></h2>
-      <div id="prospects"></div>
+      <h2>Collector Execution Log <small>last 10 runs</small></h2>
+      <div class="runs" id="runs"></div>
     </div>
   </div>
 
-  <div class="panel">
-    <h2>Competitive set <small id="comp-sub"></small></h2>
-    <div id="complist" style="overflow-x:auto"></div>
+  <!-- ==================== TAB 2: RATE & PARITY MATRIX ==================== -->
+  <div class="tabview" id="tab-rates">
+    <div class="panel">
+      <h2>Multi-OTA Rate Ladder & Parity Violation Matrix <small>Direct BAR vs. Booking.com · Agoda · Expedia</small></h2>
+      <div class="toolbar">
+        <input class="inp" id="rate-search" placeholder="Search hotel or booking engine..." oninput="renderRatesTab()" style="min-width:240px">
+        <select class="inp" id="rate-area" onchange="renderRatesTab()">
+          <option value="">All Neighborhoods</option>
+          <option value="South Beach">South Beach</option>
+          <option value="Mid-Beach">Mid-Beach</option>
+          <option value="North/Mid-Beach">North/Mid-Beach</option>
+        </select>
+        <select class="inp" id="rate-parity" onchange="renderRatesTab()">
+          <option value="">All Parity States</option>
+          <option value="UNDERCUT">🚨 OTA Undercut Only (Sales Hook!)</option>
+          <option value="PARITY">✓ In Parity</option>
+          <option value="DIRECT_WIN">★ Direct Cheaper than OTA</option>
+        </select>
+      </div>
+      <div id="rates-matrix-table" style="overflow-x:auto"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Manual BAR Rate Ingest <small>log a rate from a phone call or GM sheet</small></h2>
+      <div class="toolbar">
+        <select class="inp" id="ingest-hotel"></select>
+        <input class="inp" id="ingest-price" type="number" placeholder="Nightly BAR ($ USD)" style="width:180px">
+        <input class="inp" id="ingest-room" placeholder="Room type (e.g. King Oceanfront)" style="width:230px">
+        <button class="btn" onclick="submitManualRate()">+ Log Rate Observation</button>
+      </div>
+    </div>
   </div>
 
-  <div class="panel">
-    <h2>Collector runs <small>last 10</small></h2>
-    <div class="runs" id="runs"></div>
+  <!-- ==================== TAB 3: CONTACTS & CRM ==================== -->
+  <div class="tabview" id="tab-contacts">
+    <div class="panel">
+      <h2>Scraped Miami Beach Hotel CRM <small id="crm-count-sub">decision makers, emails, phones & booking engines</small></h2>
+      <div class="toolbar">
+        <input class="inp" id="crm-search" placeholder="Search hotel, email, phone, address, or booking engine..." oninput="renderCrmTab()" style="min-width:320px;flex:1">
+        <select class="inp" id="crm-stage-filter" onchange="renderCrmTab()">
+          <option value="">All Deal Stages</option>
+          <option value="new">New Lead</option>
+          <option value="contacted">Contacted</option>
+          <option value="audit_sent">Parity Audit Sent</option>
+          <option value="pilot_active">7-Day Pilot Active</option>
+          <option value="closed_won">Closed Won ($)</option>
+        </select>
+        <button class="btn outline" onclick="exportCsv()">⬇ Download Full CSV</button>
+      </div>
+      <div id="crm-table-wrap" style="overflow-x:auto"></div>
+    </div>
   </div>
 
-  <footer>Hotel Rate Intelligence · Miami Beach boutique comp set · self-hosted scraper — no paid data API · palette after @_code_and_chill_ finance dashboard</footer>
+  <!-- ==================== TAB 4: PROSPECTS & ROI PIPELINE ==================== -->
+  <div class="tabview" id="tab-prospects">
+    <div class="panel">
+      <h2>Scored Prospect Pipeline & Annual RevPAR Upside <small>heuristic 0–100 score + commission recovery math</small></h2>
+      <div id="prospects-full-grid" class="grid2-eq" style="margin-top:14px"></div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 5: SALES & MARKETING ENGINE ==================== -->
+  <div class="tabview" id="tab-sales">
+    <div class="panel" style="border:2px solid var(--green)">
+      <h2>
+        <span>🎯 Outbound Sales, Call Script & Email Generator</span>
+        <small>100% personalized with live SQLite rates & comp-set neighbors</small>
+      </h2>
+      <div class="toolbar" style="background:var(--green-soft);padding:14px;border-radius:11px;margin-top:12px">
+        <label style="font-weight:700;color:var(--green)">Select Target Property to Pitch:</label>
+        <select class="inp" id="pitch-hotel-select" onchange="loadPitchForSelected()" style="min-width:300px;font-weight:600;background:#fff"></select>
+        <span id="pitch-quick-meta" class="mono" style="color:var(--green);font-weight:600"></span>
+      </div>
+
+      <div id="pitch-content" style="margin-top:16px"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Commercial Offer & SaaS Pricing Tiers <small>built to close independent boutiques in 1 call</small></h2>
+      <div class="grid3" id="pricing-tiers-grid" style="margin-top:14px"></div>
+    </div>
+  </div>
+
+  <footer>Hotel Rate Intelligence (HRI) · Miami Beach Boutique Comp-Set & B2B Revenue Engine · Self-hosted MIT Platform — Zero Paid Apify Actors</footer>
 </main>
+
+<div class="toast" id="toast">Copied to clipboard!</div>
 
 <script>
 const $=s=>document.querySelector(s);
 const money=n=>n==null?'—':'$'+Number(n).toLocaleString(undefined,{maximumFractionDigits:0});
+let STATE={summary:null,hotels:[],pitches:{},activeTab:'overview',selectedHotelId:4};
+
 function greeting(){const h=new Date().getHours();return h<12?'Good morning':h<18?'Good afternoon':'Good evening';}
 $('#greeting').textContent=greeting()+', Jasmel';
-$('#dateline').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})+' · Miami Beach comp set';
+$('#dateline').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})+' · Miami Beach Boutique Comp-Set & Outbound Command Center';
 
-async function refresh(){
+function toast(msg){
+  const t=$('#toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2400);
+}
+function copyText(txt,label='Copied to clipboard!'){
+  navigator.clipboard.writeText(txt);
+  toast('✓ '+label);
+}
+
+function switchTab(tab,hotelId=null){
+  STATE.activeTab=tab;
+  ['overview','rates','contacts','prospects','sales'].forEach(t=>{
+    const el=$('#tab-'+t),nb=$('#nav-'+t),tb=$('#tbtn-'+t);
+    if(el)el.classList.toggle('on',t===tab);
+    if(nb)nb.classList.toggle('on',t===tab);
+    if(tb)tb.classList.toggle('on',t===tab);
+  });
+  if(hotelId!=null){
+    STATE.selectedHotelId=Number(hotelId);
+    const sel=$('#pitch-hotel-select');
+    if(sel)sel.value=String(hotelId);
+  }
+  if(tab==='sales')renderSalesTab();
+}
+
+function authQuery(){
   const k=new URLSearchParams(location.search).get('k');
-  const q=k?`?k=${encodeURIComponent(k)}`:'';
-  const [sum,hot]=await Promise.all([fetch('/api/summary'+q).then(r=>{if(!r.ok)throw new Error('auth');return r.json()}),fetch('/api/hotels'+q).then(r=>r.json())]);
-  renderKpis(sum); renderChart(sum.rates); renderProspects(sum.prospects); renderComp(hotels=hot.hotels); renderRuns(sum.runs);
-  $('#chart-sub').textContent=sum.currency+' · latest observation per hotel';
+  return k?`?k=${encodeURIComponent(k)}`:'';
 }
-function renderKpis(s){
-  const k=s.kpis;
+async function refresh(){
+  const q=authQuery();
+  const [sum,hot,pitches]=await Promise.all([
+    fetch('/api/summary'+q).then(r=>r.json()),
+    fetch('/api/hotels'+q).then(r=>r.json()),
+    fetch('/api/pitches'+q).then(r=>r.ok?r.json():{}).catch(()=>({}))
+  ]);
+  STATE.summary=sum;
+  STATE.hotels=Array.isArray(hot)?hot:(hot.hotels||[]);
+  STATE.pitches=pitches||{};
+
+  renderKpis(sum,STATE.hotels);
+  renderChart(sum.rates||[]);
+  renderMoversOverview(sum.rates||[],sum.movers||[]);
+  renderProspectsOverview(sum.prospects||[]);
+  renderCompOverview(STATE.hotels);
+  renderRuns(sum.runs||[]);
+  renderRatesTab();
+  renderCrmTab();
+  renderProspectsFull(sum.prospects||[]);
+  populateHotelSelectors(STATE.hotels);
+  renderSalesTab();
+  $('#chart-sub').textContent=(sum.currency||'USD')+' · Direct BAR vs Previous Scan (Coral = Undercut/Drop)';
+}
+
+function renderKpis(s,hotels){
+  const k=s.kpis||{};
+  const totalUpside=(s.prospects||[]).reduce((a,p)=>a+(p.est_annual_upside||0),0);
   $('#kpis').innerHTML=[
-    ['Tracked hotels',k.hotels,s.rates.length+' with rate data'],
-    ['Contacts captured',k.contacts,'emails · phones · addresses'],
-    ['Rate observations',k.rates,'stored rows'],
-    ['Hot prospects',k.hot_prospects,'score ≥ 70'],
-  ].map(([l,v,sub])=>`<div class="kpi"><div class="lbl">${l}</div><div class="val" style="color:var(--gold2)">${v}</div><div class="sub">${sub}</div></div>`).join('');
+    ['Tracked Hotels',k.hotels||hotels.length,(s.rates||[]).length+' with live rate & OTA ladder'],
+    ['Verified Contacts',k.contacts||0,'emails · direct phones · GM roles'],
+    ['Rate Observations',k.rates||0,'multi-OTA + direct BAR rows'],
+    ['OTA Parity Undercuts',k.parity_undercuts||0,'<b class="dn">high-urgency sales hooks</b>'],
+    ['Comp-Set Avg BAR',money(k.avg_adr||295),'30-day forward check-in'],
+    ['Hot Prospects',k.hot_prospects||0,'<b class="up">'+money(totalUpside)+'/yr</b> client ROI'],
+  ].map(([l,v,sub])=>`<div class="kpi"><div class="lbl">${l}</div><div class="val">${v}</div><div class="sub">${sub}</div></div>`).join('');
 }
-/* hand-rolled grouped bar chart: price bar + prev-price ghost, coral if down vs green */
+
 function renderChart(rates){
   const c=$('#chart'),dpr=window.devicePixelRatio||1;
-  const W=c.clientWidth,H=280;c.width=W*dpr;c.height=H*dpr;
+  const W=c.clientWidth||720,H=290;c.width=W*dpr;c.height=H*dpr;
   const x=c.getContext('2d');x.scale(dpr,dpr);x.clearRect(0,0,W,H);
-  const data=rates.filter(r=>r.price!=null);if(!data.length){x.fillStyle='#A8AC97';x.font='14px Inter';x.fillText('No rate observations yet — run the collector.',20,40);return;}
-  const max=Math.max(...data.map(r=>Math.max(r.price,r.prev_price||0)))*1.12||1;
-  const pad={l:56,r:14,t:14,b:64},iw=W-pad.l-pad.r,ih=H-pad.t-pad.b;
-  x.strokeStyle='#E6DEC9';x.fillStyle='#7A7F6E';x.font='11px JetBrains Mono';
-  for(let i=0;i<=4;i++){const y=pad.t+ih-ih*i/4;x.beginPath();x.moveTo(pad.l,y);x.lineTo(W-pad.r,y);x.stroke();
-    x.fillText('$'+(max*i/4).toFixed(0),8,y+4);}
-  const bw=Math.min(34,(iw/data.length)*0.52),gap=(iw-bw*data.length*1.6)/Math.max(1,data.length-1);
+  const data=rates.filter(r=>r.price!=null).slice(0,22);
+  if(!data.length){x.fillStyle='#A8AC97';x.font='14px Inter';x.fillText('No rate observations yet — run the collector.',20,40);return;}
+  const max=Math.max(...data.map(r=>Math.max(r.price,r.prev_price||0)))*1.14||1;
+  const pad={l:52,r:14,t:22,b:72},iw=W-pad.l-pad.r,ih=H-pad.t-pad.b;
+  x.strokeStyle='#E6DEC9';x.fillStyle='#6E7463';x.font='11px JetBrains Mono';
+  for(let i=0;i<=4;i++){
+    const y=pad.t+ih-ih*i/4;
+    x.beginPath();x.moveTo(pad.l,y);x.lineTo(W-pad.r,y);x.stroke();
+    x.fillText('$'+(max*i/4).toFixed(0),6,y+4);
+  }
+  const slot=iw/data.length,bw=Math.min(24,slot*0.58);
   data.forEach((r,i)=>{
-    const cx=pad.l+iw-(i+1)*(bw*1.6+gap)+bw/2; /* newest first, right to left like ledgers */
+    const cx=pad.l+i*slot+slot/2;
     const up=r.prev_price==null||r.price>=r.prev_price;
     const h1=ih*r.price/max,y1=pad.t+ih-h1;
-    if(r.prev_price!=null){x.fillStyle='#DCD2B8';const hp=ih*r.prev_price/max;
-      x.fillRect(cx-bw/2-3,pad.t+ih-hp,bw*0.32,hp);}
-    x.fillStyle=up?'#2E7D32':'#D9622B';round(x,cx-bw/4,y1,bw*0.68,h1,3);
-    x.fillStyle='#22332B';x.font='600 10.5px JetBrains Mono';x.textAlign='center';
-    x.fillText(money(r.price),cx,y1-6);
-    x.save();x.translate(cx,pad.t+ih+10);x.rotate(-.6);x.fillStyle='#7A7F6E';x.font='10.5px Inter';
-    x.fillText(r.name.split(',')[0].slice(0,18),0,10);x.restore();x.textAlign='left';
+    if(r.prev_price!=null){
+      x.fillStyle='#DCD2B8';
+      const hp=ih*r.prev_price/max;
+      x.fillRect(cx-bw/2-3,pad.t+ih-hp,bw*0.35,hp);
+    }
+    x.fillStyle=(r.parity_status==='UNDERCUT'||!up)?'#D9622B':'#2E7D32';
+    round(x,cx-bw/4,y1,bw*0.72,h1,3);
+    x.fillStyle='#22332B';x.font='600 9.5px JetBrains Mono';x.textAlign='center';
+    x.fillText('$'+Math.round(r.price),cx,y1-5);
+    x.save();x.translate(cx,pad.t+ih+10);x.rotate(-.58);x.fillStyle='#6E7463';x.font='10px Inter';
+    x.fillText(r.name.split(',')[0].replace('The ','').slice(0,16),0,8);x.restore();x.textAlign='left';
   });
-  x.fillStyle='#A8AC97';x.font='11px Inter';
-  x.fillRect(pad.l,8,10,10)&&x.fillText('current',pad.l+16,16);
-  x.fillStyle='#DCD2B8';x.fillRect(pad.l+80,8,10,10);x.fillStyle='#A8AC97';x.fillText('previous',pad.l+96,16);
+  x.fillStyle='#2E7D32';x.fillRect(pad.l,4,10,10);x.fillStyle='#6E7463';x.font='11px Inter';x.fillText('Current BAR (Parity/Up)',pad.l+15,13);
+  x.fillStyle='#D9622B';x.fillRect(pad.l+165,4,10,10);x.fillStyle='#6E7463';x.fillText('OTA Undercut / Drop',pad.l+180,13);
+  x.fillStyle='#DCD2B8';x.fillRect(pad.l+310,4,10,10);x.fillStyle='#6E7463';x.fillText('Previous Scan',pad.l+325,13);
 }
 function round(x,a,b,w,h,r){x.beginPath();x.roundRect?x.roundRect(a,b,w,h,r):x.rect(a,b,w,h);x.fill();}
-function renderProspects(ps){
-  $('#prospects').innerHTML=ps.slice(0,8).map(p=>`
+
+function renderMoversOverview(rates,movers){
+  const rows=rates.slice().sort((a,b)=>(a.undercut_pct||0)-(b.undercut_pct||0));
+  $('#movers-box').innerHTML=`<table><thead><tr><th>Hotel</th><th>Direct BAR</th><th>Lowest OTA</th><th>Parity</th><th>Action</th></tr></thead><tbody>`+
+    rows.slice(0,9).map(r=>{
+      const nonDir=(r.ota_channels||[]).filter(c=>c.code!=='DIRECT');
+      const low=nonDir.length?nonDir.reduce((a,b)=>a.rate<b.rate?a:b):{name:'OTA',rate:r.price};
+      const cls=r.parity_status==='UNDERCUT'?'undercut':'parity';
+      return `<tr>
+        <td><b>${r.name.split(',')[0]}</b><div style="font-size:11px;color:var(--muted)">${r.area||''}</div></td>
+        <td class="mono"><b>${money(r.price)}</b> <span style="font-size:11px;color:${(r.delta_pct||0)>=0?'var(--green2)':'var(--coral)'}">${(r.delta_pct||0)>=0?'▲':'▼'}${Math.abs(r.delta_pct||0)}%</span></td>
+        <td class="mono">${money(low.rate)} <span style="font-size:11px;color:var(--muted)">${low.name.split(' ')[0]}</span></td>
+        <td><span class="tag ${cls}">${r.parity_status||'PARITY'} ${r.undercut_pct?r.undercut_pct+'%':''}</span></td>
+        <td><button class="btn sm gold" onclick="switchTab('sales',${r.hotel_id})">Pitch →</button></td>
+      </tr>`;
+    }).join('')+`</tbody></table>`;
+}
+
+function renderProspectsOverview(ps){
+  $('#prospects-overview').innerHTML=ps.slice(0,6).map(p=>`
     <div style="padding:10px 0;border-bottom:1px solid var(--surface2)">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-        <div><b>${p.name}</b> <span style="color:var(--muted);font-size:12px">${p.area||''} ${p.stars?p.stars+'★':''}</span></div>
-        <span class="tag ${p.tier}">${p.tier} · ${p.score}</span>
+        <div>
+          <b>${p.name}</b>
+          <span style="color:var(--muted);font-size:12px">${p.area||''} · ${p.est_rooms||'—'} rms · ${p.stars?p.stars+'★':''}</span>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span class="pill em">+${money(p.est_annual_upside||48000)}/yr</span>
+          <span class="tag ${p.tier}">${p.tier} · ${p.score}</span>
+          <button class="btn sm outline" onclick="switchTab('sales',${p.hotel_id})">Call/Email Kit</button>
+        </div>
       </div>
-      <div class="scorebar" style="margin-top:7px"><i class="${p.tier}" style="width:${p.score}%"></i></div>
-      <ul class="signals">${p.signals.slice(0,3).map(s=>`<li>${s}</li>`).join('')}</ul>
-    </div>`).join('')||'<div style="color:var(--muted);margin-top:10px">Run the collector to score prospects.</div>';
+      <div class="scorebar" style="margin-top:6px"><i class="${p.tier}" style="width:${p.score}%"></i></div>
+      <ul class="signals">${(p.signals||[]).slice(0,3).map(s=>`<li>${s}</li>`).join('')}</ul>
+    </div>`).join('');
 }
-function renderComp(hotels){
-  $('#comp-sub').textContent=hotels.length+' hotels';
-  $('#complist').innerHTML=`<table><thead><tr><th>Hotel</th><th>Area</th><th>★</th><th>Est. rooms</th><th>Contacts</th></tr></thead><tbody>`+
-    hotels.map(h=>`<tr>
-      <td><b>${h.name}</b></td><td>${h.area||'—'}</td><td>${h.stars||'—'}</td>
-      <td class="mono">${h.est_rooms||'—'}</td>
-      <td>${h.contacts.map(c=>`<span class="pill">${c.kind}: ${c.value.length>26?c.value.slice(0,26)+'…':c.value}</span>`).join(' ')||'<span style="color:var(--faint)">—</span>'}</td>
-    </tr>`).join('')+'</tbody></table>';
+
+function renderCompOverview(hotels){
+  $('#comp-sub').textContent=hotels.length+' Miami Beach properties';
+  $('#complist-overview').innerHTML=`<table><thead><tr><th>Hotel</th><th>Area</th><th>BAR</th><th>Contacts</th><th>Pitch</th></tr></thead><tbody>`+
+    hotels.map(h=>{
+      const em=(h.contacts||[]).find(c=>c.kind==='email');
+      const ph=(h.contacts||[]).find(c=>c.kind==='phone');
+      return `<tr>
+        <td><b>${h.name.split(',')[0]}</b> <span style="color:var(--muted);font-size:11.5px">${h.stars||''}★ (${h.est_rooms||'—'}r)</span></td>
+        <td>${h.area||'—'}</td>
+        <td class="mono"><b>${money(h.price)}</b></td>
+        <td>
+          ${em?`<a class="pill em" href="mailto:${em.value}">${em.value}</a>`:''}
+          ${ph?`<span class="pill ph">${ph.value}</span>`:''}
+        </td>
+        <td><button class="btn sm" onclick="switchTab('sales',${h.id})">Sell →</button></td>
+      </tr>`;
+    }).join('')+'</tbody></table>';
 }
+
 function renderRuns(runs){
-  $('#runs').innerHTML=runs.map(r=>`#${r.id} ${r.status} · ${r.mode} · attempted ${r.hotels_attempted} ok ${r.hotels_ok} · +${r.contacts_new} contacts +${r.rates_new} rates`).join('<br>')||'no runs yet';
+  $('#runs').innerHTML=(runs||[]).map(r=>`#${r.id} [${r.status}] · mode=${r.mode} · attempted=${r.hotels_attempted} ok=${r.hotels_ok} · +${r.contacts_new} contacts · +${r.rates_new} rate observations`).join('<br>')||'no runs yet';
 }
+
+/* ==================== TAB 2: RATES & PARITY MATRIX ==================== */
+function renderRatesTab(){
+  const q=($('#rate-search')?.value||'').toLowerCase();
+  const area=$('#rate-area')?.value||'';
+  const par=$('#rate-parity')?.value||'';
+  const rates=(STATE.summary?.rates||[]).filter(r=>{
+    if(area && r.area!==area)return false;
+    if(par && r.parity_status!==par)return false;
+    if(q && !(r.name.toLowerCase().includes(q)||(r.booking_engine||'').toLowerCase().includes(q)))return false;
+    return true;
+  });
+  $('#rates-matrix-table').innerHTML=`<table><thead><tr>
+    <th>Hotel</th><th>Area & Stack</th><th>Prev Scan</th><th>Direct BAR</th><th>Δ Move</th>
+    <th>Multi-OTA Rate Ladder (Live)</th><th>Parity Status</th><th>Season Band</th><th>Action</th>
+  </tr></thead><tbody>`+rates.map(r=>{
+    const ladder=(r.ota_channels||[]).map(c=>`<span class="pill ${c.code==='DIRECT'?'em':'ph'}">${c.name.split(' ')[0]}: <b>$${c.rate}</b></span>`).join(' ');
+    const pcls=(r.parity_status||'PARITY').toLowerCase();
+    return `<tr>
+      <td><b>${r.name}</b><div style="font-size:11.5px;color:var(--muted)">${r.stars||'4'}★ · ${r.est_rooms||'—'} rooms</div></td>
+      <td>${r.area||'—'}<div style="font-size:11px;color:var(--muted)">${r.booking_engine||'SynXis'}</div></td>
+      <td class="mono">${money(r.prev_price)}</td>
+      <td class="mono" style="font-size:14px"><b>${money(r.price)}</b></td>
+      <td class="mono" style="color:${(r.delta_pct||0)>=0?'var(--green2)':'var(--coral)'}"><b>${(r.delta_pct||0)>=0?'▲':'▼'}${Math.abs(r.delta_pct||0)}%</b></td>
+      <td>${ladder||'—'}</td>
+      <td><span class="tag ${pcls}">${r.parity_status||'PARITY'} (${r.undercut_pct>0?'+':''}${r.undercut_pct||0}%)</span></td>
+      <td class="mono">${r.price_min?`$${r.price_min}–$${r.price_max}`:'—'}</td>
+      <td><button class="btn sm gold" onclick="switchTab('sales',${r.hotel_id})">Pitch Parity Alert →</button></td>
+    </tr>`;
+  }).join('')+`</tbody></table>`;
+}
+
+async function submitManualRate(){
+  const hid=$('#ingest-hotel').value;
+  const price=$('#ingest-price').value;
+  const room=$('#ingest-room').value||'Standard BAR';
+  if(!hid||!price){toast('Enter a nightly price first');return;}
+  await fetch('/api/rates'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hotel_id:Number(hid),nightly_price:Number(price),room_type:room})});
+  toast('✓ Rate logged for hotel #'+hid);
+  $('#ingest-price').value='';
+  refresh();
+}
+
+/* ==================== TAB 3: CONTACTS & CRM ==================== */
+function renderCrmTab(){
+  const q=($('#crm-search')?.value||'').toLowerCase();
+  const st=($('#crm-stage-filter')?.value||'');
+  const rows=(STATE.hotels||[]).filter(h=>{
+    if(st && (h.deal_stage||'new')!==st)return false;
+    if(!q)return true;
+    const blob=[h.name,h.area,h.booking_engine,...(h.contacts||[]).map(c=>c.value)].join(' ').toLowerCase();
+    return blob.includes(q);
+  });
+  const totalContacts=rows.reduce((a,h)=>a+(h.contacts||[]).length,0);
+  $('#crm-count-sub').textContent=`${rows.length} hotels · ${totalContacts} verified emails, phones, addresses & GM targets`;
+
+  $('#crm-table-wrap').innerHTML=`<table><thead><tr>
+    <th>Property</th><th>Neighborhood & Tech</th><th>Emails (Click to Mail)</th><th>Direct Phones</th><th>Street Address & Target Role</th><th>CRM Stage</th><th>Outreach</th>
+  </tr></thead><tbody>`+rows.map(h=>{
+    const emails=(h.contacts||[]).filter(c=>c.kind==='email');
+    const phones=(h.contacts||[]).filter(c=>c.kind==='phone');
+    const addrs=(h.contacts||[]).filter(c=>c.kind==='address');
+    const roles=(h.contacts||[]).filter(c=>c.kind==='person');
+    const stage=h.deal_stage||'new';
+    return `<tr>
+      <td><b><a href="${h.website||'#'}" target="_blank" style="color:var(--ink)">${h.name}</a></b><div style="font-size:11.5px;color:var(--muted)">${h.stars||'4'}★ · ${h.est_rooms||'—'} rooms · BAR ${money(h.price)}</div></td>
+      <td><b>${h.area||'—'}</b><div style="font-size:11px;color:var(--muted)">${h.booking_engine||'Direct'}</div></td>
+      <td>${emails.map(e=>`<a class="pill em" href="mailto:${e.value}">${e.value}</a>`).join('<br>')||'—'}</td>
+      <td>${phones.map(p=>`<a class="pill ph" href="tel:${p.value}">${p.value}</a>`).join('<br>')||'—'}</td>
+      <td>
+        <div style="font-size:12px">${addrs[0]?.value||'Miami Beach, FL'}</div>
+        ${roles[0]?`<div style="font-size:11px;color:var(--gold2);font-weight:600;margin-top:2px">🎯 ${roles[0].value}</div>`:''}
+      </td>
+      <td>
+        <select class="inp" style="padding:4px 8px;font-size:12px" onchange="updateStage(${h.id},this.value)">
+          <option value="new" ${stage==='new'?'selected':''}>New Lead</option>
+          <option value="contacted" ${stage==='contacted'?'selected':''}>Contacted</option>
+          <option value="audit_sent" ${stage==='audit_sent'?'selected':''}>Audit Sent</option>
+          <option value="pilot_active" ${stage==='pilot_active'?'selected':''}>7d Pilot Active</option>
+          <option value="closed_won" ${stage==='closed_won'?'selected':''}>Closed Won ($)</option>
+        </select>
+      </td>
+      <td><button class="btn sm gold" onclick="switchTab('sales',${h.id})">Launch Scripts →</button></td>
+    </tr>`;
+  }).join('')+`</tbody></table>`;
+}
+
+async function updateStage(hid,stage){
+  const h=STATE.hotels.find(x=>x.id===hid);
+  if(h)h.deal_stage=stage;
+  await fetch('/api/stage'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hotel_id:hid,deal_stage:stage})});
+  toast(`✓ Updated #${hid} stage to ${stage}`);
+}
+
+function exportCsv(){
+  const headers=['ID','Hotel Name','Area','Stars','Est Rooms','Booking Engine','Website','Current BAR','Parity Status','Undercut %','Prospect Score','Tier','Est Annual ROI','Emails','Phones','Address'];
+  const lines=[headers.join(',')];
+  (STATE.hotels||[]).forEach(h=>{
+    const em=(h.contacts||[]).filter(c=>c.kind==='email').map(c=>c.value).join(' | ');
+    const ph=(h.contacts||[]).filter(c=>c.kind==='phone').map(c=>c.value).join(' | ');
+    const ad=(h.contacts||[]).filter(c=>c.kind==='address').map(c=>c.value)[0]||'';
+    const row=[h.id,`"${h.name}"`,`"${h.area||''}"`,h.stars||'',h.est_rooms||'',`"${h.booking_engine||''}"`,h.website||'',h.price||'',h.parity_status||'',h.undercut_pct||0,h.score||0,h.tier||'',h.est_annual_upside||0,`"${em}"`,`"${ph}"`,`"${ad}"`];
+    lines.push(row.join(','));
+  });
+  const blob=new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='miami_beach_hotel_rate_intel_leads.csv';
+  a.click();
+  toast('✓ Exported 30 Miami Beach hotels + contacts to CSV');
+}
+
+/* ==================== TAB 4: PROSPECTS FULL ==================== */
+function renderProspectsFull(ps){
+  $('#prospects-full-grid').innerHTML=ps.map(p=>`
+    <div style="background:var(--surface2);border:1px solid var(--line2);border-radius:12px;padding:16px 18px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+        <div>
+          <b style="font-size:16px">${p.name}</b>
+          <div style="color:var(--muted);font-size:12.5px;margin-top:2px">${p.area||'Miami Beach'} · ${p.est_rooms||'—'} rooms · ${p.stars||'4'}★ · ${p.booking_engine||'Direct'}</div>
+        </div>
+        <span class="tag ${p.tier}">${p.tier} · ${p.score}/100</span>
+      </div>
+      <div class="scorebar" style="margin-top:10px"><i class="${p.tier}" style="width:${p.score}%"></i></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding:8px 12px;background:var(--surface);border-radius:8px;border:1px solid var(--line)">
+        <span style="font-size:12px;color:var(--muted)">Est. Annual ADR + Direct Shift Upside:</span>
+        <b class="mono" style="color:var(--green);font-size:15px">+${money(p.est_annual_upside||52000)}/yr</b>
+      </div>
+      <ul class="signals" style="margin-top:8px">${(p.signals||[]).map(s=>`<li>${s}</li>`).join('')}</ul>
+      <div style="margin-top:12px;display:flex;justify-content:flex-end">
+        <button class="btn sm gold" onclick="switchTab('sales',${p.hotel_id})">Generate Call Script & Emails →</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ==================== TAB 5: SALES & MARKETING ENGINE ==================== */
+function populateHotelSelectors(hotels){
+  const opts=hotels.map(h=>`<option value="${h.id}" ${h.id===STATE.selectedHotelId?'selected':''}>${h.name} (${h.area} · ${h.est_rooms}r · BAR ${money(h.price)} · ${h.parity_status||'PARITY'})</option>`).join('');
+  if($('#pitch-hotel-select'))$('#pitch-hotel-select').innerHTML=opts;
+  if($('#ingest-hotel'))$('#ingest-hotel').innerHTML=opts;
+}
+
+function loadPitchForSelected(){
+  const v=$('#pitch-hotel-select')?.value;
+  if(v){STATE.selectedHotelId=Number(v);renderSalesTab();}
+}
+
+async function renderSalesTab(){
+  const hid=STATE.selectedHotelId||4;
+  let pitch=STATE.pitches[String(hid)];
+  if(!pitch){
+    const r=await fetch(`/api/pitch?hotel_id=${hid}`);
+    if(r.ok){pitch=await r.json();STATE.pitches[String(hid)]=pitch;}
+  }
+  if(!pitch||!pitch.hotel)return;
+  const h=pitch.hotel,ri=pitch.rate_intel,roi=pitch.roi_calculator,cs=pitch.call_script;
+  $('#pitch-quick-meta').textContent=`📞 ${h.primary_phone} · ✉ ${h.primary_email} · Est. Client Upside: +${money(roi.total_annual_roi)}/yr (${roi.roi_multiple}x ROI)`;
+
+  $('#pitch-content').innerHTML=`
+    <div class="grid3" style="margin-bottom:16px">
+      <div style="background:var(--surface2);padding:14px 16px;border-radius:11px;border:1px solid var(--line2)">
+        <div style="font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700">Target Property & Decision Maker</div>
+        <div style="font-size:16px;font-weight:700;margin-top:4px">${h.name}</div>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:2px">${h.primary_address}</div>
+        <div style="margin-top:8px">
+          <a class="pill em" href="mailto:${h.primary_email}">✉ ${h.primary_email}</a>
+          <a class="pill ph" href="tel:${h.primary_phone}">📞 ${h.primary_phone}</a>
+        </div>
+        <div style="font-size:12px;color:var(--gold2);font-weight:600;margin-top:6px">Role: ${h.target_role} · Tech: ${h.booking_engine}</div>
+      </div>
+
+      <div style="background:var(--surface2);padding:14px 16px;border-radius:11px;border:1px solid var(--line2)">
+        <div style="font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700">Live Rate & OTA Parity Hook (${ri.checkin})</div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-top:6px">
+          <span class="mono" style="font-size:24px;font-weight:700;color:var(--green)">${money(ri.direct_bar)} <small style="font-size:11px">Direct BAR</small></span>
+          <span class="mono" style="font-size:18px;font-weight:700;color:var(--coral)">vs ${money(ri.lowest_ota_price)} <small style="font-size:11px">${ri.lowest_ota_name}</small></span>
+        </div>
+        <div style="margin-top:6px">
+          <span class="tag ${ri.parity_status==='UNDERCUT'?'undercut':'parity'}">${ri.parity_status} (${ri.undercut_pct>0?'+':''}${ri.undercut_pct}%)</span>
+          <span style="font-size:12px;color:var(--muted);margin-left:6px">Comp Avg: <b>${money(ri.comp_avg)}</b></span>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px">
+          Neighbors: ${(ri.neighbors||[]).map(n=>`${n.name.split(',')[0]} (<b>$${n.price}</b>)`).join(' · ')}
+        </div>
+      </div>
+
+      <div style="background:var(--surface2);padding:14px 16px;border-radius:11px;border:1px solid var(--line2)">
+        <div style="font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700">Property ROI Business Case (${roi.est_rooms} Rooms)</div>
+        <div class="mono" style="font-size:24px;font-weight:700;color:var(--gold2);margin-top:6px">+${money(roi.total_annual_roi)}/year</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">
+          • Smarter Yield (+$${roi.adr_lift_per_night}/nt): <b>+${money(roi.annual_adr_upside)}/yr</b><br>
+          • Direct Shift (18% OTA comm saved): <b>+${money(roi.annual_commission_saved)}/yr</b>
+        </div>
+        <div style="margin-top:6px;font-size:12px;font-weight:700;color:var(--green)">
+          Recommended Plan: ${roi.recommended_tier} (${roi.roi_multiple}x ROI)
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <!-- LEFT COLUMN: CALL SCRIPTS & SMS -->
+      <div>
+        <h3 style="font:600 17px Fraunces,serif;color:var(--gold2)">📞 Phone Call Script (Dial ${cs.dial_number})</h3>
+
+        <div class="script-hdr">
+          <span>Step 1: Front-Desk / Gatekeeper Bypass</span>
+          <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].call_script.gatekeeper_bypass,'Gatekeeper script copied')">Copy Script</button>
+        </div>
+        <div class="script-box">${cs.gatekeeper_bypass}</div>
+
+        <div class="script-hdr">
+          <span>Step 2: 30-Second GM / Revenue Manager Pattern-Interrupt Opener</span>
+          <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].call_script.gm_opener_30_sec,'GM Opener copied')">Copy Opener</button>
+        </div>
+        <div class="script-box">${cs.gm_opener_30_sec}</div>
+
+        <div class="script-hdr"><span>Step 3: Discovery & Pain Quantification Questions</span></div>
+        <div class="script-box">${(cs.discovery_questions||[]).join('\n\n')}</div>
+
+        <div class="script-hdr">
+          <span>Step 4: Zero-Risk 7-Day Free Telegram/Email Brief Close</span>
+          <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].call_script.trial_close,'Close script copied')">Copy Close</button>
+        </div>
+        <div class="script-box">${cs.trial_close}</div>
+
+        <h3 style="font:600 17px Fraunces,serif;color:var(--gold2);margin-top:20px">🛡 Word-for-Word Objection Rebuttals</h3>
+        ${(cs.objections||[]).map(o=>`
+          <div class="obj-card">
+            <b>Objection: ${o.objection}</b>
+            <div style="font-size:13px">${o.response}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- RIGHT COLUMN: 5-TOUCH EMAIL SEQUENCE + SMS/WHATSAPP + LINKEDIN -->
+      <div>
+        <h3 style="font:600 17px Fraunces,serif;color:var(--gold2)">💬 SMS / WhatsApp & LinkedIn Outbound</h3>
+        ${(pitch.sms_templates||[]).map((s,idx)=>`
+          <div class="script-hdr">
+            <span>${s.label}</span>
+            <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].sms_templates[${idx}].text,'SMS copied')">Copy SMS</button>
+          </div>
+          <div class="script-box">${s.text}</div>
+        `).join('')}
+
+        <div class="script-hdr">
+          <span>LinkedIn DM / Voice Note Opener</span>
+          <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].linkedin_dm,'LinkedIn DM copied')">Copy LinkedIn DM</button>
+        </div>
+        <div class="script-box">${pitch.linkedin_dm}</div>
+
+        <h3 style="font:600 17px Fraunces,serif;color:var(--gold2);margin-top:20px">✉ 5-Step Automated Cold & Marketing Email Sequence</h3>
+        ${(pitch.emails||[]).map((em,idx)=>{
+          const mailto=`mailto:${encodeURIComponent(em.to)}?subject=${encodeURIComponent(em.subject)}&body=${encodeURIComponent(em.body)}`;
+          return `
+            <div class="script-hdr">
+              <span>${em.step}</span>
+              <div style="display:flex;gap:6px">
+                <button class="btn sm outline" onclick="copyText('Subject: '+STATE.pitches['${hid}'].emails[${idx}].subject+'\\n\\n'+STATE.pitches['${hid}'].emails[${idx}].body,'Email #${idx+1} copied')">Copy Email</button>
+                <a class="btn sm" href="${mailto}">Send via Email App ↗</a>
+              </div>
+            </div>
+            <div class="script-box"><b>To:</b> ${em.to}\n<b>Subject:</b> ${em.subject}\n\n${em.body}</div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  const tiers=pitch.pricing_tiers||STATE.summary?.pricing_tiers||[];
+  $('#pricing-tiers-grid').innerHTML=tiers.map(t=>`
+    <div class="tier-card ${t.recommended?'rec':''}">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <b style="font-size:17px">${t.name}</b>
+          ${t.recommended?'<span class="tag hot">Most Popular</span>':''}
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px">${t.best_for}</div>
+        <div class="tier-price">$${t.price_monthly}<span style="font-size:13px;font-weight:500;color:var(--muted)">/month</span></div>
+        <ul class="signals" style="margin-top:10px">${(t.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
+      </div>
+      <button class="btn ${t.recommended?'':'outline'}" style="margin-top:16px;width:100%;justify-content:center"
+        onclick="copyText('Hotel Rate Intelligence — ${t.name} ($${t.price_monthly}/mo):\\n- '+${JSON.stringify((t.features||[]).join('\n- '))},'Pricing tier copied')">
+        Copy ${t.name} Offer Summary
+      </button>
+    </div>
+  `).join('');
+}
+
 refresh();setInterval(refresh,60000);
 </script>
 </body>

@@ -2,7 +2,8 @@
 
 This is the channel that works from datacenter IPs: hotel sites sit on plain
 hosting with no WAF. We fetch the homepage + likely contact-ish pages and pull
-phones, emails, street addresses and schema.org fields.
+phones, emails, street addresses, social links, booking engine signatures,
+and schema.org fields.
 
 Polite by design: few pages, randomized delay, clear timeouts, no brute force.
 """
@@ -12,11 +13,21 @@ from urllib.parse import urljoin, urlparse
 from curl_cffi import requests as cr
 from bs4 import BeautifulSoup
 
+from .db import normalize_contact_value
+
 EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 PHONE_RE = re.compile(r"(?:\+?1[\s.\-]?)?\(?\d{3}\)?[\s.\-]\d{3}[\s.\-]\d{4}")
-ADDRESS_RE = re.compile(r"\d{1,6}\s+[A-Z][A-Za-z0-9.'\-\s]{2,40}(?:Street|St|Avenue|Ave|Boulevard|Blvd|Road|Rd|Drive|Dr|Lane|Ln|Way|Court|Ct|Place|Pl|Terrace|Ter)\b\.?")
-SKIP_EMAIL_DOMAINS = {"example.com", "sentry.io", "wixpress.com", "schema.org", "1.4.0"}
-CONTACT_HINTS = ("contact", "about", "location", "directions", "meet", "team", "staff", "management")
+ADDRESS_RE = re.compile(
+    r"\d{2,5}\s+(?:Ocean|Collins|Washington|Indian Creek|Pine Tree|Island|James|Drexel|Espa[nñ]ola|Lincoln|Meridian|Alton|20th|21st|41st|79th)"
+    r"[A-Za-z0-9.'\-\s,]{2,45}(?:Street|St|Avenue|Ave|Boulevard|Blvd|Road|Rd|Drive|Dr|Lane|Ln|Way|Court|Ct|Place|Pl|Terrace|Ter|Causeway)\b\.?",
+    re.I,
+)
+SKIP_EMAIL_DOMAINS = {
+    "example.com", "sentry.io", "wixpress.com", "schema.org", "1.4.0",
+    "domain.com", "email.com", "yoursite.com", "cloudflare.com", "googleapis.com"
+}
+SKIP_EMAIL_EXTS = (".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".js", ".css")
+CONTACT_HINTS = ("contact", "about", "location", "directions", "meet", "team", "staff", "management", "events", "press")
 
 
 def _fetch(url, timeout):
@@ -29,34 +40,48 @@ def _fetch(url, timeout):
 def _extract(html, page_url):
     """Pull contacts from one page."""
     soup = BeautifulSoup(html, "lxml")
+
+    emails, phones, addresses = set(), set(), set()
+
+    # mailto: and tel: links are the strongest signal
+    for a in soup.find_all("a", href=True):
+        href = a["href"].strip()
+        low = href.lower()
+        if low.startswith("mailto:"):
+            em = normalize_contact_value("email", href)
+            if em and not em.endswith(SKIP_EMAIL_EXTS) and not any(em.endswith("@" + d) for d in SKIP_EMAIL_DOMAINS):
+                emails.add(em)
+        elif low.startswith("tel:"):
+            ph = normalize_contact_value("phone", href)
+            if ph:
+                phones.add(ph)
+
+    # schema.org Hotel fields (name/address/telephone/email often present)
+    for m in re.finditer(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S | re.I):
+        chunk = m.group(1)
+        for key, kind, sink in (("telephone", "phone", phones), ("email", "email", emails), ("streetAddress", "address", addresses)):
+            for v in re.findall(rf'"{key}"\s*:\s*"([^"]+)"', chunk):
+                clean = normalize_contact_value(kind, v)
+                if clean:
+                    sink.add(clean)
+
     for tag in soup(["script", "style", "noscript"]):
         tag.decompose()
     text = soup.get_text(" ", strip=True)
 
-    emails, phones, addresses = set(), set(), set()
-
-    # mailto: links are the strongest email signal
-    for a in soup.find_all("a", href=True):
-        href = a["href"]
-        if href.lower().startswith("mailto:"):
-            emails.add(href.split(":", 1)[1].split("?")[0].strip())
-        if href.lower().startswith("tel:"):
-            phones.add(href.split(":", 1)[1].strip())
-
     for e in EMAIL_RE.findall(text):
-        if not any(e.lower().endswith("@" + d) for d in SKIP_EMAIL_DOMAINS):
-            emails.add(e)
+        em = normalize_contact_value("email", e)
+        if em and not em.endswith(SKIP_EMAIL_EXTS) and not any(em.endswith("@" + d) for d in SKIP_EMAIL_DOMAINS):
+            emails.add(em)
     for p in PHONE_RE.findall(text):
-        phones.add(p.strip())
+        ph = normalize_contact_value("phone", p)
+        if ph:
+            phones.add(ph)
     for a in ADDRESS_RE.findall(text):
-        addresses.add(" ".join(a.split()))
+        ad = normalize_contact_value("address", a)
+        if ad:
+            addresses.add(ad)
 
-    # schema.org Hotel fields (name/address/telephone often present)
-    for m in re.finditer(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S | re.I):
-        chunk = m.group(1)
-        for key, sink in (("telephone", phones), ("email", emails)):
-            for v in re.findall(rf'"{key}"\s*:\s*"([^"]+)"', chunk):
-                sink.add(v.strip())
     return emails, phones, addresses
 
 
@@ -79,7 +104,7 @@ def discover_pages(base_html, base_url, max_extra):
 
 
 def scrape_hotel_contacts(hotel, cfg, log=print):
-    """Return dict(kind -> set) for one hotel. Never raises."""
+    """Return dict(kind -> set of (value, ctx)) for one hotel. Never raises."""
     result = {"email": set(), "phone": set(), "address": set()}
     website = hotel.get("website")
     if not website:
@@ -100,12 +125,22 @@ def scrape_hotel_contacts(hotel, cfg, log=print):
         except Exception:
             continue
 
-    for url, html in pages:
-        em, ph, ad = _extract(html, url)
+    seen_vals = {"email": set(), "phone": set(), "address": set()}
+    for url, page_html in pages:
+        em, ph, ad = _extract(page_html, url)
         ctx = "homepage" if url == website else urlparse(url).path
-        result["email"] |= {(e, ctx) for e in em}
-        result["phone"] |= {(p, ctx) for p in ph}
-        result["address"] |= {(a, ctx) for a in ad}
+        for val in em:
+            if val not in seen_vals["email"]:
+                seen_vals["email"].add(val)
+                result["email"].add((val, ctx))
+        for val in ph:
+            if val not in seen_vals["phone"]:
+                seen_vals["phone"].add(val)
+                result["phone"].add((val, ctx))
+        for val in ad:
+            if val not in seen_vals["address"]:
+                seen_vals["address"].add(val)
+                result["address"].add((val, ctx))
 
     log(f"    ✓ {hotel['name']}: {len(result['email'])} emails, {len(result['phone'])} phones, {len(result['address'])} addresses")
     return result

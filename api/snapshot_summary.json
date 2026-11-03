@@ -2,334 +2,2546 @@
  "market": "Miami Beach, FL",
  "currency": "USD",
  "kpis": {
-  "hotels": 20,
-  "contacts": 98,
-  "rates": 0,
-  "hot_prospects": 15
+  "hotels": 30,
+  "contacts": 171,
+  "rates": 60,
+  "hot_prospects": 27,
+  "parity_undercuts": 27,
+  "avg_adr": 823
  },
- "rates": [],
- "movers": [],
- "prospects": [
+ "rates": [
   {
-   "hotel_id": 4,
-   "score": 90,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "50 rooms \u2014 right-size for outsourced intel",
-    "3.0\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)",
-    "decision-maker contact captured"
-   ],
-   "name": "The Colony Hotel",
-   "area": "South Beach",
-   "stars": 3.0,
-   "est_rooms": 50
-  },
-  {
-   "hotel_id": 6,
-   "score": 90,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "30 rooms \u2014 right-size for outsourced intel",
-    "3.5\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)",
-    "decision-maker contact captured"
-   ],
-   "name": "Pelican Hotel",
-   "area": "South Beach",
-   "stars": 3.5,
-   "est_rooms": 30
-  },
-  {
-   "hotel_id": 7,
-   "score": 90,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "100 rooms \u2014 right-size for outsourced intel",
-    "4.5\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)",
-    "decision-maker contact captured"
-   ],
-   "name": "The Standard Spa, Miami Beach",
-   "area": "South Beach",
-   "stars": 4.5,
-   "est_rooms": 100
-  },
-  {
-   "hotel_id": 22,
-   "score": 90,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "80 rooms \u2014 right-size for outsourced intel",
-    "4.0\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)",
-    "decision-maker contact captured"
-   ],
-   "name": "The Marlin Hotel",
-   "area": "South Beach",
-   "stars": 4.0,
-   "est_rooms": 80
-  },
-  {
-   "hotel_id": 1,
-   "score": 78,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "130 rooms \u2014 borderline",
-    "4.5\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)",
-    "decision-maker contact captured"
-   ],
-   "name": "The Betsy Hotel, South Beach",
-   "area": "South Beach",
-   "stars": 4.5,
-   "est_rooms": 130
-  },
-  {
-   "hotel_id": 8,
-   "score": 78,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "150 rooms \u2014 borderline",
-    "4.0\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)",
-    "decision-maker contact captured"
-   ],
-   "name": "National Hotel, An Oceanfront Resort",
-   "area": "South Beach",
-   "stars": 4.0,
-   "est_rooms": 150
-  },
-  {
-   "hotel_id": 2,
-   "score": 75,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "75 rooms \u2014 right-size for outsourced intel",
-    "4.0\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)"
-   ],
-   "name": "The Savoy Hotel & Beach Club",
-   "area": "South Beach",
-   "stars": 4.0,
-   "est_rooms": 75
-  },
-  {
-   "hotel_id": 3,
-   "score": 75,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "40 rooms \u2014 right-size for outsourced intel",
-    "3.5\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)"
-   ],
-   "name": "Hotel Astor",
-   "area": "South Beach",
-   "stars": 3.5,
-   "est_rooms": 40
-  },
-  {
-   "hotel_id": 10,
-   "score": 75,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "50 rooms \u2014 right-size for outsourced intel",
-    "4.0\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)"
-   ],
-   "name": "The Plymouth South Beach",
-   "area": "South Beach",
-   "stars": 4.0,
-   "est_rooms": 50
-  },
-  {
-   "hotel_id": 12,
-   "score": 75,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "50 rooms \u2014 right-size for outsourced intel",
-    "4.0\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)"
-   ],
-   "name": "Esme Miami Beach",
-   "area": "South Beach",
-   "stars": 4.0,
-   "est_rooms": 50
-  },
-  {
-   "hotel_id": 15,
-   "score": 75,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "100 rooms \u2014 right-size for outsourced intel",
-    "3.5\u2605 \u2014 most price-sensitive segment",
-    "decision-maker contact captured"
-   ],
-   "name": "Circa 39 Hotel",
-   "area": "Mid-Beach",
-   "stars": 3.5,
-   "est_rooms": 100
-  },
-  {
-   "hotel_id": 20,
-   "score": 75,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "64 rooms \u2014 right-size for outsourced intel",
-    "3.5\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)"
-   ],
-   "name": "Life House, South of Fifth",
-   "area": "South Beach",
-   "stars": 3.5,
-   "est_rooms": 64
-  },
-  {
-   "hotel_id": 13,
-   "score": 70,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "4.0\u2605 \u2014 most price-sensitive segment",
-    "dense micro-market (South Beach)",
-    "decision-maker contact captured"
-   ],
-   "name": "The Goodtime Hotel",
-   "area": "South Beach",
-   "stars": 4.0,
-   "est_rooms": 266
-  },
-  {
-   "hotel_id": 9,
-   "score": 60,
-   "tier": "warm",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "50 rooms \u2014 right-size for outsourced intel",
-    "4.0\u2605 \u2014 most price-sensitive segment"
-   ],
-   "name": "Casa Faena",
-   "area": "Miami Beach",
-   "stars": 4.0,
-   "est_rooms": 50
-  },
-  {
-   "hotel_id": 14,
-   "score": 60,
-   "tier": "warm",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "80 rooms \u2014 right-size for outsourced intel",
-    "3.5\u2605 \u2014 most price-sensitive segment"
-   ],
-   "name": "Palm Tree Club Miami Beach",
-   "area": "Mid-Beach",
-   "stars": 3.5,
-   "est_rooms": 80
-  },
-  {
-   "hotel_id": 19,
-   "score": 60,
-   "tier": "warm",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "80 rooms \u2014 right-size for outsourced intel",
-    "4.0\u2605 \u2014 most price-sensitive segment"
-   ],
-   "name": "Palihouse Miami Beach",
-   "area": "Miami Beach",
-   "stars": 4.0,
-   "est_rooms": 80
-  },
-  {
-   "hotel_id": 18,
-   "score": 48,
-   "tier": "warm",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "170 rooms \u2014 borderline",
-    "decision-maker contact captured"
-   ],
-   "name": "Faena Hotel Miami Beach",
-   "area": "Mid-Beach",
-   "stars": 5.0,
-   "est_rooms": 170
-  },
-  {
-   "hotel_id": 17,
-   "score": 40,
-   "tier": "watch",
-   "signals": [
-    "independent \u2014 no brand RMS desk",
-    "4.0\u2605 \u2014 most price-sensitive segment"
-   ],
-   "name": "The Confidante Miami Beach",
-   "area": "Mid-Beach",
-   "stars": 4.0,
-   "est_rooms": 350
-  },
-  {
-   "hotel_id": 21,
-   "score": 30,
-   "tier": "watch",
-   "signals": [
-    "dense micro-market (South Beach)",
-    "decision-maker contact captured"
-   ],
+   "hotel_id": 5,
    "name": "1 Hotel South Beach",
    "area": "South Beach",
    "stars": 5.0,
-   "est_rooms": 425
+   "est_rooms": 425,
+   "brand": "1 Hotels (SH Hotels)",
+   "booking_engine": "SynXis Enterprise",
+   "price_min": 750.0,
+   "price_max": 2769.0,
+   "review_rating": 4.7,
+   "review_count": 10898,
+   "price": 2439.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 2344.0, \"tax\": 328.16}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 2345.0, \"tax\": 328.3}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 2345.0, \"tax\": 328.3}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 2391.0, \"tax\": 334.74}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 2439, \"tax\": 341}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -3.9,
+   "scraped_at": 1793722241.1066687,
+   "prev_price": 1687.0,
+   "ota_channels": [
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 2344.0,
+     "tax": 328.16
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 2345.0,
+     "tax": 328.3
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 2345.0,
+     "tax": 328.3
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 2391.0,
+     "tax": 334.74
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 2439,
+     "tax": 341
+    }
+   ],
+   "delta_pct": 44.6
+  },
+  {
+   "hotel_id": 17,
+   "name": "Andaz Miami Beach (formerly The Confidante)",
+   "area": "Mid-Beach",
+   "stars": 4.5,
+   "est_rooms": 287,
+   "brand": "Hyatt / Andaz",
+   "booking_engine": "Hyatt SPIRIT CRS",
+   "price_min": 507.0,
+   "price_max": 1407.0,
+   "review_rating": 4.7,
+   "review_count": 957,
+   "price": 1296.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 1296, \"tax\": 181}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 1296.0, \"tax\": 181.44}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 1296.0, \"tax\": 181.44}, {\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 1305.0, \"tax\": 182.7}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 1432.0, \"tax\": 200.48}]",
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0,
+   "scraped_at": 1793722299.4163468,
+   "prev_price": 576.0,
+   "ota_channels": [
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 1296,
+     "tax": 181
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 1296.0,
+     "tax": 181.44
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 1296.0,
+     "tax": 181.44
+    },
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 1305.0,
+     "tax": 182.7
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 1432.0,
+     "tax": 200.48
+    }
+   ],
+   "delta_pct": 125.0
+  },
+  {
+   "hotel_id": 21,
+   "name": "Avalon Hotel South Beach",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 57,
+   "brand": "independent",
+   "booking_engine": "TravelClick / iHotelier",
+   "price_min": 153.0,
+   "price_max": 578.0,
+   "review_rating": 3.7,
+   "review_count": 1116,
+   "price": 660.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard Double / Art Deco",
+   "ota_json": "[{\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 635.0, \"tax\": 88.9}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 636.0, \"tax\": 89.04}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 660, \"tax\": 92}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -3.8,
+   "scraped_at": 1793722328.3608224,
+   "prev_price": 307.0,
+   "ota_channels": [
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 635.0,
+     "tax": 88.9
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 636.0,
+     "tax": 89.04
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 660,
+     "tax": 92
+    }
+   ],
+   "delta_pct": 115.0
+  },
+  {
+   "hotel_id": 23,
+   "name": "Beacon South Beach Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 75,
+   "brand": "independent",
+   "booking_engine": "SynXis / Direct",
+   "price_min": 106.0,
+   "price_max": 385.0,
+   "review_rating": 4.2,
+   "review_count": 3705,
+   "price": 352.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 252.0, \"tax\": 35.28}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 313.0, \"tax\": 43.82}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 349.0, \"tax\": 48.86}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 352, \"tax\": 49}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -28.4,
+   "scraped_at": 1793722332.8831885,
+   "prev_price": 186.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 252.0,
+     "tax": 35.28
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 313.0,
+     "tax": 43.82
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 349.0,
+     "tax": 48.86
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 352,
+     "tax": 49
+    }
+   ],
+   "delta_pct": 89.2
+  },
+  {
+   "hotel_id": 9,
+   "name": "Casa Faena",
+   "area": "Mid-Beach",
+   "stars": 4.0,
+   "est_rooms": 50,
+   "brand": "independent",
+   "booking_engine": "SynXis / Sabre",
+   "price_min": 209.0,
+   "price_max": 469.0,
+   "review_rating": 4.2,
+   "review_count": 601,
+   "price": 313.0,
+   "currency": "USD",
+   "source": "market-calibrated",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda / Wholesale\", \"rate\": 310, \"tax\": 43}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 313, \"tax\": 44}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 313, \"tax\": 44}, {\"code\": \"Expedia\", \"name\": \"Expedia.com\", \"rate\": 316, \"tax\": 44}]",
+   "parity_status": "PARITY",
+   "undercut_pct": -1.0,
+   "scraped_at": 1793722271.2228358,
+   "prev_price": 299.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda / Wholesale",
+     "rate": 310,
+     "tax": 43
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 313,
+     "tax": 44
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 313,
+     "tax": 44
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 316,
+     "tax": 44
+    }
+   ],
+   "delta_pct": 4.7
+  },
+  {
+   "hotel_id": 22,
+   "name": "Cavalier South Beach Hotel",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 45,
+   "brand": "independent",
+   "booking_engine": "Cloudbeds / Oxford",
+   "price_min": 130.0,
+   "price_max": 445.0,
+   "review_rating": 4.0,
+   "review_count": 539,
+   "price": 502.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard Double / Art Deco",
+   "ota_json": "[{\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 460.0, \"tax\": 64.4}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 502, \"tax\": 70}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 507.0, \"tax\": 70.98}, {\"code\": \"Siteminder\", \"name\": \"Official Site\", \"rate\": 509.0, \"tax\": 71.26}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 583.0, \"tax\": 81.62}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -8.4,
+   "scraped_at": 1793722330.983934,
+   "prev_price": 262.0,
+   "ota_channels": [
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 460.0,
+     "tax": 64.4
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 502,
+     "tax": 70
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 507.0,
+     "tax": 70.98
+    },
+    {
+     "code": "Siteminder",
+     "name": "Official Site",
+     "rate": 509.0,
+     "tax": 71.26
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 583.0,
+     "tax": 81.62
+    }
+   ],
+   "delta_pct": 91.6
+  },
+  {
+   "hotel_id": 15,
+   "name": "Circa 39 Hotel",
+   "area": "Mid-Beach",
+   "stars": 3.5,
+   "est_rooms": 100,
+   "brand": "independent",
+   "booking_engine": "Opera / IHG Connect",
+   "price_min": 161.0,
+   "price_max": 589.0,
+   "review_rating": 4.4,
+   "review_count": 2442,
+   "price": 856.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard Double / Art Deco",
+   "ota_json": "[{\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 743.0, \"tax\": 104.02}, {\"code\": \"IHG\", \"name\": \"IHG\", \"rate\": 806.0, \"tax\": 112.84}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 823.0, \"tax\": 115.22}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 823.0, \"tax\": 115.22}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 829.0, \"tax\": 116.06}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 856, \"tax\": 120}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -13.2,
+   "scraped_at": 1793722295.0949306,
+   "prev_price": 278.0,
+   "ota_channels": [
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 743.0,
+     "tax": 104.02
+    },
+    {
+     "code": "IHG",
+     "name": "IHG",
+     "rate": 806.0,
+     "tax": 112.84
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 823.0,
+     "tax": 115.22
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 823.0,
+     "tax": 115.22
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 829.0,
+     "tax": 116.06
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 856,
+     "tax": 120
+    }
+   ],
+   "delta_pct": 207.9
+  },
+  {
+   "hotel_id": 12,
+   "name": "Esme Miami Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 145,
+   "brand": "independent",
+   "booking_engine": "SynXis / Sabre",
+   "price_min": 135.0,
+   "price_max": 501.0,
+   "review_rating": 3.6,
+   "review_count": 197,
+   "price": 692.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 622.0, \"tax\": 87.08}, {\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 633.0, \"tax\": 88.62}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 692, \"tax\": 97}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 706.0, \"tax\": 98.84}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 706.0, \"tax\": 98.84}, {\"code\": \"PreferredHotels1\", \"name\": \"Preferred Hotels\", \"rate\": 711.0, \"tax\": 99.54}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -10.1,
+   "scraped_at": 1793722285.8244023,
+   "prev_price": 248.0,
+   "ota_channels": [
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 622.0,
+     "tax": 87.08
+    },
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 633.0,
+     "tax": 88.62
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 692,
+     "tax": 97
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 706.0,
+     "tax": 98.84
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 706.0,
+     "tax": 98.84
+    },
+    {
+     "code": "PreferredHotels1",
+     "name": "Preferred Hotels",
+     "rate": 711.0,
+     "tax": 99.54
+    }
+   ],
+   "delta_pct": 179.0
+  },
+  {
+   "hotel_id": 18,
+   "name": "Faena Hotel Miami Beach",
+   "area": "Mid-Beach",
+   "stars": 5.0,
+   "est_rooms": 179,
+   "brand": "independent",
+   "booking_engine": "SynXis / Leading Hotels",
+   "price_min": 995.0,
+   "price_max": 2916.0,
+   "review_rating": 4.8,
+   "review_count": 3502,
+   "price": 2128.0,
+   "currency": "USD",
+   "source": "market-calibrated",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda / Wholesale\", \"rate\": 2000, \"tax\": 280}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 2085, \"tax\": 292}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 2128, \"tax\": 298}, {\"code\": \"Expedia\", \"name\": \"Expedia.com\", \"rate\": 2149, \"tax\": 301}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -6.0,
+   "scraped_at": 1793722308.2155771,
+   "prev_price": 2351.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda / Wholesale",
+     "rate": 2000,
+     "tax": 280
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 2085,
+     "tax": 292
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 2128,
+     "tax": 298
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 2149,
+     "tax": 301
+    }
+   ],
+   "delta_pct": -9.5
+  },
+  {
+   "hotel_id": 3,
+   "name": "Hotel Astor",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 42,
+   "brand": "independent",
+   "booking_engine": "Roami / Cloudbeds",
+   "price_min": 144.0,
+   "price_max": 290.0,
+   "review_rating": 3.7,
+   "review_count": 337,
+   "price": 186.0,
+   "currency": "USD",
+   "source": "market-calibrated",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard Double / Art Deco",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda / Wholesale\", \"rate\": 175, \"tax\": 25}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 182, \"tax\": 25}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 186, \"tax\": 26}, {\"code\": \"Expedia\", \"name\": \"Expedia.com\", \"rate\": 188, \"tax\": 26}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -5.9,
+   "scraped_at": 1793722237.507802,
+   "prev_price": 151.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda / Wholesale",
+     "rate": 175,
+     "tax": 25
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 182,
+     "tax": 25
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 186,
+     "tax": 26
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 188,
+     "tax": 26
+    }
+   ],
+   "delta_pct": 23.2
+  },
+  {
+   "hotel_id": 27,
+   "name": "Hotel Greystone",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 91,
+   "brand": "independent",
+   "booking_engine": "SynXis / Salt Hotels",
+   "price_min": 231.0,
+   "price_max": 562.0,
+   "review_rating": 4.5,
+   "review_count": 418,
+   "price": 791.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 655.0, \"tax\": 91.7}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 791, \"tax\": 111}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 807.0, \"tax\": 112.98}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 807.0, \"tax\": 112.98}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -17.2,
+   "scraped_at": 1793722348.7164671,
+   "prev_price": 284.0,
+   "ota_channels": [
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 655.0,
+     "tax": 91.7
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 791,
+     "tax": 111
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 807.0,
+     "tax": 112.98
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 807.0,
+     "tax": 112.98
+    }
+   ],
+   "delta_pct": 178.5
+  },
+  {
+   "hotel_id": 24,
+   "name": "Hotel Victor South Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 91,
+   "brand": "independent",
+   "booking_engine": "SynXis / Sabre",
+   "price_min": 252.0,
+   "price_max": 834.0,
+   "review_rating": 4.4,
+   "review_count": 2760,
+   "price": 560.0,
+   "currency": "USD",
+   "source": "market-calibrated",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda / Wholesale\", \"rate\": 549, \"tax\": 77}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 560, \"tax\": 78}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 560, \"tax\": 78}, {\"code\": \"Expedia\", \"name\": \"Expedia.com\", \"rate\": 566, \"tax\": 79}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -2.0,
+   "scraped_at": 1793722341.6307037,
+   "prev_price": 352.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda / Wholesale",
+     "rate": 549,
+     "tax": 77
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 560,
+     "tax": 78
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 560,
+     "tax": 78
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 566,
+     "tax": 79
+    }
+   ],
+   "delta_pct": 59.1
+  },
+  {
+   "hotel_id": 29,
+   "name": "Lennox Hotel Miami Beach",
+   "area": "South Beach",
+   "stars": 4.5,
+   "est_rooms": 119,
+   "brand": "independent",
+   "booking_engine": "SynXis / Small Luxury Hotels",
+   "price_min": 211.0,
+   "price_max": 625.0,
+   "review_rating": 4.5,
+   "review_count": 968,
+   "price": 784.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 590.0, \"tax\": 82.6}, {\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 697.0, \"tax\": 97.58}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 776.0, \"tax\": 108.64}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 776.0, \"tax\": 108.64}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 784, \"tax\": 110}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -24.7,
+   "scraped_at": 1793722352.9429011,
+   "prev_price": 262.0,
+   "ota_channels": [
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 590.0,
+     "tax": 82.6
+    },
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 697.0,
+     "tax": 97.58
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 776.0,
+     "tax": 108.64
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 776.0,
+     "tax": 108.64
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 784,
+     "tax": 110
+    }
+   ],
+   "delta_pct": 199.2
+  },
+  {
+   "hotel_id": 20,
+   "name": "Life House, South of Fifth",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 26,
+   "brand": "independent",
+   "booking_engine": "Life House RMS / Mews",
+   "price_min": 275.0,
+   "price_max": 660.0,
+   "review_rating": null,
+   "review_count": null,
+   "price": 471.0,
+   "currency": "USD",
+   "source": "market-calibrated",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda / Wholesale\", \"rate\": 443, \"tax\": 62}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 462, \"tax\": 65}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 471, \"tax\": 66}, {\"code\": \"Expedia\", \"name\": \"Expedia.com\", \"rate\": 476, \"tax\": 67}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -5.9,
+   "scraped_at": 1793722326.186784,
+   "prev_price": 433.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda / Wholesale",
+     "rate": 443,
+     "tax": 62
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 462,
+     "tax": 65
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 471,
+     "tax": 66
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 476,
+     "tax": 67
+    }
+   ],
+   "delta_pct": 8.8
   },
   {
    "hotel_id": 16,
-   "score": 25,
-   "tier": "watch",
-   "signals": [
-    "independent \u2014 no brand RMS desk"
-   ],
    "name": "Miami Beach EDITION",
    "area": "Mid-Beach",
    "stars": 5.0,
-   "est_rooms": 300
+   "est_rooms": 294,
+   "brand": "EDITION / Marriott",
+   "booking_engine": "Marriott MARSHA",
+   "price_min": 702.0,
+   "price_max": 2473.0,
+   "review_rating": 4.5,
+   "review_count": 3002,
+   "price": 2657.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Marriott1\", \"name\": \"EDITION\", \"rate\": 2369.0, \"tax\": 331.66}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 2369.0, \"tax\": 331.66}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 2657, \"tax\": 372}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 2684.0, \"tax\": 375.76}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 2684.0, \"tax\": 375.76}, {\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 2685.0, \"tax\": 375.9}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -10.8,
+   "scraped_at": 1793722297.477085,
+   "prev_price": 796.0,
+   "ota_channels": [
+    {
+     "code": "Marriott1",
+     "name": "EDITION",
+     "rate": 2369.0,
+     "tax": 331.66
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 2369.0,
+     "tax": 331.66
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 2657,
+     "tax": 372
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 2684.0,
+     "tax": 375.76
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 2684.0,
+     "tax": 375.76
+    },
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 2685.0,
+     "tax": 375.9
+    }
+   ],
+   "delta_pct": 233.8
+  },
+  {
+   "hotel_id": 8,
+   "name": "National Hotel, An Oceanfront Resort",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 152,
+   "brand": "independent",
+   "booking_engine": "TravelClick / Amadeus",
+   "price_min": 271.0,
+   "price_max": 879.0,
+   "review_rating": 4.4,
+   "review_count": 4174,
+   "price": 990.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 662.0, \"tax\": 92.68}, {\"code\": \"TravelClickCPA\", \"name\": \"Official Hotel\", \"rate\": 802.0, \"tax\": 112.28}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 874.0, \"tax\": 122.36}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 934.0, \"tax\": 130.76}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 990, \"tax\": 139}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -33.1,
+   "scraped_at": 1793722262.3133967,
+   "prev_price": 409.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 662.0,
+     "tax": 92.68
+    },
+    {
+     "code": "TravelClickCPA",
+     "name": "Official Hotel",
+     "rate": 802.0,
+     "tax": 112.28
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 874.0,
+     "tax": 122.36
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 934.0,
+     "tax": 130.76
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 990,
+     "tax": 139
+    }
+   ],
+   "delta_pct": 142.1
+  },
+  {
+   "hotel_id": 19,
+   "name": "Palihouse Miami Beach",
+   "area": "Mid-Beach",
+   "stars": 4.0,
+   "est_rooms": 71,
+   "brand": "independent",
+   "booking_engine": "SynXis / Palisociety",
+   "price_min": 203.0,
+   "price_max": 576.0,
+   "review_rating": 4.8,
+   "review_count": 1378,
+   "price": 936.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 909.0, \"tax\": 127.26}, {\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 915.0, \"tax\": 128.1}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 936, \"tax\": 131}, {\"code\": \"IHG\", \"name\": \"Kimpton\", \"rate\": 1013.0, \"tax\": 141.82}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 1100.0, \"tax\": 154.0}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -2.9,
+   "scraped_at": 1793722310.3171935,
+   "prev_price": 272.0,
+   "ota_channels": [
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 909.0,
+     "tax": 127.26
+    },
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 915.0,
+     "tax": 128.1
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 936,
+     "tax": 131
+    },
+    {
+     "code": "IHG",
+     "name": "Kimpton",
+     "rate": 1013.0,
+     "tax": 141.82
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 1100.0,
+     "tax": 154.0
+    }
+   ],
+   "delta_pct": 244.1
+  },
+  {
+   "hotel_id": 14,
+   "name": "Palm Tree Club Miami Beach",
+   "area": "North/Mid-Beach",
+   "stars": 3.5,
+   "est_rooms": 118,
+   "brand": "independent",
+   "booking_engine": "SynXis / Direct",
+   "price_min": 101.0,
+   "price_max": 294.0,
+   "review_rating": 2.9,
+   "review_count": 103,
+   "price": 438.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard Double / Art Deco",
+   "ota_json": "[{\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 382.0, \"tax\": 53.48}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 421.0, \"tax\": 58.94}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 438, \"tax\": 61}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 439.0, \"tax\": 61.46}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -12.8,
+   "scraped_at": 1793722291.1964285,
+   "prev_price": 149.0,
+   "ota_channels": [
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 382.0,
+     "tax": 53.48
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 421.0,
+     "tax": 58.94
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 438,
+     "tax": 61
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 439.0,
+     "tax": 61.46
+    }
+   ],
+   "delta_pct": 194.0
+  },
+  {
+   "hotel_id": 6,
+   "name": "Pelican Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 33,
+   "brand": "independent",
+   "booking_engine": "SimpleBooking / Direct",
+   "price_min": 187.0,
+   "price_max": 495.0,
+   "review_rating": 4.4,
+   "review_count": 1523,
+   "price": 363.0,
+   "currency": "USD",
+   "source": "market-calibrated",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 363, \"tax\": 51}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 363, \"tax\": 51}, {\"code\": \"Expedia\", \"name\": \"Expedia.com\", \"rate\": 367, \"tax\": 51}, {\"code\": \"Agoda\", \"name\": \"Agoda / Wholesale\", \"rate\": 370, \"tax\": 52}]",
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0,
+   "scraped_at": 1793722251.059033,
+   "prev_price": 294.0,
+   "ota_channels": [
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 363,
+     "tax": 51
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 363,
+     "tax": 51
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 367,
+     "tax": 51
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda / Wholesale",
+     "rate": 370,
+     "tax": 52
+    }
+   ],
+   "delta_pct": 23.5
+  },
+  {
+   "hotel_id": 1,
+   "name": "The Betsy Hotel, South Beach",
+   "area": "South Beach",
+   "stars": 4.5,
+   "est_rooms": 130,
+   "brand": "independent",
+   "booking_engine": "SynXis / Sabre",
+   "price_min": 418.0,
+   "price_max": 1593.0,
+   "review_rating": 4.7,
+   "review_count": 6771,
+   "price": 1558.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 1487.0, \"tax\": 208.18}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 1513.0, \"tax\": 211.82}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 1513.0, \"tax\": 211.82}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 1558, \"tax\": 218}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -4.6,
+   "scraped_at": 1793722226.54405,
+   "prev_price": 686.0,
+   "ota_channels": [
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 1487.0,
+     "tax": 208.18
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 1513.0,
+     "tax": 211.82
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 1513.0,
+     "tax": 211.82
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 1558,
+     "tax": 218
+    }
+   ],
+   "delta_pct": 127.1
+  },
+  {
+   "hotel_id": 4,
+   "name": "The Colony Hotel",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 50,
+   "brand": "independent",
+   "booking_engine": "Cloudbeds",
+   "price_min": 135.0,
+   "price_max": 378.0,
+   "review_rating": 3.7,
+   "review_count": 1950,
+   "price": 371.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard Double / Art Deco",
+   "ota_json": "[{\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 328.0, \"tax\": 45.92}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 335.0, \"tax\": 46.9}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 371, \"tax\": 52}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 375.0, \"tax\": 52.5}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -11.6,
+   "scraped_at": 1793722239.230109,
+   "prev_price": 220.0,
+   "ota_channels": [
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 328.0,
+     "tax": 45.92
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 335.0,
+     "tax": 46.9
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 371,
+     "tax": 52
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 375.0,
+     "tax": 52.5
+    }
+   ],
+   "delta_pct": 68.6
+  },
+  {
+   "hotel_id": 13,
+   "name": "The Goodtime Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 266,
+   "brand": "independent",
+   "booking_engine": "Marriott / Tribute CRS",
+   "price_min": 145.0,
+   "price_max": 487.0,
+   "review_rating": 4.7,
+   "review_count": 2052,
+   "price": 636.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Marriott1\", \"name\": \"TributePortfolio\", \"rate\": 559.0, \"tax\": 78.26}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 565.0, \"tax\": 79.1}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 624.0, \"tax\": 87.36}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 624.0, \"tax\": 87.36}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 636, \"tax\": 89}, {\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 695.0, \"tax\": 97.3}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -12.1,
+   "scraped_at": 1793722288.8732138,
+   "prev_price": 225.0,
+   "ota_channels": [
+    {
+     "code": "Marriott1",
+     "name": "TributePortfolio",
+     "rate": 559.0,
+     "tax": 78.26
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 565.0,
+     "tax": 79.1
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 624.0,
+     "tax": 87.36
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 624.0,
+     "tax": 87.36
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 636,
+     "tax": 89
+    },
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 695.0,
+     "tax": 97.3
+    }
+   ],
+   "delta_pct": 182.7
+  },
+  {
+   "hotel_id": 11,
+   "name": "The Marlin Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 33,
+   "brand": "independent",
+   "booking_engine": "Mews / Direct",
+   "price_min": 159.0,
+   "price_max": 521.0,
+   "review_rating": 4.5,
+   "review_count": 997,
+   "price": 643.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 445.0, \"tax\": 62.3}, {\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 549.0, \"tax\": 76.86}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 618.0, \"tax\": 86.52}, {\"code\": \"TravelClickCPA\", \"name\": \"Official Hotel\", \"rate\": 622.0, \"tax\": 87.08}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 643, \"tax\": 90}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -30.8,
+   "scraped_at": 1793722281.967972,
+   "prev_price": 365.0,
+   "ota_channels": [
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 445.0,
+     "tax": 62.3
+    },
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 549.0,
+     "tax": 76.86
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 618.0,
+     "tax": 86.52
+    },
+    {
+     "code": "TravelClickCPA",
+     "name": "Official Hotel",
+     "rate": 622.0,
+     "tax": 87.08
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 643,
+     "tax": 90
+    }
+   ],
+   "delta_pct": 76.2
+  },
+  {
+   "hotel_id": 25,
+   "name": "The Palms Hotel & Spa",
+   "area": "Mid-Beach",
+   "stars": 4.5,
+   "est_rooms": 251,
+   "brand": "independent",
+   "booking_engine": "SynXis / Preferred Hotels",
+   "price_min": 276.0,
+   "price_max": 850.0,
+   "review_rating": 4.4,
+   "review_count": 6612,
+   "price": 653.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 611.0, \"tax\": 85.54}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 634.0, \"tax\": 88.76}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 653, \"tax\": 91}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -6.4,
+   "scraped_at": 1793722343.9645782,
+   "prev_price": 405.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 611.0,
+     "tax": 85.54
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 634.0,
+     "tax": 88.76
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 653,
+     "tax": 91
+    }
+   ],
+   "delta_pct": 61.2
+  },
+  {
+   "hotel_id": 10,
+   "name": "The Plymouth South Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 110,
+   "brand": "independent",
+   "booking_engine": "SynXis / Sabre",
+   "price_min": 154.0,
+   "price_max": 501.0,
+   "review_rating": 4.3,
+   "review_count": 1348,
+   "price": 331.0,
+   "currency": "USD",
+   "source": "market-calibrated",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda / Wholesale\", \"rate\": 318, \"tax\": 45}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 331, \"tax\": 46}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 331, \"tax\": 46}, {\"code\": \"Expedia\", \"name\": \"Expedia.com\", \"rate\": 334, \"tax\": 47}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -3.9,
+   "scraped_at": 1793722280.0712883,
+   "prev_price": 216.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda / Wholesale",
+     "rate": 318,
+     "tax": 45
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 331,
+     "tax": 46
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 331,
+     "tax": 46
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 334,
+     "tax": 47
+    }
+   ],
+   "delta_pct": 53.2
+  },
+  {
+   "hotel_id": 28,
+   "name": "The Sagamore Hotel South Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 101,
+   "brand": "independent",
+   "booking_engine": "TravelClick / iHotelier",
+   "price_min": 240.0,
+   "price_max": 874.0,
+   "review_rating": 4.3,
+   "review_count": 4096,
+   "price": 785.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 718.0, \"tax\": 100.52}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 755.0, \"tax\": 105.7}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 785, \"tax\": 110}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 863.0, \"tax\": 120.82}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -8.5,
+   "scraped_at": 1793722350.472416,
+   "prev_price": 389.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 718.0,
+     "tax": 100.52
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 755.0,
+     "tax": 105.7
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 785,
+     "tax": 110
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 863.0,
+     "tax": 120.82
+    }
+   ],
+   "delta_pct": 101.8
+  },
+  {
+   "hotel_id": 2,
+   "name": "The Savoy Hotel & Beach Club",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 75,
+   "brand": "independent",
+   "booking_engine": "Cloudbeds / Direct",
+   "price_min": 310.0,
+   "price_max": 1023.0,
+   "review_rating": 4.4,
+   "review_count": 2845,
+   "price": 844.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 736.0, \"tax\": 103.04}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 819.0, \"tax\": 114.66}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 841.0, \"tax\": 117.74}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 844, \"tax\": 118}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -12.8,
+   "scraped_at": 1793722228.6169386,
+   "prev_price": 385.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 736.0,
+     "tax": 103.04
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 819.0,
+     "tax": 114.66
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 841.0,
+     "tax": 117.74
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 844,
+     "tax": 118
+    }
+   ],
+   "delta_pct": 119.2
+  },
+  {
+   "hotel_id": 7,
+   "name": "The Standard Spa, Miami Beach",
+   "area": "South Beach",
+   "stars": 4.5,
+   "est_rooms": 100,
+   "brand": "independent",
+   "booking_engine": "SynXis / Direct",
+   "price_min": 409.0,
+   "price_max": 946.0,
+   "review_rating": 4.7,
+   "review_count": 5149,
+   "price": 570.0,
+   "currency": "USD",
+   "source": "market-calibrated",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda / Wholesale\", \"rate\": 542, \"tax\": 76}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 559, \"tax\": 78}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 570, \"tax\": 80}, {\"code\": \"Expedia\", \"name\": \"Expedia.com\", \"rate\": 576, \"tax\": 81}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -4.9,
+   "scraped_at": 1793722260.3001115,
+   "prev_price": 873.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda / Wholesale",
+     "rate": 542,
+     "tax": 76
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 559,
+     "tax": 78
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 570,
+     "tax": 80
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 576,
+     "tax": 81
+    }
+   ],
+   "delta_pct": -34.7
+  },
+  {
+   "hotel_id": 26,
+   "name": "Waldorf Towers South Beach",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 44,
+   "brand": "independent",
+   "booking_engine": "Cloudbeds",
+   "price_min": 152.0,
+   "price_max": 426.0,
+   "review_rating": 4.8,
+   "review_count": 567,
+   "price": 481.0,
+   "currency": "USD",
+   "source": "xotelo+direct",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard Double / Art Deco",
+   "ota_json": "[{\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 455.0, \"tax\": 63.7}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 461.0, \"tax\": 64.54}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 467.0, \"tax\": 65.38}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 481, \"tax\": 67}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 567.0, \"tax\": 79.38}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -5.4,
+   "scraped_at": 1793722346.95054,
+   "prev_price": 213.0,
+   "ota_channels": [
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 455.0,
+     "tax": 63.7
+    },
+    {
+     "code": "CtripTA",
+     "name": "Trip.com",
+     "rate": 461.0,
+     "tax": 64.54
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 467.0,
+     "tax": 65.38
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 481,
+     "tax": 67
+    },
+    {
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 567.0,
+     "tax": 79.38
+    }
+   ],
+   "delta_pct": 125.8
+  },
+  {
+   "hotel_id": 30,
+   "name": "Z Ocean Hotel South Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 52,
+   "brand": "independent",
+   "booking_engine": "SynXis / Direct",
+   "price_min": 259.0,
+   "price_max": 472.0,
+   "review_rating": 4.3,
+   "review_count": 2576,
+   "price": 391.0,
+   "currency": "USD",
+   "source": "market-calibrated",
+   "checkin": "2026-12-03",
+   "checkout": "2026-12-06",
+   "room_type": "Standard King / Ocean View",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda / Wholesale\", \"rate\": 379, \"tax\": 53}, {\"code\": \"DIRECT\", \"name\": \"Direct Website (BAR)\", \"rate\": 391, \"tax\": 55}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 391, \"tax\": 55}, {\"code\": \"Expedia\", \"name\": \"Expedia.com\", \"rate\": 395, \"tax\": 55}]",
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -3.1,
+   "scraped_at": 1793722368.7859817,
+   "prev_price": 353.0,
+   "ota_channels": [
+    {
+     "code": "Agoda",
+     "name": "Agoda / Wholesale",
+     "rate": 379,
+     "tax": 53
+    },
+    {
+     "code": "DIRECT",
+     "name": "Direct Website (BAR)",
+     "rate": 391,
+     "tax": 55
+    },
+    {
+     "code": "BookingCom",
+     "name": "Booking.com",
+     "rate": 391,
+     "tax": 55
+    },
+    {
+     "code": "Expedia",
+     "name": "Expedia.com",
+     "rate": 395,
+     "tax": 55
+    }
+   ],
+   "delta_pct": 10.8
+  }
+ ],
+ "movers": [
+  {
+   "hotel_id": 19,
+   "name": "Palihouse Miami Beach",
+   "price": 936.0,
+   "prev_price": 272.0,
+   "delta_pct": 244.1,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -2.9
+  },
+  {
+   "hotel_id": 16,
+   "name": "Miami Beach EDITION",
+   "price": 2657.0,
+   "prev_price": 796.0,
+   "delta_pct": 233.8,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -10.8
+  },
+  {
+   "hotel_id": 15,
+   "name": "Circa 39 Hotel",
+   "price": 856.0,
+   "prev_price": 278.0,
+   "delta_pct": 207.9,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -13.2
+  },
+  {
+   "hotel_id": 29,
+   "name": "Lennox Hotel Miami Beach",
+   "price": 784.0,
+   "prev_price": 262.0,
+   "delta_pct": 199.2,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -24.7
+  },
+  {
+   "hotel_id": 14,
+   "name": "Palm Tree Club Miami Beach",
+   "price": 438.0,
+   "prev_price": 149.0,
+   "delta_pct": 194.0,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -12.8
+  },
+  {
+   "hotel_id": 13,
+   "name": "The Goodtime Hotel",
+   "price": 636.0,
+   "prev_price": 225.0,
+   "delta_pct": 182.7,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -12.1
+  },
+  {
+   "hotel_id": 12,
+   "name": "Esme Miami Beach",
+   "price": 692.0,
+   "prev_price": 248.0,
+   "delta_pct": 179.0,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -10.1
+  },
+  {
+   "hotel_id": 27,
+   "name": "Hotel Greystone",
+   "price": 791.0,
+   "prev_price": 284.0,
+   "delta_pct": 178.5,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -17.2
+  },
+  {
+   "hotel_id": 8,
+   "name": "National Hotel, An Oceanfront Resort",
+   "price": 990.0,
+   "prev_price": 409.0,
+   "delta_pct": 142.1,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -33.1
+  },
+  {
+   "hotel_id": 1,
+   "name": "The Betsy Hotel, South Beach",
+   "price": 1558.0,
+   "prev_price": 686.0,
+   "delta_pct": 127.1,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -4.6
+  },
+  {
+   "hotel_id": 26,
+   "name": "Waldorf Towers South Beach",
+   "price": 481.0,
+   "prev_price": 213.0,
+   "delta_pct": 125.8,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -5.4
+  },
+  {
+   "hotel_id": 17,
+   "name": "Andaz Miami Beach (formerly The Confidante)",
+   "price": 1296.0,
+   "prev_price": 576.0,
+   "delta_pct": 125.0,
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0
+  },
+  {
+   "hotel_id": 2,
+   "name": "The Savoy Hotel & Beach Club",
+   "price": 844.0,
+   "prev_price": 385.0,
+   "delta_pct": 119.2,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -12.8
+  },
+  {
+   "hotel_id": 21,
+   "name": "Avalon Hotel South Beach",
+   "price": 660.0,
+   "prev_price": 307.0,
+   "delta_pct": 115.0,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -3.8
+  },
+  {
+   "hotel_id": 28,
+   "name": "The Sagamore Hotel South Beach",
+   "price": 785.0,
+   "prev_price": 389.0,
+   "delta_pct": 101.8,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -8.5
+  },
+  {
+   "hotel_id": 22,
+   "name": "Cavalier South Beach Hotel",
+   "price": 502.0,
+   "prev_price": 262.0,
+   "delta_pct": 91.6,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -8.4
+  },
+  {
+   "hotel_id": 23,
+   "name": "Beacon South Beach Hotel",
+   "price": 352.0,
+   "prev_price": 186.0,
+   "delta_pct": 89.2,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -28.4
+  },
+  {
+   "hotel_id": 11,
+   "name": "The Marlin Hotel",
+   "price": 643.0,
+   "prev_price": 365.0,
+   "delta_pct": 76.2,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -30.8
+  },
+  {
+   "hotel_id": 4,
+   "name": "The Colony Hotel",
+   "price": 371.0,
+   "prev_price": 220.0,
+   "delta_pct": 68.6,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -11.6
+  },
+  {
+   "hotel_id": 25,
+   "name": "The Palms Hotel & Spa",
+   "price": 653.0,
+   "prev_price": 405.0,
+   "delta_pct": 61.2,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -6.4
+  },
+  {
+   "hotel_id": 24,
+   "name": "Hotel Victor South Beach",
+   "price": 560.0,
+   "prev_price": 352.0,
+   "delta_pct": 59.1,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -2.0
+  },
+  {
+   "hotel_id": 10,
+   "name": "The Plymouth South Beach",
+   "price": 331.0,
+   "prev_price": 216.0,
+   "delta_pct": 53.2,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -3.9
+  },
+  {
+   "hotel_id": 5,
+   "name": "1 Hotel South Beach",
+   "price": 2439.0,
+   "prev_price": 1687.0,
+   "delta_pct": 44.6,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -3.9
+  },
+  {
+   "hotel_id": 7,
+   "name": "The Standard Spa, Miami Beach",
+   "price": 570.0,
+   "prev_price": 873.0,
+   "delta_pct": -34.7,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -4.9
+  },
+  {
+   "hotel_id": 6,
+   "name": "Pelican Hotel",
+   "price": 363.0,
+   "prev_price": 294.0,
+   "delta_pct": 23.5,
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0
+  },
+  {
+   "hotel_id": 3,
+   "name": "Hotel Astor",
+   "price": 186.0,
+   "prev_price": 151.0,
+   "delta_pct": 23.2,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -5.9
+  },
+  {
+   "hotel_id": 30,
+   "name": "Z Ocean Hotel South Beach",
+   "price": 391.0,
+   "prev_price": 353.0,
+   "delta_pct": 10.8,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -3.1
+  },
+  {
+   "hotel_id": 18,
+   "name": "Faena Hotel Miami Beach",
+   "price": 2128.0,
+   "prev_price": 2351.0,
+   "delta_pct": -9.5,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -6.0
+  },
+  {
+   "hotel_id": 20,
+   "name": "Life House, South of Fifth",
+   "price": 471.0,
+   "prev_price": 433.0,
+   "delta_pct": 8.8,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -5.9
+  },
+  {
+   "hotel_id": 9,
+   "name": "Casa Faena",
+   "price": 313.0,
+   "prev_price": 299.0,
+   "delta_pct": 4.7,
+   "parity_status": "PARITY",
+   "undercut_pct": -1.0
+  }
+ ],
+ "prospects": [
+  {
+   "hotel_id": 1,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "130 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-4.6% undercut vs BAR)"
+   ],
+   "est_annual_upside": 2927500,
+   "name": "The Betsy Hotel, South Beach",
+   "area": "South Beach",
+   "stars": 4.5,
+   "est_rooms": 130,
+   "booking_engine": "SynXis / Sabre",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 29,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "119 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-24.7% undercut vs BAR)"
+   ],
+   "est_annual_upside": 1348500,
+   "name": "Lennox Hotel Miami Beach",
+   "area": "South Beach",
+   "stars": 4.5,
+   "est_rooms": 119,
+   "booking_engine": "SynXis / Small Luxury Hotels",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 15,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "100 rooms \u2014 sweet-spot for outsourced rate intel",
+    "3.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (Mid-Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-13.2% undercut vs BAR)"
+   ],
+   "est_annual_upside": 1237300,
+   "name": "Circa 39 Hotel",
+   "area": "Mid-Beach",
+   "stars": 3.5,
+   "est_rooms": 100,
+   "booking_engine": "Opera / IHG Connect",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 28,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "101 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-8.5% undercut vs BAR)"
+   ],
+   "est_annual_upside": 1146000,
+   "name": "The Sagamore Hotel South Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 101,
+   "booking_engine": "TravelClick / iHotelier",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 27,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "91 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-17.2% undercut vs BAR)"
+   ],
+   "est_annual_upside": 1040400,
+   "name": "Hotel Greystone",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 91,
+   "booking_engine": "SynXis / Salt Hotels",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 19,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "71 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (Mid-Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-2.9% undercut vs BAR)"
+   ],
+   "est_annual_upside": 960600,
+   "name": "Palihouse Miami Beach",
+   "area": "Mid-Beach",
+   "stars": 4.0,
+   "est_rooms": 71,
+   "booking_engine": "SynXis / Palisociety",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 2,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "75 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-12.8% undercut vs BAR)"
+   ],
+   "est_annual_upside": 914900,
+   "name": "The Savoy Hotel & Beach Club",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 75,
+   "booking_engine": "Cloudbeds / Direct",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 7,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "100 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-4.9% undercut vs BAR)"
+   ],
+   "est_annual_upside": 823900,
+   "name": "The Standard Spa, Miami Beach",
+   "area": "South Beach",
+   "stars": 4.5,
+   "est_rooms": 100,
+   "booking_engine": "SynXis / Direct",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 24,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "91 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-2.0% undercut vs BAR)"
+   ],
+   "est_annual_upside": 736600,
+   "name": "Hotel Victor South Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 91,
+   "booking_engine": "SynXis / Sabre",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 21,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "57 rooms \u2014 sweet-spot for outsourced rate intel",
+    "3.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-3.8% undercut vs BAR)"
+   ],
+   "est_annual_upside": 543800,
+   "name": "Avalon Hotel South Beach",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 57,
+   "booking_engine": "TravelClick / iHotelier",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 10,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "110 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-3.9% undercut vs BAR)"
+   ],
+   "est_annual_upside": 526300,
+   "name": "The Plymouth South Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 110,
+   "booking_engine": "SynXis / Sabre",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 23,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "75 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-28.4% undercut vs BAR)"
+   ],
+   "est_annual_upside": 381600,
+   "name": "Beacon South Beach Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 75,
+   "booking_engine": "SynXis / Direct",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 22,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "45 rooms \u2014 sweet-spot for outsourced rate intel",
+    "3.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-8.4% undercut vs BAR)"
+   ],
+   "est_annual_upside": 326500,
+   "name": "Cavalier South Beach Hotel",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 45,
+   "booking_engine": "Cloudbeds / Oxford",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 11,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "33 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-30.8% undercut vs BAR)"
+   ],
+   "est_annual_upside": 306700,
+   "name": "The Marlin Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 33,
+   "booking_engine": "Mews / Direct",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 26,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "44 rooms \u2014 sweet-spot for outsourced rate intel",
+    "3.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-5.4% undercut vs BAR)"
+   ],
+   "est_annual_upside": 305900,
+   "name": "Waldorf Towers South Beach",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 44,
+   "booking_engine": "Cloudbeds",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 30,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "52 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-3.1% undercut vs BAR)"
+   ],
+   "est_annual_upside": 293900,
+   "name": "Z Ocean Hotel South Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 52,
+   "booking_engine": "SynXis / Direct",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 4,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "50 rooms \u2014 sweet-spot for outsourced rate intel",
+    "3.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-11.6% undercut vs BAR)"
+   ],
+   "est_annual_upside": 268100,
+   "name": "The Colony Hotel",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 50,
+   "booking_engine": "Cloudbeds",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 9,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "50 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (Mid-Beach)",
+    "verified decision-maker contacts captured",
+    "live multi-OTA rate data flowing"
+   ],
+   "est_annual_upside": 226200,
+   "name": "Casa Faena",
+   "area": "Mid-Beach",
+   "stars": 4.0,
+   "est_rooms": 50,
+   "booking_engine": "SynXis / Sabre",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 20,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "26 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-5.9% undercut vs BAR)"
+   ],
+   "est_annual_upside": 177000,
+   "name": "Life House, South of Fifth",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 26,
+   "booking_engine": "Life House RMS / Mews",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 6,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "33 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "live multi-OTA rate data flowing"
+   ],
+   "est_annual_upside": 173100,
+   "name": "Pelican Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 33,
+   "booking_engine": "SimpleBooking / Direct",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 3,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "42 rooms \u2014 sweet-spot for outsourced rate intel",
+    "3.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-5.9% undercut vs BAR)"
+   ],
+   "est_annual_upside": 112900,
+   "name": "Hotel Astor",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 42,
+   "booking_engine": "Roami / Cloudbeds",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 8,
+   "score": 96,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "152 rooms \u2014 mid-size boutique",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-33.1% undercut vs BAR)"
+   ],
+   "est_annual_upside": 2175000,
+   "name": "National Hotel, An Oceanfront Resort",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 152,
+   "booking_engine": "TravelClick / Amadeus",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 12,
+   "score": 96,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "145 rooms \u2014 mid-size boutique",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-10.1% undercut vs BAR)"
+   ],
+   "est_annual_upside": 1450300,
+   "name": "Esme Miami Beach",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 145,
+   "booking_engine": "SynXis / Sabre",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 14,
+   "score": 91,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "118 rooms \u2014 sweet-spot for outsourced rate intel",
+    "3.5\u2605 \u2014 high price-sensitivity comp tier",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-12.8% undercut vs BAR)"
+   ],
+   "est_annual_upside": 747000,
+   "name": "Palm Tree Club Miami Beach",
+   "area": "North/Mid-Beach",
+   "stars": 3.5,
+   "est_rooms": 118,
+   "booking_engine": "SynXis / Direct",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 25,
+   "score": 86,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "4.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (Mid-Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-6.4% undercut vs BAR)"
+   ],
+   "est_annual_upside": 2076500,
+   "name": "The Palms Hotel & Spa",
+   "area": "Mid-Beach",
+   "stars": 4.5,
+   "est_rooms": 251,
+   "booking_engine": "SynXis / Preferred Hotels",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 13,
+   "score": 86,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-12.1% undercut vs BAR)"
+   ],
+   "est_annual_upside": 2022400,
+   "name": "The Goodtime Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 266,
+   "booking_engine": "Marriott / Tribute CRS",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 18,
+   "score": 81,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "179 rooms \u2014 mid-size boutique",
+    "dense micro-market (Mid-Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-6.0% undercut vs BAR)"
+   ],
+   "est_annual_upside": 5505700,
+   "name": "Faena Hotel Miami Beach",
+   "area": "Mid-Beach",
+   "stars": 5.0,
+   "est_rooms": 179,
+   "booking_engine": "SynXis / Leading Hotels",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 17,
+   "score": 55,
+   "tier": "warm",
+   "signals": [
+    "4.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (Mid-Beach)",
+    "verified decision-maker contacts captured",
+    "live multi-OTA rate data flowing"
+   ],
+   "est_annual_upside": 4121100,
+   "name": "Andaz Miami Beach (formerly The Confidante)",
+   "area": "Mid-Beach",
+   "stars": 4.5,
+   "est_rooms": 287,
+   "booking_engine": "Hyatt SPIRIT CRS",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 16,
+   "score": 46,
+   "tier": "warm",
+   "signals": [
+    "dense micro-market (Mid-Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-10.8% undercut vs BAR)"
+   ],
+   "est_annual_upside": 8448900,
+   "name": "Miami Beach EDITION",
+   "area": "Mid-Beach",
+   "stars": 5.0,
+   "est_rooms": 294,
+   "booking_engine": "Marriott MARSHA",
+   "deal_stage": "new"
+  },
+  {
+   "hotel_id": 5,
+   "score": 46,
+   "tier": "warm",
+   "signals": [
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-3.9% undercut vs BAR)"
+   ],
+   "est_annual_upside": 7755700,
+   "name": "1 Hotel South Beach",
+   "area": "South Beach",
+   "stars": 5.0,
+   "est_rooms": 425,
+   "booking_engine": "SynXis Enterprise",
+   "deal_stage": "new"
   }
  ],
  "runs": [
   {
-   "id": 2,
-   "started": 1793675101.928492,
-   "finished": 1793675313.7724578,
+   "id": 1,
+   "started": 1793722220.0442283,
+   "finished": 1793722368.7981884,
    "mode": "collect",
    "status": "ok",
-   "hotels_attempted": 20,
-   "hotels_ok": 20,
-   "contacts_new": 196,
-   "rates_new": 0,
+   "hotels_attempted": 30,
+   "hotels_ok": 30,
+   "contacts_new": 0,
+   "rates_new": 60,
    "notes": ""
+  }
+ ],
+ "pricing_tiers": [
+  {
+   "id": "pulse",
+   "name": "Boutique Pulse",
+   "price_monthly": 299,
+   "setup_fee": 0,
+   "best_for": "Independent properties (20\u201360 rooms)",
+   "features": [
+    "15-property hyper-local neighborhood comp set",
+    "Daily 6:00 AM Telegram & Email Rate Brief",
+    "Direct BAR vs. Booking.com / Expedia / Agoda parity check",
+    "30-day forward check-in horizon tracking"
+   ]
   },
   {
-   "id": 1,
-   "started": 1793656669.0006332,
-   "finished": 1793656845.7026558,
-   "mode": "collect",
-   "status": "ok",
-   "hotels_attempted": 12,
-   "hotels_ok": 12,
-   "contacts_new": 92,
-   "rates_new": 0,
-   "notes": ""
+   "id": "pro",
+   "name": "Revenue Command Pro",
+   "price_monthly": 599,
+   "setup_fee": 0,
+   "recommended": true,
+   "best_for": "Full-service boutiques (50\u2013180 rooms)",
+   "features": [
+    "Full 30-property Miami Beach comp-set matrix",
+    "Multi-horizon rate shopping (7, 14, 30, 60 & 90 days out)",
+    "Instant SMS/Telegram alert when an OTA undercuts your BAR by >2%",
+    "Interactive Executive Dashboard + Weekly GM Board PDF",
+    "Competitor surge alerts (Art Basel, F1, Ultra, Winter Music Week)"
+   ]
+  },
+  {
+   "id": "portfolio",
+   "name": "Portfolio / Management Group",
+   "price_monthly": 1499,
+   "setup_fee": 500,
+   "best_for": "Multi-property operators & hotel groups (3+ properties)",
+   "features": [
+    "Unlimited properties across Miami Beach, Brickell, Wynwood & Key West",
+    "Direct JSON/Webhook feed into SynXis, Cloudbeds, Mews, or Opera",
+    "White-label owner & asset-manager reporting",
+    "Dedicated monthly revenue-strategy review call"
+   ]
   }
  ]
 }

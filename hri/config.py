@@ -9,12 +9,12 @@ DEFAULTS = {
     "database": "data/hri.db",
     "stay": {"checkin_days_out": 30, "nights": 3, "adults": 2, "rooms": 1},
     "collector": {
-        "max_hotels_per_run": 12,
-        "polite_delay_sec": [2, 5],
-        "request_timeout_sec": 25,
-        "max_contact_pages_per_hotel": 3,
+        "max_hotels_per_run": 30,
+        "polite_delay_sec": [0.5, 1.5],
+        "request_timeout_sec": 18,
+        "max_contact_pages_per_hotel": 2,
     },
-    "sources": {"hotel_sites": True, "ota": False},
+    "sources": {"hotel_sites": True, "ota": False, "xotelo": True},
     "telegram": {"bot_token": "", "chat_id": ""},
     "dashboard": {"host": "127.0.0.1", "port": 8317, "auth_key": ""},
 }
@@ -31,7 +31,7 @@ def load(path=None):
     cfg = dict(DEFAULTS)
     p = path or os.path.join(ROOT, "config.json")
     if os.path.exists(p):
-        with open(p) as f:
+        with open(p, encoding="utf-8") as f:
             cfg = _merge(DEFAULTS, json.load(f))
     cfg["database"] = os.path.join(ROOT, cfg["database"]) if not os.path.isabs(cfg["database"]) else cfg["database"]
     os.makedirs(os.path.dirname(cfg["database"]), exist_ok=True)

@@ -6,20 +6,28 @@ has no persistent SQLite, so we commit these snapshots and api/index.py
 serves them. Re-run after each collection, commit, and redeploy to refresh
 the public dashboard.
 """
-import json, sqlite3, sys
+import json, os, sys
 
-sys.path.insert(0, "/root/.openclaw/workspace/hotel-rate-intelligence")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT)
+
+from hri import db as dbmod
 from hri.config import load
-from hri.server import _summary, _hotels
+from hri.server import _summary, _hotels, _all_pitches
 
 
 def main():
     cfg = load()
-    conn = sqlite3.connect(cfg["database"])
-    conn.row_factory = sqlite3.Row
-    for name, fn in (("snapshot_summary", lambda c: _summary(c, cfg)), ("snapshot_hotels", _hotels)):
+    conn = dbmod.open_db(cfg["database"])
+    snapshots = (
+        ("snapshot_summary", lambda c: _summary(c, cfg)),
+        ("snapshot_hotels", lambda c: {"hotels": _hotels(c)}),
+        ("snapshot_pitches", _all_pitches),
+    )
+    for name, fn in snapshots:
         payload = fn(conn)
-        with open(f"api/{name}.json", "w", encoding="utf-8") as f:
+        out_path = os.path.join(ROOT, "api", f"{name}.json")
+        with open(out_path, "w", encoding="utf-8") as f:
             json.dump(payload, f, indent=1, default=str)
         print(f"api/{name}.json  ({len(json.dumps(payload)):,} bytes)")
     conn.close()
