@@ -6,6 +6,7 @@ using the no-brainer $99 / $199 / $399 flat monthly model (zero per-room tax).
 """
 import json
 from datetime import date
+from .ai_engine import compute_out_the_door_pricing, generate_deterministic_ai_brief, AI_MODEL_BENCHMARKS
 
 
 PRICING_TIERS = [
@@ -456,58 +457,67 @@ def build_hotel_pitch(conn, hotel_id):
     xkey = hotel.get("xotelo_key") or "g34439-d85104"
     verify_url = f"https://www.tripadvisor.com/Hotel_Review-{xkey}.html"
 
+    rate_intel_obj = {
+        "checkin": checkin,
+        "checkout": checkout,
+        "direct_bar": bar_price,
+        "prev_bar": prev_price,
+        "delta_pct": delta_pct,
+        "lowest_ota_name": ota_name,
+        "lowest_ota_price": ota_price,
+        "parity_status": parity_status,
+        "undercut_pct": undercut_pct,
+        "ota_channels": ota_channels,
+        "comp_avg": comp_avg,
+        "vs_comp_diff": vs_comp_diff,
+        "suggested_rate_bump": suggested_rate_bump,
+        "neighbors": neighbors,
+    }
+    roi_obj = {
+        "est_rooms": rooms,
+        "assumed_occupancy_pct": 74,
+        "annual_sold_nights": annual_sold_nights,
+        "adr_lift_per_night": adr_lift_per_night,
+        "annual_adr_upside": annual_adr_upside,
+        "annual_commission_saved": annual_commission_saved,
+        "total_annual_roi": total_annual_roi,
+        "recommended_tier": recommended_tier,
+        "monthly_investment": monthly_cost,
+        "roi_multiple": roi_multiple,
+    }
+    hotel_obj = {
+        "id": hid,
+        "name": hotel["name"],
+        "short_name": short_name,
+        "area": area,
+        "stars": hotel.get("stars"),
+        "review_rating": my_rating,
+        "review_count": hotel.get("review_count") or 420,
+        "est_rooms": rooms,
+        "booking_engine": engine,
+        "website": hotel.get("website"),
+        "verify_url": verify_url,
+        "primary_email": primary_email,
+        "primary_phone": primary_phone,
+        "primary_address": primary_address,
+        "instagram": insta_handle,
+        "target_role": target_role,
+        "all_emails": emails,
+        "all_phones": phones,
+    }
+    otd_obj = compute_out_the_door_pricing(area, hotel.get("stars"), bar_price, ota_price, ota_name)
+    ai_brief_obj = generate_deterministic_ai_brief(hotel_obj, rate_intel_obj, roi_obj, otd_obj)
+
     return {
-        "hotel": {
-            "id": hid,
-            "name": hotel["name"],
-            "short_name": short_name,
-            "area": area,
-            "stars": hotel.get("stars"),
-            "review_rating": my_rating,
-            "review_count": hotel.get("review_count") or 420,
-            "est_rooms": rooms,
-            "booking_engine": engine,
-            "website": hotel.get("website"),
-            "verify_url": verify_url,
-            "primary_email": primary_email,
-            "primary_phone": primary_phone,
-            "primary_address": primary_address,
-            "instagram": insta_handle,
-            "target_role": target_role,
-            "all_emails": emails,
-            "all_phones": phones,
-        },
-        "rate_intel": {
-            "checkin": checkin,
-            "checkout": checkout,
-            "direct_bar": bar_price,
-            "prev_bar": prev_price,
-            "delta_pct": delta_pct,
-            "lowest_ota_name": ota_name,
-            "lowest_ota_price": ota_price,
-            "parity_status": parity_status,
-            "undercut_pct": undercut_pct,
-            "ota_channels": ota_channels,
-            "comp_avg": comp_avg,
-            "vs_comp_diff": vs_comp_diff,
-            "suggested_rate_bump": suggested_rate_bump,
-            "neighbors": neighbors,
-        },
+        "hotel": hotel_obj,
+        "rate_intel": rate_intel_obj,
+        "out_the_door": otd_obj,
+        "ai_brief": ai_brief_obj,
+        "ai_models": AI_MODEL_BENCHMARKS,
         "action_recommendations": action_recommendations,
         "miami_events": MIAMI_COMPRESSION_EVENTS,
         "local_routes": LOCAL_ROUTES,
-        "roi_calculator": {
-            "est_rooms": rooms,
-            "assumed_occupancy_pct": 74,
-            "annual_sold_nights": annual_sold_nights,
-            "adr_lift_per_night": adr_lift_per_night,
-            "annual_adr_upside": annual_adr_upside,
-            "annual_commission_saved": annual_commission_saved,
-            "total_annual_roi": total_annual_roi,
-            "recommended_tier": recommended_tier,
-            "monthly_investment": monthly_cost,
-            "roi_multiple": roi_multiple,
-        },
+        "roi_calculator": roi_obj,
         "call_script": call_script,
         "sms_templates": sms_templates,
         "instagram_dm": instagram_dm,

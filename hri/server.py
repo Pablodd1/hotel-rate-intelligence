@@ -16,6 +16,7 @@ from urllib.parse import urlparse, parse_qs
 
 from . import db as dbmod
 from .sales_engine import build_hotel_pitch, build_printable_audit_html, PRICING_TIERS, LOCAL_ROUTES, MIAMI_COMPRESSION_EVENTS
+from .ai_engine import generate_live_ai_pitch, AI_MODEL_BENCHMARKS
 
 DASH_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dashboard", "index.html")
 
@@ -64,6 +65,7 @@ def _summary(conn, cfg):
         "prospects": prospects,
         "runs": runs,
         "pricing_tiers": PRICING_TIERS,
+        "ai_models": AI_MODEL_BENCHMARKS,
     }
 
 
@@ -153,6 +155,12 @@ def make_handler(cfg):
                 elif path.startswith("/api/pitch"):
                     hid = int((q.get("hotel_id") or [1])[0])
                     self._json(build_hotel_pitch(conn, hid))
+                elif path.startswith("/api/ai-pitch"):
+                    hid = int((q.get("hotel_id") or [1])[0])
+                    model = (q.get("model") or ["gemini-2.5-flash-lite"])[0]
+                    pitch = build_hotel_pitch(conn, hid)
+                    ai_res = generate_live_ai_pitch(pitch, preferred_model=model)
+                    self._json({"ok": True, "hotel_id": hid, "ai_brief": ai_res})
                 elif path.startswith("/audit") or path.startswith("/api/audit"):
                     hid = int((q.get("hotel_id") or [1])[0])
                     pitch = build_hotel_pitch(conn, hid)

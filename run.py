@@ -8,6 +8,7 @@
   python3 run.py report           print the daily executive & sales brief
   python3 run.py report --send    also push it to Telegram
   python3 run.py pitch [hotel_id] print personalized call script, SMS & email kit
+  python3 run.py send-briefs      generate & dispatch 6:00 AM daily rate briefs to active pilot/client hotels
   python3 run.py snapshot         export JSON snapshots to api/ for Vercel deploy
   python3 run.py dashboard        serve the themed 5-tab command center
 """
@@ -77,6 +78,28 @@ def main():
     elif cmd == "snapshot":
         from scripts.snapshot import main as snap_main
         snap_main()
+
+    elif cmd == "send-briefs":
+        from hri import db as dbmod
+        from hri.sales_engine import build_hotel_pitch
+        conn = dbmod.open_db(cfg["database"])
+        rows = conn.execute(
+            "SELECT id, name, deal_stage FROM hotels WHERE deal_stage IN ('pilot_active', 'closed_won') ORDER BY id"
+        ).fetchall()
+        if not rows:
+            rows = conn.execute("SELECT id, name, deal_stage FROM hotels ORDER BY id LIMIT 3").fetchall()
+            print("[info] No hotels marked pilot_active/closed_won yet — previewing top 3 properties:\n")
+        for r in rows:
+            p = build_hotel_pitch(conn, r["id"])
+            h = p["hotel"]
+            ri = p["rate_intel"]
+            ai = p.get("ai_brief") or {}
+            otd = p.get("out_the_door") or {}
+            print(f"✉ 6:00 AM CLIENT BRIEF → {h['name']} ({h['primary_email']} | {h['primary_phone']})")
+            print(f"   Model: {ai.get('model_used')} | Direct BAR: ${ri['direct_bar']} (${otd.get('direct_out_the_door')} Out-the-Door)")
+            print(f"   Lowest OTA: {ri['lowest_ota_name']} @ ${ri['lowest_ota_price']} ({ri['undercut_pct']:+.1f}% [{ri['parity_status']}])")
+            print(f"   AI Action: {ai.get('gm_executive_memo')}\n")
+        conn.close()
 
     elif cmd == "dashboard":
         from hri.server import serve

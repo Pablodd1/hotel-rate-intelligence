@@ -3504,5 +3504,59 @@
     "Monthly in-person (Miami/North Miami) or Zoom revenue strategy review"
    ]
   }
+ ],
+ "ai_models": [
+  {
+   "id": "gemini-2.5-flash-lite",
+   "name": "Gemini 2.5 Flash-Lite",
+   "provider": "Google AI Studio / Vertex",
+   "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+   "input_cost_1m": "$0.10",
+   "output_cost_1m": "$0.40",
+   "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+   "latency": "320ms",
+   "margin_pct": "99.97%",
+   "recommended": true,
+   "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+  },
+  {
+   "id": "gemini-2.5-flash",
+   "name": "Gemini 2.5 Flash",
+   "provider": "Google AI Studio",
+   "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+   "input_cost_1m": "$0.30",
+   "output_cost_1m": "$2.50",
+   "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+   "latency": "480ms",
+   "margin_pct": "99.85%",
+   "recommended": false,
+   "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+  },
+  {
+   "id": "gemini-3-flash",
+   "name": "Gemini 3.x Flash",
+   "provider": "Google AI Studio",
+   "role": "Deep Portfolio Yield & Multi-Property Strategy",
+   "input_cost_1m": "$0.75",
+   "output_cost_1m": "$3.75",
+   "monthly_42_hotels_cost": "$0.32/mo",
+   "latency": "690ms",
+   "margin_pct": "99.65%",
+   "recommended": false,
+   "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+  },
+  {
+   "id": "ollama/qwen2.5:7b",
+   "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+   "provider": "Local Windows GPU/CPU (localhost:11434)",
+   "role": "100% Offline Zero-Key Fallback",
+   "input_cost_1m": "$0.00",
+   "output_cost_1m": "$0.00",
+   "monthly_42_hotels_cost": "$0.00/mo",
+   "latency": "1.2s local",
+   "margin_pct": "100.0%",
+   "recommended": false,
+   "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+  }
  ]
 }

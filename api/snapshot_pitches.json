@@ -134,6 +134,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 25,
+   "comp_avg_resort_fee": 29,
+   "tax_rate_pct": 14,
+   "direct_tax": 35,
+   "direct_out_the_door": 284,
+   "ota_out_the_door": 271,
+   "otd_gap": 13,
+   "fee_hook": "True Checkout Total is $284/nt ($224 BAR + ~$25 resort fee + $35 tax) vs $271/nt on Vio.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Vio.com is undercutting Seaside All Suites Hotel by $11/nt (-4.9%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Vio.com is publicly selling Seaside All Suites Hotel at $213/nt ($271 out-the-door) against your $224/nt Direct BAR. Suppress static bedbank/wholesale discounting on Vio.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Park Royal Miami Beach holding $181/nt and North Beach averaging $232/nt, raise Thu-Sat Direct BAR to $236/nt (+$113,500/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Seaside All Suites Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $224, Vio.com is showing $213, and Park Royal Miami Beach next door is at $181. I just printed your 1-page North Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Vio.com (-4.9%)",
@@ -500,6 +572,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 25,
+   "comp_avg_resort_fee": 29,
+   "tax_rate_pct": 14,
+   "direct_tax": 38,
+   "direct_out_the_door": 311,
+   "ota_out_the_door": 237,
+   "otd_gap": 74,
+   "fee_hook": "True Checkout Total is $311/nt ($248 BAR + ~$25 resort fee + $38 tax) vs $237/nt on Vio.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Vio.com is undercutting Waterside Hotel & Suites by $65/nt (-26.2%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Vio.com is publicly selling Waterside Hotel & Suites at $183/nt ($237 out-the-door) against your $248/nt Direct BAR. Suppress static bedbank/wholesale discounting on Vio.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Seaside All Suites Hotel holding $224/nt and North Beach averaging $224/nt, raise Thu-Sat Direct BAR to $262/nt (+$136,400/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Waterside Hotel & Suites team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $248, Vio.com is showing $183, and Seaside All Suites Hotel next door is at $224. I just printed your 1-page North Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Vio.com (-26.2%)",
@@ -854,6 +998,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 25,
+   "comp_avg_resort_fee": 29,
+   "tax_rate_pct": 14,
+   "direct_tax": 29,
+   "direct_out_the_door": 235,
+   "ota_out_the_door": 225,
+   "otd_gap": 10,
+   "fee_hook": "True Checkout Total is $235/nt ($181 BAR + ~$25 resort fee + $29 tax) vs $225/nt on Agoda / Wholesale."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda / Wholesale is undercutting Park Royal Miami Beach by $9/nt (-5.0%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda / Wholesale is publicly selling Park Royal Miami Beach at $172/nt ($225 out-the-door) against your $181/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda / Wholesale today to recover 18% OTA margin. 2) Corridor Yield Move: With Seaside All Suites Hotel holding $224/nt and North Beach averaging $247/nt, raise Thu-Sat Direct BAR to $221/nt (+$95,400/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Park Royal Miami Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $181, Agoda / Wholesale is showing $172, and Seaside All Suites Hotel next door is at $224. I just printed your 1-page North Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda / Wholesale (-5.0%)",
@@ -1214,6 +1430,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 25,
+   "comp_avg_resort_fee": 29,
+   "tax_rate_pct": 14,
+   "direct_tax": 41,
+   "direct_out_the_door": 334,
+   "ota_out_the_door": 334,
+   "otd_gap": 0,
+   "fee_hook": "True Checkout Total is $334/nt ($268 BAR + ~$25 resort fee + $41 tax) vs $334/nt on Booking.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 93,
+   "headline": "YIELD EXPANSION READY: Oceanside Hotel + Suites is in parity and priced $35/nt below North Beach comp ceiling",
+   "gm_executive_memo": "1) Parity Protected: Direct BAR ($268/nt, $334 out-the-door) is holding clean parity across OTAs. 2) Capture Neighbor Rate Lift: Palm Tree Club Miami Beach is at $438/nt (North Beach avg $303/nt). Given your 3.7\u2605 guest score, nudge weekend BAR up by +$21/nt to capture +$145,900/yr without occupancy loss.",
+   "voice_note_15_sec": "Hey Oceanside Hotel + Suites team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $268, Booking.com is showing $268, and Palm Tree Club Miami Beach next door is at $438. I just printed your 1-page North Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Booking.com (+0.0%)",
@@ -1568,6 +1856,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 25,
+   "comp_avg_resort_fee": 29,
+   "tax_rate_pct": 14,
+   "direct_tax": 65,
+   "direct_out_the_door": 528,
+   "ota_out_the_door": 464,
+   "otd_gap": 64,
+   "fee_hook": "True Checkout Total is $528/nt ($438 BAR + ~$25 resort fee + $65 tax) vs $464/nt on Trip.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Trip.com is undercutting Palm Tree Club Miami Beach by $56/nt (-12.8%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Trip.com is publicly selling Palm Tree Club Miami Beach at $382/nt ($464 out-the-door) against your $438/nt Direct BAR. Suppress static bedbank/wholesale discounting on Trip.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Oceanside Hotel + Suites holding $268/nt and North Beach averaging $247/nt, raise Thu-Sat Direct BAR to $460/nt (+$588,300/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Palm Tree Club Miami Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $438, Trip.com is showing $382, and Oceanside Hotel + Suites next door is at $268. I just printed your 1-page North Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Trip.com (-12.8%)",
@@ -1916,6 +2276,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 25,
+   "comp_avg_resort_fee": 29,
+   "tax_rate_pct": 14,
+   "direct_tax": 76,
+   "direct_out_the_door": 619,
+   "ota_out_the_door": 602,
+   "otd_gap": 17,
+   "fee_hook": "True Checkout Total is $619/nt ($518 BAR + ~$25 resort fee + $76 tax) vs $602/nt on Booking.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Booking.com is undercutting Grand Beach Hotel Surfside / Miami Beach by $15/nt (-2.9%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Booking.com is publicly selling Grand Beach Hotel Surfside / Miami Beach at $503/nt ($602 out-the-door) against your $518/nt Direct BAR. Suppress static bedbank/wholesale discounting on Booking.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Palm Tree Club Miami Beach holding $438/nt and North Beach averaging $318/nt, raise Thu-Sat Direct BAR to $544/nt (+$1,559,100/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Grand Beach Hotel Surfside / Miami Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $518, Booking.com is showing $503, and Palm Tree Club Miami Beach next door is at $438. I just printed your 1-page North Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Booking.com (-2.9%)",
@@ -2270,6 +2702,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 15,
+   "comp_avg_resort_fee": 18,
+   "tax_rate_pct": 13,
+   "direct_tax": 41,
+   "direct_out_the_door": 355,
+   "ota_out_the_door": 355,
+   "otd_gap": 0,
+   "fee_hook": "True Checkout Total is $355/nt ($299 BAR + ~$15 resort fee + $41 tax) vs $355/nt on Booking.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 93,
+   "headline": "YIELD EXPANSION READY: The Vagabond Hotel Miami is in parity and priced $64/nt below Miami (MiMo / Biscayne) comp ceiling",
+   "gm_executive_memo": "1) Parity Protected: Direct BAR ($299/nt, $355 out-the-door) is holding clean parity across OTAs. 2) Capture Neighbor Rate Lift: The Biscayne Hotel (MiMo) is at $111/nt (Miami (MiMo / Biscayne) avg $235/nt). Given your 4.6\u2605 guest score, nudge weekend BAR up by +$15/nt to capture +$71,100/yr without occupancy loss.",
+   "voice_note_15_sec": "Hey The Vagabond Hotel Miami team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $299, Booking.com is showing $299, and The Biscayne Hotel (MiMo) next door is at $111. I just printed your 1-page Miami (MiMo / Biscayne) rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Booking.com (+0.0%)",
@@ -2624,6 +3128,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 0,
+   "comp_avg_resort_fee": 18,
+   "tax_rate_pct": 13,
+   "direct_tax": 37,
+   "direct_out_the_door": 318,
+   "ota_out_the_door": 199,
+   "otd_gap": 119,
+   "fee_hook": "Zero-Resort-Fee Advantage: Neighbors add ~$18/nt in hidden resort fees, giving you room to raise base BAR +$15 without losing out-the-door price leadership."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda.com is undercutting The New Yorker Boutique Hotel by $105/nt (-37.4%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling The New Yorker Boutique Hotel at $176/nt ($199 out-the-door) against your $281/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With The Biscayne Hotel (MiMo) holding $111/nt and Miami (MiMo / Biscayne) averaging $197/nt, raise Thu-Sat Direct BAR to $295/nt (+$96,600/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The New Yorker Boutique Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $281, Agoda.com is showing $176, and The Biscayne Hotel (MiMo) next door is at $111. I just printed your 1-page Miami (MiMo / Biscayne) rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda.com (-37.4%)",
@@ -2978,6 +3554,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 0,
+   "comp_avg_resort_fee": 18,
+   "tax_rate_pct": 13,
+   "direct_tax": 14,
+   "direct_out_the_door": 125,
+   "ota_out_the_door": 124,
+   "otd_gap": 1,
+   "fee_hook": "Zero-Resort-Fee Advantage: Neighbors add ~$18/nt in hidden resort fees, giving you room to raise base BAR +$15 without losing out-the-door price leadership."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 93,
+   "headline": "YIELD EXPANSION READY: The Biscayne Hotel is in parity and priced $143/nt below Miami (MiMo / Biscayne) comp ceiling",
+   "gm_executive_memo": "1) Parity Protected: Direct BAR ($111/nt, $125 out-the-door) is holding clean parity across OTAs. 2) Capture Neighbor Rate Lift: The New Yorker Boutique Hotel (MiMo) is at $281/nt (Miami (MiMo / Biscayne) avg $254/nt). Given your 3.8\u2605 guest score, nudge weekend BAR up by +$45/nt to capture +$38,900/yr without occupancy loss.",
+   "voice_note_15_sec": "Hey The Biscayne Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $111, Agoda / Wholesale is showing $110, and The New Yorker Boutique Hotel (MiMo) next door is at $281. I just printed your 1-page Miami (MiMo / Biscayne) rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda / Wholesale (-0.9%)",
@@ -3332,6 +3980,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 32,
+   "comp_avg_resort_fee": 30,
+   "tax_rate_pct": 13,
+   "direct_tax": 86,
+   "direct_out_the_door": 746,
+   "ota_out_the_door": 695,
+   "otd_gap": 51,
+   "fee_hook": "True Checkout Total is $746/nt ($628 BAR + ~$32 resort fee + $86 tax) vs $695/nt on Trip.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Trip.com is undercutting Arlo Wynwood Miami by $45/nt (-7.2%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Trip.com is publicly selling Arlo Wynwood Miami at $583/nt ($695 out-the-door) against your $628/nt Direct BAR. Suppress static bedbank/wholesale discounting on Trip.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Eurostars Langford Downtown Miami holding $485/nt and Miami (Wynwood / Downtown) averaging $495/nt, raise Thu-Sat Direct BAR to $659/nt (+$1,533,600/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Arlo Wynwood Miami team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $628, Trip.com is showing $583, and Eurostars Langford Downtown Miami next door is at $485. I just printed your 1-page Miami (Wynwood / Downtown) rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Trip.com (-7.2%)",
@@ -3686,6 +4406,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 32,
+   "comp_avg_resort_fee": 30,
+   "tax_rate_pct": 13,
+   "direct_tax": 67,
+   "direct_out_the_door": 584,
+   "ota_out_the_door": 485,
+   "otd_gap": 99,
+   "fee_hook": "True Checkout Total is $584/nt ($485 BAR + ~$32 resort fee + $67 tax) vs $485/nt on Official Site."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Official Site is undercutting Eurostars Langford Downtown Miami by $88/nt (-18.1%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Official Site is publicly selling Eurostars Langford Downtown Miami at $397/nt ($485 out-the-door) against your $485/nt Direct BAR. Suppress static bedbank/wholesale discounting on Official Site today to recover 18% OTA margin. 2) Corridor Yield Move: With The Mutiny Luxury Suites Hotel holding $347/nt and Miami (Wynwood / Downtown) averaging $435/nt, raise Thu-Sat Direct BAR to $509/nt (+$693,400/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Eurostars Langford Downtown Miami team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $485, Official Site is showing $397, and The Mutiny Luxury Suites Hotel next door is at $347. I just printed your 1-page Miami (Wynwood / Downtown) rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Official Site (-18.1%)",
@@ -4034,6 +4826,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 32,
+   "comp_avg_resort_fee": 30,
+   "tax_rate_pct": 13,
+   "direct_tax": 49,
+   "direct_out_the_door": 428,
+   "ota_out_the_door": 385,
+   "otd_gap": 43,
+   "fee_hook": "True Checkout Total is $428/nt ($347 BAR + ~$32 resort fee + $49 tax) vs $385/nt on Vio.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Vio.com is undercutting The Mutiny Luxury Suites Hotel by $38/nt (-11.0%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Vio.com is publicly selling The Mutiny Luxury Suites Hotel at $309/nt ($385 out-the-door) against your $347/nt Direct BAR. Suppress static bedbank/wholesale discounting on Vio.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Eurostars Langford Downtown Miami holding $485/nt and Miami (Wynwood / Downtown) averaging $481/nt, raise Thu-Sat Direct BAR to $392/nt (+$476,300/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The Mutiny Luxury Suites Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $347, Vio.com is showing $309, and Eurostars Langford Downtown Miami next door is at $485. I just printed your 1-page Miami (Wynwood / Downtown) rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Vio.com (-11.0%)",
@@ -4395,6 +5259,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 34,
+   "comp_avg_resort_fee": 39,
+   "tax_rate_pct": 14,
+   "direct_tax": 125,
+   "direct_out_the_door": 1015,
+   "ota_out_the_door": 958,
+   "otd_gap": 57,
+   "fee_hook": "True Checkout Total is $1015/nt ($856 BAR + ~$34 resort fee + $125 tax) vs $958/nt on IHG."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: IHG is undercutting Circa 39 Hotel by $50/nt (-5.8%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: IHG is publicly selling Circa 39 Hotel at $806/nt ($958 out-the-door) against your $856/nt Direct BAR. Suppress static bedbank/wholesale discounting on IHG today to recover 18% OTA margin. 2) Corridor Yield Move: With Palihouse Miami Beach holding $936/nt and Mid-Beach averaging $634/nt, raise Thu-Sat Direct BAR to $899/nt (+$973,400/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Circa 39 Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $856, IHG is showing $806, and Palihouse Miami Beach next door is at $936. I just printed your 1-page Mid-Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on IHG (-5.8%)",
@@ -4755,6 +5691,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 34,
+   "comp_avg_resort_fee": 39,
+   "tax_rate_pct": 14,
+   "direct_tax": 136,
+   "direct_out_the_door": 1106,
+   "ota_out_the_door": 1075,
+   "otd_gap": 31,
+   "fee_hook": "True Checkout Total is $1106/nt ($936 BAR + ~$34 resort fee + $136 tax) vs $1075/nt on Booking.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Booking.com is undercutting Palihouse Miami Beach by $27/nt (-2.9%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Booking.com is publicly selling Palihouse Miami Beach at $909/nt ($1075 out-the-door) against your $936/nt Direct BAR. Suppress static bedbank/wholesale discounting on Booking.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Casa Faena holding $313/nt and Mid-Beach averaging $607/nt, raise Thu-Sat Direct BAR to $983/nt (+$750,100/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Palihouse Miami Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $936, Booking.com is showing $909, and Casa Faena next door is at $313. I just printed your 1-page Mid-Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Booking.com (-2.9%)",
@@ -5110,6 +6118,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 34,
+   "comp_avg_resort_fee": 39,
+   "tax_rate_pct": 14,
+   "direct_tax": 49,
+   "direct_out_the_door": 396,
+   "ota_out_the_door": 392,
+   "otd_gap": 4,
+   "fee_hook": "True Checkout Total is $396/nt ($313 BAR + ~$34 resort fee + $49 tax) vs $392/nt on Agoda / Wholesale."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 93,
+   "headline": "YIELD EXPANSION READY: Casa Faena is in parity and priced $502/nt below Mid-Beach comp ceiling",
+   "gm_executive_memo": "1) Parity Protected: Direct BAR ($313/nt, $396 out-the-door) is holding clean parity across OTAs. 2) Capture Neighbor Rate Lift: Palihouse Miami Beach is at $936/nt (Mid-Beach avg $815/nt). Given your 4.2\u2605 guest score, nudge weekend BAR up by +$45/nt to capture +$85,100/yr without occupancy loss.",
+   "voice_note_15_sec": "Hey Casa Faena team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $313, Agoda / Wholesale is showing $310, and Palihouse Miami Beach next door is at $936. I just printed your 1-page Mid-Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda / Wholesale (-1.0%)",
@@ -5459,6 +6539,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 42,
+   "comp_avg_resort_fee": 39,
+   "tax_rate_pct": 14,
+   "direct_tax": 97,
+   "direct_out_the_door": 792,
+   "ota_out_the_door": 771,
+   "otd_gap": 21,
+   "fee_hook": "True Checkout Total is $792/nt ($653 BAR + ~$42 resort fee + $97 tax) vs $771/nt on Booking.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Booking.com is undercutting The Palms Hotel & Spa by $19/nt (-2.9%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Booking.com is publicly selling The Palms Hotel & Spa at $634/nt ($771 out-the-door) against your $653/nt Direct BAR. Suppress static bedbank/wholesale discounting on Booking.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Andaz Miami Beach (formerly The Confidante) holding $1296/nt and Mid-Beach averaging $2106/nt, raise Thu-Sat Direct BAR to $698/nt (+$1,840,900/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The Palms Hotel & Spa team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $653, Booking.com is showing $634, and Andaz Miami Beach (formerly The Confidante) next door is at $1296. I just printed your 1-page Mid-Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Booking.com (-2.9%)",
@@ -5814,6 +6966,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 42,
+   "comp_avg_resort_fee": 39,
+   "tax_rate_pct": 14,
+   "direct_tax": 304,
+   "direct_out_the_door": 2474,
+   "ota_out_the_door": 2328,
+   "otd_gap": 146,
+   "fee_hook": "True Checkout Total is $2474/nt ($2128 BAR + ~$42 resort fee + $304 tax) vs $2328/nt on Agoda / Wholesale."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda / Wholesale is undercutting Faena Hotel Miami Beach by $128/nt (-6.0%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda / Wholesale is publicly selling Faena Hotel Miami Beach at $2000/nt ($2328 out-the-door) against your $2128/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda / Wholesale today to recover 18% OTA margin. 2) Corridor Yield Move: With Miami Beach EDITION holding $2895/nt and Mid-Beach averaging $1615/nt, raise Thu-Sat Direct BAR to $2234/nt (+$4,310,900/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Faena Hotel Miami Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $2128, Agoda / Wholesale is showing $2000, and Miami Beach EDITION next door is at $2895. I just printed your 1-page Mid-Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda / Wholesale (-6.0%)",
@@ -6180,6 +7404,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 42,
+   "comp_avg_resort_fee": 39,
+   "tax_rate_pct": 14,
+   "direct_tax": 411,
+   "direct_out_the_door": 3348,
+   "ota_out_the_door": 2749,
+   "otd_gap": 599,
+   "fee_hook": "True Checkout Total is $3348/nt ($2895 BAR + ~$42 resort fee + $411 tax) vs $2749/nt on EDITION."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: EDITION is undercutting Miami Beach EDITION by $526/nt (-18.2%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: EDITION is publicly selling Miami Beach EDITION at $2369/nt ($2749 out-the-door) against your $2895/nt Direct BAR. Suppress static bedbank/wholesale discounting on EDITION today to recover 18% OTA margin. 2) Corridor Yield Move: With Faena Hotel Miami Beach holding $2128/nt and Mid-Beach averaging $1359/nt, raise Thu-Sat Direct BAR to $3040/nt (+$9,611,000/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Miami Beach EDITION team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $2895, EDITION is showing $2369, and Faena Hotel Miami Beach next door is at $2128. I just printed your 1-page Mid-Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on EDITION (-18.2%)",
@@ -6540,6 +7836,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 42,
+   "comp_avg_resort_fee": 39,
+   "tax_rate_pct": 14,
+   "direct_tax": 187,
+   "direct_out_the_door": 1525,
+   "ota_out_the_door": 1525,
+   "otd_gap": 0,
+   "fee_hook": "True Checkout Total is $1525/nt ($1296 BAR + ~$42 resort fee + $187 tax) vs $1525/nt on Booking.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 93,
+   "headline": "YIELD EXPANSION READY: Andaz Miami Beach is in parity and priced $596/nt below Mid-Beach comp ceiling",
+   "gm_executive_memo": "1) Parity Protected: Direct BAR ($1296/nt, $1525 out-the-door) is holding clean parity across OTAs. 2) Capture Neighbor Rate Lift: The Palms Hotel & Spa is at $653/nt (Mid-Beach avg $1892/nt). Given your 4.7\u2605 guest score, nudge weekend BAR up by +$45/nt to capture +$2,023,200/yr without occupancy loss.",
+   "voice_note_15_sec": "Hey Andaz Miami Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $1296, Booking.com is showing $1296, and The Palms Hotel & Spa next door is at $653. I just printed your 1-page Mid-Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Booking.com (+0.0%)",
@@ -6895,6 +8263,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 29,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 56,
+   "direct_out_the_door": 456,
+   "ota_out_the_door": 407,
+   "otd_gap": 49,
+   "fee_hook": "Lower Resort Fee (~$29/nt vs ~$38/nt corridor avg): Your true checkout total ($456/nt) is cleaner than competitors."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Vio.com is undercutting The Colony Hotel by $43/nt (-11.6%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Vio.com is publicly selling The Colony Hotel at $328/nt ($407 out-the-door) against your $371/nt Direct BAR. Suppress static bedbank/wholesale discounting on Vio.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Cavalier South Beach Hotel holding $502/nt and South Beach averaging $548/nt, raise Thu-Sat Direct BAR to $416/nt (+$211,500/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The Colony Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $371, Vio.com is showing $328, and Cavalier South Beach Hotel next door is at $502. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Vio.com (-11.6%)",
@@ -7250,6 +8690,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 56,
+   "direct_out_the_door": 458,
+   "ota_out_the_door": 458,
+   "otd_gap": 0,
+   "fee_hook": "True Checkout Total is $458/nt ($363 BAR + ~$39 resort fee + $56 tax) vs $458/nt on Booking.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 93,
+   "headline": "YIELD EXPANSION READY: Pelican Hotel is in parity and priced $139/nt below South Beach comp ceiling",
+   "gm_executive_memo": "1) Parity Protected: Direct BAR ($363/nt, $458 out-the-door) is holding clean parity across OTAs. 2) Capture Neighbor Rate Lift: The Marlin Hotel is at $643/nt (South Beach avg $502/nt). Given your 4.4\u2605 guest score, nudge weekend BAR up by +$45/nt to capture +$64,200/yr without occupancy loss.",
+   "voice_note_15_sec": "Hey Pelican Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $363, Booking.com is showing $363, and The Marlin Hotel next door is at $643. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Booking.com (+0.0%)",
@@ -7604,6 +9116,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 29,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 30,
+   "direct_out_the_door": 245,
+   "ota_out_the_door": 233,
+   "otd_gap": 12,
+   "fee_hook": "Lower Resort Fee (~$29/nt vs ~$38/nt corridor avg): Your true checkout total ($245/nt) is cleaner than competitors."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda / Wholesale is undercutting Hotel Astor by $11/nt (-5.9%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda / Wholesale is publicly selling Hotel Astor at $175/nt ($233 out-the-door) against your $186/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda / Wholesale today to recover 18% OTA margin. 2) Corridor Yield Move: With Waldorf Towers South Beach holding $481/nt and South Beach averaging $451/nt, raise Thu-Sat Direct BAR to $231/nt (+$96,600/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Hotel Astor team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $186, Agoda / Wholesale is showing $175, and Waldorf Towers South Beach next door is at $481. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda / Wholesale (-5.9%)",
@@ -7952,6 +9536,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 29,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 96,
+   "direct_out_the_door": 785,
+   "ota_out_the_door": 757,
+   "otd_gap": 28,
+   "fee_hook": "Lower Resort Fee (~$29/nt vs ~$38/nt corridor avg): Your true checkout total ($785/nt) is cleaner than competitors."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Booking.com is undercutting Avalon Hotel South Beach by $25/nt (-3.8%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Booking.com is publicly selling Avalon Hotel South Beach at $635/nt ($757 out-the-door) against your $660/nt Direct BAR. Suppress static bedbank/wholesale discounting on Booking.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Clevelander South Beach Hotel holding $335/nt and South Beach averaging $403/nt, raise Thu-Sat Direct BAR to $693/nt (+$427,300/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Avalon Hotel South Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $660, Booking.com is showing $635, and Clevelander South Beach Hotel next door is at $335. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Booking.com (-3.8%)",
@@ -8312,6 +9968,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 29,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 74,
+   "direct_out_the_door": 605,
+   "ota_out_the_door": 557,
+   "otd_gap": 48,
+   "fee_hook": "Lower Resort Fee (~$29/nt vs ~$38/nt corridor avg): Your true checkout total ($605/nt) is cleaner than competitors."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Trip.com is undercutting Cavalier South Beach Hotel by $42/nt (-8.4%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Trip.com is publicly selling Cavalier South Beach Hotel at $460/nt ($557 out-the-door) against your $502/nt Direct BAR. Suppress static bedbank/wholesale discounting on Trip.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Waldorf Towers South Beach holding $481/nt and South Beach averaging $346/nt, raise Thu-Sat Direct BAR to $527/nt (+$257,600/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Cavalier South Beach Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $502, Trip.com is showing $460, and Waldorf Towers South Beach next door is at $481. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Trip.com (-8.4%)",
@@ -8666,6 +10394,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 55,
+   "direct_out_the_door": 446,
+   "ota_out_the_door": 331,
+   "otd_gap": 115,
+   "fee_hook": "True Checkout Total is $446/nt ($352 BAR + ~$39 resort fee + $55 tax) vs $331/nt on Agoda.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda.com is undercutting Beacon South Beach Hotel by $101/nt (-28.7%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling Beacon South Beach Hotel at $251/nt ($331 out-the-door) against your $352/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With The Savoy Hotel & Beach Club holding $844/nt and South Beach averaging $732/nt, raise Thu-Sat Direct BAR to $397/nt (+$299,900/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Beacon South Beach Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $352, Agoda.com is showing $251, and The Savoy Hotel & Beach Club next door is at $844. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda.com (-28.7%)",
@@ -9026,6 +10826,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 29,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 71,
+   "direct_out_the_door": 581,
+   "ota_out_the_door": 552,
+   "otd_gap": 29,
+   "fee_hook": "Lower Resort Fee (~$29/nt vs ~$38/nt corridor avg): Your true checkout total ($581/nt) is cleaner than competitors."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Vio.com is undercutting Waldorf Towers South Beach by $26/nt (-5.4%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Vio.com is publicly selling Waldorf Towers South Beach at $455/nt ($552 out-the-door) against your $481/nt Direct BAR. Suppress static bedbank/wholesale discounting on Vio.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Cavalier South Beach Hotel holding $502/nt and South Beach averaging $353/nt, raise Thu-Sat Direct BAR to $505/nt (+$241,200/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Waldorf Towers South Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $481, Vio.com is showing $455, and Cavalier South Beach Hotel next door is at $502. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Vio.com (-5.4%)",
@@ -9386,6 +11258,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 95,
+   "direct_out_the_door": 777,
+   "ota_out_the_door": 552,
+   "otd_gap": 225,
+   "fee_hook": "True Checkout Total is $777/nt ($643 BAR + ~$39 resort fee + $95 tax) vs $552/nt on Trip.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Trip.com is undercutting The Marlin Hotel by $198/nt (-30.8%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Trip.com is publicly selling The Marlin Hotel at $445/nt ($552 out-the-door) against your $643/nt Direct BAR. Suppress static bedbank/wholesale discounting on Trip.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Pelican Hotel holding $363/nt and South Beach averaging $408/nt, raise Thu-Sat Direct BAR to $675/nt (+$240,100/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The Marlin Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $643, Trip.com is showing $445, and Pelican Hotel next door is at $363. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Trip.com (-30.8%)",
@@ -9740,6 +11684,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 60,
+   "direct_out_the_door": 490,
+   "ota_out_the_door": 477,
+   "otd_gap": 13,
+   "fee_hook": "True Checkout Total is $490/nt ($391 BAR + ~$39 resort fee + $60 tax) vs $477/nt on Agoda / Wholesale."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda / Wholesale is undercutting Z Ocean Hotel South Beach by $12/nt (-3.1%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda / Wholesale is publicly selling Z Ocean Hotel South Beach at $379/nt ($477 out-the-door) against your $391/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda / Wholesale today to recover 18% OTA margin. 2) Corridor Yield Move: With Pelican Hotel holding $363/nt and South Beach averaging $453/nt, raise Thu-Sat Direct BAR to $428/nt (+$232,400/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Z Ocean Hotel South Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $391, Agoda / Wholesale is showing $379, and Pelican Hotel next door is at $363. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda / Wholesale (-3.1%)",
@@ -10094,6 +12110,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 71,
+   "direct_out_the_door": 581,
+   "ota_out_the_door": 549,
+   "otd_gap": 32,
+   "fee_hook": "True Checkout Total is $581/nt ($471 BAR + ~$39 resort fee + $71 tax) vs $549/nt on Agoda / Wholesale."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda / Wholesale is undercutting Life House by $28/nt (-5.9%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda / Wholesale is publicly selling Life House at $443/nt ($549 out-the-door) against your $471/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda / Wholesale today to recover 18% OTA margin. 2) Corridor Yield Move: With Pelican Hotel holding $363/nt and South Beach averaging $466/nt, raise Thu-Sat Direct BAR to $495/nt (+$137,800/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Life House team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $471, Agoda / Wholesale is showing $443, and Pelican Hotel next door is at $363. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda / Wholesale (-5.9%)",
@@ -10448,6 +12536,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 124,
+   "direct_out_the_door": 1007,
+   "ota_out_the_door": 884,
+   "otd_gap": 123,
+   "fee_hook": "True Checkout Total is $1007/nt ($844 BAR + ~$39 resort fee + $124 tax) vs $884/nt on Agoda.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda.com is undercutting The Savoy Hotel & Beach Club by $108/nt (-12.8%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling The Savoy Hotel & Beach Club at $736/nt ($884 out-the-door) against your $844/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Beacon South Beach Hotel holding $352/nt and South Beach averaging $568/nt, raise Thu-Sat Direct BAR to $886/nt (+$715,700/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The Savoy Hotel & Beach Club team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $844, Agoda.com is showing $736, and Beacon South Beach Hotel next door is at $352. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda.com (-12.8%)",
@@ -10802,6 +12962,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 84,
+   "direct_out_the_door": 683,
+   "ota_out_the_door": 670,
+   "otd_gap": 13,
+   "fee_hook": "True Checkout Total is $683/nt ($560 BAR + ~$39 resort fee + $84 tax) vs $670/nt on Agoda / Wholesale."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda / Wholesale is undercutting Hotel Victor South Beach by $11/nt (-2.0%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda / Wholesale is publicly selling Hotel Victor South Beach at $549/nt ($670 out-the-door) against your $560/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda / Wholesale today to recover 18% OTA margin. 2) Corridor Yield Move: With Hotel Greystone holding $791/nt and South Beach averaging $643/nt, raise Thu-Sat Direct BAR to $605/nt (+$573,800/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Hotel Victor South Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $560, Agoda / Wholesale is showing $549, and Hotel Greystone next door is at $791. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda / Wholesale (-2.0%)",
@@ -11156,6 +13388,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 116,
+   "direct_out_the_door": 946,
+   "ota_out_the_door": 791,
+   "otd_gap": 155,
+   "fee_hook": "True Checkout Total is $946/nt ($791 BAR + ~$39 resort fee + $116 tax) vs $791/nt on Trip.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Trip.com is undercutting Hotel Greystone by $136/nt (-17.2%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Trip.com is publicly selling Hotel Greystone at $655/nt ($791 out-the-door) against your $791/nt Direct BAR. Suppress static bedbank/wholesale discounting on Trip.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Hotel Victor South Beach holding $560/nt and South Beach averaging $566/nt, raise Thu-Sat Direct BAR to $831/nt (+$818,100/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Hotel Greystone team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $791, Trip.com is showing $655, and Hotel Victor South Beach next door is at $560. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Trip.com (-17.2%)",
@@ -11510,6 +13814,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 115,
+   "direct_out_the_door": 939,
+   "ota_out_the_door": 863,
+   "otd_gap": 76,
+   "fee_hook": "True Checkout Total is $939/nt ($785 BAR + ~$39 resort fee + $115 tax) vs $863/nt on Agoda.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda.com is undercutting The Sagamore Hotel South Beach by $67/nt (-8.5%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling The Sagamore Hotel South Beach at $718/nt ($863 out-the-door) against your $785/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With The Plymouth South Beach holding $331/nt and South Beach averaging $561/nt, raise Thu-Sat Direct BAR to $824/nt (+$892,300/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The Sagamore Hotel South Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $785, Agoda.com is showing $718, and The Plymouth South Beach next door is at $331. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda.com (-8.5%)",
@@ -11864,6 +14240,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 52,
+   "direct_out_the_door": 422,
+   "ota_out_the_door": 407,
+   "otd_gap": 15,
+   "fee_hook": "True Checkout Total is $422/nt ($331 BAR + ~$39 resort fee + $52 tax) vs $407/nt on Agoda / Wholesale."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda / Wholesale is undercutting The Plymouth South Beach by $13/nt (-3.9%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda / Wholesale is publicly selling The Plymouth South Beach at $318/nt ($407 out-the-door) against your $331/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda / Wholesale today to recover 18% OTA margin. 2) Corridor Yield Move: With The Sagamore Hotel South Beach holding $785/nt and South Beach averaging $712/nt, raise Thu-Sat Direct BAR to $376/nt (+$412,900/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The Plymouth South Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $331, Agoda / Wholesale is showing $318, and The Sagamore Hotel South Beach next door is at $785. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda / Wholesale (-3.9%)",
@@ -12224,6 +14672,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 115,
+   "direct_out_the_door": 938,
+   "ota_out_the_door": 649,
+   "otd_gap": 289,
+   "fee_hook": "True Checkout Total is $938/nt ($784 BAR + ~$39 resort fee + $115 tax) vs $649/nt on Vio.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Vio.com is undercutting Lennox Hotel Miami Beach by $254/nt (-32.4%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Vio.com is publicly selling Lennox Hotel Miami Beach at $530/nt ($649 out-the-door) against your $784/nt Direct BAR. Suppress static bedbank/wholesale discounting on Vio.com today to recover 18% OTA margin. 2) Corridor Yield Move: With The Betsy Hotel holding $1558/nt and South Beach averaging $820/nt, raise Thu-Sat Direct BAR to $806/nt (+$1,050,500/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Lennox Hotel Miami Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $784, Vio.com is showing $530, and The Betsy Hotel next door is at $1558. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Vio.com (-32.4%)",
@@ -12584,6 +15104,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 102,
+   "direct_out_the_door": 833,
+   "ota_out_the_door": 485,
+   "otd_gap": 348,
+   "fee_hook": "True Checkout Total is $833/nt ($692 BAR + ~$39 resort fee + $102 tax) vs $485/nt on Agoda.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda.com is undercutting Esme Miami Beach by $306/nt (-44.2%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling Esme Miami Beach at $386/nt ($485 out-the-door) against your $692/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With National Hotel holding $787/nt and South Beach averaging $634/nt, raise Thu-Sat Direct BAR to $727/nt (+$1,131,700/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Esme Miami Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $692, Agoda.com is showing $386, and National Hotel next door is at $787. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda.com (-44.2%)",
@@ -12939,6 +15531,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 85,
+   "direct_out_the_door": 694,
+   "ota_out_the_door": 662,
+   "otd_gap": 32,
+   "fee_hook": "True Checkout Total is $694/nt ($570 BAR + ~$39 resort fee + $85 tax) vs $662/nt on Agoda / Wholesale."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda / Wholesale is undercutting The Standard Spa by $28/nt (-4.9%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda / Wholesale is publicly selling The Standard Spa at $542/nt ($662 out-the-door) against your $570/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda / Wholesale today to recover 18% OTA margin. 2) Corridor Yield Move: With Lennox Hotel Miami Beach holding $784/nt and South Beach averaging $1042/nt, raise Thu-Sat Direct BAR to $615/nt (+$648,500/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The Standard Spa team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $570, Agoda / Wholesale is showing $542, and Lennox Hotel Miami Beach next door is at $784. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda / Wholesale (-4.9%)",
@@ -13301,6 +15965,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 224,
+   "direct_out_the_door": 1821,
+   "ota_out_the_door": 1740,
+   "otd_gap": 81,
+   "fee_hook": "True Checkout Total is $1821/nt ($1558 BAR + ~$39 resort fee + $224 tax) vs $1740/nt on Trip.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Trip.com is undercutting The Betsy Hotel by $71/nt (-4.6%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Trip.com is publicly selling The Betsy Hotel at $1487/nt ($1740 out-the-door) against your $1558/nt Direct BAR. Suppress static bedbank/wholesale discounting on Trip.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Lennox Hotel Miami Beach holding $784/nt and South Beach averaging $682/nt, raise Thu-Sat Direct BAR to $1636/nt (+$2,287,800/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The Betsy Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $1558, Trip.com is showing $1487, and Lennox Hotel Miami Beach next door is at $784. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Trip.com (-4.6%)",
@@ -13662,6 +16398,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 116,
+   "direct_out_the_door": 942,
+   "ota_out_the_door": 799,
+   "otd_gap": 143,
+   "fee_hook": "True Checkout Total is $942/nt ($787 BAR + ~$39 resort fee + $116 tax) vs $799/nt on Agoda.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda.com is undercutting National Hotel by $125/nt (-15.9%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling National Hotel at $662/nt ($799 out-the-door) against your $787/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Esme Miami Beach holding $692/nt and South Beach averaging $603/nt, raise Thu-Sat Direct BAR to $826/nt (+$1,344,500/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey National Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $787, Agoda.com is showing $662, and Esme Miami Beach next door is at $692. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda.com (-15.9%)",
@@ -14029,6 +16837,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 95,
+   "direct_out_the_door": 770,
+   "ota_out_the_door": 682,
+   "otd_gap": 88,
+   "fee_hook": "True Checkout Total is $770/nt ($636 BAR + ~$39 resort fee + $95 tax) vs $682/nt on TributePortfolio."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: TributePortfolio is undercutting The Goodtime Hotel by $77/nt (-12.1%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: TributePortfolio is publicly selling The Goodtime Hotel at $559/nt ($682 out-the-door) against your $636/nt Direct BAR. Suppress static bedbank/wholesale discounting on TributePortfolio today to recover 18% OTA margin. 2) Corridor Yield Move: With National Hotel holding $787/nt and South Beach averaging $603/nt, raise Thu-Sat Direct BAR to $668/nt (+$1,924,600/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The Goodtime Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $636, TributePortfolio is showing $559, and National Hotel next door is at $787. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on TributePortfolio (-12.1%)",
@@ -14390,6 +17270,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 39,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 347,
+   "direct_out_the_door": 2825,
+   "ota_out_the_door": 2717,
+   "otd_gap": 108,
+   "fee_hook": "True Checkout Total is $2825/nt ($2439 BAR + ~$39 resort fee + $347 tax) vs $2717/nt on Vio.com."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Vio.com is undercutting 1 Hotel South Beach by $95/nt (-3.9%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Vio.com is publicly selling 1 Hotel South Beach at $2344/nt ($2717 out-the-door) against your $2439/nt Direct BAR. Suppress static bedbank/wholesale discounting on Vio.com today to recover 18% OTA margin. 2) Corridor Yield Move: With The Betsy Hotel holding $1558/nt and South Beach averaging $971/nt, raise Thu-Sat Direct BAR to $2561/nt (+$11,729,700/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey 1 Hotel South Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $2439, Vio.com is showing $2344, and The Betsy Hotel next door is at $1558. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Vio.com (-3.9%)",
@@ -14744,6 +17696,78 @@
     }
    ]
   },
+  "out_the_door": {
+   "est_resort_fee": 29,
+   "comp_avg_resort_fee": 38,
+   "tax_rate_pct": 14,
+   "direct_tax": 51,
+   "direct_out_the_door": 415,
+   "ota_out_the_door": 367,
+   "otd_gap": 48,
+   "fee_hook": "Lower Resort Fee (~$29/nt vs ~$38/nt corridor avg): Your true checkout total ($415/nt) is cleaner than competitors."
+  },
+  "ai_brief": {
+   "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
+   "cost_usd": 0.0,
+   "confidence_score": 96,
+   "headline": "URGENT PARITY FIX: Agoda.com is undercutting Clevelander South Beach Hotel by $42/nt (-12.5%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling Clevelander South Beach Hotel at $293/nt ($367 out-the-door) against your $335/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Avalon Hotel South Beach holding $660/nt and South Beach averaging $511/nt, raise Thu-Sat Direct BAR to $380/nt (+$226,700/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Clevelander South Beach Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-03: your direct site is at $335, Agoda.com is showing $293, and Avalon Hotel South Beach next door is at $660. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+  },
+  "ai_models": [
+   {
+    "id": "gemini-2.5-flash-lite",
+    "name": "Gemini 2.5 Flash-Lite",
+    "provider": "Google AI Studio / Vertex",
+    "role": "Primary Daily Brief & Parity Note Generator (RECOMMENDED)",
+    "input_cost_1m": "$0.10",
+    "output_cost_1m": "$0.40",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.03 paid",
+    "latency": "320ms",
+    "margin_pct": "99.97%",
+    "recommended": true,
+    "why": "Lowest cost per token in 2026 with structured JSON adherence and 1,500 req/day free tier."
+   },
+   {
+    "id": "gemini-2.5-flash",
+    "name": "Gemini 2.5 Flash",
+    "provider": "Google AI Studio",
+    "role": "Custom GM Objection Rebuttals & Multi-Step Outbound Personalizer",
+    "input_cost_1m": "$0.30",
+    "output_cost_1m": "$2.50",
+    "monthly_42_hotels_cost": "$0.00 (Free Tier) / $0.14 paid",
+    "latency": "480ms",
+    "margin_pct": "99.85%",
+    "recommended": false,
+    "why": "Ideal balance of persuasive sales copywriting and sub-second speed for live phone/walk-in prep."
+   },
+   {
+    "id": "gemini-3-flash",
+    "name": "Gemini 3.x Flash",
+    "provider": "Google AI Studio",
+    "role": "Deep Portfolio Yield & Multi-Property Strategy",
+    "input_cost_1m": "$0.75",
+    "output_cost_1m": "$3.75",
+    "monthly_42_hotels_cost": "$0.32/mo",
+    "latency": "690ms",
+    "margin_pct": "99.65%",
+    "recommended": false,
+    "why": "Next-gen thinking model for $399/mo 5-hotel portfolio clients."
+   },
+   {
+    "id": "ollama/qwen2.5:7b",
+    "name": "Local Ollama (Qwen 2.5 7B / Llama 3.1 8B)",
+    "provider": "Local Windows GPU/CPU (localhost:11434)",
+    "role": "100% Offline Zero-Key Fallback",
+    "input_cost_1m": "$0.00",
+    "output_cost_1m": "$0.00",
+    "monthly_42_hotels_cost": "$0.00/mo",
+    "latency": "1.2s local",
+    "margin_pct": "100.0%",
+    "recommended": false,
+    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
+   }
+  ],
   "action_recommendations": [
    {
     "title": "1. Close Wholesale OTA Undercut on Agoda.com (-12.5%)",
