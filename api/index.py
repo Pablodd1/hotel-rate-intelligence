@@ -57,6 +57,10 @@ def app(environ, start_response):
         return _reply(start_response, "200 OK", json.dumps(
             {k: str(v)[:120] for k, v in sorted(environ.items())}, indent=1))
 
+    if path == "/api/index.py":  # rewrite collapsed the path; inspect what Vercel sent
+        return _reply(start_response, "200 OK", json.dumps(
+            {k: str(v)[:100] for k, v in sorted(environ.items())}, indent=1))
+
     return _reply(start_response, "404 Not Found", json.dumps(
         {"error": "unknown endpoint", "path": path, "raw": raw,
          "method": environ.get("REQUEST_METHOD")}, indent=1))
