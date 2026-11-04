@@ -5,9 +5,11 @@
   "hotels": 42,
   "contacts": 271,
   "rates": 84,
+  "memory_events": 84,
   "hot_prospects": 39,
   "parity_undercuts": 36,
-  "avg_adr": 682
+  "avg_adr": 682,
+  "avg_occupancy_pct": 90
  },
  "rates": [
   {
@@ -65,7 +67,10 @@
      "tax": 341
     }
    ],
-   "delta_pct": 44.6
+   "delta_pct": 44.6,
+   "est_occupancy_pct": 94,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+44.6% to $2439) as occupancy crosses ~94%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 19,
@@ -122,7 +127,10 @@
      "tax": 182.7
     }
    ],
-   "delta_pct": 125.0
+   "delta_pct": 125.0,
+   "est_occupancy_pct": 96,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+125.0% to $1296) as occupancy crosses ~96%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 10,
@@ -173,7 +181,10 @@
      "tax": 88.9
     }
    ],
-   "delta_pct": 89.2
+   "delta_pct": 89.2,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+89.2% to $628) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 23,
@@ -218,7 +229,10 @@
      "tax": 92
     }
    ],
-   "delta_pct": 115.0
+   "delta_pct": 115.0,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+115.0% to $660) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 25,
@@ -269,7 +283,10 @@
      "tax": 49
     }
    ],
-   "delta_pct": 82.4
+   "delta_pct": 82.4,
+   "est_occupancy_pct": 96,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-28.7% undercut). Front-desk / revenue manager sets Direct BAR manually ($352) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 15,
@@ -320,7 +337,10 @@
      "tax": 44
     }
    ],
-   "delta_pct": 4.7
+   "delta_pct": 4.7,
+   "est_occupancy_pct": 72,
+   "pricing_personality": "Rigid Tier-Band Holder",
+   "decision_logic": "Holds fixed seasonal rate tiers ($313/nt at ~72% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends."
   },
   {
    "hotel_id": 24,
@@ -377,7 +397,10 @@
      "tax": 81.62
     }
    ],
-   "delta_pct": 91.6
+   "delta_pct": 91.6,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-8.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($502) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 13,
@@ -434,7 +457,10 @@
      "tax": 120
     }
    ],
-   "delta_pct": 207.9
+   "delta_pct": 207.9,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+207.9% to $856) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 42,
@@ -485,7 +511,10 @@
      "tax": 49.56
     }
    ],
-   "delta_pct": 105.5
+   "delta_pct": 105.5,
+   "est_occupancy_pct": 89,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.5% undercut). Front-desk / revenue manager sets Direct BAR manually ($335) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 36,
@@ -542,7 +571,10 @@
      "tax": 99.54
     }
    ],
-   "delta_pct": 179.0
+   "delta_pct": 179.0,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-44.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($692) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 11,
@@ -593,7 +625,10 @@
      "tax": 68
     }
    ],
-   "delta_pct": 69.0
+   "delta_pct": 69.0,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-18.1% undercut). Front-desk / revenue manager sets Direct BAR manually ($485) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 17,
@@ -644,7 +679,10 @@
      "tax": 301
     }
    ],
-   "delta_pct": -9.5
+   "delta_pct": -9.5,
+   "est_occupancy_pct": 66,
+   "pricing_personality": "Last-Minute Panic Discounter",
+   "decision_logic": "Drops BAR aggressively (-9.5% to $2128) when mid-week occupancy dips (~66%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating."
   },
   {
    "hotel_id": 6,
@@ -689,7 +727,10 @@
      "tax": 73
     }
    ],
-   "delta_pct": 69.3
+   "delta_pct": 69.3,
+   "est_occupancy_pct": 94,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+69.3% to $518) as occupancy crosses ~94%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 22,
@@ -740,7 +781,10 @@
      "tax": 26
     }
    ],
-   "delta_pct": 23.2
+   "delta_pct": 23.2,
+   "est_occupancy_pct": 76,
+   "pricing_personality": "Rigid Tier-Band Holder",
+   "decision_logic": "Holds fixed seasonal rate tiers ($186/nt at ~76% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends."
   },
   {
    "hotel_id": 32,
@@ -791,7 +835,10 @@
      "tax": 112.98
     }
    ],
-   "delta_pct": 181.5
+   "delta_pct": 181.5,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-17.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($791) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 31,
@@ -842,7 +889,10 @@
      "tax": 79
     }
    ],
-   "delta_pct": 59.1
+   "delta_pct": 59.1,
+   "est_occupancy_pct": 84,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+59.1% to $560) as occupancy crosses ~84%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 35,
@@ -899,7 +949,10 @@
      "tax": 110
     }
    ],
-   "delta_pct": 199.2
+   "delta_pct": 199.2,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-32.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($784) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 29,
@@ -950,7 +1003,10 @@
      "tax": 67
     }
    ],
-   "delta_pct": 8.8
+   "delta_pct": 8.8,
+   "est_occupancy_pct": 78,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+8.8% to $471) as occupancy crosses ~78%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 18,
@@ -1013,7 +1069,10 @@
      "tax": 409.36
     }
    ],
-   "delta_pct": 263.7
+   "delta_pct": 263.7,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-18.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($2895) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 39,
@@ -1070,7 +1129,10 @@
      "tax": 122.36
     }
    ],
-   "delta_pct": 89.2
+   "delta_pct": 89.2,
+   "est_occupancy_pct": 95,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-15.9% undercut). Front-desk / revenue manager sets Direct BAR manually ($787) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 4,
@@ -1127,7 +1189,10 @@
      "tax": 38.08
     }
    ],
-   "delta_pct": 114.4
+   "delta_pct": 114.4,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+114.4% to $268) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 14,
@@ -1184,7 +1249,10 @@
      "tax": 154.0
     }
    ],
-   "delta_pct": 203.9
+   "delta_pct": 203.9,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+203.9% to $936) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 5,
@@ -1235,7 +1303,10 @@
      "tax": 61.46
     }
    ],
-   "delta_pct": 200.0
+   "delta_pct": 200.0,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($438) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 3,
@@ -1286,7 +1357,10 @@
      "tax": 26
     }
    ],
-   "delta_pct": 6.5
+   "delta_pct": 6.5,
+   "est_occupancy_pct": 71,
+   "pricing_personality": "Rigid Tier-Band Holder",
+   "decision_logic": "Holds fixed seasonal rate tiers ($181/nt at ~71% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends."
   },
   {
    "hotel_id": 21,
@@ -1337,7 +1411,10 @@
      "tax": 52
     }
    ],
-   "delta_pct": 77.9
+   "delta_pct": 77.9,
+   "est_occupancy_pct": 85,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+77.9% to $363) as occupancy crosses ~85%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 1,
@@ -1394,7 +1471,10 @@
      "tax": 32.06
     }
    ],
-   "delta_pct": 54.5
+   "delta_pct": 54.5,
+   "est_occupancy_pct": 93,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+54.5% to $224) as occupancy crosses ~93%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 38,
@@ -1451,7 +1531,10 @@
      "tax": 218
     }
    ],
-   "delta_pct": 127.1
+   "delta_pct": 127.1,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+127.1% to $1558) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 9,
@@ -1502,7 +1585,10 @@
      "tax": 16
     }
    ],
-   "delta_pct": -5.1
+   "delta_pct": -5.1,
+   "est_occupancy_pct": 64,
+   "pricing_personality": "Last-Minute Panic Discounter",
+   "decision_logic": "Drops BAR aggressively (-5.1% to $111) when mid-week occupancy dips (~64%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating."
   },
   {
    "hotel_id": 20,
@@ -1553,7 +1639,10 @@
      "tax": 52.5
     }
    ],
-   "delta_pct": 71.8
+   "delta_pct": 71.8,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-11.6% undercut). Front-desk / revenue manager sets Direct BAR manually ($371) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 40,
@@ -1616,7 +1705,10 @@
      "tax": 97.3
     }
    ],
-   "delta_pct": 182.7
+   "delta_pct": 182.7,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.1% undercut). Front-desk / revenue manager sets Direct BAR manually ($636) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 27,
@@ -1673,7 +1765,10 @@
      "tax": 90
     }
    ],
-   "delta_pct": 65.3
+   "delta_pct": 65.3,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-30.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($643) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 12,
@@ -1718,7 +1813,10 @@
      "tax": 49
     }
    ],
-   "delta_pct": 33.5
+   "delta_pct": 33.5,
+   "est_occupancy_pct": 92,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-11.0% undercut). Front-desk / revenue manager sets Direct BAR manually ($347) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 8,
@@ -1769,7 +1867,10 @@
      "tax": 39
     }
    ],
-   "delta_pct": 138.1
+   "delta_pct": 138.1,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-37.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($281) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 16,
@@ -1814,7 +1915,10 @@
      "tax": 91
     }
    ],
-   "delta_pct": 61.2
+   "delta_pct": 61.2,
+   "est_occupancy_pct": 92,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+61.2% to $653) as occupancy crosses ~92%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 34,
@@ -1865,7 +1969,10 @@
      "tax": 47
     }
    ],
-   "delta_pct": 44.5
+   "delta_pct": 44.5,
+   "est_occupancy_pct": 83,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+44.5% to $331) as occupancy crosses ~83%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 33,
@@ -1916,7 +2023,10 @@
      "tax": 120.82
     }
    ],
-   "delta_pct": 101.8
+   "delta_pct": 101.8,
+   "est_occupancy_pct": 95,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-8.5% undercut). Front-desk / revenue manager sets Direct BAR manually ($785) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 30,
@@ -1967,7 +2077,10 @@
      "tax": 118
     }
    ],
-   "delta_pct": 119.2
+   "delta_pct": 119.2,
+   "est_occupancy_pct": 91,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($844) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 37,
@@ -2018,7 +2131,10 @@
      "tax": 81
     }
    ],
-   "delta_pct": -15.2
+   "delta_pct": -15.2,
+   "est_occupancy_pct": 54,
+   "pricing_personality": "Last-Minute Panic Discounter",
+   "decision_logic": "Drops BAR aggressively (-15.2% to $570) when mid-week occupancy dips (~54%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating."
   },
   {
    "hotel_id": 7,
@@ -2069,7 +2185,10 @@
      "tax": 41.86
     }
    ],
-   "delta_pct": 68.0
+   "delta_pct": 68.0,
+   "est_occupancy_pct": 96,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+68.0% to $299) as occupancy crosses ~96%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 26,
@@ -2126,7 +2245,10 @@
      "tax": 79.38
     }
    ],
-   "delta_pct": 124.8
+   "delta_pct": 124.8,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+124.8% to $481) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   },
   {
    "hotel_id": 2,
@@ -2189,7 +2311,10 @@
      "tax": 35
     }
    ],
-   "delta_pct": 89.3
+   "delta_pct": 89.3,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-26.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($248) without auditing Agoda/Vio.com."
   },
   {
    "hotel_id": 28,
@@ -2240,387 +2365,516 @@
      "tax": 55
     }
    ],
-   "delta_pct": 10.8
+   "delta_pct": 10.8,
+   "est_occupancy_pct": 84,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Actively raises BAR (+10.8% to $391) as occupancy crosses ~84%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
   }
  ],
  "movers": [
   {
    "hotel_id": 18,
    "name": "Miami Beach EDITION",
+   "area": "Mid-Beach",
    "price": 2895.0,
    "prev_price": 796.0,
    "delta_pct": 263.7,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -18.2
+   "undercut_pct": -18.2,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 13,
    "name": "Circa 39 Hotel",
+   "area": "Mid-Beach",
    "price": 856.0,
    "prev_price": 278.0,
    "delta_pct": 207.9,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -5.8
+   "undercut_pct": -5.8,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 14,
    "name": "Palihouse Miami Beach",
+   "area": "Mid-Beach",
    "price": 936.0,
    "prev_price": 308.0,
    "delta_pct": 203.9,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -2.9
+   "undercut_pct": -2.9,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 5,
    "name": "Palm Tree Club Miami Beach",
+   "area": "North Beach",
    "price": 438.0,
    "prev_price": 146.0,
    "delta_pct": 200.0,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -12.8
+   "undercut_pct": -12.8,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 35,
    "name": "Lennox Hotel Miami Beach",
+   "area": "South Beach",
    "price": 784.0,
    "prev_price": 262.0,
    "delta_pct": 199.2,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -32.4
+   "undercut_pct": -32.4,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 40,
    "name": "The Goodtime Hotel",
+   "area": "South Beach",
    "price": 636.0,
    "prev_price": 225.0,
    "delta_pct": 182.7,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -12.1
+   "undercut_pct": -12.1,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 32,
    "name": "Hotel Greystone",
+   "area": "South Beach",
    "price": 791.0,
    "prev_price": 281.0,
    "delta_pct": 181.5,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -17.2
+   "undercut_pct": -17.2,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 36,
    "name": "Esme Miami Beach",
+   "area": "South Beach",
    "price": 692.0,
    "prev_price": 248.0,
    "delta_pct": 179.0,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -44.2
+   "undercut_pct": -44.2,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 8,
    "name": "The New Yorker Boutique Hotel (MiMo)",
+   "area": "Miami (MiMo / Biscayne)",
    "price": 281.0,
    "prev_price": 118.0,
    "delta_pct": 138.1,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -37.4
+   "undercut_pct": -37.4,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 38,
    "name": "The Betsy Hotel, South Beach",
+   "area": "South Beach",
    "price": 1558.0,
    "prev_price": 686.0,
    "delta_pct": 127.1,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -4.6
+   "undercut_pct": -4.6,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 19,
    "name": "Andaz Miami Beach (formerly The Confidante)",
+   "area": "Mid-Beach",
    "price": 1296.0,
    "prev_price": 576.0,
    "delta_pct": 125.0,
    "parity_status": "PARITY",
-   "undercut_pct": 0.0
+   "undercut_pct": 0.0,
+   "est_occupancy_pct": 96,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 26,
    "name": "Waldorf Towers South Beach",
+   "area": "South Beach",
    "price": 481.0,
    "prev_price": 214.0,
    "delta_pct": 124.8,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -5.4
+   "undercut_pct": -5.4,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 30,
    "name": "The Savoy Hotel & Beach Club",
+   "area": "South Beach",
    "price": 844.0,
    "prev_price": 385.0,
    "delta_pct": 119.2,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -12.8
+   "undercut_pct": -12.8,
+   "est_occupancy_pct": 91,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 23,
    "name": "Avalon Hotel South Beach",
+   "area": "South Beach",
    "price": 660.0,
    "prev_price": 307.0,
    "delta_pct": 115.0,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -3.8
+   "undercut_pct": -3.8,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 4,
    "name": "Oceanside Hotel + Suites",
+   "area": "North Beach",
    "price": 268.0,
    "prev_price": 125.0,
    "delta_pct": 114.4,
    "parity_status": "PARITY",
-   "undercut_pct": 0.0
+   "undercut_pct": 0.0,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 42,
    "name": "Clevelander South Beach Hotel",
+   "area": "South Beach",
    "price": 335.0,
    "prev_price": 163.0,
    "delta_pct": 105.5,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -12.5
+   "undercut_pct": -12.5,
+   "est_occupancy_pct": 89,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 33,
    "name": "The Sagamore Hotel South Beach",
+   "area": "South Beach",
    "price": 785.0,
    "prev_price": 389.0,
    "delta_pct": 101.8,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -8.5
+   "undercut_pct": -8.5,
+   "est_occupancy_pct": 95,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 24,
    "name": "Cavalier South Beach Hotel",
+   "area": "South Beach",
    "price": 502.0,
    "prev_price": 262.0,
    "delta_pct": 91.6,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -8.4
+   "undercut_pct": -8.4,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 2,
    "name": "Waterside Hotel & Suites",
+   "area": "North Beach",
    "price": 248.0,
    "prev_price": 131.0,
    "delta_pct": 89.3,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -26.2
+   "undercut_pct": -26.2,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 10,
    "name": "Arlo Wynwood Miami",
+   "area": "Miami (Wynwood / Downtown)",
    "price": 628.0,
    "prev_price": 332.0,
    "delta_pct": 89.2,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -7.2
+   "undercut_pct": -7.2,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 39,
    "name": "National Hotel, An Oceanfront Resort",
+   "area": "South Beach",
    "price": 787.0,
    "prev_price": 416.0,
    "delta_pct": 89.2,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -15.9
+   "undercut_pct": -15.9,
+   "est_occupancy_pct": 95,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 25,
    "name": "Beacon South Beach Hotel",
+   "area": "South Beach",
    "price": 352.0,
    "prev_price": 193.0,
    "delta_pct": 82.4,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -28.7
+   "undercut_pct": -28.7,
+   "est_occupancy_pct": 96,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 21,
    "name": "Pelican Hotel",
+   "area": "South Beach",
    "price": 363.0,
    "prev_price": 204.0,
    "delta_pct": 77.9,
    "parity_status": "PARITY",
-   "undercut_pct": 0.0
+   "undercut_pct": 0.0,
+   "est_occupancy_pct": 85,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 20,
    "name": "The Colony Hotel",
+   "area": "South Beach",
    "price": 371.0,
    "prev_price": 216.0,
    "delta_pct": 71.8,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -11.6
+   "undercut_pct": -11.6,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 6,
    "name": "Grand Beach Hotel Surfside / Miami Beach",
+   "area": "North Beach",
    "price": 518.0,
    "prev_price": 306.0,
    "delta_pct": 69.3,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -2.9
+   "undercut_pct": -2.9,
+   "est_occupancy_pct": 94,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 11,
    "name": "Eurostars Langford Downtown Miami",
+   "area": "Miami (Wynwood / Downtown)",
    "price": 485.0,
    "prev_price": 287.0,
    "delta_pct": 69.0,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -18.1
+   "undercut_pct": -18.1,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 7,
    "name": "The Vagabond Hotel Miami (MiMo)",
+   "area": "Miami (MiMo / Biscayne)",
    "price": 299.0,
    "prev_price": 178.0,
    "delta_pct": 68.0,
    "parity_status": "PARITY",
-   "undercut_pct": 0.0
+   "undercut_pct": 0.0,
+   "est_occupancy_pct": 96,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 27,
    "name": "The Marlin Hotel",
+   "area": "South Beach",
    "price": 643.0,
    "prev_price": 389.0,
    "delta_pct": 65.3,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -30.8
+   "undercut_pct": -30.8,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 16,
    "name": "The Palms Hotel & Spa",
+   "area": "Mid-Beach",
    "price": 653.0,
    "prev_price": 405.0,
    "delta_pct": 61.2,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -2.9
+   "undercut_pct": -2.9,
+   "est_occupancy_pct": 92,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 31,
    "name": "Hotel Victor South Beach",
+   "area": "South Beach",
    "price": 560.0,
    "prev_price": 352.0,
    "delta_pct": 59.1,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -2.0
+   "undercut_pct": -2.0,
+   "est_occupancy_pct": 84,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 1,
    "name": "Seaside All Suites Hotel",
+   "area": "North Beach",
    "price": 224.0,
    "prev_price": 145.0,
    "delta_pct": 54.5,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -4.9
+   "undercut_pct": -4.9,
+   "est_occupancy_pct": 93,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 41,
    "name": "1 Hotel South Beach",
+   "area": "South Beach",
    "price": 2439.0,
    "prev_price": 1687.0,
    "delta_pct": 44.6,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -3.9
+   "undercut_pct": -3.9,
+   "est_occupancy_pct": 94,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 34,
    "name": "The Plymouth South Beach",
+   "area": "South Beach",
    "price": 331.0,
    "prev_price": 229.0,
    "delta_pct": 44.5,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -3.9
+   "undercut_pct": -3.9,
+   "est_occupancy_pct": 83,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 12,
    "name": "The Mutiny Luxury Suites Hotel",
+   "area": "Miami (Wynwood / Downtown)",
    "price": 347.0,
    "prev_price": 260.0,
    "delta_pct": 33.5,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -11.0
+   "undercut_pct": -11.0,
+   "est_occupancy_pct": 92,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 22,
    "name": "Hotel Astor",
+   "area": "South Beach",
    "price": 186.0,
    "prev_price": 151.0,
    "delta_pct": 23.2,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -5.9
+   "undercut_pct": -5.9,
+   "est_occupancy_pct": 76,
+   "pricing_personality": "Rigid Tier-Band Holder"
   },
   {
    "hotel_id": 37,
    "name": "The Standard Spa, Miami Beach",
+   "area": "South Beach",
    "price": 570.0,
    "prev_price": 672.0,
    "delta_pct": -15.2,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -4.9
+   "undercut_pct": -4.9,
+   "est_occupancy_pct": 54,
+   "pricing_personality": "Last-Minute Panic Discounter"
   },
   {
    "hotel_id": 28,
    "name": "Z Ocean Hotel South Beach",
+   "area": "South Beach",
    "price": 391.0,
    "prev_price": 353.0,
    "delta_pct": 10.8,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -3.1
+   "undercut_pct": -3.1,
+   "est_occupancy_pct": 84,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 17,
    "name": "Faena Hotel Miami Beach",
+   "area": "Mid-Beach",
    "price": 2128.0,
    "prev_price": 2351.0,
    "delta_pct": -9.5,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -6.0
+   "undercut_pct": -6.0,
+   "est_occupancy_pct": 66,
+   "pricing_personality": "Last-Minute Panic Discounter"
   },
   {
    "hotel_id": 29,
    "name": "Life House, South of Fifth",
+   "area": "South Beach",
    "price": 471.0,
    "prev_price": 433.0,
    "delta_pct": 8.8,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -5.9
+   "undercut_pct": -5.9,
+   "est_occupancy_pct": 78,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 3,
    "name": "Park Royal Miami Beach",
+   "area": "North Beach",
    "price": 181.0,
    "prev_price": 170.0,
    "delta_pct": 6.5,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -5.0
+   "undercut_pct": -5.0,
+   "est_occupancy_pct": 71,
+   "pricing_personality": "Rigid Tier-Band Holder"
   },
   {
    "hotel_id": 9,
    "name": "The Biscayne Hotel (MiMo)",
+   "area": "Miami (MiMo / Biscayne)",
    "price": 111.0,
    "prev_price": 117.0,
    "delta_pct": -5.1,
    "parity_status": "PARITY",
-   "undercut_pct": -0.9
+   "undercut_pct": -0.9,
+   "est_occupancy_pct": 64,
+   "pricing_personality": "Last-Minute Panic Discounter"
   },
   {
    "hotel_id": 15,
    "name": "Casa Faena",
+   "area": "Mid-Beach",
    "price": 313.0,
    "prev_price": 299.0,
    "delta_pct": 4.7,
    "parity_status": "PARITY",
-   "undercut_pct": -1.0
+   "undercut_pct": -1.0,
+   "est_occupancy_pct": 72,
+   "pricing_personality": "Rigid Tier-Band Holder"
   }
  ],
  "prospects": [
@@ -2642,7 +2896,9 @@
    "stars": 4.5,
    "est_rooms": 130,
    "booking_engine": "SynXis / Sabre",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 35,
@@ -2662,7 +2918,9 @@
    "stars": 4.5,
    "est_rooms": 119,
    "booking_engine": "SynXis / Small Luxury Hotels",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 13,
@@ -2682,7 +2940,9 @@
    "stars": 3.5,
    "est_rooms": 100,
    "booking_engine": "Opera / IHG Connect",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 33,
@@ -2702,7 +2962,9 @@
    "stars": 4.0,
    "est_rooms": 101,
    "booking_engine": "TravelClick / iHotelier",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 32,
@@ -2722,7 +2984,9 @@
    "stars": 4.0,
    "est_rooms": 91,
    "booking_engine": "SynXis / Salt Hotels",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 14,
@@ -2742,7 +3006,9 @@
    "stars": 4.0,
    "est_rooms": 71,
    "booking_engine": "SynXis / Palisociety",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 30,
@@ -2762,7 +3028,9 @@
    "stars": 4.0,
    "est_rooms": 75,
    "booking_engine": "Cloudbeds / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 37,
@@ -2782,7 +3050,9 @@
    "stars": 4.5,
    "est_rooms": 100,
    "booking_engine": "SynXis / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 5,
@@ -2802,7 +3072,9 @@
    "stars": 3.5,
    "est_rooms": 118,
    "booking_engine": "SynXis / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 31,
@@ -2822,7 +3094,9 @@
    "stars": 4.0,
    "est_rooms": 91,
    "booking_engine": "SynXis / Sabre",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 23,
@@ -2842,7 +3116,9 @@
    "stars": 3.5,
    "est_rooms": 57,
    "booking_engine": "TravelClick / iHotelier",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 34,
@@ -2862,7 +3138,9 @@
    "stars": 4.0,
    "est_rooms": 110,
    "booking_engine": "SynXis / Sabre",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 4,
@@ -2882,7 +3160,9 @@
    "stars": 3.5,
    "est_rooms": 100,
    "booking_engine": "Mews / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 25,
@@ -2902,7 +3182,9 @@
    "stars": 4.0,
    "est_rooms": 75,
    "booking_engine": "SynXis / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 24,
@@ -2922,7 +3204,9 @@
    "stars": 3.5,
    "est_rooms": 45,
    "booking_engine": "Cloudbeds / Oxford",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 27,
@@ -2942,7 +3226,9 @@
    "stars": 4.0,
    "est_rooms": 33,
    "booking_engine": "Mews / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 26,
@@ -2962,7 +3248,9 @@
    "stars": 3.5,
    "est_rooms": 44,
    "booking_engine": "Cloudbeds",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 28,
@@ -2982,7 +3270,9 @@
    "stars": 4.0,
    "est_rooms": 52,
    "booking_engine": "SynXis / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 42,
@@ -3002,7 +3292,9 @@
    "stars": 3.5,
    "est_rooms": 60,
    "booking_engine": "SynXis / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 20,
@@ -3022,7 +3314,9 @@
    "stars": 3.5,
    "est_rooms": 50,
    "booking_engine": "Cloudbeds",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 15,
@@ -3042,7 +3336,9 @@
    "stars": 4.0,
    "est_rooms": 50,
    "booking_engine": "SynXis / Sabre",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 29,
@@ -3062,7 +3358,9 @@
    "stars": 4.0,
    "est_rooms": 26,
    "booking_engine": "Life House RMS / Mews",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 2,
@@ -3082,7 +3380,9 @@
    "stars": 3.5,
    "est_rooms": 49,
    "booking_engine": "Cloudbeds / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 21,
@@ -3102,7 +3402,9 @@
    "stars": 4.0,
    "est_rooms": 33,
    "booking_engine": "SimpleBooking / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 1,
@@ -3122,7 +3424,9 @@
    "stars": 3.5,
    "est_rooms": 45,
    "booking_engine": "Cloudbeds / SBG",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 22,
@@ -3142,7 +3446,9 @@
    "stars": 3.5,
    "est_rooms": 42,
    "booking_engine": "Roami / Cloudbeds",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 3,
@@ -3162,7 +3468,9 @@
    "stars": 3.5,
    "est_rooms": 42,
    "booking_engine": "SynXis / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 39,
@@ -3182,7 +3490,9 @@
    "stars": 4.0,
    "est_rooms": 152,
    "booking_engine": "TravelClick / Amadeus",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 36,
@@ -3202,7 +3512,9 @@
    "stars": 4.0,
    "est_rooms": 145,
    "booking_engine": "SynXis / Sabre",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 11,
@@ -3221,7 +3533,9 @@
    "stars": 4.0,
    "est_rooms": 126,
    "booking_engine": "Direct / Eurostars CRS",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 12,
@@ -3240,7 +3554,9 @@
    "stars": 4.0,
    "est_rooms": 120,
    "booking_engine": "TravelClick / iHotelier",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 8,
@@ -3259,7 +3575,9 @@
    "stars": 3.5,
    "est_rooms": 30,
    "booking_engine": "Cloudbeds / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 16,
@@ -3278,7 +3596,9 @@
    "stars": 4.5,
    "est_rooms": 251,
    "booking_engine": "SynXis / Preferred Hotels",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 40,
@@ -3297,7 +3617,9 @@
    "stars": 4.0,
    "est_rooms": 266,
    "booking_engine": "Marriott / Tribute CRS",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 6,
@@ -3316,7 +3638,9 @@
    "stars": 4.0,
    "est_rooms": 268,
    "booking_engine": "TravelClick / iHotelier",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 7,
@@ -3335,7 +3659,9 @@
    "stars": 4.0,
    "est_rooms": 45,
    "booking_engine": "Cloudbeds / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 9,
@@ -3354,7 +3680,9 @@
    "stars": 3.5,
    "est_rooms": 32,
    "booking_engine": "Little Hotelier / Direct",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 17,
@@ -3373,7 +3701,9 @@
    "stars": 5.0,
    "est_rooms": 179,
    "booking_engine": "SynXis / Leading Hotels",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 10,
@@ -3392,7 +3722,9 @@
    "stars": 4.5,
    "est_rooms": 217,
    "booking_engine": "SynXis / Arlo",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 19,
@@ -3410,7 +3742,9 @@
    "stars": 4.5,
    "est_rooms": 287,
    "booking_engine": "Hyatt SPIRIT CRS",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 18,
@@ -3427,7 +3761,9 @@
    "stars": 5.0,
    "est_rooms": 294,
    "booking_engine": "Marriott MARSHA",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   },
   {
    "hotel_id": 41,
@@ -3444,7 +3780,9 @@
    "stars": 5.0,
    "est_rooms": 425,
    "booking_engine": "SynXis Enterprise",
-   "deal_stage": "new"
+   "deal_stage": "new",
+   "est_occupancy_pct": 74,
+   "pricing_personality": "Dynamic Responder"
   }
  ],
  "runs": [
@@ -3558,5 +3896,30 @@
    "recommended": false,
    "why": "Zero cloud dependency; runs locally on your machine with zero API keys."
   }
- ]
+ ],
+ "config": {
+  "market": "Miami Beach, FL",
+  "stay": {
+   "checkin_days_out": 30,
+   "nights": 3,
+   "adults": 2,
+   "rooms": 1
+  },
+  "telegram": {
+   "bot_token": "",
+   "chat_id": "",
+   "enabled": true,
+   "schedule_time": "06:00"
+  },
+  "email_report": {
+   "enabled": true,
+   "schedule_time": "06:00",
+   "smtp_host": "smtp-relay.brevo.com",
+   "smtp_port": 587,
+   "smtp_user": "",
+   "smtp_pass": "",
+   "from_email": "rates@miamihotelintel.com",
+   "to_email": "jasmel@miamihotelintel.com"
+  }
+ }
 }

@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hotel Rate Intelligence — Glassy Dashboard V4 · Miami & Beaches Command Center</title>
+<title>HRI GlassV4 — Real-Time Hotel Rate Scraper, Pricing Memory & Strategy Engine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#EEF2F7;
-  --surface:rgba(255,255,255,0.68);
-  --surface2:rgba(255,255,255,0.52);
-  --surface-dark:rgba(19,24,36,0.88);
-  --line:rgba(255,255,255,0.82);
+  --surface:rgba(255,255,255,0.72);
+  --surface2:rgba(255,255,255,0.56);
+  --surface-dark:rgba(15,23,42,0.92);
+  --line:rgba(255,255,255,0.88);
   --line2:rgba(15,23,42,0.09);
   --ink:#0F172A;
   --muted:#475569;
@@ -27,579 +27,674 @@
   --gold-soft:rgba(245,158,11,0.16);
   --coral:#E11D48;
   --coral-soft:rgba(225,29,72,0.13);
-  --radius:22px;
-  --glass-shadow:0 14px 36px -10px rgba(15,23,42,0.08), inset 0 1px 0 0 rgba(255,255,255,0.92);
+  --radius:20px;
+  --glass-shadow:0 12px 32px -8px rgba(15,23,42,0.08), inset 0 1px 0 0 rgba(255,255,255,0.94);
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
 body{
   background:
-    radial-gradient(circle at 12% 10%, rgba(251,191,36,0.22), transparent 36%),
-    radial-gradient(circle at 86% 14%, rgba(56,189,248,0.24), transparent 40%),
-    radial-gradient(circle at 50% 88%, rgba(59,130,246,0.15), transparent 45%),
+    radial-gradient(circle at 12% 10%, rgba(251,191,36,0.20), transparent 36%),
+    radial-gradient(circle at 86% 14%, rgba(56,189,248,0.22), transparent 40%),
+    radial-gradient(circle at 50% 88%, rgba(59,130,246,0.14), transparent 45%),
     linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 52%, #EFF6FF 100%);
   background-attachment:fixed;
   color:var(--ink);
-  font:14px/1.55 "Inter",sans-serif;
+  font:13.8px/1.52 "Inter",sans-serif;
   display:flex;
   min-height:100vh;
 }
-/* ————— Glassy Sidebar ————— */
+
+/* ————— Compact Glassy Sidebar ————— */
 aside{
-  width:84px;
-  background:rgba(255,255,255,0.58);
+  width:78px;
+  flex-shrink:0;
+  background:rgba(255,255,255,0.62);
   backdrop-filter:blur(24px) saturate(180%);
   -webkit-backdrop-filter:blur(24px) saturate(180%);
   border-right:1px solid var(--line);
   box-shadow:4px 0 24px rgba(15,23,42,0.04);
-  display:flex;flex-direction:column;align-items:center;padding:20px 0;gap:10px;
+  display:flex;flex-direction:column;align-items:center;padding:18px 0;gap:8px;
   position:sticky;top:0;height:100vh;z-index:30;
 }
 .logo{
-  width:46px;height:46px;border-radius:15px;
+  width:44px;height:44px;border-radius:14px;
   background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);
   color:#FFF;display:grid;place-items:center;
-  font:800 18px "Plus Jakarta Sans",sans-serif;
-  box-shadow:0 8px 20px rgba(15,23,42,0.22), inset 0 1px 0 rgba(255,255,255,0.25);
-  margin-bottom:8px;cursor:pointer;position:relative;
+  font:800 17px "Plus Jakarta Sans",sans-serif;
+  box-shadow:0 8px 18px rgba(15,23,42,0.22);
+  margin-bottom:6px;cursor:pointer;position:relative;
 }
 .logo::after{
-  content:"";position:absolute;bottom:-2px;right:-2px;width:12px;height:12px;
+  content:"";position:absolute;bottom:-2px;right:-2px;width:11px;height:11px;
   border-radius:50%;background:#10B981;border:2px solid #fff;
 }
 .navi{
-  width:58px;height:54px;border-radius:16px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-  cursor:pointer;color:var(--muted);border:1px solid transparent;background:transparent;
-  transition:all .2s cubic-bezier(.16,1,.3,1);
-  font:600 9.5px "Inter",sans-serif;letter-spacing:.2px;
+  width:58px;height:52px;border-radius:14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  cursor:pointer;color:var(--muted);border:none;background:transparent;
+  transition:all .18s ease;
+  font:600 9.5px "Inter",sans-serif;letter-spacing:.1px;
 }
-.navi:hover{background:rgba(255,255,255,0.75);color:var(--ink);transform:translateY(-2px)}
-.navi.on{
-  background:#0F172A;color:#FFFFFF;
-  box-shadow:0 8px 18px rgba(15,23,42,0.22);
+.navi:hover{background:rgba(255,255,255,0.8);color:var(--ink)}
+.navi.on{background:#0F172A;color:#FFFFFF;box-shadow:0 6px 16px rgba(15,23,42,0.2)}
+.navi svg{width:18px;height:18px}
+
+/* ————— Main Container (Strict Overflow Prevention) ————— */
+main{
+  flex:1;
+  min-width:0;
+  padding:20px 28px 56px;
+  max-width:1440px;
+  width:100%;
+  margin:0 auto;
 }
-.navi svg{width:19px;height:19px}
 
-/* ————— Main Glass Shell ————— */
-main{flex:1;padding:24px 34px 64px;max-width:1460px;width:100%;margin:0 auto}
-
-/* Top Glass Navbar Bar (CodeXR V4 Style) */
+/* ————— CodeXR V4 Top Glass Navbar (Single-Row, Zero Overlap) ————— */
 .glass-topbar{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  background:rgba(255,255,255,0.62);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:rgba(255,255,255,0.72);
   backdrop-filter:blur(22px) saturate(180%);
   -webkit-backdrop-filter:blur(22px) saturate(180%);
   border:1px solid var(--line);
   border-radius:999px;
-  padding:8px 14px 8px 20px;
+  padding:6px 12px 6px 16px;
   box-shadow:var(--glass-shadow);
-  margin-bottom:22px;
+  margin-bottom:18px;
+  flex-wrap:nowrap;
 }
-.brand-pill{display:flex;align-items:center;gap:10px;font:700 14px "Plus Jakarta Sans",sans-serif;color:var(--ink)}
-.brand-dot{width:9px;height:9px;border-radius:50%;background:#10B981;box-shadow:0 0 0 4px rgba(16,185,129,0.2)}
-.tabbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.tabbtn{
-  background:transparent;border:1px solid transparent;color:var(--muted);
-  padding:7px 15px;border-radius:99px;font:600 12.5px "Inter",sans-serif;
-  cursor:pointer;transition:all .18s ease;display:inline-flex;align-items:center;gap:6px;
+@media(max-width:1180px){.glass-topbar{flex-wrap:wrap;border-radius:18px}}
+.brand-pill{
+  display:flex;align-items:center;gap:7px;
+  font:700 13px "Plus Jakarta Sans",sans-serif;color:var(--ink);
+  white-space:nowrap;flex-shrink:0;
 }
-.tabbtn:hover{background:rgba(255,255,255,0.8);color:var(--ink)}
-.tabbtn.on{
-  background:#0F172A;color:#FFFFFF;
-  box-shadow:0 4px 14px rgba(15,23,42,0.2);
+.brand-dot{width:8px;height:8px;border-radius:50%;background:#10B981;box-shadow:0 0 0 4px rgba(16,185,129,0.2)}
+.model-badge{
+  background:var(--blue-soft);color:var(--blue);
+  padding:2.5px 8px;border-radius:99px;font:700 10.5px "JetBrains Mono",monospace;
 }
 
-/* Welcome Hero Row + CodeXR Segmented Progress Bar */
-.top{
-  display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;
-  padding-bottom:16px;
+.tabbar{
+  display:flex;
+  gap:3px;
+  align-items:center;
+  flex-wrap:nowrap;
+  background:rgba(15,23,42,0.045);
+  padding:3.5px;
+  border-radius:99px;
 }
-h1{font:800 31px/1.15 "Plus Jakarta Sans",sans-serif;color:#0F172A;letter-spacing:-.6px}
-.date{color:var(--muted);font-size:13px;margin-top:4px;font-weight:500}
+.tabbtn{
+  background:transparent;border:none;color:var(--muted);
+  padding:5.5px 11px;border-radius:99px;font:600 11.8px "Inter",sans-serif;
+  cursor:pointer;transition:all .16s ease;white-space:nowrap;
+}
+.tabbtn:hover{color:var(--ink);background:rgba(255,255,255,0.65)}
+.tabbtn.on{
+  background:#0F172A;color:#FFFFFF;
+  box-shadow:0 4px 12px rgba(15,23,42,0.18);
+}
+
+.top-actions{display:flex;gap:5px;align-items:center;flex-wrap:nowrap;flex-shrink:0}
+.btn{
+  background:#0F172A;color:#FFFFFF;border:1px solid rgba(255,255,255,0.12);
+  border-radius:99px;padding:7px 14px;font:600 12px "Inter",sans-serif;
+  cursor:pointer;display:inline-flex;align-items:center;gap:5px;
+  text-decoration:none;transition:all .16s ease;white-space:nowrap;
+}
+.btn:hover{background:#1E293B;transform:translateY(-1px)}
+.btn.gold{background:linear-gradient(135deg,#F59E0B 0%,#D97706 100%);color:#FFF;border:none}
+.btn.blue{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);color:#FFF;border:none}
+.btn.green{background:linear-gradient(135deg,#10B981 0%,#059669 100%);color:#FFF;border:none}
+.btn.outline{background:rgba(255,255,255,0.82);color:var(--ink);border:1px solid var(--line2)}
+.btn.outline:hover{background:#FFFFFF}
+.btn.sm{padding:5px 11px;font-size:11.5px;border-radius:99px}
+
+/* ————— Header Hero + Live Scraper Counters ————— */
+.top{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  margin-bottom:14px;
+}
+h1{font:800 26px/1.15 "Plus Jakarta Sans",sans-serif;color:#0F172A;letter-spacing:-.5px}
+.date{color:var(--muted);font-size:12.5px;margin-top:3px;font-weight:500}
 .hero-stats-right{
-  display:flex;align-items:center;gap:22px;flex-wrap:wrap;
-  background:rgba(255,255,255,0.62);backdrop-filter:blur(18px);
-  border:1px solid var(--line);border-radius:20px;padding:12px 20px;
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  background:var(--surface);backdrop-filter:blur(18px);
+  border:1px solid var(--line);border-radius:16px;padding:10px 18px;
   box-shadow:var(--glass-shadow);
 }
 .hero-metric{display:flex;flex-direction:column}
-.hero-metric .hm-val{font:800 24px/1.1 "JetBrains Mono",monospace;color:#0F172A;display:flex;align-items:center;gap:6px}
-.hero-metric .hm-lbl{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.hero-metric .hm-val{font:800 20px/1.1 "JetBrains Mono",monospace;color:#0F172A}
+.hero-metric .hm-lbl{font-size:10.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
 
-/* CodeXR Segmented Pipeline Progress Strip */
+/* ————— CodeXR Segmented Scraper & Occupancy Strip ————— */
 .pipeline-strip{
-  display:grid;grid-template-columns:1.2fr 1.1fr 1.1fr 1fr;gap:12px;
-  background:rgba(255,255,255,0.58);backdrop-filter:blur(20px);
-  border:1px solid var(--line);border-radius:18px;padding:12px 18px;
-  box-shadow:var(--glass-shadow);margin-bottom:18px;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;
+  background:var(--surface);backdrop-filter:blur(20px);
+  border:1px solid var(--line);border-radius:16px;padding:11px 16px;
+  box-shadow:var(--glass-shadow);margin-bottom:14px;
 }
-@media(max-width:900px){.pipeline-strip{grid-template-columns:1fr 1fr}}
-.p-seg{display:flex;flex-direction:column;gap:5px}
-.p-seg-top{display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;color:var(--muted)}
-.p-seg-bar{height:24px;border-radius:8px;background:rgba(15,23,42,0.06);overflow:hidden;display:flex;align-items:center;padding:0 10px;font:700 11.5px "JetBrains Mono",monospace;position:relative}
-.p-seg-fill{position:absolute;left:0;top:0;bottom:0;border-radius:8px;z-index:0;transition:width .4s ease}
-.p-seg-bar span{position:relative;z-index:1}
+@media(max-width:960px){.pipeline-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.p-seg{display:flex;flex-direction:column;gap:4px;min-width:0}
+.p-seg-top{display:flex;justify-content:space-between;font-size:11px;font-weight:600;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p-seg-bar{height:22px;border-radius:7px;background:rgba(15,23,42,0.06);overflow:hidden;display:flex;align-items:center;padding:0 9px;font:700 11px "JetBrains Mono",monospace;position:relative;white-space:nowrap}
+.p-seg-fill{position:absolute;left:0;top:0;bottom:0;border-radius:7px;z-index:0}
+.p-seg-bar span{position:relative;z-index:1;overflow:hidden;text-overflow:ellipsis}
 
-/* Buttons */
-.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.btn{
-  background:#0F172A;color:#FFFFFF;border:1px solid rgba(255,255,255,0.15);
-  border-radius:99px;padding:9px 17px;font:600 12.5px "Inter",sans-serif;
-  cursor:pointer;letter-spacing:.1px;box-shadow:0 6px 16px rgba(15,23,42,0.16);
-  display:inline-flex;align-items:center;gap:6px;text-decoration:none;transition:all .18s ease;
-}
-.btn:hover{background:#1E293B;transform:translateY(-1px)}
-.btn.gold{
-  background:linear-gradient(135deg,#F59E0B 0%,#D97706 100%);
-  color:#FFF;border:none;box-shadow:0 6px 18px rgba(217,119,6,0.28);
-}
-.btn.gold:hover{filter:brightness(1.05)}
-.btn.blue{
-  background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);
-  color:#FFF;border:none;box-shadow:0 6px 18px rgba(37,99,235,0.28);
-}
-.btn.outline{
-  background:rgba(255,255,255,0.75);color:var(--ink);
-  border:1px solid var(--line2);box-shadow:0 2px 8px rgba(15,23,42,0.04);
-}
-.btn.outline:hover{background:#FFFFFF}
-.btn.sm{padding:6px 12px;font-size:11.8px;border-radius:99px}
-.btn:active{transform:translateY(0)}
-
-.tabview{display:none;margin-top:14px}
-.tabview.on{display:block;animation:fadeIn .22s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-
-/* ————— Glassy KPI Cards ————— */
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:14px;margin:14px 0 18px}
+/* ————— KPI Cards ————— */
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:12px 0 16px}
+@media(max-width:1200px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .kpi{
-  background:var(--surface);
-  backdrop-filter:blur(22px) saturate(180%);
-  -webkit-backdrop-filter:blur(22px) saturate(180%);
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:16px 18px;
-  box-shadow:var(--glass-shadow);
-  transition:transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease;
-  position:relative;overflow:hidden;
+  background:var(--surface);backdrop-filter:blur(22px);
+  border:1px solid var(--line);border-radius:16px;padding:13px 15px;
+  box-shadow:var(--glass-shadow);min-width:0;
 }
-.kpi:hover{transform:translateY(-4px);box-shadow:0 20px 38px -12px rgba(15,23,42,0.13), inset 0 1px 0 0 #fff}
-.kpi .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
-.kpi .val{font:800 28px/1.2 "JetBrains Mono",monospace;margin-top:6px;color:#0F172A}
-.kpi .sub{font-size:12px;margin-top:4px;color:var(--muted);display:flex;align-items:center;gap:4px}
+.kpi .lbl{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi .val{font:800 24px/1.2 "JetBrains Mono",monospace;margin-top:5px;color:#0F172A}
+.kpi .sub{font-size:11.5px;margin-top:3px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kpi .sub b.up{color:var(--green)} .kpi .sub b.dn{color:var(--coral)}
 
-/* ————— Glassy Panels ————— */
+/* ————— Panels & Grids (Strict `minmax(0,1fr)` so nothing overflows) ————— */
+.tabview{display:none;margin-top:12px}
+.tabview.on{display:block;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+
 .panel{
-  background:var(--surface);
-  backdrop-filter:blur(24px) saturate(180%);
-  -webkit-backdrop-filter:blur(24px) saturate(180%);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:20px 22px;
-  margin-top:16px;
-  box-shadow:var(--glass-shadow);
+  background:var(--surface);backdrop-filter:blur(24px);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;margin-top:14px;box-shadow:var(--glass-shadow);
+  min-width:0;overflow:hidden;
 }
 .panel.dark-glass{
-  background:var(--surface-dark);
-  color:#F8FAFC;
+  background:var(--surface-dark);color:#F8FAFC;
   border:1px solid rgba(255,255,255,0.14);
-  box-shadow:0 20px 42px -12px rgba(15,23,42,0.35);
 }
 .panel.dark-glass h2{color:#F8FAFC}
 .panel.dark-glass h2 small{color:#94A3B8}
 .panel h2{
-  font:700 17.5px "Plus Jakarta Sans",sans-serif;color:#0F172A;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-  letter-spacing:-.2px;
+  font:700 16.5px "Plus Jakarta Sans",sans-serif;color:#0F172A;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
 }
-.panel h2 small{font:600 11px "Inter",sans-serif;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
+.panel h2 small{font:600 10.5px "Inter",sans-serif;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
 
-.grid2{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}
-.grid2-eq{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
-.grid-codexr{display:grid;grid-template-columns:1.25fr 0.9fr 0.95fr;gap:16px}
-@media(max-width:1120px){.grid2,.grid2-eq,.grid-codexr{grid-template-columns:1fr}}
+.grid2{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px}
+.grid2-eq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.grid-codexr{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,0.85fr) minmax(0,0.95fr);gap:14px}
+@media(max-width:1100px){.grid2,.grid2-eq,.grid3,.grid-codexr{grid-template-columns:minmax(0,1fr)}}
 
-canvas#chart{width:100%;height:285px;display:block;margin-top:12px}
+canvas{width:100%;display:block;margin-top:10px}
 
-/* CodeXR Circular Sales Dialer Ring */
-.dialer-ring-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 0}
+/* CodeXR Circular Occupancy & Parity Gauge */
+.dialer-ring-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 0}
 .dialer-circle{
-  width:152px;height:152px;border-radius:50%;
+  width:142px;height:142px;border-radius:50%;
   background:conic-gradient(#F59E0B 0% 76%, rgba(15,23,42,0.08) 76% 100%);
   display:grid;place-items:center;
-  box-shadow:0 10px 28px rgba(245,158,11,0.22);
+  box-shadow:0 8px 24px rgba(245,158,11,0.2);
 }
 .dialer-inner{
-  width:124px;height:124px;border-radius:50%;
-  background:rgba(255,255,255,0.92);
+  width:118px;height:118px;border-radius:50%;
+  background:rgba(255,255,255,0.96);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  box-shadow:inset 0 2px 6px rgba(15,23,42,0.06);
+  text-align:center;padding:6px;
 }
-.dialer-time{font:800 24px "JetBrains Mono",monospace;color:#0F172A}
-.dialer-sub{font-size:10.5px;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.6px}
+.dialer-time{font:800 22px/1.1 "JetBrains Mono",monospace;color:#0F172A;margin:2px 0}
+.dialer-sub{font-size:9.5px;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.4px;line-height:1.15}
 
-/* ————— Tables & Controls ————— */
-.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
-input.inp,select.inp{
-  background:rgba(255,255,255,0.82);border:1px solid var(--line2);border-radius:12px;
-  padding:8px 13px;font:500 13px "Inter",sans-serif;color:var(--ink);outline:none;
-  box-shadow:inset 0 1px 2px rgba(15,23,42,0.03);
+/* ————— Tables & Forms ————— */
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+input.inp,select.inp,textarea.inp{
+  background:rgba(255,255,255,0.88);border:1px solid var(--line2);border-radius:10px;
+  padding:7px 11px;font:500 12.8px "Inter",sans-serif;color:var(--ink);outline:none;
 }
-input.inp:focus,select.inp:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,0.12)}
-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+input.inp:focus,select.inp:focus,textarea.inp:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,0.12)}
+.table-wrap{width:100%;overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.8px}
 th{
-  text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.7px;
-  color:var(--muted);font-weight:700;padding:10px 10px;border-bottom:1px solid var(--line2);
+  text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;
+  color:var(--muted);font-weight:700;padding:9px 8px;border-bottom:1px solid var(--line2);white-space:nowrap;
 }
-td{padding:11px 10px;border-bottom:1px solid rgba(15,23,42,0.05);vertical-align:middle}
+td{padding:9px 8px;border-bottom:1px solid rgba(15,23,42,0.05);vertical-align:middle}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:rgba(255,255,255,0.55)}
-.mono{font-family:"JetBrains Mono",monospace;font-size:12.5px}
+.mono{font-family:"JetBrains Mono",monospace;font-size:12px}
 
 .tag{
-  display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:99px;
-  font-size:10.8px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:4px;padding:2.5px 9px;border-radius:99px;
+  font-size:10.5px;font-weight:700;letter-spacing:.2px;text-transform:uppercase;white-space:nowrap;
 }
 .tag.hot,.tag.undercut{background:var(--coral-soft);color:var(--coral);border:1px solid rgba(225,29,72,0.2)}
 .tag.warm{background:var(--gold-soft);color:var(--gold2);border:1px solid rgba(217,119,6,0.2)}
 .tag.watch,.tag.parity,.tag.direct_win{background:var(--green-soft);color:var(--green);border:1px solid rgba(16,185,129,0.22)}
-
-.scorebar{height:6px;background:rgba(15,23,42,0.08);border-radius:99px;overflow:hidden;min-width:70px}
-.scorebar i{display:block;height:100%;border-radius:99px;background:var(--green2)}
-.scorebar i.hot{background:linear-gradient(90deg,#F59E0B,#E11D48)}
-.scorebar i.warm{background:#F59E0B}
-
-ul.signals{margin:6px 0 0;padding-left:16px;color:var(--muted);font-size:12.2px}
-ul.signals li{margin:2px 0}
-.runs{margin-top:12px;font:12px/1.7 "JetBrains Mono",monospace;color:var(--muted)}
+.tag.blue{background:var(--blue-soft);color:var(--blue);border:1px solid rgba(37,99,235,0.2)}
 
 .pill{
-  display:inline-flex;align-items:center;gap:5px;background:var(--blue-soft);color:var(--blue);
-  padding:3px 10px;border-radius:99px;font-size:11.2px;font-weight:600;margin:2px 2px 2px 0;text-decoration:none;
-  transition:all .15s;
+  display:inline-flex;align-items:center;gap:4px;background:var(--blue-soft);color:var(--blue);
+  padding:2.5px 9px;border-radius:99px;font-size:11px;font-weight:600;margin:2px 2px 2px 0;text-decoration:none;white-space:nowrap;
 }
-.pill:hover{transform:translateY(-1px)}
 .pill.em{background:var(--green-soft);color:var(--green)}
-.pill.ph{background:rgba(255,255,255,0.85);color:var(--ink);border:1px solid var(--line2)}
+.pill.ph{background:rgba(255,255,255,0.88);color:var(--ink);border:1px solid var(--line2)}
 
-/* ————— Sales Playbook & AI Copilot Styles ————— */
 .script-box{
-  background:rgba(255,255,255,0.78);border:1px solid var(--line2);border-radius:14px;
-  padding:15px 17px;margin-top:8px;font:13.2px/1.62 "Inter",sans-serif;
-  white-space:pre-wrap;color:var(--ink);position:relative;
-  box-shadow:inset 0 1px 0 #fff;
+  background:rgba(255,255,255,0.82);border:1px solid var(--line2);border-radius:12px;
+  padding:13px 15px;margin-top:8px;font:12.8px/1.58 "Inter",sans-serif;
+  white-space:pre-wrap;word-break:break-word;color:var(--ink);
 }
-.script-hdr{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;font-weight:700;font-size:12.8px;color:#0F172A}
-.obj-card{background:rgba(255,255,255,0.78);border-left:4px solid var(--coral);border-radius:12px;padding:12px 15px;margin-top:10px;border-top:1px solid var(--line);border-right:1px solid var(--line2);border-bottom:1px solid var(--line2)}
-.obj-card b{color:var(--coral);display:block;margin-bottom:4px;font-size:13px}
-.tier-card{
-  background:rgba(255,255,255,0.72);backdrop-filter:blur(16px);
-  border:1px solid var(--line);border-radius:18px;padding:20px;
-  display:flex;flex-direction:column;justify-content:space-between;
-  box-shadow:var(--glass-shadow);
-}
-.tier-card.rec{border:2px solid var(--blue);background:rgba(255,255,255,0.92)}
-.tier-price{font:800 30px "JetBrains Mono",monospace;color:#0F172A;margin:8px 0 4px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:10px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
 
 .toast{
-  position:fixed;bottom:24px;right:26px;background:#0F172A;color:#FFFFFF;
-  padding:11px 20px;border-radius:99px;font:600 13px "Inter",sans-serif;
-  box-shadow:0 12px 30px rgba(15,23,42,0.28);opacity:0;pointer-events:none;transition:.25s;z-index:99;
+  position:fixed;bottom:22px;right:24px;background:#0F172A;color:#FFFFFF;
+  padding:10px 18px;border-radius:99px;font:600 12.5px "Inter",sans-serif;
+  box-shadow:0 12px 28px rgba(15,23,42,0.28);opacity:0;pointer-events:none;transition:.25s;z-index:99;
 }
 .toast.show{opacity:1}
-footer{margin-top:36px;color:var(--muted);font-size:12px;letter-spacing:.2px;border-top:1px solid var(--line2);padding-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid var(--line2);padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </style>
 </head>
 <body>
 <aside>
-  <div class="logo" onclick="switchTab('overview')" title="Hotel Rate Intelligence · Glassy V4">H</div>
-  <button class="navi on" id="nav-overview" onclick="switchTab('overview')" title="Executive Glass Overview">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="8" height="8" rx="2.2"/><rect x="13" y="3" width="8" height="8" rx="2.2"/><rect x="3" y="13" width="8" height="8" rx="2.2"/><rect x="13" y="13" width="8" height="8" rx="2.2"/></svg>
-    <span>Dashboard</span>
+  <div class="logo" onclick="switchTab('overview')" title="HRI GlassV4">H</div>
+  <button class="navi on" id="nav-overview" onclick="switchTab('overview')" title="Real-Time Scraper Monitor">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>
+    <span>Monitor</span>
   </button>
-  <button class="navi" id="nav-rates" onclick="switchTab('rates')" title="Rate & Parity Matrix">
+  <button class="navi" id="nav-rates" onclick="switchTab('rates')" title="Live Rate & OTA Parity Matrix">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 19V10M10 19V5M16 19v-7M22 19H2"/></svg>
-    <span>Parity</span>
+    <span>Rates</span>
   </button>
-  <button class="navi" id="nav-contacts" onclick="switchTab('contacts')" title="Scraped Contacts & CRM">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="9" cy="8" r="3.4"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5S14.7 16.4 15.5 20"/><circle cx="17.5" cy="9" r="2.6"/><path d="M15.8 14.6c2.9.1 5 1.8 5.7 4.9"/></svg>
-    <span>People</span>
+  <button class="navi" id="nav-memory" onclick="switchTab('memory')" title="Pricing Memory, Occupancy & Competitor Decisions">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9s-9-4.03-9-9a9 9 0 0 1 9-9z"/><path d="M12 7v5l3 3"/></svg>
+    <span>Memory</span>
   </button>
-  <button class="navi" id="nav-prospects" onclick="switchTab('prospects')" title="Prospect Scoring & ROI">
+  <button class="navi" id="nav-strategy" onclick="switchTab('strategy')" title="AI Rate Strategy & Recommendations">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2l2.4 5.3 5.6.7-4.1 4 1 5.6L12 15l-4.9 2.6 1-5.6-4.1-4 5.6-.7z"/></svg>
-    <span>Pipeline</span>
+    <span>Strategy</span>
   </button>
-  <button class="navi" id="nav-sales" onclick="switchTab('sales')" title="Sales Dialer, Walk-In & AI Engine">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-    <span>Sales AI</span>
+  <button class="navi" id="nav-settings" onclick="switchTab('settings')" title="Add Hotels, Telegram/Email Reports & Scraper Settings">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    <span>Setup</span>
   </button>
 </aside>
 
 <main>
-  <!-- CodeXR V4 Floating Glass Top Pill Bar -->
+  <!-- CodeXR V4 Glass Top Pill Bar -->
   <div class="glass-topbar">
     <div class="brand-pill">
       <span class="brand-dot"></span>
       <span>HRI GlassV4</span>
-      <span style="color:var(--faint)">|</span>
-      <span style="font-size:12px;color:var(--muted);font-weight:600">AI Model: <b style="color:var(--blue)">Gemini 2.5 Flash-Lite ($0.03/mo)</b></span>
+      <span class="model-badge" id="top-model-badge">AI: gemini-2.5-flash-lite</span>
     </div>
     <div class="tabbar">
-      <button class="tabbtn on" id="tbtn-overview" onclick="switchTab('overview')">Dashboard</button>
-      <button class="tabbtn" id="tbtn-rates" onclick="switchTab('rates')">OTA Parity Matrix</button>
-      <button class="tabbtn" id="tbtn-contacts" onclick="switchTab('contacts')">Hotel CRM (271)</button>
-      <button class="tabbtn" id="tbtn-prospects" onclick="switchTab('prospects')">ROI Pipeline</button>
-      <button class="tabbtn" id="tbtn-sales" onclick="switchTab('sales')">✨ AI Sales & Walk-In Kit</button>
+      <button class="tabbtn on" id="tbtn-overview" onclick="switchTab('overview')">1. Rate Monitor</button>
+      <button class="tabbtn" id="tbtn-rates" onclick="switchTab('rates')">2. OTA Parity</button>
+      <button class="tabbtn" id="tbtn-memory" onclick="switchTab('memory')">3. Pricing Memory</button>
+      <button class="tabbtn" id="tbtn-strategy" onclick="switchTab('strategy')">4. Rate Strategy</button>
+      <button class="tabbtn" id="tbtn-settings" onclick="switchTab('settings')">5. Hotels & Reports</button>
     </div>
     <div class="top-actions">
-      <button class="btn outline sm" onclick="exportCsv()">⬇ CSV</button>
-      <button class="btn sm" onclick="refresh()">↻ Sync Live</button>
-      <button class="btn gold sm" onclick="switchTab('sales')">+ New $99/mo Deal</button>
+      <button class="btn outline sm" onclick="runLiveScrapeNow()">↻ Scrape Now</button>
+      <button class="btn blue sm" onclick="dispatchDailyReportNow()">📨 Send Report</button>
+      <button class="btn gold sm" onclick="switchTab('settings')">+ Add Hotel</button>
     </div>
   </div>
 
-  <!-- Welcome Header + CodeXR Right-Hand Summary Counters -->
+  <!-- Welcome Header + Live Scraper Counters -->
   <div class="top">
     <div>
-      <h1 id="greeting">Welcome in, Jasmel</h1>
+      <h1 id="greeting">Hotel Rate & Occupancy Intelligence</h1>
       <div class="date" id="dateline"></div>
     </div>
-    <div class="hero-stats-right" id="hero-counters">
+    <div class="hero-stats-right">
       <div class="hero-metric">
         <div class="hm-val"><span id="hm-hotels">42</span></div>
-        <div class="hm-lbl">Miami Corridor Hotels</div>
+        <div class="hm-lbl">Monitored Hotels</div>
       </div>
       <div class="hero-metric">
         <div class="hm-val" style="color:var(--coral)"><span id="hm-undercuts">18</span></div>
-        <div class="hm-lbl">Live OTA Undercuts</div>
+        <div class="hm-lbl">OTA Parity Leaks</div>
       </div>
       <div class="hero-metric">
-        <div class="hm-val" style="color:var(--blue)"><span id="hm-arr">$59.9k</span></div>
-        <div class="hm-lbl">Target SaaS ARR ($99-$199)</div>
+        <div class="hm-val" style="color:var(--green)"><span id="hm-occ">74%</span></div>
+        <div class="hm-lbl">Avg Corridor Occupancy</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hm-val" style="color:var(--blue)"><span id="hm-mem">126</span></div>
+        <div class="hm-lbl">Memorized Decisions</div>
       </div>
     </div>
   </div>
 
-  <!-- CodeXR Segmented Pipeline Progress Strip -->
-  <div class="pipeline-strip" id="pipeline-strip">
+  <!-- CodeXR Segmented Progress Bar (Hotel Rate & Occupancy Metrics Only) -->
+  <div class="pipeline-strip">
     <div class="p-seg">
-      <div class="p-seg-top"><span>OTA Undercut Leads (Immediate Hook)</span><b id="ps-undercut-lbl">43%</b></div>
-      <div class="p-seg-bar"><div class="p-seg-fill" id="ps-undercut-bar" style="width:43%;background:#0F172A"></div><span style="color:#fff">High-Urgency Parity Violators</span></div>
+      <div class="p-seg-top"><span>OTA Parity Undercuts Detected</span><b id="ps-undercut-lbl">43%</b></div>
+      <div class="p-seg-bar"><div class="p-seg-fill" id="ps-undercut-bar" style="width:43%;background:#0F172A"></div><span style="color:#fff">Wholesale & Bedbank Rate Leaks</span></div>
     </div>
     <div class="p-seg">
-      <div class="p-seg-top"><span>North Beach & MiMo Corridor (5–10m Drive)</span><b>36%</b></div>
-      <div class="p-seg-bar"><div class="p-seg-fill" style="width:65%;background:linear-gradient(90deg,#F59E0B,#FBBF24)"></div><span style="color:#0F172A">15 Walk-In Ready Boutiques</span></div>
+      <div class="p-seg-top"><span>Market Occupancy Pressure</span><b id="ps-occ-lbl">74%</b></div>
+      <div class="p-seg-bar"><div class="p-seg-fill" id="ps-occ-bar" style="width:74%;background:linear-gradient(90deg,#F59E0B,#FBBF24)"></div><span style="color:#0F172A">Corridor Compression Index</span></div>
     </div>
     <div class="p-seg">
-      <div class="p-seg-top"><span>7-Day Free Morning Brief Trials</span><b>68% Conv</b></div>
-      <div class="p-seg-bar"><div class="p-seg-fill" style="width:68%;background:rgba(37,99,235,0.22)"></div><span style="color:var(--blue)">Zero PMS Setup Required</span></div>
+      <div class="p-seg-top"><span>Competitor Decision Memory</span><b>Active</b></div>
+      <div class="p-seg-bar"><div class="p-seg-fill" style="width:88%;background:rgba(37,99,235,0.22)"></div><span style="color:var(--blue)">Tracking Rate Moves & Patterns</span></div>
     </div>
     <div class="p-seg">
-      <div class="p-seg-top"><span>AI Gross Profit Margin</span><b>99.9%</b></div>
-      <div class="p-seg-bar"><div class="p-seg-fill" style="width:96%;background:rgba(16,185,129,0.25)"></div><span style="color:var(--green)">$0.03/mo Gemini Flash-Lite</span></div>
+      <div class="p-seg-top"><span>Daily Auto-Report (Telegram + Email)</span><b id="ps-sched-lbl">06:00 AM</b></div>
+      <div class="p-seg-bar"><div class="p-seg-fill" style="width:100%;background:rgba(16,185,129,0.24)"></div><span style="color:var(--green)">Automated Daily Dispatch Ready</span></div>
     </div>
   </div>
 
   <section class="kpis" id="kpis"></section>
 
-  <!-- ==================== TAB 1: OVERVIEW (CODEXR V4 GLASSY LAYOUT) ==================== -->
+  <!-- ==================== TAB 1: LIVE RATE MONITOR (OVERVIEW) ==================== -->
   <div class="tabview on" id="tab-overview">
     <div class="grid-codexr">
       <!-- Card 1: Nightly BAR & Comp-Set Chart -->
       <div class="panel">
         <h2>
-          <span>Nightly BAR & OTA Parity Velocity</span>
-          <small id="chart-sub">live Xotelo + JSON-LD scan</small>
+          <span>Real-Time BAR vs. Prior Memorized Scan</span>
+          <small id="chart-sub">Xotelo Metasearch + Direct JSON-LD</small>
         </h2>
-        <canvas id="chart" height="285"></canvas>
+        <canvas id="chart" height="260"></canvas>
       </div>
 
-      <!-- Card 2: CodeXR Circular Sales Dialer & Walk-In Widget -->
+      <!-- Card 2: Circular Occupancy & Rate Strategy Gauge -->
       <div class="panel">
         <h2>
-          <span>Local Sales Dialer & Walk-In</span>
-          <small>25-sec GM pitch timer</small>
+          <span>Spotlight Property Pulse</span>
+          <small>Occupancy & Parity</small>
         </h2>
         <div class="dialer-ring-wrap">
-          <div class="dialer-circle">
+          <div class="dialer-circle" id="gauge-circle">
             <div class="dialer-inner">
-              <div class="dialer-sub">GM Pitch Window</div>
+              <div class="dialer-sub" id="dialer-occ-lbl">78% EST OCC</div>
               <div class="dialer-time" id="dialer-hotel-bar">$176</div>
-              <div style="font-size:11px;color:var(--coral);font-weight:700" id="dialer-hotel-gap">-37.4% Agoda</div>
+              <div style="font-size:10.5px;color:var(--coral);font-weight:700" id="dialer-hotel-gap">-37.4% Agoda</div>
             </div>
           </div>
-          <div style="text-align:center;margin-top:10px">
-            <b style="font-size:14.5px" id="dialer-hotel-name">The New Yorker Boutique Hotel</b>
-            <div style="font-size:12px;color:var(--muted)" id="dialer-hotel-meta">6500 Biscayne Blvd · (305) 759-5820</div>
+          <div style="text-align:center;margin-top:8px">
+            <b style="font-size:14px" id="dialer-hotel-name">The New Yorker Boutique Hotel</b>
+            <div style="font-size:11.5px;color:var(--muted)" id="dialer-hotel-meta">Behavior: Passive Wholesale Leaker</div>
           </div>
-          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;justify-content:center">
-            <button class="btn gold sm" onclick="switchTab('sales',STATE.selectedHotelId||11)">⚡ Open Script & AI</button>
-            <button class="btn outline sm" onclick="openPrintableAudit()">🖨 Print 1-Page Sheet</button>
+          <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;justify-content:center">
+            <button class="btn blue sm" onclick="switchTab('memory',STATE.selectedHotelId||11)">🧠 View Memory</button>
+            <button class="btn gold sm" onclick="switchTab('strategy',STATE.selectedHotelId||11)">⚡ Rate Strategy</button>
           </div>
         </div>
       </div>
 
-      <!-- Card 3: Dark Glass CRM Deal Tasks & AI Model Stack -->
+      <!-- Card 3: Dark Glass Immediate Rate Action Queue -->
       <div class="panel dark-glass">
         <h2>
-          <span>Today's Close Queue</span>
-          <small style="color:#FBBF24">4 Local Routes</small>
+          <span>Urgent Rate Change Alerts</span>
+          <small style="color:#FBBF24">Click to Study</small>
         </h2>
-        <div id="dark-deal-tasks" style="margin-top:10px;display:flex;flex-direction:column;gap:9px"></div>
+        <div id="dark-deal-tasks" style="margin-top:8px;display:flex;flex-direction:column;gap:8px"></div>
       </div>
     </div>
 
     <div class="grid2">
       <div class="panel">
-        <h2>Top Rate Movers & Live OTA Undercuts <small>1-click proof + pitch</small></h2>
-        <div id="movers-box" style="max-height:330px;overflow-y:auto"></div>
+        <h2>Competitor Rate Movers & OTA Parity Violations <small>memorized price changes</small></h2>
+        <div class="table-wrap" id="movers-box" style="max-height:330px;overflow-y:auto"></div>
       </div>
       <div class="panel">
-        <h2>Highest-Converting B2B Prospects <small>sorted by parity leak & ROI</small></h2>
-        <div id="prospects-overview" style="max-height:330px;overflow-y:auto"></div>
-      </div>
-    </div>
-
-    <div class="grid2">
-      <div class="panel">
-        <h2>Competitive Set Quick View <small id="comp-sub"></small></h2>
-        <div id="complist-overview" style="max-height:340px;overflow-y:auto"></div>
-      </div>
-      <div class="panel">
-        <h2>2026 AI Model Efficiency Benchmark & Collector Log <small>99.9% SaaS Gross Margin</small></h2>
-        <div id="ai-models-overview"></div>
-        <div class="runs" id="runs" style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line2)"></div>
+        <h2>Competitor Decision-Making Personalities <small>how neighbors set rates & occupancy</small></h2>
+        <div class="table-wrap" id="prospects-overview" style="max-height:330px;overflow-y:auto"></div>
       </div>
     </div>
   </div>
 
-  <!-- ==================== TAB 2: RATE & PARITY MATRIX ==================== -->
+  <!-- ==================== TAB 2: LIVE RATE, PARITY & OCCUPANCY MATRIX ==================== -->
   <div class="tabview" id="tab-rates">
     <div class="panel">
-      <h2>Multi-OTA Rate Ladder, True Out-the-Door Price & Parity Matrix <small>Direct BAR vs. Booking.com · Agoda · Vio.com · Trip.com</small></h2>
+      <h2>Real-Time Multi-OTA Rate, Occupancy & Out-the-Door Matrix <small>Direct BAR vs. Booking.com · Agoda · Vio.com · Trip.com</small></h2>
       <div class="toolbar">
-        <input class="inp" id="rate-search" placeholder="Search hotel or booking engine..." oninput="renderRatesTab()" style="min-width:240px">
+        <input class="inp" id="rate-search" placeholder="Search hotel, corridor, or behavior..." oninput="renderRatesTab()" style="min-width:220px;flex:1">
         <select class="inp" id="rate-area" onchange="renderRatesTab()">
-          <option value="">All Corridors (42 Properties)</option>
-          <option value="North Beach">North Beach & 79th St (Near North Miami)</option>
+          <option value="">All Corridors</option>
+          <option value="North Beach">North Beach & 79th St</option>
           <option value="Miami (MiMo / Biscayne)">Miami — MiMo Biscayne Blvd</option>
-          <option value="Miami (Wynwood / Downtown)">Miami — Wynwood / Downtown / Grove</option>
+          <option value="Miami (Wynwood / Downtown)">Miami — Wynwood / Downtown</option>
           <option value="Mid-Beach">Mid-Beach (29th–41st St)</option>
           <option value="South Beach">South Beach (Art Deco District)</option>
         </select>
         <select class="inp" id="rate-parity" onchange="renderRatesTab()">
           <option value="">All Parity States</option>
-          <option value="UNDERCUT">🚨 OTA Undercut Only (Sales Hook!)</option>
+          <option value="UNDERCUT">🚨 OTA Undercut Only</option>
           <option value="PARITY">✓ In Parity</option>
           <option value="DIRECT_WIN">★ Direct Cheaper than OTA</option>
         </select>
+        <button class="btn outline sm" onclick="exportCsv()">⬇ Export Rate Matrix CSV</button>
       </div>
-      <div id="rates-matrix-table" style="overflow-x:auto"></div>
-    </div>
-
-    <div class="panel">
-      <h2>Manual BAR Rate Ingest <small>log a rate from a phone call or GM sheet</small></h2>
-      <div class="toolbar">
-        <select class="inp" id="ingest-hotel"></select>
-        <input class="inp" id="ingest-price" type="number" placeholder="Nightly BAR ($ USD)" style="width:180px">
-        <input class="inp" id="ingest-room" placeholder="Room type (e.g. King Oceanfront)" style="width:230px">
-        <button class="btn" onclick="submitManualRate()">+ Log Rate Observation</button>
-      </div>
+      <div class="table-wrap" id="rates-matrix-table"></div>
     </div>
   </div>
 
-  <!-- ==================== TAB 3: CONTACTS & CRM ==================== -->
-  <div class="tabview" id="tab-contacts">
-    <div class="panel">
-      <h2>Scraped Greater Miami & Beaches Hotel CRM <small id="crm-count-sub">decision makers, emails, phones & booking engines</small></h2>
-      <div class="toolbar">
-        <input class="inp" id="crm-search" placeholder="Search hotel, email, phone, address, or booking engine..." oninput="renderCrmTab()" style="min-width:320px;flex:1">
-        <select class="inp" id="crm-stage-filter" onchange="renderCrmTab()">
-          <option value="">All Deal Stages</option>
-          <option value="new">New Lead</option>
-          <option value="contacted">Contacted</option>
-          <option value="audit_sent">Parity Audit Sent</option>
-          <option value="pilot_active">7-Day Pilot Active</option>
-          <option value="closed_won">Closed Won ($)</option>
-        </select>
-        <button class="btn outline" onclick="exportCsv()">⬇ Download Full CSV</button>
-      </div>
-      <div id="crm-table-wrap" style="overflow-x:auto"></div>
-    </div>
-  </div>
-
-  <!-- ==================== TAB 4: PROSPECTS & ROI PIPELINE ==================== -->
-  <div class="tabview" id="tab-prospects">
-    <div class="panel">
-      <h2>Scored Prospect Pipeline & Annual RevPAR Upside <small>heuristic 0–100 score + commission recovery math</small></h2>
-      <div id="prospects-full-grid" class="grid2-eq" style="margin-top:14px"></div>
-    </div>
-  </div>
-
-  <!-- ==================== TAB 5: SALES & MARKETING ENGINE ==================== -->
-  <div class="tabview" id="tab-sales">
+  <!-- ==================== TAB 3: PRICING MEMORY, OCCUPANCY & COMPETITOR DECISIONS ==================== -->
+  <div class="tabview" id="tab-memory">
     <div class="panel">
       <h2>
-        <span>🎯 AI Outbound Sales, Walk-In & Rate Audit Generator</span>
-        <small>Powered by Gemini 2.5 Flash-Lite + Live TripAdvisor/Xotelo Proof</small>
+        <span>🧠 Historical Pricing Memory, Occupancy & Competitor Decision Engine</span>
+        <small>Tracks every rate change forward & backfills seasonal behavior</small>
       </h2>
-      <div class="toolbar" style="background:rgba(37,99,235,0.07);border:1px solid rgba(37,99,235,0.18);padding:14px 16px;border-radius:16px;margin-top:12px;justify-content:space-between">
+      <div class="toolbar" style="background:rgba(37,99,235,0.06);padding:12px 14px;border-radius:14px;border:1px solid rgba(37,99,235,0.16);justify-content:space-between">
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <label style="font-weight:700;color:#0F172A">Select Target Hotel:</label>
-          <select class="inp" id="pitch-hotel-select" onchange="loadPitchForSelected()" style="min-width:310px;font-weight:600;background:#fff"></select>
-          <select class="inp" id="ai-model-select" style="font-weight:600;background:#fff">
-            <option value="gemini-2.5-flash-lite">⚡ Gemini 2.5 Flash-Lite ($0.10/1M · Best Margin)</option>
-            <option value="gemini-2.5-flash">🧠 Gemini 2.5 Flash ($0.30/1M · Persuasive Sales)</option>
-            <option value="gemini-3-flash">🚀 Gemini 3.x Flash ($0.75/1M · Deep Portfolio)</option>
-            <option value="ollama/qwen2.5:7b">💻 Local Ollama Qwen 2.5 ($0.00 · Offline)</option>
+          <label style="font-weight:700">Select Hotel to Inspect Memory:</label>
+          <select class="inp" id="memory-hotel-select" onchange="selectMemoryHotel(this.value)" style="min-width:300px;font-weight:600"></select>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <input class="inp" id="mem-manual-price" type="number" placeholder="Record new BAR ($)" style="width:155px">
+          <input class="inp" id="mem-manual-occ" type="number" placeholder="Est Occ % (e.g. 82)" style="width:145px">
+          <button class="btn blue sm" onclick="recordManualMemory()">+ Memorize Rate & Occupancy</button>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:14px">
+        <div class="panel" style="margin-top:0">
+          <h2>Memorized Rate Curve vs. Occupancy Pressure <small id="mem-chart-sub">historical + live scans</small></h2>
+          <canvas id="memory-chart" height="240"></canvas>
+        </div>
+        <div class="panel" style="margin-top:0" id="memory-profile-box"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Corridor Competitor Decision-Making Comparison <small>how neighbors react to occupancy & weekend compression</small></h2>
+        <div class="table-wrap" id="memory-competitors-table"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 4: AI RATE STRATEGY & RECOMMENDATIONS ==================== -->
+  <div class="tabview" id="tab-strategy">
+    <div class="panel">
+      <h2>
+        <span>⚡ AI Rate Strategy, Price Change Recommendations & 1-Page Audit</span>
+        <small>Powered by HRI GlassV4 + Gemini 2.5 Flash-Lite</small>
+      </h2>
+      <div class="toolbar" style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);padding:12px 14px;border-radius:14px;justify-content:space-between">
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <label style="font-weight:700">Target Property:</label>
+          <select class="inp" id="pitch-hotel-select" onchange="loadPitchForSelected()" style="min-width:300px;font-weight:600"></select>
+          <select class="inp" id="ai-model-select" onchange="updateTopModelBadge()" style="font-weight:600">
+            <option value="gemini-2.5-flash-lite">⚡ Gemini 2.5 Flash-Lite (Primary · Ultra-Fast)</option>
+            <option value="gemini-2.5-flash">🧠 Gemini 2.5 Flash (Deep Yield Strategy)</option>
+            <option value="gemini-3-flash">🚀 Gemini 3.x Flash (Multi-Horizon Reasoning)</option>
+            <option value="ollama/qwen2.5:7b">💻 Local Ollama Qwen 2.5 (Offline Zero-Cost)</option>
           </select>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn blue" onclick="triggerLiveAiBrief()">✨ Synthesize Live AI Brief</button>
-          <button class="btn gold" onclick="openPrintableAudit()">🖨 Print 1-Page Walk-In Audit</button>
+          <button class="btn blue sm" onclick="triggerLiveAiBrief()">✨ Re-Compute AI Strategy</button>
+          <button class="btn gold sm" onclick="openPrintableAudit()">🖨 Print 1-Page Rate Strategy Sheet</button>
         </div>
       </div>
 
-      <div id="pitch-content" style="margin-top:16px"></div>
+      <div id="pitch-content" style="margin-top:14px"></div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 5: SETUP — ADD HOTELS, TELEGRAM/EMAIL AUTO-REPORTS & SCRAPER ==================== -->
+  <div class="tabview" id="tab-settings">
+    <div class="grid2-eq">
+      <!-- Add / Edit Hotel in Scraper Comp-Set -->
+      <div class="panel">
+        <h2>➕ Add Hotel to Real-Time Scraper & Memory <small>auto-scrapes Xotelo + website BAR</small></h2>
+        <div class="form-grid">
+          <div class="field">
+            <label>Hotel Name *</label>
+            <input class="inp" id="add-name" placeholder="e.g. Oceanside Boutique Miami">
+          </div>
+          <div class="field">
+            <label>Corridor / Area</label>
+            <select class="inp" id="add-area">
+              <option value="North Beach">North Beach</option>
+              <option value="Miami (MiMo / Biscayne)">Miami (MiMo / Biscayne)</option>
+              <option value="Mid-Beach">Mid-Beach</option>
+              <option value="South Beach">South Beach</option>
+              <option value="Miami (Wynwood / Downtown)">Miami (Wynwood / Downtown)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Official Website URL</label>
+            <input class="inp" id="add-website" placeholder="https://...">
+          </div>
+          <div class="field">
+            <label>TripAdvisor / Xotelo Key (Optional)</label>
+            <input class="inp" id="add-xotelo" placeholder="e.g. g34439-d85104">
+          </div>
+          <div class="field">
+            <label>Star Rating & Room Count</label>
+            <div style="display:flex;gap:6px">
+              <input class="inp" id="add-stars" type="number" step="0.5" value="3.5" placeholder="Stars" style="width:50%">
+              <input class="inp" id="add-rooms" type="number" value="45" placeholder="Rooms" style="width:50%">
+            </div>
+          </div>
+          <div class="field">
+            <label>Season Min / Max BAR ($)</label>
+            <div style="display:flex;gap:6px">
+              <input class="inp" id="add-min" type="number" value="145" placeholder="Min $" style="width:50%">
+              <input class="inp" id="add-max" type="number" value="340" placeholder="Max $" style="width:50%">
+            </div>
+          </div>
+          <div class="field">
+            <label>Report Recipient Email (Optional)</label>
+            <input class="inp" id="add-email" placeholder="gm@hotel.com">
+          </div>
+          <div class="field">
+            <label>Property Phone (Optional)</label>
+            <input class="inp" id="add-phone" placeholder="(305) 555-0100">
+          </div>
+        </div>
+        <div style="margin-top:14px;display:flex;justify-content:flex-end;gap:8px">
+          <button class="btn gold" onclick="submitNewHotel()">+ Add Hotel & Run Initial Rate Scan</button>
+        </div>
+      </div>
+
+      <!-- Daily Automated Report Settings (Telegram + Email + Horizon) -->
+      <div class="panel">
+        <h2>📨 Automated Daily Report & Scraper Settings <small>Telegram Bot + SMTP Email + Check-In Horizon</small></h2>
+        <div class="form-grid">
+          <div class="field">
+            <label>Daily Auto-Report Time</label>
+            <input class="inp" id="cfg-sched" value="06:00" placeholder="06:00">
+          </div>
+          <div class="field">
+            <label>Check-In Days Out & Nights</label>
+            <div style="display:flex;gap:6px">
+              <input class="inp" id="cfg-days" type="number" value="30" placeholder="Days out" style="width:50%">
+              <input class="inp" id="cfg-nights" type="number" value="3" placeholder="Nights" style="width:50%">
+            </div>
+          </div>
+          <div class="field">
+            <label>Telegram Bot Token</label>
+            <input class="inp" id="cfg-tg-token" type="password" placeholder="123456:ABC-DEF...">
+          </div>
+          <div class="field">
+            <label>Telegram Chat ID</label>
+            <input class="inp" id="cfg-tg-chat" placeholder="e.g. -100123456789">
+          </div>
+          <div class="field">
+            <label>SMTP Host & Port (Brevo / Gmail)</label>
+            <div style="display:flex;gap:6px">
+              <input class="inp" id="cfg-smtp-host" value="smtp-relay.brevo.com" style="width:68%">
+              <input class="inp" id="cfg-smtp-port" type="number" value="587" style="width:32%">
+            </div>
+          </div>
+          <div class="field">
+            <label>Daily Report Recipient Email</label>
+            <input class="inp" id="cfg-to-email" placeholder="you@yourdomain.com">
+          </div>
+          <div class="field">
+            <label>SMTP Username</label>
+            <input class="inp" id="cfg-smtp-user" placeholder="SMTP login">
+          </div>
+          <div class="field">
+            <label>SMTP Password / Key</label>
+            <input class="inp" id="cfg-smtp-pass" type="password" placeholder="SMTP key">
+          </div>
+        </div>
+        <div style="margin-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <button class="btn outline" onclick="saveScraperConfig()">💾 Save Settings</button>
+          <button class="btn blue" onclick="dispatchDailyReportNow()">🚀 Generate & Send Report Now (Telegram + Email)</button>
+        </div>
+      </div>
     </div>
 
     <div class="panel">
-      <h2>Commercial Offer & Small-Hotel SaaS Pricing Tiers <small>no per-room fees · built to close in 1 visit</small></h2>
-      <div class="grid3" id="pricing-tiers-grid" style="margin-top:14px"></div>
+      <h2>
+        <span>📋 Live Daily Telegram & Email Report Preview</span>
+        <small>auto-generated from real-time rates, occupancy & competitor memory</small>
+      </h2>
+      <div style="display:flex;justify-content:flex-end;margin-top:6px">
+        <button class="btn sm outline" onclick="copyText($('#brief-preview-box').textContent,'Daily report copied')">Copy Report Text</button>
+      </div>
+      <div class="script-box mono" id="brief-preview-box" style="max-height:320px;overflow-y:auto">Loading daily report preview...</div>
+    </div>
+
+    <div class="panel">
+      <h2>Scraper Execution Log <small>last 10 automated runs</small></h2>
+      <div class="runs" id="runs"></div>
     </div>
   </div>
 
   <footer>
-    <span>Hotel Rate Intelligence (HRI) · Glassy Dashboard V4 · North Miami, Biscayne MiMo, North Beach & South Beach</span>
-    <span>Engine: Xotelo Metasearch + Gemini 2.5 Flash-Lite ($0.03/mo) · Zero Paid Apify Actors</span>
+    <span>HRI GlassV4 · Real-Time Hotel Rate Scraper, Competitor Pricing Memory & Occupancy Strategy Engine</span>
+    <span>Sources: Xotelo Metasearch + Direct Website JSON-LD · Model: Gemini 2.5 Flash-Lite</span>
   </footer>
 </main>
 
-<div class="toast" id="toast">Copied to clipboard!</div>
+<div class="toast" id="toast">Saved!</div>
 
 <script>
 const $=s=>document.querySelector(s);
 const money=n=>n==null?'—':'$'+Number(n).toLocaleString(undefined,{maximumFractionDigits:0});
-let STATE={summary:null,hotels:[],pitches:{},activeTab:'overview',selectedHotelId:11};
+let STATE={summary:null,hotels:[],pitches:{},activeTab:'overview',selectedHotelId:11,memoryCache:{}};
 
-function greeting(){const h=new Date().getHours();return h<12?'Welcome in':h<18?'Good afternoon':'Good evening';}
-$('#greeting').textContent=greeting()+', Jasmel';
-$('#dateline').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})+' · Greater Miami & Beaches Rate Parity & B2B Sales Command Center';
+$('#dateline').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})+' · Real-Time Multi-OTA Rate Scraper, Competitor Memory & Daily Telegram/Email Strategy Engine';
 
 function toast(msg){
   const t=$('#toast');t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
+  setTimeout(()=>t.classList.remove('show'),2600);
 }
 function copyText(txt,label='Copied to clipboard!'){
   navigator.clipboard.writeText(txt);
   toast('✓ '+label);
 }
+function updateTopModelBadge(){
+  const m=$('#ai-model-select')?.value||'gemini-2.5-flash-lite';
+  $('#top-model-badge').textContent='AI: '+m;
+}
 
 function switchTab(tab,hotelId=null){
   STATE.activeTab=tab;
-  ['overview','rates','contacts','prospects','sales'].forEach(t=>{
+  ['overview','rates','memory','strategy','settings'].forEach(t=>{
     const el=$('#tab-'+t),nb=$('#nav-'+t),tb=$('#tbtn-'+t);
     if(el)el.classList.toggle('on',t===tab);
     if(nb)nb.classList.toggle('on',t===tab);
@@ -607,16 +702,19 @@ function switchTab(tab,hotelId=null){
   });
   if(hotelId!=null){
     STATE.selectedHotelId=Number(hotelId);
-    const sel=$('#pitch-hotel-select');
-    if(sel)sel.value=String(hotelId);
+    if($('#pitch-hotel-select'))$('#pitch-hotel-select').value=String(hotelId);
+    if($('#memory-hotel-select'))$('#memory-hotel-select').value=String(hotelId);
   }
-  if(tab==='sales')renderSalesTab();
+  if(tab==='memory')renderMemoryTab();
+  if(tab==='strategy')renderStrategyTab();
+  if(tab==='settings')loadConfigTab();
 }
 
 function authQuery(){
   const k=new URLSearchParams(location.search).get('k');
   return k?`?k=${encodeURIComponent(k)}`:'';
 }
+
 async function refresh(){
   const q=authQuery();
   const [sum,hot,pitches]=await Promise.all([
@@ -631,171 +729,148 @@ async function refresh(){
   renderKpis(sum,STATE.hotels);
   renderChart(sum.rates||[]);
   renderCodexrWidgets(sum,STATE.hotels);
-  renderMoversOverview(sum.rates||[],sum.movers||[]);
-  renderProspectsOverview(sum.prospects||[]);
-  renderCompOverview(STATE.hotels);
-  renderAiModelsOverview(sum.ai_models||[]);
+  renderMoversOverview(sum.rates||[]);
+  renderPersonalitiesOverview(STATE.hotels);
   renderRuns(sum.runs||[]);
   renderRatesTab();
-  renderCrmTab();
-  renderProspectsFull(sum.prospects||[]);
   populateHotelSelectors(STATE.hotels);
-  renderSalesTab();
-  $('#chart-sub').textContent=(sum.currency||'USD')+' · Direct BAR vs Previous Scan (Rose = OTA Undercut)';
+  const uTab=new URLSearchParams(location.search).get('tab');
+  if(uTab&&['overview','rates','memory','strategy','settings'].includes(uTab)&&STATE.activeTab!==uTab){
+    switchTab(uTab);
+  }
+  if(STATE.activeTab==='memory')renderMemoryTab();
+  if(STATE.activeTab==='strategy')renderStrategyTab();
+  if(STATE.activeTab==='settings')loadConfigTab();
 }
 
 function renderKpis(s,hotels){
   const k=s.kpis||{};
   const totalHotels=k.hotels||hotels.length||42;
   const undercuts=k.parity_undercuts||0;
+  const avgOcc=k.avg_occupancy_pct||74;
+  const memCount=k.memory_events||k.rates||126;
   const undercutPct=Math.round((undercuts/Math.max(1,totalHotels))*100);
+
   $('#hm-hotels').textContent=totalHotels;
   $('#hm-undercuts').textContent=undercuts;
-  $('#hm-arr').textContent='$'+((totalHotels*149*12)/1000).toFixed(1)+'k';
+  $('#hm-occ').textContent=avgOcc+'%';
+  $('#hm-mem').textContent=memCount;
   $('#ps-undercut-lbl').textContent=undercutPct+'%';
-  $('#ps-undercut-bar').style.width=Math.max(25,undercutPct)+'%';
+  $('#ps-undercut-bar').style.width=Math.max(20,undercutPct)+'%';
+  $('#ps-occ-lbl').textContent=avgOcc+'%';
+  $('#ps-occ-bar').style.width=avgOcc+'%';
 
-  const totalUpside=(s.prospects||[]).reduce((a,p)=>a+(p.est_annual_upside||0),0);
+  const sched=(s.config?.telegram?.schedule_time)||'06:00';
+  $('#ps-sched-lbl').textContent=sched+' AM';
+
   $('#kpis').innerHTML=[
-    ['Tracked Properties',totalHotels,'North Beach · MiMo · South Beach'],
-    ['Verified Contacts',k.contacts||271,'GM emails · (305) phones · IG'],
-    ['OTA Parity Undercuts',undercuts,'<b class="dn">active wholesale leaks today</b>'],
-    ['Corridor Avg BAR',money(k.avg_adr||295),'30-day forward check-in'],
-    ['Hot Prospects',k.hot_prospects||0,'<b class="up">'+money(totalUpside)+'/yr</b> client upside'],
-    ['AI Copilot Cost','$0.03/mo','<b class="up">Gemini 2.5 Flash-Lite</b> (99.9% margin)'],
-  ].map(([l,v,sub])=>`<div class="kpi"><div class="lbl"><span>${l}</span><span>↗</span></div><div class="val">${v}</div><div class="sub">${sub}</div></div>`).join('');
+    ['Monitored Hotels',totalHotels,'Real-time Xotelo + JSON-LD'],
+    ['Memorized Rate Obs',memCount,'Historical & forward memory'],
+    ['OTA Parity Leaks',undercuts,'<b class="dn">Undercutting Direct BAR</b>'],
+    ['Corridor Avg BAR',money(k.avg_adr||295),'30-day forward window'],
+    ['Est. Occupancy',avgOcc+'%','<b class="up">Demand compression index</b>'],
+    ['AI Strategy Engine','GlassV4','<b class="up">Gemini 2.5 Flash-Lite</b>'],
+  ].map(([l,v,sub])=>`<div class="kpi"><div class="lbl">${l}</div><div class="val">${v}</div><div class="sub">${sub}</div></div>`).join('');
 }
 
 function renderCodexrWidgets(sum,hotels){
   const rates=(sum.rates||[]).slice().sort((a,b)=>(a.undercut_pct||0)-(b.undercut_pct||0));
-  const topLeak=rates[0]||{hotel_id:11,name:'The New Yorker Boutique Hotel',price:281,undercut_pct:-37.4,area:'Miami (MiMo / Biscayne)'};
+  const topLeak=rates[0]||{hotel_id:11,name:'The New Yorker Boutique Hotel',price:281,undercut_pct:-37.4,est_occupancy_pct:78,pricing_personality:'Passive Wholesale Leaker'};
   const pitch=STATE.pitches[String(topLeak.hotel_id)]||{};
-  const h=pitch.hotel||{};
   const ri=pitch.rate_intel||{};
+  const occ=topLeak.est_occupancy_pct||78;
+  $('#dialer-occ-lbl').textContent=`${occ}% EST OCCUPANCY`;
   $('#dialer-hotel-bar').textContent='$'+(ri.lowest_ota_price||176);
   $('#dialer-hotel-gap').textContent=`${topLeak.undercut_pct||-37.4}% on ${ri.lowest_ota_name||'Agoda'}`;
   $('#dialer-hotel-name').textContent=topLeak.name;
-  $('#dialer-hotel-meta').textContent=`${h.primary_address||topLeak.area} · ${h.primary_phone||'(305) 759-5820'}`;
+  $('#dialer-hotel-meta').textContent=`Behavior: ${topLeak.pricing_personality||'Passive Wholesale Leaker'}`;
+  $('#gauge-circle').style.background=`conic-gradient(#F59E0B 0% ${occ}%, rgba(15,23,42,0.08) ${occ}% 100%)`;
 
   const topTasks=rates.slice(0,4);
-  $('#dark-deal-tasks').innerHTML=topTasks.map((r,idx)=>`
-    <div onclick="switchTab('sales',${r.hotel_id})" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1)">
-      <div>
-        <div style="font-weight:700;font-size:12.8px;color:#fff">${idx+1}. ${r.name.split(',')[0]}</div>
-        <div style="font-size:11px;color:#94A3B8">${r.area} · Direct $${r.price} (${r.undercut_pct}% OTA)</div>
+  $('#dark-deal-tasks').innerHTML=topTasks.map((r,idx)=>{
+    const p=STATE.pitches[String(r.hotel_id)]||{};
+    const rec=p.memory?.strategy_action||`Close ${r.undercut_pct}% OTA leak`;
+    return `
+      <div onclick="switchTab('strategy',${r.hotel_id})" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:8px 11px;border-radius:11px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1)">
+        <div style="min-width:0;padding-right:8px">
+          <div style="font-weight:700;font-size:12.2px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${idx+1}. ${r.name.split(',')[0]} (${r.est_occupancy_pct||74}% Occ)</div>
+          <div style="font-size:10.8px;color:#38BDF8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${rec}</div>
+        </div>
+        <span style="flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#F59E0B;color:#0F172A;display:grid;place-items:center;font-weight:800;font-size:11px">→</span>
       </div>
-      <span style="width:22px;height:22px;border-radius:50%;background:#F59E0B;color:#0F172A;display:grid;place-items:center;font-weight:800;font-size:11px">→</span>
-    </div>
-  `).join('');
-}
-
-function renderAiModelsOverview(models){
-  if(!models||!models.length)return;
-  $('#ai-models-overview').innerHTML=`<table><thead><tr><th>2026 Model</th><th>Role</th><th>Input/1M</th><th>42-Hotel Cost</th><th>Margin</th></tr></thead><tbody>`+
-    models.map(m=>`<tr>
-      <td><b>${m.name}</b> ${m.recommended?'<span class="tag watch">ACTIVE</span>':''}</td>
-      <td style="font-size:12px;color:var(--muted)">${m.role}</td>
-      <td class="mono">${m.input_cost_1m}</td>
-      <td class="mono" style="color:var(--green);font-weight:700">${m.monthly_42_hotels_cost}</td>
-      <td class="mono"><b>${m.margin_pct}</b></td>
-    </tr>`).join('')+`</tbody></table>`;
+    `;
+  }).join('');
 }
 
 function renderChart(rates){
-  const c=$('#chart'),dpr=window.devicePixelRatio||1;
-  const W=c.clientWidth||640,H=285;c.width=W*dpr;c.height=H*dpr;
+  const c=$('#chart');if(!c)return;
+  const dpr=window.devicePixelRatio||1;
+  const W=c.clientWidth||600,H=260;c.width=W*dpr;c.height=H*dpr;
   const x=c.getContext('2d');x.scale(dpr,dpr);x.clearRect(0,0,W,H);
-  const data=rates.filter(r=>r.price!=null).slice(0,18);
-  if(!data.length){x.fillStyle='#64748B';x.font='14px Inter';x.fillText('No rate observations yet.',20,40);return;}
+  const data=rates.filter(r=>r.price!=null).slice(0,16);
+  if(!data.length)return;
   const max=Math.max(...data.map(r=>Math.max(r.price,r.prev_price||0)))*1.15||1;
-  const pad={l:48,r:14,t:24,b:68},iw=W-pad.l-pad.r,ih=H-pad.t-pad.b;
-  x.strokeStyle='rgba(15,23,42,0.07)';x.fillStyle='#64748B';x.font='11px JetBrains Mono';
+  const pad={l:44,r:12,t:22,b:64},iw=W-pad.l-pad.r,ih=H-pad.t-pad.b;
+  x.strokeStyle='rgba(15,23,42,0.07)';x.fillStyle='#64748B';x.font='10.5px JetBrains Mono';
   for(let i=0;i<=4;i++){
     const y=pad.t+ih-ih*i/4;
     x.beginPath();x.moveTo(pad.l,y);x.lineTo(W-pad.r,y);x.stroke();
     x.fillText('$'+(max*i/4).toFixed(0),4,y+4);
   }
-  const slot=iw/data.length,bw=Math.min(22,slot*0.58);
+  const slot=iw/data.length,bw=Math.min(20,slot*0.56);
   data.forEach((r,i)=>{
     const cx=pad.l+i*slot+slot/2;
     const h1=ih*r.price/max,y1=pad.t+ih-h1;
     if(r.prev_price!=null){
-      x.fillStyle='rgba(148,163,184,0.35)';
+      x.fillStyle='rgba(148,163,184,0.38)';
       const hp=ih*r.prev_price/max;
       round(x,cx-bw/2-3,pad.t+ih-hp,bw*0.38,hp,4);
     }
     x.fillStyle=(r.parity_status==='UNDERCUT')?'#E11D48':'#0F172A';
-    round(x,cx-bw/4,y1,bw*0.76,h1,6);
-    x.fillStyle='#0F172A';x.font='700 9.5px JetBrains Mono';x.textAlign='center';
-    x.fillText('$'+Math.round(r.price),cx,y1-5);
-    x.save();x.translate(cx,pad.t+ih+10);x.rotate(-.55);x.fillStyle='#475569';x.font='600 10px Inter';
-    x.fillText(r.name.split(',')[0].replace('The ','').slice(0,15),0,8);x.restore();x.textAlign='left';
+    round(x,cx-bw/4,y1,bw*0.75,h1,5);
+    x.fillStyle='#0F172A';x.font='700 9px JetBrains Mono';x.textAlign='center';
+    x.fillText('$'+Math.round(r.price),cx,y1-4);
+    x.save();x.translate(cx,pad.t+ih+10);x.rotate(-.52);x.fillStyle='#475569';x.font='600 9.5px Inter';
+    x.fillText(r.name.split(',')[0].replace('The ','').slice(0,14),0,8);x.restore();x.textAlign='left';
   });
-  x.fillStyle='#0F172A';x.fillRect(pad.l,4,10,10);x.fillStyle='#475569';x.font='600 11px Inter';x.fillText('Clean Parity BAR',pad.l+15,13);
-  x.fillStyle='#E11D48';x.fillRect(pad.l+140,4,10,10);x.fillStyle='#475569';x.fillText('OTA Undercut Alert',pad.l+155,13);
+  x.fillStyle='#0F172A';x.fillRect(pad.l,4,9,9);x.fillStyle='#475569';x.font='600 10px Inter';x.fillText('Current BAR',pad.l+13,12);
+  x.fillStyle='#E11D48';x.fillRect(pad.l+95,4,9,9);x.fillStyle='#475569';x.fillText('OTA Leak',pad.l+108,12);
+  x.fillStyle='rgba(148,163,184,0.7)';x.fillRect(pad.l+175,4,9,9);x.fillStyle='#475569';x.fillText('Prior Scan',pad.l+188,12);
 }
 function round(x,a,b,w,h,r){x.beginPath();x.roundRect?x.roundRect(a,b,w,h,r):x.rect(a,b,w,h);x.fill();}
 
-function renderMoversOverview(rates,movers){
+function renderMoversOverview(rates){
   const rows=rates.slice().sort((a,b)=>(a.undercut_pct||0)-(b.undercut_pct||0));
-  $('#movers-box').innerHTML=`<table><thead><tr><th>Hotel</th><th>Direct BAR</th><th>Lowest OTA</th><th>Parity</th><th>Action</th></tr></thead><tbody>`+
-    rows.slice(0,10).map(r=>{
+  $('#movers-box').innerHTML=`<table><thead><tr><th>Hotel</th><th>BAR & Move</th><th>Lowest OTA</th><th>Est. Occ</th><th>Action</th></tr></thead><tbody>`+
+    rows.slice(0,12).map(r=>{
       const nonDir=(r.ota_channels||[]).filter(c=>c.code!=='DIRECT');
       const low=nonDir.length?nonDir.reduce((a,b)=>a.rate<b.rate?a:b):{name:'OTA',rate:r.price};
       const cls=r.parity_status==='UNDERCUT'?'undercut':'parity';
       return `<tr>
-        <td><b>${r.name.split(',')[0]}</b><div style="font-size:11px;color:var(--muted)">${r.area||''}</div></td>
-        <td class="mono"><b>${money(r.price)}</b></td>
-        <td class="mono">${money(low.rate)} <span style="font-size:11px;color:var(--muted)">${low.name.split(' ')[0]}</span></td>
-        <td><span class="tag ${cls}">${r.parity_status||'PARITY'} ${r.undercut_pct?r.undercut_pct+'%':''}</span></td>
-        <td><button class="btn sm gold" onclick="switchTab('sales',${r.hotel_id})">Pitch →</button></td>
+        <td><b>${r.name.split(',')[0]}</b><div style="font-size:10.5px;color:var(--muted)">${r.area||''}</div></td>
+        <td class="mono"><b>${money(r.price)}</b> <span style="font-size:10.5px;color:${(r.delta_pct||0)>=0?'var(--green)':'var(--coral)'}">${(r.delta_pct||0)>=0?'▲':'▼'}${Math.abs(r.delta_pct||0)}%</span></td>
+        <td class="mono">${money(low.rate)} <span class="tag ${cls}">${r.undercut_pct||0}%</span></td>
+        <td class="mono"><b>${r.est_occupancy_pct||74}%</b></td>
+        <td><button class="btn sm blue" onclick="switchTab('memory',${r.hotel_id})">Memory →</button></td>
       </tr>`;
     }).join('')+`</tbody></table>`;
 }
 
-function renderProspectsOverview(ps){
-  $('#prospects-overview').innerHTML=ps.slice(0,7).map(p=>`
-    <div style="padding:10px 0;border-bottom:1px solid rgba(15,23,42,0.06)">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-        <div>
-          <b>${p.name}</b>
-          <span style="color:var(--muted);font-size:12px">${p.area||''} · ${p.est_rooms||'—'} rms · ${p.stars?p.stars+'★':''}</span>
-        </div>
-        <div style="display:flex;gap:6px;align-items:center">
-          <span class="pill em">+${money(p.est_annual_upside||48000)}/yr</span>
-          <span class="tag ${p.tier}">${p.tier} · ${p.score}</span>
-          <button class="btn sm outline" onclick="switchTab('sales',${p.hotel_id})">Open AI Kit</button>
-        </div>
-      </div>
-      <div class="scorebar" style="margin-top:6px"><i class="${p.tier}" style="width:${p.score}%"></i></div>
-      <ul class="signals">${(p.signals||[]).slice(0,2).map(s=>`<li>${s}</li>`).join('')}</ul>
-    </div>`).join('');
-}
-
-function renderCompOverview(hotels){
-  $('#comp-sub').textContent=hotels.length+' Greater Miami & Beach properties';
-  $('#complist-overview').innerHTML=`<table><thead><tr><th>Hotel</th><th>Corridor</th><th>BAR</th><th>Contacts</th><th>Pitch</th></tr></thead><tbody>`+
-    hotels.map(h=>{
-      const em=(h.contacts||[]).find(c=>c.kind==='email');
-      const ph=(h.contacts||[]).find(c=>c.kind==='phone');
-      return `<tr>
-        <td><b>${h.name.split(',')[0]}</b> <span style="color:var(--muted);font-size:11.5px">${h.stars||''}★ (${h.est_rooms||'—'}r)</span></td>
-        <td>${h.area||'—'}</td>
-        <td class="mono"><b>${money(h.price)}</b></td>
-        <td>
-          ${em?`<a class="pill em" href="mailto:${em.value}">${em.value}</a>`:''}
-          ${ph?`<span class="pill ph">${ph.value}</span>`:''}
-        </td>
-        <td><button class="btn sm" onclick="switchTab('sales',${h.id})">Sell →</button></td>
-      </tr>`;
-    }).join('')+'</tbody></table>';
+function renderPersonalitiesOverview(hotels){
+  $('#prospects-overview').innerHTML=`<table><thead><tr><th>Hotel</th><th>Est. Occ</th><th>Memorized Pricing Behavior</th><th>Strategy</th></tr></thead><tbody>`+
+    hotels.slice(0,12).map(h=>`<tr>
+      <td><b>${h.name.split(',')[0]}</b><div style="font-size:10.5px;color:var(--muted)">BAR ${money(h.price)} · ${h.area||''}</div></td>
+      <td class="mono"><b>${h.est_occupancy_pct||74}%</b></td>
+      <td><span class="tag blue">${h.pricing_personality||'Dynamic Responder'}</span></td>
+      <td><button class="btn sm gold" onclick="switchTab('strategy',${h.id})">Strategy →</button></td>
+    </tr>`).join('')+`</tbody></table>`;
 }
 
 function renderRuns(runs){
-  $('#runs').innerHTML=(runs||[]).slice(0,5).map(r=>`#${r.id} [${r.status}] · mode=${r.mode} · hotels=${r.hotels_ok}/${r.hotels_attempted} · +${r.contacts_new} contacts · +${r.rates_new} rates`).join('<br>')||'no runs yet';
+  $('#runs').innerHTML=(runs||[]).slice(0,8).map(r=>`#${r.id} [${r.status}] · mode=${r.mode} · hotels=${r.hotels_ok}/${r.hotels_attempted} · +${r.rates_new} rate observations memorized`).join('<br>')||'no runs yet';
 }
 
-/* ==================== TAB 2: RATES & PARITY MATRIX ==================== */
+/* ==================== TAB 2: LIVE RATE, PARITY & OCCUPANCY MATRIX ==================== */
 function renderRatesTab(){
   const q=($('#rate-search')?.value||'').toLowerCase();
   const area=$('#rate-area')?.value||'';
@@ -803,384 +878,352 @@ function renderRatesTab(){
   const rates=(STATE.summary?.rates||[]).filter(r=>{
     if(area && r.area!==area)return false;
     if(par && r.parity_status!==par)return false;
-    if(q && !(r.name.toLowerCase().includes(q)||(r.booking_engine||'').toLowerCase().includes(q)))return false;
+    if(q && !(r.name.toLowerCase().includes(q)||(r.pricing_personality||'').toLowerCase().includes(q)||(r.area||'').toLowerCase().includes(q)))return false;
     return true;
   });
   $('#rates-matrix-table').innerHTML=`<table><thead><tr>
-    <th>Hotel</th><th>Corridor & Stack</th><th>Direct BAR</th><th>Out-the-Door (Est.)</th>
-    <th>Multi-OTA Rate Ladder (Live)</th><th>Parity Status</th><th>Live Proof</th><th>Action</th>
+    <th>Hotel</th><th>Corridor</th><th>Prior BAR</th><th>Direct BAR</th><th>Out-the-Door</th><th>Est. Occ</th>
+    <th>Multi-OTA Rate Ladder</th><th>Parity Status</th><th>Competitor Behavior</th><th>Inspect</th>
   </tr></thead><tbody>`+rates.map(r=>{
     const pitch=STATE.pitches[String(r.hotel_id)]||{};
     const otd=pitch.out_the_door||{};
     const verifyUrl=pitch.hotel?.verify_url||`https://www.tripadvisor.com/Hotel_Review-${r.xotelo_key||'g34439-d85104'}.html`;
-    const ladder=(r.ota_channels||[]).map(c=>`<span class="pill ${c.code==='DIRECT'?'em':'ph'}">${c.name.split(' ')[0]}: <b>$${c.rate}</b></span>`).join(' ');
+    const ladder=(r.ota_channels||[]).slice(0,4).map(c=>`<span class="pill ${c.code==='DIRECT'?'em':'ph'}">${c.name.split(' ')[0]}: <b>$${c.rate}</b></span>`).join(' ');
     const pcls=(r.parity_status||'PARITY').toLowerCase();
     return `<tr>
-      <td><b>${r.name}</b><div style="font-size:11.5px;color:var(--muted)">${r.stars||'4'}★ · ${r.est_rooms||'—'} rooms</div></td>
-      <td>${r.area||'—'}<div style="font-size:11px;color:var(--muted)">${r.booking_engine||'Direct'}</div></td>
-      <td class="mono" style="font-size:14px"><b>${money(r.price)}</b></td>
-      <td class="mono"><b>${money(otd.direct_out_the_door||Math.round((r.price||200)*1.24))}</b><div style="font-size:10.5px;color:var(--muted)">+${money(otd.est_resort_fee||0)} fee +${otd.tax_rate_pct||14}% tax</div></td>
+      <td><b>${r.name}</b><div style="font-size:11px;color:var(--muted)">${r.stars||'4'}★ · ${r.est_rooms||'—'}r</div></td>
+      <td>${r.area||'—'}</td>
+      <td class="mono">${money(r.prev_price)}</td>
+      <td class="mono" style="font-size:13.5px"><b>${money(r.price)}</b></td>
+      <td class="mono"><b>${money(otd.direct_out_the_door||Math.round((r.price||200)*1.24))}</b></td>
+      <td class="mono"><b>${r.est_occupancy_pct||74}%</b></td>
       <td>${ladder||'—'}</td>
-      <td><span class="tag ${pcls}">${r.parity_status||'PARITY'} (${r.undercut_pct>0?'+':''}${r.undercut_pct||0}%)</span></td>
-      <td><a class="pill" href="${verifyUrl}" target="_blank">🔍 OTA Proof ↗</a></td>
-      <td><button class="btn sm gold" onclick="switchTab('sales',${r.hotel_id})">Pitch Alert →</button></td>
-    </tr>`;
-  }).join('')+`</tbody></table>`;
-}
-
-async function submitManualRate(){
-  const hid=$('#ingest-hotel').value;
-  const price=$('#ingest-price').value;
-  const room=$('#ingest-room').value||'Standard BAR';
-  if(!hid||!price){toast('Enter a nightly price first');return;}
-  await fetch('/api/rates'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hotel_id:Number(hid),nightly_price:Number(price),room_type:room})});
-  toast('✓ Rate logged for hotel #'+hid);
-  $('#ingest-price').value='';
-  refresh();
-}
-
-/* ==================== TAB 3: CONTACTS & CRM ==================== */
-function renderCrmTab(){
-  const q=($('#crm-search')?.value||'').toLowerCase();
-  const st=($('#crm-stage-filter')?.value||'');
-  const rows=(STATE.hotels||[]).filter(h=>{
-    if(st && (h.deal_stage||'new')!==st)return false;
-    if(!q)return true;
-    const blob=[h.name,h.area,h.booking_engine,...(h.contacts||[]).map(c=>c.value)].join(' ').toLowerCase();
-    return blob.includes(q);
-  });
-  const totalContacts=rows.reduce((a,h)=>a+(h.contacts||[]).length,0);
-  $('#crm-count-sub').textContent=`${rows.length} hotels · ${totalContacts} verified emails, phones, addresses & GM targets`;
-
-  $('#crm-table-wrap').innerHTML=`<table><thead><tr>
-    <th>Property</th><th>Neighborhood & Tech</th><th>Emails (Click to Mail)</th><th>Direct Phones</th><th>Street Address & Target Role</th><th>CRM Stage</th><th>Outreach</th>
-  </tr></thead><tbody>`+rows.map(h=>{
-    const emails=(h.contacts||[]).filter(c=>c.kind==='email');
-    const phones=(h.contacts||[]).filter(c=>c.kind==='phone');
-    const addrs=(h.contacts||[]).filter(c=>c.kind==='address');
-    const roles=(h.contacts||[]).filter(c=>c.kind==='person');
-    const stage=h.deal_stage||'new';
-    return `<tr>
-      <td><b><a href="${h.website||'#'}" target="_blank" style="color:var(--ink)">${h.name}</a></b><div style="font-size:11.5px;color:var(--muted)">${h.stars||'4'}★ · ${h.est_rooms||'—'} rooms · BAR ${money(h.price)}</div></td>
-      <td><b>${h.area||'—'}</b><div style="font-size:11px;color:var(--muted)">${h.booking_engine||'Direct'}</div></td>
-      <td>${emails.map(e=>`<a class="pill em" href="mailto:${e.value}">${e.value}</a>`).join('<br>')||'—'}</td>
-      <td>${phones.map(p=>`<a class="pill ph" href="tel:${p.value}">${p.value}</a>`).join('<br>')||'—'}</td>
+      <td><a href="${verifyUrl}" target="_blank" class="tag ${pcls}" style="text-decoration:none">${r.parity_status||'PARITY'} (${r.undercut_pct>0?'+':''}${r.undercut_pct||0}%) ↗</a></td>
+      <td><span class="tag blue">${r.pricing_personality||'Tier Holder'}</span></td>
       <td>
-        <div style="font-size:12px">${addrs[0]?.value||'Miami Beach, FL'}</div>
-        ${roles[0]?`<div style="font-size:11px;color:var(--blue);font-weight:700;margin-top:2px">🎯 ${roles[0].value}</div>`:''}
-      </td>
-      <td>
-        <select class="inp" style="padding:5px 9px;font-size:12px" onchange="updateStage(${h.id},this.value)">
-          <option value="new" ${stage==='new'?'selected':''}>New Lead</option>
-          <option value="contacted" ${stage==='contacted'?'selected':''}>Contacted</option>
-          <option value="audit_sent" ${stage==='audit_sent'?'selected':''}>Audit Sent</option>
-          <option value="pilot_active" ${stage==='pilot_active'?'selected':''}>7d Pilot Active</option>
-          <option value="closed_won" ${stage==='closed_won'?'selected':''}>Closed Won ($)</option>
-        </select>
-      </td>
-      <td><button class="btn sm gold" onclick="switchTab('sales',${h.id})">Launch Scripts →</button></td>
-    </tr>`;
-  }).join('')+`</tbody></table>`;
-}
-
-async function updateStage(hid,stage){
-  const h=STATE.hotels.find(x=>x.id===hid);
-  if(h)h.deal_stage=stage;
-  await fetch('/api/stage'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hotel_id:hid,deal_stage:stage})});
-  toast(`✓ Updated #${hid} stage to ${stage}`);
-}
-
-function exportCsv(){
-  const headers=['ID','Hotel Name','Area','Stars','Est Rooms','Booking Engine','Website','Current BAR','Parity Status','Undercut %','Prospect Score','Tier','Est Annual ROI','Emails','Phones','Address'];
-  const lines=[headers.join(',')];
-  (STATE.hotels||[]).forEach(h=>{
-    const em=(h.contacts||[]).filter(c=>c.kind==='email').map(c=>c.value).join(' | ');
-    const ph=(h.contacts||[]).filter(c=>c.kind==='phone').map(c=>c.value).join(' | ');
-    const ad=(h.contacts||[]).filter(c=>c.kind==='address').map(c=>c.value)[0]||'';
-    const row=[h.id,`"${h.name}"`,`"${h.area||''}"`,h.stars||'',h.est_rooms||'',`"${h.booking_engine||''}"`,h.website||'',h.price||'',h.parity_status||'',h.undercut_pct||0,h.score||0,h.tier||'',h.est_annual_upside||0,`"${em}"`,`"${ph}"`,`"${ad}"`];
-    lines.push(row.join(','));
-  });
-  const blob=new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8;'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='miami_hotel_rate_intel_leads.csv';
-  a.click();
-  toast('✓ Exported 42 Miami hotels + 271 contacts to CSV');
-}
-
-/* ==================== TAB 4: PROSPECTS FULL ==================== */
-function renderProspectsFull(ps){
-  $('#prospects-full-grid').innerHTML=ps.map(p=>`
-    <div style="background:rgba(255,255,255,0.74);border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:var(--glass-shadow)">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
-        <div>
-          <b style="font-size:16px">${p.name}</b>
-          <div style="color:var(--muted);font-size:12.5px;margin-top:2px">${p.area||'Miami Beach'} · ${p.est_rooms||'—'} rooms · ${p.stars||'4'}★ · ${p.booking_engine||'Direct'}</div>
+        <div style="display:flex;gap:4px">
+          <button class="btn sm outline" onclick="switchTab('memory',${r.hotel_id})">Memory</button>
+          <button class="btn sm gold" onclick="switchTab('strategy',${r.hotel_id})">Strategy</button>
         </div>
-        <span class="tag ${p.tier}">${p.tier} · ${p.score}/100</span>
+      </td>
+    </tr>`;
+  }).join('')+`</tbody></table>`;
+}
+
+/* ==================== TAB 3: PRICING MEMORY, OCCUPANCY & COMPETITOR DECISIONS ==================== */
+function selectMemoryHotel(val){
+  if(val){STATE.selectedHotelId=Number(val);renderMemoryTab();}
+}
+
+async function renderMemoryTab(){
+  const hid=STATE.selectedHotelId||11;
+  if($('#memory-hotel-select'))$('#memory-hotel-select').value=String(hid);
+  const pitch=STATE.pitches[String(hid)]||{};
+  let mem=pitch.memory;
+  if(!mem){
+    const r=await fetch(`/api/memory?hotel_id=${hid}${authQuery()?'&'+authQuery().slice(1):''}`);
+    if(r.ok)mem=await r.json();
+  }
+  if(!mem||!mem.hotel_name)return;
+  const occ=mem.occupancy||{};
+
+  $('#memory-profile-box').innerHTML=`
+    <h2><span>Memorized Decision Profile: ${mem.hotel_name}</span><span class="tag blue">${occ.pricing_personality||'Dynamic'}</span></h2>
+    <div class="grid3" style="margin-top:12px">
+      <div style="background:rgba(255,255,255,0.8);padding:12px;border-radius:12px;border:1px solid var(--line2)">
+        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">Current vs Prior BAR</div>
+        <div class="mono" style="font-size:21px;font-weight:800;margin-top:4px">${money(mem.current_bar)} <small style="font-size:12px;color:var(--muted)">was ${money(mem.prev_bar)} (${mem.delta_pct>0?'+':''}${mem.delta_pct}%)</small></div>
       </div>
-      <div class="scorebar" style="margin-top:10px"><i class="${p.tier}" style="width:${p.score}%"></i></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding:9px 13px;background:rgba(255,255,255,0.85);border-radius:12px;border:1px solid var(--line2)">
-        <span style="font-size:12px;color:var(--muted)">Est. Annual ADR + Direct Shift Upside:</span>
-        <b class="mono" style="color:var(--green);font-size:15px">+${money(p.est_annual_upside||52000)}/yr</b>
+      <div style="background:rgba(255,255,255,0.8);padding:12px;border-radius:12px;border:1px solid var(--line2)">
+        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">Estimated Occupancy</div>
+        <div class="mono" style="font-size:21px;font-weight:800;color:var(--green);margin-top:4px">${occ.est_occupancy_pct||74}% <small style="font-size:11.5px;color:var(--muted)">Band: $${occ.price_min}–$${occ.price_max}</small></div>
       </div>
-      <ul class="signals" style="margin-top:8px">${(p.signals||[]).map(s=>`<li>${s}</li>`).join('')}</ul>
-      <div style="margin-top:12px;display:flex;justify-content:flex-end">
-        <button class="btn sm gold" onclick="switchTab('sales',${p.hotel_id})">Generate AI Call Script & Audit →</button>
+      <div style="background:rgba(255,255,255,0.8);padding:12px;border-radius:12px;border:1px solid var(--line2)">
+        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">AI Target BAR</div>
+        <div class="mono" style="font-size:21px;font-weight:800;color:var(--blue);margin-top:4px">${money(mem.recommended_bar)}/nt</div>
       </div>
     </div>
-  `).join('');
+    <div class="script-box" style="margin-top:10px"><b>🧠 Memorized Decision-Making Pattern:</b>\n${occ.decision_logic||''}\n\n<b>⚡ Recommended Strategy (${mem.strategy_action}):</b>\n${mem.strategy_rationale||''}</div>
+  `;
+
+  // Render Memory Timeline Chart
+  const c=$('#memory-chart');
+  if(c){
+    const dpr=window.devicePixelRatio||1;
+    const W=c.clientWidth||540,H=240;c.width=W*dpr;c.height=H*dpr;
+    const x=c.getContext('2d');x.scale(dpr,dpr);x.clearRect(0,0,W,H);
+    const pts=mem.history_timeline||[];
+    if(pts.length){
+      const maxP=Math.max(...pts.map(p=>p.bar))*1.15||300;
+      const pad={l:44,r:38,t:20,b:48},iw=W-pad.l-pad.r,ih=H-pad.t-pad.b;
+      x.strokeStyle='rgba(15,23,42,0.07)';x.fillStyle='#64748B';x.font='10.5px JetBrains Mono';
+      for(let i=0;i<=4;i++){
+        const y=pad.t+ih-ih*i/4;
+        x.beginPath();x.moveTo(pad.l,y);x.lineTo(W-pad.r,y);x.stroke();
+        x.fillText('$'+(maxP*i/4).toFixed(0),4,y+4);
+        x.fillText((25*i)+'%',W-pad.r+4,y+4);
+      }
+      // Draw BAR line
+      x.strokeStyle='#2563EB';x.lineWidth=2.5;x.beginPath();
+      pts.forEach((p,i)=>{
+        const px=pad.l+(i/(Math.max(1,pts.length-1)))*iw;
+        const py=pad.t+ih-(p.bar/maxP)*ih;
+        if(i===0)x.moveTo(px,py);else x.lineTo(px,py);
+      });
+      x.stroke();
+      // Draw Occupancy line
+      x.strokeStyle='#10B981';x.lineWidth=2;x.setLineDash([4,4]);x.beginPath();
+      pts.forEach((p,i)=>{
+        const px=pad.l+(i/(Math.max(1,pts.length-1)))*iw;
+        const py=pad.t+ih-((p.est_occupancy_pct||70)/100)*ih;
+        if(i===0)x.moveTo(px,py);else x.lineTo(px,py);
+      });
+      x.stroke();x.setLineDash([]);
+      // Points & labels
+      pts.forEach((p,i)=>{
+        const px=pad.l+(i/(Math.max(1,pts.length-1)))*iw;
+        const py=pad.t+ih-(p.bar/maxP)*ih;
+        x.fillStyle='#2563EB';x.beginPath();x.arc(px,py,4,0,Math.PI*2);x.fill();
+        x.fillStyle='#0F172A';x.font='700 9.5px JetBrains Mono';x.textAlign='center';
+        x.fillText('$'+p.bar,px,py-7);
+        x.fillStyle='#475569';x.font='600 9.5px Inter';
+        x.fillText(p.date,px,pad.t+ih+16);
+      });
+      x.textAlign='left';
+      x.fillStyle='#2563EB';x.fillRect(pad.l,2,10,8);x.fillStyle='#475569';x.fillText('Memorized Direct BAR ($)',pad.l+14,10);
+      x.fillStyle='#10B981';x.fillRect(pad.l+170,2,10,8);x.fillStyle='#475569';x.fillText('Estimated Occupancy (%)',pad.l+184,10);
+    }
+  }
+
+  // Render Competitor Decision Table
+  const comps=mem.competitor_decisions||[];
+  $('#memory-competitors-table').innerHTML=`<table><thead><tr>
+    <th>Corridor Neighbor</th><th>Prior BAR</th><th>Current BAR</th><th>Move</th><th>Est. Occupancy</th><th>Memorized Pricing Personality</th><th>Decision-Making Analysis</th>
+  </tr></thead><tbody>`+comps.map(c=>`<tr>
+    <td><b>${c.name}</b><div style="font-size:11px;color:var(--muted)">${c.area||''}</div></td>
+    <td class="mono">${money(c.prev_bar)}</td>
+    <td class="mono"><b>${money(c.bar)}</b></td>
+    <td class="mono" style="color:${c.delta_pct>=0?'var(--green)':'var(--coral)'}"><b>${c.delta_pct>0?'+':''}${c.delta_pct}%</b></td>
+    <td class="mono"><b>${c.est_occupancy_pct}%</b></td>
+    <td><span class="tag blue">${c.personality}</span></td>
+    <td style="font-size:12px;color:var(--muted)">${c.decision_summary}</td>
+  </tr>`).join('')+`</tbody></table>`;
 }
 
-/* ==================== TAB 5: SALES & MARKETING ENGINE ==================== */
+async function recordManualMemory(){
+  const hid=STATE.selectedHotelId||11;
+  const price=$('#mem-manual-price')?.value;
+  const occ=$('#mem-manual-occ')?.value||78;
+  if(!price){toast('Enter a BAR price to memorize');return;}
+  await fetch('/api/rates'+authQuery(),{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({hotel_id:Number(hid),nightly_price:Number(price),est_occupancy_pct:Number(occ),room_type:'Manual Memory Entry'})
+  });
+  $('#mem-manual-price').value='';
+  toast('✓ Rate & Occupancy memorized for hotel #'+hid);
+  await refresh();
+  renderMemoryTab();
+}
+
+/* ==================== TAB 4: AI RATE STRATEGY & RECOMMENDATIONS ==================== */
 function populateHotelSelectors(hotels){
-  const opts=hotels.map(h=>`<option value="${h.id}" ${h.id===STATE.selectedHotelId?'selected':''}>${h.name} (${h.area} · ${h.est_rooms}r · BAR ${money(h.price)} · ${h.parity_status||'PARITY'})</option>`).join('');
+  const opts=hotels.map(h=>`<option value="${h.id}" ${h.id===STATE.selectedHotelId?'selected':''}>${h.name} (${h.area} · BAR ${money(h.price)} · Occ ${h.est_occupancy_pct||74}% · ${h.parity_status||'PARITY'})</option>`).join('');
   if($('#pitch-hotel-select'))$('#pitch-hotel-select').innerHTML=opts;
-  if($('#ingest-hotel'))$('#ingest-hotel').innerHTML=opts;
+  if($('#memory-hotel-select'))$('#memory-hotel-select').innerHTML=opts;
 }
 
 function loadPitchForSelected(){
   const v=$('#pitch-hotel-select')?.value;
-  if(v){STATE.selectedHotelId=Number(v);renderSalesTab();}
+  if(v){STATE.selectedHotelId=Number(v);renderStrategyTab();}
 }
 
 async function triggerLiveAiBrief(){
   const hid=STATE.selectedHotelId||11;
   const model=$('#ai-model-select')?.value||'gemini-2.5-flash-lite';
-  toast('⚡ Running '+model+' Revenue Strategist...');
+  toast('⚡ Computing rate strategy with '+model+'...');
   const k=new URLSearchParams(location.search).get('k');
   const r=await fetch(`/api/ai-pitch?hotel_id=${hid}&model=${encodeURIComponent(model)}${k?'&k='+encodeURIComponent(k):''}`);
   if(r.ok){
     const d=await r.json();
     if(d.ai_brief && STATE.pitches[String(hid)]){
       STATE.pitches[String(hid)].ai_brief=d.ai_brief;
-      renderSalesTab();
-      toast('✓ AI Brief synthesized via '+d.ai_brief.model_used);
+      renderStrategyTab();
+      toast('✓ Strategy updated via '+d.ai_brief.model_used);
     }
   }
 }
 
-function openPrintableAudit(){
-  const hid=STATE.selectedHotelId||11;
-  const p=STATE.pitches[String(hid)];
-  if(!p||!p.hotel){window.open('/audit?hotel_id='+hid,'_blank');return;}
-  const h=p.hotel,ri=p.rate_intel,roi=p.roi_calculator,recs=p.action_recommendations||[],otd=p.out_the_door||{},ai=p.ai_brief||{};
-  const w=window.open('','_blank');
-  const otaRows=(ri.ota_channels||[]).map(c=>`<tr><td><b>${c.name}</b></td><td>$${c.rate}/nt</td><td>+$${c.tax||Math.round(c.rate*0.14)}</td><td>${c.rate<ri.direct_bar?'<b style="color:#E11D48">UNDERCUTTING BAR</b>':'<b style="color:#059669">Compliant / Benchmark</b>'}</td></tr>`).join('');
-  const nbRows=(ri.neighbors||[]).map(n=>`<tr><td><b>${n.name}</b></td><td>${n.area||h.area}</td><td>${n.stars||4}★</td><td><b>$${n.price}/nt</b></td><td style="color:${(n.delta_pct||0)>=0?'#059669':'#E11D48'};font-weight:700">${(n.delta_pct||0)>0?'+':''}${n.delta_pct||0}%</td></tr>`).join('');
-  const recItems=recs.map(r=>`<div style="margin-bottom:8px;padding:9px 12px;background:#F8FAFC;border-left:4px solid #0F172A;border-radius:6px"><div style="display:flex;justify-content:space-between"><b>${r.title}</b><span style="color:#059669;font-weight:700">${r.impact}</span></div><div style="font-size:12px;color:#334155;margin-top:2px">${r.detail}</div></div>`).join('');
-  w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>1-Page Rate & Parity Audit — ${h.name}</title>
-  <style>@page{size:letter;margin:0.4in}*{box-sizing:border-box;margin:0;padding:0}body{font:12.5px/1.45 Inter,sans-serif;color:#0F172A;max-width:820px;margin:0 auto;padding:20px}.no-print{margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;background:#EFF6FF;padding:10px 14px;border-radius:8px;border:1px solid #2563EB}.btn{background:#0F172A;color:#fff;border:none;padding:8px 14px;border-radius:6px;font-weight:700;cursor:pointer}.hdr{display:flex;justify-content:space-between;border-bottom:3px solid #0F172A;padding-bottom:10px;margin-bottom:12px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px}.box{border:1px solid #CBD5E1;border-radius:8px;padding:10px 12px;background:#F8FAFC}.lbl{font-size:10px;text-transform:uppercase;color:#475569;font-weight:700}.val{font-size:21px;font-weight:800;font-family:monospace;margin-top:2px}h2{font-size:13.5px;color:#0F172A;text-transform:uppercase;margin:12px 0 5px;border-bottom:1px solid #E2E8F0;padding-bottom:3px}table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:8px}th{text-align:left;background:#F1F5F9;padding:5px 8px;font-size:10.5px;text-transform:uppercase;color:#475569}td{padding:5px 8px;border-bottom:1px solid #E2E8F0}.cta{margin-top:12px;padding:12px 16px;background:#0F172A;color:#FFF;border-radius:9px;display:flex;justify-content:space-between;align-items:center;gap:14px}@media print{.no-print{display:none!important}body{padding:0}}</style></head><body>
-  <div class="no-print"><div><b>🖨 Walk-In Leave-Behind Audit Sheet</b> — Hand directly to the Front Desk / GM at <b>${h.name}</b></div><button class="btn" onclick="window.print()">🖨 Print / Save 1-Page PDF</button></div>
-  <div class="hdr"><div><div style="font-size:10.5px;font-weight:700;color:#2563EB">CONFIDENTIAL RATE & OTA PARITY AUDIT · ATTN: GENERAL MANAGER / OWNER</div><h1 style="font-size:20px;color:#0F172A">${h.name} (${h.area})</h1><div style="font-size:11.5px;color:#475569">${h.primary_address} · ${h.est_rooms} Rooms · ${h.stars}★ · Stack: ${h.booking_engine}</div></div><div style="text-align:right"><div style="font-weight:700">Check-In: ${ri.checkin}</div><div style="background:#FFE4E6;color:#E11D48;padding:3px 9px;border-radius:99px;font-weight:700;font-size:11px;margin-top:4px;display:inline-block">${ri.parity_status} (${ri.undercut_pct>0?'+':''}${ri.undercut_pct}%)</div></div></div>
-  <div class="grid3"><div class="box"><div class="lbl">Your Direct Website BAR</div><div class="val" style="color:#0F172A">$${ri.direct_bar}/nt</div><div style="font-size:11px;color:#475569">Out-the-door w/ fee & tax: <b>$${otd.direct_out_the_door||ri.direct_bar}</b></div></div><div class="box" style="border-color:#E11D48;background:#FFF1F2"><div class="lbl" style="color:#E11D48">Lowest Public OTA Rate</div><div class="val" style="color:#E11D48">$${ri.lowest_ota_price}/nt</div><div style="font-size:11px;color:#E11D48;font-weight:700">on ${ri.lowest_ota_name} (${ri.undercut_pct}%)</div></div><div class="box"><div class="lbl">Est. Annual Revenue Recovery</div><div class="val" style="color:#059669">+$${Number(roi.total_annual_roi).toLocaleString()}/yr</div><div style="font-size:11px;color:#475569">ADR Lift + Saved 18% OTA Comm</div></div></div>
-  <div style="padding:8px 12px;background:#EFF6FF;border-radius:6px;margin-bottom:10px;font-size:12px"><b>🤖 AI Revenue Manager Note:</b> ${ai.gm_executive_memo||''}</div>
-  <h2>1. Live Multi-OTA Rate Ladder (${ri.checkin})</h2><table><thead><tr><th>Channel</th><th>Nightly Rate</th><th>Est. Tax</th><th>Parity Status</th></tr></thead><tbody>${otaRows}</tbody></table>
-  <h2>2. Immediate ${h.area} Comp-Set Neighbor Rates</h2><table><thead><tr><th>Neighbor Property</th><th>Corridor</th><th>Stars</th><th>Current BAR</th><th>Move</th></tr></thead><tbody>${nbRows}</tbody></table>
-  <h2>3. Recommended Profit Actions Today</h2>${recItems}
-  <div class="cta"><div><div style="font-size:14px;font-weight:800">Get This ${h.area} Rate & Parity Brief Every Morning at 6:00 AM</div><div style="font-size:11.5px;margin-top:2px">Built for independent Miami hotels · <b>Flat $99/mo (Starter) or $199/mo (Pro)</b> · $3.30/day · No per-room fee · No contract · <b>First 7 Days FREE</b></div></div><div style="text-align:right;background:#FFF;color:#0F172A;padding:8px 12px;border-radius:7px;min-width:195px"><div style="font-weight:800;color:#2563EB">Jasmel Acosta</div><div style="font-size:11px;color:#475569">Local Miami / Beach Operator</div><div style="font-size:11.5px;font-weight:700">Reply 'BRIEF' for Free 7-Day Trial</div></div></div>
-  </body></html>`);
-  w.document.close();
-}
-
-async function renderSalesTab(){
+async function renderStrategyTab(){
   const hid=STATE.selectedHotelId||11;
   let pitch=STATE.pitches[String(hid)];
   if(!pitch){
-    const k=new URLSearchParams(location.search).get('k');
-    const r=await fetch(`/api/pitch?hotel_id=${hid}${k?'&k='+encodeURIComponent(k):''}`);
+    const r=await fetch(`/api/pitch?hotel_id=${hid}${authQuery()?'&'+authQuery().slice(1):''}`);
     if(r.ok){pitch=await r.json();STATE.pitches[String(hid)]=pitch;}
   }
   if(!pitch||!pitch.hotel)return;
-  const h=pitch.hotel,ri=pitch.rate_intel,roi=pitch.roi_calculator,cs=pitch.call_script;
-  const otd=pitch.out_the_door||{},ai=pitch.ai_brief||{};
-  const recs=pitch.action_recommendations||[],routes=pitch.local_routes||[];
+  const h=pitch.hotel,ri=pitch.rate_intel,roi=pitch.roi_calculator;
+  const otd=pitch.out_the_door||{},ai=pitch.ai_brief||{},mem=pitch.memory||{};
+  const recs=pitch.action_recommendations||[];
 
   $('#pitch-content').innerHTML=`
     <!-- AI REVENUE STRATEGIST DARK GLASS BANNER -->
-    <div style="background:var(--surface-dark);color:#fff;border-radius:18px;padding:16px 20px;margin-bottom:16px;box-shadow:0 16px 34px rgba(15,23,42,0.22);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
-      <div style="flex:1;min-width:280px">
-        <div style="display:flex;align-items:center;gap:8px;font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:#38BDF8;font-weight:700">
-          <span>✨ AI Revenue Strategist Brief · ${ai.model_used||'gemini-2.5-flash-lite'}</span>
-          <span style="background:rgba(16,185,129,0.2);color:#34D399;padding:2px 8px;border-radius:99px">Confidence ${ai.confidence_score||96}%</span>
+    <div style="background:var(--surface-dark);color:#fff;border-radius:16px;padding:16px 20px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap">
+      <div style="flex:1;min-width:260px">
+        <div style="display:flex;align-items:center;gap:8px;font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:#38BDF8;font-weight:700">
+          <span>✨ HRI GlassV4 Rate Strategy · ${ai.model_used||'gemini-2.5-flash-lite'}</span>
+          <span style="background:rgba(16,185,129,0.2);color:#34D399;padding:2px 8px;border-radius:99px">Est. Occupancy ${mem.occupancy?.est_occupancy_pct||74}%</span>
         </div>
-        <div style="font:700 16px 'Plus Jakarta Sans',sans-serif;color:#FBBF24;margin-top:5px">${ai.headline||''}</div>
+        <div style="font:700 16px 'Plus Jakarta Sans',sans-serif;color:#FBBF24;margin-top:5px">${mem.strategy_action||ai.headline||''}</div>
         <div style="font-size:13px;color:#E2E8F0;margin-top:6px;line-height:1.55">${ai.gm_executive_memo||''}</div>
-        <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.12);font-size:12px;color:#94A3B8">
-          🎙 <b>15-Sec WhatsApp Voice Note Script:</b> "${ai.voice_note_15_sec||''}"
-        </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <button class="btn gold sm" onclick="copyText(STATE.pitches['${hid}'].ai_brief.gm_executive_memo,'AI Executive Memo copied')">Copy AI Memo</button>
-        <button class="btn outline sm" style="background:rgba(255,255,255,0.12);color:#fff;border-color:rgba(255,255,255,0.2)" onclick="copyText(STATE.pitches['${hid}'].ai_brief.voice_note_15_sec,'15-sec voice note copied')">Copy Voice Note</button>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button class="btn gold sm" onclick="copyText(STATE.pitches['${hid}'].ai_brief.gm_executive_memo,'Strategy memo copied')">Copy Strategy Memo</button>
+        ${h.verify_url?`<a class="btn outline sm" style="background:rgba(255,255,255,0.12);color:#fff;border-color:rgba(255,255,255,0.2)" href="${h.verify_url}" target="_blank">🔍 Live OTA Proof ↗</a>`:''}
       </div>
     </div>
 
-    <div class="grid3" style="margin-bottom:16px">
-      <div style="background:rgba(255,255,255,0.78);padding:15px 17px;border-radius:16px;border:1px solid var(--line);box-shadow:var(--glass-shadow)">
-        <div style="font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700">Target Property & 5-Channel Contacts</div>
-        <div style="font-size:16px;font-weight:800;margin-top:4px">${h.name}</div>
-        <div style="font-size:12.5px;color:var(--muted);margin-top:2px">📍 ${h.primary_address}</div>
-        <div style="margin-top:8px">
-          <a class="pill em" href="mailto:${h.primary_email}">✉ ${h.primary_email}</a>
-          <a class="pill ph" href="tel:${h.primary_phone}">📞 ${h.primary_phone}</a>
-          ${h.instagram?`<span class="pill">📸 IG: ${h.instagram}</span>`:''}
-          ${h.verify_url?`<a class="pill" style="background:#0F172A;color:#fff" href="${h.verify_url}" target="_blank">🔍 Live OTA Proof ↗</a>`:''}
+    <div class="grid3" style="margin-bottom:14px">
+      <div style="background:rgba(255,255,255,0.82);padding:14px 16px;border-radius:14px;border:1px solid var(--line)">
+        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">Current Direct BAR vs Recommended</div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-top:5px">
+          <span class="mono" style="font-size:23px;font-weight:800;color:#0F172A">${money(ri.direct_bar)}</span>
+          <span class="mono" style="font-size:18px;font-weight:800;color:var(--blue)">→ ${money(mem.recommended_bar||ri.direct_bar+18)}/nt</span>
         </div>
-        <div style="font-size:12px;color:var(--blue);font-weight:700;margin-top:6px">Role: ${h.target_role} · Stack: ${h.booking_engine}</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:5px">Out-the-Door w/ Resort Fee & Tax: <b>${money(otd.direct_out_the_door)}/nt</b></div>
       </div>
 
-      <div style="background:rgba(255,255,255,0.78);padding:15px 17px;border-radius:16px;border:1px solid var(--line);box-shadow:var(--glass-shadow)">
-        <div style="font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700">Headline BAR vs. True Out-the-Door (${ri.checkin})</div>
-        <div style="display:flex;align-items:baseline;gap:10px;margin-top:6px">
-          <span class="mono" style="font-size:24px;font-weight:800;color:#0F172A">${money(ri.direct_bar)} <small style="font-size:11px;color:var(--muted)">BAR (${money(otd.direct_out_the_door)} OTD)</small></span>
-          <span class="mono" style="font-size:17px;font-weight:800;color:var(--coral)">vs ${money(ri.lowest_ota_price)} <small style="font-size:11px">${ri.lowest_ota_name}</small></span>
+      <div style="background:rgba(255,255,255,0.82);padding:14px 16px;border-radius:14px;border:1px solid var(--line)">
+        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">OTA Parity & Wholesale Check (${ri.checkin})</div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-top:5px">
+          <span class="mono" style="font-size:23px;font-weight:800;color:var(--coral)">${money(ri.lowest_ota_price)}</span>
+          <span style="font-size:12px;font-weight:700;color:var(--coral)">on ${ri.lowest_ota_name} (${ri.undercut_pct}%)</span>
         </div>
-        <div style="margin-top:6px">
-          <span class="tag ${ri.parity_status==='UNDERCUT'?'undercut':'parity'}">${ri.parity_status} (${ri.undercut_pct>0?'+':''}${ri.undercut_pct}%)</span>
-          <span style="font-size:12px;color:var(--muted);margin-left:6px">Est. Resort Fee: <b>$${otd.est_resort_fee||0}/nt</b> + <b>${otd.tax_rate_pct||14}% tax</b></span>
-        </div>
-        <div style="font-size:11.5px;color:var(--muted);margin-top:6px">${otd.fee_hook||''}</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:5px">Corridor Neighbor Avg: <b>${money(ri.comp_avg)}/nt</b></div>
       </div>
 
-      <div style="background:rgba(255,255,255,0.78);padding:15px 17px;border-radius:16px;border:1px solid var(--line);box-shadow:var(--glass-shadow)">
-        <div style="font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700">Small-Hotel Impulse Math (${roi.est_rooms} Rooms)</div>
-        <div class="mono" style="font-size:24px;font-weight:800;color:var(--green);margin-top:6px">+${money(roi.total_annual_roi)}/year</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px">
-          • Smarter Yield (+$${roi.adr_lift_per_night}/nt): <b>+${money(roi.annual_adr_upside)}/yr</b><br>
-          • Direct Shift (18% OTA comm saved): <b>+${money(roi.annual_commission_saved)}/yr</b>
-        </div>
-        <div style="margin-top:6px;font-size:12px;font-weight:700;color:var(--blue)">
-          Offer: ${roi.recommended_tier} — Only $3.30/day (${roi.roi_multiple}x ROI)
-        </div>
+      <div style="background:rgba(255,255,255,0.82);padding:14px 16px;border-radius:14px;border:1px solid var(--line)">
+        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">Projected Annual RevPAR Impact (${h.est_rooms} Rooms)</div>
+        <div class="mono" style="font-size:23px;font-weight:800;color:var(--green);margin-top:5px">+${money(roi.total_annual_roi)}/yr</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:5px">Yield Lift (+${money(roi.annual_adr_upside)}) + Direct Parity (+${money(roi.annual_commission_saved)})</div>
       </div>
     </div>
 
-    <!-- 3 ACTIONABLE PROFIT RECOMMENDATIONS -->
-    <div style="background:rgba(255,255,255,0.72);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:18px;box-shadow:var(--glass-shadow)">
-      <div style="font:700 15.5px 'Plus Jakarta Sans',sans-serif;color:#0F172A;margin-bottom:10px">⚡ 3 Immediate Profit Actions to Show ${h.short_name}'s Owner Today</div>
-      <div class="grid3">
-        ${recs.map(r=>`
-          <div style="background:rgba(255,255,255,0.9);border-left:4px solid var(--blue);padding:12px 14px;border-radius:12px;border:1px solid var(--line2)">
-            <div style="display:flex;justify-content:space-between;gap:6px"><b style="font-size:13px">${r.title}</b><span class="pill em">${r.impact}</span></div>
-            <div style="font-size:12px;color:var(--muted);margin-top:5px">${r.detail}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-
-    <div class="grid2">
-      <!-- LEFT COLUMN: WALK-IN + PHONE CALL SCRIPTS + OBJECTIONS -->
-      <div>
-        <h3 style="font:700 16.5px 'Plus Jakarta Sans',sans-serif;color:#0F172A">🚶‍♂️ Local Walk-In Lobby Script (Highest Conversion: 35%–50%)</h3>
-        <div class="script-hdr">
-          <span>In-Person Drop-In at ${h.primary_address} (Bring Printed 1-Page Audit)</span>
-          <div style="display:flex;gap:6px">
-            <button class="btn sm gold" onclick="openPrintableAudit()">🖨 Print 1-Page Sheet</button>
-            <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].call_script.walk_in_script,'Walk-in script copied')">Copy Walk-In</button>
-          </div>
+    <div class="grid3">
+      ${recs.map(r=>`
+        <div style="background:rgba(255,255,255,0.88);border-left:4px solid var(--blue);padding:13px 15px;border-radius:12px;border:1px solid var(--line2)">
+          <div style="display:flex;justify-content:space-between;gap:6px"><b style="font-size:13px">${r.title}</b><span class="pill em">${r.impact}</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:6px">${r.detail}</div>
         </div>
-        <div class="script-box">${cs.walk_in_script||''}</div>
-
-        <h3 style="font:700 16.5px 'Plus Jakarta Sans',sans-serif;color:#0F172A;margin-top:18px">📞 Phone Call Script (Dial ${cs.dial_number})</h3>
-        <div class="script-hdr">
-          <span>Step 1: Front-Desk / Gatekeeper Bypass</span>
-          <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].call_script.gatekeeper_bypass,'Gatekeeper script copied')">Copy Script</button>
-        </div>
-        <div class="script-box">${cs.gatekeeper_bypass}</div>
-
-        <div class="script-hdr">
-          <span>Step 2: 25-Second GM / Owner Opener ($99/mo No-Brainer Hook)</span>
-          <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].call_script.gm_opener_30_sec,'GM Opener copied')">Copy Opener</button>
-        </div>
-        <div class="script-box">${cs.gm_opener_30_sec}</div>
-
-        <div class="script-hdr"><span>Step 3: Discovery & Pain Quantification Questions</span></div>
-        <div class="script-box">${(cs.discovery_questions||[]).join('\n\n')}</div>
-
-        <div class="script-hdr">
-          <span>Step 4: Zero-Risk 7-Day Free WhatsApp/Email Brief Close</span>
-          <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].call_script.trial_close,'Close script copied')">Copy Close</button>
-        </div>
-        <div class="script-box">${cs.trial_close}</div>
-
-        <h3 style="font:700 16.5px 'Plus Jakarta Sans',sans-serif;color:#0F172A;margin-top:20px">🛡 Word-for-Word Small-Hotel Objection Rebuttals</h3>
-        ${(cs.objections||[]).map(o=>`
-          <div class="obj-card">
-            <b>Objection: ${o.objection}</b>
-            <div style="font-size:13px">${o.response}</div>
-          </div>
-        `).join('')}
-      </div>
-
-      <!-- RIGHT COLUMN: WHATSAPP/SMS + INSTAGRAM DM + 5-TOUCH EMAILS + LOCAL ROUTES -->
-      <div>
-        <h3 style="font:700 16.5px 'Plus Jakarta Sans',sans-serif;color:#0F172A">💬 WhatsApp / SMS, Instagram DM & LinkedIn Outbound</h3>
-        ${(pitch.sms_templates||[]).map((s,idx)=>`
-          <div class="script-hdr">
-            <span>${s.label}</span>
-            <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].sms_templates[${idx}].text,'WhatsApp/SMS copied')">Copy Text</button>
-          </div>
-          <div class="script-box">${s.text}</div>
-        `).join('')}
-
-        <div class="script-hdr">
-          <span>📸 Instagram DM to ${h.instagram||'@hotel'} (Boutique Owners Check IG Daily!)</span>
-          <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].instagram_dm,'Instagram DM copied')">Copy IG DM</button>
-        </div>
-        <div class="script-box">${pitch.instagram_dm||''}</div>
-
-        <div class="script-hdr">
-          <span>LinkedIn DM / Voice Note Opener</span>
-          <button class="btn sm outline" onclick="copyText(STATE.pitches['${hid}'].linkedin_dm,'LinkedIn DM copied')">Copy LinkedIn DM</button>
-        </div>
-        <div class="script-box">${pitch.linkedin_dm}</div>
-
-        <h3 style="font:700 16.5px 'Plus Jakarta Sans',sans-serif;color:#0F172A;margin-top:20px">✉ 5-Step Automated Cold & Marketing Email Sequence</h3>
-        ${(pitch.emails||[]).map((em,idx)=>{
-          const mailto=`mailto:${encodeURIComponent(em.to)}?subject=${encodeURIComponent(em.subject)}&body=${encodeURIComponent(em.body)}`;
-          return `
-            <div class="script-hdr">
-              <span>${em.step}</span>
-              <div style="display:flex;gap:6px">
-                <button class="btn sm outline" onclick="copyText('Subject: '+STATE.pitches['${hid}'].emails[${idx}].subject+'\\n\\n'+STATE.pitches['${hid}'].emails[${idx}].body,'Email #${idx+1} copied')">Copy Email</button>
-                <a class="btn sm" href="${mailto}">Send via Email App ↗</a>
-              </div>
-            </div>
-            <div class="script-box"><b>To:</b> ${em.to}\n<b>Subject:</b> ${em.subject}\n\n${em.body}</div>
-          `;
-        }).join('')}
-
-        <h3 style="font:700 16.5px 'Plus Jakarta Sans',sans-serif;color:#0F172A;margin-top:20px">🚗 Your 4 Local Walk-In Driving Corridors (From North Miami)</h3>
-        ${routes.map(rt=>`
-          <div style="background:rgba(255,255,255,0.78);border:1px solid var(--line2);border-radius:14px;padding:12px 15px;margin-top:8px">
-            <b style="color:var(--blue)">${rt.name}</b>
-            <div style="font-size:11.5px;color:var(--gold2);font-weight:700;margin-top:2px">⏰ Best Walk-In Window: ${rt.best_hours} · 📍 ${rt.corridor}</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:4px">${rt.why_it_converts}</div>
-          </div>
-        `).join('')}
-      </div>
+      `).join('')}
     </div>
   `;
+}
 
-  const tiers=pitch.pricing_tiers||STATE.summary?.pricing_tiers||[];
-  $('#pricing-tiers-grid').innerHTML=tiers.map(t=>`
-    <div class="tier-card ${t.recommended?'rec':''}">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <b style="font-size:17px">${t.name}</b>
-          ${t.recommended?'<span class="tag hot">Most Popular</span>':''}
-        </div>
-        <div style="font-size:12px;color:var(--muted);margin-top:3px">${t.best_for}</div>
-        <div class="tier-price">$${t.price_monthly}<span style="font-size:13px;font-weight:500;color:var(--muted)">/month</span></div>
-        <ul class="signals" style="margin-top:10px">${(t.features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
-      </div>
-      <button class="btn ${t.recommended?'blue':'outline'}" style="margin-top:16px;width:100%;justify-content:center"
-        onclick="copyText('Hotel Rate Intelligence — ${t.name} ($${t.price_monthly}/mo):\\n- '+${JSON.stringify((t.features||[]).join('\n- '))},'Pricing tier copied')">
-        Copy ${t.name} Offer Summary
-      </button>
-    </div>
-  `).join('');
+function openPrintableAudit(){
+  const hid=STATE.selectedHotelId||11;
+  window.open('/audit?hotel_id='+hid,'_blank');
+}
+
+/* ==================== TAB 5: SETUP, ADD HOTEL & AUTO-REPORTS ==================== */
+async function loadConfigTab(){
+  const r=await fetch('/api/config'+authQuery());
+  if(!r.ok)return;
+  const d=await r.json();
+  const cfg=d.config||{};
+  if(d.brief_preview)$('#brief-preview-box').textContent=d.brief_preview;
+  if(cfg.stay){
+    $('#cfg-days').value=cfg.stay.checkin_days_out||30;
+    $('#cfg-nights').value=cfg.stay.nights||3;
+  }
+  if(cfg.telegram){
+    $('#cfg-sched').value=cfg.telegram.schedule_time||'06:00';
+    $('#cfg-tg-token').value=cfg.telegram.bot_token||'';
+    $('#cfg-tg-chat').value=cfg.telegram.chat_id||'';
+  }
+  if(cfg.email_report){
+    $('#cfg-smtp-host').value=cfg.email_report.smtp_host||'smtp-relay.brevo.com';
+    $('#cfg-smtp-port').value=cfg.email_report.smtp_port||587;
+    $('#cfg-to-email').value=cfg.email_report.to_email||'';
+    $('#cfg-smtp-user').value=cfg.email_report.smtp_user||'';
+    $('#cfg-smtp-pass').value=cfg.email_report.smtp_pass||'';
+  }
+}
+
+async function submitNewHotel(){
+  const name=$('#add-name')?.value?.trim();
+  if(!name){toast('Enter a hotel name first');return;}
+  toast('⏳ Adding '+name+' and scraping initial rate...');
+  const payload={
+    name,
+    area:$('#add-area')?.value||'North Beach',
+    website:$('#add-website')?.value||'',
+    xotelo_key:$('#add-xotelo')?.value||'',
+    stars:Number($('#add-stars')?.value||3.5),
+    est_rooms:Number($('#add-rooms')?.value||45),
+    price_min:Number($('#add-min')?.value||145),
+    price_max:Number($('#add-max')?.value||340),
+    email:$('#add-email')?.value||'',
+    phone:$('#add-phone')?.value||'',
+  };
+  const r=await fetch('/api/hotels'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  if(r.ok){
+    const res=await r.json();
+    $('#add-name').value='';
+    toast('✓ Added '+name+' (ID #'+res.hotel_id+') & memorized initial rate!');
+    await refresh();
+    switchTab('memory',res.hotel_id);
+  }
+}
+
+async function saveScraperConfig(){
+  const payload={
+    stay:{checkin_days_out:Number($('#cfg-days').value||30),nights:Number($('#cfg-nights').value||3)},
+    telegram:{schedule_time:$('#cfg-sched').value||'06:00',bot_token:$('#cfg-tg-token').value,chat_id:$('#cfg-tg-chat').value},
+    email_report:{
+      schedule_time:$('#cfg-sched').value||'06:00',
+      smtp_host:$('#cfg-smtp-host').value,
+      smtp_port:Number($('#cfg-smtp-port').value||587),
+      to_email:$('#cfg-to-email').value,
+      smtp_user:$('#cfg-smtp-user').value,
+      smtp_pass:$('#cfg-smtp-pass').value,
+    }
+  };
+  const r=await fetch('/api/config'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  if(r.ok){toast('✓ Scraper, Telegram & Email settings saved!');loadConfigTab();}
+}
+
+async function dispatchDailyReportNow(){
+  toast('📨 Generating & dispatching daily rate report...');
+  const r=await fetch('/api/send-report'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
+  if(r.ok){
+    const d=await r.json();
+    if(d.brief && $('#brief-preview-box'))$('#brief-preview-box').textContent=d.brief;
+    toast(`✓ Report ready! Telegram: ${d.telegram_status} | Email: ${d.email_status}`);
+  }
+}
+
+async function runLiveScrapeNow(){
+  toast('↻ Running live multi-OTA rate & occupancy scan...');
+  const r=await fetch('/api/scrape-now'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
+  if(r.ok){
+    toast('✓ Live rate scan complete & memorized!');
+    await refresh();
+  }
+}
+
+function exportCsv(){
+  const headers=['ID','Hotel Name','Corridor','Stars','Rooms','Current BAR','Prior BAR','Parity Status','Undercut %','Est Occupancy %','Pricing Behavior'];
+  const lines=[headers.join(',')];
+  (STATE.hotels||[]).forEach(h=>{
+    lines.push([h.id,`"${h.name}"`,`"${h.area||''}"`,h.stars||'',h.est_rooms||'',h.price||'',h.prev_price||'',h.parity_status||'',h.undercut_pct||0,h.est_occupancy_pct||74,`"${h.pricing_personality||''}"`].join(','));
+  });
+  const blob=new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='hri_hotel_rate_memory_matrix.csv';
+  a.click();
+  toast('✓ Exported hotel rate & occupancy memory CSV');
 }
 
 refresh();setInterval(refresh,60000);

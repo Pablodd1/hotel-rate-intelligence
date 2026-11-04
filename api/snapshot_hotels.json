@@ -19,6 +19,8 @@
    "price_max": 2769.0,
    "deal_stage": "new",
    "created": 1793731050.6356113,
+   "est_occupancy_pct": 94,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -95,6 +97,7 @@
      "tax": 341
     }
    ],
+   "decision_logic": "Actively raises BAR (+44.6% to $2439) as occupancy crosses ~94%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 46,
    "tier": "warm",
    "est_annual_upside": 7755700
@@ -118,6 +121,8 @@
    "price_max": 1407.0,
    "deal_stage": "new",
    "created": 1793731050.2880466,
+   "est_occupancy_pct": 96,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -184,6 +189,7 @@
      "tax": 182.7
     }
    ],
+   "decision_logic": "Actively raises BAR (+125.0% to $1296) as occupancy crosses ~96%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 55,
    "tier": "warm",
    "est_annual_upside": 4121100
@@ -207,6 +213,8 @@
    "price_max": 568.0,
    "deal_stage": "new",
    "created": 1793731050.1437597,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -272,6 +280,7 @@
      "tax": 88.9
     }
    ],
+   "decision_logic": "Actively raises BAR (+89.2% to $628) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 81,
    "tier": "hot",
    "est_annual_upside": 1969700
@@ -295,6 +304,8 @@
    "price_max": 578.0,
    "deal_stage": "new",
    "created": 1793731050.348842,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -354,6 +365,7 @@
      "tax": 92
     }
    ],
+   "decision_logic": "Actively raises BAR (+115.0% to $660) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 543800
@@ -377,6 +389,8 @@
    "price_max": 385.0,
    "deal_stage": "new",
    "created": 1793731050.3744152,
+   "est_occupancy_pct": 96,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -442,6 +456,7 @@
      "tax": 49
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-28.7% undercut). Front-desk / revenue manager sets Direct BAR manually ($352) without auditing Agoda/Vio.com.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 381600
@@ -465,6 +480,8 @@
    "price_max": 469.0,
    "deal_stage": "new",
    "created": 1793731050.2173269,
+   "est_occupancy_pct": 72,
+   "pricing_personality": "Rigid Tier-Band Holder",
    "contacts": [
     {
      "kind": "address",
@@ -535,6 +552,7 @@
      "tax": 44
     }
    ],
+   "decision_logic": "Holds fixed seasonal rate tiers ($313/nt at ~72% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 226200
@@ -558,6 +576,8 @@
    "price_max": 445.0,
    "deal_stage": "new",
    "created": 1793731050.3637524,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -629,6 +649,7 @@
      "tax": 81.62
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-8.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($502) without auditing Agoda/Vio.com.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 326500
@@ -652,6 +673,8 @@
    "price_max": 589.0,
    "deal_stage": "new",
    "created": 1793731050.1878612,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -728,6 +751,7 @@
      "tax": 120
     }
    ],
+   "decision_logic": "Actively raises BAR (+207.9% to $856) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 1237300
@@ -751,6 +775,8 @@
    "price_max": 431.0,
    "deal_stage": "new",
    "created": 1793731050.650938,
+   "est_occupancy_pct": 89,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -816,6 +842,7 @@
      "tax": 49.56
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.5% undercut). Front-desk / revenue manager sets Direct BAR manually ($335) without auditing Agoda/Vio.com.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 290500
@@ -839,6 +866,8 @@
    "price_max": 501.0,
    "deal_stage": "new",
    "created": 1793731050.5432537,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -915,6 +944,7 @@
      "tax": 99.54
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-44.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($692) without auditing Agoda/Vio.com.",
    "score": 96,
    "tier": "hot",
    "est_annual_upside": 1450300
@@ -938,6 +968,8 @@
    "price_max": 517.0,
    "deal_stage": "new",
    "created": 1793731050.1548035,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -1003,6 +1035,7 @@
      "tax": 68
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-18.1% undercut). Front-desk / revenue manager sets Direct BAR manually ($485) without auditing Agoda/Vio.com.",
    "score": 91,
    "tier": "hot",
    "est_annual_upside": 883300
@@ -1026,6 +1059,8 @@
    "price_max": 2916.0,
    "deal_stage": "new",
    "created": 1793731050.2533226,
+   "est_occupancy_pct": 66,
+   "pricing_personality": "Last-Minute Panic Discounter",
    "contacts": [
     {
      "kind": "address",
@@ -1096,6 +1131,7 @@
      "tax": 301
     }
    ],
+   "decision_logic": "Drops BAR aggressively (-9.5% to $2128) when mid-week occupancy dips (~66%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating.",
    "score": 81,
    "tier": "hot",
    "est_annual_upside": 5505700
@@ -1119,6 +1155,8 @@
    "price_max": 643.0,
    "deal_stage": "new",
    "created": 1793731050.0911744,
+   "est_occupancy_pct": 94,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -1178,6 +1216,7 @@
      "tax": 73
     }
    ],
+   "decision_logic": "Actively raises BAR (+69.3% to $518) as occupancy crosses ~94%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 86,
    "tier": "hot",
    "est_annual_upside": 1647200
@@ -1201,6 +1240,8 @@
    "price_max": 290.0,
    "deal_stage": "new",
    "created": 1793731050.3330572,
+   "est_occupancy_pct": 76,
+   "pricing_personality": "Rigid Tier-Band Holder",
    "contacts": [
     {
      "kind": "address",
@@ -1266,6 +1307,7 @@
      "tax": 26
     }
    ],
+   "decision_logic": "Holds fixed seasonal rate tiers ($186/nt at ~76% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 112900
@@ -1289,6 +1331,8 @@
    "price_max": 562.0,
    "deal_stage": "new",
    "created": 1793731050.4805815,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -1359,6 +1403,7 @@
      "tax": 112.98
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-17.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($791) without auditing Agoda/Vio.com.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 1040400
@@ -1382,6 +1427,8 @@
    "price_max": 834.0,
    "deal_stage": "new",
    "created": 1793731050.467523,
+   "est_occupancy_pct": 84,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -1447,6 +1494,7 @@
      "tax": 79
     }
    ],
+   "decision_logic": "Actively raises BAR (+59.1% to $560) as occupancy crosses ~84%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 736600
@@ -1470,6 +1518,8 @@
    "price_max": 625.0,
    "deal_stage": "new",
    "created": 1793731050.5260806,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -1541,6 +1591,7 @@
      "tax": 110
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-32.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($784) without auditing Agoda/Vio.com.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 1348500
@@ -1564,6 +1615,8 @@
    "price_max": 660.0,
    "deal_stage": "new",
    "created": 1793731050.4320414,
+   "est_occupancy_pct": 78,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -1629,6 +1682,7 @@
      "tax": 67
     }
    ],
+   "decision_logic": "Actively raises BAR (+8.8% to $471) as occupancy crosses ~78%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 177000
@@ -1652,6 +1706,8 @@
    "price_max": 2473.0,
    "deal_stage": "new",
    "created": 1793731050.2720163,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -1729,6 +1785,7 @@
      "tax": 409.36
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-18.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($2895) without auditing Agoda/Vio.com.",
    "score": 46,
    "tier": "warm",
    "est_annual_upside": 9205800
@@ -1752,6 +1809,8 @@
    "price_max": 879.0,
    "deal_stage": "new",
    "created": 1793731050.596237,
+   "est_occupancy_pct": 95,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -1833,6 +1892,7 @@
      "tax": 122.36
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-15.9% undercut). Front-desk / revenue manager sets Direct BAR manually ($787) without auditing Agoda/Vio.com.",
    "score": 96,
    "tier": "hot",
    "est_annual_upside": 1729000
@@ -1856,6 +1916,8 @@
    "price_max": 231.0,
    "deal_stage": "new",
    "created": 1793731050.061305,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -1927,6 +1989,7 @@
      "tax": 38.08
     }
    ],
+   "decision_logic": "Actively raises BAR (+114.4% to $268) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 387400
@@ -1950,6 +2013,8 @@
    "price_max": 576.0,
    "deal_stage": "new",
    "created": 1793731050.2012424,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -2021,6 +2086,7 @@
      "tax": 154.0
     }
    ],
+   "decision_logic": "Actively raises BAR (+203.9% to $936) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 960600
@@ -2044,6 +2110,8 @@
    "price_max": 294.0,
    "deal_stage": "new",
    "created": 1793731050.0756986,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -2109,6 +2177,7 @@
      "tax": 61.46
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($438) without auditing Agoda/Vio.com.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 747000
@@ -2132,6 +2201,8 @@
    "price_max": 301.0,
    "deal_stage": "new",
    "created": 1793731050.0483198,
+   "est_occupancy_pct": 71,
+   "pricing_personality": "Rigid Tier-Band Holder",
    "contacts": [
     {
      "kind": "address",
@@ -2197,6 +2268,7 @@
      "tax": 26
     }
    ],
+   "decision_logic": "Holds fixed seasonal rate tiers ($181/nt at ~71% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 109900
@@ -2220,6 +2292,8 @@
    "price_max": 495.0,
    "deal_stage": "new",
    "created": 1793731050.3154497,
+   "est_occupancy_pct": 85,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -2295,6 +2369,7 @@
      "tax": 52
     }
    ],
+   "decision_logic": "Actively raises BAR (+77.9% to $363) as occupancy crosses ~85%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 173100
@@ -2318,6 +2393,8 @@
    "price_max": 261.0,
    "deal_stage": "new",
    "created": 1793731050.0201004,
+   "est_occupancy_pct": 93,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -2389,6 +2466,7 @@
      "tax": 32.06
     }
    ],
+   "decision_logic": "Actively raises BAR (+54.5% to $224) as occupancy crosses ~93%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 145700
@@ -2412,6 +2490,8 @@
    "price_max": 1593.0,
    "deal_stage": "new",
    "created": 1793731050.566438,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -2498,6 +2578,7 @@
      "tax": 218
     }
    ],
+   "decision_logic": "Actively raises BAR (+127.1% to $1558) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 2927500
@@ -2521,6 +2602,8 @@
    "price_max": 174.0,
    "deal_stage": "new",
    "created": 1793731050.1294603,
+   "est_occupancy_pct": 64,
+   "pricing_personality": "Last-Minute Panic Discounter",
    "contacts": [
     {
      "kind": "address",
@@ -2581,6 +2664,7 @@
      "tax": 16
     }
    ],
+   "decision_logic": "Drops BAR aggressively (-5.1% to $111) when mid-week occupancy dips (~64%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating.",
    "score": 85,
    "tier": "hot",
    "est_annual_upside": 51300
@@ -2604,6 +2688,8 @@
    "price_max": 378.0,
    "deal_stage": "new",
    "created": 1793731050.3004422,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -2674,6 +2760,7 @@
      "tax": 52.5
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-11.6% undercut). Front-desk / revenue manager sets Direct BAR manually ($371) without auditing Agoda/Vio.com.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 268100
@@ -2697,6 +2784,8 @@
    "price_max": 487.0,
    "deal_stage": "new",
    "created": 1793731050.6123095,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -2779,6 +2868,7 @@
      "tax": 97.3
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.1% undercut). Front-desk / revenue manager sets Direct BAR manually ($636) without auditing Agoda/Vio.com.",
    "score": 86,
    "tier": "hot",
    "est_annual_upside": 2022400
@@ -2802,6 +2892,8 @@
    "price_max": 521.0,
    "deal_stage": "new",
    "created": 1793731050.4060097,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -2873,6 +2965,7 @@
      "tax": 90
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-30.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($643) without auditing Agoda/Vio.com.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 306700
@@ -2896,6 +2989,8 @@
    "price_max": 436.0,
    "deal_stage": "new",
    "created": 1793731050.1714532,
+   "est_occupancy_pct": 92,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -2955,6 +3050,7 @@
      "tax": 49
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-11.0% undercut). Front-desk / revenue manager sets Direct BAR manually ($347) without auditing Agoda/Vio.com.",
    "score": 91,
    "tier": "hot",
    "est_annual_upside": 601900
@@ -2978,6 +3074,8 @@
    "price_max": 201.0,
    "deal_stage": "new",
    "created": 1793731050.1176462,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -3043,6 +3141,7 @@
      "tax": 39
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-37.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($281) without auditing Agoda/Vio.com.",
    "score": 91,
    "tier": "hot",
    "est_annual_upside": 121800
@@ -3066,6 +3165,8 @@
    "price_max": 850.0,
    "deal_stage": "new",
    "created": 1793731050.232707,
+   "est_occupancy_pct": 92,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -3135,6 +3236,7 @@
      "tax": 91
     }
    ],
+   "decision_logic": "Actively raises BAR (+61.2% to $653) as occupancy crosses ~92%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 86,
    "tier": "hot",
    "est_annual_upside": 2076500
@@ -3158,6 +3260,8 @@
    "price_max": 501.0,
    "deal_stage": "new",
    "created": 1793731050.502932,
+   "est_occupancy_pct": 83,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -3228,6 +3332,7 @@
      "tax": 47
     }
    ],
+   "decision_logic": "Actively raises BAR (+44.5% to $331) as occupancy crosses ~83%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 526300
@@ -3251,6 +3356,8 @@
    "price_max": 874.0,
    "deal_stage": "new",
    "created": 1793731050.4956725,
+   "est_occupancy_pct": 95,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -3316,6 +3423,7 @@
      "tax": 120.82
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-8.5% undercut). Front-desk / revenue manager sets Direct BAR manually ($785) without auditing Agoda/Vio.com.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 1146000
@@ -3339,6 +3447,8 @@
    "price_max": 1023.0,
    "deal_stage": "new",
    "created": 1793731050.4517257,
+   "est_occupancy_pct": 91,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -3409,6 +3519,7 @@
      "tax": 118
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($844) without auditing Agoda/Vio.com.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 914900
@@ -3432,6 +3543,8 @@
    "price_max": 946.0,
    "deal_stage": "new",
    "created": 1793731050.5599623,
+   "est_occupancy_pct": 54,
+   "pricing_personality": "Last-Minute Panic Discounter",
    "contacts": [
     {
      "kind": "address",
@@ -3507,6 +3620,7 @@
      "tax": 81
     }
    ],
+   "decision_logic": "Drops BAR aggressively (-15.2% to $570) when mid-week occupancy dips (~54%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 823900
@@ -3530,6 +3644,8 @@
    "price_max": 315.0,
    "deal_stage": "new",
    "created": 1793731050.103129,
+   "est_occupancy_pct": 96,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -3595,6 +3711,7 @@
      "tax": 41.86
     }
    ],
+   "decision_logic": "Actively raises BAR (+68.0% to $299) as occupancy crosses ~96%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 85,
    "tier": "hot",
    "est_annual_upside": 194500
@@ -3618,6 +3735,8 @@
    "price_max": 426.0,
    "deal_stage": "new",
    "created": 1793731050.3895845,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -3689,6 +3808,7 @@
      "tax": 79.38
     }
    ],
+   "decision_logic": "Actively raises BAR (+124.8% to $481) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 305900
@@ -3712,6 +3832,8 @@
    "price_max": 206.0,
    "deal_stage": "new",
    "created": 1793731050.0340202,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker",
    "contacts": [
     {
      "kind": "address",
@@ -3789,6 +3911,7 @@
      "tax": 35
     }
    ],
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-26.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($248) without auditing Agoda/Vio.com.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 175600
@@ -3812,6 +3935,8 @@
    "price_max": 472.0,
    "deal_stage": "new",
    "created": 1793731050.421368,
+   "est_occupancy_pct": 84,
+   "pricing_personality": "Early Compression Yielder",
    "contacts": [
     {
      "kind": "address",
@@ -3877,6 +4002,7 @@
      "tax": 55
     }
    ],
+   "decision_logic": "Actively raises BAR (+10.8% to $391) as occupancy crosses ~84%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
    "score": 100,
    "tier": "hot",
    "est_annual_upside": 293900

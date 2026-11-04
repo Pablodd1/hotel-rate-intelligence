@@ -15,9 +15,29 @@ DEFAULTS = {
         "max_contact_pages_per_hotel": 2,
     },
     "sources": {"hotel_sites": True, "ota": False, "xotelo": True},
-    "telegram": {"bot_token": "", "chat_id": ""},
+    "telegram": {"bot_token": "", "chat_id": "", "enabled": True, "schedule_time": "06:00"},
+    "email_report": {
+        "enabled": True,
+        "schedule_time": "06:00",
+        "smtp_host": "smtp-relay.brevo.com",
+        "smtp_port": 587,
+        "smtp_user": "",
+        "smtp_pass": "",
+        "from_email": "rates@miamihotelintel.com",
+        "to_email": "jasmel@miamihotelintel.com",
+    },
     "dashboard": {"host": "127.0.0.1", "port": 8317, "auth_key": ""},
 }
+
+
+def save(new_cfg, path=None):
+    p = path or os.path.join(ROOT, "config.json")
+    clean = dict(new_cfg)
+    if "database" in clean and os.path.isabs(clean["database"]):
+        clean["database"] = "data/hri.db"
+    with open(p, "w", encoding="utf-8") as f:
+        json.dump(clean, f, indent=2)
+    return load(p)
 
 
 def _merge(base, over):

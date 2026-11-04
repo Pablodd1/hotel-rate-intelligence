@@ -7,6 +7,7 @@ using the no-brainer $99 / $199 / $399 flat monthly model (zero per-room tax).
 import json
 from datetime import date
 from .ai_engine import compute_out_the_door_pricing, generate_deterministic_ai_brief, AI_MODEL_BENCHMARKS
+from .memory_engine import record_and_analyze_memory
 
 
 PRICING_TIERS = [
@@ -507,12 +508,14 @@ def build_hotel_pitch(conn, hotel_id):
     }
     otd_obj = compute_out_the_door_pricing(area, hotel.get("stars"), bar_price, ota_price, ota_name)
     ai_brief_obj = generate_deterministic_ai_brief(hotel_obj, rate_intel_obj, roi_obj, otd_obj)
+    memory_obj = record_and_analyze_memory(conn, hid)
 
     return {
         "hotel": hotel_obj,
         "rate_intel": rate_intel_obj,
         "out_the_door": otd_obj,
         "ai_brief": ai_brief_obj,
+        "memory": memory_obj,
         "ai_models": AI_MODEL_BENCHMARKS,
         "action_recommendations": action_recommendations,
         "miami_events": MIAMI_COMPRESSION_EVENTS,

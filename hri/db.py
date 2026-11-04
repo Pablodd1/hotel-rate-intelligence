@@ -69,6 +69,19 @@ CREATE TABLE IF NOT EXISTS prospects (
   est_annual_upside INTEGER DEFAULT 0,
   scored_at REAL NOT NULL
 );
+CREATE TABLE IF NOT EXISTS memory_events (
+  id INTEGER PRIMARY KEY,
+  hotel_id INTEGER NOT NULL REFERENCES hotels(id),
+  event_type TEXT NOT NULL,      -- rate_change | parity_violation | competitor_move | occupancy_signal | strategy_decision
+  old_price REAL,
+  new_price REAL,
+  delta_pct REAL DEFAULT 0,
+  est_occupancy_pct INTEGER DEFAULT 74,
+  competitor_pattern TEXT,       -- AGGRESSIVE_YIELD | DISCOUNT_DUMP | WHOLESALE_LEAK | HOLD_STEADY
+  ai_recommendation TEXT,
+  recorded_at REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_memory_hotel ON memory_events(hotel_id, recorded_at);
 """
 
 MIGRATIONS = [
@@ -79,9 +92,12 @@ MIGRATIONS = [
     ("hotels", "price_min", "REAL"),
     ("hotels", "price_max", "REAL"),
     ("hotels", "deal_stage", "TEXT DEFAULT 'new'"),
+    ("hotels", "est_occupancy_pct", "INTEGER DEFAULT 74"),
+    ("hotels", "pricing_personality", "TEXT DEFAULT 'Dynamic Responder'"),
     ("rates", "ota_json", "TEXT"),
     ("rates", "parity_status", "TEXT"),
     ("rates", "undercut_pct", "REAL DEFAULT 0"),
+    ("rates", "est_occupancy_pct", "INTEGER DEFAULT 74"),
     ("prospects", "est_annual_upside", "INTEGER DEFAULT 0"),
 ]
 
