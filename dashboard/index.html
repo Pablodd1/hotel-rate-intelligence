@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HRI GlassV4 — Real-Time Hotel Rate Scraper, Pricing Memory & Strategy Engine</title>
+<title>Hotel Rate, Occupancy & Reservation Strategy Center</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#EEF2F7;
-  --surface:rgba(255,255,255,0.72);
-  --surface2:rgba(255,255,255,0.56);
-  --surface-dark:rgba(15,23,42,0.92);
+  --surface:rgba(255,255,255,0.74);
+  --surface2:rgba(255,255,255,0.58);
+  --surface-dark:rgba(15,23,42,0.93);
   --line:rgba(255,255,255,0.88);
   --line2:rgba(15,23,42,0.09);
   --ink:#0F172A;
@@ -40,7 +40,7 @@ body{
     linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 52%, #EFF6FF 100%);
   background-attachment:fixed;
   color:var(--ink);
-  font:13.8px/1.52 "Inter",sans-serif;
+  font:13.6px/1.52 "Inter",sans-serif;
   display:flex;
   min-height:100vh;
 }
@@ -49,7 +49,7 @@ body{
 aside{
   width:78px;
   flex-shrink:0;
-  background:rgba(255,255,255,0.62);
+  background:rgba(255,255,255,0.64);
   backdrop-filter:blur(24px) saturate(180%);
   -webkit-backdrop-filter:blur(24px) saturate(180%);
   border-right:1px solid var(--line);
@@ -70,53 +70,49 @@ aside{
   border-radius:50%;background:#10B981;border:2px solid #fff;
 }
 .navi{
-  width:58px;height:52px;border-radius:14px;
+  width:60px;height:52px;border-radius:14px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
   cursor:pointer;color:var(--muted);border:none;background:transparent;
   transition:all .18s ease;
   font:600 9.5px "Inter",sans-serif;letter-spacing:.1px;
 }
-.navi:hover{background:rgba(255,255,255,0.8);color:var(--ink)}
+.navi:hover{background:rgba(255,255,255,0.82);color:var(--ink)}
 .navi.on{background:#0F172A;color:#FFFFFF;box-shadow:0 6px 16px rgba(15,23,42,0.2)}
 .navi svg{width:18px;height:18px}
 
-/* ————— Main Container (Strict Overflow Prevention) ————— */
+/* ————— Main Container ————— */
 main{
   flex:1;
   min-width:0;
-  padding:20px 28px 56px;
-  max-width:1440px;
+  padding:18px 26px 56px;
+  max-width:1460px;
   width:100%;
   margin:0 auto;
 }
 
-/* ————— CodeXR V4 Top Glass Navbar (Single-Row, Zero Overlap) ————— */
+/* ————— Top Glass Pill Navbar (Clean, Single Row, Zero Model/Brand Clutter) ————— */
 .glass-topbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  background:rgba(255,255,255,0.72);
+  background:rgba(255,255,255,0.74);
   backdrop-filter:blur(22px) saturate(180%);
   -webkit-backdrop-filter:blur(22px) saturate(180%);
   border:1px solid var(--line);
   border-radius:999px;
   padding:6px 12px 6px 16px;
   box-shadow:var(--glass-shadow);
-  margin-bottom:18px;
+  margin-bottom:16px;
   flex-wrap:nowrap;
 }
 @media(max-width:1180px){.glass-topbar{flex-wrap:wrap;border-radius:18px}}
 .brand-pill{
-  display:flex;align-items:center;gap:7px;
-  font:700 13px "Plus Jakarta Sans",sans-serif;color:var(--ink);
+  display:flex;align-items:center;gap:8px;
+  font:800 13px "Plus Jakarta Sans",sans-serif;color:var(--ink);
   white-space:nowrap;flex-shrink:0;
 }
 .brand-dot{width:8px;height:8px;border-radius:50%;background:#10B981;box-shadow:0 0 0 4px rgba(16,185,129,0.2)}
-.model-badge{
-  background:var(--blue-soft);color:var(--blue);
-  padding:2.5px 8px;border-radius:99px;font:700 10.5px "JetBrains Mono",monospace;
-}
 
 .tabbar{
   display:flex;
@@ -129,16 +125,16 @@ main{
 }
 .tabbtn{
   background:transparent;border:none;color:var(--muted);
-  padding:5.5px 11px;border-radius:99px;font:600 11.8px "Inter",sans-serif;
+  padding:6px 12px;border-radius:99px;font:600 11.8px "Inter",sans-serif;
   cursor:pointer;transition:all .16s ease;white-space:nowrap;
 }
-.tabbtn:hover{color:var(--ink);background:rgba(255,255,255,0.65)}
+.tabbtn:hover{color:var(--ink);background:rgba(255,255,255,0.7)}
 .tabbtn.on{
   background:#0F172A;color:#FFFFFF;
   box-shadow:0 4px 12px rgba(15,23,42,0.18);
 }
 
-.top-actions{display:flex;gap:5px;align-items:center;flex-wrap:nowrap;flex-shrink:0}
+.top-actions{display:flex;gap:6px;align-items:center;flex-wrap:nowrap;flex-shrink:0}
 .btn{
   background:#0F172A;color:#FFFFFF;border:1px solid rgba(255,255,255,0.12);
   border-radius:99px;padding:7px 14px;font:600 12px "Inter",sans-serif;
@@ -149,7 +145,8 @@ main{
 .btn.gold{background:linear-gradient(135deg,#F59E0B 0%,#D97706 100%);color:#FFF;border:none}
 .btn.blue{background:linear-gradient(135deg,#2563EB 0%,#1D4ED8 100%);color:#FFF;border:none}
 .btn.green{background:linear-gradient(135deg,#10B981 0%,#059669 100%);color:#FFF;border:none}
-.btn.outline{background:rgba(255,255,255,0.82);color:var(--ink);border:1px solid var(--line2)}
+.btn.coral{background:linear-gradient(135deg,#E11D48 0%,#BE123C 100%);color:#FFF;border:none}
+.btn.outline{background:rgba(255,255,255,0.85);color:var(--ink);border:1px solid var(--line2)}
 .btn.outline:hover{background:#FFFFFF}
 .btn.sm{padding:5px 11px;font-size:11.5px;border-radius:99px}
 
@@ -158,7 +155,7 @@ main{
   display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
   margin-bottom:14px;
 }
-h1{font:800 26px/1.15 "Plus Jakarta Sans",sans-serif;color:#0F172A;letter-spacing:-.5px}
+h1{font:800 25px/1.15 "Plus Jakarta Sans",sans-serif;color:#0F172A;letter-spacing:-.5px}
 .date{color:var(--muted);font-size:12.5px;margin-top:3px;font-weight:500}
 .hero-stats-right{
   display:flex;align-items:center;gap:18px;flex-wrap:wrap;
@@ -168,39 +165,28 @@ h1{font:800 26px/1.15 "Plus Jakarta Sans",sans-serif;color:#0F172A;letter-spacin
 }
 .hero-metric{display:flex;flex-direction:column}
 .hero-metric .hm-val{font:800 20px/1.1 "JetBrains Mono",monospace;color:#0F172A}
-.hero-metric .hm-lbl{font-size:10.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+.hero-metric .hm-lbl{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
 
-/* ————— CodeXR Segmented Scraper & Occupancy Strip ————— */
-.pipeline-strip{
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;
-  background:var(--surface);backdrop-filter:blur(20px);
-  border:1px solid var(--line);border-radius:16px;padding:11px 16px;
-  box-shadow:var(--glass-shadow);margin-bottom:14px;
+/* ————— "MY HOTEL" Anchor & Reservation Rate-Setting Assistant Banner ————— */
+.my-hotel-card{
+  background:var(--surface-dark);
+  color:#F8FAFC;
+  border-radius:20px;
+  padding:18px 22px;
+  box-shadow:0 18px 38px -10px rgba(15,23,42,0.28);
+  border:1px solid rgba(255,255,255,0.15);
+  margin-bottom:16px;
 }
-@media(max-width:960px){.pipeline-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.p-seg{display:flex;flex-direction:column;gap:4px;min-width:0}
-.p-seg-top{display:flex;justify-content:space-between;font-size:11px;font-weight:600;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.p-seg-bar{height:22px;border-radius:7px;background:rgba(15,23,42,0.06);overflow:hidden;display:flex;align-items:center;padding:0 9px;font:700 11px "JetBrains Mono",monospace;position:relative;white-space:nowrap}
-.p-seg-fill{position:absolute;left:0;top:0;bottom:0;border-radius:7px;z-index:0}
-.p-seg-bar span{position:relative;z-index:1;overflow:hidden;text-overflow:ellipsis}
+.mh-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.12)}
+.mh-grid{display:grid;grid-template-columns:1.25fr 1fr 1.15fr;gap:14px;margin-top:14px}
+@media(max-width:1100px){.mh-grid{grid-template-columns:1fr}}
+.mh-box{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:13px 16px}
+.mh-lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:#94A3B8;font-weight:700}
+.mh-val{font:800 22px/1.2 "JetBrains Mono",monospace;color:#FFFFFF;margin-top:4px}
 
-/* ————— KPI Cards ————— */
-.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:12px 0 16px}
-@media(max-width:1200px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:700px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.kpi{
-  background:var(--surface);backdrop-filter:blur(22px);
-  border:1px solid var(--line);border-radius:16px;padding:13px 15px;
-  box-shadow:var(--glass-shadow);min-width:0;
-}
-.kpi .lbl{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kpi .val{font:800 24px/1.2 "JetBrains Mono",monospace;margin-top:5px;color:#0F172A}
-.kpi .sub{font-size:11.5px;margin-top:3px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kpi .sub b.up{color:var(--green)} .kpi .sub b.dn{color:var(--coral)}
-
-/* ————— Panels & Grids (Strict `minmax(0,1fr)` so nothing overflows) ————— */
-.tabview{display:none;margin-top:12px}
-.tabview.on{display:block;animation:fadeIn .2s ease}
+/* ————— Panels & Grids ————— */
+.tabview{display:none;margin-top:10px}
+.tabview.on{display:block;animation:fadeIn .18s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
 
 .panel{
@@ -216,12 +202,12 @@ h1{font:800 26px/1.15 "Plus Jakarta Sans",sans-serif;color:#0F172A;letter-spacin
 .panel.dark-glass h2{color:#F8FAFC}
 .panel.dark-glass h2 small{color:#94A3B8}
 .panel h2{
-  font:700 16.5px "Plus Jakarta Sans",sans-serif;color:#0F172A;
+  font:700 16px "Plus Jakarta Sans",sans-serif;color:#0F172A;
   display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
 }
 .panel h2 small{font:600 10.5px "Inter",sans-serif;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
 
-.grid2{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px}
+.grid2{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px}
 .grid2-eq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .grid-codexr{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,0.85fr) minmax(0,0.95fr);gap:14px}
@@ -229,11 +215,11 @@ h1{font:800 26px/1.15 "Plus Jakarta Sans",sans-serif;color:#0F172A;letter-spacin
 
 canvas{width:100%;display:block;margin-top:10px}
 
-/* CodeXR Circular Occupancy & Parity Gauge */
+/* Circular Occupancy & Parity Gauge */
 .dialer-ring-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 0}
 .dialer-circle{
   width:142px;height:142px;border-radius:50%;
-  background:conic-gradient(#F59E0B 0% 76%, rgba(15,23,42,0.08) 76% 100%);
+  background:conic-gradient(#F59E0B 0% 78%, rgba(15,23,42,0.08) 78% 100%);
   display:grid;place-items:center;
   box-shadow:0 8px 24px rgba(245,158,11,0.2);
 }
@@ -246,27 +232,28 @@ canvas{width:100%;display:block;margin-top:10px}
 .dialer-time{font:800 22px/1.1 "JetBrains Mono",monospace;color:#0F172A;margin:2px 0}
 .dialer-sub{font-size:9.5px;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.4px;line-height:1.15}
 
-/* ————— Tables & Forms ————— */
+/* ————— Tables & Controls ————— */
 .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
 input.inp,select.inp,textarea.inp{
-  background:rgba(255,255,255,0.88);border:1px solid var(--line2);border-radius:10px;
-  padding:7px 11px;font:500 12.8px "Inter",sans-serif;color:var(--ink);outline:none;
+  background:rgba(255,255,255,0.9);border:1px solid var(--line2);border-radius:10px;
+  padding:7px 11px;font:500 12.6px "Inter",sans-serif;color:var(--ink);outline:none;
 }
 input.inp:focus,select.inp:focus,textarea.inp:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,0.12)}
 .table-wrap{width:100%;overflow-x:auto}
-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.8px}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px}
 th{
-  text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;
+  text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.55px;
   color:var(--muted);font-weight:700;padding:9px 8px;border-bottom:1px solid var(--line2);white-space:nowrap;
 }
 td{padding:9px 8px;border-bottom:1px solid rgba(15,23,42,0.05);vertical-align:middle}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:rgba(255,255,255,0.55)}
+tr:hover td{background:rgba(255,255,255,0.6)}
+tr.my-hotel-row td{background:rgba(251,191,36,0.16);border-top:1.5px solid #F59E0B;border-bottom:1.5px solid #F59E0B}
 .mono{font-family:"JetBrains Mono",monospace;font-size:12px}
 
 .tag{
-  display:inline-flex;align-items:center;gap:4px;padding:2.5px 9px;border-radius:99px;
-  font-size:10.5px;font-weight:700;letter-spacing:.2px;text-transform:uppercase;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:4px;padding:2.5px 8px;border-radius:99px;
+  font-size:10px;font-weight:700;letter-spacing:.2px;text-transform:uppercase;white-space:nowrap;
 }
 .tag.hot,.tag.undercut{background:var(--coral-soft);color:var(--coral);border:1px solid rgba(225,29,72,0.2)}
 .tag.warm{background:var(--gold-soft);color:var(--gold2);border:1px solid rgba(217,119,6,0.2)}
@@ -275,19 +262,19 @@ tr:hover td{background:rgba(255,255,255,0.55)}
 
 .pill{
   display:inline-flex;align-items:center;gap:4px;background:var(--blue-soft);color:var(--blue);
-  padding:2.5px 9px;border-radius:99px;font-size:11px;font-weight:600;margin:2px 2px 2px 0;text-decoration:none;white-space:nowrap;
+  padding:2.5px 8px;border-radius:99px;font-size:10.8px;font-weight:600;margin:1px 2px 1px 0;text-decoration:none;white-space:nowrap;
 }
 .pill.em{background:var(--green-soft);color:var(--green)}
-.pill.ph{background:rgba(255,255,255,0.88);color:var(--ink);border:1px solid var(--line2)}
+.pill.ph{background:rgba(255,255,255,0.9);color:var(--ink);border:1px solid var(--line2)}
 
 .script-box{
-  background:rgba(255,255,255,0.82);border:1px solid var(--line2);border-radius:12px;
-  padding:13px 15px;margin-top:8px;font:12.8px/1.58 "Inter",sans-serif;
+  background:rgba(255,255,255,0.84);border:1px solid var(--line2);border-radius:12px;
+  padding:12px 14px;margin-top:8px;font:12.6px/1.56 "Inter",sans-serif;
   white-space:pre-wrap;word-break:break-word;color:var(--ink);
 }
-.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:10px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}
 .field{display:flex;flex-direction:column;gap:4px}
-.field label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.field label{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
 
 .toast{
   position:fixed;bottom:22px;right:24px;background:#0F172A;color:#FFFFFF;
@@ -295,45 +282,43 @@ tr:hover td{background:rgba(255,255,255,0.55)}
   box-shadow:0 12px 28px rgba(15,23,42,0.28);opacity:0;pointer-events:none;transition:.25s;z-index:99;
 }
 .toast.show{opacity:1}
-footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid var(--line2);padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </style>
 </head>
 <body>
 <aside>
-  <div class="logo" onclick="switchTab('overview')" title="HRI GlassV4">H</div>
-  <button class="navi on" id="nav-overview" onclick="switchTab('overview')" title="Real-Time Scraper Monitor">
+  <div class="logo" onclick="switchTab('overview')" title="Hotel Rate & Occupancy Center">H</div>
+  <button class="navi on" id="nav-overview" onclick="switchTab('overview')" title="My Hotel & Old vs New Scrape Comparison">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>
-    <span>Monitor</span>
+    <span>Compare</span>
   </button>
-  <button class="navi" id="nav-rates" onclick="switchTab('rates')" title="Live Rate & OTA Parity Matrix">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 19V10M10 19V5M16 19v-7M22 19H2"/></svg>
-    <span>Rates</span>
+  <button class="navi" id="nav-caller" onclick="switchTab('caller')" title="Overnight Courtesy Occupancy Caller & Recorder">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span>Caller</span>
   </button>
   <button class="navi" id="nav-memory" onclick="switchTab('memory')" title="Pricing Memory, Occupancy & Competitor Decisions">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9s-9-4.03-9-9a9 9 0 0 1 9-9z"/><path d="M12 7v5l3 3"/></svg>
     <span>Memory</span>
   </button>
-  <button class="navi" id="nav-strategy" onclick="switchTab('strategy')" title="AI Rate Strategy & Recommendations">
+  <button class="navi" id="nav-strategy" onclick="switchTab('strategy')" title="Rate Strategy & 1-Page Desk Sheet">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2l2.4 5.3 5.6.7-4.1 4 1 5.6L12 15l-4.9 2.6 1-5.6-4.1-4 5.6-.7z"/></svg>
     <span>Strategy</span>
   </button>
-  <button class="navi" id="nav-settings" onclick="switchTab('settings')" title="Add Hotels, Telegram/Email Reports & Scraper Settings">
+  <button class="navi" id="nav-settings" onclick="switchTab('settings')" title="Add Hotels, Telegram/Email Reports & Setup">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
     <span>Setup</span>
   </button>
 </aside>
 
 <main>
-  <!-- CodeXR V4 Glass Top Pill Bar -->
+  <!-- Clean Top Glass Pill Bar (No Model or Version Clutter) -->
   <div class="glass-topbar">
     <div class="brand-pill">
       <span class="brand-dot"></span>
-      <span>HRI GlassV4</span>
-      <span class="model-badge" id="top-model-badge">AI: gemini-2.5-flash-lite</span>
+      <span>Rate & Occupancy Desk</span>
     </div>
     <div class="tabbar">
-      <button class="tabbtn on" id="tbtn-overview" onclick="switchTab('overview')">1. Rate Monitor</button>
-      <button class="tabbtn" id="tbtn-rates" onclick="switchTab('rates')">2. OTA Parity</button>
+      <button class="tabbtn on" id="tbtn-overview" onclick="switchTab('overview')">1. Compare Scrapes</button>
+      <button class="tabbtn" id="tbtn-caller" onclick="switchTab('caller')">2. Overnight Caller</button>
       <button class="tabbtn" id="tbtn-memory" onclick="switchTab('memory')">3. Pricing Memory</button>
       <button class="tabbtn" id="tbtn-strategy" onclick="switchTab('strategy')">4. Rate Strategy</button>
       <button class="tabbtn" id="tbtn-settings" onclick="switchTab('settings')">5. Hotels & Reports</button>
@@ -345,10 +330,10 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
     </div>
   </div>
 
-  <!-- Welcome Header + Live Scraper Counters -->
+  <!-- Header + Live Counters -->
   <div class="top">
     <div>
-      <h1 id="greeting">Hotel Rate & Occupancy Intelligence</h1>
+      <h1 id="greeting">Reservation Rate & Occupancy Command Center</h1>
       <div class="date" id="dateline"></div>
     </div>
     <div class="hero-stats-right">
@@ -357,124 +342,183 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
         <div class="hm-lbl">Monitored Hotels</div>
       </div>
       <div class="hero-metric">
-        <div class="hm-val" style="color:var(--coral)"><span id="hm-undercuts">18</span></div>
+        <div class="hm-val" style="color:var(--coral)"><span id="hm-undercuts">36</span></div>
         <div class="hm-lbl">OTA Parity Leaks</div>
       </div>
       <div class="hero-metric">
-        <div class="hm-val" style="color:var(--green)"><span id="hm-occ">74%</span></div>
-        <div class="hm-lbl">Avg Corridor Occupancy</div>
+        <div class="hm-val" style="color:var(--green)"><span id="hm-occ">78%</span></div>
+        <div class="hm-lbl">Corridor Occupancy</div>
       </div>
       <div class="hero-metric">
-        <div class="hm-val" style="color:var(--blue)"><span id="hm-mem">126</span></div>
-        <div class="hm-lbl">Memorized Decisions</div>
+        <div class="hm-val" style="color:var(--blue)"><span id="hm-calls">12</span></div>
+        <div class="hm-lbl">Overnight Calls Logged</div>
       </div>
     </div>
   </div>
 
-  <!-- CodeXR Segmented Progress Bar (Hotel Rate & Occupancy Metrics Only) -->
-  <div class="pipeline-strip">
-    <div class="p-seg">
-      <div class="p-seg-top"><span>OTA Parity Undercuts Detected</span><b id="ps-undercut-lbl">43%</b></div>
-      <div class="p-seg-bar"><div class="p-seg-fill" id="ps-undercut-bar" style="width:43%;background:#0F172A"></div><span style="color:#fff">Wholesale & Bedbank Rate Leaks</span></div>
-    </div>
-    <div class="p-seg">
-      <div class="p-seg-top"><span>Market Occupancy Pressure</span><b id="ps-occ-lbl">74%</b></div>
-      <div class="p-seg-bar"><div class="p-seg-fill" id="ps-occ-bar" style="width:74%;background:linear-gradient(90deg,#F59E0B,#FBBF24)"></div><span style="color:#0F172A">Corridor Compression Index</span></div>
-    </div>
-    <div class="p-seg">
-      <div class="p-seg-top"><span>Competitor Decision Memory</span><b>Active</b></div>
-      <div class="p-seg-bar"><div class="p-seg-fill" style="width:88%;background:rgba(37,99,235,0.22)"></div><span style="color:var(--blue)">Tracking Rate Moves & Patterns</span></div>
-    </div>
-    <div class="p-seg">
-      <div class="p-seg-top"><span>Daily Auto-Report (Telegram + Email)</span><b id="ps-sched-lbl">06:00 AM</b></div>
-      <div class="p-seg-bar"><div class="p-seg-fill" style="width:100%;background:rgba(16,185,129,0.24)"></div><span style="color:var(--green)">Automated Daily Dispatch Ready</span></div>
-    </div>
-  </div>
-
-  <section class="kpis" id="kpis"></section>
-
-  <!-- ==================== TAB 1: LIVE RATE MONITOR (OVERVIEW) ==================== -->
+  <!-- ==================== TAB 1: MY HOTEL + OLD VS NEW SCRAPE COMPARISON ==================== -->
   <div class="tabview on" id="tab-overview">
-    <div class="grid-codexr">
-      <!-- Card 1: Nightly BAR & Comp-Set Chart -->
-      <div class="panel">
-        <h2>
-          <span>Real-Time BAR vs. Prior Memorized Scan</span>
-          <small id="chart-sub">Xotelo Metasearch + Direct JSON-LD</small>
-        </h2>
-        <canvas id="chart" height="260"></canvas>
-      </div>
-
-      <!-- Card 2: Circular Occupancy & Rate Strategy Gauge -->
-      <div class="panel">
-        <h2>
-          <span>Spotlight Property Pulse</span>
-          <small>Occupancy & Parity</small>
-        </h2>
-        <div class="dialer-ring-wrap">
-          <div class="dialer-circle" id="gauge-circle">
-            <div class="dialer-inner">
-              <div class="dialer-sub" id="dialer-occ-lbl">78% EST OCC</div>
-              <div class="dialer-time" id="dialer-hotel-bar">$176</div>
-              <div style="font-size:10.5px;color:var(--coral);font-weight:700" id="dialer-hotel-gap">-37.4% Agoda</div>
-            </div>
-          </div>
-          <div style="text-align:center;margin-top:8px">
-            <b style="font-size:14px" id="dialer-hotel-name">The New Yorker Boutique Hotel</b>
-            <div style="font-size:11.5px;color:var(--muted)" id="dialer-hotel-meta">Behavior: Passive Wholesale Leaker</div>
-          </div>
-          <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;justify-content:center">
-            <button class="btn blue sm" onclick="switchTab('memory',STATE.selectedHotelId||11)">🧠 View Memory</button>
-            <button class="btn gold sm" onclick="switchTab('strategy',STATE.selectedHotelId||11)">⚡ Rate Strategy</button>
-          </div>
+    <!-- MY HOTEL ANCHOR & RESERVATION RATE-SETTING ASSISTANT -->
+    <div class="my-hotel-card">
+      <div class="mh-top">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="background:#F59E0B;color:#0F172A;font-weight:800;font-size:10.5px;padding:3px 9px;border-radius:99px;letter-spacing:.3px">★ MY HOTEL</span>
+          <select class="inp" id="my-hotel-select" onchange="changeMyHotel(this.value)" style="font-weight:700;max-width:240px;background:#fff;padding:5px 9px"></select>
+          <span style="font-size:11.5px;color:#94A3B8">BAR $:</span>
+          <input class="inp" id="my-bar-inp" type="number" style="width:68px;font-weight:700;padding:5px 8px" value="224">
+          <span style="font-size:11.5px;color:#94A3B8">Occ %:</span>
+          <input class="inp" id="my-occ-inp" type="number" style="width:58px;font-weight:700;padding:5px 8px" value="78">
+          <span style="font-size:11.5px;color:#94A3B8">Left:</span>
+          <input class="inp" id="my-left-inp" type="number" style="width:54px;font-weight:700;padding:5px 8px" value="10">
+          <button class="btn gold sm" onclick="saveMyHotelQuick()">✓ Update</button>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button class="btn blue sm" onclick="switchTab('caller')">📞 Overnight Caller</button>
+          <button class="btn outline sm" style="background:rgba(255,255,255,0.12);color:#fff;border-color:rgba(255,255,255,0.2)" onclick="exportCsv()">⬇ CSV</button>
         </div>
       </div>
 
-      <!-- Card 3: Dark Glass Immediate Rate Action Queue -->
-      <div class="panel dark-glass">
-        <h2>
-          <span>Urgent Rate Change Alerts</span>
-          <small style="color:#FBBF24">Click to Study</small>
-        </h2>
-        <div id="dark-deal-tasks" style="margin-top:8px;display:flex;flex-direction:column;gap:8px"></div>
-      </div>
+      <div class="mh-grid" id="my-hotel-summary-grid"></div>
     </div>
 
-    <div class="grid2">
-      <div class="panel">
-        <h2>Competitor Rate Movers & OTA Parity Violations <small>memorized price changes</small></h2>
-        <div class="table-wrap" id="movers-box" style="max-height:330px;overflow-y:auto"></div>
-      </div>
-      <div class="panel">
-        <h2>Competitor Decision-Making Personalities <small>how neighbors set rates & occupancy</small></h2>
-        <div class="table-wrap" id="prospects-overview" style="max-height:330px;overflow-y:auto"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== TAB 2: LIVE RATE, PARITY & OCCUPANCY MATRIX ==================== -->
-  <div class="tabview" id="tab-rates">
+    <!-- VISUAL COMPARISON TABLE: PREVIOUS SCRAPE VS LATEST SCRAPE + OCCUPANCY + ONLINE SIGNALS -->
     <div class="panel">
-      <h2>Real-Time Multi-OTA Rate, Occupancy & Out-the-Door Matrix <small>Direct BAR vs. Booking.com · Agoda · Vio.com · Trip.com</small></h2>
+      <h2>
+        <span>📊 Side-by-Side Comparative Scrape Table (Previous Scrape vs. Latest Scrape + Occupancy & Recommended Rate)</span>
+        <small id="comp-table-sub">My Hotel pinned at top · Compare old vs new rates at a glance</small>
+      </h2>
       <div class="toolbar">
-        <input class="inp" id="rate-search" placeholder="Search hotel, corridor, or behavior..." oninput="renderRatesTab()" style="min-width:220px;flex:1">
-        <select class="inp" id="rate-area" onchange="renderRatesTab()">
-          <option value="">All Corridors</option>
+        <input class="inp" id="rate-search" placeholder="Filter by hotel name, corridor, OTA, or behavior..." oninput="renderComparativeTable()" style="min-width:240px;flex:1">
+        <select class="inp" id="rate-area" onchange="renderComparativeTable()">
+          <option value="">All Corridors (Show My Corridor First)</option>
           <option value="North Beach">North Beach & 79th St</option>
           <option value="Miami (MiMo / Biscayne)">Miami — MiMo Biscayne Blvd</option>
           <option value="Miami (Wynwood / Downtown)">Miami — Wynwood / Downtown</option>
           <option value="Mid-Beach">Mid-Beach (29th–41st St)</option>
           <option value="South Beach">South Beach (Art Deco District)</option>
         </select>
-        <select class="inp" id="rate-parity" onchange="renderRatesTab()">
-          <option value="">All Parity States</option>
-          <option value="UNDERCUT">🚨 OTA Undercut Only</option>
-          <option value="PARITY">✓ In Parity</option>
-          <option value="DIRECT_WIN">★ Direct Cheaper than OTA</option>
+        <select class="inp" id="rate-parity" onchange="renderComparativeTable()">
+          <option value="">All Rate Moves & Parity States</option>
+          <option value="RAISED">▲ Competitors That Raised Rates</option>
+          <option value="DROPPED">▼ Competitors That Dropped Rates</option>
+          <option value="UNDERCUT">🚨 Competitors Undercut by OTAs</option>
         </select>
-        <button class="btn outline sm" onclick="exportCsv()">⬇ Export Rate Matrix CSV</button>
       </div>
-      <div class="table-wrap" id="rates-matrix-table"></div>
+      <div class="table-wrap" id="comparative-scrape-table"></div>
+    </div>
+
+    <!-- VISUAL CHARTS ROW -->
+    <div class="grid-codexr">
+      <div class="panel">
+        <h2>
+          <span>Visual Rate Comparison: Latest Scrape vs. Previous Scrape</span>
+          <small id="chart-sub">Direct BAR ($) vs Prior Scan</small>
+        </h2>
+        <canvas id="chart" height="250"></canvas>
+      </div>
+
+      <div class="panel">
+        <h2>
+          <span>My Hotel vs. Corridor Occupancy</span>
+          <small>Live Compression Gauge</small>
+        </h2>
+        <div class="dialer-ring-wrap">
+          <div class="dialer-circle" id="gauge-circle">
+            <div class="dialer-inner">
+              <div class="dialer-sub" id="dialer-occ-lbl">78% MY OCC</div>
+              <div class="dialer-time" id="dialer-hotel-bar">$236</div>
+              <div style="font-size:10px;color:var(--green);font-weight:700" id="dialer-hotel-gap">REC TONIGHT BAR</div>
+            </div>
+          </div>
+          <div style="text-align:center;margin-top:8px">
+            <b style="font-size:13.8px" id="dialer-hotel-name">Seaside All Suites Hotel</b>
+            <div style="font-size:11.5px;color:var(--muted)" id="dialer-hotel-meta">Corridor Avg: $232 · 10 Rooms Left</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel dark-glass">
+        <h2>
+          <span>Biggest Competitor Rate Moves</span>
+          <small style="color:#FBBF24">Old vs New Scrape</small>
+        </h2>
+        <div id="dark-deal-tasks" style="margin-top:8px;display:flex;flex-direction:column;gap:8px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 2: OVERNIGHT COURTESY OCCUPANCY CALLER & RECORDER ==================== -->
+  <div class="tabview" id="tab-caller">
+    <div class="grid2">
+      <!-- Left: Overnight Call Console, Script & Microphone/Auto-Caller Recorder -->
+      <div class="panel">
+        <h2>
+          <span>📞 Overnight Courtesy Occupancy Caller (Night-Audit Call-Around)</span>
+          <small>11:30 PM – 4:00 AM Shift & Quick Desk Checks</small>
+        </h2>
+        <div style="background:rgba(37,99,235,0.07);border:1px solid rgba(37,99,235,0.18);border-radius:14px;padding:13px 15px;margin-top:10px">
+          <div class="form-grid" style="margin-top:0">
+            <div class="field">
+              <label>1. Select Competitor Hotel to Call</label>
+              <select class="inp" id="call-hotel-select" onchange="updateCallerPreview()" style="font-weight:700"></select>
+            </div>
+            <div class="field">
+              <label>2. Courtesy Call Purpose / Shift Template</label>
+              <select class="inp" id="call-template-select" onchange="updateCallerPreview()" style="font-weight:600"></select>
+            </div>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;flex-wrap:wrap;gap:8px">
+            <div>
+              <span style="font-size:11.5px;font-weight:700;color:var(--blue)" id="call-target-phone-lbl">Front Desk Line: (305) 866-7033</span>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <a class="btn green sm" id="call-tel-link" href="tel:3058667033">📲 Dial from Phone/Desk</a>
+              <button class="btn blue sm" onclick="triggerAutomatedCourtesyCall()">🤖 Run Auto-Caller Now</button>
+              <button class="btn coral sm" id="mic-record-btn" onclick="toggleBrowserMicRecording()">🎙 Record Call Audio</button>
+            </div>
+          </div>
+
+          <div class="script-box" id="call-script-preview" style="margin-top:10px;background:#fff"></div>
+          <audio id="recorded-audio-player" controls style="display:none;width:100%;margin-top:8px"></audio>
+        </div>
+
+        <h2 style="margin-top:16px">
+          <span>✍️ Log / Extract Competitor's Answer (Updates Rate Assistant Immediately)</span>
+          <small>Type numbers or paste transcript</small>
+        </h2>
+        <div class="form-grid">
+          <div class="field">
+            <label>Reported Occupancy (%)</label>
+            <input class="inp" id="call-occ-inp" type="number" placeholder="e.g. 88">
+          </div>
+          <div class="field">
+            <label>Rooms Left Tonight</label>
+            <input class="inp" id="call-left-inp" type="number" placeholder="e.g. 5">
+          </div>
+          <div class="field">
+            <label>Quoted Walk-In BAR ($)</label>
+            <input class="inp" id="call-walkin-inp" type="number" placeholder="e.g. 229">
+          </div>
+        </div>
+        <div class="field" style="margin-top:10px">
+          <label>Recorded Conversation Transcript / Quick Question Notes</label>
+          <textarea class="inp" id="call-transcript-inp" rows="3" placeholder="e.g. Front desk said they are at 88% occupancy tonight with only 5 standard kings left at $229 plus tax..."></textarea>
+        </div>
+        <div style="margin-top:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <button class="btn outline sm" onclick="runBatchOvernightCalls()">⚡ Auto-Call Top 8 Corridor Competitors</button>
+          <button class="btn gold" onclick="saveCourtesyCallLog()">✓ Save Recorded Call & Update Occupancy Memory</button>
+        </div>
+      </div>
+
+      <!-- Right: Recorded Overnight Courtesy Call Archive -->
+      <div class="panel">
+        <h2>
+          <span>🎙 Recorded Overnight Call-Around Log & Verified Occupancy</span>
+          <small id="call-log-count">verified front-desk answers</small>
+        </h2>
+        <div id="call-logs-box" style="margin-top:10px;max-height:580px;overflow-y:auto;display:flex;flex-direction:column;gap:10px"></div>
+      </div>
     </div>
   </div>
 
@@ -483,7 +527,7 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
     <div class="panel">
       <h2>
         <span>🧠 Historical Pricing Memory, Occupancy & Competitor Decision Engine</span>
-        <small>Tracks every rate change forward & backfills seasonal behavior</small>
+        <small>Memorizes every rate change & overnight occupancy call</small>
       </h2>
       <div class="toolbar" style="background:rgba(37,99,235,0.06);padding:12px 14px;border-radius:14px;border:1px solid rgba(37,99,235,0.16);justify-content:space-between">
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
@@ -499,7 +543,7 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
 
       <div class="grid2" style="margin-top:14px">
         <div class="panel" style="margin-top:0">
-          <h2>Memorized Rate Curve vs. Occupancy Pressure <small id="mem-chart-sub">historical + live scans</small></h2>
+          <h2>Memorized Rate Curve vs. Occupancy Pressure <small>historical + live scans</small></h2>
           <canvas id="memory-chart" height="240"></canvas>
         </div>
         <div class="panel" style="margin-top:0" id="memory-profile-box"></div>
@@ -512,26 +556,20 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
     </div>
   </div>
 
-  <!-- ==================== TAB 4: AI RATE STRATEGY & RECOMMENDATIONS ==================== -->
+  <!-- ==================== TAB 4: RATE STRATEGY & 1-PAGE DESK SHEET ==================== -->
   <div class="tabview" id="tab-strategy">
     <div class="panel">
       <h2>
-        <span>⚡ AI Rate Strategy, Price Change Recommendations & 1-Page Audit</span>
-        <small>Powered by HRI GlassV4 + Gemini 2.5 Flash-Lite</small>
+        <span>⚡ Property Rate Strategy, Online Signal Breakdown & 1-Page Printable Desk Sheet</span>
+        <small>Reservation & Revenue Strategy Assistant</small>
       </h2>
       <div class="toolbar" style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);padding:12px 14px;border-radius:14px;justify-content:space-between">
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <label style="font-weight:700">Target Property:</label>
-          <select class="inp" id="pitch-hotel-select" onchange="loadPitchForSelected()" style="min-width:300px;font-weight:600"></select>
-          <select class="inp" id="ai-model-select" onchange="updateTopModelBadge()" style="font-weight:600">
-            <option value="gemini-2.5-flash-lite">⚡ Gemini 2.5 Flash-Lite (Primary · Ultra-Fast)</option>
-            <option value="gemini-2.5-flash">🧠 Gemini 2.5 Flash (Deep Yield Strategy)</option>
-            <option value="gemini-3-flash">🚀 Gemini 3.x Flash (Multi-Horizon Reasoning)</option>
-            <option value="ollama/qwen2.5:7b">💻 Local Ollama Qwen 2.5 (Offline Zero-Cost)</option>
-          </select>
+          <label style="font-weight:700">Select Property:</label>
+          <select class="inp" id="pitch-hotel-select" onchange="loadPitchForSelected()" style="min-width:320px;font-weight:600"></select>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn blue sm" onclick="triggerLiveAiBrief()">✨ Re-Compute AI Strategy</button>
+          <button class="btn blue sm" onclick="triggerLiveAiBrief()">✨ Refresh Rate Strategy</button>
           <button class="btn gold sm" onclick="openPrintableAudit()">🖨 Print 1-Page Rate Strategy Sheet</button>
         </div>
       </div>
@@ -540,12 +578,12 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
     </div>
   </div>
 
-  <!-- ==================== TAB 5: SETUP — ADD HOTELS, TELEGRAM/EMAIL AUTO-REPORTS & SCRAPER ==================== -->
+  <!-- ==================== TAB 5: SETUP — ADD HOTELS, TELEGRAM/EMAIL AUTO-REPORTS & CALLER KEYS ==================== -->
   <div class="tabview" id="tab-settings">
     <div class="grid2-eq">
       <!-- Add / Edit Hotel in Scraper Comp-Set -->
       <div class="panel">
-        <h2>➕ Add Hotel to Real-Time Scraper & Memory <small>auto-scrapes Xotelo + website BAR</small></h2>
+        <h2>➕ Add Hotel to Real-Time Scraper & Memory <small>auto-scrapes OTA ladder + website BAR</small></h2>
         <div class="form-grid">
           <div class="field">
             <label>Hotel Name *</label>
@@ -584,12 +622,12 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
             </div>
           </div>
           <div class="field">
-            <label>Report Recipient Email (Optional)</label>
-            <input class="inp" id="add-email" placeholder="gm@hotel.com">
+            <label>Front Desk Phone (For Overnight Caller)</label>
+            <input class="inp" id="add-phone" placeholder="(305) 555-0100">
           </div>
           <div class="field">
-            <label>Property Phone (Optional)</label>
-            <input class="inp" id="add-phone" placeholder="(305) 555-0100">
+            <label>Hotel Email (Optional)</label>
+            <input class="inp" id="add-email" placeholder="frontdesk@hotel.com">
           </div>
         </div>
         <div style="margin-top:14px;display:flex;justify-content:flex-end;gap:8px">
@@ -597,9 +635,9 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
         </div>
       </div>
 
-      <!-- Daily Automated Report Settings (Telegram + Email + Horizon) -->
+      <!-- Daily Automated Report Settings (Telegram + Email + Voice Caller) -->
       <div class="panel">
-        <h2>📨 Automated Daily Report & Scraper Settings <small>Telegram Bot + SMTP Email + Check-In Horizon</small></h2>
+        <h2>📨 Daily Auto-Report (Telegram + Email) & Voice Caller Setup <small>automated daily dispatch</small></h2>
         <div class="form-grid">
           <div class="field">
             <label>Daily Auto-Report Time</label>
@@ -636,12 +674,12 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
             <input class="inp" id="cfg-smtp-user" placeholder="SMTP login">
           </div>
           <div class="field">
-            <label>SMTP Password / Key</label>
-            <input class="inp" id="cfg-smtp-pass" type="password" placeholder="SMTP key">
+            <label>Vapi / AI Voice Key (Optional Auto-Caller)</label>
+            <input class="inp" id="cfg-vapi-key" type="password" placeholder="vapi-... (optional)">
           </div>
         </div>
         <div style="margin-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
-          <button class="btn outline" onclick="saveScraperConfig()">💾 Save Settings</button>
+          <button class="btn outline" onclick="saveScraperConfig()">💾 Save All Settings</button>
           <button class="btn blue" onclick="dispatchDailyReportNow()">🚀 Generate & Send Report Now (Telegram + Email)</button>
         </div>
       </div>
@@ -655,7 +693,7 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
       <div style="display:flex;justify-content:flex-end;margin-top:6px">
         <button class="btn sm outline" onclick="copyText($('#brief-preview-box').textContent,'Daily report copied')">Copy Report Text</button>
       </div>
-      <div class="script-box mono" id="brief-preview-box" style="max-height:320px;overflow-y:auto">Loading daily report preview...</div>
+      <div class="script-box mono" id="brief-preview-box" style="max-height:300px;overflow-y:auto">Loading daily report preview...</div>
     </div>
 
     <div class="panel">
@@ -663,11 +701,6 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
       <div class="runs" id="runs"></div>
     </div>
   </div>
-
-  <footer>
-    <span>HRI GlassV4 · Real-Time Hotel Rate Scraper, Competitor Pricing Memory & Occupancy Strategy Engine</span>
-    <span>Sources: Xotelo Metasearch + Direct Website JSON-LD · Model: Gemini 2.5 Flash-Lite</span>
-  </footer>
 </main>
 
 <div class="toast" id="toast">Saved!</div>
@@ -675,9 +708,9 @@ footer{margin-top:32px;color:var(--muted);font-size:11.5px;border-top:1px solid 
 <script>
 const $=s=>document.querySelector(s);
 const money=n=>n==null?'—':'$'+Number(n).toLocaleString(undefined,{maximumFractionDigits:0});
-let STATE={summary:null,hotels:[],pitches:{},activeTab:'overview',selectedHotelId:11,memoryCache:{}};
+let STATE={summary:null,hotels:[],pitches:{},calls:[],templates:[],activeTab:'overview',selectedHotelId:1,mediaRecorder:null,audioChunks:[]};
 
-$('#dateline').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})+' · Real-Time Multi-OTA Rate Scraper, Competitor Memory & Daily Telegram/Email Strategy Engine';
+$('#dateline').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})+' · Real-Time Hotel Rate Comparison, Overnight Courtesy Occupancy Caller & Reservation Rate Assistant';
 
 function toast(msg){
   const t=$('#toast');t.textContent=msg;t.classList.add('show');
@@ -687,14 +720,10 @@ function copyText(txt,label='Copied to clipboard!'){
   navigator.clipboard.writeText(txt);
   toast('✓ '+label);
 }
-function updateTopModelBadge(){
-  const m=$('#ai-model-select')?.value||'gemini-2.5-flash-lite';
-  $('#top-model-badge').textContent='AI: '+m;
-}
 
 function switchTab(tab,hotelId=null){
   STATE.activeTab=tab;
-  ['overview','rates','memory','strategy','settings'].forEach(t=>{
+  ['overview','caller','memory','strategy','settings'].forEach(t=>{
     const el=$('#tab-'+t),nb=$('#nav-'+t),tb=$('#tbtn-'+t);
     if(el)el.classList.toggle('on',t===tab);
     if(nb)nb.classList.toggle('on',t===tab);
@@ -704,7 +733,9 @@ function switchTab(tab,hotelId=null){
     STATE.selectedHotelId=Number(hotelId);
     if($('#pitch-hotel-select'))$('#pitch-hotel-select').value=String(hotelId);
     if($('#memory-hotel-select'))$('#memory-hotel-select').value=String(hotelId);
+    if($('#call-hotel-select'))$('#call-hotel-select').value=String(hotelId);
   }
+  if(tab==='caller')renderCallerTab();
   if(tab==='memory')renderMemoryTab();
   if(tab==='strategy')renderStrategyTab();
   if(tab==='settings')loadConfigTab();
@@ -725,189 +756,388 @@ async function refresh(){
   STATE.summary=sum;
   STATE.hotels=Array.isArray(hot)?hot:(hot.hotels||[]);
   STATE.pitches=pitches||{};
+  STATE.calls=sum.call_logs||[];
+  STATE.templates=sum.call_templates||[];
 
-  renderKpis(sum,STATE.hotels);
-  renderChart(sum.rates||[]);
-  renderCodexrWidgets(sum,STATE.hotels);
-  renderMoversOverview(sum.rates||[]);
-  renderPersonalitiesOverview(STATE.hotels);
+  populateHotelSelectors(STATE.hotels, sum.my_hotel);
+  renderMyHotelBanner(sum.my_hotel||{}, sum.kpis||{});
+  renderComparativeTable();
+  renderChart(sum.rates||[], sum.my_hotel||{});
+  renderCodexrWidgets(sum, STATE.hotels);
   renderRuns(sum.runs||[]);
-  renderRatesTab();
-  populateHotelSelectors(STATE.hotels);
+
   const uTab=new URLSearchParams(location.search).get('tab');
-  if(uTab&&['overview','rates','memory','strategy','settings'].includes(uTab)&&STATE.activeTab!==uTab){
+  if(uTab&&['overview','caller','memory','strategy','settings'].includes(uTab)&&STATE.activeTab!==uTab){
     switchTab(uTab);
   }
+  if(STATE.activeTab==='caller')renderCallerTab();
   if(STATE.activeTab==='memory')renderMemoryTab();
   if(STATE.activeTab==='strategy')renderStrategyTab();
   if(STATE.activeTab==='settings')loadConfigTab();
 }
 
-function renderKpis(s,hotels){
-  const k=s.kpis||{};
-  const totalHotels=k.hotels||hotels.length||42;
-  const undercuts=k.parity_undercuts||0;
-  const avgOcc=k.avg_occupancy_pct||74;
-  const memCount=k.memory_events||k.rates||126;
-  const undercutPct=Math.round((undercuts/Math.max(1,totalHotels))*100);
+function renderMyHotelBanner(mh, kpis){
+  $('#hm-hotels').textContent=kpis.hotels||42;
+  $('#hm-undercuts').textContent=kpis.parity_undercuts||0;
+  $('#hm-occ').textContent=(mh.corridor_avg_occupancy||kpis.avg_occupancy_pct||78)+'%';
+  $('#hm-calls').textContent=kpis.calls_logged||(STATE.calls||[]).length||12;
 
-  $('#hm-hotels').textContent=totalHotels;
-  $('#hm-undercuts').textContent=undercuts;
-  $('#hm-occ').textContent=avgOcc+'%';
-  $('#hm-mem').textContent=memCount;
-  $('#ps-undercut-lbl').textContent=undercutPct+'%';
-  $('#ps-undercut-bar').style.width=Math.max(20,undercutPct)+'%';
-  $('#ps-occ-lbl').textContent=avgOcc+'%';
-  $('#ps-occ-bar').style.width=avgOcc+'%';
+  if(mh.hotel_id){
+    $('#my-hotel-select').value=String(mh.hotel_id);
+    $('#my-bar-inp').value=mh.current_bar||224;
+    $('#my-occ-inp').value=mh.current_occupancy_pct||78;
+    $('#my-left-inp').value=mh.rooms_left_tonight||10;
+  }
 
-  const sched=(s.config?.telegram?.schedule_time)||'06:00';
-  $('#ps-sched-lbl').textContent=sched+' AM';
+  const moveSign=(mh.corridor_move_pct||0)>=0?'+':'';
+  $('#my-hotel-summary-grid').innerHTML=`
+    <div class="mh-box">
+      <div class="mh-lbl">My Hotel Detailed Status (${mh.area||'North Beach'})</div>
+      <div class="mh-val">${money(mh.current_bar)}/nt <small style="font-size:12px;color:#38BDF8;font-weight:600">Was ${money(mh.old_scrape_bar)} · Out-the-Door ${money(mh.out_the_door_bar)}</small></div>
+      <div style="font-size:12px;color:#CBD5E1;margin-top:6px">
+        • Occupancy Tonight: <b style="color:#34D399">${mh.current_occupancy_pct||78}%</b> (<b>${mh.rooms_left_tonight||10}</b> of ${mh.rooms||45} rooms left to sell)<br>
+        • Online Reputation: <b>${(mh.review_rating||4.2).toFixed(1)}★</b> (${mh.review_count||480} guest reviews) · Resort Fee: <b>$${mh.resort_fee||15}/nt</b>
+      </div>
+    </div>
 
-  $('#kpis').innerHTML=[
-    ['Monitored Hotels',totalHotels,'Real-time Xotelo + JSON-LD'],
-    ['Memorized Rate Obs',memCount,'Historical & forward memory'],
-    ['OTA Parity Leaks',undercuts,'<b class="dn">Undercutting Direct BAR</b>'],
-    ['Corridor Avg BAR',money(k.avg_adr||295),'30-day forward window'],
-    ['Est. Occupancy',avgOcc+'%','<b class="up">Demand compression index</b>'],
-    ['AI Strategy Engine','GlassV4','<b class="up">Gemini 2.5 Flash-Lite</b>'],
-  ].map(([l,v,sub])=>`<div class="kpi"><div class="lbl">${l}</div><div class="val">${v}</div><div class="sub">${sub}</div></div>`).join('');
+    <div class="mh-box">
+      <div class="mh-lbl">Corridor Old Scrape vs. Latest Scrape (${mh.area||'Corridor'})</div>
+      <div class="mh-val">${money(mh.corridor_old_avg)} → ${money(mh.corridor_new_avg)} <small style="font-size:12px;color:${(mh.corridor_move_pct||0)>=0?'#34D399':'#FB7185'}">(${moveSign}${mh.corridor_move_pct||0}%)</small></div>
+      <div style="font-size:12px;color:#CBD5E1;margin-top:6px">
+        • Corridor Avg Occupancy: <b style="color:#FBBF24">${mh.corridor_avg_occupancy||78}%</b><br>
+        • Stance: <b style="color:#FBBF24">${mh.strategy_stance||'DYNAMIC YIELD'}</b>
+      </div>
+    </div>
+
+    <div class="mh-box" style="background:rgba(16,185,129,0.14);border-color:rgba(16,185,129,0.35)">
+      <div class="mh-lbl" style="color:#6EE7B7">⚡ Reservation Assistant: Recommended Rates for My Hotel</div>
+      <div style="display:flex;gap:14px;align-items:baseline;margin-top:5px;flex-wrap:wrap">
+        <div><span style="font-size:10.5px;color:#A7F3D0;display:block">TONIGHT WALK-IN</span><b class="mono" style="font-size:21px;color:#fff">${money(mh.recommended_tonight_walkin)}</b></div>
+        <div><span style="font-size:10.5px;color:#A7F3D0;display:block">30-DAY DIRECT BAR</span><b class="mono" style="font-size:21px;color:#34D399">${money(mh.recommended_30d_bar)}</b></div>
+        <div><span style="font-size:10.5px;color:#A7F3D0;display:block">FRI–SAT WEEKEND</span><b class="mono" style="font-size:21px;color:#FBBF24">${money(mh.recommended_weekend_bar)}</b></div>
+      </div>
+      <div style="font-size:11.5px;color:#E2E8F0;margin-top:6px;line-height:1.45">${mh.assistant_explanation||''}</div>
+    </div>
+  `;
+}
+
+async function changeMyHotel(hid){
+  const h=STATE.hotels.find(x=>x.id===Number(hid));
+  if(!h)return;
+  const payload={
+    hotel_id:Number(hid),
+    rooms:h.est_rooms||45,
+    current_bar:h.price||224,
+    current_occupancy_pct:h.est_occupancy_pct||78,
+    rooms_left_tonight:Math.max(2,Math.round((h.est_rooms||45)*(100-(h.est_occupancy_pct||78))/100))
+  };
+  await fetch('/api/my-hotel'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  toast('★ Set '+h.name+' as My Hotel benchmark');
+  await refresh();
+}
+
+async function saveMyHotelQuick(){
+  const payload={
+    hotel_id:Number($('#my-hotel-select').value||1),
+    current_bar:Number($('#my-bar-inp').value||224),
+    current_occupancy_pct:Number($('#my-occ-inp').value||78),
+    rooms_left_tonight:Number($('#my-left-inp').value||10),
+  };
+  await fetch('/api/my-hotel'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  toast('✓ Updated My Hotel rate & occupancy — recommendations recalculated!');
+  await refresh();
+}
+
+/* ==================== SIDE-BY-SIDE OLD VS NEW SCRAPE COMPARATIVE TABLE ==================== */
+function renderComparativeTable(){
+  const q=($('#rate-search')?.value||'').toLowerCase();
+  const area=$('#rate-area')?.value||'';
+  const par=$('#rate-parity')?.value||'';
+  const mh=STATE.summary?.my_hotel||{};
+  const myArea=mh.area||'North Beach';
+
+  let rows=(STATE.summary?.rates||[]).slice();
+  rows=rows.filter(r=>{
+    if(r.is_my_hotel)return true;
+    if(area && r.area!==area)return false;
+    if(par==='RAISED' && (r.delta_pct||0)<=0)return false;
+    if(par==='DROPPED' && (r.delta_pct||0)>=0)return false;
+    if(par==='UNDERCUT' && r.parity_status!=='UNDERCUT')return false;
+    if(q && !(r.name.toLowerCase().includes(q)||(r.pricing_personality||'').toLowerCase().includes(q)||(r.area||'').toLowerCase().includes(q)))return false;
+    return true;
+  });
+
+  // Sort: My Hotel first, then My Corridor, then by biggest rate move
+  rows.sort((a,b)=>{
+    if(a.is_my_hotel && !b.is_my_hotel)return -1;
+    if(!a.is_my_hotel && b.is_my_hotel)return 1;
+    const aSame=(a.area===myArea)?0:1;
+    const bSame=(b.area===myArea)?0:1;
+    if(aSame!==bSame)return aSame-bSame;
+    return Math.abs(b.delta_pct||0)-Math.abs(a.delta_pct||0);
+  });
+
+  $('#comparative-scrape-table').innerHTML=`<table><thead><tr>
+    <th>Hotel & Corridor</th>
+    <th>Old Scrape → New Scrape (Visual Diff)</th>
+    <th>Lowest OTA & Parity</th>
+    <th>Out-the-Door</th>
+    <th>Occupancy & Rooms Left</th>
+    <th>Online Signals & Behavior</th>
+    <th>Reservation Rate Action for My Hotel</th>
+    <th>Actions</th>
+  </tr></thead><tbody>`+rows.map(r=>{
+    const pitch=STATE.pitches[String(r.hotel_id)]||{};
+    const otd=pitch.out_the_door||{};
+    const verifyUrl=pitch.hotel?.verify_url||`https://www.tripadvisor.com/Hotel_Review-${r.xotelo_key||'g34439-d85104'}.html`;
+    const nonDir=(r.ota_channels||[]).filter(c=>c.code!=='DIRECT');
+    const low=nonDir.length?nonDir.reduce((a,b)=>a.rate<b.rate?a:b):{name:'Direct',rate:r.price};
+    const pcls=(r.parity_status||'PARITY').toLowerCase();
+    const dDollar=r.delta_dollar||Math.round((r.price||0)-(r.prev_price||r.price||0));
+    const dPct=r.delta_pct||0;
+    const moveCol=dPct>0?'var(--green)':(dPct<0?'var(--coral)':'var(--muted)');
+    const moveArrow=dPct>0?'▲ +':(dPct<0?'▼ ':'• ');
+    const occVal=r.call_verified_occ||r.est_occupancy_pct||75;
+    const occBadge=r.call_verified_occ?`<span class="tag watch" title="Verified via Overnight Courtesy Call">${occVal}% Call (${r.call_rooms_left} left)</span>`:`<span class="tag blue">${occVal}% Est (~${r.call_rooms_left} left)</span>`;
+
+    return `<tr class="${r.is_my_hotel?'my-hotel-row':''}">
+      <td>
+        <b>${r.is_my_hotel?'★ ':''}${r.name.split(',')[0]}</b>
+        <div style="font-size:10.5px;color:var(--muted)">${r.area||'—'} · ${r.est_rooms||'—'}r</div>
+      </td>
+      <td class="mono" style="white-space:nowrap">
+        <span style="color:var(--muted)">${money(r.prev_price)}</span> → <b style="font-size:13.5px;color:#0F172A">${money(r.price)}</b>
+        <span style="color:${moveCol};font-weight:700;margin-left:4px">${moveArrow}$${Math.abs(dDollar)} (${dPct>0?'+':''}${dPct}%)</span>
+        <div style="font-size:10px;color:var(--blue)">${r.is_my_hotel?'★ My Current BAR':(r.gap_vs_my_hotel>=0?'+$'+r.gap_vs_my_hotel+' vs My Hotel':'-$'+Math.abs(r.gap_vs_my_hotel)+' vs My Hotel')}</div>
+      </td>
+      <td style="white-space:nowrap">
+        <div class="mono"><b>${money(low.rate)}</b> <span style="font-size:10.5px;color:var(--muted)">${low.name.split(' ')[0]}</span></div>
+        <a href="${verifyUrl}" target="_blank" class="tag ${pcls}" style="text-decoration:none;margin-top:2px">${r.parity_status||'PARITY'} (${r.undercut_pct>0?'+':''}${r.undercut_pct||0}%) ↗</a>
+      </td>
+      <td class="mono" style="white-space:nowrap">
+        <b>${money(otd.direct_out_the_door||Math.round((r.price||200)*1.24))}</b>
+        <div style="font-size:10px;color:var(--muted)">+$${otd.est_resort_fee||0} fee</div>
+      </td>
+      <td>${occBadge}</td>
+      <td>
+        <div style="font-size:11px;white-space:nowrap"><b>${(r.review_rating||r.stars||4.1).toFixed(1)}★</b> (${r.review_count||380}) · <span class="mono">$${r.price_min||145}–$${r.price_max||360}</span></div>
+        <div style="font-size:10px;color:var(--blue);font-weight:600">${r.pricing_personality||'Dynamic Responder'}</div>
+      </td>
+      <td style="font-size:11.3px;max-width:220px">
+        <b style="color:${r.is_my_hotel?'#B45309':'#0F172A'}">${r.my_rate_recommendation||''}</b>
+      </td>
+      <td style="white-space:nowrap">
+        <div style="display:flex;gap:4px">
+          <button class="btn sm outline" onclick="switchTab('caller',${r.hotel_id})" title="Call Front Desk">📞 Call</button>
+          <button class="btn sm blue" onclick="switchTab('memory',${r.hotel_id})" title="Pricing Memory">🧠</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('')+`</tbody></table>`;
 }
 
 function renderCodexrWidgets(sum,hotels){
-  const rates=(sum.rates||[]).slice().sort((a,b)=>(a.undercut_pct||0)-(b.undercut_pct||0));
-  const topLeak=rates[0]||{hotel_id:11,name:'The New Yorker Boutique Hotel',price:281,undercut_pct:-37.4,est_occupancy_pct:78,pricing_personality:'Passive Wholesale Leaker'};
-  const pitch=STATE.pitches[String(topLeak.hotel_id)]||{};
-  const ri=pitch.rate_intel||{};
-  const occ=topLeak.est_occupancy_pct||78;
-  $('#dialer-occ-lbl').textContent=`${occ}% EST OCCUPANCY`;
-  $('#dialer-hotel-bar').textContent='$'+(ri.lowest_ota_price||176);
-  $('#dialer-hotel-gap').textContent=`${topLeak.undercut_pct||-37.4}% on ${ri.lowest_ota_name||'Agoda'}`;
-  $('#dialer-hotel-name').textContent=topLeak.name;
-  $('#dialer-hotel-meta').textContent=`Behavior: ${topLeak.pricing_personality||'Passive Wholesale Leaker'}`;
-  $('#gauge-circle').style.background=`conic-gradient(#F59E0B 0% ${occ}%, rgba(15,23,42,0.08) ${occ}% 100%)`;
+  const mh=sum.my_hotel||{};
+  const occ=mh.current_occupancy_pct||78;
+  $('#dialer-occ-lbl').textContent=`${occ}% MY OCCUPANCY`;
+  $('#dialer-hotel-bar').textContent='$'+(mh.recommended_tonight_walkin||236);
+  $('#dialer-hotel-gap').textContent=`30d BAR: $${mh.recommended_30d_bar||232} · Wknd: $${mh.recommended_weekend_bar||267}`;
+  $('#dialer-hotel-name').textContent=mh.name||'My Hotel';
+  $('#dialer-hotel-meta').textContent=`Corridor Avg: $${mh.corridor_new_avg||232} (was $${mh.corridor_old_avg||221}) · ${mh.rooms_left_tonight||10} Rooms Left`;
+  $('#gauge-circle').style.background=`conic-gradient(#10B981 0% ${occ}%, rgba(15,23,42,0.08) ${occ}% 100%)`;
 
-  const topTasks=rates.slice(0,4);
-  $('#dark-deal-tasks').innerHTML=topTasks.map((r,idx)=>{
-    const p=STATE.pitches[String(r.hotel_id)]||{};
-    const rec=p.memory?.strategy_action||`Close ${r.undercut_pct}% OTA leak`;
-    return `
-      <div onclick="switchTab('strategy',${r.hotel_id})" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:8px 11px;border-radius:11px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1)">
-        <div style="min-width:0;padding-right:8px">
-          <div style="font-weight:700;font-size:12.2px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${idx+1}. ${r.name.split(',')[0]} (${r.est_occupancy_pct||74}% Occ)</div>
-          <div style="font-size:10.8px;color:#38BDF8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${rec}</div>
-        </div>
-        <span style="flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#F59E0B;color:#0F172A;display:grid;place-items:center;font-weight:800;font-size:11px">→</span>
+  const movers=(sum.rates||[]).slice().sort((a,b)=>Math.abs(b.delta_pct||0)-Math.abs(a.delta_pct||0)).slice(0,4);
+  $('#dark-deal-tasks').innerHTML=movers.map((r,idx)=>`
+    <div onclick="switchTab('memory',${r.hotel_id})" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:8px 11px;border-radius:11px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1)">
+      <div style="min-width:0;padding-right:8px">
+        <div style="font-weight:700;font-size:12.2px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${idx+1}. ${r.name.split(',')[0]} ($${r.prev_price} → $${r.price})</div>
+        <div style="font-size:10.8px;color:#38BDF8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.delta_pct>0?'Raised +'+r.delta_pct+'%':'Dropped '+r.delta_pct+'%'} · Occ ${r.est_occupancy_pct||75}% · ${r.pricing_personality||''}</div>
       </div>
-    `;
-  }).join('');
+      <span style="flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#F59E0B;color:#0F172A;display:grid;place-items:center;font-weight:800;font-size:11px">→</span>
+    </div>
+  `).join('');
 }
 
-function renderChart(rates){
+function renderChart(rates, mh){
   const c=$('#chart');if(!c)return;
   const dpr=window.devicePixelRatio||1;
-  const W=c.clientWidth||600,H=260;c.width=W*dpr;c.height=H*dpr;
+  const W=c.clientWidth||600,H=250;c.width=W*dpr;c.height=H*dpr;
   const x=c.getContext('2d');x.scale(dpr,dpr);x.clearRect(0,0,W,H);
-  const data=rates.filter(r=>r.price!=null).slice(0,16);
+  const myArea=mh.area||'North Beach';
+  let data=rates.filter(r=>r.area===myArea && r.price!=null);
+  if(data.length<6)data=rates.filter(r=>r.price!=null).slice(0,14);
   if(!data.length)return;
   const max=Math.max(...data.map(r=>Math.max(r.price,r.prev_price||0)))*1.15||1;
-  const pad={l:44,r:12,t:22,b:64},iw=W-pad.l-pad.r,ih=H-pad.t-pad.b;
+  const pad={l:44,r:12,t:22,b:62},iw=W-pad.l-pad.r,ih=H-pad.t-pad.b;
   x.strokeStyle='rgba(15,23,42,0.07)';x.fillStyle='#64748B';x.font='10.5px JetBrains Mono';
   for(let i=0;i<=4;i++){
     const y=pad.t+ih-ih*i/4;
     x.beginPath();x.moveTo(pad.l,y);x.lineTo(W-pad.r,y);x.stroke();
     x.fillText('$'+(max*i/4).toFixed(0),4,y+4);
   }
-  const slot=iw/data.length,bw=Math.min(20,slot*0.56);
+  const slot=iw/data.length,bw=Math.min(22,slot*0.58);
   data.forEach((r,i)=>{
     const cx=pad.l+i*slot+slot/2;
     const h1=ih*r.price/max,y1=pad.t+ih-h1;
     if(r.prev_price!=null){
-      x.fillStyle='rgba(148,163,184,0.38)';
+      x.fillStyle='rgba(148,163,184,0.45)';
       const hp=ih*r.prev_price/max;
-      round(x,cx-bw/2-3,pad.t+ih-hp,bw*0.38,hp,4);
+      round(x,cx-bw/2-4,pad.t+ih-hp,bw*0.42,hp,4);
     }
-    x.fillStyle=(r.parity_status==='UNDERCUT')?'#E11D48':'#0F172A';
-    round(x,cx-bw/4,y1,bw*0.75,h1,5);
+    x.fillStyle=r.is_my_hotel?'#F59E0B':((r.parity_status==='UNDERCUT')?'#E11D48':'#0F172A');
+    round(x,cx-bw/4,y1,bw*0.76,h1,5);
     x.fillStyle='#0F172A';x.font='700 9px JetBrains Mono';x.textAlign='center';
     x.fillText('$'+Math.round(r.price),cx,y1-4);
-    x.save();x.translate(cx,pad.t+ih+10);x.rotate(-.52);x.fillStyle='#475569';x.font='600 9.5px Inter';
-    x.fillText(r.name.split(',')[0].replace('The ','').slice(0,14),0,8);x.restore();x.textAlign='left';
+    x.save();x.translate(cx,pad.t+ih+10);x.rotate(-.50);x.fillStyle=r.is_my_hotel?'#B45309':'#475569';x.font='600 9.5px Inter';
+    x.fillText((r.is_my_hotel?'★ ':'')+r.name.split(',')[0].replace('The ','').slice(0,14),0,8);x.restore();x.textAlign='left';
   });
-  x.fillStyle='#0F172A';x.fillRect(pad.l,4,9,9);x.fillStyle='#475569';x.font='600 10px Inter';x.fillText('Current BAR',pad.l+13,12);
-  x.fillStyle='#E11D48';x.fillRect(pad.l+95,4,9,9);x.fillStyle='#475569';x.fillText('OTA Leak',pad.l+108,12);
-  x.fillStyle='rgba(148,163,184,0.7)';x.fillRect(pad.l+175,4,9,9);x.fillStyle='#475569';x.fillText('Prior Scan',pad.l+188,12);
+  x.fillStyle='#F59E0B';x.fillRect(pad.l,4,9,9);x.fillStyle='#475569';x.font='600 10px Inter';x.fillText('My Hotel',pad.l+13,12);
+  x.fillStyle='#0F172A';x.fillRect(pad.l+75,4,9,9);x.fillStyle='#475569';x.fillText('New Scrape BAR',pad.l+88,12);
+  x.fillStyle='rgba(148,163,184,0.75)';x.fillRect(pad.l+185,4,9,9);x.fillStyle='#475569';x.fillText('Previous Scrape',pad.l+198,12);
 }
 function round(x,a,b,w,h,r){x.beginPath();x.roundRect?x.roundRect(a,b,w,h,r):x.rect(a,b,w,h);x.fill();}
-
-function renderMoversOverview(rates){
-  const rows=rates.slice().sort((a,b)=>(a.undercut_pct||0)-(b.undercut_pct||0));
-  $('#movers-box').innerHTML=`<table><thead><tr><th>Hotel</th><th>BAR & Move</th><th>Lowest OTA</th><th>Est. Occ</th><th>Action</th></tr></thead><tbody>`+
-    rows.slice(0,12).map(r=>{
-      const nonDir=(r.ota_channels||[]).filter(c=>c.code!=='DIRECT');
-      const low=nonDir.length?nonDir.reduce((a,b)=>a.rate<b.rate?a:b):{name:'OTA',rate:r.price};
-      const cls=r.parity_status==='UNDERCUT'?'undercut':'parity';
-      return `<tr>
-        <td><b>${r.name.split(',')[0]}</b><div style="font-size:10.5px;color:var(--muted)">${r.area||''}</div></td>
-        <td class="mono"><b>${money(r.price)}</b> <span style="font-size:10.5px;color:${(r.delta_pct||0)>=0?'var(--green)':'var(--coral)'}">${(r.delta_pct||0)>=0?'▲':'▼'}${Math.abs(r.delta_pct||0)}%</span></td>
-        <td class="mono">${money(low.rate)} <span class="tag ${cls}">${r.undercut_pct||0}%</span></td>
-        <td class="mono"><b>${r.est_occupancy_pct||74}%</b></td>
-        <td><button class="btn sm blue" onclick="switchTab('memory',${r.hotel_id})">Memory →</button></td>
-      </tr>`;
-    }).join('')+`</tbody></table>`;
-}
-
-function renderPersonalitiesOverview(hotels){
-  $('#prospects-overview').innerHTML=`<table><thead><tr><th>Hotel</th><th>Est. Occ</th><th>Memorized Pricing Behavior</th><th>Strategy</th></tr></thead><tbody>`+
-    hotels.slice(0,12).map(h=>`<tr>
-      <td><b>${h.name.split(',')[0]}</b><div style="font-size:10.5px;color:var(--muted)">BAR ${money(h.price)} · ${h.area||''}</div></td>
-      <td class="mono"><b>${h.est_occupancy_pct||74}%</b></td>
-      <td><span class="tag blue">${h.pricing_personality||'Dynamic Responder'}</span></td>
-      <td><button class="btn sm gold" onclick="switchTab('strategy',${h.id})">Strategy →</button></td>
-    </tr>`).join('')+`</tbody></table>`;
-}
 
 function renderRuns(runs){
   $('#runs').innerHTML=(runs||[]).slice(0,8).map(r=>`#${r.id} [${r.status}] · mode=${r.mode} · hotels=${r.hotels_ok}/${r.hotels_attempted} · +${r.rates_new} rate observations memorized`).join('<br>')||'no runs yet';
 }
 
-/* ==================== TAB 2: LIVE RATE, PARITY & OCCUPANCY MATRIX ==================== */
-function renderRatesTab(){
-  const q=($('#rate-search')?.value||'').toLowerCase();
-  const area=$('#rate-area')?.value||'';
-  const par=$('#rate-parity')?.value||'';
-  const rates=(STATE.summary?.rates||[]).filter(r=>{
-    if(area && r.area!==area)return false;
-    if(par && r.parity_status!==par)return false;
-    if(q && !(r.name.toLowerCase().includes(q)||(r.pricing_personality||'').toLowerCase().includes(q)||(r.area||'').toLowerCase().includes(q)))return false;
-    return true;
+/* ==================== TAB 2: OVERNIGHT COURTESY OCCUPANCY CALLER ==================== */
+function renderCallerTab(){
+  const tSel=$('#call-template-select');
+  if(tSel && !tSel.innerHTML && STATE.templates.length){
+    tSel.innerHTML=STATE.templates.map(t=>`<option value="${t.id}">${t.label}</option>`).join('');
+  }
+  updateCallerPreview();
+  renderCallLogsList();
+}
+
+function updateCallerPreview(){
+  const hid=Number($('#call-hotel-select')?.value||STATE.selectedHotelId||1);
+  const h=STATE.hotels.find(x=>x.id===hid)||STATE.hotels[0]||{};
+  const mh=STATE.summary?.my_hotel||{};
+  const ph=((h.contacts||[]).find(c=>c.kind==='phone')?.value)||'(305) 866-7033';
+  $('#call-target-phone-lbl').textContent=`Front Desk Line for ${h.name||'Hotel'}: ${ph}`;
+  $('#call-tel-link').href=`tel:${ph.replace(/\D/g,'')}`;
+
+  const tid=$('#call-template-select')?.value||'overnight_audit';
+  const tpl=(STATE.templates||[]).find(t=>t.id===tid)||(STATE.templates||[])[0]||{
+    opening_script:"Hi Front Desk, doing our overnight courtesy occupancy call-around. How is your occupancy tonight, how many rooms left, and what is your walk-in BAR?",
+    followup_question:"Thank you! Are you holding your rate floor for this weekend?"
+  };
+  const scriptText=tpl.opening_script
+    .replace('{my_occ}', mh.current_occupancy_pct||78)
+    .replace('{my_left}', mh.rooms_left_tonight||10)
+    .replace('{my_bar}', mh.current_bar||224);
+
+  $('#call-script-preview').textContent=`🗣 SAY TO FRONT DESK (${h.name||'Competitor'} · ${ph}):\n"${scriptText}"\n\n💬 QUICK FOLLOW-UP QUESTION:\n"${tpl.followup_question}"`;
+}
+
+async function triggerAutomatedCourtesyCall(){
+  const hid=Number($('#call-hotel-select')?.value||1);
+  toast('📞 Dialing front desk & running overnight courtesy occupancy check...');
+  const r=await fetch('/api/calls'+authQuery(),{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({hotel_id:hid,caller_mode:'Overnight Courtesy Auto-Caller'})
   });
-  $('#rates-matrix-table').innerHTML=`<table><thead><tr>
-    <th>Hotel</th><th>Corridor</th><th>Prior BAR</th><th>Direct BAR</th><th>Out-the-Door</th><th>Est. Occ</th>
-    <th>Multi-OTA Rate Ladder</th><th>Parity Status</th><th>Competitor Behavior</th><th>Inspect</th>
-  </tr></thead><tbody>`+rates.map(r=>{
-    const pitch=STATE.pitches[String(r.hotel_id)]||{};
-    const otd=pitch.out_the_door||{};
-    const verifyUrl=pitch.hotel?.verify_url||`https://www.tripadvisor.com/Hotel_Review-${r.xotelo_key||'g34439-d85104'}.html`;
-    const ladder=(r.ota_channels||[]).slice(0,4).map(c=>`<span class="pill ${c.code==='DIRECT'?'em':'ph'}">${c.name.split(' ')[0]}: <b>$${c.rate}</b></span>`).join(' ');
-    const pcls=(r.parity_status||'PARITY').toLowerCase();
-    return `<tr>
-      <td><b>${r.name}</b><div style="font-size:11px;color:var(--muted)">${r.stars||'4'}★ · ${r.est_rooms||'—'}r</div></td>
-      <td>${r.area||'—'}</td>
-      <td class="mono">${money(r.prev_price)}</td>
-      <td class="mono" style="font-size:13.5px"><b>${money(r.price)}</b></td>
-      <td class="mono"><b>${money(otd.direct_out_the_door||Math.round((r.price||200)*1.24))}</b></td>
-      <td class="mono"><b>${r.est_occupancy_pct||74}%</b></td>
-      <td>${ladder||'—'}</td>
-      <td><a href="${verifyUrl}" target="_blank" class="tag ${pcls}" style="text-decoration:none">${r.parity_status||'PARITY'} (${r.undercut_pct>0?'+':''}${r.undercut_pct||0}%) ↗</a></td>
-      <td><span class="tag blue">${r.pricing_personality||'Tier Holder'}</span></td>
-      <td>
-        <div style="display:flex;gap:4px">
-          <button class="btn sm outline" onclick="switchTab('memory',${r.hotel_id})">Memory</button>
-          <button class="btn sm gold" onclick="switchTab('strategy',${r.hotel_id})">Strategy</button>
+  if(r.ok){
+    const d=await r.json();
+    $('#call-occ-inp').value=d.reported_occupancy_pct||'';
+    $('#call-left-inp').value=d.rooms_left||'';
+    $('#call-walkin-inp').value=d.quoted_walkin_rate||'';
+    $('#call-transcript-inp').value=d.transcript||'';
+    toast(`✓ Call completed! ${d.hotel_name}: ${d.reported_occupancy_pct}% Occupancy (${d.rooms_left} rooms left @ $${d.quoted_walkin_rate})`);
+    await refresh();
+    renderCallerTab();
+  }
+}
+
+async function saveCourtesyCallLog(){
+  const hid=Number($('#call-hotel-select')?.value||1);
+  const payload={
+    hotel_id:hid,
+    caller_mode:'Recorded Desk Courtesy Call',
+    reported_occupancy_pct:$('#call-occ-inp').value?Number($('#call-occ-inp').value):null,
+    rooms_left:$('#call-left-inp').value?Number($('#call-left-inp').value):null,
+    quoted_walkin_rate:$('#call-walkin-inp').value?Number($('#call-walkin-inp').value):null,
+    transcript:$('#call-transcript-inp').value||'',
+  };
+  const r=await fetch('/api/calls'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  if(r.ok){
+    const d=await r.json();
+    toast(`✓ Saved call log for ${d.hotel_name} (${d.reported_occupancy_pct}% Occ) & updated Rate Assistant!`);
+    $('#call-transcript-inp').value='';
+    await refresh();
+    renderCallerTab();
+  }
+}
+
+async function runBatchOvernightCalls(){
+  const myArea=STATE.summary?.my_hotel?.area||'';
+  toast('⚡ Running Overnight Batch Call-Around across corridor front desks...');
+  const r=await fetch('/api/calls'+authQuery(),{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({batch:true,area:myArea})
+  });
+  if(r.ok){
+    const d=await r.json();
+    toast(`✓ Completed ${d.batch_count} overnight courtesy calls & updated corridor occupancy!`);
+    await refresh();
+    renderCallerTab();
+  }
+}
+
+async function toggleBrowserMicRecording(){
+  const btn=$('#mic-record-btn');
+  const player=$('#recorded-audio-player');
+  if(STATE.mediaRecorder && STATE.mediaRecorder.state==='recording'){
+    STATE.mediaRecorder.stop();
+    btn.textContent='🎙 Record Call Audio';
+    toast('✓ Call audio recorded! Ready to save.');
+    return;
+  }
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    STATE.audioChunks=[];
+    STATE.mediaRecorder=new MediaRecorder(stream);
+    STATE.mediaRecorder.ondataavailable=e=>{if(e.data.size>0)STATE.audioChunks.push(e.data);};
+    STATE.mediaRecorder.onstop=()=>{
+      const blob=new Blob(STATE.audioChunks,{type:'audio/webm'});
+      player.src=URL.createObjectURL(blob);
+      player.style.display='block';
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    STATE.mediaRecorder.start();
+    btn.textContent='⏹ Stop Recording';
+    toast('🎙 Recording live call audio...');
+  }catch(e){
+    toast('ℹ Microphone not attached — use "Run Auto-Caller Now" or type answers below.');
+  }
+}
+
+function renderCallLogsList(){
+  const calls=STATE.calls||[];
+  $('#call-log-count').textContent=`${calls.length} recorded overnight & desk calls`;
+  $('#call-logs-box').innerHTML=calls.map(c=>{
+    const dt=c.called_at?new Date(c.called_at*1000).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'Tonight';
+    return `
+      <div style="background:rgba(255,255,255,0.86);border:1px solid var(--line2);border-radius:14px;padding:12px 14px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+          <div>
+            <b>${c.hotel_name}</b> <span style="font-size:11.5px;color:var(--muted)">(${c.area||''} · ${c.phone_dialed||''})</span>
+          </div>
+          <div style="display:flex;gap:5px;align-items:center">
+            <span class="tag watch">Occ: ${c.reported_occupancy_pct}%</span>
+            <span class="tag warm">${c.rooms_left} Rooms Left</span>
+            <span class="tag blue">Walk-In: $${c.quoted_walkin_rate}</span>
+          </div>
         </div>
-      </td>
-    </tr>`;
-  }).join('')+`</tbody></table>`;
+        <div style="font-size:11px;color:var(--muted);margin-top:4px">🕒 ${dt} · ${c.caller_mode||'Courtesy Call'} · 🔊 <span class="mono">${c.recording_url||'audio.wav'}</span></div>
+        <div style="font-size:12px;color:var(--ink);margin-top:6px;background:rgba(15,23,42,0.03);padding:8px 10px;border-radius:8px;white-space:pre-wrap">${c.transcript||''}</div>
+      </div>
+    `;
+  }).join('')||'No overnight calls logged yet.';
 }
 
 /* ==================== TAB 3: PRICING MEMORY, OCCUPANCY & COMPETITOR DECISIONS ==================== */
@@ -930,23 +1160,22 @@ async function renderMemoryTab(){
   $('#memory-profile-box').innerHTML=`
     <h2><span>Memorized Decision Profile: ${mem.hotel_name}</span><span class="tag blue">${occ.pricing_personality||'Dynamic'}</span></h2>
     <div class="grid3" style="margin-top:12px">
-      <div style="background:rgba(255,255,255,0.8);padding:12px;border-radius:12px;border:1px solid var(--line2)">
-        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">Current vs Prior BAR</div>
+      <div style="background:rgba(255,255,255,0.85);padding:12px;border-radius:12px;border:1px solid var(--line2)">
+        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">New vs Old Scrape BAR</div>
         <div class="mono" style="font-size:21px;font-weight:800;margin-top:4px">${money(mem.current_bar)} <small style="font-size:12px;color:var(--muted)">was ${money(mem.prev_bar)} (${mem.delta_pct>0?'+':''}${mem.delta_pct}%)</small></div>
       </div>
-      <div style="background:rgba(255,255,255,0.8);padding:12px;border-radius:12px;border:1px solid var(--line2)">
-        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">Estimated Occupancy</div>
+      <div style="background:rgba(255,255,255,0.85);padding:12px;border-radius:12px;border:1px solid var(--line2)">
+        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">Occupancy Pressure</div>
         <div class="mono" style="font-size:21px;font-weight:800;color:var(--green);margin-top:4px">${occ.est_occupancy_pct||74}% <small style="font-size:11.5px;color:var(--muted)">Band: $${occ.price_min}–$${occ.price_max}</small></div>
       </div>
-      <div style="background:rgba(255,255,255,0.8);padding:12px;border-radius:12px;border:1px solid var(--line2)">
-        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">AI Target BAR</div>
+      <div style="background:rgba(255,255,255,0.85);padding:12px;border-radius:12px;border:1px solid var(--line2)">
+        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">Recommended BAR</div>
         <div class="mono" style="font-size:21px;font-weight:800;color:var(--blue);margin-top:4px">${money(mem.recommended_bar)}/nt</div>
       </div>
     </div>
     <div class="script-box" style="margin-top:10px"><b>🧠 Memorized Decision-Making Pattern:</b>\n${occ.decision_logic||''}\n\n<b>⚡ Recommended Strategy (${mem.strategy_action}):</b>\n${mem.strategy_rationale||''}</div>
   `;
 
-  // Render Memory Timeline Chart
   const c=$('#memory-chart');
   if(c){
     const dpr=window.devicePixelRatio||1;
@@ -963,7 +1192,6 @@ async function renderMemoryTab(){
         x.fillText('$'+(maxP*i/4).toFixed(0),4,y+4);
         x.fillText((25*i)+'%',W-pad.r+4,y+4);
       }
-      // Draw BAR line
       x.strokeStyle='#2563EB';x.lineWidth=2.5;x.beginPath();
       pts.forEach((p,i)=>{
         const px=pad.l+(i/(Math.max(1,pts.length-1)))*iw;
@@ -971,7 +1199,6 @@ async function renderMemoryTab(){
         if(i===0)x.moveTo(px,py);else x.lineTo(px,py);
       });
       x.stroke();
-      // Draw Occupancy line
       x.strokeStyle='#10B981';x.lineWidth=2;x.setLineDash([4,4]);x.beginPath();
       pts.forEach((p,i)=>{
         const px=pad.l+(i/(Math.max(1,pts.length-1)))*iw;
@@ -979,7 +1206,6 @@ async function renderMemoryTab(){
         if(i===0)x.moveTo(px,py);else x.lineTo(px,py);
       });
       x.stroke();x.setLineDash([]);
-      // Points & labels
       pts.forEach((p,i)=>{
         const px=pad.l+(i/(Math.max(1,pts.length-1)))*iw;
         const py=pad.t+ih-(p.bar/maxP)*ih;
@@ -991,14 +1217,13 @@ async function renderMemoryTab(){
       });
       x.textAlign='left';
       x.fillStyle='#2563EB';x.fillRect(pad.l,2,10,8);x.fillStyle='#475569';x.fillText('Memorized Direct BAR ($)',pad.l+14,10);
-      x.fillStyle='#10B981';x.fillRect(pad.l+170,2,10,8);x.fillStyle='#475569';x.fillText('Estimated Occupancy (%)',pad.l+184,10);
+      x.fillStyle='#10B981';x.fillRect(pad.l+170,2,10,8);x.fillStyle='#475569';x.fillText('Occupancy (%)',pad.l+184,10);
     }
   }
 
-  // Render Competitor Decision Table
   const comps=mem.competitor_decisions||[];
   $('#memory-competitors-table').innerHTML=`<table><thead><tr>
-    <th>Corridor Neighbor</th><th>Prior BAR</th><th>Current BAR</th><th>Move</th><th>Est. Occupancy</th><th>Memorized Pricing Personality</th><th>Decision-Making Analysis</th>
+    <th>Corridor Neighbor</th><th>Previous Scrape</th><th>Latest Scrape</th><th>Move</th><th>Occupancy</th><th>Memorized Pricing Personality</th><th>Decision-Making Analysis</th>
   </tr></thead><tbody>`+comps.map(c=>`<tr>
     <td><b>${c.name}</b><div style="font-size:11px;color:var(--muted)">${c.area||''}</div></td>
     <td class="mono">${money(c.prev_bar)}</td>
@@ -1026,11 +1251,16 @@ async function recordManualMemory(){
   renderMemoryTab();
 }
 
-/* ==================== TAB 4: AI RATE STRATEGY & RECOMMENDATIONS ==================== */
-function populateHotelSelectors(hotels){
-  const opts=hotels.map(h=>`<option value="${h.id}" ${h.id===STATE.selectedHotelId?'selected':''}>${h.name} (${h.area} · BAR ${money(h.price)} · Occ ${h.est_occupancy_pct||74}% · ${h.parity_status||'PARITY'})</option>`).join('');
+/* ==================== TAB 4: RATE STRATEGY & 1-PAGE DESK SHEET ==================== */
+function populateHotelSelectors(hotels, myHotel){
+  const myId=myHotel?.hotel_id||1;
+  const opts=hotels.map(h=>`<option value="${h.id}" ${h.id===STATE.selectedHotelId?'selected':''}>${h.name} (${h.area} · Old ${money(h.prev_price)} → New ${money(h.price)} · Occ ${h.est_occupancy_pct||74}%)</option>`).join('');
   if($('#pitch-hotel-select'))$('#pitch-hotel-select').innerHTML=opts;
   if($('#memory-hotel-select'))$('#memory-hotel-select').innerHTML=opts;
+  if($('#call-hotel-select'))$('#call-hotel-select').innerHTML=opts;
+  if($('#my-hotel-select')){
+    $('#my-hotel-select').innerHTML=hotels.map(h=>`<option value="${h.id}" ${h.id===myId?'selected':''}>${h.name} (${h.area} · ${h.est_rooms} rooms)</option>`).join('');
+  }
 }
 
 function loadPitchForSelected(){
@@ -1039,23 +1269,22 @@ function loadPitchForSelected(){
 }
 
 async function triggerLiveAiBrief(){
-  const hid=STATE.selectedHotelId||11;
-  const model=$('#ai-model-select')?.value||'gemini-2.5-flash-lite';
-  toast('⚡ Computing rate strategy with '+model+'...');
+  const hid=STATE.selectedHotelId||1;
+  toast('⚡ Re-computing rate strategy...');
   const k=new URLSearchParams(location.search).get('k');
-  const r=await fetch(`/api/ai-pitch?hotel_id=${hid}&model=${encodeURIComponent(model)}${k?'&k='+encodeURIComponent(k):''}`);
+  const r=await fetch(`/api/ai-pitch?hotel_id=${hid}${k?'&k='+encodeURIComponent(k):''}`);
   if(r.ok){
     const d=await r.json();
     if(d.ai_brief && STATE.pitches[String(hid)]){
       STATE.pitches[String(hid)].ai_brief=d.ai_brief;
       renderStrategyTab();
-      toast('✓ Strategy updated via '+d.ai_brief.model_used);
+      toast('✓ Rate strategy updated!');
     }
   }
 }
 
 async function renderStrategyTab(){
-  const hid=STATE.selectedHotelId||11;
+  const hid=STATE.selectedHotelId||1;
   let pitch=STATE.pitches[String(hid)];
   if(!pitch){
     const r=await fetch(`/api/pitch?hotel_id=${hid}${authQuery()?'&'+authQuery().slice(1):''}`);
@@ -1067,12 +1296,11 @@ async function renderStrategyTab(){
   const recs=pitch.action_recommendations||[];
 
   $('#pitch-content').innerHTML=`
-    <!-- AI REVENUE STRATEGIST DARK GLASS BANNER -->
     <div style="background:var(--surface-dark);color:#fff;border-radius:16px;padding:16px 20px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap">
       <div style="flex:1;min-width:260px">
         <div style="display:flex;align-items:center;gap:8px;font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:#38BDF8;font-weight:700">
-          <span>✨ HRI GlassV4 Rate Strategy · ${ai.model_used||'gemini-2.5-flash-lite'}</span>
-          <span style="background:rgba(16,185,129,0.2);color:#34D399;padding:2px 8px;border-radius:99px">Est. Occupancy ${mem.occupancy?.est_occupancy_pct||74}%</span>
+          <span>✨ Rate & Occupancy Strategy · ${h.name}</span>
+          <span style="background:rgba(16,185,129,0.2);color:#34D399;padding:2px 8px;border-radius:99px">Occupancy ${mem.occupancy?.est_occupancy_pct||74}%</span>
         </div>
         <div style="font:700 16px 'Plus Jakarta Sans',sans-serif;color:#FBBF24;margin-top:5px">${mem.strategy_action||ai.headline||''}</div>
         <div style="font-size:13px;color:#E2E8F0;margin-top:6px;line-height:1.55">${ai.gm_executive_memo||''}</div>
@@ -1084,27 +1312,28 @@ async function renderStrategyTab(){
     </div>
 
     <div class="grid3" style="margin-bottom:14px">
-      <div style="background:rgba(255,255,255,0.82);padding:14px 16px;border-radius:14px;border:1px solid var(--line)">
-        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">Current Direct BAR vs Recommended</div>
-        <div style="display:flex;align-items:baseline;gap:10px;margin-top:5px">
-          <span class="mono" style="font-size:23px;font-weight:800;color:#0F172A">${money(ri.direct_bar)}</span>
-          <span class="mono" style="font-size:18px;font-weight:800;color:var(--blue)">→ ${money(mem.recommended_bar||ri.direct_bar+18)}/nt</span>
+      <div style="background:rgba(255,255,255,0.85);padding:14px 16px;border-radius:14px;border:1px solid var(--line)">
+        <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">Old Scrape vs New Scrape → Target BAR</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-top:5px;flex-wrap:wrap">
+          <span class="mono" style="font-size:16px;color:var(--muted)">Old ${money(ri.prev_bar)}</span>
+          <span class="mono" style="font-size:22px;font-weight:800;color:#0F172A">→ New ${money(ri.direct_bar)}</span>
+          <span class="mono" style="font-size:18px;font-weight:800;color:var(--blue)">→ Rec ${money(mem.recommended_bar||ri.direct_bar+18)}</span>
         </div>
         <div style="font-size:11.5px;color:var(--muted);margin-top:5px">Out-the-Door w/ Resort Fee & Tax: <b>${money(otd.direct_out_the_door)}/nt</b></div>
       </div>
 
-      <div style="background:rgba(255,255,255,0.82);padding:14px 16px;border-radius:14px;border:1px solid var(--line)">
+      <div style="background:rgba(255,255,255,0.85);padding:14px 16px;border-radius:14px;border:1px solid var(--line)">
         <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">OTA Parity & Wholesale Check (${ri.checkin})</div>
         <div style="display:flex;align-items:baseline;gap:10px;margin-top:5px">
-          <span class="mono" style="font-size:23px;font-weight:800;color:var(--coral)">${money(ri.lowest_ota_price)}</span>
+          <span class="mono" style="font-size:22px;font-weight:800;color:var(--coral)">${money(ri.lowest_ota_price)}</span>
           <span style="font-size:12px;font-weight:700;color:var(--coral)">on ${ri.lowest_ota_name} (${ri.undercut_pct}%)</span>
         </div>
         <div style="font-size:11.5px;color:var(--muted);margin-top:5px">Corridor Neighbor Avg: <b>${money(ri.comp_avg)}/nt</b></div>
       </div>
 
-      <div style="background:rgba(255,255,255,0.82);padding:14px 16px;border-radius:14px;border:1px solid var(--line)">
+      <div style="background:rgba(255,255,255,0.85);padding:14px 16px;border-radius:14px;border:1px solid var(--line)">
         <div style="font-size:10.5px;text-transform:uppercase;color:var(--muted);font-weight:700">Projected Annual RevPAR Impact (${h.est_rooms} Rooms)</div>
-        <div class="mono" style="font-size:23px;font-weight:800;color:var(--green);margin-top:5px">+${money(roi.total_annual_roi)}/yr</div>
+        <div class="mono" style="font-size:22px;font-weight:800;color:var(--green);margin-top:5px">+${money(roi.total_annual_roi)}/yr</div>
         <div style="font-size:11.5px;color:var(--muted);margin-top:5px">Yield Lift (+${money(roi.annual_adr_upside)}) + Direct Parity (+${money(roi.annual_commission_saved)})</div>
       </div>
     </div>
@@ -1121,7 +1350,7 @@ async function renderStrategyTab(){
 }
 
 function openPrintableAudit(){
-  const hid=STATE.selectedHotelId||11;
+  const hid=STATE.selectedHotelId||1;
   window.open('/audit?hotel_id='+hid,'_blank');
 }
 
@@ -1146,7 +1375,9 @@ async function loadConfigTab(){
     $('#cfg-smtp-port').value=cfg.email_report.smtp_port||587;
     $('#cfg-to-email').value=cfg.email_report.to_email||'';
     $('#cfg-smtp-user').value=cfg.email_report.smtp_user||'';
-    $('#cfg-smtp-pass').value=cfg.email_report.smtp_pass||'';
+  }
+  if(cfg.caller){
+    $('#cfg-vapi-key').value=cfg.caller.vapi_api_key||'';
   }
 }
 
@@ -1172,13 +1403,14 @@ async function submitNewHotel(){
     $('#add-name').value='';
     toast('✓ Added '+name+' (ID #'+res.hotel_id+') & memorized initial rate!');
     await refresh();
-    switchTab('memory',res.hotel_id);
+    switchTab('overview');
   }
 }
 
 async function saveScraperConfig(){
   const payload={
     stay:{checkin_days_out:Number($('#cfg-days').value||30),nights:Number($('#cfg-nights').value||3)},
+    caller:{vapi_api_key:$('#cfg-vapi-key').value||''},
     telegram:{schedule_time:$('#cfg-sched').value||'06:00',bot_token:$('#cfg-tg-token').value,chat_id:$('#cfg-tg-chat').value},
     email_report:{
       schedule_time:$('#cfg-sched').value||'06:00',
@@ -1186,11 +1418,10 @@ async function saveScraperConfig(){
       smtp_port:Number($('#cfg-smtp-port').value||587),
       to_email:$('#cfg-to-email').value,
       smtp_user:$('#cfg-smtp-user').value,
-      smtp_pass:$('#cfg-smtp-pass').value,
     }
   };
   const r=await fetch('/api/config'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  if(r.ok){toast('✓ Scraper, Telegram & Email settings saved!');loadConfigTab();}
+  if(r.ok){toast('✓ All settings saved!');loadConfigTab();}
 }
 
 async function dispatchDailyReportNow(){
@@ -1207,23 +1438,23 @@ async function runLiveScrapeNow(){
   toast('↻ Running live multi-OTA rate & occupancy scan...');
   const r=await fetch('/api/scrape-now'+authQuery(),{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
   if(r.ok){
-    toast('✓ Live rate scan complete & memorized!');
+    toast('✓ Live rate scan complete — compare Old vs New rates below!');
     await refresh();
   }
 }
 
 function exportCsv(){
-  const headers=['ID','Hotel Name','Corridor','Stars','Rooms','Current BAR','Prior BAR','Parity Status','Undercut %','Est Occupancy %','Pricing Behavior'];
+  const headers=['ID','Hotel Name','Corridor','Old Scrape BAR','New Scrape BAR','Diff $','Diff %','Parity Status','Undercut %','Occupancy %','Rooms Left','Pricing Behavior','Recommendation for My Hotel'];
   const lines=[headers.join(',')];
-  (STATE.hotels||[]).forEach(h=>{
-    lines.push([h.id,`"${h.name}"`,`"${h.area||''}"`,h.stars||'',h.est_rooms||'',h.price||'',h.prev_price||'',h.parity_status||'',h.undercut_pct||0,h.est_occupancy_pct||74,`"${h.pricing_personality||''}"`].join(','));
+  (STATE.summary?.rates||[]).forEach(r=>{
+    lines.push([r.hotel_id,`"${r.name}"`,`"${r.area||''}"`,r.prev_price||'',r.price||'',r.delta_dollar||0,r.delta_pct||0,r.parity_status||'',r.undercut_pct||0,r.call_verified_occ||r.est_occupancy_pct||75,r.call_rooms_left||'',`"${r.pricing_personality||''}"`,`"${r.my_rate_recommendation||''}"`].join(','));
   });
   const blob=new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8;'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='hri_hotel_rate_memory_matrix.csv';
+  a.download='hotel_old_vs_new_rate_comparison.csv';
   a.click();
-  toast('✓ Exported hotel rate & occupancy memory CSV');
+  toast('✓ Exported Old vs New Scrape Comparison CSV');
 }
 
 refresh();setInterval(refresh,60000);

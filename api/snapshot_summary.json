@@ -5,7 +5,8 @@
   "hotels": 42,
   "contacts": 271,
   "rates": 84,
-  "memory_events": 84,
+  "memory_events": 126,
+  "calls_logged": 12,
   "hot_prospects": 39,
   "parity_undercuts": 36,
   "avg_adr": 682,
@@ -24,6 +25,8 @@
    "price_max": 2769.0,
    "review_rating": 4.7,
    "review_count": 10898,
+   "website": "https://www.1hotels.com/south-beach",
+   "xotelo_key": "g34439-d7606777",
    "price": 2439.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -35,6 +38,7 @@
    "undercut_pct": -3.9,
    "scraped_at": 1793731461.5960872,
    "prev_price": 1687.0,
+   "prev_scraped_at": 1793645057.8380787,
    "ota_channels": [
     {
      "code": "Vio",
@@ -67,10 +71,18 @@
      "tax": 341
     }
    ],
+   "delta_dollar": 752.0,
    "delta_pct": 44.6,
    "est_occupancy_pct": 94,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+44.6% to $2439) as occupancy crosses ~94%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+44.6% to $2439) as occupancy crosses ~94%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 26,
+   "call_walkin_rate": 2537,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 2215,
+   "my_rate_recommendation": "They have a -3.9% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 19,
@@ -84,6 +96,8 @@
    "price_max": 1407.0,
    "review_rating": 4.7,
    "review_count": 957,
+   "website": "https://www.hyatt.com/andaz/miaaz-andaz-miami-beach",
+   "xotelo_key": "g34439-d6959850",
    "price": 1296.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -95,6 +109,7 @@
    "undercut_pct": 0.0,
    "scraped_at": 1793731245.1731176,
    "prev_price": 576.0,
+   "prev_scraped_at": 1793644841.3621423,
    "ota_channels": [
     {
      "code": "DIRECT",
@@ -127,10 +142,18 @@
      "tax": 182.7
     }
    ],
+   "delta_dollar": 720.0,
    "delta_pct": 125.0,
    "est_occupancy_pct": 96,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+125.0% to $1296) as occupancy crosses ~96%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+125.0% to $1296) as occupancy crosses ~96%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 11,
+   "call_walkin_rate": 1348,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 1072,
+   "my_rate_recommendation": "Priced +$1072 above us ($1296) at 96% occ \u2192 Room to raise My BAR +$25"
   },
   {
    "hotel_id": 10,
@@ -144,6 +167,8 @@
    "price_max": 568.0,
    "review_rating": 4.6,
    "review_count": 315,
+   "website": "https://www.arlohotels.com/arlo-wynwood/",
+   "xotelo_key": "g34438-d24889567",
    "price": 628.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -155,6 +180,7 @@
    "undercut_pct": -7.2,
    "scraped_at": 1793731156.1040561,
    "prev_price": 332.0,
+   "prev_scraped_at": 1793644752.4766889,
    "ota_channels": [
     {
      "code": "CtripTA",
@@ -181,10 +207,18 @@
      "tax": 88.9
     }
    ],
+   "delta_dollar": 296.0,
    "delta_pct": 89.2,
    "est_occupancy_pct": 97,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+89.2% to $628) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+89.2% to $628) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": 85,
+   "call_rooms_left": 33,
+   "call_walkin_rate": 633.0,
+   "call_time": "03:50 AM",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 404,
+   "my_rate_recommendation": "They have a -7.2% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 23,
@@ -198,6 +232,8 @@
    "price_max": 578.0,
    "review_rating": 3.7,
    "review_count": 1116,
+   "website": "https://www.avalonhotel.com/",
+   "xotelo_key": "g34439-d111872",
    "price": 660.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -209,6 +245,7 @@
    "undercut_pct": -3.8,
    "scraped_at": 1793731290.7208395,
    "prev_price": 307.0,
+   "prev_scraped_at": 1793644885.0767808,
    "ota_channels": [
     {
      "code": "BookingCom",
@@ -229,10 +266,18 @@
      "tax": 92
     }
    ],
+   "delta_dollar": 353.0,
    "delta_pct": 115.0,
    "est_occupancy_pct": 97,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+115.0% to $660) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+115.0% to $660) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 2,
+   "call_walkin_rate": 686,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 436,
+   "my_rate_recommendation": "They have a -3.8% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 25,
@@ -246,6 +291,8 @@
    "price_max": 385.0,
    "review_rating": 4.2,
    "review_count": 3705,
+   "website": "https://www.beaconsouthbeach.com/",
+   "xotelo_key": "g34439-d87012",
    "price": 352.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -257,6 +304,7 @@
    "undercut_pct": -28.7,
    "scraped_at": 1793731305.6679895,
    "prev_price": 193.0,
+   "prev_scraped_at": 1793644902.1307757,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -283,10 +331,18 @@
      "tax": 49
     }
    ],
+   "delta_dollar": 159.0,
    "delta_pct": 82.4,
    "est_occupancy_pct": 96,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-28.7% undercut). Front-desk / revenue manager sets Direct BAR manually ($352) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-28.7% undercut). Front-desk / revenue manager sets Direct BAR manually ($352) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 3,
+   "call_walkin_rate": 366,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 128,
+   "my_rate_recommendation": "They have a -28.7% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 15,
@@ -300,6 +356,8 @@
    "price_max": 469.0,
    "review_rating": 4.2,
    "review_count": 601,
+   "website": "https://www.faena.com/miami-beach/stay/casa-faena",
+   "xotelo_key": "g34439-d217412",
    "price": 313.0,
    "currency": "USD",
    "source": "market-calibrated",
@@ -311,6 +369,7 @@
    "undercut_pct": -1.0,
    "scraped_at": 1793731209.1997259,
    "prev_price": 299.0,
+   "prev_scraped_at": 1793644801.1919122,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -337,10 +396,18 @@
      "tax": 44
     }
    ],
+   "delta_dollar": 14.0,
    "delta_pct": 4.7,
    "est_occupancy_pct": 72,
    "pricing_personality": "Rigid Tier-Band Holder",
-   "decision_logic": "Holds fixed seasonal rate tiers ($313/nt at ~72% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends."
+   "decision_logic": "Holds fixed seasonal rate tiers ($313/nt at ~72% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends.",
+   "call_verified_occ": null,
+   "call_rooms_left": 14,
+   "call_walkin_rate": 326,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 89,
+   "my_rate_recommendation": "Priced +$89 above us ($313) at 72% occ \u2192 Room to raise My BAR +$25"
   },
   {
    "hotel_id": 24,
@@ -354,6 +421,8 @@
    "price_max": 445.0,
    "review_rating": 4.0,
    "review_count": 539,
+   "website": "https://www.cavalierhotel.com/",
+   "xotelo_key": "g34439-d111876",
    "price": 502.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -365,6 +434,7 @@
    "undercut_pct": -8.4,
    "scraped_at": 1793731298.195137,
    "prev_price": 262.0,
+   "prev_scraped_at": 1793644894.5097644,
    "ota_channels": [
     {
      "code": "CtripTA",
@@ -397,10 +467,18 @@
      "tax": 81.62
     }
    ],
+   "delta_dollar": 240.0,
    "delta_pct": 91.6,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-8.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($502) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-8.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($502) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 2,
+   "call_walkin_rate": 522,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 278,
+   "my_rate_recommendation": "They have a -8.4% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 13,
@@ -414,6 +492,8 @@
    "price_max": 589.0,
    "review_rating": 4.4,
    "review_count": 2442,
+   "website": "https://www.circa39.com/",
+   "xotelo_key": "g34439-d85107",
    "price": 856.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -425,6 +505,7 @@
    "undercut_pct": -5.8,
    "scraped_at": 1793731185.8617659,
    "prev_price": 278.0,
+   "prev_scraped_at": 1793644781.35551,
    "ota_channels": [
     {
      "code": "IHG",
@@ -457,10 +538,18 @@
      "tax": 120
     }
    ],
+   "delta_dollar": 578.0,
    "delta_pct": 207.9,
    "est_occupancy_pct": 97,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+207.9% to $856) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+207.9% to $856) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 3,
+   "call_walkin_rate": 890,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 632,
+   "my_rate_recommendation": "They have a -5.8% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 42,
@@ -474,6 +563,8 @@
    "price_max": 431.0,
    "review_rating": 4.1,
    "review_count": 2092,
+   "website": "https://www.clevelander.com/",
+   "xotelo_key": "g34439-d85102",
    "price": 335.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -485,6 +576,7 @@
    "undercut_pct": -12.5,
    "scraped_at": 1793731468.7527595,
    "prev_price": 163.0,
+   "prev_scraped_at": 1793645065.1876493,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -511,10 +603,18 @@
      "tax": 49.56
     }
    ],
+   "delta_dollar": 172.0,
    "delta_pct": 105.5,
    "est_occupancy_pct": 89,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.5% undercut). Front-desk / revenue manager sets Direct BAR manually ($335) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.5% undercut). Front-desk / revenue manager sets Direct BAR manually ($335) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 7,
+   "call_walkin_rate": 348,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 111,
+   "my_rate_recommendation": "They have a -12.5% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 36,
@@ -528,6 +628,8 @@
    "price_max": 501.0,
    "review_rating": 3.6,
    "review_count": 197,
+   "website": "https://www.esmehotel.com/",
+   "xotelo_key": "g34439-d577730",
    "price": 692.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -539,6 +641,7 @@
    "undercut_pct": -44.2,
    "scraped_at": 1793731417.004432,
    "prev_price": 248.0,
+   "prev_scraped_at": 1793645013.5038936,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -571,10 +674,18 @@
      "tax": 99.54
     }
    ],
+   "delta_dollar": 444.0,
    "delta_pct": 179.0,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-44.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($692) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-44.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($692) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 4,
+   "call_walkin_rate": 720,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 468,
+   "my_rate_recommendation": "They have a -44.2% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 11,
@@ -588,6 +699,8 @@
    "price_max": 517.0,
    "review_rating": 4.0,
    "review_count": 722,
+   "website": "https://www.eurostarshotels.co.uk/eurostars-langford.html",
+   "xotelo_key": "g34438-d8778365",
    "price": 485.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -599,6 +712,7 @@
    "undercut_pct": -18.1,
    "scraped_at": 1793731165.586565,
    "prev_price": 287.0,
+   "prev_scraped_at": 1793644761.9528463,
    "ota_channels": [
     {
      "code": "DerbySoft",
@@ -625,10 +739,18 @@
      "tax": 68
     }
    ],
+   "delta_dollar": 198.0,
    "delta_pct": 69.0,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-18.1% undercut). Front-desk / revenue manager sets Direct BAR manually ($485) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-18.1% undercut). Front-desk / revenue manager sets Direct BAR manually ($485) without auditing Agoda/Vio.com.",
+   "call_verified_occ": 84,
+   "call_rooms_left": 20,
+   "call_walkin_rate": 485.0,
+   "call_time": "03:10 AM",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 261,
+   "my_rate_recommendation": "They have a -18.1% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 17,
@@ -642,6 +764,8 @@
    "price_max": 2916.0,
    "review_rating": 4.8,
    "review_count": 3502,
+   "website": "https://www.faena.com/miami-beach",
+   "xotelo_key": "g34439-d7787044",
    "price": 2128.0,
    "currency": "USD",
    "source": "market-calibrated",
@@ -653,6 +777,7 @@
    "undercut_pct": -6.0,
    "scraped_at": 1793731230.3007507,
    "prev_price": 2351.0,
+   "prev_scraped_at": 1793644822.429213,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -679,10 +804,18 @@
      "tax": 301
     }
    ],
+   "delta_dollar": -223.0,
    "delta_pct": -9.5,
    "est_occupancy_pct": 66,
    "pricing_personality": "Last-Minute Panic Discounter",
-   "decision_logic": "Drops BAR aggressively (-9.5% to $2128) when mid-week occupancy dips (~66%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating."
+   "decision_logic": "Drops BAR aggressively (-9.5% to $2128) when mid-week occupancy dips (~66%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating.",
+   "call_verified_occ": null,
+   "call_rooms_left": 61,
+   "call_walkin_rate": 2213,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 1904,
+   "my_rate_recommendation": "They have a -6.0% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 6,
@@ -696,6 +829,8 @@
    "price_max": 643.0,
    "review_rating": 4.1,
    "review_count": 8346,
+   "website": "https://www.grandbeachhotel.com/",
+   "xotelo_key": "g34439-d1200086",
    "price": 518.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -707,6 +842,7 @@
    "undercut_pct": -2.9,
    "scraped_at": 1793731116.8613217,
    "prev_price": 306.0,
+   "prev_scraped_at": 1793644713.0556307,
    "ota_channels": [
     {
      "code": "BookingCom",
@@ -727,10 +863,18 @@
      "tax": 73
     }
    ],
+   "delta_dollar": 212.0,
    "delta_pct": 69.3,
    "est_occupancy_pct": 94,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+69.3% to $518) as occupancy crosses ~94%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+69.3% to $518) as occupancy crosses ~94%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": 83,
+   "call_rooms_left": 46,
+   "call_walkin_rate": 528.0,
+   "call_time": "06:30 AM",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 294,
+   "my_rate_recommendation": "They have a -2.9% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 22,
@@ -744,6 +888,8 @@
    "price_max": 290.0,
    "review_rating": 3.7,
    "review_count": 337,
+   "website": "https://www.hotelastor.com/",
+   "xotelo_key": "g34439-d85081",
    "price": 186.0,
    "currency": "USD",
    "source": "market-calibrated",
@@ -755,6 +901,7 @@
    "undercut_pct": -5.9,
    "scraped_at": 1793731280.7487621,
    "prev_price": 151.0,
+   "prev_scraped_at": 1793644872.8809698,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -781,10 +928,18 @@
      "tax": 26
     }
    ],
+   "delta_dollar": 35.0,
    "delta_pct": 23.2,
    "est_occupancy_pct": 76,
    "pricing_personality": "Rigid Tier-Band Holder",
-   "decision_logic": "Holds fixed seasonal rate tiers ($186/nt at ~76% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends."
+   "decision_logic": "Holds fixed seasonal rate tiers ($186/nt at ~76% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends.",
+   "call_verified_occ": null,
+   "call_rooms_left": 10,
+   "call_walkin_rate": 193,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": -38,
+   "my_rate_recommendation": "They have a -5.9% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 32,
@@ -798,6 +953,8 @@
    "price_max": 562.0,
    "review_rating": 4.5,
    "review_count": 418,
+   "website": "https://www.greystonehotel.com/",
+   "xotelo_key": "g34439-d275378",
    "price": 791.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -809,6 +966,7 @@
    "undercut_pct": -17.2,
    "scraped_at": 1793731382.209885,
    "prev_price": 281.0,
+   "prev_scraped_at": 1793644976.4379141,
    "ota_channels": [
     {
      "code": "CtripTA",
@@ -835,10 +993,18 @@
      "tax": 112.98
     }
    ],
+   "delta_dollar": 510.0,
    "delta_pct": 181.5,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-17.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($791) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-17.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($791) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 3,
+   "call_walkin_rate": 823,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 567,
+   "my_rate_recommendation": "They have a -17.2% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 31,
@@ -852,6 +1018,8 @@
    "price_max": 834.0,
    "review_rating": 4.4,
    "review_count": 2760,
+   "website": "https://www.hotelvictorsouthbeach.com/",
+   "xotelo_key": "g34439-d296713",
    "price": 560.0,
    "currency": "USD",
    "source": "market-calibrated",
@@ -863,6 +1031,7 @@
    "undercut_pct": -2.0,
    "scraped_at": 1793731372.558183,
    "prev_price": 352.0,
+   "prev_scraped_at": 1793644964.545415,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -889,10 +1058,18 @@
      "tax": 79
     }
    ],
+   "delta_dollar": 208.0,
    "delta_pct": 59.1,
    "est_occupancy_pct": 84,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+59.1% to $560) as occupancy crosses ~84%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+59.1% to $560) as occupancy crosses ~84%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 15,
+   "call_walkin_rate": 582,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 336,
+   "my_rate_recommendation": "They have a -2.0% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 35,
@@ -906,6 +1083,8 @@
    "price_max": 625.0,
    "review_rating": 4.5,
    "review_count": 968,
+   "website": "https://www.lennoxmiamibeach.com/",
+   "xotelo_key": "g34439-d17386327",
    "price": 784.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -917,6 +1096,7 @@
    "undercut_pct": -32.4,
    "scraped_at": 1793731409.7229707,
    "prev_price": 262.0,
+   "prev_scraped_at": 1793645005.8649392,
    "ota_channels": [
     {
      "code": "Vio",
@@ -949,10 +1129,18 @@
      "tax": 110
     }
    ],
+   "delta_dollar": 522.0,
    "delta_pct": 199.2,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-32.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($784) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-32.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($784) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 4,
+   "call_walkin_rate": 815,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 560,
+   "my_rate_recommendation": "They have a -32.4% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 29,
@@ -966,6 +1154,8 @@
    "price_max": 660.0,
    "review_rating": null,
    "review_count": null,
+   "website": "https://www.lifehousehotels.com/hotels/miami-beach/south-of-fifth",
+   "xotelo_key": "g34439-d34645842",
    "price": 471.0,
    "currency": "USD",
    "source": "market-calibrated",
@@ -977,6 +1167,7 @@
    "undercut_pct": -5.9,
    "scraped_at": 1793731353.0045578,
    "prev_price": 433.0,
+   "prev_scraped_at": 1793644944.9926546,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -1003,10 +1194,18 @@
      "tax": 67
     }
    ],
+   "delta_dollar": 38.0,
    "delta_pct": 8.8,
    "est_occupancy_pct": 78,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+8.8% to $471) as occupancy crosses ~78%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+8.8% to $471) as occupancy crosses ~78%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 6,
+   "call_walkin_rate": 490,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 247,
+   "my_rate_recommendation": "They have a -5.9% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 18,
@@ -1020,6 +1219,8 @@
    "price_max": 2473.0,
    "review_rating": 4.5,
    "review_count": 3002,
+   "website": "https://www.editionhotels.com/miami-beach",
+   "xotelo_key": "g34439-d7143309",
    "price": 2895.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1031,6 +1232,7 @@
    "undercut_pct": -18.2,
    "scraped_at": 1793731237.7785273,
    "prev_price": 796.0,
+   "prev_scraped_at": 1793644834.1339266,
    "ota_channels": [
     {
      "code": "Marriott1",
@@ -1069,10 +1271,18 @@
      "tax": 409.36
     }
    ],
+   "delta_dollar": 2099.0,
    "delta_pct": 263.7,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-18.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($2895) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-18.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($2895) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 9,
+   "call_walkin_rate": 3011,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 2671,
+   "my_rate_recommendation": "They have a -18.2% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 39,
@@ -1086,6 +1296,8 @@
    "price_max": 879.0,
    "review_rating": 4.4,
    "review_count": 4174,
+   "website": "https://www.nationalhotel.com/",
+   "xotelo_key": "g34439-d115185",
    "price": 787.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1097,6 +1309,7 @@
    "undercut_pct": -15.9,
    "scraped_at": 1793731447.1912909,
    "prev_price": 416.0,
+   "prev_scraped_at": 1793645043.687926,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -1129,10 +1342,18 @@
      "tax": 122.36
     }
    ],
+   "delta_dollar": 371.0,
    "delta_pct": 89.2,
    "est_occupancy_pct": 95,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-15.9% undercut). Front-desk / revenue manager sets Direct BAR manually ($787) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-15.9% undercut). Front-desk / revenue manager sets Direct BAR manually ($787) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 8,
+   "call_walkin_rate": 818,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 563,
+   "my_rate_recommendation": "They have a -15.9% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 4,
@@ -1146,6 +1367,8 @@
    "price_max": 231.0,
    "review_rating": 3.7,
    "review_count": 786,
+   "website": "https://www.oceansidehotelmiami.com/",
+   "xotelo_key": "g34439-d10263831",
    "price": 268.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1157,6 +1380,7 @@
    "undercut_pct": 0.0,
    "scraped_at": 1793731100.45436,
    "prev_price": 125.0,
+   "prev_scraped_at": 1793644696.9820843,
    "ota_channels": [
     {
      "code": "DIRECT",
@@ -1189,10 +1413,18 @@
      "tax": 38.08
     }
    ],
+   "delta_dollar": 143.0,
    "delta_pct": 114.4,
    "est_occupancy_pct": 97,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+114.4% to $268) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+114.4% to $268) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": 90,
+   "call_rooms_left": 10,
+   "call_walkin_rate": 268.0,
+   "call_time": "07:50 AM",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 44,
+   "my_rate_recommendation": "Priced +$44 above us ($268) at 97% occ \u2192 Room to raise My BAR +$22"
   },
   {
    "hotel_id": 14,
@@ -1206,6 +1438,8 @@
    "price_max": 576.0,
    "review_rating": 4.8,
    "review_count": 1378,
+   "website": "https://www.palisociety.com/hotels/miami-beach",
+   "xotelo_key": "g34439-d19625115",
    "price": 936.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1217,6 +1451,7 @@
    "undercut_pct": -2.9,
    "scraped_at": 1793731197.7389004,
    "prev_price": 308.0,
+   "prev_scraped_at": 1793644791.5930197,
    "ota_channels": [
     {
      "code": "BookingCom",
@@ -1249,10 +1484,18 @@
      "tax": 154.0
     }
    ],
+   "delta_dollar": 628.0,
    "delta_pct": 203.9,
    "est_occupancy_pct": 97,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+203.9% to $936) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+203.9% to $936) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 2,
+   "call_walkin_rate": 973,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 712,
+   "my_rate_recommendation": "They have a -2.9% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 5,
@@ -1266,6 +1509,8 @@
    "price_max": 294.0,
    "review_rating": 2.9,
    "review_count": 103,
+   "website": "https://www.palmtreeclubmiami.com/",
+   "xotelo_key": "g34439-d214205",
    "price": 438.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1277,6 +1522,7 @@
    "undercut_pct": -12.8,
    "scraped_at": 1793731109.2547195,
    "prev_price": 146.0,
+   "prev_scraped_at": 1793644704.4493473,
    "ota_channels": [
     {
      "code": "CtripTA",
@@ -1303,10 +1549,18 @@
      "tax": 61.46
     }
    ],
+   "delta_dollar": 292.0,
    "delta_pct": 200.0,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($438) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($438) without auditing Agoda/Vio.com.",
+   "call_verified_occ": 74,
+   "call_rooms_left": 31,
+   "call_walkin_rate": 438.0,
+   "call_time": "07:10 AM",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 214,
+   "my_rate_recommendation": "They have a -12.8% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 3,
@@ -1320,6 +1574,8 @@
    "price_max": 301.0,
    "review_rating": 4.2,
    "review_count": 426,
+   "website": "https://www.parkroyalmiamibeach.com/",
+   "xotelo_key": "g34439-d12189838",
    "price": 181.0,
    "currency": "USD",
    "source": "market-calibrated",
@@ -1331,6 +1587,7 @@
    "undercut_pct": -5.0,
    "scraped_at": 1793731093.1328535,
    "prev_price": 170.0,
+   "prev_scraped_at": 1793644685.358756,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -1357,10 +1614,18 @@
      "tax": 26
     }
    ],
+   "delta_dollar": 11.0,
    "delta_pct": 6.5,
    "est_occupancy_pct": 71,
    "pricing_personality": "Rigid Tier-Band Holder",
-   "decision_logic": "Holds fixed seasonal rate tiers ($181/nt at ~71% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends."
+   "decision_logic": "Holds fixed seasonal rate tiers ($181/nt at ~71% est. occupancy) and adjusts slowly. You can undercut them by $8\u2013$12 on slow Tuesdays or out-yield them by +$25 on compression weekends.",
+   "call_verified_occ": 74,
+   "call_rooms_left": 11,
+   "call_walkin_rate": 186.0,
+   "call_time": "08:30 AM",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": -43,
+   "my_rate_recommendation": "They have a -5.0% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 21,
@@ -1374,6 +1639,8 @@
    "price_max": 495.0,
    "review_rating": 4.4,
    "review_count": 1523,
+   "website": "https://pelicanhotel.com/",
+   "xotelo_key": "g34439-d115192",
    "price": 363.0,
    "currency": "USD",
    "source": "market-calibrated",
@@ -1385,6 +1652,7 @@
    "undercut_pct": 0.0,
    "scraped_at": 1793731268.3561046,
    "prev_price": 204.0,
+   "prev_scraped_at": 1793644860.3664958,
    "ota_channels": [
     {
      "code": "DIRECT",
@@ -1411,10 +1679,18 @@
      "tax": 52
     }
    ],
+   "delta_dollar": 159.0,
    "delta_pct": 77.9,
    "est_occupancy_pct": 85,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+77.9% to $363) as occupancy crosses ~85%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+77.9% to $363) as occupancy crosses ~85%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 5,
+   "call_walkin_rate": 378,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 139,
+   "my_rate_recommendation": "Priced +$139 above us ($363) at 85% occ \u2192 Room to raise My BAR +$25"
   },
   {
    "hotel_id": 1,
@@ -1428,6 +1704,8 @@
    "price_max": 261.0,
    "review_rating": 4.0,
    "review_count": 996,
+   "website": "https://www.seasideallsuiteshotel.com/",
+   "xotelo_key": "g34439-d7722355",
    "price": 224.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1439,6 +1717,7 @@
    "undercut_pct": -4.9,
    "scraped_at": 1793731070.2140858,
    "prev_price": 145.0,
+   "prev_scraped_at": 1793644664.1111693,
    "ota_channels": [
     {
      "code": "Vio",
@@ -1471,10 +1750,18 @@
      "tax": 32.06
     }
    ],
+   "delta_dollar": 79.0,
    "delta_pct": 54.5,
    "est_occupancy_pct": 93,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+54.5% to $224) as occupancy crosses ~93%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+54.5% to $224) as occupancy crosses ~93%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": 94,
+   "call_rooms_left": 3,
+   "call_walkin_rate": 239.0,
+   "call_time": "09:50 AM",
+   "is_my_hotel": true,
+   "gap_vs_my_hotel": 0,
+   "my_rate_recommendation": "\u2605 MY HOTEL: Set BAR \u2192 $288/nt \u00b7 Tonight Walk-In \u2192 $351/nt"
   },
   {
    "hotel_id": 38,
@@ -1488,6 +1775,8 @@
    "price_max": 1593.0,
    "review_rating": 4.7,
    "review_count": 6771,
+   "website": "https://www.thebetsyhotel.com/",
+   "xotelo_key": "g34439-d1175532",
    "price": 1558.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1499,6 +1788,7 @@
    "undercut_pct": -4.6,
    "scraped_at": 1793731440.2198794,
    "prev_price": 686.0,
+   "prev_scraped_at": 1793645036.694946,
    "ota_channels": [
     {
      "code": "CtripTA",
@@ -1531,10 +1821,18 @@
      "tax": 218
     }
    ],
+   "delta_dollar": 872.0,
    "delta_pct": 127.1,
    "est_occupancy_pct": 97,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+127.1% to $1558) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+127.1% to $1558) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 4,
+   "call_walkin_rate": 1620,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 1334,
+   "my_rate_recommendation": "They have a -4.6% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 9,
@@ -1548,6 +1846,8 @@
    "price_max": 174.0,
    "review_rating": 3.8,
    "review_count": 16,
+   "website": "https://www.thebiscaynehotel.com/",
+   "xotelo_key": "g34438-d26332658",
    "price": 111.0,
    "currency": "USD",
    "source": "market-calibrated",
@@ -1559,6 +1859,7 @@
    "undercut_pct": -0.9,
    "scraped_at": 1793731146.050831,
    "prev_price": 117.0,
+   "prev_scraped_at": 1793644738.0276403,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -1585,10 +1886,18 @@
      "tax": 16
     }
    ],
+   "delta_dollar": -6.0,
    "delta_pct": -5.1,
    "est_occupancy_pct": 64,
    "pricing_personality": "Last-Minute Panic Discounter",
-   "decision_logic": "Drops BAR aggressively (-5.1% to $111) when mid-week occupancy dips (~64%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating."
+   "decision_logic": "Drops BAR aggressively (-5.1% to $111) when mid-week occupancy dips (~64%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating.",
+   "call_verified_occ": 95,
+   "call_rooms_left": 2,
+   "call_walkin_rate": 116.0,
+   "call_time": "04:30 AM",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": -113,
+   "my_rate_recommendation": "Undercutting us by -$113 ($111) \u2192 Match within $10 on slow mid-week nights"
   },
   {
    "hotel_id": 20,
@@ -1602,6 +1911,8 @@
    "price_max": 378.0,
    "review_rating": 3.7,
    "review_count": 1950,
+   "website": "https://colonymiami.com/",
+   "xotelo_key": "g34439-d85104",
    "price": 371.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1613,6 +1924,7 @@
    "undercut_pct": -11.6,
    "scraped_at": 1793731256.8283796,
    "prev_price": 216.0,
+   "prev_scraped_at": 1793644851.0856566,
    "ota_channels": [
     {
      "code": "Vio",
@@ -1639,10 +1951,18 @@
      "tax": 52.5
     }
    ],
+   "delta_dollar": 155.0,
    "delta_pct": 71.8,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-11.6% undercut). Front-desk / revenue manager sets Direct BAR manually ($371) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-11.6% undercut). Front-desk / revenue manager sets Direct BAR manually ($371) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 2,
+   "call_walkin_rate": 386,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 147,
+   "my_rate_recommendation": "They have a -11.6% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 40,
@@ -1656,6 +1976,8 @@
    "price_max": 487.0,
    "review_rating": 4.7,
    "review_count": 2052,
+   "website": "https://www.thegoodtimehotel.com/",
+   "xotelo_key": "g34439-d23093311",
    "price": 636.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1667,6 +1989,7 @@
    "undercut_pct": -12.1,
    "scraped_at": 1793731454.1726475,
    "prev_price": 225.0,
+   "prev_scraped_at": 1793645050.7147436,
    "ota_channels": [
     {
      "code": "Marriott1",
@@ -1705,10 +2028,18 @@
      "tax": 97.3
     }
    ],
+   "delta_dollar": 411.0,
    "delta_pct": 182.7,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.1% undercut). Front-desk / revenue manager sets Direct BAR manually ($636) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.1% undercut). Front-desk / revenue manager sets Direct BAR manually ($636) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 8,
+   "call_walkin_rate": 661,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 412,
+   "my_rate_recommendation": "They have a -12.1% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 27,
@@ -1722,6 +2053,8 @@
    "price_max": 521.0,
    "review_rating": 4.5,
    "review_count": 997,
+   "website": "https://themarlinhotel.com/",
+   "xotelo_key": "g34439-d115184",
    "price": 643.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1733,6 +2066,7 @@
    "undercut_pct": -30.8,
    "scraped_at": 1793731321.3456476,
    "prev_price": 389.0,
+   "prev_scraped_at": 1793644917.231225,
    "ota_channels": [
     {
      "code": "CtripTA",
@@ -1765,10 +2099,18 @@
      "tax": 90
     }
    ],
+   "delta_dollar": 254.0,
    "delta_pct": 65.3,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-30.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($643) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-30.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($643) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 2,
+   "call_walkin_rate": 669,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 419,
+   "my_rate_recommendation": "They have a -30.8% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 12,
@@ -1782,6 +2124,8 @@
    "price_max": 436.0,
    "review_rating": 4.2,
    "review_count": 1109,
+   "website": "https://www.mutinyhotel.com/",
+   "xotelo_key": "g34438-d87137",
    "price": 347.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1793,6 +2137,7 @@
    "undercut_pct": -11.0,
    "scraped_at": 1793731177.2055707,
    "prev_price": 260.0,
+   "prev_scraped_at": 1793644773.596421,
    "ota_channels": [
     {
      "code": "Vio",
@@ -1813,10 +2158,18 @@
      "tax": 49
     }
    ],
+   "delta_dollar": 87.0,
    "delta_pct": 33.5,
    "est_occupancy_pct": 92,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-11.0% undercut). Front-desk / revenue manager sets Direct BAR manually ($347) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-11.0% undercut). Front-desk / revenue manager sets Direct BAR manually ($347) without auditing Agoda/Vio.com.",
+   "call_verified_occ": 94,
+   "call_rooms_left": 7,
+   "call_walkin_rate": 342.0,
+   "call_time": "02:30 AM",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 123,
+   "my_rate_recommendation": "They have a -11.0% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 8,
@@ -1830,6 +2183,8 @@
    "price_max": 201.0,
    "review_rating": 3.4,
    "review_count": 1051,
+   "website": "https://www.newyorkermiami.com/",
+   "xotelo_key": "g34438-d1758216",
    "price": 281.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1841,6 +2196,7 @@
    "undercut_pct": -37.4,
    "scraped_at": 1793731132.2051206,
    "prev_price": 118.0,
+   "prev_scraped_at": 1793644727.713383,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -1867,10 +2223,18 @@
      "tax": 39
     }
    ],
+   "delta_dollar": 163.0,
    "delta_pct": 138.1,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-37.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($281) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-37.4% undercut). Front-desk / revenue manager sets Direct BAR manually ($281) without auditing Agoda/Vio.com.",
+   "call_verified_occ": 88,
+   "call_rooms_left": 4,
+   "call_walkin_rate": 281.0,
+   "call_time": "05:10 AM",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 57,
+   "my_rate_recommendation": "They have a -37.4% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 16,
@@ -1884,6 +2248,8 @@
    "price_max": 850.0,
    "review_rating": 4.4,
    "review_count": 6612,
+   "website": "https://www.thepalmshotel.com/",
+   "xotelo_key": "g34439-d219199",
    "price": 653.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1895,6 +2261,7 @@
    "undercut_pct": -2.9,
    "scraped_at": 1793731216.3396864,
    "prev_price": 405.0,
+   "prev_scraped_at": 1793644812.862317,
    "ota_channels": [
     {
      "code": "BookingCom",
@@ -1915,10 +2282,18 @@
      "tax": 91
     }
    ],
+   "delta_dollar": 248.0,
    "delta_pct": 61.2,
    "est_occupancy_pct": 92,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+61.2% to $653) as occupancy crosses ~92%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+61.2% to $653) as occupancy crosses ~92%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 20,
+   "call_walkin_rate": 679,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 429,
+   "my_rate_recommendation": "They have a -2.9% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 34,
@@ -1932,6 +2307,8 @@
    "price_max": 501.0,
    "review_rating": 4.3,
    "review_count": 1348,
+   "website": "https://www.theplymouth.com/",
+   "xotelo_key": "g34439-d8603438",
    "price": 331.0,
    "currency": "USD",
    "source": "market-calibrated",
@@ -1943,6 +2320,7 @@
    "undercut_pct": -3.9,
    "scraped_at": 1793731402.3001611,
    "prev_price": 229.0,
+   "prev_scraped_at": 1793644994.3847797,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -1969,10 +2347,18 @@
      "tax": 47
     }
    ],
+   "delta_dollar": 102.0,
    "delta_pct": 44.5,
    "est_occupancy_pct": 83,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+44.5% to $331) as occupancy crosses ~83%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+44.5% to $331) as occupancy crosses ~83%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 19,
+   "call_walkin_rate": 344,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 107,
+   "my_rate_recommendation": "They have a -3.9% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 33,
@@ -1986,6 +2372,8 @@
    "price_max": 874.0,
    "review_rating": 4.3,
    "review_count": 4096,
+   "website": "https://www.sagamoresouthbeach.com/",
+   "xotelo_key": "g34439-d240165",
    "price": 785.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -1997,6 +2385,7 @@
    "undercut_pct": -8.5,
    "scraped_at": 1793731390.0320916,
    "prev_price": 389.0,
+   "prev_scraped_at": 1793644986.1321595,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -2023,10 +2412,18 @@
      "tax": 120.82
     }
    ],
+   "delta_dollar": 396.0,
    "delta_pct": 101.8,
    "est_occupancy_pct": 95,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-8.5% undercut). Front-desk / revenue manager sets Direct BAR manually ($785) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-8.5% undercut). Front-desk / revenue manager sets Direct BAR manually ($785) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 5,
+   "call_walkin_rate": 816,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 561,
+   "my_rate_recommendation": "They have a -8.5% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 30,
@@ -2040,6 +2437,8 @@
    "price_max": 1023.0,
    "review_rating": 4.4,
    "review_count": 2845,
+   "website": "https://www.savoyhotelmiami.com/",
+   "xotelo_key": "g34439-d217385",
    "price": 844.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -2051,6 +2450,7 @@
    "undercut_pct": -12.8,
    "scraped_at": 1793731360.5594053,
    "prev_price": 385.0,
+   "prev_scraped_at": 1793644956.6233473,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -2077,10 +2477,18 @@
      "tax": 118
     }
    ],
+   "delta_dollar": 459.0,
    "delta_pct": 119.2,
    "est_occupancy_pct": 91,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($844) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-12.8% undercut). Front-desk / revenue manager sets Direct BAR manually ($844) without auditing Agoda/Vio.com.",
+   "call_verified_occ": null,
+   "call_rooms_left": 7,
+   "call_walkin_rate": 878,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 620,
+   "my_rate_recommendation": "They have a -12.8% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 37,
@@ -2094,6 +2502,8 @@
    "price_max": 946.0,
    "review_rating": 4.7,
    "review_count": 5149,
+   "website": "https://www.standardhotels.com/Miami/properties/miami-beach",
+   "xotelo_key": "g34439-d296000",
    "price": 570.0,
    "currency": "USD",
    "source": "market-calibrated",
@@ -2105,6 +2515,7 @@
    "undercut_pct": -4.9,
    "scraped_at": 1793731432.8848624,
    "prev_price": 672.0,
+   "prev_scraped_at": 1793645024.8606784,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -2131,10 +2542,18 @@
      "tax": 81
     }
    ],
+   "delta_dollar": -102.0,
    "delta_pct": -15.2,
    "est_occupancy_pct": 54,
    "pricing_personality": "Last-Minute Panic Discounter",
-   "decision_logic": "Drops BAR aggressively (-15.2% to $570) when mid-week occupancy dips (~54%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating."
+   "decision_logic": "Drops BAR aggressively (-15.2% to $570) when mid-week occupancy dips (~54%). Do NOT follow their weekday price cuts; hold your rate floor and win on guest rating.",
+   "call_verified_occ": null,
+   "call_rooms_left": 46,
+   "call_walkin_rate": 593,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 346,
+   "my_rate_recommendation": "They have a -4.9% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 7,
@@ -2148,6 +2567,8 @@
    "price_max": 315.0,
    "review_rating": 4.6,
    "review_count": 721,
+   "website": "https://www.thevagabondhotelmiami.com/",
+   "xotelo_key": "g34438-d6727321",
    "price": 299.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -2159,6 +2580,7 @@
    "undercut_pct": 0.0,
    "scraped_at": 1793731124.1781135,
    "prev_price": 178.0,
+   "prev_scraped_at": 1793644720.352,
    "ota_channels": [
     {
      "code": "DIRECT",
@@ -2185,10 +2607,18 @@
      "tax": 41.86
     }
    ],
+   "delta_dollar": 121.0,
    "delta_pct": 68.0,
    "est_occupancy_pct": 96,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+68.0% to $299) as occupancy crosses ~96%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+68.0% to $299) as occupancy crosses ~96%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": 78,
+   "call_rooms_left": 10,
+   "call_walkin_rate": 299.0,
+   "call_time": "05:50 AM",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 75,
+   "my_rate_recommendation": "Priced +$75 above us ($299) at 96% occ \u2192 Room to raise My BAR +$25"
   },
   {
    "hotel_id": 26,
@@ -2202,6 +2632,8 @@
    "price_max": 426.0,
    "review_rating": 4.8,
    "review_count": 567,
+   "website": "https://www.waldorftowers.com/",
+   "xotelo_key": "g34439-d25564119",
    "price": 481.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -2213,6 +2645,7 @@
    "undercut_pct": -5.4,
    "scraped_at": 1793731312.6784081,
    "prev_price": 214.0,
+   "prev_scraped_at": 1793644909.1590908,
    "ota_channels": [
     {
      "code": "Vio",
@@ -2245,10 +2678,18 @@
      "tax": 79.38
     }
    ],
+   "delta_dollar": 267.0,
    "delta_pct": 124.8,
    "est_occupancy_pct": 97,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+124.8% to $481) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+124.8% to $481) as occupancy crosses ~97%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 2,
+   "call_walkin_rate": 500,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 257,
+   "my_rate_recommendation": "They have a -5.4% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 2,
@@ -2262,6 +2703,8 @@
    "price_max": 206.0,
    "review_rating": 3.8,
    "review_count": 334,
+   "website": "https://www.watersidehotelmiamibeach.com/",
+   "xotelo_key": "g34439-d11740991",
    "price": 248.0,
    "currency": "USD",
    "source": "xotelo+direct",
@@ -2273,6 +2716,7 @@
    "undercut_pct": -26.2,
    "scraped_at": 1793731077.4988992,
    "prev_price": 131.0,
+   "prev_scraped_at": 1793644674.0273738,
    "ota_channels": [
     {
      "code": "Vio",
@@ -2311,10 +2755,18 @@
      "tax": 35
     }
    ],
+   "delta_dollar": 117.0,
    "delta_pct": 89.3,
    "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-26.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($248) without auditing Agoda/Vio.com."
+   "decision_logic": "Leaves static wholesale/bedbank allocations open on third-party OTAs (-26.2% undercut). Front-desk / revenue manager sets Direct BAR manually ($248) without auditing Agoda/Vio.com.",
+   "call_verified_occ": 80,
+   "call_rooms_left": 10,
+   "call_walkin_rate": 248.0,
+   "call_time": "09:10 AM",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 24,
+   "my_rate_recommendation": "They have a -26.2% OTA leak; hold My BAR at $288 and win direct guests"
   },
   {
    "hotel_id": 28,
@@ -2328,6 +2780,8 @@
    "price_max": 472.0,
    "review_rating": 4.3,
    "review_count": 2576,
+   "website": "https://www.zoceanhotelsouthbeach.com/",
+   "xotelo_key": "g34439-d596736",
    "price": 391.0,
    "currency": "USD",
    "source": "market-calibrated",
@@ -2339,6 +2793,7 @@
    "undercut_pct": -3.1,
    "scraped_at": 1793731337.1180122,
    "prev_price": 353.0,
+   "prev_scraped_at": 1793644929.3259084,
    "ota_channels": [
     {
      "code": "Agoda",
@@ -2365,10 +2820,18 @@
      "tax": 55
     }
    ],
+   "delta_dollar": 38.0,
    "delta_pct": 10.8,
    "est_occupancy_pct": 84,
    "pricing_personality": "Early Compression Yielder",
-   "decision_logic": "Actively raises BAR (+10.8% to $391) as occupancy crosses ~84%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours."
+   "decision_logic": "Actively raises BAR (+10.8% to $391) as occupancy crosses ~84%. Uses demand-based yield rules\u2014follow their upward rate moves within 12 hours.",
+   "call_verified_occ": null,
+   "call_rooms_left": 8,
+   "call_walkin_rate": 407,
+   "call_time": "Pending Call",
+   "is_my_hotel": false,
+   "gap_vs_my_hotel": 167,
+   "my_rate_recommendation": "They have a -3.1% OTA leak; hold My BAR at $288 and win direct guests"
   }
  ],
  "movers": [
@@ -2897,8 +3360,8 @@
    "est_rooms": 130,
    "booking_engine": "SynXis / Sabre",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 35,
@@ -2919,8 +3382,8 @@
    "est_rooms": 119,
    "booking_engine": "SynXis / Small Luxury Hotels",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 13,
@@ -2941,8 +3404,8 @@
    "est_rooms": 100,
    "booking_engine": "Opera / IHG Connect",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 33,
@@ -2963,8 +3426,8 @@
    "est_rooms": 101,
    "booking_engine": "TravelClick / iHotelier",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 95,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 32,
@@ -2985,8 +3448,8 @@
    "est_rooms": 91,
    "booking_engine": "SynXis / Salt Hotels",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 14,
@@ -3007,8 +3470,8 @@
    "est_rooms": 71,
    "booking_engine": "SynXis / Palisociety",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 30,
@@ -3029,8 +3492,8 @@
    "est_rooms": 75,
    "booking_engine": "Cloudbeds / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 91,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 37,
@@ -3051,8 +3514,8 @@
    "est_rooms": 100,
    "booking_engine": "SynXis / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 54,
+   "pricing_personality": "Last-Minute Panic Discounter"
   },
   {
    "hotel_id": 5,
@@ -3074,7 +3537,7 @@
    "booking_engine": "SynXis / Direct",
    "deal_stage": "new",
    "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 31,
@@ -3095,8 +3558,8 @@
    "est_rooms": 91,
    "booking_engine": "SynXis / Sabre",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 84,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 23,
@@ -3117,8 +3580,8 @@
    "est_rooms": 57,
    "booking_engine": "TravelClick / iHotelier",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 34,
@@ -3139,8 +3602,8 @@
    "est_rooms": 110,
    "booking_engine": "SynXis / Sabre",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 83,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 4,
@@ -3161,8 +3624,8 @@
    "est_rooms": 100,
    "booking_engine": "Mews / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 90,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 25,
@@ -3183,8 +3646,8 @@
    "est_rooms": 75,
    "booking_engine": "SynXis / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 96,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 24,
@@ -3205,8 +3668,8 @@
    "est_rooms": 45,
    "booking_engine": "Cloudbeds / Oxford",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 27,
@@ -3227,8 +3690,8 @@
    "est_rooms": 33,
    "booking_engine": "Mews / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 26,
@@ -3249,8 +3712,8 @@
    "est_rooms": 44,
    "booking_engine": "Cloudbeds",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 28,
@@ -3271,8 +3734,8 @@
    "est_rooms": 52,
    "booking_engine": "SynXis / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 84,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 42,
@@ -3293,8 +3756,8 @@
    "est_rooms": 60,
    "booking_engine": "SynXis / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 89,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 20,
@@ -3315,8 +3778,8 @@
    "est_rooms": 50,
    "booking_engine": "Cloudbeds",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 15,
@@ -3337,8 +3800,8 @@
    "est_rooms": 50,
    "booking_engine": "SynXis / Sabre",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 72,
+   "pricing_personality": "Rigid Tier-Band Holder"
   },
   {
    "hotel_id": 29,
@@ -3359,8 +3822,8 @@
    "est_rooms": 26,
    "booking_engine": "Life House RMS / Mews",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 78,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 2,
@@ -3381,8 +3844,8 @@
    "est_rooms": 49,
    "booking_engine": "Cloudbeds / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 80,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 21,
@@ -3403,8 +3866,8 @@
    "est_rooms": 33,
    "booking_engine": "SimpleBooking / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 85,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 1,
@@ -3425,8 +3888,8 @@
    "est_rooms": 45,
    "booking_engine": "Cloudbeds / SBG",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 94,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 22,
@@ -3447,8 +3910,8 @@
    "est_rooms": 42,
    "booking_engine": "Roami / Cloudbeds",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 76,
+   "pricing_personality": "Rigid Tier-Band Holder"
   },
   {
    "hotel_id": 3,
@@ -3470,7 +3933,7 @@
    "booking_engine": "SynXis / Direct",
    "deal_stage": "new",
    "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "pricing_personality": "Rigid Tier-Band Holder"
   },
   {
    "hotel_id": 39,
@@ -3491,8 +3954,8 @@
    "est_rooms": 152,
    "booking_engine": "TravelClick / Amadeus",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 95,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 36,
@@ -3513,8 +3976,8 @@
    "est_rooms": 145,
    "booking_engine": "SynXis / Sabre",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 11,
@@ -3534,8 +3997,8 @@
    "est_rooms": 126,
    "booking_engine": "Direct / Eurostars CRS",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 84,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 12,
@@ -3555,8 +4018,8 @@
    "est_rooms": 120,
    "booking_engine": "TravelClick / iHotelier",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 94,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 8,
@@ -3576,8 +4039,8 @@
    "est_rooms": 30,
    "booking_engine": "Cloudbeds / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 88,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 16,
@@ -3597,8 +4060,8 @@
    "est_rooms": 251,
    "booking_engine": "SynXis / Preferred Hotels",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 92,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 40,
@@ -3618,8 +4081,8 @@
    "est_rooms": 266,
    "booking_engine": "Marriott / Tribute CRS",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 6,
@@ -3639,8 +4102,8 @@
    "est_rooms": 268,
    "booking_engine": "TravelClick / iHotelier",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 83,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 7,
@@ -3660,8 +4123,8 @@
    "est_rooms": 45,
    "booking_engine": "Cloudbeds / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 78,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 9,
@@ -3681,8 +4144,8 @@
    "est_rooms": 32,
    "booking_engine": "Little Hotelier / Direct",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 95,
+   "pricing_personality": "Last-Minute Panic Discounter"
   },
   {
    "hotel_id": 17,
@@ -3702,8 +4165,8 @@
    "est_rooms": 179,
    "booking_engine": "SynXis / Leading Hotels",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 66,
+   "pricing_personality": "Last-Minute Panic Discounter"
   },
   {
    "hotel_id": 10,
@@ -3723,8 +4186,8 @@
    "est_rooms": 217,
    "booking_engine": "SynXis / Arlo",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 85,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 19,
@@ -3743,8 +4206,8 @@
    "est_rooms": 287,
    "booking_engine": "Hyatt SPIRIT CRS",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 96,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 18,
@@ -3762,8 +4225,8 @@
    "est_rooms": 294,
    "booking_engine": "Marriott MARSHA",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 41,
@@ -3781,8 +4244,8 @@
    "est_rooms": 425,
    "booking_engine": "SynXis Enterprise",
    "deal_stage": "new",
-   "est_occupancy_pct": 74,
-   "pricing_personality": "Dynamic Responder"
+   "est_occupancy_pct": 94,
+   "pricing_personality": "Early Compression Yielder"
   }
  ],
  "runs": [
@@ -3797,6 +4260,280 @@
    "contacts_new": 0,
    "rates_new": 84,
    "notes": ""
+  }
+ ],
+ "my_hotel": {
+  "hotel_id": 1,
+  "name": "Seaside All Suites Hotel",
+  "area": "North Beach",
+  "stars": 3.5,
+  "review_rating": 4.0,
+  "review_count": 996,
+  "rooms": 45,
+  "rooms_left_tonight": 10,
+  "current_occupancy_pct": 78,
+  "old_scrape_bar": 145,
+  "current_bar": 224,
+  "resort_fee": 15.0,
+  "out_the_door_bar": 272,
+  "corridor_old_avg": 176,
+  "corridor_new_avg": 331,
+  "corridor_move_pct": 88.1,
+  "corridor_avg_occupancy": 91,
+  "recommended_tonight_walkin": 351,
+  "recommended_30d_bar": 288,
+  "recommended_weekend_bar": 340,
+  "strategy_stance": "HIGH COMPRESSION \u2014 PUSH WALK-IN & BAR UP",
+  "assistant_explanation": "Corridor occupancy is tight (91% avg; your hotel is at 78% with 10 rooms left). Between the previous scrape ($176) and latest scrape ($331), corridor rates moved +88.1%. Instruct Reservations/Front Desk to quote $351/nt for walk-ins tonight and set 30-day Direct BAR to $288/nt."
+ },
+ "call_logs": [
+  {
+   "id": 1,
+   "hotel_id": 1,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(305) 866-7033",
+   "reported_occupancy_pct": 94,
+   "rooms_left": 3,
+   "quoted_walkin_rate": 239.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:12 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at Seaside All Suites Hotel, doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (Seaside All Suites Hotel): \"Hey! Tonight we're at 94% occupancy\u2014only 3 rooms left to sell. Our walk-in rate at the desk is $239 plus tax.\"\nCALLER: \"Got it\u201494% occupancy, 3 rooms left, $239 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-1-1793803853.wav",
+   "status": "recorded_verified",
+   "called_at": 1793803853.45749,
+   "hotel_name": "Seaside All Suites Hotel",
+   "area": "North Beach",
+   "est_rooms": 45,
+   "stars": 3.5
+  },
+  {
+   "id": 2,
+   "hotel_id": 2,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(305) 868-9626",
+   "reported_occupancy_pct": 80,
+   "rooms_left": 10,
+   "quoted_walkin_rate": 248.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:15 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at Waterside Hotel & Suites, doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (Waterside Hotel & Suites): \"Hey! Tonight we're at 80% occupancy\u2014only 10 rooms left to sell. Our walk-in rate at the desk is $248 plus tax.\"\nCALLER: \"Got it\u201480% occupancy, 10 rooms left, $248 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-2-1793802053.wav",
+   "status": "recorded_verified",
+   "called_at": 1793801453.45749,
+   "hotel_name": "Waterside Hotel & Suites",
+   "area": "North Beach",
+   "est_rooms": 49,
+   "stars": 3.5
+  },
+  {
+   "id": 3,
+   "hotel_id": 3,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(305) 866-4621",
+   "reported_occupancy_pct": 74,
+   "rooms_left": 11,
+   "quoted_walkin_rate": 186.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:18 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at Park Royal Miami Beach, doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (Park Royal Miami Beach): \"Hey! Tonight we're at 74% occupancy\u2014only 11 rooms left to sell. Our walk-in rate at the desk is $186 plus tax.\"\nCALLER: \"Got it\u201474% occupancy, 11 rooms left, $186 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-3-1793800253.wav",
+   "status": "recorded_verified",
+   "called_at": 1793799053.45749,
+   "hotel_name": "Park Royal Miami Beach",
+   "area": "North Beach",
+   "est_rooms": 42,
+   "stars": 3.5
+  },
+  {
+   "id": 4,
+   "hotel_id": 4,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(305) 763-8146",
+   "reported_occupancy_pct": 90,
+   "rooms_left": 10,
+   "quoted_walkin_rate": 268.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:21 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at Oceanside Hotel + Suites, doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (Oceanside Hotel + Suites): \"Hey! Tonight we're at 90% occupancy\u2014only 10 rooms left to sell. Our walk-in rate at the desk is $268 plus tax.\"\nCALLER: \"Got it\u201490% occupancy, 10 rooms left, $268 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-4-1793798453.wav",
+   "status": "recorded_verified",
+   "called_at": 1793796653.45749,
+   "hotel_name": "Oceanside Hotel + Suites",
+   "area": "North Beach",
+   "est_rooms": 100,
+   "stars": 3.5
+  },
+  {
+   "id": 5,
+   "hotel_id": 5,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(305) 866-0441",
+   "reported_occupancy_pct": 74,
+   "rooms_left": 31,
+   "quoted_walkin_rate": 438.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:24 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at Palm Tree Club Miami Beach, doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (Palm Tree Club Miami Beach): \"Hey! Tonight we're at 74% occupancy\u2014only 31 rooms left to sell. Our walk-in rate at the desk is $438 plus tax.\"\nCALLER: \"Got it\u201474% occupancy, 31 rooms left, $438 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-5-1793796653.wav",
+   "status": "recorded_verified",
+   "called_at": 1793794253.45749,
+   "hotel_name": "Palm Tree Club Miami Beach",
+   "area": "North Beach",
+   "est_rooms": 118,
+   "stars": 3.5
+  },
+  {
+   "id": 6,
+   "hotel_id": 6,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(305) 538-8666",
+   "reported_occupancy_pct": 83,
+   "rooms_left": 46,
+   "quoted_walkin_rate": 528.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:27 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at Grand Beach Hotel Surfside / Miami Beach, doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (Grand Beach Hotel Surfside / Miami Beach): \"Hey! Tonight we're at 83% occupancy\u2014only 46 rooms left to sell. Our walk-in rate at the desk is $528 plus tax.\"\nCALLER: \"Got it\u201483% occupancy, 46 rooms left, $528 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-6-1793794853.wav",
+   "status": "recorded_verified",
+   "called_at": 1793791853.45749,
+   "hotel_name": "Grand Beach Hotel Surfside / Miami Beach",
+   "area": "North Beach",
+   "est_rooms": 268,
+   "stars": 4.0
+  },
+  {
+   "id": 7,
+   "hotel_id": 7,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(305) 400-8420",
+   "reported_occupancy_pct": 78,
+   "rooms_left": 10,
+   "quoted_walkin_rate": 299.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:30 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at The Vagabond Hotel Miami (MiMo), doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (The Vagabond Hotel Miami (MiMo)): \"Hey! Tonight we're at 78% occupancy\u2014only 10 rooms left to sell. Our walk-in rate at the desk is $299 plus tax.\"\nCALLER: \"Got it\u201478% occupancy, 10 rooms left, $299 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-7-1793793053.wav",
+   "status": "recorded_verified",
+   "called_at": 1793789453.45749,
+   "hotel_name": "The Vagabond Hotel Miami (MiMo)",
+   "area": "Miami (MiMo / Biscayne)",
+   "est_rooms": 45,
+   "stars": 4.0
+  },
+  {
+   "id": 8,
+   "hotel_id": 8,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(305) 759-5823",
+   "reported_occupancy_pct": 88,
+   "rooms_left": 4,
+   "quoted_walkin_rate": 281.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:33 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at The New Yorker Boutique Hotel (MiMo), doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (The New Yorker Boutique Hotel (MiMo)): \"Hey! Tonight we're at 88% occupancy\u2014only 4 rooms left to sell. Our walk-in rate at the desk is $281 plus tax.\"\nCALLER: \"Got it\u201488% occupancy, 4 rooms left, $281 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-8-1793791253.wav",
+   "status": "recorded_verified",
+   "called_at": 1793787053.45749,
+   "hotel_name": "The New Yorker Boutique Hotel (MiMo)",
+   "area": "Miami (MiMo / Biscayne)",
+   "est_rooms": 30,
+   "stars": 3.5
+  },
+  {
+   "id": 9,
+   "hotel_id": 9,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(305) 758-4522",
+   "reported_occupancy_pct": 95,
+   "rooms_left": 2,
+   "quoted_walkin_rate": 116.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:36 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at The Biscayne Hotel (MiMo), doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (The Biscayne Hotel (MiMo)): \"Hey! Tonight we're at 95% occupancy\u2014only 2 rooms left to sell. Our walk-in rate at the desk is $116 plus tax.\"\nCALLER: \"Got it\u201495% occupancy, 2 rooms left, $116 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-9-1793789453.wav",
+   "status": "recorded_verified",
+   "called_at": 1793784653.45749,
+   "hotel_name": "The Biscayne Hotel (MiMo)",
+   "area": "Miami (MiMo / Biscayne)",
+   "est_rooms": 32,
+   "stars": 3.5
+  },
+  {
+   "id": 10,
+   "hotel_id": 10,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(786) 522-6600",
+   "reported_occupancy_pct": 85,
+   "rooms_left": 33,
+   "quoted_walkin_rate": 633.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:39 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at Arlo Wynwood Miami, doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (Arlo Wynwood Miami): \"Hey! Tonight we're at 85% occupancy\u2014only 33 rooms left to sell. Our walk-in rate at the desk is $633 plus tax.\"\nCALLER: \"Got it\u201485% occupancy, 33 rooms left, $633 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-10-1793787653.wav",
+   "status": "recorded_verified",
+   "called_at": 1793782253.45749,
+   "hotel_name": "Arlo Wynwood Miami",
+   "area": "Miami (Wynwood / Downtown)",
+   "est_rooms": 217,
+   "stars": 4.5
+  },
+  {
+   "id": 11,
+   "hotel_id": 11,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(305) 420-2200",
+   "reported_occupancy_pct": 84,
+   "rooms_left": 20,
+   "quoted_walkin_rate": 485.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:42 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at Eurostars Langford Downtown Miami, doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (Eurostars Langford Downtown Miami): \"Hey! Tonight we're at 84% occupancy\u2014only 20 rooms left to sell. Our walk-in rate at the desk is $485 plus tax.\"\nCALLER: \"Got it\u201484% occupancy, 20 rooms left, $485 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-11-1793785853.wav",
+   "status": "recorded_verified",
+   "called_at": 1793779853.45749,
+   "hotel_name": "Eurostars Langford Downtown Miami",
+   "area": "Miami (Wynwood / Downtown)",
+   "est_rooms": 126,
+   "stars": 4.0
+  },
+  {
+   "id": 12,
+   "hotel_id": 12,
+   "shift": "Overnight Audit (11:30PM\u20134:00AM)",
+   "caller_mode": "Courtesy Call-Around",
+   "phone_dialed": "(305) 441-2100",
+   "reported_occupancy_pct": 94,
+   "rooms_left": 7,
+   "quoted_walkin_rate": 342.0,
+   "questions_asked": "Overnight occupancy %, rooms left to sell, and walk-in BAR rate",
+   "transcript": "[Overnight Courtesy Call-Around \u00b7 01:45 AM]\nCALLER (Night Audit Assistant): \"Hi Front Desk at The Mutiny Luxury Suites Hotel, doing our overnight courtesy call-around from down the street. We're at 78% with 10 rooms left \u2014 how's your occupancy tonight and what's your walk-in rate?\"\nFRONT DESK (The Mutiny Luxury Suites Hotel): \"Hey! Tonight we're at 94% occupancy\u2014only 7 rooms left to sell. Our walk-in rate at the desk is $342 plus tax.\"\nCALLER: \"Got it\u201494% occupancy, 7 rooms left, $342 walk-in. Sending any overflow your way. Have a quiet shift!\"",
+   "recording_url": "call-recording-12-1793784053.wav",
+   "status": "recorded_verified",
+   "called_at": 1793777453.45749,
+   "hotel_name": "The Mutiny Luxury Suites Hotel",
+   "area": "Miami (Wynwood / Downtown)",
+   "est_rooms": 120,
+   "stars": 4.0
+  }
+ ],
+ "call_templates": [
+  {
+   "id": "overnight_audit",
+   "label": "Overnight Night-Audit Courtesy Call-Around (11:30 PM \u2013 4:00 AM)",
+   "opening_script": "Hi Front Desk, good evening! Calling from the night-audit desk down the street doing our nightly courtesy occupancy call-around. We're sitting at {my_occ}% with {my_left} rooms left tonight at ${my_bar} \u2014 how is your occupancy looking tonight, how many rooms do you have left, and what's your walk-in rate?",
+   "followup_question": "Awesome, thank you! And are you guys holding your rate floor for this weekend or pushing BAR up?"
+  },
+  {
+   "id": "quick_availability",
+   "label": "Quick Reservation / Walk-In Availability Check (Any Shift)",
+   "opening_script": "Hi Front Desk! Quick question\u2014if we have overflow walk-in guests tonight, do you still have standard king or double rooms open, about how many rooms do you have left, and what rate are you quoting at the desk?",
+   "followup_question": "Got it, and does that rate include your resort fee or is that plus fee and tax?"
+  },
+  {
+   "id": "group_compression",
+   "label": "Weekend Compression & Group Block Check",
+   "opening_script": "Hi Reservations! Checking if you still have 5+ rooms open for this coming weekend or if you're already over 85% committed, and what your current Best Available Rate is?",
+   "followup_question": "Thanks so much\u2014I'll note your rate on our desk sheet!"
   }
  ],
  "pricing_tiers": [
@@ -3904,6 +4641,29 @@
    "nights": 3,
    "adults": 2,
    "rooms": 1
+  },
+  "my_hotel": {
+   "hotel_id": 1,
+   "custom_name": "",
+   "rooms": 45,
+   "current_bar": 224,
+   "walk_in_rate": 239,
+   "min_rate_floor": 159,
+   "max_rate_ceiling": 389,
+   "resort_fee": 15,
+   "current_occupancy_pct": 78,
+   "rooms_left_tonight": 10
+  },
+  "caller": {
+   "provider": "auto_courtesy",
+   "shift_window": "23:30 - 04:00 (Overnight Audit)",
+   "caller_persona": "Night Audit / Front Desk Courtesy Exchange",
+   "default_question": "Courtesy night-audit call-around \u2014 checking how your occupancy is looking tonight, how many rooms you have left to sell, and your walk-in BAR rate?",
+   "twilio_sid": "",
+   "twilio_token": "",
+   "twilio_from": "",
+   "vapi_api_key": "",
+   "record_calls": true
   },
   "telegram": {
    "bot_token": "",

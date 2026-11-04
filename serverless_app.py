@@ -67,6 +67,16 @@ def app(environ, start_response):
         pitches = json.loads(_load("snapshot_pitches.json"))
         pitch = pitches.get(str(hid)) or next(iter(pitches.values()))
         return _reply(start_response, "200 OK", json.dumps(pitch.get("memory") or {}))
+    if path.startswith("/api/calls"):
+        sum_data = json.loads(_load("snapshot_summary.json"))
+        if environ.get("REQUEST_METHOD") == "POST":
+            return _reply(start_response, "200 OK", json.dumps({"ok": True, "reported_occupancy_pct": 84, "rooms_left": 6, "quoted_walkin_rate": 229}))
+        return _reply(start_response, "200 OK", json.dumps({
+            "calls": sum_data.get("call_logs") or [],
+            "templates": sum_data.get("call_templates") or [],
+        }))
+    if path.startswith("/api/my-hotel"):
+        return _reply(start_response, "200 OK", json.dumps({"ok": True}))
     if path.startswith("/api/config"):
         if environ.get("REQUEST_METHOD") == "POST":
             return _reply(start_response, "200 OK", json.dumps({"ok": True, "note": "saved on self-hosted instance"}))

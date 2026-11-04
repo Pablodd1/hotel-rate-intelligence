@@ -24,6 +24,12 @@ from . import config as cfgmod
 from .sales_engine import build_hotel_pitch, build_printable_audit_html, PRICING_TIERS, LOCAL_ROUTES, MIAMI_COMPRESSION_EVENTS
 from .ai_engine import generate_live_ai_pitch, AI_MODEL_BENCHMARKS
 from .memory_engine import record_and_analyze_memory, estimate_occupancy_and_personality
+from .call_assistant import (
+    COURTESY_CALL_TEMPLATES,
+    list_call_logs,
+    place_or_log_courtesy_call,
+    build_my_hotel_comparison,
+)
 from .report import build_brief, send_telegram, send_email_report
 
 DASH_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dashboard", "index.html")
@@ -47,6 +53,8 @@ def _summary(conn, cfg):
         occ_values.append(occ_info["est_occupancy_pct"])
 
     avg_occ = round(sum(occ_values) / max(1, len(occ_values))) if occ_values else 74
+    my_hotel_intel = build_my_hotel_comparison(conn, cfg, rates)
+    recent_calls = list_call_logs(conn, limit=25)
     mem_count = conn.execute("SELECT COUNT(*) c FROM memory_events").fetchone()["c"]
     rate_count = conn.execute("SELECT COUNT(*) c FROM rates").fetchone()["c"]
 
@@ -55,6 +63,7 @@ def _summary(conn, cfg):
         "contacts": conn.execute("SELECT COUNT(*) c FROM contacts").fetchone()["c"],
         "rates": rate_count,
         "memory_events": mem_count + rate_count,
+        "calls_logged": len(recent_calls),
         "hot_prospects": conn.execute("SELECT COUNT(*) c FROM prospects WHERE tier='hot'").fetchone()["c"],
         "parity_undercuts": undercuts,
         "avg_adr": avg_adr,
@@ -94,11 +103,16 @@ def _summary(conn, cfg):
         "movers": movers,
         "prospects": prospects,
         "runs": runs,
+        "my_hotel": my_hotel_intel,
+        "call_logs": recent_calls,
+        "call_templates": COURTESY_CALL_TEMPLATES,
         "pricing_tiers": PRICING_TIERS,
         "ai_models": AI_MODEL_BENCHMARKS,
         "config": {
             "market": cfg.get("market"),
             "stay": cfg.get("stay"),
+            "my_hotel": cfg.get("my_hotel"),
+            "caller": cfg.get("caller"),
             "telegram": cfg.get("telegram"),
             "email_report": cfg.get("email_report"),
         },
@@ -202,12 +216,19 @@ def make_handler(cfg):
                 elif path.startswith("/api/memory"):
                     hid = int((q.get("hotel_id") or [1])[0])
                     self._json(record_and_analyze_memory(conn, hid))
+                elif path.startswith("/api/calls"):
+                    self._json({
+                        "calls": list_call_logs(conn, limit=40),
+                        "templates": COURTESY_CALL_TEMPLATES,
+                    })
                 elif path.startswith("/api/config"):
                     brief_preview = build_brief(cfg["database"], cfg.get("market", "Greater Miami & Beaches"))
                     self._json({
                         "config": {
                             "market": cfg.get("market"),
                             "stay": cfg.get("stay"),
+                            "my_hotel": cfg.get("my_hotel"),
+                            "caller": cfg.get("caller"),
                             "telegram": cfg.get("telegram"),
                             "email_report": cfg.get("email_report"),
                         },
@@ -296,9 +317,47 @@ def make_handler(cfg):
                     conn.close()
                 return
 
+            if path.startswith("/api/calls"):
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    if body.get("batch"):
+                        area = body.get("area") or ""
+                        sql = "SELECT id FROM hotels WHERE area=? ORDER BY id LIMIT 8" if area else "SELECT id FROM hotels ORDER BY id LIMIT 8"
+                        hrows = conn.execute(sql, (area,) if area else ()).fetchall()
+                        results = []
+                        for hr in hrows:
+                            results.append(place_or_log_courtesy_call(conn, cfg, {"hotel_id": hr["id"], "caller_mode": "Overnight Batch Auto-Caller"}))
+                        self._json({"ok": True, "batch_count": len(results), "results": results})
+                    else:
+                        res = place_or_log_courtesy_call(conn, cfg, body)
+                        self._json(res)
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/my-hotel"):
+                cfg.setdefault("my_hotel", {}).update(body)
+                cfgmod.save(cfg)
+                if body.get("hotel_id") and body.get("current_bar"):
+                    conn = dbmod.open_db(cfg["database"])
+                    try:
+                        hid = int(body["hotel_id"])
+                        bar_v = float(body["current_bar"])
+                        occ_v = int(body.get("current_occupancy_pct") or 78)
+                        conn.execute("UPDATE hotels SET est_occupancy_pct=? WHERE id=?", (occ_v, hid))
+                        conn.commit()
+                    finally:
+                        conn.close()
+                self._json({"ok": True, "my_hotel": cfg["my_hotel"]})
+                return
+
             if path.startswith("/api/config"):
                 if "stay" in body and isinstance(body["stay"], dict):
                     cfg["stay"].update(body["stay"])
+                if "my_hotel" in body and isinstance(body["my_hotel"], dict):
+                    cfg.setdefault("my_hotel", {}).update(body["my_hotel"])
+                if "caller" in body and isinstance(body["caller"], dict):
+                    cfg.setdefault("caller", {}).update(body["caller"])
                 if "telegram" in body and isinstance(body["telegram"], dict):
                     cfg.setdefault("telegram", {}).update(body["telegram"])
                 if "email_report" in body and isinstance(body["email_report"], dict):

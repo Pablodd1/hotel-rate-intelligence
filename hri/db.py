@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS prospects (
 CREATE TABLE IF NOT EXISTS memory_events (
   id INTEGER PRIMARY KEY,
   hotel_id INTEGER NOT NULL REFERENCES hotels(id),
-  event_type TEXT NOT NULL,      -- rate_change | parity_violation | competitor_move | occupancy_signal | strategy_decision
+  event_type TEXT NOT NULL,      -- rate_change | parity_violation | competitor_move | occupancy_signal | strategy_decision | overnight_call
   old_price REAL,
   new_price REAL,
   delta_pct REAL DEFAULT 0,
@@ -82,6 +82,22 @@ CREATE TABLE IF NOT EXISTS memory_events (
   recorded_at REAL NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_memory_hotel ON memory_events(hotel_id, recorded_at);
+CREATE TABLE IF NOT EXISTS call_logs (
+  id INTEGER PRIMARY KEY,
+  hotel_id INTEGER NOT NULL REFERENCES hotels(id),
+  shift TEXT DEFAULT 'Overnight Audit (11PM–4AM)',
+  caller_mode TEXT DEFAULT 'Courtesy Call-Around',
+  phone_dialed TEXT,
+  reported_occupancy_pct INTEGER,
+  rooms_left INTEGER,
+  quoted_walkin_rate REAL,
+  questions_asked TEXT,
+  transcript TEXT,
+  recording_url TEXT,
+  status TEXT DEFAULT 'completed',
+  called_at REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_calls_hotel ON call_logs(hotel_id, called_at);
 """
 
 MIGRATIONS = [
@@ -235,15 +251,19 @@ def finish_run(conn, run_id, **stats):
 
 
 def latest_rates(conn):
-    """Most recent nightly price per hotel, with previous price, OTA ladder, and parity status."""
+    """Most recent nightly price per hotel, with previous price, timestamps, OTA ladder, and parity status."""
     rows = [dict(r) for r in conn.execute("""
       SELECT h.id AS hotel_id, h.name, h.area, h.stars, h.est_rooms, h.brand,
              h.booking_engine, h.price_min, h.price_max, h.review_rating, h.review_count,
+             h.website, h.xotelo_key,
              r1.nightly_price AS price, r1.currency, r1.source, r1.checkin, r1.checkout,
              r1.room_type, r1.ota_json, r1.parity_status, r1.undercut_pct, r1.scraped_at,
              (SELECT r2.nightly_price FROM rates r2
                WHERE r2.hotel_id=h.id AND r2.id < r1.id
-               ORDER BY r2.id DESC LIMIT 1) AS prev_price
+               ORDER BY r2.id DESC LIMIT 1) AS prev_price,
+             (SELECT r2.scraped_at FROM rates r2
+               WHERE r2.hotel_id=h.id AND r2.id < r1.id
+               ORDER BY r2.id DESC LIMIT 1) AS prev_scraped_at
       FROM hotels h
       JOIN rates r1 ON r1.id = (
         SELECT id FROM rates WHERE hotel_id=h.id ORDER BY id DESC LIMIT 1)
@@ -254,8 +274,10 @@ def latest_rates(conn):
         except Exception:
             r["ota_channels"] = []
         if r.get("price") and r.get("prev_price"):
+            r["delta_dollar"] = round(r["price"] - r["prev_price"], 2)
             r["delta_pct"] = round((r["price"] - r["prev_price"]) / r["prev_price"] * 100, 1)
         else:
+            r["delta_dollar"] = 0.0
             r["delta_pct"] = 0.0
     return rows
 
