@@ -13,6 +13,12 @@ sys.path.insert(0, ROOT)
 
 from hri import db as dbmod
 from hri.config import load
+from hri.outreach_engine import (
+    build_market_research_and_posts,
+    get_channel_readiness,
+    list_outreach_log,
+    list_verified_leads,
+)
 from hri.server import _summary, _hotels, _all_pitches
 
 
@@ -23,6 +29,12 @@ def main():
         ("snapshot_summary", lambda c: _summary(c, cfg)),
         ("snapshot_hotels", lambda c: {"hotels": _hotels(c)}),
         ("snapshot_pitches", _all_pitches),
+        ("snapshot_leads", lambda c: {
+            **list_verified_leads(c, price_monthly=99),
+            "readiness": get_channel_readiness(cfg),
+            "recent_outreach": list_outreach_log(c, limit=40),
+        }),
+        ("snapshot_market_research", build_market_research_and_posts),
     )
     for name, fn in snapshots:
         payload = fn(conn)

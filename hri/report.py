@@ -22,6 +22,8 @@ def build_brief(db_path, market="Greater Miami & Beaches"):
     strategy_highlights = []
 
     for r in rows:
+        if r.get("price") is None:
+            continue
         hid = r["hotel_id"]
         mem = record_and_analyze_memory(conn, hid)
         occ = (mem.get("occupancy") or {}).get("est_occupancy_pct", 74)

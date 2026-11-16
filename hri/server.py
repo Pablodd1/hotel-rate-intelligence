@@ -22,6 +22,8 @@ from urllib.parse import urlparse, parse_qs
 from . import db as dbmod
 from . import config as cfgmod
 from .sales_engine import build_hotel_pitch, build_printable_audit_html, PRICING_TIERS, LOCAL_ROUTES, MIAMI_COMPRESSION_EVENTS
+from .audit_engine import run_live_hotel_audit, place_auditor_call, send_audit_email_to_leaders
+from .sales_chatbot import generate_closer_chat_reply, capture_inbound_callback
 from .ai_engine import generate_live_ai_pitch, AI_MODEL_BENCHMARKS
 from .memory_engine import record_and_analyze_memory, estimate_occupancy_and_personality
 from .call_assistant import (
@@ -30,21 +32,57 @@ from .call_assistant import (
     place_or_log_courtesy_call,
     build_my_hotel_comparison,
 )
+from .outreach_engine import (
+    OFFER_PLANS,
+    add_opt_out,
+    build_market_research_and_posts,
+    get_channel_readiness,
+    list_outreach_log,
+    list_verified_leads,
+    send_or_queue_outreach,
+)
 from .report import build_brief, send_telegram, send_email_report
+from .tenant_engine import (
+    TIER_CATALOG,
+    COMPETITOR_COMPARISON_MATRIX,
+    ensure_seed_accounts_and_campaigns,
+    verify_admin_credentials,
+    is_admin_token_valid,
+    authenticate_client,
+    get_client_by_token,
+    register_or_create_client_account,
+    update_client_account_admin,
+    get_client_portal_data,
+    add_client_hotel_tag,
+    delete_client_hotel_tag,
+    client_scrape_comp_set,
+    approve_or_dispatch_campaign,
+    get_public_website_payload,
+    get_mission_control_overview,
+    list_client_accounts,
+    list_marketing_campaigns,
+)
 
-DASH_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dashboard", "index.html")
+DASH_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dashboard")
+DASH_PATH = os.path.join(DASH_DIR, "index.html")
+WEBSITE_PATH = os.path.join(DASH_DIR, "website.html")
+CLIENT_PORTAL_PATH = os.path.join(DASH_DIR, "client_portal.html")
+MISSION_CONTROL_PATH = os.path.join(DASH_DIR, "mission_control.html")
 
 
 def _summary(conn, cfg):
     rates = dbmod.latest_rates(conn)
     undercuts = sum(1 for r in rates if r.get("parity_status") == "UNDERCUT")
-    avg_adr = round(sum(r["price"] for r in rates if r.get("price")) / max(1, len(rates))) if rates else 0
+    priced_vals = [float(r["price"]) for r in rates if r.get("price") is not None]
+    avg_adr = round(sum(priced_vals) / len(priced_vals)) if priced_vals else 0
 
     # Enrich each rate row with occupancy & pricing personality from memory engine
     occ_values = []
     for r in rates:
+        p_now = float(r["price"]) if r.get("price") is not None else 0.0
+        p_prev = float(r["prev_price"]) if r.get("prev_price") is not None else p_now
         occ_info = estimate_occupancy_and_personality(
-            r, float(r.get("price") or 220), float(r.get("prev_price") or r.get("price") or 210),
+            r, p_now, p_prev,
             r.get("ota_channels") or [], float(r.get("undercut_pct") or 0.0)
         )
         r["est_occupancy_pct"] = occ_info["est_occupancy_pct"]
@@ -107,6 +145,8 @@ def _summary(conn, cfg):
         "call_logs": recent_calls,
         "call_templates": COURTESY_CALL_TEMPLATES,
         "pricing_tiers": PRICING_TIERS,
+        "offer_plans": OFFER_PLANS,
+        "outreach_readiness": get_channel_readiness(cfg),
         "ai_models": AI_MODEL_BENCHMARKS,
         "config": {
             "market": cfg.get("market"),
@@ -115,6 +155,7 @@ def _summary(conn, cfg):
             "caller": cfg.get("caller"),
             "telegram": cfg.get("telegram"),
             "email_report": cfg.get("email_report"),
+            "outreach": cfg.get("outreach"),
         },
     }
 
@@ -130,7 +171,7 @@ def _hotels(conn):
         h = dict(h)
         hid = h["id"]
         h["contacts"] = [dict(r) for r in conn.execute(
-            "SELECT kind,value,context FROM contacts WHERE hotel_id=? ORDER BY kind", (hid,))]
+            "SELECT kind,value,context,verified_status,person_title,source_url FROM contacts WHERE hotel_id=? ORDER BY kind", (hid,))]
         h["contact_count"] = len(h["contacts"])
         r = rates_by_id.get(hid) or {}
         p = prospects_by_id.get(hid) or {}
@@ -141,9 +182,10 @@ def _hotels(conn):
         h["parity_status"] = r.get("parity_status")
         h["undercut_pct"] = r.get("undercut_pct", 0.0)
         h["ota_channels"] = r.get("ota_channels", [])
+        p_now = float(h["price"]) if h["price"] is not None else 0.0
+        p_prev = float(h["prev_price"]) if h["prev_price"] is not None else p_now
         occ_info = estimate_occupancy_and_personality(
-            h, float(h["price"] or h.get("price_min") or 220),
-            float(h["prev_price"] or h["price"] or 210),
+            h, p_now, p_prev,
             h["ota_channels"], float(h["undercut_pct"] or 0.0)
         )
         h["est_occupancy_pct"] = occ_info["est_occupancy_pct"]
@@ -156,11 +198,11 @@ def _hotels(conn):
     return out
 
 
-def _all_pitches(conn):
+def _all_pitches(conn, custom_price_monthly=None):
     out = {}
     for row in conn.execute("SELECT id FROM hotels ORDER BY id"):
         hid = row["id"]
-        out[str(hid)] = build_hotel_pitch(conn, hid)
+        out[str(hid)] = build_hotel_pitch(conn, hid, custom_price_monthly=custom_price_monthly)
     return out
 
 
@@ -185,6 +227,48 @@ def make_handler(cfg):
             q = parse_qs(urlparse(self.path).query)
             return q.get("k", [""])[0] == key
 
+        def _serve_file(self, filepath, content_type="text/html; charset=utf-8"):
+            if not os.path.exists(filepath):
+                self._json({"error": "file not found"}, 404)
+                return
+            with open(filepath, "rb") as f:
+                body = f.read()
+            self.send_response(200)
+            self.send_header("Content-Type", content_type)
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+        def _is_admin(self, q=None):
+            tok = (self.headers.get("X-Admin-Token") or "").strip()
+            if not tok and q:
+                tok = (q.get("admin_token") or [""])[0].strip()
+            return is_admin_token_valid(cfg, tok)
+
+        def _resolve_client(self, conn, q=None, body=None):
+            ensure_seed_accounts_and_campaigns(conn, cfg)
+            dh = ""
+            if q and q.get("demo_hotel"):
+                dh = str(q.get("demo_hotel")[0]).strip()
+            elif isinstance(body, dict) and body.get("demo_hotel_id"):
+                dh = str(body.get("demo_hotel_id")).strip()
+            if dh.isdigit():
+                auth_res = authenticate_client(conn, "", "", demo_hotel_id=int(dh))
+                if auth_res.get("ok"):
+                    return auth_res.get("account")
+            tok = (self.headers.get("X-Client-Token") or "").strip()
+            if not tok and q:
+                tok = (q.get("token") or q.get("account_token") or [""])[0].strip()
+            if not tok and isinstance(body, dict):
+                tok = (body.get("token") or "").strip()
+            if tok:
+                return get_client_by_token(conn, tok)
+            if (q and (q.get("demo") or [""])[0] in ("1", "true")) or (isinstance(body, dict) and body.get("demo")):
+                auth_res = authenticate_client(conn, "", "", demo_fallback=True)
+                return auth_res.get("account")
+            return None
+
         def do_GET(self):
             if not self._authorized():
                 self._json({"error": "unauthorized"}, 401)
@@ -192,27 +276,75 @@ def make_handler(cfg):
             parsed = urlparse(self.path)
             path = parsed.path
             q = parse_qs(parsed.query)
-            if path == "/" or path.startswith("/index.html"):
-                with open(DASH_PATH, encoding="utf-8") as f:
-                    body = f.read().encode("utf-8")
-                self.send_response(200)
-                self.send_header("Content-Type", "text/html; charset=utf-8")
-                self.send_header("Cache-Control", "no-store")
-                self.send_header("Content-Length", str(len(body)))
-                self.end_headers()
-                self.wfile.write(body)
+
+            if path.startswith("/assets/"):
+                rel = os.path.basename(path)
+                asset_fp = os.path.join(DASH_DIR, "assets", rel)
+                ctype = "image/jpeg" if rel.endswith(".jpg") else ("image/png" if rel.endswith(".png") else "application/octet-stream")
+                self._serve_file(asset_fp, content_type=ctype)
                 return
+
+            if path in ("/", "/website", "/website.html", "/landing"):
+                target = WEBSITE_PATH if os.path.exists(WEBSITE_PATH) else DASH_PATH
+                self._serve_file(target)
+                return
+
+            if path in ("/portal", "/client", "/client_portal.html"):
+                target = CLIENT_PORTAL_PATH if os.path.exists(CLIENT_PORTAL_PATH) else DASH_PATH
+                self._serve_file(target)
+                return
+
+            if path in ("/mission-control", "/admin", "/dashboard", "/index.html"):
+                target = MISSION_CONTROL_PATH if os.path.exists(MISSION_CONTROL_PATH) else DASH_PATH
+                self._serve_file(target)
+                return
+
             conn = dbmod.open_db(cfg["database"])
             try:
-                if path.startswith("/api/summary"):
+                ensure_seed_accounts_and_campaigns(conn, cfg)
+                if path.startswith("/api/public/landing"):
+                    self._json(get_public_website_payload(conn, cfg))
+                elif path.startswith("/api/client/portal"):
+                    acc = self._resolve_client(conn, q=q)
+                    if not acc:
+                        self._json({"ok": False, "error": "Client login required. Please sign in to your hotel account."}, 401)
+                        return
+                    preview_tier = (q.get("preview_tier") or [""])[0].strip() or None
+                    self._json(get_client_portal_data(conn, cfg, acc, preview_tier=preview_tier))
+                elif path.startswith("/api/admin/overview"):
+                    if not self._is_admin(q=q):
+                        self._json({"ok": False, "error": "Mission Control Administrator login required."}, 401)
+                        return
+                    p_str = (q.get("price") or [""])[0]
+                    c_price = int(p_str) if p_str.isdigit() else int((cfg.get("outreach") or {}).get("default_price_monthly") or 99)
+                    self._json(get_mission_control_overview(conn, cfg, price_monthly=c_price))
+                elif path.startswith("/api/summary"):
                     self._json(_summary(conn, cfg))
                 elif path.startswith("/api/hotels"):
                     self._json({"hotels": _hotels(conn)})
                 elif path.startswith("/api/pitches"):
-                    self._json(_all_pitches(conn))
+                    p_str = (q.get("price") or [""])[0]
+                    c_price = int(p_str) if p_str.isdigit() else None
+                    self._json(_all_pitches(conn, custom_price_monthly=c_price))
                 elif path.startswith("/api/pitch"):
                     hid = int((q.get("hotel_id") or [1])[0])
-                    self._json(build_hotel_pitch(conn, hid))
+                    p_str = (q.get("price") or [""])[0]
+                    c_price = int(p_str) if p_str.isdigit() else None
+                    self._json(build_hotel_pitch(conn, hid, custom_price_monthly=c_price))
+                elif path.startswith("/api/leads"):
+                    p_str = (q.get("price") or [""])[0]
+                    c_price = int(p_str) if p_str.isdigit() else int((cfg.get("outreach") or {}).get("default_price_monthly") or 99)
+                    res = list_verified_leads(conn, price_monthly=c_price)
+                    res["readiness"] = get_channel_readiness(cfg)
+                    res["recent_outreach"] = list_outreach_log(conn, limit=40)
+                    self._json(res)
+                elif path.startswith("/api/outreach"):
+                    self._json({
+                        "readiness": get_channel_readiness(cfg),
+                        "logs": list_outreach_log(conn, limit=60),
+                    })
+                elif path.startswith("/api/market-research"):
+                    self._json(build_market_research_and_posts(conn))
                 elif path.startswith("/api/memory"):
                     hid = int((q.get("hotel_id") or [1])[0])
                     self._json(record_and_analyze_memory(conn, hid))
@@ -231,7 +363,9 @@ def make_handler(cfg):
                             "caller": cfg.get("caller"),
                             "telegram": cfg.get("telegram"),
                             "email_report": cfg.get("email_report"),
+                            "outreach": cfg.get("outreach"),
                         },
+                        "outreach_readiness": get_channel_readiness(cfg),
                         "brief_preview": brief_preview,
                     })
                 elif path.startswith("/api/ai-pitch"):
@@ -258,11 +392,183 @@ def make_handler(cfg):
             if not self._authorized():
                 self._json({"error": "unauthorized"}, 401)
                 return
-            path = urlparse(self.path).path
+            parsed_post = urlparse(self.path)
+            path = parsed_post.path
+            q_post = parse_qs(parsed_post.query)
             try:
                 body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
             except Exception:
                 self._json({"error": "invalid json"}, 400)
+                return
+
+            if path.startswith("/api/admin/login"):
+                res = verify_admin_credentials(cfg, body.get("username", ""), body.get("password", ""))
+                self._json(res, 200 if res.get("ok") else 401)
+                return
+
+            if path.startswith("/api/admin/credentials"):
+                if not self._is_admin(q=q_post):
+                    self._json({"ok": False, "error": "Mission Control Administrator login required."}, 401)
+                    return
+                admin_cfg = cfg.setdefault("admin_auth", {})
+                if body.get("username"):
+                    admin_cfg["username"] = str(body["username"]).strip()
+                if body.get("password"):
+                    admin_cfg["password"] = str(body["password"]).strip()
+                if body.get("owner_name"):
+                    admin_cfg["owner_name"] = str(body["owner_name"]).strip()
+                cfgmod.save(cfg)
+                self._json({"ok": True, "username": admin_cfg.get("username")})
+                return
+
+            if path.startswith("/api/admin/accounts"):
+                if not self._is_admin(q=q_post):
+                    self._json({"ok": False, "error": "Mission Control Administrator login required."}, 401)
+                    return
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    ensure_seed_accounts_and_campaigns(conn, cfg)
+                    act = (body.get("action") or "create").strip().lower()
+                    if act == "update":
+                        res = update_client_account_admin(conn, body)
+                    else:
+                        res = register_or_create_client_account(conn, body, created_by_admin=True)
+                    self._json(res, 200 if res.get("ok") else 400)
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/admin/campaigns"):
+                if not self._is_admin(q=q_post):
+                    self._json({"ok": False, "error": "Mission Control Administrator login required."}, 401)
+                    return
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    ensure_seed_accounts_and_campaigns(conn, cfg)
+                    res = approve_or_dispatch_campaign(conn, cfg, body)
+                    self._json(res, 200 if res.get("ok") else 400)
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/accounts/register"):
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    ensure_seed_accounts_and_campaigns(conn, cfg)
+                    res = register_or_create_client_account(conn, body, created_by_admin=False)
+                    self._json(res, 200 if res.get("ok") else 400)
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/public/chat"):
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    ensure_seed_accounts_and_campaigns(conn, cfg)
+                    res = generate_closer_chat_reply(conn, cfg, body)
+                    self._json(res, 200 if res.get("ok") else 400)
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/public/callback"):
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    ensure_seed_accounts_and_campaigns(conn, cfg)
+                    res = capture_inbound_callback(conn, cfg, body)
+                    self._json(res, 200 if res.get("ok") else 400)
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/audit/run"):
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    ensure_seed_accounts_and_campaigns(conn, cfg)
+                    res = run_live_hotel_audit(conn, cfg, body)
+                    self._json(res, 200 if res.get("ok") else 400)
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/audit/call"):
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    res = place_auditor_call(conn, cfg, body)
+                    self._json(res, 200 if res.get("ok") else 400)
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/audit/send-email"):
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    ensure_seed_accounts_and_campaigns(conn, cfg)
+                    res = send_audit_email_to_leaders(conn, cfg, body)
+                    self._json(res, 200 if res.get("ok") else 400)
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/client/login"):
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    ensure_seed_accounts_and_campaigns(conn, cfg)
+                    dh = body.get("demo_hotel_id")
+                    res = authenticate_client(
+                        conn,
+                        body.get("username", ""),
+                        body.get("password", ""),
+                        demo_fallback=bool(body.get("demo")),
+                        demo_hotel_id=int(dh) if str(dh or "").isdigit() else None,
+                    )
+                    self._json(res, 200 if res.get("ok") else 401)
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/client/"):
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    acc = self._resolve_client(conn, q=q_post, body=body)
+                    if not acc:
+                        self._json({"ok": False, "error": "Client login required."}, 401)
+                        return
+                    if path.startswith("/api/client/scrape"):
+                        res = client_scrape_comp_set(conn, cfg, acc)
+                        self._json(res)
+                        return
+                    if path.startswith("/api/client/tags"):
+                        if body.get("delete_id"):
+                            res = delete_client_hotel_tag(conn, acc, int(body["delete_id"]))
+                            self._json(res)
+                            return
+                        res = add_client_hotel_tag(conn, acc, body)
+                        code = 403 if res.get("forbidden") else (200 if res.get("ok") else 400)
+                        self._json(res, code)
+                        return
+                    if path.startswith("/api/client/calls"):
+                        target_hid = int(body.get("hotel_id") or acc["primary_hotel_id"])
+                        if target_hid not in [int(x) for x in (acc.get("assigned_hotel_ids") or [])]:
+                            self._json(
+                                {"ok": False, "error": "Access Denied: You can only log/place calls for hotels assigned to your isolated account.", "forbidden": True},
+                                403,
+                            )
+                            return
+                        res = place_or_log_courtesy_call(conn, cfg, body)
+                        self._json(res)
+                        return
+                    if path.startswith("/api/client/settings"):
+                        body["account_id"] = acc["id"]
+                        # Clients cannot arbitrarily assign themselves all 49 hotels; keep their assigned_hotel_ids
+                        body.pop("assigned_hotel_ids", None)
+                        body.pop("primary_hotel_id", None)
+                        res = update_client_account_admin(conn, body)
+                        self._json(res, 200 if res.get("ok") else 400)
+                        return
+                    self._json({"ok": False, "error": "unknown client endpoint"}, 404)
+                finally:
+                    conn.close()
                 return
 
             if path.startswith("/api/hotels"):
@@ -300,19 +606,24 @@ def make_handler(cfg):
                     h_row = dict(conn.execute("SELECT * FROM hotels WHERE id=?", (hid,)).fetchone())
                     intel = scrape_rate_intelligence(h_row, cfg, checkin=checkin, checkout=checkout, check_jsonld=False, log=lambda s: None)
                     run_id = dbmod.new_run(conn, mode="add-hotel-scan")
-                    price_val = float(body.get("initial_bar") or intel.get("direct_price") or 210)
-                    dbmod.add_rate(
-                        conn, hid, run_id, intel.get("source") or "xotelo",
-                        checkin, checkout, price_val, cfg["currency"],
-                        intel.get("room_type") or "Standard Room",
-                        ota_json=intel.get("channels") or [],
-                        parity_status=intel.get("parity_status") or "PARITY",
-                        undercut_pct=intel.get("undercut_pct") or 0.0,
-                    )
-                    dbmod.finish_run(conn, run_id, status="ok", hotels_attempted=1, hotels_ok=1, contacts_new=1, rates_new=1)
+                    manual_bar = body.get("initial_bar")
+                    price_val = float(manual_bar) if manual_bar else intel.get("direct_price")
+                    rates_new = 0
+                    if price_val is not None:
+                        dbmod.add_rate(
+                            conn, hid, run_id,
+                            "manual" if manual_bar else (intel.get("source") or "xotelo"),
+                            checkin, checkout, float(price_val), cfg["currency"],
+                            intel.get("room_type") or "Standard Room",
+                            ota_json=intel.get("channels") or [],
+                            parity_status=intel.get("parity_status") or "PARITY",
+                            undercut_pct=intel.get("undercut_pct") or 0.0,
+                        )
+                        rates_new = 1
+                    dbmod.finish_run(conn, run_id, status="ok", hotels_attempted=1, hotels_ok=1 if rates_new else 0, contacts_new=1, rates_new=rates_new)
                     score_all(conn, log=lambda s: None)
                     record_and_analyze_memory(conn, hid)
-                    self._json({"ok": True, "hotel_id": hid, "name": name})
+                    self._json({"ok": True, "hotel_id": hid, "name": name, "rates_new": rates_new})
                 finally:
                     conn.close()
                 return
@@ -362,10 +673,36 @@ def make_handler(cfg):
                     cfg.setdefault("telegram", {}).update(body["telegram"])
                 if "email_report" in body and isinstance(body["email_report"], dict):
                     cfg.setdefault("email_report", {}).update(body["email_report"])
+                if "outreach" in body and isinstance(body["outreach"], dict):
+                    cfg.setdefault("outreach", {}).update(body["outreach"])
                 if "market" in body and body["market"]:
                     cfg["market"] = str(body["market"])
                 cfgmod.save(cfg)
                 self._json({"ok": True, "config": cfg})
+                return
+
+            if path.startswith("/api/outreach/send"):
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    res = send_or_queue_outreach(conn, cfg, body)
+                    self._json(res)
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/opt-out"):
+                conn = dbmod.open_db(cfg["database"])
+                try:
+                    ok = add_opt_out(conn, body.get("value", ""), body.get("channel", ""), body.get("reason", "manual_opt_out"))
+                    self._json({"ok": ok, "value": body.get("value", "")})
+                finally:
+                    conn.close()
+                return
+
+            if path.startswith("/api/hunt-leads"):
+                from .lead_hunter import run_lead_hunter
+                rid = run_lead_hunter(cfg, quick=bool(body.get("quick")), log=lambda s: None)
+                self._json({"ok": True, "run_id": rid})
                 return
 
             if path.startswith("/api/send-report"):

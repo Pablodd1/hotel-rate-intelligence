@@ -35,6 +35,9 @@ CREATE TABLE IF NOT EXISTS contacts (
   kind TEXT NOT NULL,            -- phone | email | person | address | linkedin | instagram
   value TEXT NOT NULL,
   context TEXT,                  -- where it was found: homepage /contact /GM ...
+  verified_status TEXT DEFAULT 'scraped', -- mx_verified | http_verified | public_record_verified | manual_verified
+  person_title TEXT,
+  source_url TEXT,
   confidence REAL DEFAULT 0.85,
   found_at REAL NOT NULL,
   UNIQUE(hotel_id, kind, value)
@@ -94,15 +97,85 @@ CREATE TABLE IF NOT EXISTS call_logs (
   questions_asked TEXT,
   transcript TEXT,
   recording_url TEXT,
-  status TEXT DEFAULT 'completed',
+  status TEXT DEFAULT 'queued_awaiting_voice_key',
   called_at REAL NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_calls_hotel ON call_logs(hotel_id, called_at);
+CREATE TABLE IF NOT EXISTS outreach_log (
+  id INTEGER PRIMARY KEY,
+  hotel_id INTEGER NOT NULL REFERENCES hotels(id),
+  channel TEXT NOT NULL,          -- email | sms | whatsapp | voice | walk_in
+  recipient TEXT NOT NULL,        -- email address or E.164 phone
+  person_name TEXT,
+  offer_price_monthly INTEGER DEFAULT 99,
+  offer_label TEXT,
+  subject TEXT,
+  body TEXT NOT NULL,
+  provider TEXT,                  -- smtp | brevo | resend | twilio_sms | twilio_whatsapp | vapi | bland | twilio_voice | dry_run
+  status TEXT NOT NULL,           -- queued_dry_run | ready_awaiting_credentials | sent_live | failed | opted_out
+  provider_message_id TEXT,
+  error_detail TEXT,
+  created_at REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_outreach_hotel ON outreach_log(hotel_id, created_at);
+CREATE TABLE IF NOT EXISTS do_not_contact (
+  value TEXT PRIMARY KEY,
+  channel TEXT,
+  reason TEXT,
+  added_at REAL NOT NULL
+);
+CREATE TABLE IF NOT EXISTS client_accounts (
+  id INTEGER PRIMARY KEY,
+  username TEXT UNIQUE NOT NULL,
+  email TEXT NOT NULL,
+  password_hash TEXT NOT NULL,
+  display_name TEXT NOT NULL,
+  contact_person TEXT,
+  primary_hotel_id INTEGER NOT NULL REFERENCES hotels(id),
+  assigned_hotel_ids TEXT NOT NULL,
+  tier TEXT NOT NULL DEFAULT 'free',
+  monthly_price INTEGER NOT NULL DEFAULT 0,
+  status TEXT NOT NULL DEFAULT 'active',
+  is_demo INTEGER NOT NULL DEFAULT 0,
+  alert_email TEXT,
+  telegram_chat_id TEXT,
+  session_token TEXT,
+  last_login_at REAL,
+  created_at REAL NOT NULL
+);
+CREATE TABLE IF NOT EXISTS hotel_tags (
+  id INTEGER PRIMARY KEY,
+  account_id INTEGER NOT NULL REFERENCES client_accounts(id),
+  hotel_id INTEGER NOT NULL REFERENCES hotels(id),
+  tag TEXT NOT NULL,
+  note TEXT,
+  color TEXT DEFAULT '#facc15',
+  created_at REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_tags_account ON hotel_tags(account_id, hotel_id);
+CREATE TABLE IF NOT EXISTS marketing_campaigns (
+  id INTEGER PRIMARY KEY,
+  hotel_id INTEGER REFERENCES hotels(id),
+  campaign_name TEXT NOT NULL,
+  channel TEXT NOT NULL,
+  target_tier TEXT DEFAULT 'free_to_99',
+  recipient TEXT,
+  person_name TEXT,
+  subject TEXT,
+  body TEXT NOT NULL,
+  registration_url TEXT,
+  approval_status TEXT DEFAULT 'pending_approval',
+  approved_by TEXT,
+  approved_at REAL,
+  dispatched_at REAL,
+  created_at REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_campaigns_status ON marketing_campaigns(approval_status, created_at);
 """
 
 MIGRATIONS = [
     ("hotels", "xotelo_key", "TEXT"),
-    ("hotels", "booking_engine", "TEXT DEFAULT 'Direct / SynXis'"),
+    ("hotels", "booking_engine", "TEXT DEFAULT 'Direct Website'"),
     ("hotels", "review_rating", "REAL"),
     ("hotels", "review_count", "INTEGER"),
     ("hotels", "price_min", "REAL"),
@@ -110,6 +183,11 @@ MIGRATIONS = [
     ("hotels", "deal_stage", "TEXT DEFAULT 'new'"),
     ("hotels", "est_occupancy_pct", "INTEGER DEFAULT 74"),
     ("hotels", "pricing_personality", "TEXT DEFAULT 'Dynamic Responder'"),
+    ("hotels", "management_group", "TEXT"),
+    ("hotels", "website_status", "TEXT DEFAULT 'unknown'"),
+    ("contacts", "verified_status", "TEXT DEFAULT 'scraped'"),
+    ("contacts", "person_title", "TEXT"),
+    ("contacts", "source_url", "TEXT"),
     ("rates", "ota_json", "TEXT"),
     ("rates", "parity_status", "TEXT"),
     ("rates", "undercut_pct", "REAL DEFAULT 0"),
@@ -119,15 +197,21 @@ MIGRATIONS = [
 
 
 def open_db(path):
-    conn = sqlite3.connect(path)
+    conn = sqlite3.connect(path, timeout=20.0, check_same_thread=False)
     conn.row_factory = sqlite3.Row
-    conn.executescript(SCHEMA)
-    for table, col, coldef in MIGRATIONS:
-        try:
-            conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {coldef}")
-        except sqlite3.OperationalError:
-            pass
-    conn.commit()
+    conn.execute("PRAGMA busy_timeout=15000")
+    conn.execute("PRAGMA journal_mode=WAL")
+    has_schema = conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name='marketing_campaigns'"
+    ).fetchone()
+    if not has_schema:
+        conn.executescript(SCHEMA)
+        for table, col, coldef in MIGRATIONS:
+            try:
+                conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {coldef}")
+            except sqlite3.OperationalError:
+                pass
+        conn.commit()
     return conn
 
 
@@ -182,39 +266,51 @@ def upsert_hotel(conn, **kw):
                review_rating=COALESCE(?, review_rating),
                review_count=COALESCE(?, review_count),
                price_min=COALESCE(?, price_min),
-               price_max=COALESCE(?, price_max)
+               price_max=COALESCE(?, price_max),
+               management_group=COALESCE(?, management_group),
+               website_status=COALESCE(?, website_status)
                WHERE id=?""",
             (kw.get("area"), kw.get("website"), kw.get("booking_url"),
              kw.get("stars"), kw.get("est_rooms"), kw.get("brand"),
              kw.get("latitude"), kw.get("longitude"), kw.get("xotelo_key"),
              kw.get("booking_engine"), kw.get("review_rating"), kw.get("review_count"),
-             kw.get("price_min"), kw.get("price_max"), hid))
+             kw.get("price_min"), kw.get("price_max"),
+             kw.get("management_group"), kw.get("website_status"), hid))
         conn.commit()
         return hid
     cur = conn.execute(
         """INSERT INTO hotels(
            name,area,website,booking_url,stars,est_rooms,brand,latitude,longitude,
-           xotelo_key,booking_engine,review_rating,review_count,price_min,price_max,deal_stage,created)
-           VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+           xotelo_key,booking_engine,review_rating,review_count,price_min,price_max,
+           deal_stage,management_group,website_status,created)
+           VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
         (kw.get("name"), kw.get("area"), kw.get("website"), kw.get("booking_url"),
          kw.get("stars"), kw.get("est_rooms"), kw.get("brand", "independent"),
          kw.get("latitude"), kw.get("longitude"), kw.get("xotelo_key"),
-         kw.get("booking_engine", "Direct / SynXis"), kw.get("review_rating"),
+         kw.get("booking_engine", "Direct Website"), kw.get("review_rating"),
          kw.get("review_count"), kw.get("price_min"), kw.get("price_max"),
-         kw.get("deal_stage", "new"), time.time()))
+         kw.get("deal_stage", "new"), kw.get("management_group"),
+         kw.get("website_status", "unknown"), time.time()))
     conn.commit()
     return cur.lastrowid
 
 
-def add_contact(conn, hotel_id, kind, value, context="", confidence=0.85):
+def add_contact(conn, hotel_id, kind, value, context="", confidence=0.85,
+                verified_status="scraped", person_title=None, source_url=None):
     clean = normalize_contact_value(kind, value)
     if not clean:
         return False
     try:
         before = conn.total_changes
         conn.execute(
-            "INSERT OR IGNORE INTO contacts(hotel_id,kind,value,context,confidence,found_at)"
-            " VALUES(?,?,?,?,?,?)", (hotel_id, kind, clean, context, confidence, time.time()))
+            """INSERT INTO contacts(hotel_id,kind,value,context,verified_status,person_title,source_url,confidence,found_at)
+               VALUES(?,?,?,?,?,?,?,?,?)
+               ON CONFLICT(hotel_id, kind, value) DO UPDATE SET
+                 verified_status=CASE WHEN excluded.verified_status != 'scraped' THEN excluded.verified_status ELSE contacts.verified_status END,
+                 person_title=COALESCE(excluded.person_title, contacts.person_title),
+                 source_url=COALESCE(excluded.source_url, contacts.source_url),
+                 confidence=MAX(contacts.confidence, excluded.confidence)""",
+            (hotel_id, kind, clean, context, verified_status, person_title, source_url, confidence, time.time()))
         conn.commit()
         return conn.total_changes > before
     except sqlite3.Error:
@@ -251,22 +347,27 @@ def finish_run(conn, run_id, **stats):
 
 
 def latest_rates(conn):
-    """Most recent nightly price per hotel, with previous price, timestamps, OTA ladder, and parity status."""
+    """Most recent nightly price per hotel, with previous price, timestamps, OTA ladder, and parity status.
+    Uses LEFT JOIN so hotels with NO_LIVE_QUOTE are still returned cleanly without fake rates.
+    """
     rows = [dict(r) for r in conn.execute("""
       SELECT h.id AS hotel_id, h.name, h.area, h.stars, h.est_rooms, h.brand,
              h.booking_engine, h.price_min, h.price_max, h.review_rating, h.review_count,
-             h.website, h.xotelo_key,
-             r1.nightly_price AS price, r1.currency, r1.source, r1.checkin, r1.checkout,
-             r1.room_type, r1.ota_json, r1.parity_status, r1.undercut_pct, r1.scraped_at,
+             h.website, h.xotelo_key, h.management_group, h.website_status, h.deal_stage,
+             r1.nightly_price AS price, COALESCE(r1.currency, 'USD') AS currency,
+             COALESCE(r1.source, 'no_live_quote') AS source, r1.checkin, r1.checkout,
+             r1.room_type, r1.ota_json,
+             COALESCE(r1.parity_status, 'NO_LIVE_QUOTE') AS parity_status,
+             COALESCE(r1.undercut_pct, 0.0) AS undercut_pct, r1.scraped_at,
              (SELECT r2.nightly_price FROM rates r2
-               WHERE r2.hotel_id=h.id AND r2.id < r1.id
+               WHERE r2.hotel_id=h.id AND r2.nightly_price IS NOT NULL AND (r1.id IS NULL OR r2.id < r1.id)
                ORDER BY r2.id DESC LIMIT 1) AS prev_price,
              (SELECT r2.scraped_at FROM rates r2
-               WHERE r2.hotel_id=h.id AND r2.id < r1.id
+               WHERE r2.hotel_id=h.id AND r2.nightly_price IS NOT NULL AND (r1.id IS NULL OR r2.id < r1.id)
                ORDER BY r2.id DESC LIMIT 1) AS prev_scraped_at
       FROM hotels h
-      JOIN rates r1 ON r1.id = (
-        SELECT id FROM rates WHERE hotel_id=h.id ORDER BY id DESC LIMIT 1)
+      LEFT JOIN rates r1 ON r1.id = (
+        SELECT id FROM rates WHERE hotel_id=h.id AND nightly_price IS NOT NULL ORDER BY id DESC LIMIT 1)
       ORDER BY h.name""")]
     for r in rows:
         try:

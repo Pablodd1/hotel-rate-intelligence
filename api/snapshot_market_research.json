@@ -1,0 +1,123 @@
+{
+ "metrics": {
+  "total_hotels": 49,
+  "live_quotes": 44,
+  "undercut_count": 31,
+  "undercut_share_pct": 70.5,
+  "overall_avg_bar": 308,
+  "named_leaders": 25,
+  "mx_verified_emails": 39,
+  "verified_phones": 47,
+  "worst_undercut": {
+   "name": "Beacon South Beach Hotel",
+   "area": "South Beach",
+   "bar": 123.0,
+   "ota_name": "Agoda.com",
+   "ota_price": 68.0,
+   "undercut_pct": -44.7
+  },
+  "corridors": [
+   {
+    "area": "Mid-Beach",
+    "hotels": 7,
+    "live": 7,
+    "avg_bar": 637,
+    "undercuts": 2
+   },
+   {
+    "area": "Miami (Wynwood / Downtown)",
+    "hotels": 5,
+    "live": 5,
+    "avg_bar": 298,
+    "undercuts": 5
+   },
+   {
+    "area": "South Beach",
+    "hotels": 24,
+    "live": 23,
+    "avg_bar": 281,
+    "undercuts": 18
+   },
+   {
+    "area": "North Beach",
+    "hotels": 10,
+    "live": 6,
+    "avg_bar": 130,
+    "undercuts": 4
+   },
+   {
+    "area": "Miami (MiMo / Biscayne)",
+    "hotels": 3,
+    "live": 3,
+    "avg_bar": 121,
+    "undercuts": 2
+   }
+  ],
+  "management_groups": [
+   {
+    "management_group": "Yurbban Hospitality Group",
+    "hotels": 2
+   },
+   {
+    "management_group": "South Beach Group / Think",
+    "hotels": 2
+   },
+   {
+    "management_group": "Vagabond Group",
+    "hotels": 1
+   },
+   {
+    "management_group": "Think Hospitality",
+    "hotels": 1
+   },
+   {
+    "management_group": "The Betsy South Beach",
+    "hotels": 1
+   },
+   {
+    "management_group": "Seaway Hotels Group",
+    "hotels": 1
+   },
+   {
+    "management_group": "Savoy Miami Independent",
+    "hotels": 1
+   },
+   {
+    "management_group": "Salt Hotels",
+    "hotels": 1
+   }
+  ]
+ },
+ "posts": [
+  {
+   "id": "linkedin_founder",
+   "channel": "LinkedIn (Founder Launch)",
+   "title": "Why Enterprise Hotel Rate Tools Price Out 20-80 Room Miami Boutiques",
+   "text": "Enterprise hotel rate shoppers charge $400-$700/month with annual contracts.\nIf you run a 35-room boutique in Miami Beach or MiMo, paying $6,000/yr to check 5 neighbors doesn't math.\n\nSo we built a flat $99/month local tracker in North Miami \u2014 covering 49 Miami, MiMo, North Beach & South Beach properties:\n- 44 hotels with live multi-OTA quotes today (avg $308/nt)\n- 31 of 44 (70.5%) currently showing a live third-party OTA undercut\n\nExample from today's scan: one South Beach property is quoting $123/nt retail vs $68/nt on Agoda.com (-44.7%).\n\nNo annual contract. 6 AM daily email & Telegram brief. First 7 mornings free for any Miami GM or Owner \u2014 DM 'MIAMI'."
+  },
+  {
+   "id": "linkedin_study",
+   "channel": "LinkedIn (Miami Parity Study)",
+   "title": "Live Data Check: 70.5% of Live Miami Boutiques Are Being Undercut on OTAs",
+   "text": "We scanned 49 independent Greater Miami hotels across live OTA metasearch today:\n- Live quotes captured: 44 properties (avg $308/nt)\n- Active third-party undercuts: 31 properties (70.5%)\n- Example from today's scan: one South Beach property is quoting $123/nt retail vs $68/nt on Agoda.com (-44.7%).\n\nEven one mispriced weekend or wholesale leak costs a small hotel $1,500+/mo in lost ADR & OTA commission.\nOur $99/mo flat brief puts every neighbor rate + OTA parity warning in your inbox at 6 AM.\nWant your hotel's 1-page live scan? Comment 'AUDIT'."
+  },
+  {
+   "id": "instagram_reel",
+   "channel": "Instagram / Reels Caption",
+   "title": "Miami Boutique Hotel Owners: Stop Paying $500/mo or Guessing Your Room Rates",
+   "text": "Scanned 49 Miami & Miami Beach hotels live today ($308/nt market avg) \u2014 and 31 are actively being undercut by OTAs right now.\n\nYour guests check Booking, Agoda & Vio before landing on your direct engine.\nGet tomorrow's 6 AM Miami Comp-Set & OTA Undercut Brief FREE for 7 mornings \u2014 then $99/mo flat.\nDM 'RATE' and I'll drop off or email your 1-page audit today.\n\n#MiamiBeachHotels #HospitalityMiami #BoutiqueHotel #RevenueManagement #SmallHotelOwner #MiMoMiami #NorthMiami"
+  },
+  {
+   "id": "x_thread",
+   "channel": "X / Twitter Build-in-Public",
+   "title": "Live Miami Hotel Rate Scan Results ($99/mo Micro-SaaS Launch)",
+   "text": "Live Miami hotel pricing check across 49 properties today:\n\u2022 44 properties quoting live multi-OTA rates\n\u2022 $308/nt average ADR\n\u2022 31 (70.5%) currently showing a live third-party OTA undercut\n\nLighthouse/RateGain start around $400-$600+/mo. We built a hyper-local $99/mo flat morning brief for small Miami Beach & MiMo hotels."
+  },
+  {
+   "id": "whatsapp_local",
+   "channel": "Miami GM Direct Offer ($49 Intro Test)",
+   "title": "Beachhead Intro Offer for First 10 North Miami / Miami Beach Properties",
+   "text": "Founding Cohort Offer (First 10 Miami Hotels): Try our 6 AM Competitor Rate & OTA Parity Brief free for 7 days, lock in $49 for Month 1 (then $99/mo flat, zero contract). Tracks your 10 nearest neighbors + live Booking/Agoda/Expedia/Vio parity daily."
+  }
+ ]
+}

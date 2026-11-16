@@ -79,6 +79,65 @@ def main():
         from scripts.snapshot import main as snap_main
         snap_main()
 
+    elif cmd == "hunt-leads":
+        from hri.lead_hunter import run_lead_hunter
+        quick = "--quick" in sys.argv
+        run_lead_hunter(cfg, quick=quick)
+
+    elif cmd == "outreach":
+        from hri import db as dbmod
+        from hri.outreach_engine import send_or_queue_outreach, get_channel_readiness
+        channel = "email"
+        tier = "hot"
+        price = int((cfg.get("outreach") or {}).get("default_price_monthly") or 99)
+        limit = 10
+        live = "--live" in sys.argv
+        for a in sys.argv[2:]:
+            if a.startswith("--channel="):
+                channel = a.split("=", 1)[1]
+            elif a.startswith("--tier="):
+                tier = a.split("=", 1)[1]
+            elif a.startswith("--price="):
+                price = int(a.split("=", 1)[1])
+            elif a.startswith("--limit="):
+                limit = int(a.split("=", 1)[1])
+        conn = dbmod.open_db(cfg["database"])
+        if "--status" in sys.argv:
+            print(json.dumps(get_channel_readiness(cfg), indent=2))
+        else:
+            res = send_or_queue_outreach(conn, cfg, {
+                "batch": True,
+                "channel": channel,
+                "tier": tier,
+                "price_monthly": price,
+                "limit": limit,
+                "mode": "live" if live else "dry_run",
+            })
+            print(json.dumps({k: v for k, v in res.items() if k != "results"}, indent=2))
+            for item in res.get("results", []):
+                print(f"  [{item.get('status')}] #{item.get('hotel_id')} {item.get('hotel_name')} -> {item.get('recipient')} ({channel})")
+        conn.close()
+
+    elif cmd == "market-research":
+        from hri import db as dbmod
+        from hri.outreach_engine import build_market_research_and_posts
+        conn = dbmod.open_db(cfg["database"])
+        res = build_market_research_and_posts(conn)
+        conn.close()
+        print(json.dumps(res, indent=2))
+
+    elif cmd == "launch-status":
+        from hri import db as dbmod
+        from hri.outreach_engine import get_channel_readiness, list_verified_leads
+        conn = dbmod.open_db(cfg["database"])
+        leads = list_verified_leads(conn, price_monthly=99)["summary"]
+        conn.close()
+        print(json.dumps({"leads": leads, "readiness": get_channel_readiness(cfg)}, indent=2))
+
+    elif cmd == "smoke-test":
+        import subprocess
+        raise SystemExit(subprocess.call([sys.executable, "scripts/e2e_smoke_test.py"]))
+
     elif cmd == "send-briefs":
         from hri import db as dbmod
         from hri.sales_engine import build_hotel_pitch

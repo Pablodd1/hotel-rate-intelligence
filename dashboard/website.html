@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Rate Intelligence · Save 45–68 Staff Hrs/Mo &amp; Stop OTA Undercuts</title>
+  <style>
+    :root {
+      --bg-card: rgba(255, 252, 245, 0.78);
+      --bg-strong: rgba(255, 255, 255, 0.92);
+      --border: rgba(255, 255, 255, 0.65);
+      --ink: #1c1917;
+      --sub: #44403c;
+      --muted: #78716c;
+      --gold: #facc15;
+      --charcoal: #1c1917;
+      --ok: #15803d;
+      --danger: #dc2626;
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(250, 204, 21, 0.20), transparent 40%),
+        linear-gradient(135deg, rgba(226, 217, 200, 0.76), rgba(242, 237, 228, 0.72)),
+        url("/assets/v4-living-room-bg.jpg") center / cover fixed no-repeat;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .shell { max-width: 1360px; margin: 0 auto; padding: 14px 18px 92px; }
+
+    /* Minimalistic Top Bar */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+      background: rgba(255, 252, 245, 0.84);
+      backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 7px 14px;
+      box-shadow: 0 12px 32px rgba(28, 25, 23, 0.08);
+      position: sticky; top: 10px; z-index: 40;
+      margin-bottom: 14px;
+    }
+    .brand { display: flex; align-items: center; gap: 7px; font-weight: 800; font-size: 13px; letter-spacing: -0.02em; }
+    .dot-live { width: 9px; height: 9px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px rgba(21,128,61,0.18); }
+
+    /* Instagram Reel 5-Slide Pill Bar */
+    .reel-tabs { display: flex; align-items: center; gap: 3px; flex-wrap: wrap; }
+    .reel-tab {
+      border: none; background: transparent; color: var(--sub);
+      font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 999px; cursor: pointer;
+      transition: all .15s ease; white-space: nowrap;
+    }
+    .reel-tab.active { background: var(--charcoal); color: #fff; box-shadow: 0 4px 12px rgba(28,25,23,0.22); }
+    .reel-tab:hover:not(.active) { background: rgba(255,255,255,0.68); }
+
+    .nav-ctas { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      border: none; cursor: pointer; border-radius: 999px;
+      padding: 8px 14px; font-size: 12px; font-weight: 800;
+      background: var(--charcoal); color: #fff; transition: transform .12s ease; white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.gold { background: var(--gold); color: var(--charcoal); }
+    .btn.ok { background: var(--ok); color: #fff; }
+    .btn.ghost { background: rgba(255,255,255,0.82); color: var(--charcoal); border: 1px solid rgba(28,25,23,0.15); }
+    .btn.sm { padding: 6px 11px; font-size: 11px; }
+
+    /* Main Glass Container */
+    .glass-window {
+      background: rgba(250, 247, 240, 0.72);
+      backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+      border: 1.5px solid var(--border);
+      border-radius: 28px;
+      padding: 20px;
+      box-shadow: 0 24px 60px rgba(28, 25, 23, 0.14);
+    }
+    .slide { display: none; }
+    .slide.active { display: block; animation: fadeIn .18s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px;
+      box-shadow: 0 8px 24px rgba(28, 25, 23, 0.05);
+    }
+    .card.dark { background: rgba(24, 22, 20, 0.94); color: #fafaf9; border-color: rgba(255,255,255,0.12); }
+
+    .badge {
+      display: inline-block; padding: 3px 9px; border-radius: 999px;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .badge.gold { background: var(--gold); color: var(--charcoal); }
+    .badge.dark { background: var(--charcoal); color: #fff; }
+    .badge.ok { background: rgba(21,128,61,0.14); color: var(--ok); }
+    .badge.danger { background: rgba(220,38,38,0.14); color: var(--danger); }
+
+    .grid-2 { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 14px; }
+    .grid-even { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    @media (max-width: 960px) {
+      .grid-2, .grid-even, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    .inp {
+      width: 100%; padding: 9px 11px; border-radius: 12px;
+      border: 1px solid rgba(28,25,23,0.18); background: rgba(255,255,255,0.92);
+      font-size: 12.5px; color: var(--ink); font-family: inherit;
+    }
+    .lbl { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 3px; }
+    .metric-val { font-size: 32px; font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; }
+
+    table.cmp { width: 100%; border-collapse: collapse; font-size: 12px; }
+    table.cmp th { text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); padding: 8px; border-bottom: 1.5px solid rgba(28,25,23,0.12); }
+    table.cmp td { padding: 9px 8px; border-bottom: 1px solid rgba(28,25,23,0.08); }
+
+    /* Slide Progress Dots */
+    .reel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+    .r-dot { width: 28px; height: 5px; border-radius: 99px; background: rgba(28,25,23,0.16); cursor: pointer; }
+    .r-dot.active { width: 46px; background: var(--charcoal); }
+
+    /* Floating Excited Aggressive Closer Chatbot */
+    .chat-launcher {
+      position: fixed; right: 20px; bottom: 18px; z-index: 90;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--charcoal); color: #fff; border: 2px solid var(--gold);
+      border-radius: 999px; padding: 10px 16px; cursor: pointer;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.28); font-size: 12.5px; font-weight: 800;
+    }
+    .chat-pulse { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); animation: pulse 1.3s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(250,204,21,0.7); } 100% { box-shadow: 0 0 0 10px rgba(250,204,21,0); } }
+
+    .chat-drawer {
+      position: fixed; right: 20px; bottom: 72px; z-index: 95;
+      width: min(390px, calc(100vw - 24px));
+      background: rgba(24, 22, 20, 0.97); color: #fff;
+      border: 1.5px solid rgba(250, 204, 21, 0.55);
+      border-radius: 22px; overflow: hidden;
+      box-shadow: 0 26px 70px rgba(0,0,0,0.42);
+      display: none; flex-direction: column; max-height: 78vh;
+    }
+    .chat-drawer.open { display: flex; }
+    .chat-head { padding: 12px 14px; background: rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .chat-msgs { padding: 12px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 8px; max-height: 310px; }
+    .c-msg { font-size: 12px; line-height: 1.45; padding: 9px 11px; border-radius: 14px; max-width: 92%; }
+    .c-msg.bot { background: rgba(255,255,255,0.10); align-self: flex-start; border-bottom-left-radius: 4px; }
+    .c-msg.user { background: var(--gold); color: var(--charcoal); font-weight: 700; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .chat-actions { display: flex; gap: 5px; flex-wrap: wrap; padding: 0 12px 8px; }
+    .chat-foot { padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 6px; }
+    .callback-box { background: rgba(250,204,21,0.12); border: 1px solid rgba(250,204,21,0.35); border-radius: 12px; padding: 8px; display: none; }
+  </style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- MINIMALISTIC HEADER BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot-live"></span>
+      <span>Hotel Rate Intelligence</span>
+      <span class="badge gold">$0 FREE → $99/MO</span>
+    </div>
+
+    <nav class="reel-tabs">
+      <button class="reel-tab active" data-slide="0" onclick="goSlide(0)">01 · Save Money &amp; Time</button>
+      <button class="reel-tab" data-slide="1" onclick="goSlide(1)">02 · Live Website Auditor</button>
+      <button class="reel-tab" data-slide="2" onclick="goSlide(2)">03 · Core Features</button>
+      <button class="reel-tab" data-slide="3" onclick="goSlide(3)">04 · Why Us</button>
+      <button class="reel-tab" data-slide="4" onclick="goSlide(4)">05 · $0 → $99 Signup</button>
+    </nav>
+
+    <div class="nav-ctas">
+      <a class="btn ghost sm" href="/portal?demo=1">Launch Demo Panel ↗</a>
+      <button class="btn gold sm" onclick="toggleChat(true, true)">📞 Call / Instant Callback</button>
+      <a class="btn sm" href="/mission-control">Owner Login</a>
+    </div>
+  </header>
+
+  <main class="glass-window">
+
+    <!-- ================================================================
+         SLIDE 01: STRAIGHT TO THE POINT — SAVE TIME, SAVE MONEY, LIVE DEMO
+         ================================================================ -->
+    <section class="slide active" id="slide-0">
+      <div class="grid-2" style="align-items:stretch;">
+        <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; background:rgba(255,255,255,0.88);">
+          <div>
+            <span class="badge gold">MIAMI BOUTIQUE HOTEL REVENUE ENGINE · ZERO ANNUAL CONTRACT</span>
+            <h1 style="font-size:32px; font-weight:900; letter-spacing:-0.03em; line-height:1.1; margin:10px 0 8px;">
+              Stop losing 18%–44% on OTA undercuts. Save 45–68 staff hrs/mo.
+            </h1>
+            <p style="font-size:13.5px; color:var(--sub); line-height:1.5; margin-bottom:14px;">
+              Automated daily multi-OTA scraping, competitor pricing memory, overnight front-desk courtesy calls, and 6:00 AM Email &amp; Telegram decision briefs — built for Miami independents for <b>$0 Free</b> or <b>$99/mo</b> (instead of $500–$900/mo tools).
+            </p>
+
+            <!-- Instant 49-Hotel Personalized Panel Demo Picker -->
+            <div style="background:rgba(28,25,23,0.06); border-radius:16px; padding:12px; margin-bottom:14px;">
+              <label class="lbl">OPEN YOUR OWN HOTEL'S LIVE ISOLATED PANEL DEMO (49 MIAMI HOTELS PRE-LOADED)</label>
+              <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
+                <select class="inp" id="heroHotelPicker" style="flex:1; min-width:220px;">
+                  <option value="">Loading live Miami hotels...</option>
+                </select>
+                <button class="btn gold" onclick="openSelectedHotelDemo()">🚀 Open Selected Panel Demo →</button>
+                <button class="btn" onclick="runSelectedHotelAudit()">🔍 Run Live Audit + Graphics</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Straight-to-the-Point 4 KPI Strip -->
+          <div class="grid-4">
+            <div style="background:rgba(255,255,255,0.92); border-radius:14px; padding:10px; border:1px solid rgba(28,25,23,0.08);">
+              <div class="lbl">LABOR SAVED</div>
+              <div style="font-size:20px; font-weight:900; color:var(--ok);">45–68 hrs</div>
+              <div style="font-size:10.5px; color:var(--muted);">$1,125–$1,700/mo staff time back</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.92); border-radius:14px; padding:10px; border:1px solid rgba(28,25,23,0.08);">
+              <div class="lbl">OTA LEAKS CAUGHT</div>
+              <div style="font-size:20px; font-weight:900; color:var(--danger);" id="heroUndercutStat">31 / 44</div>
+              <div style="font-size:10.5px; color:var(--muted);">live undercuts caught in Miami</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.92); border-radius:14px; padding:10px; border:1px solid rgba(28,25,23,0.08);">
+              <div class="lbl">ANNUAL UPSIDE</div>
+              <div style="font-size:20px; font-weight:900;">+$58k/yr</div>
+              <div style="font-size:10.5px; color:var(--muted);">ADR lift + OTA commission saved</div>
+            </div>
+            <div style="background:var(--charcoal); color:#fff; border-radius:14px; padding:10px;">
+              <div class="lbl" style="color:var(--gold);">FLAT COST</div>
+              <div style="font-size:20px; font-weight:900; color:var(--gold);">$0 → $99</div>
+              <div style="font-size:10.5px; color:#d6d3d1;">vs $450–$900/mo enterprise</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Time & Money ROI Calculator + Cost SVG Graphic -->
+        <div class="card dark" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <span class="badge gold">HOW YOU SAVE MONEY &amp; TIME · INTERACTIVE CALCULATOR</span>
+            <h2 style="font-size:19px; font-weight:800; margin:8px 0 10px;">Calculate Your Hotel's Net Monthly Gain</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px;">
+              <div>
+                <label class="lbl" style="color:#d6d3d1;">ROOMS IN PROPERTY</label>
+                <input class="inp" type="number" id="roiRooms" value="48" oninput="recalcRoi()">
+              </div>
+              <div>
+                <label class="lbl" style="color:#d6d3d1;">AVG NIGHTLY ADR ($)</label>
+                <input class="inp" type="number" id="roiAdr" value="225" oninput="recalcRoi()">
+              </div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.07); border-radius:14px; padding:12px; margin-bottom:10px;">
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                <span>Manual Rate Shopping Replaced (45 hrs × $25/hr)</span>
+                <b style="color:var(--gold);">$1,125/mo saved</b>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                <span>Direct-Booking Shift &amp; ADR Recovery</span>
+                <b style="color:#4ade80;" id="roiRevMo">+$4,200/mo</b>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:900; border-top:1px solid rgba(255,255,255,0.14); padding-top:6px; margin-top:6px;">
+                <span>NET MONTHLY GAIN ON $99/MO</span>
+                <span style="color:var(--gold);" id="roiTotalMo">+$5,226/mo (53x ROI)</span>
+              </div>
+            </div>
+
+            <!-- Inline SVG Time & Cost Graphic -->
+            <svg viewBox="0 0 460 128" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(255,255,255,0.05);border-radius:14px;">
+              <text x="14" y="20" font-size="10.5" font-weight="800" fill="#facc15">MONTHLY COST &amp; STAFF TIME VS LEGACY TOOLS</text>
+              <text x="14" y="45" font-size="11" fill="#e7e5e4">Manual Front Desk (60 hrs/mo)</text>
+              <rect x="195" y="34" width="215" height="14" rx="7" fill="#dc2626"/>
+              <text x="416" y="45" font-size="10.5" font-weight="800" fill="#fca5a5">$1,500</text>
+              <text x="14" y="72" font-size="11" fill="#e7e5e4">Enterprise Rate Shopper</text>
+              <rect x="195" y="61" width="128" height="14" rx="7" fill="#f97316"/>
+              <text x="329" y="72" font-size="10.5" font-weight="800" fill="#fdba74">$650/mo</text>
+              <text x="14" y="99" font-size="11" font-weight="800" fill="#facc15">HRI Core Automated Plan</text>
+              <rect x="195" y="88" width="28" height="14" rx="7" fill="#facc15"/>
+              <text x="230" y="99" font-size="11" font-weight="900" fill="#facc15">$99/mo · 0 hrs work</text>
+            </svg>
+          </div>
+
+          <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+            <button class="btn gold" style="flex:1; justify-content:center;" onclick="goSlide(1)">🔍 Try Live Auditor + Graphics →</button>
+            <button class="btn ok" onclick="toggleChat(true, true)">📞 Call Me Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SLIDE 02: LIVE HOTEL WEBSITE AUDITOR, CALLER, FORM + EMAIL LEADERS
+         ================================================================ -->
+    <section class="slide" id="slide-1">
+      <div class="card" style="margin-bottom:12px; background:rgba(255,255,255,0.9);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:10px; flex-wrap:wrap;">
+          <div style="flex:1; min-width:250px;">
+            <span class="badge dark">LIVE HOTEL WEBSITE AUDITOR · SCRAPE + AUTO-FILL FORM + GRAPHICS + DECISION ASSISTANT</span>
+            <h2 style="font-size:20px; font-weight:900; margin-top:4px;">Scan Any Hotel Website or Miami Property in Real Time</h2>
+          </div>
+          <div style="display:flex; gap:8px; flex:1.3; flex-wrap:wrap;">
+            <input class="inp" id="auditUrlInput" type="text" placeholder="https://yourhotel.com (paste ANY hotel website URL)..." style="flex:1; min-width:220px;">
+            <select class="inp" id="auditHotelSelect" style="max-width:230px;">
+              <option value="">-- Or Pick Miami Hotel --</option>
+            </select>
+            <button class="btn gold" id="btnRunAudit" onclick="executeLiveAudit()">⚡ Scan Website &amp; Rates</button>
+          </div>
+        </div>
+        <div id="auditStatusLine" style="font-size:11.5px; font-weight:700; color:var(--sub); margin-top:6px;">
+          Extracts booking engine, MX-verified leader emails, phone numbers, live Xotelo multi-OTA ladder, builds SVG charts, and auto-fills the form below.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Left: Auto-Filled Hotel Audit Form + Leader Email Dispatch -->
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="font-size:15px; font-weight:800;">1. Auto-Filled Hotel &amp; Important People Form</h3>
+            <span class="badge ok" id="auditStackBadge">Ready to Scan</span>
+          </div>
+
+          <input type="hidden" id="afHotelId" value="">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div>
+              <label class="lbl">HOTEL NAME</label>
+              <input class="inp" id="afHotelName" placeholder="Auto-filled from live scan">
+            </div>
+            <div>
+              <label class="lbl">CORRIDOR / AREA</label>
+              <input class="inp" id="afArea" placeholder="Miami Beach / Brickell">
+            </div>
+            <div>
+              <label class="lbl">WEBSITE URL</label>
+              <input class="inp" id="afWebsite" placeholder="https://...">
+            </div>
+            <div>
+              <label class="lbl">FRONT DESK / AUDITOR PHONE</label>
+              <input class="inp" id="afPhone" placeholder="+1 (305) ...">
+            </div>
+          </div>
+
+          <div style="margin-bottom:8px;">
+            <label class="lbl">IMPORTANT PEOPLE IDENTIFIED (GMs, OWNERS, REVENUE DIRECTORS)</label>
+            <div id="afPeopleList" style="font-size:11.5px; background:rgba(28,25,23,0.05); border-radius:10px; padding:8px; min-height:36px;">
+              Run a scan above or pick a Miami hotel to inspect verified leadership &amp; MX emails.
+            </div>
+          </div>
+
+          <div style="margin-bottom:8px;">
+            <label class="lbl">EMAIL RECIPIENTS (GM / OWNER / REVENUE — COMMA SEPARATED)</label>
+            <input class="inp" id="afEmails" placeholder="gm@hotel.com, revenue@hotel.com">
+          </div>
+
+          <div style="margin-bottom:10px;">
+            <label class="lbl">EXECUTIVE AUDIT SUMMARY</label>
+            <textarea class="inp" id="afSummary" rows="4" placeholder="Executive audit summary will auto-populate..."></textarea>
+          </div>
+
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button class="btn" id="btnAuditorCall" onclick="triggerAuditorCall()">📞 Make Call for Auditor</button>
+            <button class="btn gold" id="btnSendAuditEmail" onclick="sendAuditEmail()">✉️ Email Leaders + Graphics</button>
+            <a class="btn ok" id="afDemoPanelBtn" href="/portal?demo=1">🚀 Open Demo Panel →</a>
+            <a class="btn ghost sm" id="afPrintableBtn" href="/audit?hotel_id=1" target="_blank">📄 Full Brief</a>
+          </div>
+          <div id="afActionFeedback" style="font-size:11.5px; font-weight:800; margin-top:8px;"></div>
+        </div>
+
+        <!-- Right: Decision-Making Assistant + Inline SVG Graphics -->
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div class="card dark">
+            <span class="badge gold">DECISION-MAKING ASSISTANT</span>
+            <h3 style="font-size:16px; font-weight:900; margin:6px 0 4px;" id="daVerdict">Pick a Hotel or Paste a URL to Activate Assistant</h3>
+            <div style="font-size:12px; color:#d6d3d1; margin-bottom:8px;" id="daStats">Recommended Direct BAR &amp; annual ROI projection appear automatically after scanning.</div>
+            <ul id="daActions" style="font-size:11.5px; line-height:1.45; padding-left:16px; color:#fafaf9;"></ul>
+          </div>
+
+          <div class="card" style="padding:10px;" id="auditOtaSvgWrap">
+            <div style="font-size:11.5px; color:var(--muted); padding:10px;">Channel Rate Ladder SVG Graphic renders here...</div>
+          </div>
+          <div class="card" style="padding:10px;" id="auditCompSvgWrap">
+            <div style="font-size:11.5px; color:var(--muted); padding:10px;">Corridor Comp-Set Positioning SVG Graphic renders here...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SLIDE 03: CORE FEATURES (STRAIGHT TO THE POINT)
+         ================================================================ -->
+    <section class="slide" id="slide-2">
+      <div class="card" style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div>
+          <span class="badge gold">EVERYTHING YOUR HOTEL GETS IN ONE PRIVATE PANEL</span>
+          <h2 style="font-size:21px; font-weight:900; margin-top:3px;">Built to Cut Front-Desk Manual Shopping &amp; Recover Direct Bookings</h2>
+        </div>
+        <a class="btn gold" href="/portal?demo=1">Inspect Live Demo Client #1 →</a>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <span class="badge dark">01 · LIVE MULTI-OTA SCRAPER</span>
+          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Real-Time Parity &amp; Undercut Radar</h3>
+          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Scans Booking.com, Expedia, Agoda, Vio.com &amp; direct JSON-LD every morning and alerts the exact dollar undercut on any OTA.</p>
+        </div>
+        <div class="card">
+          <span class="badge gold">02 · DECISION-MAKING ASSISTANT</span>
+          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Daily BAR &amp; Compression Commands</h3>
+          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Calculates exact recommended direct BAR vs your assigned neighbors and Art Basel / F1 / Boat Show compression dates.</p>
+        </div>
+        <div class="card">
+          <span class="badge ok">03 · AUDITOR &amp; COURTESY CALLS</span>
+          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Overnight &amp; Parity Verification Desk</h3>
+          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Automated call scripts + Vapi/Twilio voice logs capture competitor walk-in rates, rooms left, and occupancy without awkward calls.</p>
+        </div>
+        <div class="card">
+          <span class="badge dark">04 · PRICING MEMORY &amp; TAGS</span>
+          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Understand Rival Pricing Habits</h3>
+          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Stores historical rate moves per competitor so you see who panics at 4 PM vs who holds firm before weekends.</p>
+        </div>
+        <div class="card">
+          <span class="badge gold">05 · 6 AM EMAIL &amp; TELEGRAM BRIEFS</span>
+          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Visual Reports Before Shift Huddle</h3>
+          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Sends color-coded SVG rate charts + 3 actionable pricing moves straight to GMs, Owners, and Revenue Managers.</p>
+        </div>
+        <div class="card">
+          <span class="badge ok">06 · STRICT COMP-SET ISOLATION</span>
+          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Private Login Per Hotel Brand</h3>
+          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Your tags, occupancy estimates, and comp-set strategies stay 100% locked inside your hotel's private workspace.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SLIDE 04: WHY US VS OTHERS
+         ================================================================ -->
+    <section class="slide" id="slide-3">
+      <div class="card">
+        <span class="badge dark">HEAD-TO-HEAD BENCHMARK</span>
+        <h2 style="font-size:21px; font-weight:900; margin:4px 0 12px;">Why Miami Boutique Hotels Switch From $500+/mo Enterprise Suites</h2>
+        <div style="overflow-x:auto;">
+          <table class="cmp">
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th style="background:rgba(250,204,21,0.28);">Hotel Rate Intelligence ($0 / $99)</th>
+                <th>Enterprise Suites ($450–$900/mo)</th>
+                <th>Manual Front-Desk Spreadsheets</th>
+              </tr>
+            </thead>
+            <tbody id="whyUsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SLIDE 05: PRICING TIERS ($0 FREE -> $99 -> $199) & REGISTRATION
+         ================================================================ -->
+    <section class="slide" id="slide-4">
+      <div class="grid-3" id="websiteTiersGrid" style="margin-bottom:14px;"></div>
+
+      <div class="card" id="register">
+        <div class="grid-2" style="align-items:center;">
+          <div>
+            <span class="badge gold">INSTANT ISOLATED PORTAL PROVISIONING</span>
+            <h2 style="font-size:20px; font-weight:900; margin:4px 0;">Claim Your Hotel's Free ($0/mo) Account Right Now</h2>
+            <p style="font-size:12.5px; color:var(--sub); line-height:1.5;">
+              Zero credit card required. Pick your Miami property (or enter any hotel name) and immediately open your private portal with live Xotelo + Direct BAR comparison.
+            </p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <div>
+              <label class="lbl">HOTEL / PROPERTY</label>
+              <input class="inp" id="regHotelName" placeholder="Hotel Name">
+            </div>
+            <div>
+              <label class="lbl">YOUR WORK EMAIL</label>
+              <input class="inp" id="regEmail" type="email" placeholder="gm@hotel.com">
+            </div>
+            <div>
+              <label class="lbl">USERNAME</label>
+              <input class="inp" id="regUser" placeholder="myhotel305">
+            </div>
+            <div>
+              <label class="lbl">PLAN TIER</label>
+              <select class="inp" id="regTier">
+                <option value="free">Tier 1 · Free ($0/mo)</option>
+                <option value="core_99">Tier 2 · Core ($99/mo)</option>
+                <option value="pro_199">Tier 3 · Pro ($199/mo)</option>
+              </select>
+            </div>
+            <input type="hidden" id="regHotelId" value="">
+            <div style="grid-column:span 2; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+              <button class="btn gold" style="flex:1; justify-content:center;" onclick="submitRegistration()">🚀 Create My Isolated Portal Now →</button>
+              <span id="regFeedback" style="font-size:11.5px; font-weight:800;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="reel-dots">
+      <div class="r-dot active" data-dot="0" onclick="goSlide(0)"></div>
+      <div class="r-dot" data-dot="1" onclick="goSlide(1)"></div>
+      <div class="r-dot" data-dot="2" onclick="goSlide(2)"></div>
+      <div class="r-dot" data-dot="3" onclick="goSlide(3)"></div>
+      <div class="r-dot" data-dot="4" onclick="goSlide(4)"></div>
+    </div>
+  </main>
+</div>
+
+<!-- FLOATING EXCITED AGGRESSIVE CLOSER CHATBOT + INSTANT CALLBACK -->
+<button class="chat-launcher" id="chatLauncherBtn" onclick="toggleChat()">
+  <span class="chat-pulse"></span>
+  <span>🔥 Marco · Revenue Closer (Live Scan &amp; Calls)</span>
+</button>
+
+<div class="chat-drawer" id="closerChatDrawer">
+  <div class="chat-head">
+    <div>
+      <div style="font-size:12.5px; font-weight:900; color:var(--gold);">Marco · Miami Revenue Hawk ⚡</div>
+      <div style="font-size:10px; color:#d6d3d1;">Instant URL Audit · Live Demo Launcher · Direct Owner Callbacks</div>
+    </div>
+    <button onclick="toggleChat(false)" style="background:none;border:none;color:#fff;font-size:16px;cursor:pointer;">✕</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgsBox">
+    <div class="c-msg bot">
+      <b>LET'S GO!!</b> 31 of 44 quoted Miami hotels are leaking direct bookings on Agoda &amp; Vio RIGHT NOW! Drop your hotel name or website URL below and I'll run a live audit + open your Demo Panel in 5 seconds — OR hit <b>📞 Get a Call</b> to talk immediately!
+    </div>
+  </div>
+  <div class="chat-actions" id="chatQuickActions">
+    <button class="btn gold sm" onclick="toggleCallbackForm(true)">📞 I Want a Call Now</button>
+    <button class="btn ghost sm" onclick="quickChatAsk('Show me why we are losing money to OTAs')">💸 Stop OTA Leaks</button>
+    <button class="btn ghost sm" onclick="quickChatAsk('How much time and money does $99 save?')">⏱️ Time &amp; ROI</button>
+    <a class="btn ok sm" id="directCallOwnerBtn" style="display:none;" href="#">📱 Call Owner Direct</a>
+  </div>
+  <div class="callback-box" id="callbackInlineBox">
+    <div style="font-size:10.5px; font-weight:800; color:var(--gold); margin-bottom:5px;">🔥 GET A CALL RIGHT NOW (PINGS JASMEL IN MIAMI):</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:5px;">
+      <input class="inp" id="cbPhoneInp" placeholder="+1 (305) 555-0199" style="padding:6px 8px;font-size:11.5px;">
+      <input class="inp" id="cbNameInp" placeholder="Your Name / Title" style="padding:6px 8px;font-size:11.5px;">
+    </div>
+    <div style="display:flex; gap:6px; align-items:center;">
+      <button class="btn gold sm" style="flex:1;justify-content:center;" onclick="submitCallbackRequest()">📲 Request Instant Call →</button>
+      <button class="btn ghost sm" onclick="toggleCallbackForm(false)">Cancel</button>
+    </div>
+    <div id="cbStatusMsg" style="font-size:10.5px; margin-top:4px; color:#4ade80;"></div>
+  </div>
+  <div class="chat-foot">
+    <div style="display:flex; gap:6px;">
+      <input class="inp" id="chatInput" placeholder="Paste hotel URL, hotel name, or phone #..." onkeydown="if(event.key==='Enter')sendCloserChat()">
+      <button class="btn gold" onclick="sendCloserChat()">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let landingData = null;
+  let lastAuditData = null;
+
+  function goSlide(idx) {
+    document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === idx));
+    document.querySelectorAll('.reel-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+    document.querySelectorAll('.r-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+
+  function recalcRoi() {
+    const rooms = Number(document.getElementById('roiRooms').value || 45);
+    const adr = Number(document.getElementById('roiAdr').value || 220);
+    const soldMo = Math.round(rooms * 30 * 0.72);
+    const revMo = Math.round(soldMo * Math.max(8, adr * 0.04) * 0.4 + soldMo * 0.10 * adr * 0.18);
+    const laborSaved = 1125;
+    const netMo = revMo + laborSaved - 99;
+    const mult = Math.max(1, Math.round(netMo / 99));
+    document.getElementById('roiRevMo').textContent = '+$' + revMo.toLocaleString('en-US') + '/mo';
+    document.getElementById('roiTotalMo').textContent = '+$' + netMo.toLocaleString('en-US') + `/mo (${mult}x ROI)`;
+  }
+
+  async function initWebsite() {
+    recalcRoi();
+    const params = new URLSearchParams(window.location.search);
+    try {
+      const r = await fetch('/api/public/landing');
+      const d = await r.json();
+      if (!d.ok) return;
+      landingData = d;
+      const ms = d.market_summary || {};
+      document.getElementById('heroUndercutStat').textContent = `${ms.undercut_count || 31} / ${ms.live_quotes || 44}`;
+
+      if (d.owner_callback_phone) {
+        const dcBtn = document.getElementById('directCallOwnerBtn');
+        dcBtn.href = 'tel:' + d.owner_callback_phone.replace(/[^\d+]/g, '');
+        dcBtn.textContent = '📱 Call ' + d.owner_callback_phone;
+        dcBtn.style.display = 'inline-flex';
+      }
+
+      const dirs = d.hotels_directory || [];
+      const opts = dirs.map(h =>
+        `<option value="${h.id}">${h.name} · ${h.area} ${h.price ? '($' + h.price + ')' : ''}</option>`
+      ).join('');
+      const heroSel = document.getElementById('heroHotelPicker');
+      const auditSel = document.getElementById('auditHotelSelect');
+      heroSel.innerHTML = opts;
+      auditSel.innerHTML = '<option value="">-- Pick Any 49 Miami Hotels --</option>' + opts;
+
+      const reqHid = params.get('hotel_id');
+      if (reqHid) {
+        heroSel.value = reqHid;
+        auditSel.value = reqHid;
+        const found = dirs.find(x => String(x.id) === String(reqHid));
+        if (found) {
+          document.getElementById('regHotelName').value = found.name;
+          document.getElementById('regHotelId').value = String(found.id);
+        }
+      }
+
+      // Why Us Comparison Table
+      const whyBody = document.getElementById('whyUsTableBody');
+      whyBody.innerHTML = (d.comparison_matrix || []).map(row => `
+        <tr>
+          <td><b>${row.capability}</b></td>
+          <td style="background:rgba(250,204,21,0.16);font-weight:800;">${row.hri}</td>
+          <td style="color:var(--sub);">${row.ota_insight}</td>
+          <td style="color:var(--muted);">${row.spreadsheet}</td>
+        </tr>
+      `).join('');
+
+      // Pricing Tiers (first 3: $0 Free, $99 Core, $199 Pro)
+      const tGrid = document.getElementById('websiteTiersGrid');
+      tGrid.innerHTML = (d.tiers || []).slice(0, 3).map(t => `
+        <div class="card ${t.monthly_price === 99 ? 'dark' : ''}" style="display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <span class="badge ${t.monthly_price === 99 ? 'gold' : 'dark'}">${t.badge}</span>
+            <h3 style="font-size:17px;font-weight:800;margin-top:6px;">${t.name}</h3>
+            <div style="font-size:32px;font-weight:900;margin:4px 0;">$${t.monthly_price}<span style="font-size:12px;font-weight:600;">/mo</span></div>
+            <div style="font-size:11.5px;margin-bottom:8px;opacity:0.85;">Saves ~${t.staff_hours_saved_mo} hrs/mo · Up to ${t.max_competitors} competitors</div>
+            <ul style="list-style:none;font-size:11.5px;line-height:1.5;display:flex;flex-direction:column;gap:4px;margin-bottom:12px;">
+              ${(t.features || []).map(f => `<li>✓ ${f}</li>`).join('')}
+            </ul>
+          </div>
+          <button class="btn ${t.monthly_price === 99 ? 'gold' : ''}" style="width:100%;justify-content:center;" onclick="pickPlanAndFocus('${t.tier_id}')">
+            Select ${t.name} →
+          </button>
+        </div>
+      `).join('');
+
+      const reqSlide = params.get('slide');
+      if (window.location.hash === '#register' || reqSlide === '4') {
+        goSlide(4);
+      } else if (reqSlide !== null && /^\d+$/.test(reqSlide)) {
+        goSlide(Number(reqSlide));
+        if (reqSlide === '1' && reqHid) {
+          await executeLiveAudit();
+        }
+      }
+      if (params.get('chat') === '1') {
+        toggleChat(true, false);
+      }
+    } catch (e) {}
+  }
+
+  function openSelectedHotelDemo() {
+    const hid = document.getElementById('heroHotelPicker').value || '1';
+    window.location.href = '/portal?demo_hotel=' + encodeURIComponent(hid);
+  }
+
+  async function runSelectedHotelAudit() {
+    const hid = document.getElementById('heroHotelPicker').value || '1';
+    goSlide(1);
+    document.getElementById('auditHotelSelect').value = hid;
+    document.getElementById('auditUrlInput').value = '';
+    await executeLiveAudit();
+  }
+
+  function applyAuditPayloadToForm(d) {
+    if (!d || !d.ok) return;
+    lastAuditData = d;
+    const af = d.form_autofill || {};
+    document.getElementById('afHotelId').value = String(d.hotel_id || '');
+    document.getElementById('afHotelName').value = af.hotel_name || '';
+    document.getElementById('afArea').value = af.area || '';
+    document.getElementById('afWebsite').value = af.website || '';
+    document.getElementById('afPhone').value = af.phone || '';
+    document.getElementById('afEmails').value = (af.important_emails || []).join(', ');
+    document.getElementById('afSummary').value = d.executive_summary || '';
+    document.getElementById('auditStackBadge').textContent = 'STACK: ' + (af.booking_engine || 'Direct Web');
+
+    const ppl = af.important_people || [];
+    document.getElementById('afPeopleList').innerHTML = ppl.length
+      ? ppl.map(p => `<span class="badge dark" style="margin:2px;">${p.name} · ${p.title}</span>`).join(' ')
+      : '<span style="color:var(--muted);">General Manager / Revenue Team (Website Verified)</span>';
+
+    const da = d.decision_assistant || {};
+    document.getElementById('daVerdict').textContent = da.verdict || 'Audit Complete';
+    document.getElementById('daStats').innerHTML =
+      `Recommended Direct BAR: <b style="color:var(--gold);">$${da.recommended_bar || '—'}/nt</b> · Est. Annual Impact: <b>+$${Number(da.total_annual_roi || 0).toLocaleString('en-US')}/yr</b> · <b>${da.staff_hours_saved_mo || 45} staff hrs/mo saved</b>`;
+    document.getElementById('daActions').innerHTML = (da.actions || []).map(a => `<li>${a}</li>`).join('');
+
+    const gfx = d.graphics || {};
+    document.getElementById('auditOtaSvgWrap').innerHTML = gfx.ota_ladder_svg || '';
+    document.getElementById('auditCompSvgWrap').innerHTML = gfx.comp_set_svg || '';
+
+    document.getElementById('afDemoPanelBtn').href = (d.urls && d.urls.demo_url) || ('/portal?demo_hotel=' + d.hotel_id);
+    document.getElementById('afPrintableBtn').href = (d.urls && d.urls.audit_url) || ('/audit?hotel_id=' + d.hotel_id);
+    document.getElementById('regHotelName').value = af.hotel_name || '';
+    document.getElementById('regHotelId').value = String(d.hotel_id || '');
+  }
+
+  async function executeLiveAudit() {
+    const urlVal = document.getElementById('auditUrlInput').value.trim();
+    const hidVal = document.getElementById('auditHotelSelect').value;
+    const btn = document.getElementById('btnRunAudit');
+    const st = document.getElementById('auditStatusLine');
+    if (!urlVal && !hidVal) {
+      st.textContent = 'Enter a hotel website URL OR choose a hotel from the dropdown first.';
+      return;
+    }
+    btn.textContent = '⏳ Scanning Live...';
+    st.textContent = 'Running live HTTP crawl, DNS MX verification, Xotelo OTA rate scan & Decision Assistant...';
+    try {
+      const r = await fetch('/api/audit/run', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ website_url: urlVal, hotel_id: hidVal ? Number(hidVal) : undefined, force_scrape: true })
+      });
+      const d = await r.json();
+      if (!d.ok) {
+        st.style.color = '#dc2626';
+        st.textContent = d.error || 'Could not scan that website.';
+        return;
+      }
+      st.style.color = '#15803d';
+      st.textContent = `✓ Audited ${d.form_autofill.hotel_name} live — Form auto-filled & SVG graphics ready!`;
+      applyAuditPayloadToForm(d);
+    } catch (e) {
+      st.textContent = 'Error connecting to live auditor backend.';
+    } finally {
+      btn.textContent = '⚡ Scan Website & Rates';
+    }
+  }
+
+  async function triggerAuditorCall() {
+    const hid = Number(document.getElementById('afHotelId').value || document.getElementById('auditHotelSelect').value || 1);
+    const ph = document.getElementById('afPhone').value.trim();
+    const fb = document.getElementById('afActionFeedback');
+    fb.style.color = '#44403c';
+    fb.textContent = 'Dispatching Auditor Parity & Occupancy Call...';
+    const r = await fetch('/api/audit/call', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hotel_id: hid, phone: ph })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      fb.style.color = '#15803d';
+      fb.textContent = `✓ Auditor Call (${d.status}) on ${d.phone_dialed || ph || 'hotel desk'}!`;
+    } else {
+      fb.style.color = '#dc2626';
+      fb.textContent = d.error || 'Auditor call failed.';
+    }
+  }
+
+  async function sendAuditEmail() {
+    const hid = Number(document.getElementById('afHotelId').value || document.getElementById('auditHotelSelect').value || 1);
+    const recs = document.getElementById('afEmails').value.trim();
+    const fb = document.getElementById('afActionFeedback');
+    fb.style.color = '#44403c';
+    fb.textContent = 'Preparing HTML Brief + SVG Graphics + Decision Assistant email for leaders...';
+    const r = await fetch('/api/audit/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hotel_id: hid, recipients: recs })
+    });
+    const d = await r.json();
+    if (!d.ok) {
+      fb.style.color = '#dc2626';
+      fb.textContent = d.error || 'Could not dispatch email.';
+      return;
+    }
+    const first = (d.results && d.results[0]) || {};
+    fb.style.color = '#15803d';
+    fb.innerHTML = `✓ Email ${first.status || 'queued'} to <b>${first.recipient || recs}</b> (${d.subject})` +
+      (first.mailto_link ? ` · <a href="${first.mailto_link}" style="text-decoration:underline;color:#1c1917;">Open Mail Draft ↗</a>` : '');
+  }
+
+  function pickPlanAndFocus(tierId) {
+    document.getElementById('regTier').value = tierId;
+    document.getElementById('regHotelName').focus();
+  }
+
+  async function submitRegistration() {
+    const hname = document.getElementById('regHotelName').value.trim();
+    const hid = document.getElementById('regHotelId').value;
+    const em = document.getElementById('regEmail').value.trim();
+    const un = document.getElementById('regUser').value.trim();
+    const tier = document.getElementById('regTier').value;
+    const fb = document.getElementById('regFeedback');
+    const r = await fetch('/api/accounts/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hotel_id: hid ? Number(hid) : undefined, hotel_name: hname, email: em, username: un, tier: tier })
+    });
+    const d = await r.json();
+    if (!d.ok) {
+      fb.style.color = '#dc2626';
+      fb.textContent = d.error || 'Registration failed.';
+      return;
+    }
+    localStorage.setItem('hri_client_token', d.token);
+    fb.style.color = '#15803d';
+    fb.textContent = '✓ Account ready! Opening isolated portal...';
+    setTimeout(() => { window.location.href = d.portal_url || ('/portal?token=' + encodeURIComponent(d.token)); }, 500);
+  }
+
+  /* Excited Aggressive Closer Chatbot */
+  function toggleChat(forceState, openCallback) {
+    const el = document.getElementById('closerChatDrawer');
+    const willOpen = forceState !== undefined ? forceState : !el.classList.contains('open');
+    el.classList.toggle('open', willOpen);
+    if (openCallback) toggleCallbackForm(true);
+  }
+  function toggleCallbackForm(show) {
+    document.getElementById('callbackInlineBox').style.display = show ? 'block' : 'none';
+  }
+  function quickChatAsk(txt) {
+    document.getElementById('chatInput').value = txt;
+    sendCloserChat();
+  }
+  async function sendCloserChat() {
+    const inp = document.getElementById('chatInput');
+    const msg = inp.value.trim();
+    if (!msg) return;
+    inp.value = '';
+    const box = document.getElementById('chatMsgsBox');
+    box.innerHTML += `<div class="c-msg user">${msg.replace(/</g, '&lt;')}</div>`;
+    box.scrollTop = box.scrollHeight;
+
+    const selHid = Number(document.getElementById('afHotelId').value || document.getElementById('heroHotelPicker').value || 0);
+    const r = await fetch('/api/public/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg, hotel_id: selHid })
+    });
+    const d = await r.json();
+    if (d.audit) {
+      applyAuditPayloadToForm(d.audit);
+    }
+    box.innerHTML += `<div class="c-msg bot">${(d.reply || '').replace(/</g, '&lt;')}</div>`;
+    const actEl = document.getElementById('chatQuickActions');
+    if (d.actions && d.actions.length) {
+      actEl.innerHTML = d.actions.map(a => {
+        if (a.type === 'link') return `<a class="btn gold sm" href="${a.url}">${a.label}</a>`;
+        if (a.type === 'apply_audit') return `<button class="btn ok sm" onclick="goSlide(1);toggleChat(false)">${a.label}</button>`;
+        if (a.type === 'callback_form') return `<button class="btn ok sm" onclick="toggleCallbackForm(true)">${a.label}</button>`;
+        return `<button class="btn ghost sm" onclick="goSlide(1)">${a.label}</button>`;
+      }).join('');
+    }
+    box.scrollTop = box.scrollHeight;
+  }
+
+  async function submitCallbackRequest() {
+    const ph = document.getElementById('cbPhoneInp').value.trim();
+    const nm = document.getElementById('cbNameInp').value.trim();
+    const hid = Number(document.getElementById('afHotelId').value || document.getElementById('heroHotelPicker').value || 0);
+    const hname = document.getElementById('afHotelName').value.trim() || 'Miami Hotel Lead';
+    const msgEl = document.getElementById('cbStatusMsg');
+    const r = await fetch('/api/public/callback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: ph, name: nm, hotel_id: hid, hotel_name: hname })
+    });
+    const d = await r.json();
+    msgEl.style.color = d.ok ? '#4ade80' : '#fca5a5';
+    msgEl.textContent = d.ok ? d.message : (d.error || 'Enter valid phone #');
+  }
+
+  initWebsite();
+</script>
+</body>
+</html>

@@ -35,37 +35,46 @@ def run_collect(cfg, crawl_sites=True, log=print):
             if crawl_sites and cfg.get("sources", {}).get("hotel_sites", True):
                 found = scrape_hotel_contacts(h, cfg, log)
                 added = 0
-                for kind, pairs in found.items():
-                    for value, ctx in pairs:
-                        if dbmod.add_contact(conn, h["id"], kind, value, ctx):
+                for kind in ("email", "phone", "address", "instagram", "linkedin"):
+                    vstatus = "mx_verified" if kind == "email" else "http_verified"
+                    for item in found.get(kind, ()):
+                        val, ctx = item[0], item[1]
+                        surl = item[2] if len(item) > 2 else h.get("website")
+                        if dbmod.add_contact(conn, h["id"], kind, val, ctx, verified_status=vstatus, source_url=surl):
                             added += 1
+                if found.get("booking_engine") or found.get("website_status") != "unknown":
+                    dbmod.upsert_hotel(
+                        conn, name=h["name"],
+                        booking_engine=found.get("booking_engine") or h.get("booking_engine"),
+                        website_status=found.get("website_status"),
+                    )
                 contacts_new += added
 
-            # If hotel has no historical baseline rate yet, record the 14-day horizon baseline first
-            existing_rates = conn.execute("SELECT COUNT(*) c FROM rates WHERE hotel_id=?", (h["id"],)).fetchone()["c"]
+            # Capture +14d horizon if no live rates exist yet so Side-by-Side Comparison has 2 real live dates
+            existing_rates = conn.execute("SELECT COUNT(*) c FROM rates WHERE hotel_id=? AND nightly_price IS NOT NULL", (h["id"],)).fetchone()["c"]
             if existing_rates == 0:
-                base_intel = scrape_rate_intelligence(h, cfg, checkin=checkin_prev, checkout=checkout_prev, log=lambda s: None)
-                if base_intel.get("direct_price"):
+                base_intel = scrape_rate_intelligence(h, cfg, checkin=checkin_prev, checkout=checkout_prev, fallback_horizons=False, log=lambda s: None)
+                if base_intel.get("direct_price") is not None:
                     dbmod.add_rate(
                         conn, h["id"], run_id, base_intel["source"],
-                        checkin_prev, checkout_prev, base_intel["direct_price"],
+                        base_intel["checkin"], base_intel["checkout"], base_intel["direct_price"],
                         cfg["currency"], base_intel["room_type"],
                         ota_json=base_intel["channels"],
                         parity_status=base_intel["parity_status"],
                         undercut_pct=base_intel["undercut_pct"],
-                        scraped_at=time.time() - 86400,
+                        scraped_at=time.time() - 3600,
                     )
                     rates_new += 1
 
-            # Capture current 30-day horizon rate & multi-OTA parity ladder
+            # Capture primary live rate & multi-OTA parity ladder (never fabricates if empty)
             intel = scrape_rate_intelligence(
                 h, cfg, checkin=checkin, checkout=checkout,
                 check_jsonld=crawl_sites,
-                log=lambda s, hn=h["name"]: log(f"    [OK] {hn}: {s}"))
-            if intel.get("direct_price"):
+                log=lambda s, hn=h["name"]: log(f"    [LIVE] {hn}: {s}"))
+            if intel.get("direct_price") is not None:
                 dbmod.add_rate(
                     conn, h["id"], run_id, intel["source"],
-                    checkin, checkout, intel["direct_price"],
+                    intel["checkin"], intel["checkout"], intel["direct_price"],
                     cfg["currency"], intel["room_type"],
                     ota_json=intel["channels"],
                     parity_status=intel["parity_status"],

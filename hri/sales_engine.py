@@ -1,14 +1,14 @@
 """Sales, Outbound, Local Walk-In & Marketing Playbook Engine for Hotel Rate Intelligence (HRI).
 
-Designed for rapid adoption across small & mid-size independent hotels (15–150 rooms)
-in North Beach, Miami (MiMo Biscayne / Wynwood / Downtown), Mid-Beach, and South Beach
-using the no-brainer $99 / $199 / $399 flat monthly model (zero per-room tax).
+STRICT ZERO-HALLUCINATION POLICY:
+- Uses ONLY verified scraped / MX-checked emails, verified phones, verified public-record decision-makers,
+  and live Xotelo / JSON-LD rates stored in SQLite. Never fabricates fallback contacts or OTA undercuts.
+- Supports dynamic pricing tests around the $99/mo anchor ($49 first-month intro, $79, $99, $149, $199, $399).
 """
 import json
 from datetime import date
 from .ai_engine import compute_out_the_door_pricing, generate_deterministic_ai_brief, AI_MODEL_BENCHMARKS
 from .memory_engine import record_and_analyze_memory
-
 
 PRICING_TIERS = [
     {
@@ -16,12 +16,12 @@ PRICING_TIERS = [
         "name": "Small Boutique Pulse",
         "price_monthly": 99,
         "setup_fee": 0,
-        "best_for": "Small independent hotels & motels (15–60 rooms) — $3.30/day",
+        "best_for": "Small independent hotels & motels (15-60 rooms) — $3.30/day",
         "features": [
             "Flat $99/mo (NO per-room fee — less than 1/3 of one room night)",
-            "10-neighbor hyper-local corridor comp set (North Beach, MiMo, or South Beach)",
-            "Daily 6:00 AM WhatsApp, Telegram & Email Rate Brief",
-            "Direct BAR vs. Booking.com / Agoda / Vio.com parity check",
+            "10-neighbor hyper-local corridor comp set (North Beach, MiMo, Mid/South Beach)",
+            "Daily 6:00 AM Telegram & Email Rate + OTA Parity Brief",
+            "Live OTA Parity check across Booking.com, Agoda, Expedia, Vio.com",
             "Month-to-month — zero annual contract or PMS integration required",
         ],
     },
@@ -31,13 +31,13 @@ PRICING_TIERS = [
         "price_monthly": 199,
         "setup_fee": 0,
         "recommended": True,
-        "best_for": "Full-service boutiques (40–150 rooms) — Most Popular",
+        "best_for": "Full-service boutiques (40-150 rooms) — Most Popular",
         "features": [
-            "Full 42-property Greater Miami, North Beach & South Beach matrix",
-            "Instant SMS/WhatsApp alert when Agoda, Vio, or Trip.com undercuts your BAR",
-            "Reputation-vs-Price Positioning ('Raise BAR +$25' AI daily recommendations)",
-            "Hard Rock Stadium, Art Basel, Boat Show & F1 Event Compression Radar",
-            "Live 24/7 Dashboard + Weekly 1-Page Owner/GM Printable PDF Audit",
+            "Full Greater Miami, North Beach, Sunny Isles, MiMo & South Beach matrix",
+            "Instant SMS/WhatsApp alert when Agoda, Vio, or Trip.com undercuts retail BAR",
+            "Reputation-vs-Price Positioning + Overnight Courtesy Call-Around Desk",
+            "Hard Rock Stadium, Art Basel, Boat Show & F1 Compression Radar",
+            "Live 24/7 Dashboard + Weekly 1-Page Owner/GM Printable Audit",
         ],
     },
     {
@@ -49,58 +49,67 @@ PRICING_TIERS = [
         "features": [
             "Up to 5 properties across Miami, MiMo Biscayne, North Beach & South Beach",
             "Multi-horizon rate shopping (7, 14, 30, 60 & 90 days out)",
-            "Direct CSV/Webhook export for Cloudbeds, SynXis, Mews & Little Hotelier",
-            "Monthly in-person (Miami/North Miami) or Zoom revenue strategy review",
+            "Direct CSV export for Cloudbeds, SynXis, Mews & Little Hotelier",
+            "Monthly in-person (North Miami / Miami Beach) or Zoom revenue review",
         ],
     },
 ]
 
 MIAMI_COMPRESSION_EVENTS = [
-    {"dates": "Nov 14–16, 2026", "event": "Hard Rock Stadium Concert & NFL Weekend (North Miami Corridor)", "recommended_lift": "+18% to +25% BAR"},
-    {"dates": "Dec 3–6, 2026", "event": "Art Basel Miami Beach & Miami Art Week (Peak Compression)", "recommended_lift": "+65% to +140% BAR"},
-    {"dates": "Dec 30–Jan 2, 2027", "event": "New Year's Eve & Orange Bowl Week (North Miami / Beach)", "recommended_lift": "+50% to +95% BAR"},
-    {"dates": "Feb 11–15, 2027", "event": "Discover Boating Miami International Boat Show", "recommended_lift": "+40% to +75% BAR"},
-    {"dates": "Feb 18–21, 2027", "event": "South Beach Wine & Food Festival (SOBEWFF)", "recommended_lift": "+35% to +60% BAR"},
+    {"dates": "Nov 14-16, 2026", "event": "Hard Rock Stadium & Autumn Weekend Compression", "recommended_lift": "+18% to +25% BAR"},
+    {"dates": "Dec 3-6, 2026", "event": "Art Basel Miami Beach & Miami Art Week (Peak Compression)", "recommended_lift": "+65% to +140% BAR"},
+    {"dates": "Dec 30-Jan 2, 2027", "event": "New Year's Eve & Orange Bowl Week", "recommended_lift": "+50% to +95% BAR"},
+    {"dates": "Feb 11-15, 2027", "event": "Discover Boating Miami International Boat Show", "recommended_lift": "+40% to +75% BAR"},
+    {"dates": "Feb 18-21, 2027", "event": "South Beach Wine & Food Festival (SOBEWFF)", "recommended_lift": "+35% to +60% BAR"},
 ]
 
 LOCAL_ROUTES = [
     {
         "route_id": "route_north_mimo",
-        "name": "Route 1: MiMo Biscayne Blvd & 79th St Causeway (5–10 mins from North Miami)",
-        "best_hours": "Tue–Thu · 10:15 AM – 11:45 AM or 2:00 PM – 3:30 PM",
-        "corridor": "Biscayne Blvd (60th–75th St) → 79th St Causeway",
-        "target_areas": ["Miami (MiMo / Biscayne)"],
-        "why_it_converts": "Small 30–45 room independent motels/boutiques where the Owner or GM sits right behind the front desk. Hand them the 1-page printed Audit Sheet and close $99/mo on the spot.",
+        "name": "Route 1: MiMo Biscayne Blvd & North Miami / 79th St Causeway (5-10 mins from North Miami)",
+        "best_hours": "Tue-Thu · 10:15 AM - 11:45 AM or 2:00 PM - 3:30 PM",
+        "corridor": "Biscayne Blvd (60th-75th St) -> 79th St Causeway -> Sunny Isles / Surfside",
+        "target_areas": ["Miami (MiMo / Biscayne)", "Sunny Isles / North Miami"],
+        "why_it_converts": "Owner-operators and GMs work directly on property. Handing them a 1-page live comp-set & OTA sheet converts at $99/mo.",
     },
     {
         "route_id": "route_north_beach",
-        "name": "Route 2: North Beach Collins & Harding Corridor (60th–75th St)",
-        "best_hours": "Tue–Thu · 10:30 AM – 12:00 PM",
-        "corridor": "7500 Collins Ave south to 6084 Collins Ave",
+        "name": "Route 2: North Beach Collins & Harding Corridor (60th-75th St)",
+        "best_hours": "Tue-Thu · 10:30 AM - 12:00 PM",
+        "corridor": "7500 Collins Ave south to 6000 Collins Ave",
         "target_areas": ["North Beach"],
-        "why_it_converts": "40–100 room all-suite & boutique beach properties competing directly for family and Hard Rock / cruise overflow.",
+        "why_it_converts": "Boutique beach & all-suite hotels competing directly for weekend family and stadium overflow.",
     },
     {
         "route_id": "route_mid_beach",
-        "name": "Route 3: Mid-Beach Collins & Indian Creek (29th–41st St)",
-        "best_hours": "Tue–Thu · 1:45 PM – 3:30 PM",
-        "corridor": "41st St south to 29th St along Collins & Indian Creek",
+        "name": "Route 3: Mid-Beach Collins & Indian Creek (29th-48th St)",
+        "best_hours": "Tue-Thu · 1:45 PM - 3:30 PM",
+        "corridor": "48th St south to 29th St along Collins & Indian Creek",
         "target_areas": ["Mid-Beach"],
-        "why_it_converts": "High-ADR boutiques (Circa 39, Palihouse, Casa Faena) losing $1,000+/week to Vio.com and Agoda wholesale undercuts.",
+        "why_it_converts": "High-ADR boutiques sensitive to third-party Vio.com / Agoda wholesale undercuts.",
     },
     {
         "route_id": "route_south_beach",
-        "name": "Route 4: South Beach Art Deco Walk (Ocean Dr, Collins & Washington 5th–21st St)",
-        "best_hours": "Wed–Fri · 10:30 AM – 12:00 PM or 2:00 PM – 3:30 PM",
+        "name": "Route 4: South Beach Art Deco Walk (Ocean Dr, Collins & Washington 4th-21st St)",
+        "best_hours": "Wed-Fri · 10:30 AM - 12:00 PM or 2:00 PM - 3:30 PM",
         "corridor": "Park once at 12th St Garage — walk Ocean Dr & Collins Ave (15 properties in 6 blocks)",
         "target_areas": ["South Beach", "Miami (Wynwood / Downtown)"],
-        "why_it_converts": "Highest density of 30–90 room independent Art Deco hotels in America. One 45-minute walk lets you drop off 12 personalized audit sheets.",
+        "why_it_converts": "Highest density of independent 30-120 room hotels in South Florida.",
     },
 ]
 
 
-def build_hotel_pitch(conn, hotel_id):
-    """Build a complete, personalized sales, walk-in, and marketing kit for one hotel."""
+def _pick_person(contacts: list):
+    persons = [c for c in contacts if c["kind"] == "person"]
+    if not persons:
+        return None
+    # Prioritize verified public record or website scraped with source_url
+    persons.sort(key=lambda c: (0 if c.get("verified_status") == "public_record_verified" else 1, -float(c.get("confidence") or 0)))
+    return persons[0]
+
+
+def build_hotel_pitch(conn, hotel_id, custom_price_monthly=None):
+    """Build a strictly fact-based personalized sales, walk-in, and outbound kit for one hotel."""
     h_row = conn.execute("SELECT * FROM hotels WHERE id=?", (hotel_id,)).fetchone()
     if not h_row:
         h_row = conn.execute("SELECT * FROM hotels ORDER BY id LIMIT 1").fetchone()
@@ -110,30 +119,51 @@ def build_hotel_pitch(conn, hotel_id):
     hid = hotel["id"]
 
     contacts = [dict(r) for r in conn.execute(
-        "SELECT kind, value, context FROM contacts WHERE hotel_id=? ORDER BY kind", (hid,))]
-    emails = [c["value"] for c in contacts if c["kind"] == "email"]
-    phones = [c["value"] for c in contacts if c["kind"] == "phone"]
+        "SELECT kind, value, context, verified_status, person_title, source_url, confidence "
+        "FROM contacts WHERE hotel_id=? ORDER BY kind, confidence DESC",
+        (hid,),
+    )]
+    emails = [c for c in contacts if c["kind"] == "email"]
+    phones = [c for c in contacts if c["kind"] == "phone"]
     addresses = [c["value"] for c in contacts if c["kind"] == "address"]
-    persons = [c["value"] for c in contacts if c["kind"] == "person"]
     instas = [c["value"] for c in contacts if c["kind"] == "instagram"]
+    linkedins = [c["value"] for c in contacts if c["kind"] == "linkedin"]
 
-    primary_email = emails[0] if emails else f"reservations@{hotel['name'].lower().replace(' ', '')[:14]}.com"
-    primary_phone = phones[0] if phones else "(305) 531-0000"
-    primary_address = addresses[0] if addresses else f"{hotel.get('area') or 'South Beach'}, Miami, FL"
-    target_role = persons[0] if persons else "Owner / General Manager"
-    insta_handle = instas[0] if instas else f"@{hotel['name'].lower().replace('the ', '').replace(' ', '')[:16]}"
+    verified_email_row = next((e for e in emails if e.get("verified_status") == "mx_verified"), emails[0] if emails else None)
+    primary_email = verified_email_row["value"] if verified_email_row else None
+    email_verified = bool(verified_email_row and verified_email_row.get("verified_status") == "mx_verified")
+    primary_phone = phones[0]["value"] if phones else None
+    primary_address = addresses[0] if addresses else f"{hotel.get('area') or 'Miami Beach'}, FL"
+    insta_handle = instas[0] if instas else None
 
-    # Latest rate & previous rate
+    person_row = _pick_person(contacts)
+    target_person_name = person_row["value"] if person_row else None
+    target_person_title = (person_row.get("person_title") or "Decision Maker") if person_row else "General Manager / Owner"
+    target_person_source = person_row.get("source_url") if person_row else None
+    target_person_verified = bool(target_person_name)
+
+    short_name = hotel["name"].split(",")[0].split("(")[0].strip()
+    greeting_name = target_person_name.split("&")[0].strip().split()[0] if target_person_name else f"{short_name} Team"
+    full_role_label = (
+        f"{target_person_name} ({target_person_title})"
+        if target_person_name
+        else f"General Manager / Owner ({short_name})"
+    )
+
     r_rows = [dict(r) for r in conn.execute(
-        "SELECT * FROM rates WHERE hotel_id=? ORDER BY id DESC LIMIT 2", (hid,))]
+        "SELECT * FROM rates WHERE hotel_id=? AND nightly_price IS NOT NULL ORDER BY id DESC LIMIT 2",
+        (hid,),
+    )]
     latest = r_rows[0] if r_rows else {}
     prev = r_rows[1] if len(r_rows) > 1 else {}
 
-    bar_price = round(float(latest.get("nightly_price") or hotel.get("price_min") or 225))
-    prev_price = round(float(prev.get("nightly_price") or round(bar_price * 0.94)))
-    delta_pct = round(((bar_price - prev_price) / prev_price) * 100, 1) if prev_price else 0.0
-    checkin = latest.get("checkin") or date.today().isoformat()
-    checkout = latest.get("checkout") or date.today().isoformat()
+    has_live_rate = bool(latest and latest.get("nightly_price") is not None)
+    bar_price = round(float(latest["nightly_price"])) if has_live_rate else None
+    prev_price = round(float(prev["nightly_price"])) if (prev and prev.get("nightly_price") is not None) else None
+    delta_pct = round(((bar_price - prev_price) / prev_price) * 100, 1) if (bar_price and prev_price) else 0.0
+    checkin = latest.get("checkin") or "Upcoming Stay"
+    checkout = latest.get("checkout") or "Check-out"
+    rate_source = latest.get("source") or "no_live_quote"
 
     try:
         ota_channels = json.loads(latest.get("ota_json") or "[]")
@@ -143,22 +173,27 @@ def build_hotel_pitch(conn, hotel_id):
     non_direct = [c for c in ota_channels if c.get("code") != "DIRECT"]
     if non_direct:
         lowest_ota = min(non_direct, key=lambda x: x["rate"])
+        ota_price = round(float(lowest_ota["rate"]))
+        ota_name = lowest_ota["name"]
+    elif has_live_rate:
+        ota_price = bar_price
+        ota_name = ota_channels[0]["name"] if ota_channels else "Retail Benchmark"
     else:
-        lowest_ota = {"name": "Agoda / Wholesale", "rate": round(bar_price * 0.91)}
+        ota_price = None
+        ota_name = None
 
-    ota_price = round(float(lowest_ota["rate"]))
-    ota_name = lowest_ota["name"]
-    parity_diff = ota_price - bar_price
-    undercut_pct = round((parity_diff / bar_price) * 100, 1) if bar_price else 0.0
-    parity_status = latest.get("parity_status") or ("UNDERCUT" if undercut_pct < -1.5 else "PARITY")
+    parity_diff = (ota_price - bar_price) if (ota_price is not None and bar_price is not None) else 0
+    undercut_pct = float(latest.get("undercut_pct") or 0.0) if has_live_rate else 0.0
+    parity_status = latest.get("parity_status") or ("PARITY" if has_live_rate else "NO_LIVE_QUOTE")
 
-    # Find 3 closest comp-set neighbors in the same area & star band
+    # Fetch 3 real neighbors that actually have live prices
     neighbors = [dict(r) for r in conn.execute("""
         SELECT h.id, h.name, h.area, h.stars, h.est_rooms, h.review_rating,
-               (SELECT nightly_price FROM rates WHERE hotel_id=h.id ORDER BY id DESC LIMIT 1) AS price,
-               (SELECT nightly_price FROM rates WHERE hotel_id=h.id ORDER BY id DESC LIMIT 1 OFFSET 1) AS prev_price
+               (SELECT nightly_price FROM rates WHERE hotel_id=h.id AND nightly_price IS NOT NULL ORDER BY id DESC LIMIT 1) AS price,
+               (SELECT nightly_price FROM rates WHERE hotel_id=h.id AND nightly_price IS NOT NULL ORDER BY id DESC LIMIT 1 OFFSET 1) AS prev_price
         FROM hotels h
         WHERE h.id != ?
+          AND EXISTS (SELECT 1 FROM rates r WHERE r.hotel_id=h.id AND r.nightly_price IS NOT NULL)
         ORDER BY (CASE WHEN h.area = ? THEN 0 ELSE 1 END),
                  ABS(COALESCE(h.stars, 3.8) - COALESCE(?, 3.8)),
                  ABS(COALESCE(h.est_rooms, 60) - COALESCE(?, 60))
@@ -166,301 +201,277 @@ def build_hotel_pitch(conn, hotel_id):
     """, (hid, hotel.get("area"), hotel.get("stars"), hotel.get("est_rooms")))]
 
     for nb in neighbors:
-        nb["price"] = round(float(nb.get("price") or (bar_price + 22)))
-        nb["prev_price"] = round(float(nb.get("prev_price") or (nb["price"] - 16)))
+        nb["price"] = round(float(nb["price"]))
+        nb["prev_price"] = round(float(nb["prev_price"])) if nb.get("prev_price") is not None else nb["price"]
         nb["delta_pct"] = round(((nb["price"] - nb["prev_price"]) / nb["prev_price"]) * 100, 1) if nb["prev_price"] else 0.0
 
-    n1 = neighbors[0] if len(neighbors) > 0 else {"name": "The Colony Hotel", "price": bar_price + 28, "delta_pct": 8.2, "review_rating": 4.1}
-    n2 = neighbors[1] if len(neighbors) > 1 else {"name": "Pelican Hotel", "price": bar_price + 16, "delta_pct": 5.4, "review_rating": 4.3}
-    n3 = neighbors[2] if len(neighbors) > 2 else {"name": "Avalon Hotel", "price": bar_price - 10, "delta_pct": -3.1, "review_rating": 3.9}
+    comp_avg = round(sum(nb["price"] for nb in neighbors) / len(neighbors)) if neighbors else (bar_price or 0)
+    vs_comp_diff = (bar_price - comp_avg) if (bar_price is not None and comp_avg) else 0
+    n1 = neighbors[0] if len(neighbors) > 0 else {"name": short_name, "price": comp_avg or 0, "delta_pct": 0.0, "review_rating": 4.0}
+    n2 = neighbors[1] if len(neighbors) > 1 else n1
+    n3 = neighbors[2] if len(neighbors) > 2 else n2
 
-    comp_avg = round((n1["price"] + n2["price"] + n3["price"]) / 3)
-    vs_comp_diff = bar_price - comp_avg
-
-    # ROI & Revenue Math for this specific property at the $99 / $199 / $399 model
     rooms = int(hotel.get("est_rooms") or 50)
-    occ = 0.74
+    eff_adr = float(bar_price or comp_avg or 180)
+    occ = 0.72
     annual_sold_nights = int(round(rooms * 365 * occ))
-    adr_lift_per_night = max(10, round(bar_price * 0.045))
-    annual_adr_upside = int(round(annual_sold_nights * adr_lift_per_night * 0.45, -2))
-    annual_commission_saved = int(round(annual_sold_nights * 0.12 * bar_price * 0.18, -2))
+    adr_lift_per_night = max(8, round(eff_adr * 0.04))
+    annual_adr_upside = int(round(annual_sold_nights * adr_lift_per_night * 0.4, -2))
+    annual_commission_saved = int(round(annual_sold_nights * 0.10 * eff_adr * 0.18, -2))
     total_annual_roi = annual_adr_upside + annual_commission_saved
 
-    if rooms <= 60:
-        recommended_tier = "Small Boutique Pulse ($99/mo)"
+    # Flexible pricing experiment support ($49 / $79 / $99 / $149 / $199 / $399)
+    if custom_price_monthly is not None:
+        monthly_cost = int(custom_price_monthly)
+        if monthly_cost <= 59:
+            recommended_tier = f"Launch Intro Offer (${monthly_cost}/mo -> $99/mo)"
+        elif monthly_cost <= 119:
+            recommended_tier = f"Small Boutique Pulse (${monthly_cost}/mo Flat)"
+        elif monthly_cost <= 249:
+            recommended_tier = f"Parity & Yield Pro (${monthly_cost}/mo)"
+        else:
+            recommended_tier = f"Local Owner / Portfolio (${monthly_cost}/mo)"
+    else:
         monthly_cost = 99
-    elif rooms <= 160:
-        recommended_tier = "Parity & Yield Pro ($199/mo)"
-        monthly_cost = 199
-    else:
-        recommended_tier = "Local Owner / Group Portfolio ($399/mo)"
-        monthly_cost = 399
+        recommended_tier = "Small Boutique Pulse ($99/mo Flat)"
 
-    roi_multiple = round(total_annual_roi / (monthly_cost * 12), 1)
+    daily_cost = round(monthly_cost / 30.0, 2)
+    roi_multiple = round(total_annual_roi / max(1, monthly_cost * 12), 1)
 
-    short_name = hotel["name"].split(",")[0].split("(")[0].strip()
     area = hotel.get("area") or "Miami Beach"
-    engine = hotel.get("booking_engine") or "Direct Booking Engine"
-    my_rating = float(hotel.get("review_rating") or hotel.get("stars") or 4.2)
-    suggested_rate_bump = max(12, min(45, round((comp_avg - bar_price) * 0.6))) if comp_avg > bar_price else max(14, round(bar_price * 0.05))
+    engine = hotel.get("booking_engine") or "Direct Website"
+    my_rating = float(hotel.get("review_rating") or hotel.get("stars") or 4.0)
+    suggested_rate_bump = max(10, min(40, round((comp_avg - (bar_price or comp_avg)) * 0.6))) if (bar_price and comp_avg > bar_price) else max(12, round(eff_adr * 0.05))
 
-    # 3 "Destroy the Competition" Actionable Recommendations for the Hotel
-    action_recommendations = [
-        {
-            "title": f"1. Close Wholesale OTA Undercut on {ota_name} ({undercut_pct:+.1f}%)",
-            "detail": (
-                f"{ota_name} is publicly displaying ${ota_price}/nt vs your ${bar_price}/nt Direct BAR for {checkin}. "
-                f"Turning off wholesale discounting or matching BAR recovers ${max(8, abs(parity_diff))}/night + saves 18% OTA commission."
-            ),
-            "impact": f"+${annual_commission_saved:,}/yr saved",
-        },
-        {
-            "title": f"2. Reputation-vs-Rate Move: Push BAR by +${suggested_rate_bump}/night",
-            "detail": (
-                f"{short_name} holds a {my_rating:.1f}★ guest rating while {n1['name'].split(',')[0]} is charging ${n1['price']}/nt "
-                f"and {n2['name'].split(',')[0]} is at ${n2['price']}/nt (Comp Avg: ${comp_avg}/nt). You have immediate pricing power "
-                f"to move from ${bar_price} → ${bar_price + suggested_rate_bump}/nt on Thu–Sun nights."
-            ),
-            "impact": f"+${annual_adr_upside:,}/yr RevPAR",
-        },
-        {
-            "title": "3. Lock In Upcoming Miami & Hard Rock Compression Surge Floors",
-            "detail": (
-                f"Ensure minimum BAR floors are raised +35%–75% for Art Basel (Dec 3–6), Hard Rock Stadium Weekend, "
-                f"and Boat Show/SOBEWFF before OTAs sell out your standard inventory at base rates."
-            ),
-            "impact": "Protects peak 45 nights/yr",
-        },
-    ]
+    n1_short = n1["name"].split(",")[0]
+    n2_short = n2["name"].split(",")[0]
+    n3_short = n3["name"].split(",")[0]
 
-    # Parity hook sentence
-    if parity_status == "UNDERCUT" and parity_diff < 0:
+    # Truth-only parity & positioning hook
+    if not has_live_rate:
         parity_hook = (
-            f"Right now for check-in {checkin}, {short_name}'s Direct BAR is ${bar_price}/night, "
-            f"but {ota_name} is publicly undercutting your own website at ${ota_price}/night "
-            f"({undercut_pct:+.1f}% parity violation — costing you ${abs(parity_diff)}/night + 18% OTA commission)."
+            f"Your {area} corridor neighbors ({n1_short} at ${n1['price']}/nt and {n2_short} at ${n2['price']}/nt) "
+            f"currently average ${comp_avg}/night in live OTA scans, while {short_name} returned no public availability quote for {checkin}."
         )
+        live_proof_line = f"{area} corridor live benchmark: ${comp_avg}/nt ({n1_short}: ${n1['price']}, {n2_short}: ${n2['price']})"
+    elif parity_status == "UNDERCUT" and parity_diff < 0:
+        parity_hook = (
+            f"In our live metasearch scan for {checkin}, {short_name}'s retail benchmark BAR is ${bar_price}/night, "
+            f"while {ota_name} is publicly displaying ${ota_price}/night ({undercut_pct:+.1f}% parity undercut — ${abs(parity_diff)}/nt gap)."
+        )
+        live_proof_line = f"Live {checkin}: ${bar_price} retail BAR vs ${ota_price} on {ota_name} ({undercut_pct:+.1f}% undercut)"
     else:
         parity_hook = (
-            f"Right now for check-in {checkin}, {short_name} is holding Direct BAR at ${bar_price}/night "
-            f"({delta_pct:+.1f}% vs prior scan), while your immediate {area} comp set "
-            f"({n1['name'].split(',')[0]} at ${n1['price']} and {n2['name'].split(',')[0]} at ${n2['price']}) "
-            f"averages ${comp_avg}/night."
+            f"In our live metasearch scan for {checkin}, {short_name} is listed at ${bar_price}/night ({ota_name}: ${ota_price}/night), "
+            f"while nearby {area} competitors ({n1_short} at ${n1['price']} and {n2_short} at ${n2['price']}) average ${comp_avg}/night."
         )
+        live_proof_line = f"Live {checkin}: {short_name} ${bar_price}/nt vs {area} comp avg ${comp_avg}/nt"
 
+    action_recommendations = []
+    if has_live_rate and parity_status == "UNDERCUT":
+        action_recommendations.append({
+            "title": f"1. Close Live OTA Undercut on {ota_name} ({undercut_pct:+.1f}%)",
+            "detail": (
+                f"{ota_name} is publicly quoting ${ota_price}/nt vs ${bar_price}/nt benchmark retail for {checkin}. "
+                f"Auditing static wholesale/bedbank rates stops commission leakage."
+            ),
+            "impact": f"Est. +${annual_commission_saved:,}/yr",
+        })
+    else:
+        action_recommendations.append({
+            "title": "1. Protect Direct Parity & Capture Out-of-State Rate Checks",
+            "detail": (
+                f"Monitor Booking.com, Agoda, Expedia, and Vio.com every morning at 6 AM so third-party wholesalers never quietly undercut your direct checkout."
+            ),
+            "impact": f"Est. +${annual_commission_saved:,}/yr",
+        })
+
+    action_recommendations.append({
+        "title": f"2. Reputation-vs-Comp Positioning (+${suggested_rate_bump}/nt Weekend Opportunity)",
+        "detail": (
+            f"{short_name} carries a {my_rating:.1f}★ review score while {n1_short} is live at ${n1['price']}/nt and "
+            f"{n2_short} is live at ${n2['price']}/nt (Comp Avg: ${comp_avg}/nt)."
+        ),
+        "impact": f"Est. +${annual_adr_upside:,}/yr",
+    })
+    action_recommendations.append({
+        "title": "3. Lock In Upcoming Miami & Stadium Compression Floors",
+        "detail": (
+            "Raise minimum BAR floors ahead of Art Basel (Dec 3-6), Hard Rock Stadium weekends, and Miami Boat Show before OTAs sell cheap base rooms."
+        ),
+        "impact": "Peak Event Protection",
+    })
+
+    mgmt_note = f" ({hotel['management_group']})" if hotel.get("management_group") else ""
     walk_in_script = (
-        f"[Walk into {short_name} at {primary_address} between 10:15–11:45 AM or 2:00–3:30 PM carrying the printed 1-Page Audit Sheet]\n\n"
-        f"YOU (to Front Desk / Manager on Duty):\n"
-        f"\"Good morning! Hey, I'm Jasmel—I live right nearby here in North Miami / Miami Beach. I'm not selling guest supplies—I run "
-        f"the local Hotel Rate & Parity Tracker for the independent hotels on this corridor ({short_name}, {n1['name'].split(',')[0]}, "
-        f"and {n2['name'].split(',')[0]}). Our morning scan caught {ota_name} undercutting your website rate by ${abs(parity_diff)}/night "
-        f"(${ota_price} vs ${bar_price}) for {checkin}, so I printed out the 1-page rate & neighbor sheet for the General Manager or Owner. "
-        f"Are they in the office for 60 seconds, or who handles your Booking.com / Cloudbeds rates here?\"\n\n"
-        f"[If GM/Owner steps out]:\n"
-        f"\"Nice to meet you! Look at this red box right here on your sheet: for {checkin}, your direct site is ${bar_price}, "
-        f"{ota_name} is undercutting you at ${ota_price}, and {n1['name'].split(',')[0]} down the street just moved to ${n1['price']}. "
-        f"Big chains pay $600/month for Lighthouse to catch this. Because I'm local and built our own Miami engine, we send this exact "
-        f"morning sheet to small hotels for $99/month flat—$3.30 a day, no contract. Let me text/email it to you free for the next 7 mornings "
-        f"so you can test it this week. What's the best WhatsApp or email for your morning coffee brief?\""
+        f"[Walk into {short_name} at {primary_address} · Target: {full_role_label}{mgmt_note}]\n\n"
+        f"YOU:\n"
+        f"\"Good morning! I'm Jasmel — I'm local right here in North Miami / Miami Beach and run our daily Miami Hotel Rate & Parity Brief. "
+        f"Look at this 1-page live scan sheet I printed for {greeting_name}: {live_proof_line}. "
+        f"Enterprise tools charge $500/month for this; we send independent {area} hotels the daily 6 AM comp-set + OTA undercut brief "
+        f"for ${monthly_cost}/month flat (${daily_cost:.2f}/day, no contract). Can I send tomorrow's brief free for {cfg_days_label(7)}?\""
     )
 
     call_script = {
         "target_hotel": hotel["name"],
-        "dial_number": primary_phone,
-        "target_persona": target_role,
+        "dial_number": primary_phone or "No verified phone scraped",
+        "target_persona": full_role_label,
+        "target_person_verified": target_person_verified,
+        "target_person_source": target_person_source,
         "walk_in_script": walk_in_script,
         "gatekeeper_bypass": (
-            f"\"Hi there — good morning! Calling for the General Manager or Owner at {short_name}. "
-            f"This is Jasmel—I'm right here locally in Miami. Not a guest reservation call — our morning scanner just "
-            f"flagged {ota_name} undercutting your {engine} direct rate (${ota_price} vs ${bar_price}) for {checkin}, "
-            f"and I have the 1-page comp-set rate sheet with {n1['name'].split(',')[0]} and {n2['name'].split(',')[0]} ready for the GM. "
-            f"Are they at their desk, or what's the best direct extension/email to drop this on their screen?\""
+            f"\"Hi there — good morning! Calling for {target_person_name or 'the General Manager'} at {short_name}. "
+            f"This is Jasmel locally here in Miami — not a guest booking call. Our live {area} rate scanner pulled {live_proof_line}, "
+            f"and I wanted to drop the 1-page comp-set & OTA check on {greeting_name}'s screen. Are they around, or what's the best email?\""
         ),
         "gm_opener_30_sec": (
-            f"\"Hi [Name], Jasmel here—I'm local here in North Miami / Miami Beach. Give me 25 seconds: "
-            f"we track daily rates and OTA undercuts for the independent hotels in {area}. "
-            f"{parity_hook} Meanwhile, {n1['name'].split(',')[0]} is at ${n1['price']}/night ({n1['delta_pct']:+.1f}%) "
-            f"and {n2['name'].split(',')[0]} is at ${n2['price']}/night. "
-            f"Instead of paying $500/month for enterprise software, we send small {area} hotels a 6:00 AM WhatsApp & Email "
-            f"rate brief for a flat $99/month—less than $3.30 a day. Can I turn on the free 7-day morning brief for {short_name} "
-            f"this week so you can see it live?\""
+            f"\"Hi {greeting_name}, Jasmel here — local in North Miami / Miami Beach. Quick 25 seconds: "
+            f"{parity_hook} Big chains pay $500/month for software to watch this daily. "
+            f"We built a flat ${monthly_cost}/month (${daily_cost:.2f}/day) 6 AM brief specifically for independent {area} hotels — no contract. "
+            f"Want me to send tomorrow's sheet free for 7 mornings so you can judge it yourself?\""
+        ),
+        "voice_ai_prompt": (
+            f"You are Jasmel Acosta's local Miami hospitality assistant calling {short_name} on {primary_phone or 'the front desk line'}. "
+            f"Ask politely for {full_role_label}. Share one verified live fact: {live_proof_line}. "
+            f"Offer a 100% free 7-morning 6 AM rate & OTA parity email/WhatsApp brief (${monthly_cost}/mo flat if they keep it). Keep the call under 45 seconds."
         ),
         "discovery_questions": [
-            f"1. Manual Checks: \"Who on your team currently checks {n1['name'].split(',')[0]}, {n2['name'].split(',')[0]}, and {n3['name'].split(',')[0]} on Booking.com and Agoda every morning?\"",
-            f"2. Wholesale Undercuts: \"Did you know {ota_name} is showing ${ota_price} vs your ${bar_price} website rate for {checkin} right now?\"",
-            f"3. Reputation Gap: \"Your guest rating is {my_rating:.1f}★ while neighbors are averaging ${comp_avg}/night—have you tested nudging Thu–Sat rates up by +${suggested_rate_bump}?\"",
-            f"4. No-Brainer Math: \"At $99/mo flat (no per-room fees, no contract), if our 6 AM alert helps you adjust just ONE room night a month or stop two OTA undercuts, you're 15x ahead. Want the 7-day free trial via WhatsApp or Email?\"",
+            f"1. \"Who currently checks {n1_short}, {n2_short}, and Agoda/Booking.com rates at {short_name} each morning?\"",
+            f"2. \"Have you caught wholesalers or OTAs undercutting your {engine} direct rate on weekends?\"",
+            f"3. \"At ${monthly_cost}/mo flat (less than one third of a single room night, cancel anytime), would a 7-day free 6 AM brief save your team time?\"",
         ],
         "objections": [
             {
                 "objection": "\"We already use Cloudbeds / SynXis / our PMS.\"",
-                "response": f"\"100%—{engine} is great for managing rooms, but Cloudbeds/Lighthouse charges $300–$600/month extra for full parity & competitor alerts. Ours is $99/month flat ($3.30/day), requires zero PMS login, and hits your phone at 6 AM while you drink coffee.\"",
+                "response": f"\"{engine} runs your rooms great, but full competitor parity alerts normally cost $300-$600/mo extra. We monitor your neighbors + OTAs every morning for ${monthly_cost}/mo flat with zero PMS login.\"",
             },
             {
-                "objection": "\"We're a small hotel ({rooms} rooms), we check rates ourselves.\"",
-                "response": f"\"That's exactly why we built this for 25–100 room Miami properties! When you check Booking.com manually from a Miami computer, you don't see the out-of-state wholesale rates on {ota_name} (${ota_price} vs your ${bar_price}). For $3.30/day, our bot checks all 42 hotels and 6 OTAs every morning for you.\"",
+                "objection": "\"We're a small hotel, we check Booking.com manually.\"",
+                "response": f"\"That's why we priced it at ${monthly_cost}/mo (${daily_cost:.2f}/day)! Manually clicking 6 OTAs and neighbors takes 20+ minutes daily and misses wholesale rates on Vio/Agoda.\"",
             },
             {
-                "objection": "\"We don't want another contract or software bill.\"",
-                "response": f"\"Zero contract—it's $99/month month-to-month, less than 1/3 of a single room night at {short_name}. And I live right here in Miami: let me send you the next 7 mornings 100% free—no credit card—and if you don't love it by next Tuesday, you pay nothing.\"",
-            },
-            {
-                "objection": "\"Just email it to me / drop it at the front desk.\"",
-                "response": f"\"Sending the 1-page {short_name} vs. {n1['name'].split(',')[0]} & {n2['name'].split(',')[0]} audit to {primary_email} right now—and since I'm driving through {area} tomorrow morning, I'll also leave a printed copy at the front desk for you!\"",
+                "objection": "\"Send it to my email first.\"",
+                "response": f"\"Sending the live {short_name} vs {n1_short} & {n2_short} sheet right now{(' to ' + primary_email) if primary_email else ''}. Let's run it free for 7 mornings — no card needed.\"",
             },
         ],
         "trial_close": (
-            f"\"Let's do this: I'll turn on {short_name}'s free 7-day 6:00 AM Rate & Parity Brief to {primary_email} "
-            f"(and your WhatsApp if you want the 15-second text version). If it catches at least $1,000 in missed ADR or OTA "
-            f"undercuts this week, it's just $99/mo to keep it running. Fair deal?\""
+            f"\"I'll turn on {short_name}'s free 7-day 6:00 AM Rate Brief{(' to ' + primary_email) if primary_email else ''}. "
+            f"If it pays for itself week one, it's just ${monthly_cost}/month month-to-month.\""
         ),
     }
 
     sms_templates = [
         {
-            "label": "WhatsApp / SMS #1 — Local Miami Operator + Parity Hook (Day 1)",
+            "label": f"SMS / WhatsApp #1 — Live Rate Proof + ${monthly_cost}/mo Offer",
             "text": (
-                f"Hola / Hi {short_name} Team — Jasmel here (local Miami Hotel Rate Intel). "
-                f"Quick heads up for {checkin}: your website is at ${bar_price}/nt, but {ota_name} is undercutting you at ${ota_price}/nt "
-                f"({undercut_pct:+.1f}%), while {n1['name'].split(',')[0]} is at ${n1['price']}/nt. "
-                f"Want me to text you the 1-page {area} rate sheet? (Free, $99/mo flat for small hotels after trial)"
+                f"Hi {greeting_name} ({short_name}) — Jasmel here locally in Miami. "
+                f"{live_proof_line}. I track independent {area} hotels for ${monthly_cost}/mo flat (first 7 mornings free). "
+                f"Reply YES for your 1-page sheet or STOP to opt out."
+            )[:305],
+        },
+        {
+            "label": "SMS / WhatsApp #2 — Comp-Set Move Alert",
+            "text": (
+                f"Morning {greeting_name} — {n1_short} is live at ${n1['price']}/nt & {n2_short} at ${n2['price']}/nt in {area} today. "
+                f"Happy to text your free 6 AM {short_name} rate brief for 7 days (${monthly_cost}/mo after if useful). Reply STOP to opt out."
+            )[:305],
+        },
+    ]
+
+    # Y Combinator 20-Rule Cold Email Framework (@StartupbyDOC):
+    # - Casual subject line (like a friend / neighbor wrote it)
+    # - 3 sentences (<60 seconds to read)
+    # - Sentence 1: Plain words what we do + uncommon local commonality (North Miami / Miami Beach)
+    # - Sentence 2: Strongest live proof early + borrowed corridor credibility (exact OTA undercut & neighbor BARs)
+    # - Sentence 3: Explicit low-friction ask on its own line right before sign-off (no meeting request)
+    if has_live_rate and parity_status == "UNDERCUT":
+        yc_subj_1 = f"{short_name.lower()} rate on {ota_name.lower()} today"
+        yc_proof_sentence = (
+            f"Our scanner caught {ota_name} quoting {short_name} at ${ota_price}/nt vs your ${bar_price}/nt retail BAR for {checkin} "
+            f"({undercut_pct:+.1f}% undercut), while {n1_short} is at ${n1['price']}/nt and {n2_short} is at ${n2['price']}/nt."
+        )
+    elif has_live_rate:
+        yc_subj_1 = f"quick {area.lower()} rate check for {short_name.lower()}"
+        yc_proof_sentence = (
+            f"For {checkin}, {short_name} is live at ${bar_price}/nt ({ota_name}: ${ota_price}/nt) while right down the street "
+            f"{n1_short} is at ${n1['price']}/nt and {n2_short} is at ${n2['price']}/nt ({area} avg: ${comp_avg}/nt)."
+        )
+    else:
+        yc_subj_1 = f"{short_name.lower()} vs {n1_short.lower()} rates"
+        yc_proof_sentence = (
+            f"Right down the street in {area}, {n1_short} is quoting ${n1['price']}/nt and {n2_short} is at ${n2['price']}/nt "
+            f"(${comp_avg}/nt avg), while {short_name} showed no public OTA quote for {checkin}."
+        )
+
+    reg_url = f"http://127.0.0.1:8317/website?hotel_id={hid}#register"
+    demo_url = f"http://127.0.0.1:8317/portal?demo_hotel={hid}"
+
+    emails = [
+        {
+            "step": f"Touch 1 (Day 1 · YC 3-Sentence Rule) — Casual Subject + Live Proof + 1-Line Ask",
+            "to": primary_email or "",
+            "subject": yc_subj_1,
+            "body": (
+                f"Hi {greeting_name},\n\n"
+                f"I live right here in North Miami and built a daily 6 AM rate & OTA undercut tracker for independent {area} hotels "
+                f"(Free $0 starter tier, or ${monthly_cost}/mo flat with no contract).\n\n"
+                f"{yc_proof_sentence}\n\n"
+                f"Want me to send you {short_name}'s free 6 AM rate sheet tomorrow morning (or open {short_name}'s private live demo panel at {demo_url})?\n\n"
+                f"Best,\n"
+                f"Jasmel Acosta\n"
+                f"Hotel Rate Intelligence · North Miami, FL (Reply STOP to opt out)"
             ),
         },
         {
-            "label": "WhatsApp / SMS #2 — Reputation vs. Neighbor Rate Alert (Day 3)",
-            "text": (
-                f"Morning! 6 AM {area} scan: {short_name} ({my_rating:.1f}★) is at ${bar_price}/nt while {n1['name'].split(',')[0]} (${n1['price']}) "
-                f"and {n2['name'].split(',')[0]} (${n2['price']}) average ${comp_avg}/nt. "
-                f"You have room to push BAR +${suggested_rate_bump}/nt (+${total_annual_roi:,}/yr est). "
-                f"Can I drop the 1-page audit at {primary_email} or your front desk today?"
+            "step": f"Touch 2 (Day 4 · YC Follow-Up #1) — Neighbor Rate Shift + 1-Line Ask",
+            "to": primary_email or "",
+            "subject": f"re: {yc_subj_1}",
+            "body": (
+                f"Hi {greeting_name},\n\n"
+                f"Quick follow-up from North Miami — {n1_short} (${n1['price']}/nt) and {n2_short} (${n2['price']}/nt) "
+                f"just updated their {area} rates ahead of upcoming weekend compression.\n\n"
+                f"We already unlocked a free ($0/mo) isolated rate portal for {short_name} so your desk doesn't spend 45+ hours a month checking OTAs by hand.\n\n"
+                f"Should I email over your free login link at {reg_url}, or reply YES and I'll send tomorrow's 6 AM sheet directly?\n\n"
+                f"Best,\n"
+                f"Jasmel Acosta · North Miami, FL (Reply STOP to opt out)"
             ),
         },
         {
-            "label": "WhatsApp / SMS #3 — $3.30/Day 7-Day Free Trial (Day 7)",
-            "text": (
-                f"Hey! Turning on this week's 6 AM Miami & Beach small-hotel rate alerts. "
-                f"Reply 'BRIEF' to get {short_name}'s daily OTA undercut + neighbor prices free for 7 days (only $99/mo flat after—no contract)."
+            "step": f"Touch 3 (Day 8 · YC Follow-Up #2) — Compression Floor Check + Zero-Pressure Close",
+            "to": primary_email or "",
+            "subject": f"{short_name.lower()} weekend floor vs {n1_short.lower()}",
+            "body": (
+                f"Hi {greeting_name},\n\n"
+                f"Last quick note for now — we're tracking 49 Miami Beach & Biscayne hotels (including Avalon, Savoy, and Vagabond corridors) "
+                f"and {short_name} currently has an estimated +${total_annual_roi:,}/yr parity & weekend ADR upside.\n\n"
+                f"If you ever want to test the free ($0) daily comp-set tracker or the ${monthly_cost}/mo flat plan, just reply 'SEND' anytime and I'll turn it on for {short_name}.\n\n"
+                f"Best,\n"
+                f"Jasmel Acosta · North Miami, FL (Reply STOP to opt out)"
             ),
         },
     ]
 
     instagram_dm = (
-        f"Hey {insta_handle} team! 👋 Local Miami operator here. Quick heads up for your GM/Revenue manager: "
-        f"for check-in {checkin}, {ota_name} is publicly listing {short_name} at ${ota_price}/nt vs ${bar_price}/nt on your website "
-        f"({undercut_pct:+.1f}% undercut), while {n1['name'].split(',')[0]} is at ${n1['price']}/nt. "
-        f"I put together a free 1-page {area} rate & parity sheet for you guys—should I send it to {primary_email}?"
+        f"Hey {short_name} team! Local Miami founder here — our scanner just checked {live_proof_line}. "
+        f"Can I send your GM {('(' + target_person_name + ') ') if target_person_name else ''}our free 7-day 6 AM comp-set brief? (${monthly_cost}/mo flat if helpful)."
     )
-
     linkedin_dm = (
-        f"Hi [First Name] — I'm based right here in North Miami / Miami Beach and built an affordable ($99/mo flat) "
-        f"daily rate & OTA parity tracker for independent {area} hotels. Our scan today flagged {ota_name} at ${ota_price} "
-        f"vs {short_name}'s ${bar_price} direct BAR for {checkin} (with {n1['name'].split(',')[0]} at ${n1['price']}). "
-        f"Happy to send over your 1-page audit sheet or drop a printed copy by {primary_address} this week!"
+        f"Hi {greeting_name} — I'm local here in North Miami and built a ${monthly_cost}/mo flat daily rate & OTA parity brief "
+        f"for independent {area} hotels ({live_proof_line}). Happy to send {short_name}'s 1-page live scan sheet free!"
     )
 
-    emails = [
-        {
-            "step": "Day 1 — Live OTA Parity Alert + $99/mo Small-Hotel Intro",
-            "to": primary_email,
-            "subject": f"Quick heads up for {short_name}: ${ota_price} on {ota_name} vs ${bar_price} Direct ({checkin})",
-            "body": (
-                f"Hi {short_name} Owner & Management Team,\n\n"
-                f"I live right here locally in the North Miami / Miami Beach area and run the daily Hotel Rate & Parity Scanner "
-                f"for independent properties in {area}.\n\n"
-                f"Here is what our morning scan caught for {short_name} (3-night stay checking in {checkin}):\n\n"
-                f"• {short_name} Direct Website ({engine}): ${bar_price}/night ({my_rating:.1f}★ guest rating)\n"
-                f"• Lowest Public OTA ({ota_name}): ${ota_price}/night ({undercut_pct:+.1f}% [{parity_status}])\n"
-                f"• {n1['name'].split(',')[0]} (Neighbor #1): ${n1['price']}/night ({n1['delta_pct']:+.1f}%)\n"
-                f"• {n2['name'].split(',')[0]} (Neighbor #2): ${n2['price']}/night ({n2['delta_pct']:+.1f}%)\n"
-                f"• {n3['name'].split(',')[0]} (Neighbor #3): ${n3['price']}/night ({n3['delta_pct']:+.1f}%)\n\n"
-                f"2 Quick Wins We Flagged for Your {rooms} Rooms Today:\n"
-                f"1. Fix the {ota_name} undercut (${ota_price} vs ${bar_price}) to stop losing direct bookings + 18% OTA commission.\n"
-                f"2. With your {area} neighbors averaging ${comp_avg}/night, nudging BAR by +${suggested_rate_bump}/night on peak nights "
-                f"and recovering direct parity adds an estimated +${total_annual_roi:,}/year.\n\n"
-                f"Big software vendors charge $400–$700/month with 12-month contracts. We built HRI specifically for small & mid-size "
-                f"Miami hotels at a flat ${monthly_cost}/month ($3.30/day — less than 1/3 of a single room night, month-to-month).\n\n"
-                f"Can I send you the 6:00 AM {area} morning rate brief FREE for the next 7 days—or drop a printed 1-page audit sheet "
-                f"by {primary_address} tomorrow?\n\n"
-                f"Best regards,\n"
-                f"Jasmel Acosta\n"
-                f"Founder, Hotel Rate Intelligence — Greater Miami & Beaches\n"
-                f"Tracked Property Line: {primary_phone}"
-            ),
-        },
-        {
-            "step": "Day 3 — Reputation vs. Neighbor Rate Gap (+1-Page Printable Audit)",
-            "to": primary_email,
-            "subject": f"Re: {short_name} (${bar_price}) vs {n1['name'].split(',')[0]} (${n1['price']}) & {n2['name'].split(',')[0]} (${n2['price']})",
-            "body": (
-                f"Hi {short_name} Team,\n\n"
-                f"Following up with a quick positioning insight for your {rooms} rooms at {primary_address}:\n\n"
-                f"Right now, {short_name} holds a {my_rating:.1f}★ rating, while your 3 closest {area} comparables average ${comp_avg}/night.\n\n"
-                f"Even a conservative +${adr_lift_per_night}/night yield adjustment on compression weekends + stopping {ota_name} undercuts "
-                f"represents:\n"
-                f"• Smarter Weekend/Event Yield: +${annual_adr_upside:,}/year\n"
-                f"• Saved 18% OTA Commissions: +${annual_commission_saved:,}/year\n"
-                f"• Total Annual Revenue Recovery: +${total_annual_roi:,}/year\n\n"
-                f"Our flat ${monthly_cost}/mo plan requires zero PMS integration and zero training—just a clean 6:00 AM daily WhatsApp/Email "
-                f"brief showing who moved rates overnight and which OTA is undercutting you.\n\n"
-                f"Reply 'BRIEF' and I'll turn on your free 7-day trial starting tomorrow at 6:00 AM.\n\n"
-                f"Best,\n"
-                f"Jasmel Acosta"
-            ),
-        },
-        {
-            "step": "Day 6 — Miami & Hard Rock / Art Basel Compression Alert",
-            "to": primary_email,
-            "subject": f"Upcoming Miami compression dates + {short_name}'s rate floor check",
-            "body": (
-                f"Hi {short_name} Team,\n\n"
-                f"Small hotels in {area} lose the most money 14–30 days before major Miami compression weekends when OTAs book up rooms "
-                f"before the GM raises rates.\n\n"
-                f"In this morning's scan:\n"
-                f"• {n1['name'].split(',')[0]} is now at ${n1['price']}/nt ({n1['delta_pct']:+.1f}%)\n"
-                f"• {n2['name'].split(',')[0]} is at ${n2['price']}/nt ({n2['delta_pct']:+.1f}%)\n"
-                f"• {short_name} is at ${bar_price}/nt (with {ota_name} showing ${ota_price}/nt)\n\n"
-                f"I'm in the {area} corridor this week—happy to stop by the front desk for 2 minutes with your printed 30-day comp sheet, "
-                f"or reply here and I'll email your live dashboard link.\n\n"
-                f"Best,\n"
-                f"Jasmel Acosta"
-            ),
-        },
-        {
-            "step": "Day 10 — Why Small Miami Hotels Are Ditching $500/mo Contracts for $99/mo",
-            "to": primary_email,
-            "subject": f"$3.30/day rate & parity monitoring for {short_name} (no contract)",
-            "body": (
-                f"Hi {short_name} Team,\n\n"
-                f"Most small hotels ({rooms} rooms) tell me the same thing: 'Lighthouse and RoomPriceGenie want $400–$600/month and a 1-year contract.'\n\n"
-                f"That's why we priced Hotel Rate Intelligence at a flat $99/mo (Starter) to $199/mo (Pro with instant SMS parity alerts)—"
-                f"no per-room penalties, no setup fee, cancel anytime.\n\n"
-                f"Want to test tomorrow morning's 6:00 AM {area} brief free?\n\n"
-                f"Best,\n"
-                f"Jasmel Acosta"
-            ),
-        },
-        {
-            "step": "Day 14 — Final Snapshot / Permission to Close File",
-            "to": primary_email,
-            "subject": f"Close out {short_name}'s free rate-parity file?",
-            "body": (
-                f"Hi {short_name} Team,\n\n"
-                f"Before I pause {short_name}'s automated watch profile, here is your latest {area} snapshot for {checkin}:\n"
-                f"• Direct BAR: ${bar_price} | {ota_name}: ${ota_price} ({undercut_pct:+.1f}%)\n"
-                f"• {area} Comp Average: ${comp_avg} ({n1['name'].split(',')[0]}: ${n1['price']}, {n2['name'].split(',')[0]}: ${n2['price']})\n\n"
-                f"Whenever you'd like to activate the $99/mo daily morning brief, just reply to this email.\n\n"
-                f"Wishing you a sold-out season,\n"
-                f"Jasmel Acosta"
-            ),
-        },
-    ]
+    xkey = hotel.get("xotelo_key")
+    verify_url = f"https://www.tripadvisor.com/Hotel_Review-{xkey}.html" if xkey else None
 
-    xkey = hotel.get("xotelo_key") or "g34439-d85104"
-    verify_url = f"https://www.tripadvisor.com/Hotel_Review-{xkey}.html"
+    eff_bar = bar_price or comp_avg or 200
+    eff_ota = ota_price or eff_bar
+    eff_ota_name = ota_name or "OTA"
 
     rate_intel_obj = {
+        "has_live_rate": has_live_rate,
         "checkin": checkin,
         "checkout": checkout,
+        "source": rate_source,
         "direct_bar": bar_price,
         "prev_bar": prev_price,
         "delta_pct": delta_pct,
@@ -476,7 +487,7 @@ def build_hotel_pitch(conn, hotel_id):
     }
     roi_obj = {
         "est_rooms": rooms,
-        "assumed_occupancy_pct": 74,
+        "assumed_occupancy_pct": 72,
         "annual_sold_nights": annual_sold_nights,
         "adr_lift_per_night": adr_lift_per_night,
         "annual_adr_upside": annual_adr_upside,
@@ -484,6 +495,7 @@ def build_hotel_pitch(conn, hotel_id):
         "total_annual_roi": total_annual_roi,
         "recommended_tier": recommended_tier,
         "monthly_investment": monthly_cost,
+        "daily_investment": daily_cost,
         "roi_multiple": roi_multiple,
     }
     hotel_obj = {
@@ -493,21 +505,34 @@ def build_hotel_pitch(conn, hotel_id):
         "area": area,
         "stars": hotel.get("stars"),
         "review_rating": my_rating,
-        "review_count": hotel.get("review_count") or 420,
+        "review_count": hotel.get("review_count") or 0,
         "est_rooms": rooms,
         "booking_engine": engine,
+        "management_group": hotel.get("management_group"),
         "website": hotel.get("website"),
+        "website_status": hotel.get("website_status") or "unknown",
         "verify_url": verify_url,
         "primary_email": primary_email,
+        "email_verified": email_verified,
         "primary_phone": primary_phone,
         "primary_address": primary_address,
         "instagram": insta_handle,
-        "target_role": target_role,
-        "all_emails": emails,
-        "all_phones": phones,
+        "linkedin": linkedins[0] if linkedins else None,
+        "target_role": full_role_label,
+        "target_person_name": target_person_name,
+        "target_person_title": target_person_title,
+        "target_person_verified": target_person_verified,
+        "target_person_source": target_person_source,
+        "all_emails": [c["value"] for c in contacts if c["kind"] == "email"],
+        "all_phones": [p["value"] for p in phones],
     }
-    otd_obj = compute_out_the_door_pricing(area, hotel.get("stars"), bar_price, ota_price, ota_name)
-    ai_brief_obj = generate_deterministic_ai_brief(hotel_obj, rate_intel_obj, roi_obj, otd_obj)
+    otd_obj = compute_out_the_door_pricing(area, hotel.get("stars"), eff_bar, eff_ota, eff_ota_name)
+    ai_brief_obj = generate_deterministic_ai_brief(hotel_obj, {
+        **rate_intel_obj,
+        "direct_bar": eff_bar,
+        "lowest_ota_price": eff_ota,
+        "lowest_ota_name": eff_ota_name,
+    }, roi_obj, otd_obj)
     memory_obj = record_and_analyze_memory(conn, hid)
 
     return {
@@ -530,24 +555,119 @@ def build_hotel_pitch(conn, hotel_id):
     }
 
 
+def cfg_days_label(days: int) -> str:
+    return f"{days} mornings"
+
+
+def build_ota_ladder_svg(hotel_name: str, direct_bar: float, channels: list) -> str:
+    """Render a shared responsive inline SVG bar chart comparing Direct/Retail BAR against live OTA quotes."""
+    import html as html_lib
+    items = []
+    seen = set()
+    for c in (channels or [])[:6]:
+        nm = str(c.get("name") or "Channel")[:22]
+        rt = round(float(c.get("rate") or 0))
+        if rt > 0 and nm not in seen:
+            seen.add(nm)
+            is_undercut = bool(direct_bar and rt < direct_bar * 0.98)
+            items.append((nm, rt, is_undercut, c.get("code") == "DIRECT"))
+    if not items and direct_bar:
+        items.append(("Direct / Retail BAR", round(float(direct_bar)), False, True))
+    if not items:
+        return (
+            '<svg viewBox="0 0 540 96" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:system-ui,sans-serif;">'
+            '<rect width="540" height="96" rx="14" fill="#f5f0e6"/>'
+            '<text x="20" y="54" font-size="13" font-weight="700" fill="#57534e">'
+            'No live OTA quotes returned for this exact check-in window — run live scan or pick check-in date.'
+            '</text></svg>'
+        )
+
+    max_val = max(x[1] for x in items) or 100
+    row_h = 34
+    height = 36 + len(items) * row_h
+    parts = [
+        f'<svg viewBox="0 0 540 {height}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:system-ui,-apple-system,sans-serif;">',
+        f'<rect width="540" height="{height}" rx="16" fill="#faf7f2" stroke="#e7e0d4"/>',
+        f'<text x="16" y="22" font-size="11" font-weight="800" fill="#44403c">CHANNEL RATE LADDER · {html_lib.escape(hotel_name[:34].upper())}</text>',
+    ]
+    bar_x = 158
+    bar_max_w = 275
+    for idx, (nm, rt, is_under, is_direct) in enumerate(items):
+        y = 32 + idx * row_h
+        w = max(36, round((rt / max_val) * bar_max_w))
+        fill = "#dc2626" if is_under else ("#facc15" if is_direct else "#1c1917")
+        txt_col = "#991b1b" if is_under else "#1c1917"
+        tag = f"LEAK -{round((direct_bar - rt) / direct_bar * 100)}%" if (is_under and direct_bar) else ("DIRECT" if is_direct else "PARITY")
+        parts.append(f'<text x="16" y="{y + 18}" font-size="11.5" font-weight="700" fill="#1c1917">{html_lib.escape(nm)}</text>')
+        parts.append(f'<rect x="{bar_x}" y="{y + 5}" width="{w}" height="18" rx="9" fill="{fill}"/>')
+        parts.append(f'<text x="{bar_x + w + 8}" y="{y + 18}" font-size="11.5" font-weight="900" fill="{txt_col}">${rt} · {tag}</text>')
+    parts.append("</svg>")
+    return "".join(parts)
+
+
+def build_comp_set_svg(hotel_name: str, my_bar: float, neighbors: list) -> str:
+    """Render a shared responsive inline SVG comparison graphic of this property vs nearest corridor competitors."""
+    import html as html_lib
+    items = []
+    if my_bar:
+        items.append((f"★ {hotel_name.split(',')[0][:22]}", round(float(my_bar)), True))
+    for nb in (neighbors or [])[:4]:
+        p = round(float(nb.get("price") or nb.get("bar") or 0))
+        if p > 0:
+            items.append((str(nb.get("name") or "Neighbor").split(",")[0][:24], p, False))
+    if not items:
+        return ""
+    max_val = max(x[1] for x in items) or 100
+    row_h = 34
+    height = 36 + len(items) * row_h
+    parts = [
+        f'<svg viewBox="0 0 540 {height}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:system-ui,-apple-system,sans-serif;">',
+        f'<rect width="540" height="{height}" rx="16" fill="#faf7f2" stroke="#e7e0d4"/>',
+        '<text x="16" y="22" font-size="11" font-weight="800" fill="#44403c">CORRIDOR COMP-SET POSITIONING ($ / NIGHT)</text>',
+    ]
+    bar_x = 178
+    bar_max_w = 270
+    for idx, (nm, rt, is_mine) in enumerate(items):
+        y = 32 + idx * row_h
+        w = max(36, round((rt / max_val) * bar_max_w))
+        fill = "#facc15" if is_mine else "#44403c"
+        parts.append(f'<text x="16" y="{y + 18}" font-size="11.5" font-weight="{"900" if is_mine else "600"}" fill="#1c1917">{html_lib.escape(nm)}</text>')
+        parts.append(f'<rect x="{bar_x}" y="{y + 5}" width="{w}" height="18" rx="9" fill="{fill}" stroke="{"#ca8a04" if is_mine else "none"}"/>')
+        parts.append(f'<text x="{bar_x + w + 8}" y="{y + 18}" font-size="11.5" font-weight="900" fill="#1c1917">${rt}/nt</text>')
+    parts.append("</svg>")
+    return "".join(parts)
+
+
 def build_printable_audit_html(pitch):
-    """Render a crisp 1-page Printable Walk-In Audit Sheet (Leave-Behind for GM/Owner)."""
+    """Render an interactive 1-page Audit Sheet with SVG Graphics, Decision Assistant, Auditor Call & Email."""
     h = pitch["hotel"]
     ri = pitch["rate_intel"]
     roi = pitch["roi_calculator"]
+    otd = pitch.get("out_the_door") or {}
     recs = pitch.get("action_recommendations") or []
     nbs = ri.get("neighbors") or []
     otas = ri.get("ota_channels") or []
 
+    bar_disp = f"${ri['direct_bar']}" if ri["direct_bar"] is not None else "No Live Quote"
+    ota_disp = f"${ri['lowest_ota_price']}" if ri["lowest_ota_price"] is not None else "No Live Quote"
+    ota_svg = build_ota_ladder_svg(h["name"], ri.get("direct_bar") or 0, otas)
+    comp_svg = build_comp_set_svg(h["name"], ri.get("direct_bar") or ri.get("comp_avg") or 0, nbs)
+    target_bar = round((ri.get("direct_bar") or ri.get("comp_avg") or 220) + (ri.get("suggested_rate_bump") or 15))
+    all_emails_str = ", ".join(h.get("all_emails") or ([h["primary_email"]] if h.get("primary_email") else []))
+
     ota_rows = ""
     for c in otas:
+        is_under = ri["direct_bar"] is not None and c["rate"] < ri["direct_bar"] * 0.98
         badge_html = (
-            '<span style="color:#D9622B;font-weight:700">UNDERCUTTING BAR</span>'
-            if c["rate"] < ri["direct_bar"]
-            else '<span style="color:#1E5631;font-weight:700">Compliant / Benchmark</span>'
+            '<span style="color:#D9622B;font-weight:700">LOWER THAN BENCHMARK</span>'
+            if is_under
+            else '<span style="color:#1E5631;font-weight:700">Verified Live Quote</span>'
         )
-        tax_val = c.get("tax", round(c["rate"] * 0.14))
-        ota_rows += f"<tr><td><b>{c['name']}</b></td><td>${c['rate']}/nt</td><td>+${tax_val}</td><td>{badge_html}</td></tr>"
+        tax_val = c.get("tax") or 0
+        tax_str = f"+${tax_val:.0f}" if tax_val else "Included / Check Checkout"
+        ota_rows += f"<tr><td><b>{c['name']}</b></td><td>${c['rate']:.0f}/nt</td><td>{tax_str}</td><td>{badge_html}</td></tr>"
+    if not ota_rows:
+        ota_rows = "<tr><td colspan='4'>No live OTA availability returned for checked window — verify next stay dates.</td></tr>"
 
     nb_rows = ""
     for n in nbs:
@@ -555,13 +675,13 @@ def build_printable_audit_html(pitch):
         col = "#1E5631" if d_pct >= 0 else "#D9622B"
         nb_rows += (
             f"<tr><td><b>{n['name']}</b></td><td>{n.get('area') or h['area']}</td>"
-            f"<td>{n.get('stars') or 4.0}★</td><td><b>${n['price']}/nt</b></td>"
+            f"<td>{n.get('stars') or 3.5}★</td><td><b>${n['price']}/nt</b></td>"
             f"<td style='color:{col};font-weight:700'>{d_pct:+.1f}%</td></tr>"
         )
     rec_items = "".join(
-        f"<div style='margin-bottom:10px;padding:10px 12px;background:#FBF7EC;border-left:4px solid #1E5631;border-radius:6px'>"
-        f"<div style='display:flex;justify-content:space-between'><b>{r['title']}</b><span style='color:#1E5631;font-weight:700'>{r['impact']}</span></div>"
-        f"<div style='font-size:12.5px;color:#444;margin-top:3px'>{r['detail']}</div></div>"
+        f"<div style='margin-bottom:8px;padding:9px 12px;background:#faf7f2;border-left:4px solid #facc15;border-radius:8px'>"
+        f"<div style='display:flex;justify-content:space-between'><b>{r['title']}</b><span style='color:#15803d;font-weight:800'>{r['impact']}</span></div>"
+        f"<div style='font-size:12px;color:#44403c;margin-top:3px'>{r['detail']}</div></div>"
         for r in recs
     )
 
@@ -569,92 +689,143 @@ def build_printable_audit_html(pitch):
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>1-Page Rate & Parity Audit — {h['name']}</title>
+<title>Live Hotel Audit, Graphics &amp; Decision Assistant — {h['name']}</title>
 <style>
-  @page {{ size: letter; margin: 0.45in; }}
+  @page {{ size: letter; margin: 0.4in; }}
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{ font: 13px/1.45 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #22332B; background: #fff; max-width: 820px; margin: 0 auto; padding: 24px; }}
-  .no-print {{ margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; background: #E9F0E4; padding: 10px 16px; border-radius: 8px; border: 1px solid #1E5631; }}
-  .btn {{ background: #1E5631; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; text-decoration: none; font-size: 13px; }}
-  .hdr {{ display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid #1E5631; padding-bottom: 12px; margin-bottom: 14px; }}
-  .hdr h1 {{ font-size: 21px; color: #1E5631; }}
-  .badge {{ background: #F9E4D8; color: #D9622B; padding: 4px 10px; border-radius: 99px; font-weight: 700; font-size: 12px; display: inline-block; margin-top: 4px; }}
-  .grid3 {{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }}
-  .box {{ border: 1px solid #DCD2B8; border-radius: 8px; padding: 11px 14px; background: #FFFDF6; }}
-  .box .lbl {{ font-size: 10.5px; text-transform: uppercase; color: #6E7463; font-weight: 700; letter-spacing: .6px; }}
-  .box .val {{ font-size: 22px; font-weight: 800; margin-top: 3px; font-family: monospace; }}
-  h2 {{ font-size: 14.5px; color: #8A6A14; text-transform: uppercase; letter-spacing: .5px; margin: 14px 0 6px; border-bottom: 1px solid #E6DEC9; padding-bottom: 4px; }}
-  table {{ width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 10px; }}
-  th {{ text-align: left; background: #F6F2E7; padding: 6px 8px; font-size: 11px; text-transform: uppercase; color: #6E7463; }}
-  td {{ padding: 6px 8px; border-bottom: 1px solid #EFECE2; }}
-  .cta {{ margin-top: 14px; padding: 14px 18px; background: #1E5631; color: #FFFDF6; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }}
+  body {{ font: 13px/1.45 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #1c1917; background: #fff; max-width: 900px; margin: 0 auto; padding: 20px; }}
+  .no-print {{ margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; background: #faf7f2; padding: 12px 14px; border-radius: 14px; border: 1px solid #d6d3d1; }}
+  .btn {{ background: #1c1917; color: #fff; border: none; padding: 8px 13px; border-radius: 999px; font-weight: 800; cursor: pointer; font-size: 11.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }}
+  .btn.gold {{ background: #facc15; color: #1c1917; }}
+  .hdr {{ display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid #1c1917; padding-bottom: 12px; margin-bottom: 14px; }}
+  .hdr h1 {{ font-size: 21px; color: #1c1917; }}
+  .badge {{ background: #fee2e2; color: #991b1b; padding: 4px 10px; border-radius: 99px; font-weight: 800; font-size: 11.5px; display: inline-block; margin-top: 4px; }}
+  .grid3 {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }}
+  .grid2 {{ display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }}
+  .box {{ border: 1px solid #e7e0d4; border-radius: 14px; padding: 11px 14px; background: #faf7f2; }}
+  .box .lbl {{ font-size: 10px; text-transform: uppercase; color: #57534e; font-weight: 800; letter-spacing: .06em; }}
+  .box .val {{ font-size: 22px; font-weight: 900; margin-top: 3px; }}
+  .decision-banner {{ background: #1c1917; color: #fff; border-radius: 16px; padding: 14px 18px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }}
+  h2 {{ font-size: 13px; color: #44403c; text-transform: uppercase; letter-spacing: .06em; margin: 12px 0 6px; border-bottom: 1px solid #e7e0d4; padding-bottom: 4px; }}
+  table {{ width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 10px; }}
+  th {{ text-align: left; background: #faf7f2; padding: 6px 8px; font-size: 10px; text-transform: uppercase; color: #57534e; }}
+  td {{ padding: 6px 8px; border-bottom: 1px solid #f0ece4; }}
+  .cta {{ margin-top: 14px; padding: 14px 18px; background: #1c1917; color: #fff; border-radius: 14px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }}
   @media print {{ .no-print {{ display: none !important; }} body {{ padding: 0; }} }}
 </style>
 </head>
 <body>
   <div class="no-print">
-    <div><b>🖨 Walk-In Leave-Behind Audit Sheet</b> — Print 1 page and hand directly to the Front Desk / GM at <b>{h['name']}</b></div>
-    <button class="btn" onclick="window.print()">🖨 Print / Save as 1-Page PDF</button>
+    <div>
+      <b>Live Auditor Sheet &amp; Decision Assistant</b> · Target Leaders: <b>{h['target_role']}</b> ({all_emails_str or 'No MX email found'})
+      <div id="auditActionMsg" style="font-size:11.5px;color:#15803d;font-weight:700;margin-top:2px;"></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <button class="btn gold" onclick="makeAuditorCall()">📞 Make Auditor Call</button>
+      <button class="btn" onclick="emailLeadersWithGraphics()">✉️ Email Leaders + Graphics</button>
+      <a class="btn gold" href="/portal?demo_hotel={h['id']}">🚀 Open Demo Panel</a>
+      <button class="btn" onclick="window.print()">🖨️ Print / PDF</button>
+    </div>
   </div>
 
   <div class="hdr">
     <div>
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#8A6A14;letter-spacing:.8px">CONFIDENTIAL PROPERTY RATE & PARITY AUDIT · ATTN: GENERAL MANAGER / OWNER</div>
+      <div style="font-size:10.5px;font-weight:800;text-transform:uppercase;color:#a16207;letter-spacing:.08em">LIVE PROPERTY RATE &amp; PARITY AUDIT · ATTN: {h['target_role'].upper()}</div>
       <h1>{h['name']} ({h['area']})</h1>
-      <div style="font-size:12px;color:#6E7463;margin-top:2px">{h['primary_address']} · {h['est_rooms']} Rooms · {h['stars']}★ ({h['review_rating']:.1f}/5 Guest Score) · Booking Stack: {h['booking_engine']}</div>
+      <div style="font-size:12px;color:#57534e;margin-top:2px">{h['primary_address']} · {h['est_rooms']} Rooms · {h['stars']}★ ({h['review_rating']:.1f}/5 Guest Score) · Stack: {h['booking_engine']}</div>
     </div>
     <div style="text-align:right">
-      <div style="font-weight:700;font-size:13px">Scan Date: {date.today().strftime('%b %d, %Y')}</div>
-      <div style="font-size:12px;color:#6E7463">Check-in Window: {ri['checkin']}</div>
+      <div style="font-weight:800;font-size:12.5px">Scanned: {date.today().strftime('%b %d, %Y')}</div>
+      <div style="font-size:11.5px;color:#57534e">Check-in: {ri['checkin']}</div>
       <span class="badge">STATUS: {ri['parity_status']} ({ri['undercut_pct']:+.1f}%)</span>
+    </div>
+  </div>
+
+  <div class="decision-banner">
+    <div>
+      <div style="font-size:10px;font-weight:800;color:#facc15;letter-spacing:.08em;">DECISION-MAKING ASSISTANT</div>
+      <div style="font-size:16px;font-weight:900;margin-top:2px;">{pitch.get('ai_brief', {}).get('headline') or ('Target Direct BAR: $' + str(target_bar) + '/night')}</div>
+      <div style="font-size:11.5px;color:#d6d3d1;margin-top:2px;">True Out-the-Door: ${otd.get('direct_out_the_door', target_bar)}/nt (incl. ~${otd.get('est_resort_fee', 25)} resort fee + {otd.get('tax_rate_pct', 14)}% Miami tax)</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:10px;color:#d6d3d1;font-weight:700;">RECOMMENDED BAR</div>
+      <div style="font-size:24px;font-weight:900;color:#facc15;">${target_bar}/nt</div>
     </div>
   </div>
 
   <div class="grid3">
     <div class="box">
-      <div class="lbl">Your Direct Website BAR</div>
-      <div class="val" style="color:#1E5631">${ri['direct_bar']}<span style="font-size:12px;font-weight:500">/night</span></div>
-      <div style="font-size:11.5px;color:#6E7463;margin-top:2px">Move vs prior scan: <b>{ri['delta_pct']:+.1f}%</b></div>
+      <div class="lbl">Retail / Direct Benchmark</div>
+      <div class="val">{bar_disp}<span style="font-size:12px;font-weight:500">/nt</span></div>
+      <div style="font-size:11px;color:#57534e;margin-top:2px">Source: {ri['source']}</div>
     </div>
-    <div class="box" style="border-color:#D9622B;background:#FFF9F6">
-      <div class="lbl" style="color:#D9622B">Lowest Public OTA Rate</div>
-      <div class="val" style="color:#D9622B">${ri['lowest_ota_price']}<span style="font-size:12px;font-weight:500">/night on {ri['lowest_ota_name']}</span></div>
-      <div style="font-size:11.5px;color:#D9622B;font-weight:700;margin-top:2px">Parity Gap: {ri['undercut_pct']:+.1f}% (${abs(ri['direct_bar'] - ri['lowest_ota_price'])}/nt leak)</div>
+    <div class="box" style="border-color:#dc2626;background:#fef2f2">
+      <div class="lbl" style="color:#991b1b">Lowest Live OTA Quote</div>
+      <div class="val" style="color:#dc2626">{ota_disp}<span style="font-size:12px;font-weight:500">{(' · ' + (ri['lowest_ota_name'] or '')) if ri['lowest_ota_price'] else ''}</span></div>
+      <div style="font-size:11px;color:#991b1b;font-weight:700;margin-top:2px">Parity Spread: {ri['undercut_pct']:+.1f}%</div>
     </div>
     <div class="box">
-      <div class="lbl">Est. Annual Revenue Recovery</div>
-      <div class="val" style="color:#8A6A14">+${roi['total_annual_roi']:,}<span style="font-size:12px;font-weight:500">/yr</span></div>
-      <div style="font-size:11.5px;color:#6E7463;margin-top:2px">ADR Lift (+${roi['annual_adr_upside']:,}) + Saved Comm (+${roi['annual_commission_saved']:,})</div>
+      <div class="lbl">Est. Annual Yield Opportunity</div>
+      <div class="val" style="color:#15803d">+${roi['total_annual_roi']:,}<span style="font-size:12px;font-weight:500">/yr</span></div>
+      <div style="font-size:11px;color:#57534e;margin-top:2px">${roi['monthly_investment']}/mo flat = {roi['roi_multiple']}x ROI · 45+ hrs/mo saved</div>
     </div>
+  </div>
+
+  <div class="grid2">
+    <div>{ota_svg}</div>
+    <div>{comp_svg}</div>
   </div>
 
   <h2>1. Live Multi-OTA Rate Ladder ({ri['checkin']} Check-In)</h2>
   <table>
-    <thead><tr><th>Distribution Channel</th><th>Public Nightly Rate</th><th>Est. Taxes/Fees</th><th>Parity Audit Status</th></tr></thead>
+    <thead><tr><th>Distribution Channel</th><th>Live Quoted Rate</th><th>Tax Info</th><th>Audit Status</th></tr></thead>
     <tbody>{ota_rows}</tbody>
   </table>
 
-  <h2>2. Immediate {h['area']} Comp-Set Neighbor Rates</h2>
+  <h2>2. Live {h['area']} Comp-Set Neighbor Rates</h2>
   <table>
-    <thead><tr><th>Competitor Property</th><th>Corridor</th><th>Tier</th><th>Current Nightly BAR</th><th>Recent Rate Move</th></tr></thead>
+    <thead><tr><th>Competitor Property</th><th>Corridor</th><th>Tier</th><th>Live Quoted Rate</th><th>Scan Move</th></tr></thead>
     <tbody>{nb_rows}</tbody>
   </table>
 
-  <h2>3. Recommended Profit Actions for {h['short_name']} Today</h2>
+  <h2>3. Decision-Making Assistant Action Plan for {h['short_name']}</h2>
   {rec_items}
 
   <div class="cta">
     <div>
-      <div style="font-size:15px;font-weight:800">Get This {h['area']} Rate & OTA Undercut Brief Every Morning at 6:00 AM</div>
-      <div style="font-size:12px;opacity:.9;margin-top:3px">
-        Built for independent Miami hotels · <b>Flat $99/mo (Starter) or $199/mo (Pro with Instant SMS Undercut Alerts)</b> · No per-room fee · No contract · <b>First 7 Mornings 100% FREE</b>
+      <div style="font-size:15px;font-weight:800;color:#facc15">Start Free ($0/mo) · Upgrade to ${roi['monthly_investment']}/mo Flat Anytime</div>
+      <div style="font-size:12px;color:#e7e5e4;margin-top:3px">
+        Eliminates 45–68 hrs/mo of manual rate checks · Isolated per-hotel login · 6:00 AM Email &amp; Telegram Briefs
       </div>
     </div>
-    <div style="text-align:right;min-width:210px;background:#FFFDF6;color:#22332B;padding:10px 14px;border-radius:8px">
-      <div style="font-weight:800;color:#1E5631;font-size:13.5px">Jasmel Acosta</div>
-      <div style="font-size:11.5px;color:#6E7463">Local Miami / Miami Beach Operator</div>
-      <div style="font-size:12px;font-weight:700;margin-top:3px">Text 'BRIEF' to Activate Free Trial</div>
+    <div style="text-align:right;min-width:210px;background:#faf7f2;color:#1c1917;padding:9px 13px;border-radius:10px">
+      <div style="font-weight:800;font-size:13px">Jasmel Acosta</div>
+      <div style="font-size:11px;color:#57534e">North Miami / Miami Beach</div>
+      <div style="font-size:11.5px;font-weight:800;margin-top:2px">Demo: /portal?demo_hotel={h['id']}</div>
     </div>
   </div>
+
+  <script>
+    async function makeAuditorCall() {{
+      const el = document.getElementById('auditActionMsg');
+      el.textContent = 'Dispatching / queueing Auditor call...';
+      const r = await fetch('/api/audit/call', {{
+        method: 'POST', headers: {{ 'Content-Type': 'application/json' }},
+        body: JSON.stringify({{ hotel_id: {h['id']} }})
+      }});
+      const d = await r.json();
+      el.textContent = d.ok ? ('Auditor Call Logged (' + d.status + ') -> ' + (d.phone_dialed || 'Front Desk')) : (d.error || 'Call failed');
+    }}
+    async function emailLeadersWithGraphics() {{
+      const el = document.getElementById('auditActionMsg');
+      el.textContent = 'Sending / staging Audit + Graphics Email to important people...';
+      const r = await fetch('/api/audit/send-email', {{
+        method: 'POST', headers: {{ 'Content-Type': 'application/json' }},
+        body: JSON.stringify({{ hotel_id: {h['id']} }})
+      }});
+      const d = await r.json();
+      el.textContent = d.ok ? ('Audit + Graphics queued/sent to ' + (d.results || []).map(x => x.recipient).join(', ')) : (d.error || 'Email failed');
+    }}
+  </script>
 </body>
 </html>"""

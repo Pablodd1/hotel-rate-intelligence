@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Client Portal — Isolated Comp-Set Rate Scraper, Memory & Strategy</title>
+<style>
+  :root {
+    --charcoal: #1c1917;
+    --gold: #facc15;
+    --gold-deep: #eab308;
+    --txt: #1c1917;
+    --sub: #44403c;
+    --muted: #57534e;
+    --ok: #15803d;
+    --danger: #dc2626;
+    --glass-window: rgba(232, 222, 206, 0.44);
+    --glass-card: rgba(255, 255, 255, 0.62);
+    --glass-border: rgba(255, 255, 255, 0.86);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 75% 20%, rgba(255, 252, 240, 0.22), rgba(180, 164, 140, 0.16)),
+      url('/assets/v4-living-room-bg.jpg') center center / cover fixed no-repeat,
+      linear-gradient(145deg, #dfd5c6 0%, #efe9df 50%, #d5c8b6 100%);
+    color: var(--txt);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
+    padding: 14px 20px 40px;
+  }
+
+  /* ── Top Frosted Client Navigation Bar ── */
+  .client-topbar {
+    background: rgba(245, 239, 230, 0.78);
+    backdrop-filter: blur(24px) saturate(150%);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 999px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    box-shadow: 0 10px 30px rgba(28, 25, 23, 0.08);
+    margin-bottom: 12px;
+  }
+  .brand-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255, 255, 255, 0.86); border: 1px solid #fff;
+    padding: 6px 14px; border-radius: 999px; font-weight: 800; font-size: 13px;
+  }
+  .dot-live { width: 9px; height: 9px; border-radius: 50%; background: #16a34a; box-shadow: 0 0 8px #16a34a; }
+  .tab-pills {
+    display: inline-flex; gap: 4px; background: rgba(255, 255, 255, 0.82);
+    padding: 4px; border-radius: 999px; border: 1px solid #fff;
+  }
+  .tab-btn {
+    border: none; background: transparent; color: var(--sub);
+    font-size: 11.5px; font-weight: 700; padding: 6px 13px; border-radius: 999px; cursor: pointer;
+  }
+  .tab-btn.active { background: var(--charcoal); color: #fff; font-weight: 800; }
+
+  .btn {
+    border: none; border-radius: 999px; padding: 7px 14px; font-size: 11.5px; font-weight: 800;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 5px; text-decoration: none;
+    background: var(--charcoal); color: #fff;
+  }
+  .btn.gold { background: var(--gold); color: var(--charcoal); border: 1px solid #eab308; }
+  .btn.ghost { background: rgba(255,255,255,0.85); color: var(--charcoal); border: 1px solid rgba(28,25,23,0.16); }
+  .btn.xs { padding: 4px 9px; font-size: 10.5px; }
+
+  /* ── Tier Switcher & Isolation Banner ── */
+  .isolation-strip {
+    background: rgba(28, 25, 23, 0.92); color: #ffffff;
+    border-radius: 20px; padding: 10px 18px; margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .tier-switch-pills { display: inline-flex; gap: 5px; align-items: center; flex-wrap: wrap; }
+  .tier-pill {
+    border: 1px solid rgba(255,255,255,0.22); background: rgba(255,255,255,0.08); color: #e7e5e4;
+    font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 999px; cursor: pointer;
+  }
+  .tier-pill.active { background: var(--gold); color: var(--charcoal); border-color: var(--gold); font-weight: 900; }
+
+  /* ── Main Spatial Window ── */
+  .portal-window {
+    background: var(--glass-window);
+    backdrop-filter: blur(28px) saturate(145%);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 20px 24px;
+    box-shadow: 0 24px 64px rgba(28, 25, 23, 0.14);
+  }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  .glass-card {
+    background: var(--glass-card);
+    backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(255, 255, 255, 0.86);
+    border-radius: 22px;
+    padding: 16px 18px;
+    box-shadow: 0 8px 24px rgba(28, 25, 23, 0.06);
+    margin-bottom: 14px;
+  }
+  .glass-card.dark { background: var(--charcoal); color: #ffffff; border-color: rgba(255,255,255,0.15); }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 14px; }
+  .kpi-box {
+    background: rgba(255,255,255,0.78); border: 1px solid #fff; border-radius: 18px; padding: 13px 15px;
+  }
+  .kpi-box .lbl { font-size: 10.5px; font-weight: 800; text-transform: uppercase; color: var(--muted); }
+  .kpi-box .val { font-size: 25px; font-weight: 900; margin-top: 3px; letter-spacing: -0.02em; }
+  .kpi-box .sub { font-size: 11px; color: var(--sub); margin-top: 2px; }
+
+  table.portal-tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+  table.portal-tbl th {
+    text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--muted); padding: 8px 9px; border-bottom: 1px solid rgba(28,25,23,0.14);
+  }
+  table.portal-tbl td { padding: 9px; border-bottom: 1px solid rgba(28,25,23,0.08); vertical-align: middle; }
+  table.portal-tbl tr.my-row { background: rgba(250, 204, 21, 0.22); font-weight: 700; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px;
+    font-size: 10px; font-weight: 800; white-space: nowrap;
+  }
+  .badge.ok { background: rgba(21, 128, 61, 0.15); color: #166534; }
+  .badge.danger { background: rgba(220, 38, 38, 0.15); color: #991b1b; }
+  .badge.gold { background: var(--gold); color: var(--charcoal); }
+  .badge.dark { background: var(--charcoal); color: #fff; }
+
+  /* ── Login Modal Gate ── */
+  .login-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(15, 13, 11, 0.68); backdrop-filter: blur(18px);
+    display: none; align-items: center; justify-content: center; padding: 20px;
+  }
+  .login-card {
+    width: 100%; max-width: 480px;
+    background: rgba(248, 244, 237, 0.96); border: 2px solid #fff;
+    border-radius: 28px; padding: 26px; box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+  }
+  .inp {
+    width: 100%; padding: 9px 12px; border-radius: 12px; border: 1px solid rgba(28,25,23,0.2);
+    background: #fff; font-size: 12.5px; font-weight: 600; color: var(--charcoal);
+  }
+</style>
+</head>
+<body>
+
+  <!-- HOTEL CLIENT LOGIN OVERLAY -->
+  <div class="login-overlay" id="clientLoginOverlay">
+    <div class="login-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <span class="badge gold">ISOLATED HOTEL ACCOUNT LOGIN</span>
+        <a href="/website" style="font-size:11.5px; font-weight:800; color:var(--charcoal); text-decoration:none;">← Back to Website</a>
+      </div>
+      <h2 style="font-size:22px; font-weight:900; letter-spacing:-0.02em;">Sign In to Your Hotel Portal</h2>
+      <p style="font-size:12px; color:var(--sub); margin:4px 0 14px;">
+        Each hotel account is strictly isolated to its own property and assigned competitor comp-set.
+      </p>
+
+      <div style="margin-bottom:10px;">
+        <label style="font-size:11px; font-weight:800; display:block; margin-bottom:4px;">HOTEL USERNAME OR EMAIL</label>
+        <input class="inp" type="text" id="loginUser" placeholder="e.g. avalon, vagabond, waterside" value="avalon">
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="font-size:11px; font-weight:800; display:block; margin-bottom:4px;">PASSWORD</label>
+        <input class="inp" type="password" id="loginPass" placeholder="Password" value="demo1234">
+      </div>
+      <div id="loginErrMsg" style="font-size:12px; font-weight:700; color:var(--danger); margin-bottom:8px;"></div>
+
+      <button class="btn" style="width:100%; justify-content:center; padding:11px; font-size:13px;" onclick="doClientLogin(false)">
+        🔐 Sign In to Isolated Hotel Account →
+      </button>
+
+      <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(28,25,23,0.12);">
+        <div style="font-size:11px; font-weight:800; color:var(--muted); margin-bottom:8px; text-transform:uppercase;">1-Click Showcase Accounts (Compare Free → $99 → $199):</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <button class="btn gold" style="width:100%; justify-content:space-between;" onclick="quickDemoLogin('avalon','demo1234')">
+            <span>★ Mock Demo Client #1: Avalon Hotel (South Beach)</span>
+            <span>Pro $199 Tier →</span>
+          </button>
+          <button class="btn ghost" style="width:100%; justify-content:space-between;" onclick="quickDemoLogin('vagabond','demo1234')">
+            <span>The Vagabond Hotel (MiMo / Biscayne)</span>
+            <span>Free $0 Tier →</span>
+          </button>
+          <button class="btn ghost" style="width:100%; justify-content:space-between;" onclick="quickDemoLogin('waterside','demo1234')">
+            <span>Waterside Hotel &amp; Suites (North Beach)</span>
+            <span>Core $99 Tier →</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="client-topbar">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <div class="brand-pill">
+        <span class="dot-live"></span>
+        <span id="topHotelName">Avalon Hotel South Beach</span>
+      </div>
+      <span class="badge gold" id="topTierBadge">TIER 3 · PRO $199/MO</span>
+    </div>
+
+    <div class="tab-pills">
+      <button class="tab-btn active" id="cbtn-comp" onclick="switchClientTab('comp')">1. My Comp-Set &amp; Rates</button>
+      <button class="tab-btn" id="cbtn-memory" onclick="switchClientTab('memory')">2. Pricing Memory &amp; Tags</button>
+      <button class="tab-btn" id="cbtn-calls" onclick="switchClientTab('calls')">3. Courtesy Call Desk</button>
+      <button class="tab-btn" id="cbtn-tiers" onclick="switchClientTab('tiers')">4. Compare Tiers ($0 → $99 → $199)</button>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:6px;">
+      <button class="btn gold" onclick="triggerClientCompScrape()" id="btnClientScrape">⚡ Scrape My Comp-Set</button>
+      <a class="btn ghost" href="/website">🌐 Website</a>
+      <button class="btn ghost" onclick="showLoginModal()">⇄ Switch Hotel Account</button>
+    </div>
+  </header>
+
+  <!-- TENANT ISOLATION & LIVE TIER COMPARISON BAR -->
+  <div class="isolation-strip">
+    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+      <span class="badge gold">🔒 STRICT ACCOUNT ISOLATION</span>
+      <span style="font-size:12px;" id="isolationDesc">
+        Logged in as <b>avalon</b> · Scoped exclusively to your assigned South Beach comp-set. Other hotels cannot view your data.
+      </span>
+    </div>
+    <div class="tier-switch-pills">
+      <span style="font-size:11px; color:#a8a29e; font-weight:700;">Compare Tier Experience Live:</span>
+      <button class="tier-pill" id="tpill-free" onclick="previewClientTier('free')">Tier 1: Free ($0)</button>
+      <button class="tier-pill" id="tpill-core_99" onclick="previewClientTier('core_99')">Tier 2: Core ($99)</button>
+      <button class="tier-pill active" id="tpill-pro_199" onclick="previewClientTier('pro_199')">Tier 3: Pro ($199)</button>
+    </div>
+  </div>
+
+  <!-- MAIN CLIENT PORTAL WINDOW -->
+  <main class="portal-window">
+
+    <!-- ====================================================================
+         TAB 1: MY HOTEL VS. ASSIGNED COMP-SET (RATE SCRAPER & STRATEGY)
+         ==================================================================== -->
+    <section class="tab-pane active" id="ctab-comp">
+      <div class="kpi-row">
+        <div class="kpi-box" style="background:rgba(250,204,21,0.25); border-color:#eab308;">
+          <div class="lbl">MY LIVE BAR RATE</div>
+          <div class="val" id="kpiMyBar">$219</div>
+          <div class="sub" id="kpiMyName">Avalon Hotel South Beach</div>
+        </div>
+        <div class="kpi-box">
+          <div class="lbl">ASSIGNED COMP-SET AVG</div>
+          <div class="val" id="kpiCompAvg">$279</div>
+          <div class="sub" id="kpiCompSpread">Spread: -$60 vs neighbors</div>
+        </div>
+        <div class="kpi-box">
+          <div class="lbl">COMP-SET OTA UNDERCUTS</div>
+          <div class="val" id="kpiUndercuts" style="color:var(--danger);">5</div>
+          <div class="sub">Active wholesale/OTA leaks</div>
+        </div>
+        <div class="kpi-box">
+          <div class="lbl">STAFF LABOR SAVED</div>
+          <div class="val" id="kpiHoursSaved" style="color:var(--ok);">68 hrs/mo</div>
+          <div class="sub" id="kpiLaborUsd">$1,700/mo front-desk time saved</div>
+        </div>
+        <div class="kpi-box" style="background:var(--charcoal); color:#fff;">
+          <div class="lbl" style="color:var(--gold);">TODAY'S STRATEGY CALL</div>
+          <div class="val" id="kpiRecAction" style="font-size:17px; color:var(--gold); margin-top:6px;">RAISE BAR +$25/NT</div>
+          <div class="sub" id="kpiRecTarget" style="color:#d6d3d1;">Target BAR: $244</div>
+        </div>
+      </div>
+
+      <!-- Strategy Recommendation Banner -->
+      <div class="glass-card" style="display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; background:rgba(255,255,255,0.82);">
+        <div>
+          <span class="badge dark">DAILY REVENUE &amp; PARITY RECOMMENDATION · DECISION ASSISTANT</span>
+          <div style="font-size:14.5px; font-weight:800; margin-top:4px;" id="strategyExplainText">
+            Loading live corridor comparison for your assigned comp-set...
+          </div>
+          <div id="portalAuditorFeedback" style="font-size:11.5px; font-weight:700; margin-top:5px;"></div>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+          <button class="btn" onclick="triggerPortalAuditorCall()" id="btnPortalAuditorCall">📞 Make Auditor Call</button>
+          <a class="btn ghost" id="portalPrintableAuditLink" href="/audit?hotel_id=1" target="_blank">📊 Printable Audit</a>
+          <div id="tierCapNotice" style="display:none;">
+            <button class="btn gold" onclick="switchClientTab('tiers')">🔓 Unlock All Assigned Competitors in Core ($99) →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Graphics: OTA Channel Ladder + Corridor Comp-Set SVG -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:12px; margin-bottom:14px;">
+        <div class="glass-card" id="portalOtaSvgBox" style="padding:12px;"></div>
+        <div class="glass-card" id="portalCompSvgBox" style="padding:12px;"></div>
+      </div>
+
+      <!-- Comparative Table of Assigned Hotels Only -->
+      <div class="glass-card" style="overflow-x:auto;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+          <div>
+            <h3 style="font-size:16px; font-weight:800;">My Assigned Competitor Comp-Set (Real-Time Daily Rates &amp; Parity)</h3>
+            <p style="font-size:11.5px; color:var(--muted);">Showing only the properties assigned to your hotel account. Click "+ Tag" to record private strategy notes.</p>
+          </div>
+          <span class="badge ok" id="compCountBadge">9 Assigned Hotels</span>
+        </div>
+
+        <table class="portal-tbl">
+          <thead>
+            <tr>
+              <th>Property (Assigned Comp-Set)</th>
+              <th>Live BAR</th>
+              <th>Prev BAR</th>
+              <th>Change</th>
+              <th>Multi-OTA Quote Breakdown</th>
+              <th>Parity Status</th>
+              <th>Est. Occ</th>
+              <th>Pricing Personality</th>
+              <th>My Strategy Tags</th>
+            </tr>
+          </thead>
+          <tbody id="clientCompTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 2: COMPETITOR PRICING MEMORY & CUSTOM STRATEGY TAGS
+         ==================================================================== -->
+    <section class="tab-pane" id="ctab-memory">
+      <div style="display:grid; grid-template-columns: 1fr 1.35fr; gap:14px;">
+        <!-- Left: Add Private Strategy Tag on Assigned Comp-Set -->
+        <div class="glass-card">
+          <span class="badge gold">PRIVATE ACCOUNT TAGS</span>
+          <h3 style="font-size:16px; font-weight:800; margin:6px 0 4px;">Tag a Competitor in Your Comp-Set</h3>
+          <p style="font-size:11.5px; color:var(--sub); margin-bottom:12px;">
+            Record how your neighbors behave (e.g., <i>"Drops BAR every Thursday at 6 PM"</i> or <i>"Leaks -30% on Agoda"</i>). Visible only to your hotel login.
+          </p>
+
+          <div style="margin-bottom:9px;">
+            <label style="font-size:11px; font-weight:800; display:block; margin-bottom:3px;">SELECT ASSIGNED HOTEL</label>
+            <select class="inp" id="tagHotelSelect"></select>
+          </div>
+          <div style="margin-bottom:9px;">
+            <label style="font-size:11px; font-weight:800; display:block; margin-bottom:3px;">TAG LABEL</label>
+            <input class="inp" type="text" id="tagLabelInput" placeholder="e.g. Primary Weekend Rival · Watch Agoda">
+          </div>
+          <div style="margin-bottom:10px;">
+            <label style="font-size:11px; font-weight:800; display:block; margin-bottom:3px;">STRATEGY NOTE / DECISION RULE</label>
+            <input class="inp" type="text" id="tagNoteInput" placeholder="e.g. Keep our BAR within $10 when their occupancy > 80%">
+          </div>
+          <button class="btn" onclick="saveClientTag()">+ Save Strategy Tag to My Account</button>
+          <div id="tagFeedback" style="font-size:11.5px; font-weight:700; margin-top:6px;"></div>
+
+          <hr style="border:none; border-top:1px solid rgba(28,25,23,0.12); margin:14px 0;">
+          <h4 style="font-size:13px; font-weight:800; margin-bottom:8px;">Saved Strategy Tags on Your Account</h4>
+          <div id="clientTagsList" style="display:flex; flex-direction:column; gap:7px;"></div>
+        </div>
+
+        <!-- Right: Historical Competitor Pricing Memory Timeline -->
+        <div class="glass-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div>
+              <span class="badge dark">COMPETITOR PRICING MEMORY</span>
+              <h3 style="font-size:16px; font-weight:800; margin-top:4px;">Recorded Rate Moves &amp; Decision Patterns</h3>
+            </div>
+          </div>
+          <table class="portal-tbl">
+            <thead>
+              <tr>
+                <th>Competitor</th>
+                <th>Event</th>
+                <th>Old → New BAR</th>
+                <th>Pattern</th>
+                <th>Strategy Takeaway</th>
+              </tr>
+            </thead>
+            <tbody id="clientMemoryBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 3: OVERNIGHT COURTESY CALL-AROUND OCCUPANCY DESK (SCOPED)
+         ==================================================================== -->
+    <section class="tab-pane" id="ctab-calls">
+      <div id="callsTierLockBanner" class="glass-card dark" style="display:none; justify-content:space-between; align-items:center; gap:12px;">
+        <div>
+          <span class="badge gold">PRO $199/MO FEATURE PREVIEW</span>
+          <h3 style="font-size:16px; font-weight:800; margin-top:4px;">Overnight Courtesy Call-Around Occupancy Desk</h3>
+          <p style="font-size:12px; color:#d6d3d1;">Upgrade to Tier 3 Pro ($199/mo) to unlock automated overnight occupancy call-arounds and instant SMS undercut alerts.</p>
+        </div>
+        <button class="btn gold" onclick="previewClientTier('pro_199')">Preview Pro ($199) Unlocked →</button>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1.25fr; gap:14px;">
+        <div class="glass-card">
+          <span class="badge gold">OVERNIGHT SHIFT (11:30 PM – 4:00 AM)</span>
+          <h3 style="font-size:16px; font-weight:800; margin:6px 0 4px;">Courtesy Call-Around Occupancy Logger</h3>
+          <p style="font-size:11.5px; color:var(--sub); margin-bottom:10px;">
+            Select a neighbor in your assigned comp-set to dial or log tonight's courtesy occupancy &amp; walk-in BAR exchange.
+          </p>
+
+          <div style="margin-bottom:8px;">
+            <label style="font-size:11px; font-weight:800; display:block; margin-bottom:3px;">COMPETITOR IN YOUR COMP-SET</label>
+            <select class="inp" id="callHotelSelect"></select>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">REPORTED OCC %</label>
+              <input class="inp" type="number" id="callOccInput" placeholder="e.g. 88" value="86">
+            </div>
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">ROOMS LEFT</label>
+              <input class="inp" type="number" id="callRoomsInput" placeholder="e.g. 5" value="6">
+            </div>
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">WALK-IN BAR ($)</label>
+              <input class="inp" type="number" id="callBarInput" placeholder="e.g. 249" value="249">
+            </div>
+          </div>
+          <div style="margin-bottom:10px;">
+            <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">CALL TRANSCRIPT / NOTES</label>
+            <input class="inp" type="text" id="callNotesInput" placeholder="e.g. Front desk confirmed only 6 Kings left; raising BAR after midnight.">
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn" onclick="submitClientCallLog(false)">+ Log Verified Courtesy Call</button>
+            <button class="btn gold" onclick="submitClientCallLog(true)">🤖 Queue Auto Courtesy Call</button>
+          </div>
+          <div id="callFeedback" style="font-size:11.5px; font-weight:700; margin-top:6px;"></div>
+        </div>
+
+        <div class="glass-card">
+          <h3 style="font-size:16px; font-weight:800; margin-bottom:8px;">Courtesy Call History (Your Comp-Set Only)</h3>
+          <table class="portal-tbl">
+            <thead>
+              <tr>
+                <th>Hotel</th>
+                <th>Phone</th>
+                <th>Occ % / Rooms Left</th>
+                <th>Walk-In BAR</th>
+                <th>Status &amp; Notes</th>
+              </tr>
+            </thead>
+            <tbody id="clientCallsBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 4: COMPARE TIERS (FREE $0 -> CORE $99 -> PRO $199) & SETTINGS
+         ==================================================================== -->
+    <section class="tab-pane" id="ctab-tiers">
+      <div class="glass-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
+          <div>
+            <span class="badge gold">SIDE-BY-SIDE TIER COMPARISON</span>
+            <h3 style="font-size:18px; font-weight:800; margin-top:4px;">Start Free ($0/mo) → Upgrade to Core ($99/mo) or Pro ($199/mo)</h3>
+          </div>
+          <div id="tierSaveMsg" style="font-size:12px; font-weight:800; color:var(--ok);"></div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;" id="clientTiersComparisonGrid"></div>
+      </div>
+
+      <div class="glass-card">
+        <h3 style="font-size:16px; font-weight:800; margin-bottom:10px;">My Daily 6:00 AM Email &amp; Telegram Report Delivery</h3>
+        <div style="display:grid; grid-template-columns: 1fr 1fr auto; gap:10px; align-items:end;">
+          <div>
+            <label style="font-size:11px; font-weight:800; display:block; margin-bottom:4px;">DAILY BRIEF RECIPIENT EMAIL</label>
+            <input class="inp" type="email" id="setAlertEmail" placeholder="gm@yourhotel.com">
+          </div>
+          <div>
+            <label style="font-size:11px; font-weight:800; display:block; margin-bottom:4px;">TELEGRAM CHAT ID OR @HANDLE</label>
+            <input class="inp" type="text" id="setTelegramChat" placeholder="@your_hotel_rates">
+          </div>
+          <button class="btn" onclick="saveClientAlertSettings()">Save Alert Preferences</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<script>
+  let clientToken = localStorage.getItem('hri_client_token') || '';
+  let currentPortalData = null;
+  let activePreviewTier = null;
+
+  function switchClientTab(tabKey) {
+    ['comp', 'memory', 'calls', 'tiers'].forEach(k => {
+      document.getElementById('ctab-' + k).classList.toggle('active', k === tabKey);
+      document.getElementById('cbtn-' + k).classList.toggle('active', k === tabKey);
+    });
+  }
+
+  function showLoginModal() {
+    document.getElementById('clientLoginOverlay').style.display = 'flex';
+  }
+
+  async function quickDemoLogin(user, pass) {
+    document.getElementById('loginUser').value = user;
+    document.getElementById('loginPass').value = pass;
+    await doClientLogin(false);
+  }
+
+  async function doClientLogin(demoFallback) {
+    const u = document.getElementById('loginUser').value.trim();
+    const p = document.getElementById('loginPass').value.trim();
+    const errEl = document.getElementById('loginErrMsg');
+    errEl.textContent = '';
+    try {
+      const r = await fetch('/api/client/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u, password: p, demo: Boolean(demoFallback) })
+      });
+      const d = await r.json();
+      if (!d.ok) {
+        errEl.textContent = d.error || 'Login failed.';
+        showLoginModal();
+        return;
+      }
+      clientToken = d.token;
+      localStorage.setItem('hri_client_token', clientToken);
+      document.getElementById('clientLoginOverlay').style.display = 'none';
+      activePreviewTier = null;
+      await loadClientPortal();
+    } catch (e) {
+      errEl.textContent = 'Connection error.';
+    }
+  }
+
+  async function previewClientTier(tierKey) {
+    activePreviewTier = tierKey;
+    await loadClientPortal();
+  }
+
+  async function loadClientPortal() {
+    const params = new URLSearchParams(window.location.search);
+    const demoHotelId = params.get('demo_hotel');
+    if (params.get('token')) {
+      clientToken = params.get('token');
+      localStorage.setItem('hri_client_token', clientToken);
+    } else if (demoHotelId && /^\d+$/.test(demoHotelId)) {
+      try {
+        const lr = await fetch('/api/client/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ demo_hotel_id: Number(demoHotelId) })
+        });
+        const ld = await lr.json();
+        if (ld.ok && ld.token) {
+          clientToken = ld.token;
+          localStorage.setItem('hri_client_token', clientToken);
+        }
+      } catch (e) {}
+    } else if (params.get('user')) {
+      await quickDemoLogin(params.get('user'), 'demo1234');
+      return;
+    } else if (params.get('demo') === '1' && !clientToken) {
+      await doClientLogin(true);
+      return;
+    }
+
+    let url = '/api/client/portal';
+    const qParts = [];
+    if (demoHotelId && /^\d+$/.test(demoHotelId) && !clientToken) qParts.push('demo_hotel=' + encodeURIComponent(demoHotelId));
+    if (params.get('demo') === '1' && !clientToken) qParts.push('demo=1');
+    if (activePreviewTier) qParts.push('preview_tier=' + encodeURIComponent(activePreviewTier));
+    if (qParts.length) url += '?' + qParts.join('&');
+
+    const r = await fetch(url, {
+      headers: clientToken ? { 'X-Client-Token': clientToken } : {}
+    });
+    if (r.status === 401) {
+      showLoginModal();
+      return;
+    }
+    const d = await r.json();
+    if (!d.ok) {
+      showLoginModal();
+      return;
+    }
+    currentPortalData = d;
+    renderPortalData(d);
+  }
+
+  function renderPortalData(d) {
+    const acc = d.account || {};
+    const tier = d.active_tier || {};
+    const strat = d.strategy || {};
+    const primary = d.primary_hotel || {};
+    const compSet = d.comp_set || [];
+
+    document.getElementById('topHotelName').textContent = primary.name || acc.display_name;
+    document.getElementById('topTierBadge').textContent = (tier.name || 'Free').toUpperCase() + ' · $' + (tier.monthly_price || 0) + '/MO';
+    document.getElementById('isolationDesc').innerHTML =
+      `Logged in as <b>${acc.username}</b> · Assigned Comp-Set: <b>${compSet.length} of ${d.total_assigned_in_account}</b> properties visible on <b>${tier.name}</b>. Zero cross-account data access.`;
+
+    ['free', 'core_99', 'pro_199'].forEach(k => {
+      const btn = document.getElementById('tpill-' + k);
+      if (btn) btn.classList.toggle('active', tier.tier_id === k);
+    });
+
+    document.getElementById('kpiMyBar').textContent = strat.my_bar ? ('$' + Math.round(strat.my_bar)) : 'Scan';
+    document.getElementById('kpiMyName').textContent = primary.name || '';
+    document.getElementById('kpiCompAvg').textContent = strat.comp_avg_bar ? ('$' + Math.round(strat.comp_avg_bar)) : '—';
+    const sp = Number(strat.spread_vs_comp || 0);
+    document.getElementById('kpiCompSpread').textContent = `Spread vs Comp Avg: ${sp >= 0 ? '+' : ''}$${sp}`;
+    document.getElementById('kpiUndercuts').textContent = strat.undercut_count_in_comp || 0;
+    document.getElementById('kpiHoursSaved').textContent = (strat.staff_hours_saved_mo || 15) + ' hrs/mo';
+    document.getElementById('kpiLaborUsd').textContent = '$' + Number(strat.labor_dollars_saved_mo || 375).toLocaleString('en-US') + '/mo staff labor saved';
+    document.getElementById('kpiRecAction').textContent = strat.recommended_action || 'HOLD BAR';
+    document.getElementById('kpiRecTarget').textContent = 'Target BAR: $' + Math.round(strat.recommended_target_bar || strat.my_bar || 220);
+    document.getElementById('strategyExplainText').textContent = strat.explanation || '';
+
+    const auditHref = '/audit?hotel_id=' + encodeURIComponent(primary.id || 1);
+    const auditLinkEl = document.getElementById('portalPrintableAuditLink');
+    if (auditLinkEl) auditLinkEl.href = auditHref;
+    const gfx = d.graphics || {};
+    const otaBox = document.getElementById('portalOtaSvgBox');
+    const compBox = document.getElementById('portalCompSvgBox');
+    if (otaBox) otaBox.innerHTML = gfx.ota_ladder_svg || '';
+    if (compBox) compBox.innerHTML = gfx.comp_set_svg || '';
+
+    const capNotice = document.getElementById('tierCapNotice');
+    if (d.hidden_by_tier_count > 0) {
+      capNotice.style.display = 'block';
+    } else {
+      capNotice.style.display = 'none';
+    }
+
+    document.getElementById('compCountBadge').textContent = compSet.length + ' Assigned Properties Visible';
+
+    // Render Comp-Set Table
+    const tbody = document.getElementById('clientCompTableBody');
+    tbody.innerHTML = compSet.map(h => {
+      const bar = h.price ? ('$' + Math.round(h.price)) : '<span style="color:#78716c;">Pending Scan</span>';
+      const prev = h.prev_price ? ('$' + Math.round(h.prev_price)) : '—';
+      const delta = Number(h.delta_pct || 0);
+      const deltaHtml = delta !== 0 ? `<b style="color:${delta > 0 ? '#15803d' : '#dc2626'};">${delta > 0 ? '+' : ''}${delta.toFixed(1)}%</b>` : '0.0%';
+      const otas = (h.ota_channels || []).slice(0, 3).map(c => `${c.name}: $${Math.round(c.rate)}`).join(' · ') || 'Direct BAR Verified';
+      const isUnder = h.parity_status === 'UNDERCUT';
+      const pBadge = isUnder
+        ? `<span class="badge danger">UNDERCUT -${Number(h.undercut_pct || 0).toFixed(1)}%</span>`
+        : `<span class="badge ok">PARITY OK</span>`;
+      const tagsHtml = (h.tags || []).map(t => `<span class="badge gold" title="${t.note || ''}">${t.tag}</span>`).join(' ');
+      return `<tr class="${h.is_primary ? 'my-row' : ''}">
+        <td>
+          <b>${h.is_primary ? '★ ' : ''}${h.name}</b>
+          ${h.is_primary ? '<span class="badge dark" style="margin-left:4px;">MY HOTEL</span>' : ''}
+          <div style="font-size:10.5px; color:var(--muted);">${h.area || 'Miami Beach'} · ${h.est_rooms || 45} rms</div>
+        </td>
+        <td style="font-size:14px;"><b>${bar}</b></td>
+        <td>${prev}</td>
+        <td>${deltaHtml}</td>
+        <td style="font-size:11px; color:var(--sub);">${otas}</td>
+        <td>${pBadge}</td>
+        <td><b>${h.est_occupancy_pct || 74}%</b></td>
+        <td><span class="badge ghost">${h.pricing_personality || 'Dynamic Responder'}</span></td>
+        <td>
+          <div style="display:flex; gap:4px; flex-wrap:wrap; align-items:center;">
+            ${tagsHtml}
+            <button class="btn ghost xs" onclick="prefillTagForHotel(${h.id})">+ Tag</button>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+
+    // Populate hotel dropdowns for Tags & Courtesy Calls
+    const opts = compSet.map(h => `<option value="${h.id}">${h.is_primary ? '★ ' : ''}${h.name} (${h.phone || 'Front Desk'})</option>`).join('');
+    document.getElementById('tagHotelSelect').innerHTML = opts;
+    document.getElementById('callHotelSelect').innerHTML = opts;
+
+    // Render Saved Tags
+    const tagsList = document.getElementById('clientTagsList');
+    const allTags = d.tags || [];
+    tagsList.innerHTML = allTags.length ? allTags.map(t => {
+      const hObj = compSet.find(x => x.id === t.hotel_id) || {};
+      return `<div style="background:rgba(255,255,255,0.85); padding:8px 11px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <span class="badge gold">${t.tag}</span>
+          <b style="font-size:12px; margin-left:6px;">${hObj.name || ('Hotel #' + t.hotel_id)}</b>
+          <div style="font-size:11px; color:var(--sub); margin-top:2px;">${t.note || ''}</div>
+        </div>
+        <button class="btn ghost xs" onclick="deleteClientTag(${t.id})">✕</button>
+      </div>`;
+    }).join('') : '<div style="font-size:12px; color:var(--muted);">No strategy tags saved yet.</div>';
+
+    // Render Memory Events
+    const memBody = document.getElementById('clientMemoryBody');
+    const mems = d.memory_events || [];
+    memBody.innerHTML = mems.length ? mems.map(m => `<tr>
+      <td><b>${m.hotel_name}</b></td>
+      <td><span class="badge dark">${m.event_type}</span></td>
+      <td>$${Math.round(m.old_price || 0)} → <b>$${Math.round(m.new_price || 0)}</b> (${Number(m.delta_pct || 0) >= 0 ? '+' : ''}${Number(m.delta_pct || 0).toFixed(1)}%)</td>
+      <td>${m.competitor_pattern || 'DYNAMIC'}</td>
+      <td style="font-size:11px; color:var(--sub);">${m.ai_recommendation || ''}</td>
+    </tr>`).join('') : '<tr><td colspan="5">Click "⚡ Scrape My Comp-Set" to record new competitor rate moves.</td></tr>';
+
+    // Render Courtesy Call Desk lock status & history
+    const lockBanner = document.getElementById('callsTierLockBanner');
+    lockBanner.style.display = tier.allow_courtesy_calls ? 'none' : 'flex';
+
+    const callsBody = document.getElementById('clientCallsBody');
+    const calls = d.call_logs || [];
+    callsBody.innerHTML = calls.length ? calls.map(c => {
+      const occTxt = (c.reported_occupancy_pct !== null && c.reported_occupancy_pct !== undefined)
+        ? `<b>${c.reported_occupancy_pct}%</b> (${c.rooms_left !== null && c.rooms_left !== undefined ? c.rooms_left + ' left' : 'verified'})`
+        : '<span style="color:#78716c;">Pending Live Call</span>';
+      const barTxt = c.quoted_walkin_rate ? ('$' + Math.round(c.quoted_walkin_rate)) : '—';
+      return `<tr>
+        <td><b>${c.hotel_name}</b></td>
+        <td><a href="tel:${c.phone_dialed || ''}" style="color:var(--charcoal);font-weight:700;">${c.phone_dialed || 'Front Desk'}</a></td>
+        <td>${occTxt}</td>
+        <td><b>${barTxt}</b></td>
+        <td style="font-size:11px;"><span class="badge gold">${c.status}</span> ${c.transcript || ''}</td>
+      </tr>`;
+    }).join('') : '<tr><td colspan="5">No courtesy calls logged for your comp-set yet. Use the form on the left to log or queue a call.</td></tr>';
+
+    // Render Tier Comparison Grid in Tab 4
+    const tiersGrid = document.getElementById('clientTiersComparisonGrid');
+    tiersGrid.innerHTML = (d.all_tiers || []).map(t => {
+      const isCurrent = t.tier_id === tier.tier_id;
+      return `<div style="background:${isCurrent ? '#1c1917' : 'rgba(255,255,255,0.85)'}; color:${isCurrent ? '#fff' : '#1c1917'}; border:2px solid ${isCurrent ? '#facc15' : 'rgba(28,25,23,0.12)'}; border-radius:20px; padding:15px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge ${isCurrent ? 'gold' : 'dark'}">${t.badge}</span>
+          <h4 style="font-size:16px; font-weight:800; margin-top:6px;">${t.name}</h4>
+          <div style="font-size:28px; font-weight:900; margin:4px 0;">$${t.monthly_price}<span style="font-size:12px;font-weight:600;">/mo</span></div>
+          <div style="font-size:11px; margin-bottom:8px; opacity:0.85;">Saves ~${t.staff_hours_saved_mo} hrs/mo ($${t.labor_dollars_saved_mo}/mo labor)</div>
+          <ul style="list-style:none; font-size:11px; line-height:1.45; display:flex; flex-direction:column; gap:4px; margin-bottom:12px;">
+            ${(t.features || []).map(f => `<li>✓ ${f}</li>`).join('')}
+          </ul>
+        </div>
+        <button class="btn ${isCurrent ? 'gold' : ''}" style="width:100%; justify-content:center;" onclick="changeMyAccountTier('${t.tier_id}')">
+          ${isCurrent ? '✓ Active Plan' : ('Switch to ' + t.name + ' →')}
+        </button>
+      </div>`;
+    }).join('');
+
+    document.getElementById('setAlertEmail').value = acc.alert_email || acc.email || '';
+    document.getElementById('setTelegramChat').value = acc.telegram_chat_id || '';
+  }
+
+  function prefillTagForHotel(hid) {
+    switchClientTab('memory');
+    document.getElementById('tagHotelSelect').value = String(hid);
+    document.getElementById('tagLabelInput').focus();
+  }
+
+  async function saveClientTag() {
+    const hid = Number(document.getElementById('tagHotelSelect').value);
+    const tag = document.getElementById('tagLabelInput').value.trim();
+    const note = document.getElementById('tagNoteInput').value.trim();
+    const fb = document.getElementById('tagFeedback');
+    if (!tag) {
+      fb.style.color = '#dc2626';
+      fb.textContent = 'Enter a tag label first.';
+      return;
+    }
+    const r = await fetch('/api/client/tags', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Client-Token': clientToken },
+      body: JSON.stringify({ hotel_id: hid, tag: tag, note: note })
+    });
+    const d = await r.json();
+    if (!d.ok) {
+      fb.style.color = '#dc2626';
+      fb.textContent = d.error || 'Could not save tag.';
+      return;
+    }
+    document.getElementById('tagLabelInput').value = '';
+    document.getElementById('tagNoteInput').value = '';
+    fb.style.color = '#15803d';
+    fb.textContent = 'Saved tag to your isolated account!';
+    await loadClientPortal();
+  }
+
+  async function deleteClientTag(tagId) {
+    await fetch('/api/client/tags', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Client-Token': clientToken },
+      body: JSON.stringify({ delete_id: tagId })
+    });
+    await loadClientPortal();
+  }
+
+  async function submitClientCallLog(autoQueue) {
+    const hid = Number(document.getElementById('callHotelSelect').value);
+    const occ = document.getElementById('callOccInput').value;
+    const rooms = document.getElementById('callRoomsInput').value;
+    const bar = document.getElementById('callBarInput').value;
+    const notes = document.getElementById('callNotesInput').value.trim();
+    const fb = document.getElementById('callFeedback');
+
+    const payload = autoQueue
+      ? { hotel_id: hid, caller_mode: 'Courtesy Call-Around' }
+      : {
+          hotel_id: hid,
+          caller_mode: 'Manual Front Desk Exchange',
+          reported_occupancy_pct: occ ? Number(occ) : null,
+          rooms_left: rooms ? Number(rooms) : null,
+          quoted_walkin_rate: bar ? Number(bar) : null,
+          transcript: notes || 'Verified overnight front-desk courtesy call.'
+        };
+    const r = await fetch('/api/client/calls', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Client-Token': clientToken },
+      body: JSON.stringify(payload)
+    });
+    const d = await r.json();
+    if (!d.ok) {
+      fb.style.color = '#dc2626';
+      fb.textContent = d.error || 'Call action blocked.';
+      return;
+    }
+    fb.style.color = '#15803d';
+    fb.textContent = autoQueue ? 'Queued courtesy call for your comp-set!' : 'Logged verified courtesy call!';
+    await loadClientPortal();
+  }
+
+  async function triggerClientCompScrape() {
+    const btn = document.getElementById('btnClientScrape');
+    btn.textContent = '⏳ Scraping Comp-Set...';
+    try {
+      await fetch('/api/client/scrape', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Client-Token': clientToken },
+        body: JSON.stringify({})
+      });
+      await loadClientPortal();
+    } finally {
+      btn.textContent = '⚡ Scrape My Comp-Set';
+    }
+  }
+
+  async function changeMyAccountTier(tierId) {
+    activePreviewTier = null;
+    const r = await fetch('/api/client/settings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Client-Token': clientToken },
+      body: JSON.stringify({ action: 'update', tier: tierId })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      document.getElementById('tierSaveMsg').textContent = '✓ Plan updated to ' + tierId.toUpperCase() + '!';
+      await loadClientPortal();
+    }
+  }
+
+  async function triggerPortalAuditorCall() {
+    const primary = (currentPortalData && currentPortalData.primary_hotel) || {};
+    const fb = document.getElementById('portalAuditorFeedback');
+    const btn = document.getElementById('btnPortalAuditorCall');
+    if (!primary.id) return;
+    btn.textContent = '⏳ Calling Auditor...';
+    try {
+      const r = await fetch('/api/audit/call', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ hotel_id: primary.id, caller_mode: 'Auditor Parity & Occupancy Call' })
+      });
+      const d = await r.json();
+      if (d.ok) {
+        fb.style.color = '#15803d';
+        fb.textContent = `✓ Auditor Call (${d.status}) on ${d.phone_dialed || 'front desk'} — see Courtesy Call Desk tab.`;
+        await loadClientPortal();
+      } else {
+        fb.style.color = '#dc2626';
+        fb.textContent = d.error || 'Could not dispatch auditor call.';
+      }
+    } finally {
+      btn.textContent = '📞 Make Auditor Call';
+    }
+  }
+
+  async function saveClientAlertSettings() {
+    const em = document.getElementById('setAlertEmail').value.trim();
+    const tg = document.getElementById('setTelegramChat').value.trim();
+    const r = await fetch('/api/client/settings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Client-Token': clientToken },
+      body: JSON.stringify({ action: 'update', alert_email: em, telegram_chat_id: tg })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      document.getElementById('tierSaveMsg').textContent = '✓ Daily 6:00 AM alert settings saved!';
+      await loadClientPortal();
+    }
+  }
+
+  loadClientPortal();
+</script>
+</body>
+</html>

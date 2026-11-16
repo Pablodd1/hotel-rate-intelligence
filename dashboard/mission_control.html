@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administrator Mission Control — Jasmel Acosta · Leads, Marketing Approvals & Multi-Tenant Command</title>
+<style>
+  :root {
+    --charcoal: #1c1917;
+    --gold: #facc15;
+    --gold-deep: #eab308;
+    --txt: #1c1917;
+    --sub: #44403c;
+    --muted: #57534e;
+    --ok: #15803d;
+    --danger: #dc2626;
+    --glass-window: rgba(232, 222, 206, 0.46);
+    --glass-card: rgba(255, 255, 255, 0.64);
+    --glass-border: rgba(255, 255, 255, 0.88);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 75% 20%, rgba(255, 252, 240, 0.22), rgba(180, 164, 140, 0.16)),
+      url('/assets/v4-living-room-bg.jpg') center center / cover fixed no-repeat,
+      linear-gradient(145deg, #dfd5c6 0%, #efe9df 50%, #d5c8b6 100%);
+    color: var(--txt);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
+    padding: 12px 18px 40px;
+  }
+
+  /* ── Top Mission Control Bar ── */
+  .mc-topbar {
+    background: rgba(245, 239, 230, 0.84);
+    backdrop-filter: blur(24px) saturate(150%);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 26px;
+    padding: 7px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    box-shadow: 0 10px 30px rgba(28, 25, 23, 0.09);
+    margin-bottom: 12px;
+  }
+  .mc-brand {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--charcoal); color: #ffffff;
+    padding: 6px 12px; border-radius: 999px; font-weight: 800; font-size: 11.5px; white-space: nowrap;
+  }
+  .mc-brand span.crown { color: var(--gold); }
+  .mc-tabs {
+    display: inline-flex; gap: 3px; flex-wrap: wrap; background: rgba(255, 255, 255, 0.85);
+    padding: 3px 5px; border-radius: 999px; border: 1px solid #fff;
+  }
+  .mc-tab {
+    border: none; background: transparent; color: var(--sub);
+    font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 999px;
+    cursor: pointer; white-space: nowrap;
+  }
+  .mc-tab.active { background: var(--charcoal); color: #ffffff; font-weight: 800; }
+  .mc-tab .cnt {
+    background: var(--gold); color: var(--charcoal); font-weight: 900;
+    padding: 1px 6px; border-radius: 99px; font-size: 9.5px; margin-left: 3px;
+  }
+
+  .btn {
+    border: none; border-radius: 999px; padding: 6px 12px; font-size: 11px; font-weight: 800;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;
+    background: var(--charcoal); color: #fff; white-space: nowrap;
+  }
+  .btn.gold { background: var(--gold); color: var(--charcoal); border: 1px solid #eab308; }
+  .btn.ok { background: #15803d; color: #fff; }
+  .btn.danger { background: #dc2626; color: #fff; }
+  .btn.ghost { background: rgba(255,255,255,0.88); color: var(--charcoal); border: 1px solid rgba(28,25,23,0.16); }
+  .btn.xs { padding: 4px 8px; font-size: 10px; }
+
+  /* ── Outer Frosted Spatial Window ── */
+  .mc-window {
+    background: var(--glass-window);
+    backdrop-filter: blur(28px) saturate(145%);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 18px 22px;
+    box-shadow: 0 24px 64px rgba(28, 25, 23, 0.15);
+  }
+  .mc-pane { display: none; }
+  .mc-pane.active { display: block; }
+
+  .glass-card {
+    background: var(--glass-card);
+    backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(255, 255, 255, 0.86);
+    border-radius: 22px;
+    padding: 15px 18px;
+    box-shadow: 0 8px 24px rgba(28, 25, 23, 0.06);
+    margin-bottom: 14px;
+  }
+  .glass-card.dark { background: var(--charcoal); color: #ffffff; border-color: rgba(255,255,255,0.16); }
+
+  .kpi-strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 14px; }
+  .kpi-card {
+    background: rgba(255,255,255,0.82); border: 1px solid #fff; border-radius: 18px; padding: 12px 14px;
+  }
+  .kpi-card .lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--muted); }
+  .kpi-card .val { font-size: 24px; font-weight: 900; margin-top: 2px; letter-spacing: -0.02em; }
+  .kpi-card .sub { font-size: 10.5px; color: var(--sub); margin-top: 2px; }
+
+  table.mc-tbl { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  table.mc-tbl th {
+    text-align: left; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--muted); padding: 7px 8px; border-bottom: 1px solid rgba(28,25,23,0.14);
+  }
+  table.mc-tbl td { padding: 8px; border-bottom: 1px solid rgba(28,25,23,0.08); vertical-align: middle; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 999px;
+    font-size: 9.5px; font-weight: 800; white-space: nowrap;
+  }
+  .badge.ok { background: rgba(21, 128, 61, 0.15); color: #166534; }
+  .badge.danger { background: rgba(220, 38, 38, 0.15); color: #991b1b; }
+  .badge.gold { background: var(--gold); color: var(--charcoal); }
+  .badge.dark { background: var(--charcoal); color: #fff; }
+
+  .inp {
+    width: 100%; padding: 8px 11px; border-radius: 11px; border: 1px solid rgba(28,25,23,0.2);
+    background: #fff; font-size: 12px; font-weight: 600; color: var(--charcoal);
+  }
+
+  /* ── Admin Login Gate Overlay ── */
+  .admin-login-overlay {
+    position: fixed; inset: 0; z-index: 600;
+    background: rgba(15, 13, 11, 0.72); backdrop-filter: blur(18px);
+    display: none; align-items: center; justify-content: center; padding: 20px;
+  }
+  .admin-login-card {
+    width: 100%; max-width: 450px;
+    background: rgba(248, 244, 237, 0.97); border: 2px solid #fff;
+    border-radius: 28px; padding: 26px; box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  }
+</style>
+</head>
+<body>
+
+  <!-- OWNER / ADMINISTRATOR LOGIN MODAL -->
+  <div class="admin-login-overlay" id="adminLoginOverlay">
+    <div class="admin-login-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <span class="badge dark">👑 OWNER MISSION CONTROL</span>
+        <a href="/website" style="font-size:11.5px; font-weight:800; color:var(--charcoal); text-decoration:none;">← Public Website</a>
+      </div>
+      <h2 style="font-size:22px; font-weight:900; letter-spacing:-0.02em;">Administrator Login</h2>
+      <p style="font-size:12px; color:var(--sub); margin:4px 0 14px;">
+        Sign in as Jasmel Acosta to oversee all 49 Miami leads, approve marketing campaigns, and manage isolated hotel client accounts.
+      </p>
+
+      <div style="margin-bottom:10px;">
+        <label style="font-size:11px; font-weight:800; display:block; margin-bottom:4px;">ADMIN USERNAME</label>
+        <input class="inp" type="text" id="admUser" value="jasmel">
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="font-size:11px; font-weight:800; display:block; margin-bottom:4px;">ADMIN PASSWORD</label>
+        <input class="inp" type="password" id="admPass" value="admin305">
+      </div>
+      <div id="admErrMsg" style="font-size:12px; font-weight:700; color:var(--danger); margin-bottom:8px;"></div>
+
+      <button class="btn gold" style="width:100%; justify-content:center; padding:11px; font-size:13px;" onclick="doAdminLogin()">
+        🛡️ Enter Administrator Mission Control →
+      </button>
+    </div>
+  </div>
+
+  <!-- TOP MISSION CONTROL BAR -->
+  <header class="mc-topbar">
+    <div class="mc-brand">
+      <span class="crown">👑</span>
+      <span>MISSION CONTROL · JASMEL</span>
+    </div>
+
+    <div class="mc-tabs">
+      <button class="mc-tab active" id="tbtn-overview" onclick="switchMcTab('overview')">1. Overview</button>
+      <button class="mc-tab" id="tbtn-campaigns" onclick="switchMcTab('campaigns')">2. Campaigns <span class="cnt" id="navPendingCnt">0</span></button>
+      <button class="mc-tab" id="tbtn-leads" onclick="switchMcTab('leads')">3. Leads <span class="cnt" id="navLeadsCnt">49</span></button>
+      <button class="mc-tab" id="tbtn-accounts" onclick="switchMcTab('accounts')">4. Client Accounts <span class="cnt" id="navAccountsCnt">3</span></button>
+      <button class="mc-tab" id="tbtn-setup" onclick="switchMcTab('setup')">5. Setup &amp; API Keys</button>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:6px;">
+      <a class="btn gold" href="/portal?demo=1">🚀 Demo Client #1</a>
+      <a class="btn ghost" href="/website">🌐 Website</a>
+      <button class="btn ghost" onclick="logoutAdmin()">🔒 Lock</button>
+    </div>
+  </header>
+
+  <!-- MAIN MISSION CONTROL SPATIAL WINDOW -->
+  <main class="mc-window">
+
+    <!-- ====================================================================
+         TAB 1: MISSION OVERVIEW & TIER FUNNEL (FREE $0 -> CORE $99 -> PRO $199)
+         ==================================================================== -->
+    <section class="mc-pane active" id="tab-overview">
+      <div class="kpi-strip">
+        <div class="kpi-card">
+          <div class="lbl">VERIFIED MIAMI LEADS</div>
+          <div class="val" id="ovTotalHotels">49</div>
+          <div class="sub" id="ovLiveQuoted">44 with live Xotelo quotes</div>
+        </div>
+        <div class="kpi-card">
+          <div class="lbl">ACTIVE OTA UNDERCUTS</div>
+          <div class="val" id="ovUndercuts" style="color:var(--danger);">31 (70.5%)</div>
+          <div class="sub">Beacon SoBe -44.7% on Agoda</div>
+        </div>
+        <div class="kpi-card">
+          <div class="lbl">CITED GMS &amp; MX EMAILS</div>
+          <div class="val" id="ovLeaders">25 GMs</div>
+          <div class="sub" id="ovMxEmails">39 MX-verified properties</div>
+        </div>
+        <div class="kpi-card">
+          <div class="lbl">ISOLATED CLIENT ACCOUNTS</div>
+          <div class="val" id="ovClientAccounts">3</div>
+          <div class="sub">Demo #1 + Free + Core samples</div>
+        </div>
+        <div class="kpi-card" style="background:rgba(250,204,21,0.26); border-color:#eab308;">
+          <div class="lbl">CAMPAIGNS PENDING APPROVAL</div>
+          <div class="val" id="ovPendingCamps">14</div>
+          <div class="sub">Ready for 1-click dispatch</div>
+        </div>
+        <div class="kpi-card" style="background:var(--charcoal); color:#fff;">
+          <div class="lbl" style="color:var(--gold);">30 / 100 HOTEL MRR ($99)</div>
+          <div class="val" style="color:var(--gold);">$2.97k</div>
+          <div class="sub" style="color:#d6d3d1;">$9,900/mo at 100 hotels</div>
+        </div>
+      </div>
+
+      <!-- 3-Portal Architecture Strip -->
+      <div class="glass-card dark" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;">
+        <div style="background:rgba(255,255,255,0.07); padding:13px 15px; border-radius:16px;">
+          <span class="badge gold">PORTAL 1 · PUBLIC WEBSITE</span>
+          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Instagram Reel UI Landing &amp; Signup</h3>
+          <p style="font-size:11.5px; color:#d6d3d1; line-height:1.45; margin-bottom:10px;">
+            Explains all features, staff labor/money calculator, why us vs. $500/mo tools, Free→$99→$199 tiers, and self-serve hotel registration.
+          </p>
+          <a class="btn gold" href="/website">Open Public Website (/website) ↗</a>
+        </div>
+        <div style="background:rgba(255,255,255,0.07); padding:13px 15px; border-radius:16px;">
+          <span class="badge ok">PORTAL 2 · ISOLATED CLIENT PORTAL</span>
+          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Independent Per-Hotel Account</h3>
+          <p style="font-size:11.5px; color:#d6d3d1; line-height:1.45; margin-bottom:10px;">
+            Each hotel has its own login &amp; password and can only scrape and compare the competitors assigned to its account.
+          </p>
+          <a class="btn ghost" href="/portal?demo=1">Open Mock Demo Client #1 (/portal?demo=1) ↗</a>
+        </div>
+        <div style="background:rgba(255,255,255,0.07); padding:13px 15px; border-radius:16px;">
+          <span class="badge gold">PORTAL 3 · ADMIN MISSION CONTROL</span>
+          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Jasmel's Owner Command Center</h3>
+          <p style="font-size:11.5px; color:#d6d3d1; line-height:1.45; margin-bottom:10px;">
+            You control all 49 leads, approve &amp; send marketing campaigns, assign comp-sets to client accounts, and compare all tiers.
+          </p>
+          <button class="btn gold" onclick="switchMcTab('campaigns')">Review Marketing Approvals →</button>
+        </div>
+      </div>
+
+      <!-- Tier Ladder Comparison ($0 Free -> $99 Core -> $199 Pro -> $399 Portfolio) -->
+      <div class="glass-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <div>
+            <span class="badge dark">TIER LADDER &amp; UNIT ECONOMICS</span>
+            <h3 style="font-size:16px; font-weight:800; margin-top:3px;">Compare Free ($0/mo) → Core ($99/mo) → Pro ($199/mo) → Portfolio ($399/mo)</h3>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;" id="ovTiersGrid"></div>
+      </div>
+
+      <!-- Inbound Website Callbacks & Auditor Desk Activity -->
+      <div class="glass-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <div>
+            <span class="badge gold">LIVE WEBSITE CLOSER CALLBACKS &amp; AUDITOR CALLS</span>
+            <h3 style="font-size:15px; font-weight:800; margin-top:3px;">Hot Inbound Phone Requests &amp; Auditor Verification Queue</h3>
+          </div>
+          <span class="badge ok" id="ovCallbacksCount">0 Calls Logged</span>
+        </div>
+        <div id="ovCallbacksList" style="display:flex; flex-direction:column; gap:6px; font-size:12px; color:var(--sub);"></div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 2: MARKETING & CAMPAIGN APPROVAL QUEUE (OWNER + AI CO-MARKETER)
+         ==================================================================== -->
+    <section class="mc-pane" id="tab-campaigns">
+      <div class="glass-card" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div>
+          <span class="badge gold">OWNER MARKETING APPROVAL CENTER · Y COMBINATOR 20-RULE COLD EMAIL ENGINE</span>
+          <h3 style="font-size:17px; font-weight:800; margin-top:3px;">Approve, Edit &amp; Dispatch YC 3-Sentence Cold Emails, SMS, WhatsApp &amp; Voice</h3>
+          <p style="font-size:11.5px; color:var(--sub);">
+            Powered by the <strong>Y Combinator (@StartupbyDOC) Cold Email Framework</strong>: casual lowercase subject line, <strong>3 plain sentences (&lt;60s read)</strong>, live Xotelo OTA undercut proof up front, local North Miami commonality, and a <strong>single 1-line ask</strong> right before sign-off (zero pushy meeting asks).
+          </p>
+        </div>
+        <div style="display:flex; gap:7px; flex-wrap:wrap; align-items:center;">
+          <select class="inp" id="batchCorridorSelect" style="width:170px;">
+            <option value="">All Miami Corridors</option>
+            <option value="South Beach">South Beach</option>
+            <option value="Mid-Beach">Mid-Beach</option>
+            <option value="North Beach">North Beach</option>
+            <option value="MiMo / Biscayne">MiMo / Biscayne</option>
+            <option value="Wynwood / Downtown / Gables">Wynwood / Coral Gables</option>
+          </select>
+          <select class="inp" id="batchChannelSelect" style="width:130px;">
+            <option value="email">Email Batch</option>
+            <option value="whatsapp">WhatsApp Batch</option>
+            <option value="sms">SMS Batch</option>
+            <option value="voice">Voice Call Batch</option>
+          </select>
+          <button class="btn ghost" onclick="generateCampaignBatch()">+ Generate Campaign Batch</button>
+          <button class="btn ok" onclick="approveAllPendingCampaigns()">✓ Approve &amp; Queue All Pending</button>
+        </div>
+      </div>
+
+      <div class="glass-card" style="overflow-x:auto;">
+        <div id="campaignStatusBanner" style="font-size:12px; font-weight:800; color:var(--ok); margin-bottom:8px;"></div>
+        <table class="mc-tbl">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Hotel &amp; Corridor</th>
+              <th>Channel</th>
+              <th>Decision-Maker &amp; Recipient</th>
+              <th>Campaign Message &amp; Free Registration Invite Link</th>
+              <th>Owner Actions (Approve / 1-Click Send)</th>
+            </tr>
+          </thead>
+          <tbody id="mcCampaignsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 3: 49-HOTEL LEAD RESEARCH & MULTI-CHANNEL OUTBOUND (tab-leads)
+         ==================================================================== -->
+    <section class="mc-pane" id="tab-leads">
+      <div class="glass-card" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div>
+          <span class="badge dark">VERIFIED MIAMI LEAD DATABASE</span>
+          <h3 style="font-size:17px; font-weight:800; margin-top:3px;">49 Miami Boutique Hotels · Cited GMs/Owners · MX-Verified Emails · Live OTA Parity</h3>
+        </div>
+        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+          <span style="font-size:11px; font-weight:800;">Pitch Tier Price:</span>
+          <button class="btn xs ghost" onclick="reloadLeadsAtPrice(49)">$49 M1</button>
+          <button class="btn xs ghost" onclick="reloadLeadsAtPrice(79)">$79 Pilot</button>
+          <button class="btn xs gold" onclick="reloadLeadsAtPrice(99)">$99 Anchor</button>
+          <button class="btn xs ghost" onclick="reloadLeadsAtPrice(199)">$199 Pro</button>
+          <button class="btn xs ghost" onclick="reloadLeadsAtPrice(399)">$399 Group</button>
+          <button class="btn" onclick="triggerLeadHunt()">🔍 Hunt &amp; Refresh Leads</button>
+        </div>
+      </div>
+
+      <div class="glass-card" style="overflow-x:auto;">
+        <div id="leadsActionFeedback" style="font-size:12px; font-weight:800; color:var(--ok); margin-bottom:8px;"></div>
+        <table class="mc-tbl">
+          <thead>
+            <tr>
+              <th>Property &amp; Corridor</th>
+              <th>Live BAR &amp; OTA Undercut</th>
+              <th>Cited GM / Owner</th>
+              <th>MX-Verified Email &amp; Phone</th>
+              <th>Est. Upside &amp; ROI</th>
+              <th>Registration Link</th>
+              <th>1-Click Outbound + Provision Account</th>
+            </tr>
+          </thead>
+          <tbody id="mcLeadsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 4: HOTEL CLIENT ACCOUNTS & COMP-SET ISOLATION MANAGER
+         ==================================================================== -->
+    <section class="mc-pane" id="tab-accounts">
+      <div style="display:grid; grid-template-columns: 1fr 1.45fr; gap:14px;">
+        <!-- Left: Provision or Update an Isolated Hotel Client Account -->
+        <div class="glass-card">
+          <span class="badge gold">MULTI-TENANT PROVISIONING</span>
+          <h3 style="font-size:16px; font-weight:800; margin:6px 0 4px;">Create / Edit Isolated Hotel Client Account</h3>
+          <p style="font-size:11.5px; color:var(--sub); margin-bottom:10px;">
+            Assign credentials, tier (<b>Free $0 → Core $99 → Pro $199</b>), and the exact competitor hotels this client is allowed to see and scrape.
+          </p>
+
+          <input type="hidden" id="accEditId" value="">
+          <div style="margin-bottom:8px;">
+            <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">PRIMARY HOTEL PROPERTY</label>
+            <select class="inp" id="accPrimaryHotel" onchange="onAdminSelectPrimaryHotel()"></select>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">LOGIN USERNAME</label>
+              <input class="inp" type="text" id="accUsername" placeholder="e.g. betsymiami">
+            </div>
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">LOGIN PASSWORD</label>
+              <input class="inp" type="text" id="accPassword" placeholder="e.g. demo1234" value="demo1234">
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">CLIENT EMAIL</label>
+              <input class="inp" type="email" id="accEmail" placeholder="gm@hotel.com">
+            </div>
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">ACCOUNT TIER</label>
+              <select class="inp" id="accTier">
+                <option value="free">Tier 1 · Free ($0/mo · 3 Comps)</option>
+                <option value="core_99">Tier 2 · Core ($99/mo · 10 Comps)</option>
+                <option value="pro_199">Tier 3 · Pro ($199/mo · 20 Comps)</option>
+                <option value="portfolio_399">Tier 4 · Portfolio ($399/mo)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-bottom:10px;">
+            <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:4px;">ASSIGNED COMPETITOR COMP-SET (CHECK HOTELS THIS ACCOUNT CAN SEE)</label>
+            <div id="accCompChecklist" style="max-height:175px; overflow-y:auto; background:rgba(255,255,255,0.9); border:1px solid rgba(28,25,23,0.16); border-radius:12px; padding:8px; display:grid; grid-template-columns:1fr 1fr; gap:4px; font-size:11px;"></div>
+          </div>
+
+          <div style="display:flex; gap:8px; align-items:center;">
+            <button class="btn" onclick="saveAdminClientAccount()" id="btnSaveClientAcc">+ Provision / Save Isolated Account</button>
+            <button class="btn ghost" onclick="resetClientAccountForm()">Reset</button>
+          </div>
+          <div id="accFormMsg" style="font-size:11.5px; font-weight:800; margin-top:6px;"></div>
+        </div>
+
+        <!-- Right: Active Isolated Hotel Client Accounts Table -->
+        <div class="glass-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div>
+              <span class="badge dark">ISOLATED TENANT ACCOUNTS</span>
+              <h3 style="font-size:16px; font-weight:800; margin-top:3px;">Active Hotel Client Portals &amp; Assigned Comp-Sets</h3>
+            </div>
+          </div>
+          <table class="mc-tbl">
+            <thead>
+              <tr>
+                <th>Account / Login</th>
+                <th>Primary Hotel</th>
+                <th>Tier &amp; Price</th>
+                <th>Assigned Comp-Set</th>
+                <th>Actions (Edit / Impersonate Portal)</th>
+              </tr>
+            </thead>
+            <tbody id="mcAccountsBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 5: GLOBAL SCRAPER, API CREDENTIALS & ADMIN SECURITY
+         ==================================================================== -->
+    <section class="mc-pane" id="tab-setup">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px;">
+        <div class="glass-card">
+          <span class="badge gold">OUTBOUND &amp; SCRAPER CREDENTIALS</span>
+          <h3 style="font-size:16px; font-weight:800; margin:6px 0 10px;">Configure Email, SMS/WhatsApp, Voice &amp; Outreach Mode</h3>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">OUTREACH DISPATCH MODE</label>
+              <select class="inp" id="cfgOutMode">
+                <option value="dry_run">dry_run (Safe Queue + 1-Click Links)</option>
+                <option value="live">live (Auto-Send via API Keys)</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">DEFAULT PITCH TIER ($/MO)</label>
+              <input class="inp" type="number" id="cfgOutPrice" value="99">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">BREVO API KEY (FREE 300/DAY)</label>
+              <input class="inp" type="password" id="cfgBrevoKey" placeholder="xkeysib-...">
+            </div>
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">SMTP PASSWORD / RELAY KEY</label>
+              <input class="inp" type="password" id="cfgSmtpPass" placeholder="SMTP pass">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">TWILIO ACCOUNT SID</label>
+              <input class="inp" type="text" id="cfgTwSid" placeholder="AC...">
+            </div>
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">TWILIO AUTH TOKEN</label>
+              <input class="inp" type="password" id="cfgTwTok" placeholder="Twilio Auth Token">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">TWILIO FROM PHONE (SMS)</label>
+              <input class="inp" type="text" id="cfgTwFrom" placeholder="+1305...">
+            </div>
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">VAPI / BLAND VOICE API KEY</label>
+              <input class="inp" type="password" id="cfgVoiceKey" placeholder="vapi or bland key">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">DIRECT OWNER CALLBACK PHONE (TEL LINK)</label>
+              <input class="inp" type="text" id="cfgSenderPhone" placeholder="+1305...">
+            </div>
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">PUBLIC APP BASE URL (EMAIL LINKS)</label>
+              <input class="inp" type="text" id="cfgAppBaseUrl" placeholder="http://127.0.0.1:8317">
+            </div>
+          </div>
+
+          <button class="btn" onclick="saveGlobalOutreachConfig()">Save Outbound &amp; Scraper Settings</button>
+          <span id="cfgSaveMsg" style="font-size:11.5px; font-weight:800; color:var(--ok); margin-left:8px;"></span>
+        </div>
+
+        <div class="glass-card">
+          <span class="badge dark">ADMINISTRATOR SECURITY</span>
+          <h3 style="font-size:16px; font-weight:800; margin:6px 0 10px;">Update Mission Control Owner Login &amp; Password</h3>
+          <div style="margin-bottom:8px;">
+            <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">OWNER ADMIN USERNAME</label>
+            <input class="inp" type="text" id="admNewUser" value="jasmel">
+          </div>
+          <div style="margin-bottom:10px;">
+            <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">NEW ADMIN PASSWORD</label>
+            <input class="inp" type="password" id="admNewPass" value="admin305">
+          </div>
+          <button class="btn gold" onclick="saveAdminCredentials()">Update Owner Credentials</button>
+          <span id="admCredMsg" style="font-size:11.5px; font-weight:800; color:var(--ok); margin-left:8px;"></span>
+
+          <hr style="border:none; border-top:1px solid rgba(28,25,23,0.12); margin:16px 0;">
+          <h4 style="font-size:14px; font-weight:800; margin-bottom:6px;">Global 49-Hotel Scraper Actions</h4>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn" onclick="triggerGlobalScrape()">⚡ Scrape All 49 Miami Hotels Now</button>
+            <button class="btn ghost" onclick="triggerLeadHunt()">🔍 Run Lead &amp; MX Verification</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<script>
+  let adminToken = localStorage.getItem('hri_admin_token') || 'mc-admin-jasmel-305';
+  let mcData = null;
+  let currentPitchPrice = 99;
+
+  function switchMcTab(tabKey) {
+    ['overview', 'campaigns', 'leads', 'accounts', 'setup'].forEach(k => {
+      document.getElementById('tab-' + k).classList.toggle('active', k === tabKey);
+      document.getElementById('tbtn-' + k).classList.toggle('active', k === tabKey);
+    });
+  }
+
+  function logoutAdmin() {
+    localStorage.removeItem('hri_admin_token');
+    adminToken = '';
+    document.getElementById('adminLoginOverlay').style.display = 'flex';
+  }
+
+  async function doAdminLogin() {
+    const u = document.getElementById('admUser').value.trim();
+    const p = document.getElementById('admPass').value.trim();
+    const errEl = document.getElementById('admErrMsg');
+    errEl.textContent = '';
+    const r = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: u, password: p })
+    });
+    const d = await r.json();
+    if (!d.ok) {
+      errEl.textContent = d.error || 'Invalid credentials.';
+      return;
+    }
+    adminToken = d.token;
+    localStorage.setItem('hri_admin_token', adminToken);
+    document.getElementById('adminLoginOverlay').style.display = 'none';
+    await loadMissionControl();
+  }
+
+  async function loadMissionControl() {
+    if (!adminToken) {
+      document.getElementById('adminLoginOverlay').style.display = 'flex';
+      return;
+    }
+    const r = await fetch('/api/admin/overview?price=' + currentPitchPrice, {
+      headers: { 'X-Admin-Token': adminToken }
+    });
+    if (r.status === 401) {
+      document.getElementById('adminLoginOverlay').style.display = 'flex';
+      return;
+    }
+    const d = await r.json();
+    if (!d.ok) return;
+    mcData = d;
+    renderMissionControl(d);
+  }
+
+  function renderMissionControl(d) {
+    const mr = (d.market_research || {}).summary || {};
+    const camps = d.campaigns || [];
+    const accounts = d.accounts || [];
+    const leads = (d.leads_bundle || {}).leads || [];
+    const dirs = d.hotels_directory || [];
+
+    document.getElementById('ovTotalHotels').textContent = mr.total_hotels || 49;
+    document.getElementById('ovLiveQuoted').textContent = (mr.live_quotes || 44) + ' with live Xotelo quotes';
+    document.getElementById('ovUndercuts').textContent = `${mr.undercut_count || 31} (${mr.undercut_share_pct || 70.5}%)`;
+    document.getElementById('ovLeaders').textContent = (mr.named_leaders || 25) + ' Cited GMs';
+    document.getElementById('ovMxEmails').textContent = (mr.mx_verified_emails || 39) + ' MX-verified properties';
+    document.getElementById('ovClientAccounts').textContent = accounts.length;
+    document.getElementById('ovPendingCamps').textContent = (d.campaign_counts || {}).pending_approval || 0;
+
+    document.getElementById('navPendingCnt').textContent = (d.campaign_counts || {}).pending_approval || 0;
+    document.getElementById('navLeadsCnt').textContent = leads.length;
+    document.getElementById('navAccountsCnt').textContent = accounts.length;
+
+    const cbs = d.callback_and_auditor_calls || [];
+    const cbCountEl = document.getElementById('ovCallbacksCount');
+    const cbListEl = document.getElementById('ovCallbacksList');
+    if (cbCountEl) cbCountEl.textContent = cbs.length + ' Logged';
+    if (cbListEl) {
+      cbListEl.innerHTML = cbs.length ? cbs.slice(0, 6).map(cb => `
+        <div style="background:rgba(255,255,255,0.85); border:1px solid rgba(28,25,23,0.10); border-radius:12px; padding:8px 10px; display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+          <div><b>${cb.hotel_name || 'Website Lead'}</b> · <span class="badge gold">${cb.caller_mode || 'Callback'}</span> <span style="font-weight:700;">${cb.phone_dialed || ''}</span></div>
+          <div style="font-size:11px; color:var(--sub);">${(cb.transcript || cb.questions_asked || '').slice(0, 110)}</div>
+        </div>
+      `).join('') : '<div style="color:var(--muted);">No inbound website callbacks or auditor calls logged yet. Visitors can submit callbacks in the Website Closer Chatbot!</div>';
+    }
+
+    // Render Tiers Grid on Overview
+    const tiersGrid = document.getElementById('ovTiersGrid');
+    tiersGrid.innerHTML = (d.tiers || []).map(t => `
+      <div style="background:rgba(255,255,255,0.88); border:1.5px solid rgba(28,25,23,0.14); border-radius:18px; padding:13px;">
+        <span class="badge ${t.monthly_price === 99 ? 'gold' : 'dark'}">${t.badge}</span>
+        <h4 style="font-size:15px; font-weight:800; margin-top:5px;">${t.name}</h4>
+        <div style="font-size:26px; font-weight:900; margin:3px 0;">$${t.monthly_price}<span style="font-size:11px;font-weight:600;">/mo</span></div>
+        <div style="font-size:11px; color:var(--sub); margin-bottom:6px;">Up to ${t.max_competitors} competitors · Saves ~${t.staff_hours_saved_mo} hrs/mo ($${t.labor_dollars_saved_mo}/mo labor)</div>
+        <div style="font-size:10.5px; color:var(--muted);">${t.headline}</div>
+      </div>
+    `).join('');
+
+    // Render Marketing Campaigns Table
+    const campBody = document.getElementById('mcCampaignsBody');
+    campBody.innerHTML = camps.map(c => {
+      const stBadge = c.approval_status === 'pending_approval'
+        ? '<span class="badge gold">⏳ PENDING APPROVAL</span>'
+        : (c.approval_status === 'dispatched' ? '<span class="badge ok">✓ APPROVED &amp; QUEUED</span>' : `<span class="badge dark">${c.approval_status}</span>`);
+      return `<tr>
+        <td>${stBadge}</td>
+        <td><b>${c.hotel_name || ('Hotel #' + c.hotel_id)}</b><div style="font-size:10px;color:var(--muted);">${c.area || 'Miami Beach'}</div></td>
+        <td><span class="badge dark">${(c.channel || 'email').toUpperCase()}</span></td>
+        <td><b>${c.person_name || 'GM'}</b><div style="font-size:10.5px;color:var(--sub);">${c.recipient || ''}</div></td>
+        <td style="max-width:410px;">
+          <div style="font-weight:800; font-size:11px; margin-bottom:2px;">${c.subject || ''}</div>
+          <div style="font-size:10.5px; color:var(--sub); line-height:1.35;">${(c.body || '').slice(0, 185)}...</div>
+          <a href="${c.registration_url || '/website#register'}" target="_blank" style="font-size:10px; color:#15803d; font-weight:800;">${c.registration_url || '/website#register'} ↗</a>
+        </td>
+        <td>
+          <div style="display:flex; gap:4px; flex-wrap:wrap;">
+            <button class="btn ok xs" onclick="actOnCampaign(${c.id}, 'approve_and_send')">✓ Approve &amp; Send</button>
+            <button class="btn ghost xs" onclick="actOnCampaign(${c.id}, 'reject')">✕ Reject</button>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+
+    // Render 49 Leads Table
+    const leadsBody = document.getElementById('mcLeadsBody');
+    leadsBody.innerHTML = leads.map(ld => {
+      const bar = ld.price ? ('$' + Math.round(ld.price)) : 'Pending';
+      const pBadge = ld.parity_status === 'UNDERCUT'
+        ? `<span class="badge danger">UNDERCUT -${Number(ld.undercut_pct || 0).toFixed(0)}%</span>`
+        : `<span class="badge ok">PARITY OK</span>`;
+      const dmHtml = ld.person_name
+        ? `<b>${ld.person_name}</b><div style="font-size:10px;color:var(--muted);">${ld.person_title || 'Leadership'} ${ld.person_source ? `<a href="${ld.person_source}" target="_blank" style="color:#15803d;font-weight:800;">[Cited ↗]</a>` : ''}</div>`
+        : '<span style="color:var(--muted);">Front Office / GM Desk</span>';
+      const emHtml = ld.email ? `<div><b>${ld.email}</b> <span class="badge ok">MX ✓</span></div>` : '';
+      const phHtml = ld.phone ? `<div style="font-size:10.5px;">${ld.phone}</div>` : '';
+      const regLink = `/website?hotel_id=${ld.hotel_id}#register`;
+      const links = ld.native_links || {};
+      return `<tr>
+        <td><b>${ld.name}</b><div style="font-size:10px;color:var(--muted);">${ld.area} · ${ld.est_rooms || 45} rms</div></td>
+        <td><b>${bar}</b> ${pBadge}</td>
+        <td>${dmHtml}</td>
+        <td>${emHtml}${phHtml}</td>
+        <td><b>+$${Number(ld.est_annual_upside || 0).toLocaleString('en-US')}/yr</b><div style="font-size:10px;color:var(--ok);">${ld.roi_multiple || 30}x ROI ($${ld.offer_price_monthly}/mo)</div></td>
+        <td><a href="${regLink}" target="_blank" class="btn ghost xs">Invite Link ↗</a></td>
+        <td>
+          <div style="display:flex; gap:4px; flex-wrap:wrap;">
+            <a class="btn xs gold" href="/portal?demo_hotel=${ld.hotel_id}" target="_blank" title="Open This Hotel's Tailored Panel Demo">🚀 Demo</a>
+            <button class="btn xs" onclick="sendLeadAuditEmail(${ld.hotel_id})" title="Send Email + SVG Graphics + Decision Assistant">✉+Gfx</button>
+            <button class="btn xs ghost" onclick="sendLeadChannel(${ld.hotel_id}, 'email')">✉ YC</button>
+            <button class="btn xs" onclick="sendLeadChannel(${ld.hotel_id}, 'sms')">💬</button>
+            <button class="btn xs gold" onclick="sendLeadChannel(${ld.hotel_id}, 'whatsapp')">WA</button>
+            <button class="btn xs ghost" onclick="sendLeadChannel(${ld.hotel_id}, 'voice')">📞</button>
+            <a class="btn xs ghost" href="/audit?hotel_id=${ld.hotel_id}" target="_blank">📄</a>
+            <button class="btn xs ok" onclick="prefillNewClientFromLead(${ld.hotel_id})" title="Create Isolated Client Account">+ Account</button>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+
+    // Render Client Accounts Table & Provisioning Form
+    const hotelOpts = dirs.map(h => `<option value="${h.id}">${h.name} (${h.area})</option>`).join('');
+    const primarySel = document.getElementById('accPrimaryHotel');
+    if (!primarySel.innerHTML) primarySel.innerHTML = hotelOpts;
+
+    const checklist = document.getElementById('accCompChecklist');
+    if (!checklist.innerHTML) {
+      checklist.innerHTML = dirs.map(h => `
+        <label style="display:flex; align-items:center; gap:5px; cursor:pointer;">
+          <input type="checkbox" class="comp-chk" value="${h.id}">
+          <span>${h.name} <small style="color:#78716c;">(${h.area})</small></span>
+        </label>
+      `).join('');
+    }
+
+    const accBody = document.getElementById('mcAccountsBody');
+    accBody.innerHTML = accounts.map(a => {
+      const tMeta = a.tier_meta || {};
+      const compNames = (a.assigned_hotels || []).slice(0, 4).map(h => h.name).join(', ');
+      const extraCnt = Math.max(0, (a.assigned_count || 0) - 4);
+      return `<tr>
+        <td>
+          <b>@${a.username}</b> ${a.is_demo ? '<span class="badge gold">DEMO</span>' : ''}
+          <div style="font-size:10px;color:var(--muted);">${a.email}</div>
+        </td>
+        <td><b>${(a.primary_hotel || {}).name || a.display_name}</b></td>
+        <td><span class="badge dark">${tMeta.name || a.tier}</span> <b>$${a.monthly_price}/mo</b></td>
+        <td style="max-width:260px; font-size:10.5px;">
+          <b>${a.assigned_count} Assigned Hotels:</b> ${compNames}${extraCnt ? ` +${extraCnt} more` : ''}
+        </td>
+        <td>
+          <div style="display:flex; gap:5px; flex-wrap:wrap;">
+            <a class="btn gold xs" href="/portal?token=${encodeURIComponent(a.session_token || '')}" target="_blank">Open Portal as Client ↗</a>
+            <button class="btn ghost xs" onclick='editClientAccount(${JSON.stringify(a).replace(/'/g, "&#39;")})'>Edit Comp-Set / Tier</button>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+  }
+
+  async function actOnCampaign(campId, action) {
+    const r = await fetch('/api/admin/campaigns', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': adminToken },
+      body: JSON.stringify({ campaign_id: campId, action: action })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      document.getElementById('campaignStatusBanner').textContent = `✓ Campaign #${campId} ${d.approval_status}!`;
+      await loadMissionControl();
+    }
+  }
+
+  async function approveAllPendingCampaigns() {
+    const r = await fetch('/api/admin/campaigns', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': adminToken },
+      body: JSON.stringify({ action: 'approve_all_pending' })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      document.getElementById('campaignStatusBanner').textContent = `✓ Approved & queued ${d.batch_approved} pending campaigns!`;
+      await loadMissionControl();
+    }
+  }
+
+  async function generateCampaignBatch() {
+    const area = document.getElementById('batchCorridorSelect').value;
+    const ch = document.getElementById('batchChannelSelect').value;
+    const r = await fetch('/api/admin/campaigns', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': adminToken },
+      body: JSON.stringify({ action: 'generate_corridor_batch', area: area, channel: ch })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      document.getElementById('campaignStatusBanner').textContent = `✓ Generated ${d.created_count} new ${ch.toUpperCase()} campaigns for your review!`;
+      await loadMissionControl();
+    }
+  }
+
+  async function reloadLeadsAtPrice(p) {
+    currentPitchPrice = p;
+    await loadMissionControl();
+  }
+
+  async function sendLeadAuditEmail(hotelId) {
+    const fb = document.getElementById('leadsActionFeedback');
+    fb.textContent = `Sending HTML Audit + Graphics + Decision Assistant email for Hotel #${hotelId}...`;
+    const r = await fetch('/api/audit/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hotel_id: hotelId })
+    });
+    const d = await r.json();
+    const first = (d.results && d.results[0]) || {};
+    fb.textContent = d.ok
+      ? `✓ Email + Graphics (${first.status || 'queued'}) for ${d.hotel_name} -> ${first.recipient || 'Verified GM'} (${d.subject})`
+      : (d.error || 'Could not queue audit email.');
+  }
+
+  async function sendLeadChannel(hotelId, channel) {
+    const fb = document.getElementById('leadsActionFeedback');
+    fb.textContent = `Queueing ${channel.toUpperCase()} outreach for Hotel #${hotelId}...`;
+    const r = await fetch('/api/outreach/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hotel_id: hotelId, channel: channel, price_monthly: currentPitchPrice })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      fb.textContent = `✓ ${channel.toUpperCase()} logged (${d.status}) for ${d.hotel_name || ('Hotel #' + hotelId)} -> ${d.recipient}`;
+    }
+  }
+
+  function prefillNewClientFromLead(hotelId) {
+    switchMcTab('accounts');
+    resetClientAccountForm();
+    document.getElementById('accPrimaryHotel').value = String(hotelId);
+    onAdminSelectPrimaryHotel();
+  }
+
+  function onAdminSelectPrimaryHotel() {
+    const hid = Number(document.getElementById('accPrimaryHotel').value || 0);
+    const dirs = (mcData || {}).hotels_directory || [];
+    const h = dirs.find(x => x.id === hid);
+    if (!h) return;
+    if (!document.getElementById('accEditId').value) {
+      document.getElementById('accUsername').value = h.name.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 12);
+      document.getElementById('accEmail').value = 'gm@' + h.name.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 12) + '.com';
+    }
+    // Check same-corridor hotels by default
+    const sameAreaIds = dirs.filter(x => x.area === h.area).slice(0, 9).map(x => x.id);
+    if (!sameAreaIds.includes(hid)) sameAreaIds.unshift(hid);
+    document.querySelectorAll('.comp-chk').forEach(chk => {
+      chk.checked = sameAreaIds.includes(Number(chk.value));
+    });
+  }
+
+  function editClientAccount(acc) {
+    document.getElementById('accEditId').value = String(acc.id);
+    document.getElementById('accPrimaryHotel').value = String(acc.primary_hotel_id);
+    document.getElementById('accUsername').value = acc.username;
+    document.getElementById('accPassword').value = '';
+    document.getElementById('accEmail').value = acc.email;
+    document.getElementById('accTier').value = acc.tier;
+    const assigned = (acc.assigned_hotel_ids || []).map(Number);
+    document.querySelectorAll('.comp-chk').forEach(chk => {
+      chk.checked = assigned.includes(Number(chk.value));
+    });
+    document.getElementById('btnSaveClientAcc').textContent = '✓ Update Isolated Account #' + acc.id;
+  }
+
+  function resetClientAccountForm() {
+    document.getElementById('accEditId').value = '';
+    document.getElementById('accUsername').value = '';
+    document.getElementById('accPassword').value = 'demo1234';
+    document.getElementById('accEmail').value = '';
+    document.getElementById('accTier').value = 'free';
+    document.getElementById('btnSaveClientAcc').textContent = '+ Provision / Save Isolated Account';
+  }
+
+  async function saveAdminClientAccount() {
+    const editId = document.getElementById('accEditId').value;
+    const primaryHid = Number(document.getElementById('accPrimaryHotel').value);
+    const username = document.getElementById('accUsername').value.trim();
+    const password = document.getElementById('accPassword').value.trim();
+    const email = document.getElementById('accEmail').value.trim();
+    const tier = document.getElementById('accTier').value;
+    const assigned = Array.from(document.querySelectorAll('.comp-chk:checked')).map(c => Number(c.value));
+    if (!assigned.includes(primaryHid)) assigned.unshift(primaryHid);
+
+    const payload = {
+      action: editId ? 'update' : 'create',
+      account_id: editId ? Number(editId) : undefined,
+      primary_hotel_id: primaryHid,
+      username: username,
+      password: password,
+      email: email,
+      tier: tier,
+      assigned_hotel_ids: assigned
+    };
+    const r = await fetch('/api/admin/accounts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': adminToken },
+      body: JSON.stringify(payload)
+    });
+    const d = await r.json();
+    const msgEl = document.getElementById('accFormMsg');
+    if (!d.ok) {
+      msgEl.style.color = '#dc2626';
+      msgEl.textContent = d.error || 'Error saving account.';
+      return;
+    }
+    msgEl.style.color = '#15803d';
+    msgEl.textContent = `✓ Saved isolated account @${d.account.username} (${d.account.assigned_count} hotels assigned)!`;
+    resetClientAccountForm();
+    await loadMissionControl();
+  }
+
+  async function saveGlobalOutreachConfig() {
+    const outreach = {
+      mode: document.getElementById('cfgOutMode').value,
+      default_price_monthly: Number(document.getElementById('cfgOutPrice').value || 99),
+      brevo_api_key: document.getElementById('cfgBrevoKey').value.trim(),
+      twilio_account_sid: document.getElementById('cfgTwSid').value.trim(),
+      twilio_auth_token: document.getElementById('cfgTwTok').value.trim(),
+      twilio_from_phone: document.getElementById('cfgTwFrom').value.trim(),
+      vapi_api_key: document.getElementById('cfgVoiceKey').value.trim(),
+      sender_phone: document.getElementById('cfgSenderPhone').value.trim(),
+      app_base_url: document.getElementById('cfgAppBaseUrl').value.trim(),
+    };
+    const email_report = {};
+    const smtpPass = document.getElementById('cfgSmtpPass').value.trim();
+    if (smtpPass) email_report.smtp_pass = smtpPass;
+    const r = await fetch('/api/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ outreach, email_report })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      document.getElementById('cfgSaveMsg').textContent = '✓ Saved!';
+      await loadMissionControl();
+    }
+  }
+
+  async function saveAdminCredentials() {
+    const u = document.getElementById('admNewUser').value.trim();
+    const p = document.getElementById('admNewPass').value.trim();
+    const r = await fetch('/api/admin/credentials', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': adminToken },
+      body: JSON.stringify({ username: u, password: p })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      document.getElementById('admCredMsg').textContent = '✓ Owner login updated!';
+    }
+  }
+
+  async function triggerGlobalScrape() {
+    await fetch('/api/scrape-now', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    await loadMissionControl();
+  }
+
+  async function triggerLeadHunt() {
+    await fetch('/api/hunt-leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ quick: true }) });
+    await loadMissionControl();
+  }
+
+  loadMissionControl();
+</script>
+</body>
+</html>
