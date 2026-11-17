@@ -13,6 +13,7 @@ import os
 import re
 import smtplib
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from base64 import b64encode
@@ -153,7 +154,7 @@ def get_channel_readiness(cfg: dict) -> dict:
 
 
 def _http_json(url: str, payload: dict, headers: dict = None, auth_basic: tuple = None, timeout: int = 15) -> tuple:
-    hdrs = {"Content-Type": "application/json", "Accept": "application/json"}
+    hdrs = {"Content-Type": "application/json", "Accept": "application/json", "User-Agent": "HotelRateIntel/1.0"}
     if headers:
         hdrs.update(headers)
     if auth_basic:
@@ -164,6 +165,9 @@ def _http_json(url: str, payload: dict, headers: dict = None, auth_basic: tuple 
         with urllib.request.urlopen(req, timeout=timeout) as r:
             body = json.loads(r.read().decode("utf-8") or "{}")
             return (200 <= r.status < 300), r.status, body
+    except urllib.error.HTTPError as e:
+        raw = e.read().decode("utf-8", errors="replace")
+        return False, e.code, {"error": f"HTTP {e.code}: {raw[:180]}"}
     except Exception as e:
         return False, 0, {"error": str(e)[:180]}
 
