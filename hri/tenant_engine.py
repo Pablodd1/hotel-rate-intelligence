@@ -1136,16 +1136,24 @@ def get_public_website_payload(conn, cfg: dict) -> dict:
     demo_acc = conn.execute("SELECT * FROM client_accounts WHERE username='avalon' OR is_demo=1 ORDER BY id ASC LIMIT 1").fetchone()
     demo_portal = get_client_portal_data(conn, cfg, _serialize_account(conn, demo_acc)) if demo_acc else {}
     rates_by_id = {r["hotel_id"]: r for r in dbmod.latest_rates(conn)}
-    hotels_list = []
-    for r in conn.execute("SELECT id, name, area, stars, est_rooms, website, booking_engine FROM hotels ORDER BY area, name").fetchall():
-        d = dict(r)
-        rt = rates_by_id.get(d["id"]) or {}
-        d["price"] = round(float(rt["price"])) if rt.get("price") is not None else None
-        d["parity_status"] = rt.get("parity_status") or "NO_LIVE_QUOTE"
-        d["undercut_pct"] = float(rt.get("undercut_pct") or 0.0)
-        d["demo_url"] = f"/portal?demo_hotel={d['id']}"
-        d["audit_url"] = f"/audit?hotel_id={d['id']}"
-        hotels_list.append(d)
+    demo_samples = []
+    for sample_id, sample_label in ((1, "Sample Demo #1 · North Beach All-Suites"), (2, "Sample Demo #2 · Boutique Beachfront"), (4, "Sample Demo #3 · South Beach Art Deco")):
+        row = conn.execute("SELECT id, name, area, stars, est_rooms FROM hotels WHERE id=?", (sample_id,)).fetchone()
+        if row:
+            d = dict(row)
+            rt = rates_by_id.get(d["id"]) or {}
+            demo_samples.append({
+                "id": d["id"],
+                "name": sample_label,
+                "area": d["area"],
+                "stars": d["stars"],
+                "est_rooms": d["est_rooms"],
+                "price": round(float(rt["price"])) if rt.get("price") is not None else None,
+                "parity_status": rt.get("parity_status") or "SAMPLE_LIVE",
+                "undercut_pct": float(rt.get("undercut_pct") or 0.0),
+                "demo_url": f"/portal?demo_hotel={d['id']}",
+                "audit_url": f"/audit?hotel_id={d['id']}",
+            })
     out_cfg = cfg.get("outreach") or {}
     return {
         "ok": True,
@@ -1158,12 +1166,12 @@ def get_public_website_payload(conn, cfg: dict) -> dict:
             "username": "avalon",
             "password_hint": "demo1234",
             "portal_demo_url": "/portal?demo=1",
-            "hotel_name": demo_portal.get("primary_hotel", {}).get("name", "Avalon Hotel South Beach"),
-            "area": demo_portal.get("primary_hotel", {}).get("area", "South Beach"),
+            "hotel_name": "Sample Boutique Demo #1",
+            "area": "South Beach",
             "strategy": demo_portal.get("strategy") or {},
-            "comp_set_sample": (demo_portal.get("comp_set") or [])[:6],
+            "comp_set_sample": (demo_portal.get("comp_set") or [])[:4],
         },
-        "hotels_directory": hotels_list,
+        "hotels_directory": demo_samples,
     }
 
 

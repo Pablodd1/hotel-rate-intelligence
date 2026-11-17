@@ -104,6 +104,23 @@ def app(environ, start_response):
         mr = json.loads(_load("snapshot_market_research.json"))
         hotels = json.loads(_load("snapshot_hotels.json")).get("hotels") or []
         from hri.tenant_engine import TIER_CATALOG, COMPETITOR_COMPARISON_MATRIX
+        sample_labels = {
+            1: "Sample Demo #1 · North Beach All-Suites",
+            2: "Sample Demo #2 · Boutique Beachfront",
+            4: "Sample Demo #3 · South Beach Art Deco",
+        }
+        demo_samples = [
+            {
+                "id": h["id"],
+                "name": sample_labels.get(int(h["id"]), "Sample Boutique Demo"),
+                "area": h.get("area"),
+                "price": h.get("price"),
+                "parity_status": h.get("parity_status"),
+                "demo_url": f"/portal?demo_hotel={h['id']}",
+                "audit_url": f"/audit?hotel_id={h['id']}",
+            }
+            for h in hotels if int(h["id"]) in sample_labels
+        ]
         return _reply(start_response, "200 OK", json.dumps({
             "ok": True,
             "market_summary": mr.get("summary") or {},
@@ -111,7 +128,7 @@ def app(environ, start_response):
             "tiers": TIER_CATALOG,
             "comparison_matrix": COMPETITOR_COMPARISON_MATRIX,
             "owner_callback_phone": "",
-            "hotels_directory": [{"id": h["id"], "name": h["name"], "area": h.get("area"), "price": h.get("price"), "parity_status": h.get("parity_status"), "demo_url": f"/portal?demo_hotel={h['id']}", "audit_url": f"/audit?hotel_id={h['id']}"} for h in hotels],
+            "hotels_directory": demo_samples,
         }))
     if path.startswith("/api/public/chat") and environ.get("REQUEST_METHOD") == "POST":
         msg = (body.get("message") or "").strip()
