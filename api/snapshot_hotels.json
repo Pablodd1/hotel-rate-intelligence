@@ -4547,7 +4547,7 @@
    "price_max": 1593.0,
    "deal_stage": "new",
    "created": 1793731050.566438,
-   "est_occupancy_pct": 64,
+   "est_occupancy_pct": 68,
    "pricing_personality": "Passive Wholesale Leaker",
    "management_group": "The Betsy South Beach",
    "website_status": "http_200",
@@ -4634,42 +4634,36 @@
     }
    ],
    "contact_count": 10,
-   "price": 436.0,
-   "prev_price": 392.0,
-   "delta_pct": 11.2,
-   "checkin": "2026-12-16",
+   "price": 478.0,
+   "prev_price": 436.0,
+   "delta_pct": 9.6,
+   "checkin": "2026-12-17",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -20.6,
+   "undercut_pct": -22.2,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 346.0,
+     "rate": 372.0,
      "tax": 0.0
     },
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 413.0,
-     "tax": 0.0
-    },
-    {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 433.0,
+     "rate": 468.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 436.0,
+     "rate": 478.0,
      "tax": 0.0
     }
    ],
-   "decision_logic": "Live OTA undercut detected (-20.6% vs benchmark retail BAR $436). Algorithmic pressure index ~64% (4 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-22.2% vs benchmark retail BAR $478). Algorithmic pressure index ~68% (3 live channels reporting).",
    "score": 100,
    "tier": "hot",
-   "est_annual_upside": 819300
+   "est_annual_upside": 898200
   },
   {
    "id": 51,

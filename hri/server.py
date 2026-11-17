@@ -148,15 +148,7 @@ def _summary(conn, cfg):
         "offer_plans": OFFER_PLANS,
         "outreach_readiness": get_channel_readiness(cfg),
         "ai_models": AI_MODEL_BENCHMARKS,
-        "config": {
-            "market": cfg.get("market"),
-            "stay": cfg.get("stay"),
-            "my_hotel": cfg.get("my_hotel"),
-            "caller": cfg.get("caller"),
-            "telegram": cfg.get("telegram"),
-            "email_report": cfg.get("email_report"),
-            "outreach": cfg.get("outreach"),
-        },
+        "config": cfgmod.sanitize_config_for_ui(cfg),
     }
 
 
@@ -356,15 +348,7 @@ def make_handler(cfg):
                 elif path.startswith("/api/config"):
                     brief_preview = build_brief(cfg["database"], cfg.get("market", "Greater Miami & Beaches"))
                     self._json({
-                        "config": {
-                            "market": cfg.get("market"),
-                            "stay": cfg.get("stay"),
-                            "my_hotel": cfg.get("my_hotel"),
-                            "caller": cfg.get("caller"),
-                            "telegram": cfg.get("telegram"),
-                            "email_report": cfg.get("email_report"),
-                            "outreach": cfg.get("outreach"),
-                        },
+                        "config": cfgmod.sanitize_config_for_ui(cfg),
                         "outreach_readiness": get_channel_readiness(cfg),
                         "brief_preview": brief_preview,
                     })

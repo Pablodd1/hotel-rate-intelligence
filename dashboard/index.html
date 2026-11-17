@@ -462,30 +462,50 @@
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px;">
         <div class="glass-card">
           <span class="badge gold">OUTBOUND &amp; SCRAPER CREDENTIALS</span>
-          <h3 style="font-size:16px; font-weight:800; margin:6px 0 10px;">Configure Email, SMS/WhatsApp, Voice &amp; Outreach Mode</h3>
+          <h3 style="font-size:16px; font-weight:800; margin:6px 0 6px;">Configure Resend, Email, Telegram, Voice &amp; Outreach Mode</h3>
+          <div id="cfgReadinessBar" style="font-size:11px; margin-bottom:10px; display:flex; gap:6px; flex-wrap:wrap;"></div>
 
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:8px;">
             <div>
-              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">OUTREACH DISPATCH MODE</label>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">OUTREACH MODE</label>
               <select class="inp" id="cfgOutMode">
-                <option value="dry_run">dry_run (Safe Queue + 1-Click Links)</option>
-                <option value="live">live (Auto-Send via API Keys)</option>
+                <option value="dry_run">dry_run (Safe Queue + Links)</option>
+                <option value="live">live (Auto-Send via API)</option>
               </select>
             </div>
             <div>
-              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">DEFAULT PITCH TIER ($/MO)</label>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">EMAIL PROVIDER</label>
+              <select class="inp" id="cfgEmailProvider">
+                <option value="resend">Resend (3,000/mo Free)</option>
+                <option value="brevo">Brevo (300/day Free)</option>
+                <option value="smtp">SMTP Relay</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">DEFAULT PITCH ($/MO)</label>
               <input class="inp" type="number" id="cfgOutPrice" value="99">
             </div>
           </div>
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
             <div>
-              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">BREVO API KEY (FREE 300/DAY)</label>
-              <input class="inp" type="password" id="cfgBrevoKey" placeholder="xkeysib-...">
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">RESEND API KEY</label>
+              <input class="inp" type="password" id="cfgResendKey" placeholder="re_... (leave blank to keep saved)">
             </div>
             <div>
-              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">SMTP PASSWORD / RELAY KEY</label>
-              <input class="inp" type="password" id="cfgSmtpPass" placeholder="SMTP pass">
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">BREVO API KEY / SMTP PASS</label>
+              <input class="inp" type="password" id="cfgBrevoKey" placeholder="xkeysib-... (optional backup)">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">TELEGRAM BOT TOKEN</label>
+              <input class="inp" type="password" id="cfgTgToken" placeholder="123456:ABC... (leave blank to keep)">
+            </div>
+            <div>
+              <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">TELEGRAM CHAT ID (OWNER)</label>
+              <input class="inp" type="text" id="cfgTgChat" placeholder="Your numeric Telegram chat ID">
             </div>
           </div>
 
@@ -518,7 +538,7 @@
             </div>
             <div>
               <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">PUBLIC APP BASE URL (EMAIL LINKS)</label>
-              <input class="inp" type="text" id="cfgAppBaseUrl" placeholder="http://127.0.0.1:8317">
+              <input class="inp" type="text" id="cfgAppBaseUrl" placeholder="https://hotelrateintel.com">
             </div>
           </div>
 
@@ -614,6 +634,16 @@
     const camps = d.campaigns || [];
     const accounts = d.accounts || [];
     const leads = (d.leads_bundle || {}).leads || [];
+    const rd = d.outreach_readiness || {};
+    const rdCh = rd.channels || {};
+    const rdBar = document.getElementById('cfgReadinessBar');
+    if (rdBar) {
+      rdBar.innerHTML = ['email', 'telegram', 'sms', 'whatsapp', 'voice'].map(ch => {
+        const info = rdCh[ch] || {};
+        return `<span class="badge ${info.ready ? 'ok' : 'dark'}">${ch.toUpperCase()}: ${info.ready ? (info.provider + ' ✓') : 'Needs Key'}</span>`;
+      }).join('') + `<span class="badge gold">MODE: ${(rd.mode || 'dry_run').toUpperCase()}</span>`;
+    }
+
     const dirs = d.hotels_directory || [];
 
     document.getElementById('ovTotalHotels').textContent = mr.total_hotels || 49;
@@ -917,22 +947,36 @@
   async function saveGlobalOutreachConfig() {
     const outreach = {
       mode: document.getElementById('cfgOutMode').value,
+      email_provider: document.getElementById('cfgEmailProvider').value,
       default_price_monthly: Number(document.getElementById('cfgOutPrice').value || 99),
-      brevo_api_key: document.getElementById('cfgBrevoKey').value.trim(),
-      twilio_account_sid: document.getElementById('cfgTwSid').value.trim(),
-      twilio_auth_token: document.getElementById('cfgTwTok').value.trim(),
-      twilio_from_phone: document.getElementById('cfgTwFrom').value.trim(),
-      vapi_api_key: document.getElementById('cfgVoiceKey').value.trim(),
-      sender_phone: document.getElementById('cfgSenderPhone').value.trim(),
-      app_base_url: document.getElementById('cfgAppBaseUrl').value.trim(),
     };
-    const email_report = {};
-    const smtpPass = document.getElementById('cfgSmtpPass').value.trim();
-    if (smtpPass) email_report.smtp_pass = smtpPass;
+    const rKey = document.getElementById('cfgResendKey').value.trim();
+    const bKey = document.getElementById('cfgBrevoKey').value.trim();
+    const twSid = document.getElementById('cfgTwSid').value.trim();
+    const twTok = document.getElementById('cfgTwTok').value.trim();
+    const twFrom = document.getElementById('cfgTwFrom').value.trim();
+    const vKey = document.getElementById('cfgVoiceKey').value.trim();
+    const sPh = document.getElementById('cfgSenderPhone').value.trim();
+    const appUrl = document.getElementById('cfgAppBaseUrl').value.trim();
+    if (rKey) outreach.resend_api_key = rKey;
+    if (bKey) outreach.brevo_api_key = bKey;
+    if (twSid) outreach.twilio_account_sid = twSid;
+    if (twTok) outreach.twilio_auth_token = twTok;
+    if (twFrom) outreach.twilio_from_phone = twFrom;
+    if (vKey) outreach.vapi_api_key = vKey;
+    if (sPh !== undefined) outreach.sender_phone = sPh;
+    if (appUrl) outreach.app_base_url = appUrl;
+
+    const telegram = {};
+    const tgTok = document.getElementById('cfgTgToken').value.trim();
+    const tgChat = document.getElementById('cfgTgChat').value.trim();
+    if (tgTok) telegram.bot_token = tgTok;
+    if (tgChat) telegram.chat_id = tgChat;
+
     const r = await fetch('/api/config', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ outreach, email_report })
+      body: JSON.stringify({ outreach, telegram })
     });
     const d = await r.json();
     if (d.ok) {

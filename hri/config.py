@@ -110,3 +110,35 @@ def load(path=None):
     cfg["database"] = os.path.join(ROOT, cfg["database"]) if not os.path.isabs(cfg["database"]) else cfg["database"]
     os.makedirs(os.path.dirname(cfg["database"]), exist_ok=True)
     return cfg
+
+
+_SECRET_FIELDS = (
+    "api_key", "token", "secret", "password", "pass", "sid", "auth_key",
+)
+
+
+def sanitize_config_for_ui(cfg: dict) -> dict:
+    """Return a copy of config with all API keys, tokens, passwords, and SIDs masked for API/snapshot output."""
+    def _clean(obj):
+        if not isinstance(obj, dict):
+            return obj
+        out = {}
+        for k, v in obj.items():
+            kl = str(k).lower()
+            if isinstance(v, dict):
+                out[k] = _clean(v)
+            elif any(s in kl for s in _SECRET_FIELDS) and isinstance(v, str) and v.strip():
+                out[k] = "***configured***"
+            else:
+                out[k] = v
+        return out
+
+    return _clean({
+        "market": cfg.get("market"),
+        "stay": cfg.get("stay"),
+        "my_hotel": cfg.get("my_hotel"),
+        "caller": cfg.get("caller"),
+        "telegram": cfg.get("telegram"),
+        "email_report": cfg.get("email_report"),
+        "outreach": cfg.get("outreach"),
+    })

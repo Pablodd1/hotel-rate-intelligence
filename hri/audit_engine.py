@@ -256,7 +256,10 @@ def run_live_hotel_audit(conn, cfg: dict, payload: dict) -> dict:
         "SELECT * FROM rates WHERE hotel_id=? AND nightly_price IS NOT NULL ORDER BY scraped_at DESC, id DESC LIMIT 1",
         (hid,),
     ).fetchone()
-    need_live_rate = force_scrape or is_new_hotel or (not latest_rate_row) or (time.time() - float(latest_rate_row["scraped_at"] or 0) > 7200)
+    if "force_scrape" in payload and not payload["force_scrape"] and latest_rate_row:
+        need_live_rate = False
+    else:
+        need_live_rate = force_scrape or is_new_hotel or (not latest_rate_row) or (time.time() - float(latest_rate_row["scraped_at"] or 0) > 7200)
 
     stay = cfg.get("stay") or {"checkin_days_out": 30, "nights": 3}
     checkin = (payload.get("checkin") or "").strip() or (date.today() + timedelta(days=int(stay.get("checkin_days_out") or 30))).isoformat()

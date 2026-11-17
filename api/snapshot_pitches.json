@@ -16414,8 +16414,8 @@
      "tax": 0.0
     }
    ],
-   "comp_avg": 544,
-   "vs_comp_diff": -353,
+   "comp_avg": 558,
+   "vs_comp_diff": -367,
    "suggested_rate_bump": 40,
    "neighbors": [
     {
@@ -16425,9 +16425,9 @@
      "stars": 4.5,
      "est_rooms": 130,
      "review_rating": 4.7,
-     "price": 436,
-     "prev_price": 392,
-     "delta_pct": 11.2
+     "price": 478,
+     "prev_price": 436,
+     "delta_pct": 9.6
     },
     {
      "id": 37,
@@ -16468,8 +16468,8 @@
    "cost_usd": 0.0,
    "confidence_score": 96,
    "headline": "URGENT PARITY FIX: Agoda.com is undercutting Lennox Hotel Miami Beach by $9/nt (-4.7%)",
-   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling Lennox Hotel Miami Beach at $182/nt ($252 out-the-door) against your $191/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With The Betsy Hotel holding $436/nt and South Beach averaging $544/nt, raise Thu-Sat Direct BAR to $231/nt (+$207,600/yr projected RevPAR + direct shift).",
-   "voice_note_15_sec": "Hey Lennox Hotel Miami Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-14: your direct site is at $191, Agoda.com is showing $182, and The Betsy Hotel next door is at $436. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling Lennox Hotel Miami Beach at $182/nt ($252 out-the-door) against your $191/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With The Betsy Hotel holding $478/nt and South Beach averaging $558/nt, raise Thu-Sat Direct BAR to $231/nt (+$207,600/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey Lennox Hotel Miami Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-14: your direct site is at $191, Agoda.com is showing $182, and The Betsy Hotel next door is at $478. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
   },
   "memory": {
    "hotel_id": 35,
@@ -16478,10 +16478,10 @@
    "current_bar": 191,
    "prev_bar": 316,
    "delta_pct": -39.6,
-   "comp_avg_bar": 400,
+   "comp_avg_bar": 408,
    "recommended_bar": 226,
    "strategy_action": "RAISE BAR +$35/NT ($191 -> $226/nt)",
-   "strategy_rationale": "Corridor peers average $400/nt vs your live quote of $191/nt (pressure index ~48%).",
+   "strategy_rationale": "Corridor peers average $408/nt vs your live quote of $191/nt (pressure index ~48%).",
    "occupancy": {
     "est_occupancy_pct": 48,
     "pricing_personality": "Last-Minute Discounter",
@@ -16538,13 +16538,13 @@
      "hotel_id": 38,
      "name": "The Betsy Hotel, South Beach",
      "area": "South Beach",
-     "bar": 436,
-     "prev_bar": 392,
-     "delta_pct": 11.2,
-     "undercut_pct": -20.6,
+     "bar": 478,
+     "prev_bar": 436,
+     "delta_pct": 9.6,
+     "undercut_pct": -22.2,
      "est_occupancy_pct": 64,
      "personality": "Passive Wholesale Leaker",
-     "decision_summary": "Live OTA undercut detected (-20.6% vs benchmark retail BAR $436). Algorithmic pressure index ~64% (0 live channels reporting)."
+     "decision_summary": "Live OTA undercut detected (-22.2% vs benchmark retail BAR $478). Algorithmic pressure index ~64% (0 live channels reporting)."
     },
     {
      "hotel_id": 48,
@@ -16660,7 +16660,7 @@
    },
    {
     "title": "2. Reputation-vs-Comp Positioning (+$40/nt Weekend Opportunity)",
-    "detail": "Lennox Hotel Miami Beach carries a 4.5\u2605 review score while The Betsy Hotel is live at $436/nt and The Standard Spa is live at $394/nt (Comp Avg: $544/nt).",
+    "detail": "Lennox Hotel Miami Beach carries a 4.5\u2605 review score while The Betsy Hotel is live at $478/nt and The Standard Spa is live at $394/nt (Comp Avg: $558/nt).",
     "impact": "Est. +$100,100/yr"
    },
    {
@@ -16791,7 +16791,7 @@
    },
    {
     "label": "SMS / WhatsApp #2 \u2014 Comp-Set Move Alert",
-    "text": "Morning Juan \u2014 The Betsy Hotel is live at $436/nt & The Standard Spa at $394/nt in South Beach today. Happy to text your free 6 AM Lennox Hotel Miami Beach rate brief for 7 days ($99/mo after if useful). Reply STOP to opt out."
+    "text": "Morning Juan \u2014 The Betsy Hotel is live at $478/nt & The Standard Spa at $394/nt in South Beach today. Happy to text your free 6 AM Lennox Hotel Miami Beach rate brief for 7 days ($99/mo after if useful). Reply STOP to opt out."
    }
   ],
   "instagram_dm": "Hey Lennox Hotel Miami Beach team! Local Miami founder here \u2014 our scanner just checked Live 2026-12-14: $191 retail BAR vs $182 on Agoda.com (-4.7% undercut). Can I send your GM (Juan Castellanos Bonillo & Quim Gener) our free 7-day 6 AM comp-set brief? ($99/mo flat if helpful).",
@@ -16801,13 +16801,13 @@
     "step": "Touch 1 (Day 1 \u00b7 YC 3-Sentence Rule) \u2014 Casual Subject + Live Proof + 1-Line Ask",
     "to": "info@lennoxmiamibeach.com",
     "subject": "lennox hotel miami beach rate on agoda.com today",
-    "body": "Hi Juan,\n\nI live right here in North Miami and built a daily 6 AM rate & OTA undercut tracker for independent South Beach hotels (Free $0 starter tier, or $99/mo flat with no contract).\n\nOur scanner caught Agoda.com quoting Lennox Hotel Miami Beach at $182/nt vs your $191/nt retail BAR for 2026-12-14 (-4.7% undercut), while The Betsy Hotel is at $436/nt and The Standard Spa is at $394/nt.\n\nWant me to send you Lennox Hotel Miami Beach's free 6 AM rate sheet tomorrow morning (or open Lennox Hotel Miami Beach's private live demo panel at http://127.0.0.1:8317/portal?demo_hotel=35)?\n\nBest,\nJasmel Acosta\nHotel Rate Intelligence \u00b7 North Miami, FL (Reply STOP to opt out)"
+    "body": "Hi Juan,\n\nI live right here in North Miami and built a daily 6 AM rate & OTA undercut tracker for independent South Beach hotels (Free $0 starter tier, or $99/mo flat with no contract).\n\nOur scanner caught Agoda.com quoting Lennox Hotel Miami Beach at $182/nt vs your $191/nt retail BAR for 2026-12-14 (-4.7% undercut), while The Betsy Hotel is at $478/nt and The Standard Spa is at $394/nt.\n\nWant me to send you Lennox Hotel Miami Beach's free 6 AM rate sheet tomorrow morning (or open Lennox Hotel Miami Beach's private live demo panel at http://127.0.0.1:8317/portal?demo_hotel=35)?\n\nBest,\nJasmel Acosta\nHotel Rate Intelligence \u00b7 North Miami, FL (Reply STOP to opt out)"
    },
    {
     "step": "Touch 2 (Day 4 \u00b7 YC Follow-Up #1) \u2014 Neighbor Rate Shift + 1-Line Ask",
     "to": "info@lennoxmiamibeach.com",
     "subject": "re: lennox hotel miami beach rate on agoda.com today",
-    "body": "Hi Juan,\n\nQuick follow-up from North Miami \u2014 The Betsy Hotel ($436/nt) and The Standard Spa ($394/nt) just updated their South Beach rates ahead of upcoming weekend compression.\n\nWe already unlocked a free ($0/mo) isolated rate portal for Lennox Hotel Miami Beach so your desk doesn't spend 45+ hours a month checking OTAs by hand.\n\nShould I email over your free login link at http://127.0.0.1:8317/website?hotel_id=35#register, or reply YES and I'll send tomorrow's 6 AM sheet directly?\n\nBest,\nJasmel Acosta \u00b7 North Miami, FL (Reply STOP to opt out)"
+    "body": "Hi Juan,\n\nQuick follow-up from North Miami \u2014 The Betsy Hotel ($478/nt) and The Standard Spa ($394/nt) just updated their South Beach rates ahead of upcoming weekend compression.\n\nWe already unlocked a free ($0/mo) isolated rate portal for Lennox Hotel Miami Beach so your desk doesn't spend 45+ hours a month checking OTAs by hand.\n\nShould I email over your free login link at http://127.0.0.1:8317/website?hotel_id=35#register, or reply YES and I'll send tomorrow's 6 AM sheet directly?\n\nBest,\nJasmel Acosta \u00b7 North Miami, FL (Reply STOP to opt out)"
    },
    {
     "step": "Touch 3 (Day 8 \u00b7 YC Follow-Up #2) \u2014 Compression Floor Check + Zero-Pressure Close",
@@ -17432,8 +17432,8 @@
      "tax": 0.0
     }
    ],
-   "comp_avg": 476,
-   "vs_comp_diff": -82,
+   "comp_avg": 490,
+   "vs_comp_diff": -96,
    "suggested_rate_bump": 40,
    "neighbors": [
     {
@@ -17454,9 +17454,9 @@
      "stars": 4.5,
      "est_rooms": 130,
      "review_rating": 4.7,
-     "price": 436,
-     "prev_price": 392,
-     "delta_pct": 11.2
+     "price": 478,
+     "prev_price": 436,
+     "delta_pct": 9.6
     },
     {
      "id": 48,
@@ -17486,7 +17486,7 @@
    "cost_usd": 0.0,
    "confidence_score": 96,
    "headline": "URGENT PARITY FIX: Agoda.com is undercutting The Standard Spa by $83/nt (-21.1%)",
-   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling The Standard Spa at $311/nt ($399 out-the-door) against your $394/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Lennox Hotel Miami Beach holding $191/nt and South Beach averaging $476/nt, raise Thu-Sat Direct BAR to $434/nt (+$354,600/yr projected RevPAR + direct shift).",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling The Standard Spa at $311/nt ($399 out-the-door) against your $394/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Lennox Hotel Miami Beach holding $191/nt and South Beach averaging $490/nt, raise Thu-Sat Direct BAR to $434/nt (+$354,600/yr projected RevPAR + direct shift).",
    "voice_note_15_sec": "Hey The Standard Spa team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-14: your direct site is at $394, Agoda.com is showing $311, and Lennox Hotel Miami Beach next door is at $191. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
   },
   "memory": {
@@ -17496,10 +17496,10 @@
    "current_bar": 394,
    "prev_bar": 664,
    "delta_pct": -40.7,
-   "comp_avg_bar": 359,
+   "comp_avg_bar": 368,
    "recommended_bar": 409,
    "strategy_action": "CLOSE OTA LEAK & ALIGN BAR ($394 -> $409/nt)",
-   "strategy_rationale": "Live quote shows a -21.1% third-party OTA undercut while corridor neighbors average $359/nt.",
+   "strategy_rationale": "Live quote shows a -21.1% third-party OTA undercut while corridor neighbors average $368/nt.",
    "occupancy": {
     "est_occupancy_pct": 48,
     "pricing_personality": "Passive Wholesale Leaker",
@@ -17542,13 +17542,13 @@
      "hotel_id": 38,
      "name": "The Betsy Hotel, South Beach",
      "area": "South Beach",
-     "bar": 436,
-     "prev_bar": 392,
-     "delta_pct": 11.2,
-     "undercut_pct": -20.6,
+     "bar": 478,
+     "prev_bar": 436,
+     "delta_pct": 9.6,
+     "undercut_pct": -22.2,
      "est_occupancy_pct": 64,
      "personality": "Passive Wholesale Leaker",
-     "decision_summary": "Live OTA undercut detected (-20.6% vs benchmark retail BAR $436). Algorithmic pressure index ~64% (0 live channels reporting)."
+     "decision_summary": "Live OTA undercut detected (-22.2% vs benchmark retail BAR $478). Algorithmic pressure index ~64% (0 live channels reporting)."
     },
     {
      "hotel_id": 48,
@@ -17664,7 +17664,7 @@
    },
    {
     "title": "2. Reputation-vs-Comp Positioning (+$40/nt Weekend Opportunity)",
-    "detail": "The Standard Spa carries a 4.7\u2605 review score while Lennox Hotel Miami Beach is live at $191/nt and The Betsy Hotel is live at $436/nt (Comp Avg: $476/nt).",
+    "detail": "The Standard Spa carries a 4.7\u2605 review score while Lennox Hotel Miami Beach is live at $191/nt and The Betsy Hotel is live at $478/nt (Comp Avg: $490/nt).",
     "impact": "Est. +$168,200/yr"
    },
    {
@@ -17795,7 +17795,7 @@
    },
    {
     "label": "SMS / WhatsApp #2 \u2014 Comp-Set Move Alert",
-    "text": "Morning The Standard Spa Team \u2014 Lennox Hotel Miami Beach is live at $191/nt & The Betsy Hotel at $436/nt in South Beach today. Happy to text your free 6 AM The Standard Spa rate brief for 7 days ($99/mo after if useful). Reply STOP to opt out."
+    "text": "Morning The Standard Spa Team \u2014 Lennox Hotel Miami Beach is live at $191/nt & The Betsy Hotel at $478/nt in South Beach today. Happy to text your free 6 AM The Standard Spa rate brief for 7 days ($99/mo after if useful). Reply STOP to opt out."
    }
   ],
   "instagram_dm": "Hey The Standard Spa team! Local Miami founder here \u2014 our scanner just checked Live 2026-12-14: $394 retail BAR vs $311 on Agoda.com (-21.1% undercut). Can I send your GM our free 7-day 6 AM comp-set brief? ($99/mo flat if helpful).",
@@ -17805,13 +17805,13 @@
     "step": "Touch 1 (Day 1 \u00b7 YC 3-Sentence Rule) \u2014 Casual Subject + Live Proof + 1-Line Ask",
     "to": "marketing@standardmiami.com",
     "subject": "the standard spa rate on agoda.com today",
-    "body": "Hi The Standard Spa Team,\n\nI live right here in North Miami and built a daily 6 AM rate & OTA undercut tracker for independent South Beach hotels (Free $0 starter tier, or $99/mo flat with no contract).\n\nOur scanner caught Agoda.com quoting The Standard Spa at $311/nt vs your $394/nt retail BAR for 2026-12-14 (-21.1% undercut), while Lennox Hotel Miami Beach is at $191/nt and The Betsy Hotel is at $436/nt.\n\nWant me to send you The Standard Spa's free 6 AM rate sheet tomorrow morning (or open The Standard Spa's private live demo panel at http://127.0.0.1:8317/portal?demo_hotel=37)?\n\nBest,\nJasmel Acosta\nHotel Rate Intelligence \u00b7 North Miami, FL (Reply STOP to opt out)"
+    "body": "Hi The Standard Spa Team,\n\nI live right here in North Miami and built a daily 6 AM rate & OTA undercut tracker for independent South Beach hotels (Free $0 starter tier, or $99/mo flat with no contract).\n\nOur scanner caught Agoda.com quoting The Standard Spa at $311/nt vs your $394/nt retail BAR for 2026-12-14 (-21.1% undercut), while Lennox Hotel Miami Beach is at $191/nt and The Betsy Hotel is at $478/nt.\n\nWant me to send you The Standard Spa's free 6 AM rate sheet tomorrow morning (or open The Standard Spa's private live demo panel at http://127.0.0.1:8317/portal?demo_hotel=37)?\n\nBest,\nJasmel Acosta\nHotel Rate Intelligence \u00b7 North Miami, FL (Reply STOP to opt out)"
    },
    {
     "step": "Touch 2 (Day 4 \u00b7 YC Follow-Up #1) \u2014 Neighbor Rate Shift + 1-Line Ask",
     "to": "marketing@standardmiami.com",
     "subject": "re: the standard spa rate on agoda.com today",
-    "body": "Hi The Standard Spa Team,\n\nQuick follow-up from North Miami \u2014 Lennox Hotel Miami Beach ($191/nt) and The Betsy Hotel ($436/nt) just updated their South Beach rates ahead of upcoming weekend compression.\n\nWe already unlocked a free ($0/mo) isolated rate portal for The Standard Spa so your desk doesn't spend 45+ hours a month checking OTAs by hand.\n\nShould I email over your free login link at http://127.0.0.1:8317/website?hotel_id=37#register, or reply YES and I'll send tomorrow's 6 AM sheet directly?\n\nBest,\nJasmel Acosta \u00b7 North Miami, FL (Reply STOP to opt out)"
+    "body": "Hi The Standard Spa Team,\n\nQuick follow-up from North Miami \u2014 Lennox Hotel Miami Beach ($191/nt) and The Betsy Hotel ($478/nt) just updated their South Beach rates ahead of upcoming weekend compression.\n\nWe already unlocked a free ($0/mo) isolated rate portal for The Standard Spa so your desk doesn't spend 45+ hours a month checking OTAs by hand.\n\nShould I email over your free login link at http://127.0.0.1:8317/website?hotel_id=37#register, or reply YES and I'll send tomorrow's 6 AM sheet directly?\n\nBest,\nJasmel Acosta \u00b7 North Miami, FL (Reply STOP to opt out)"
    },
    {
     "step": "Touch 3 (Day 8 \u00b7 YC Follow-Up #2) \u2014 Compression Floor Check + Zero-Pressure Close",
@@ -17904,45 +17904,39 @@
   },
   "rate_intel": {
    "has_live_rate": true,
-   "checkin": "2026-12-16",
-   "checkout": "2026-12-19",
+   "checkin": "2026-12-17",
+   "checkout": "2026-12-20",
    "source": "xotelo_live_ota",
-   "direct_bar": 436,
-   "prev_bar": 392,
-   "delta_pct": 11.2,
+   "direct_bar": 478,
+   "prev_bar": 436,
+   "delta_pct": 9.6,
    "lowest_ota_name": "Agoda.com",
-   "lowest_ota_price": 346,
+   "lowest_ota_price": 372,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -20.6,
+   "undercut_pct": -22.2,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 346.0,
+     "rate": 372.0,
      "tax": 0.0
     },
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 413.0,
-     "tax": 0.0
-    },
-    {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 433.0,
+     "rate": 468.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 436.0,
+     "rate": 478.0,
      "tax": 0.0
     }
    ],
    "comp_avg": 462,
-   "vs_comp_diff": -26,
-   "suggested_rate_bump": 16,
+   "vs_comp_diff": 16,
+   "suggested_rate_bump": 24,
    "neighbors": [
     {
      "id": 35,
@@ -17983,37 +17977,37 @@
    "est_resort_fee": 39,
    "comp_avg_resort_fee": 38,
    "tax_rate_pct": 14,
-   "direct_tax": 66,
-   "direct_out_the_door": 541,
-   "ota_out_the_door": 439,
-   "otd_gap": 102,
-   "fee_hook": "True Checkout Total is $541/nt ($436 BAR + ~$39 resort fee + $66 tax) vs $439/nt on Agoda.com."
+   "direct_tax": 72,
+   "direct_out_the_door": 589,
+   "ota_out_the_door": 469,
+   "otd_gap": 120,
+   "fee_hook": "True Checkout Total is $589/nt ($478 BAR + ~$39 resort fee + $72 tax) vs $469/nt on Agoda.com."
   },
   "ai_brief": {
    "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
    "cost_usd": 0.0,
    "confidence_score": 96,
-   "headline": "URGENT PARITY FIX: Agoda.com is undercutting The Betsy Hotel by $90/nt (-20.6%)",
-   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling The Betsy Hotel at $346/nt ($439 out-the-door) against your $436/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Lennox Hotel Miami Beach holding $191/nt and South Beach averaging $462/nt, raise Thu-Sat Direct BAR to $452/nt (+$500,400/yr projected RevPAR + direct shift).",
-   "voice_note_15_sec": "Hey The Betsy Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-16: your direct site is at $436, Agoda.com is showing $346, and Lennox Hotel Miami Beach next door is at $191. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+   "headline": "URGENT PARITY FIX: Agoda.com is undercutting The Betsy Hotel by $106/nt (-22.2%)",
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling The Betsy Hotel at $372/nt ($469 out-the-door) against your $478/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With Lennox Hotel Miami Beach holding $191/nt and South Beach averaging $462/nt, raise Thu-Sat Direct BAR to $502/nt (+$553,500/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey The Betsy Hotel team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-17: your direct site is at $478, Agoda.com is showing $372, and Lennox Hotel Miami Beach next door is at $191. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
   },
   "memory": {
    "hotel_id": 38,
    "hotel_name": "The Betsy Hotel, South Beach",
    "area": "South Beach",
-   "current_bar": 436,
-   "prev_bar": 392,
-   "delta_pct": 11.2,
+   "current_bar": 478,
+   "prev_bar": 436,
+   "delta_pct": 9.6,
    "comp_avg_bar": 351,
    "recommended_bar": 418,
-   "strategy_action": "CLOSE OTA LEAK & ALIGN BAR ($436 -> $418/nt)",
-   "strategy_rationale": "Live quote shows a -20.6% third-party OTA undercut while corridor neighbors average $351/nt.",
+   "strategy_action": "CLOSE OTA LEAK & ALIGN BAR ($478 -> $418/nt)",
+   "strategy_rationale": "Live quote shows a -22.2% third-party OTA undercut while corridor neighbors average $351/nt.",
    "occupancy": {
-    "est_occupancy_pct": 64,
+    "est_occupancy_pct": 68,
     "pricing_personality": "Passive Wholesale Leaker",
     "pattern_code": "WHOLESALE_LEAK",
-    "decision_logic": "Live OTA undercut detected (-20.6% vs benchmark retail BAR $436). Algorithmic pressure index ~64% (4 live channels reporting).",
-    "band_position_pct": 2,
+    "decision_logic": "Live OTA undercut detected (-22.2% vs benchmark retail BAR $478). Algorithmic pressure index ~68% (3 live channels reporting).",
+    "band_position_pct": 5,
     "price_min": 418,
     "price_max": 1593
    },
@@ -18066,6 +18060,13 @@
      "ota_low": 346,
      "est_occupancy_pct": 55,
      "note": "Real xotelo_live_ota check-in 2026-12-16 (UNDERCUT)"
+    },
+    {
+     "date": "2026-12-17",
+     "bar": 478,
+     "ota_low": 372,
+     "est_occupancy_pct": 60,
+     "note": "Real xotelo_live_ota check-in 2026-12-17 (UNDERCUT)"
     }
    ],
    "competitor_decisions": [
@@ -18131,6 +18132,42 @@
     }
    ],
    "memory_logs": [
+    {
+     "id": 59,
+     "hotel_id": 38,
+     "event_type": "overnight_call",
+     "old_price": 478.0,
+     "new_price": 249.0,
+     "delta_pct": -47.9,
+     "est_occupancy_pct": 81,
+     "competitor_pattern": "MANUAL_CALL_VERIFIED",
+     "ai_recommendation": "Staff verified courtesy call: 81% occupancy, 7 rooms left, $249 walk-in rate.",
+     "recorded_at": 1794933038.4255714
+    },
+    {
+     "id": 58,
+     "hotel_id": 38,
+     "event_type": "overnight_call",
+     "old_price": 478.0,
+     "new_price": 249.0,
+     "delta_pct": -47.9,
+     "est_occupancy_pct": 81,
+     "competitor_pattern": "MANUAL_CALL_VERIFIED",
+     "ai_recommendation": "Staff verified courtesy call: 81% occupancy, 7 rooms left, $249 walk-in rate.",
+     "recorded_at": 1794932967.9634163
+    },
+    {
+     "id": 57,
+     "hotel_id": 38,
+     "event_type": "overnight_call",
+     "old_price": 436.0,
+     "new_price": 249.0,
+     "delta_pct": -42.9,
+     "est_occupancy_pct": 81,
+     "competitor_pattern": "MANUAL_CALL_VERIFIED",
+     "ai_recommendation": "Staff verified courtesy call: 81% occupancy, 7 rooms left, $249 walk-in rate.",
+     "recorded_at": 1794932895.7706656
+    },
     {
      "id": 56,
      "hotel_id": 38,
@@ -18214,42 +18251,6 @@
      "competitor_pattern": "MANUAL_CALL_VERIFIED",
      "ai_recommendation": "Staff verified courtesy call: 81% occupancy, 7 rooms left, $249 walk-in rate.",
      "recorded_at": 1794682508.721361
-    },
-    {
-     "id": 49,
-     "hotel_id": 38,
-     "event_type": "overnight_call",
-     "old_price": 419.0,
-     "new_price": 249.0,
-     "delta_pct": -40.6,
-     "est_occupancy_pct": 81,
-     "competitor_pattern": "MANUAL_CALL_VERIFIED",
-     "ai_recommendation": "Staff verified courtesy call: 81% occupancy, 7 rooms left, $249 walk-in rate.",
-     "recorded_at": 1794682431.4488337
-    },
-    {
-     "id": 48,
-     "hotel_id": 38,
-     "event_type": "overnight_call",
-     "old_price": 419.0,
-     "new_price": 249.0,
-     "delta_pct": -40.6,
-     "est_occupancy_pct": 81,
-     "competitor_pattern": "MANUAL_CALL_VERIFIED",
-     "ai_recommendation": "Staff verified courtesy call: 81% occupancy, 7 rooms left, $249 walk-in rate.",
-     "recorded_at": 1794682327.6913073
-    },
-    {
-     "id": 38,
-     "hotel_id": 38,
-     "event_type": "strategy_decision",
-     "old_price": 686.0,
-     "new_price": 1558.0,
-     "delta_pct": 127.1,
-     "est_occupancy_pct": 97,
-     "competitor_pattern": "AGGRESSIVE_YIELD",
-     "ai_recommendation": "CLOSE OTA LEAK & ALIGN BAR ($1558 \u2192 $1038/nt): 1) Lock Parity First: Suppress static wholesale discounting (-4.6% leak) so direct bookings convert. 2) Align With Corridor: Neighbors average $517/nt at ~97% occupancy.",
-     "recorded_at": 1793802937.77691
     }
    ]
   },
@@ -18309,14 +18310,14 @@
   ],
   "action_recommendations": [
    {
-    "title": "1. Close Live OTA Undercut on Agoda.com (-20.6%)",
-    "detail": "Agoda.com is publicly quoting $346/nt vs $436/nt benchmark retail for 2026-12-16. Auditing static wholesale/bedbank rates stops commission leakage.",
-    "impact": "Est. +$268,100/yr"
+    "title": "1. Close Live OTA Undercut on Agoda.com (-22.2%)",
+    "detail": "Agoda.com is publicly quoting $372/nt vs $478/nt benchmark retail for 2026-12-17. Auditing static wholesale/bedbank rates stops commission leakage.",
+    "impact": "Est. +$293,900/yr"
    },
    {
-    "title": "2. Reputation-vs-Comp Positioning (+$16/nt Weekend Opportunity)",
+    "title": "2. Reputation-vs-Comp Positioning (+$24/nt Weekend Opportunity)",
     "detail": "The Betsy Hotel carries a 4.7\u2605 review score while Lennox Hotel Miami Beach is live at $191/nt and The Standard Spa is live at $394/nt (Comp Avg: $462/nt).",
-    "impact": "Est. +$232,300/yr"
+    "impact": "Est. +$259,600/yr"
    },
    {
     "title": "3. Lock In Upcoming Miami & Stadium Compression Floors",
@@ -18399,14 +18400,14 @@
    "est_rooms": 130,
    "assumed_occupancy_pct": 72,
    "annual_sold_nights": 34164,
-   "adr_lift_per_night": 17,
-   "annual_adr_upside": 232300,
-   "annual_commission_saved": 268100,
-   "total_annual_roi": 500400,
+   "adr_lift_per_night": 19,
+   "annual_adr_upside": 259600,
+   "annual_commission_saved": 293900,
+   "total_annual_roi": 553500,
    "recommended_tier": "Small Boutique Pulse ($99/mo Flat)",
    "monthly_investment": 99,
    "daily_investment": 3.3,
-   "roi_multiple": 421.2
+   "roi_multiple": 465.9
   },
   "call_script": {
    "target_hotel": "The Betsy Hotel, South Beach",
@@ -18414,10 +18415,10 @@
    "target_persona": "Jeff Lehman (GM) & Jonathan Plutzik (Owner) (General Manager & Chairman/Owner)",
    "target_person_verified": true,
    "target_person_source": "https://globenewswire.com",
-   "walk_in_script": "[Walk into The Betsy Hotel at 1440 Ocean Drive, Miami Beach, FL 33139 \u00b7 Target: Jeff Lehman (GM) & Jonathan Plutzik (Owner) (General Manager & Chairman/Owner) (The Betsy South Beach)]\n\nYOU:\n\"Good morning! I'm Jasmel \u2014 I'm local right here in North Miami / Miami Beach and run our daily Miami Hotel Rate & Parity Brief. Look at this 1-page live scan sheet I printed for Jeff: Live 2026-12-16: $436 retail BAR vs $346 on Agoda.com (-20.6% undercut). Enterprise tools charge $500/month for this; we send independent South Beach hotels the daily 6 AM comp-set + OTA undercut brief for $99/month flat ($3.30/day, no contract). Can I send tomorrow's brief free for 7 mornings?\"",
-   "gatekeeper_bypass": "\"Hi there \u2014 good morning! Calling for Jeff Lehman (GM) & Jonathan Plutzik (Owner) at The Betsy Hotel. This is Jasmel locally here in Miami \u2014 not a guest booking call. Our live South Beach rate scanner pulled Live 2026-12-16: $436 retail BAR vs $346 on Agoda.com (-20.6% undercut), and I wanted to drop the 1-page comp-set & OTA check on Jeff's screen. Are they around, or what's the best email?\"",
-   "gm_opener_30_sec": "\"Hi Jeff, Jasmel here \u2014 local in North Miami / Miami Beach. Quick 25 seconds: In our live metasearch scan for 2026-12-16, The Betsy Hotel's retail benchmark BAR is $436/night, while Agoda.com is publicly displaying $346/night (-20.6% parity undercut \u2014 $90/nt gap). Big chains pay $500/month for software to watch this daily. We built a flat $99/month ($3.30/day) 6 AM brief specifically for independent South Beach hotels \u2014 no contract. Want me to send tomorrow's sheet free for 7 mornings so you can judge it yourself?\"",
-   "voice_ai_prompt": "You are Jasmel Acosta's local Miami hospitality assistant calling The Betsy Hotel on (305) 531-6100. Ask politely for Jeff Lehman (GM) & Jonathan Plutzik (Owner) (General Manager & Chairman/Owner). Share one verified live fact: Live 2026-12-16: $436 retail BAR vs $346 on Agoda.com (-20.6% undercut). Offer a 100% free 7-morning 6 AM rate & OTA parity email/WhatsApp brief ($99/mo flat if they keep it). Keep the call under 45 seconds.",
+   "walk_in_script": "[Walk into The Betsy Hotel at 1440 Ocean Drive, Miami Beach, FL 33139 \u00b7 Target: Jeff Lehman (GM) & Jonathan Plutzik (Owner) (General Manager & Chairman/Owner) (The Betsy South Beach)]\n\nYOU:\n\"Good morning! I'm Jasmel \u2014 I'm local right here in North Miami / Miami Beach and run our daily Miami Hotel Rate & Parity Brief. Look at this 1-page live scan sheet I printed for Jeff: Live 2026-12-17: $478 retail BAR vs $372 on Agoda.com (-22.2% undercut). Enterprise tools charge $500/month for this; we send independent South Beach hotels the daily 6 AM comp-set + OTA undercut brief for $99/month flat ($3.30/day, no contract). Can I send tomorrow's brief free for 7 mornings?\"",
+   "gatekeeper_bypass": "\"Hi there \u2014 good morning! Calling for Jeff Lehman (GM) & Jonathan Plutzik (Owner) at The Betsy Hotel. This is Jasmel locally here in Miami \u2014 not a guest booking call. Our live South Beach rate scanner pulled Live 2026-12-17: $478 retail BAR vs $372 on Agoda.com (-22.2% undercut), and I wanted to drop the 1-page comp-set & OTA check on Jeff's screen. Are they around, or what's the best email?\"",
+   "gm_opener_30_sec": "\"Hi Jeff, Jasmel here \u2014 local in North Miami / Miami Beach. Quick 25 seconds: In our live metasearch scan for 2026-12-17, The Betsy Hotel's retail benchmark BAR is $478/night, while Agoda.com is publicly displaying $372/night (-22.2% parity undercut \u2014 $106/nt gap). Big chains pay $500/month for software to watch this daily. We built a flat $99/month ($3.30/day) 6 AM brief specifically for independent South Beach hotels \u2014 no contract. Want me to send tomorrow's sheet free for 7 mornings so you can judge it yourself?\"",
+   "voice_ai_prompt": "You are Jasmel Acosta's local Miami hospitality assistant calling The Betsy Hotel on (305) 531-6100. Ask politely for Jeff Lehman (GM) & Jonathan Plutzik (Owner) (General Manager & Chairman/Owner). Share one verified live fact: Live 2026-12-17: $478 retail BAR vs $372 on Agoda.com (-22.2% undercut). Offer a 100% free 7-morning 6 AM rate & OTA parity email/WhatsApp brief ($99/mo flat if they keep it). Keep the call under 45 seconds.",
    "discovery_questions": [
     "1. \"Who currently checks Lennox Hotel Miami Beach, The Standard Spa, and Agoda/Booking.com rates at The Betsy Hotel each morning?\"",
     "2. \"Have you caught wholesalers or OTAs undercutting your SynXis / Sabre direct rate on weekends?\"",
@@ -18442,21 +18443,21 @@
   "sms_templates": [
    {
     "label": "SMS / WhatsApp #1 \u2014 Live Rate Proof + $99/mo Offer",
-    "text": "Hi Jeff (The Betsy Hotel) \u2014 Jasmel here locally in Miami. Live 2026-12-16: $436 retail BAR vs $346 on Agoda.com (-20.6% undercut). I track independent South Beach hotels for $99/mo flat (first 7 mornings free). Reply YES for your 1-page sheet or STOP to opt out."
+    "text": "Hi Jeff (The Betsy Hotel) \u2014 Jasmel here locally in Miami. Live 2026-12-17: $478 retail BAR vs $372 on Agoda.com (-22.2% undercut). I track independent South Beach hotels for $99/mo flat (first 7 mornings free). Reply YES for your 1-page sheet or STOP to opt out."
    },
    {
     "label": "SMS / WhatsApp #2 \u2014 Comp-Set Move Alert",
     "text": "Morning Jeff \u2014 Lennox Hotel Miami Beach is live at $191/nt & The Standard Spa at $394/nt in South Beach today. Happy to text your free 6 AM The Betsy Hotel rate brief for 7 days ($99/mo after if useful). Reply STOP to opt out."
    }
   ],
-  "instagram_dm": "Hey The Betsy Hotel team! Local Miami founder here \u2014 our scanner just checked Live 2026-12-16: $436 retail BAR vs $346 on Agoda.com (-20.6% undercut). Can I send your GM (Jeff Lehman (GM) & Jonathan Plutzik (Owner)) our free 7-day 6 AM comp-set brief? ($99/mo flat if helpful).",
-  "linkedin_dm": "Hi Jeff \u2014 I'm local here in North Miami and built a $99/mo flat daily rate & OTA parity brief for independent South Beach hotels (Live 2026-12-16: $436 retail BAR vs $346 on Agoda.com (-20.6% undercut)). Happy to send The Betsy Hotel's 1-page live scan sheet free!",
+  "instagram_dm": "Hey The Betsy Hotel team! Local Miami founder here \u2014 our scanner just checked Live 2026-12-17: $478 retail BAR vs $372 on Agoda.com (-22.2% undercut). Can I send your GM (Jeff Lehman (GM) & Jonathan Plutzik (Owner)) our free 7-day 6 AM comp-set brief? ($99/mo flat if helpful).",
+  "linkedin_dm": "Hi Jeff \u2014 I'm local here in North Miami and built a $99/mo flat daily rate & OTA parity brief for independent South Beach hotels (Live 2026-12-17: $478 retail BAR vs $372 on Agoda.com (-22.2% undercut)). Happy to send The Betsy Hotel's 1-page live scan sheet free!",
   "emails": [
    {
     "step": "Touch 1 (Day 1 \u00b7 YC 3-Sentence Rule) \u2014 Casual Subject + Live Proof + 1-Line Ask",
     "to": "info@thebetsyhotel.com",
     "subject": "the betsy hotel rate on agoda.com today",
-    "body": "Hi Jeff,\n\nI live right here in North Miami and built a daily 6 AM rate & OTA undercut tracker for independent South Beach hotels (Free $0 starter tier, or $99/mo flat with no contract).\n\nOur scanner caught Agoda.com quoting The Betsy Hotel at $346/nt vs your $436/nt retail BAR for 2026-12-16 (-20.6% undercut), while Lennox Hotel Miami Beach is at $191/nt and The Standard Spa is at $394/nt.\n\nWant me to send you The Betsy Hotel's free 6 AM rate sheet tomorrow morning (or open The Betsy Hotel's private live demo panel at http://127.0.0.1:8317/portal?demo_hotel=38)?\n\nBest,\nJasmel Acosta\nHotel Rate Intelligence \u00b7 North Miami, FL (Reply STOP to opt out)"
+    "body": "Hi Jeff,\n\nI live right here in North Miami and built a daily 6 AM rate & OTA undercut tracker for independent South Beach hotels (Free $0 starter tier, or $99/mo flat with no contract).\n\nOur scanner caught Agoda.com quoting The Betsy Hotel at $372/nt vs your $478/nt retail BAR for 2026-12-17 (-22.2% undercut), while Lennox Hotel Miami Beach is at $191/nt and The Standard Spa is at $394/nt.\n\nWant me to send you The Betsy Hotel's free 6 AM rate sheet tomorrow morning (or open The Betsy Hotel's private live demo panel at http://127.0.0.1:8317/portal?demo_hotel=38)?\n\nBest,\nJasmel Acosta\nHotel Rate Intelligence \u00b7 North Miami, FL (Reply STOP to opt out)"
    },
    {
     "step": "Touch 2 (Day 4 \u00b7 YC Follow-Up #1) \u2014 Neighbor Rate Shift + 1-Line Ask",
@@ -18468,7 +18469,7 @@
     "step": "Touch 3 (Day 8 \u00b7 YC Follow-Up #2) \u2014 Compression Floor Check + Zero-Pressure Close",
     "to": "info@thebetsyhotel.com",
     "subject": "the betsy hotel weekend floor vs lennox hotel miami beach",
-    "body": "Hi Jeff,\n\nLast quick note for now \u2014 we're tracking 49 Miami Beach & Biscayne hotels (including Avalon, Savoy, and Vagabond corridors) and The Betsy Hotel currently has an estimated +$500,400/yr parity & weekend ADR upside.\n\nIf you ever want to test the free ($0) daily comp-set tracker or the $99/mo flat plan, just reply 'SEND' anytime and I'll turn it on for The Betsy Hotel.\n\nBest,\nJasmel Acosta \u00b7 North Miami, FL (Reply STOP to opt out)"
+    "body": "Hi Jeff,\n\nLast quick note for now \u2014 we're tracking 49 Miami Beach & Biscayne hotels (including Avalon, Savoy, and Vagabond corridors) and The Betsy Hotel currently has an estimated +$553,500/yr parity & weekend ADR upside.\n\nIf you ever want to test the free ($0) daily comp-set tracker or the $99/mo flat plan, just reply 'SEND' anytime and I'll turn it on for The Betsy Hotel.\n\nBest,\nJasmel Acosta \u00b7 North Miami, FL (Reply STOP to opt out)"
    }
   ],
   "pricing_tiers": [
@@ -19614,8 +19615,8 @@
      "tax": 0.0
     }
    ],
-   "comp_avg": 340,
-   "vs_comp_diff": 772,
+   "comp_avg": 354,
+   "vs_comp_diff": 758,
    "suggested_rate_bump": 56,
    "neighbors": [
     {
@@ -19625,9 +19626,9 @@
      "stars": 4.5,
      "est_rooms": 130,
      "review_rating": 4.7,
-     "price": 436,
-     "prev_price": 392,
-     "delta_pct": 11.2
+     "price": 478,
+     "prev_price": 436,
+     "delta_pct": 9.6
     },
     {
      "id": 35,
@@ -19668,8 +19669,8 @@
    "cost_usd": 0.0,
    "confidence_score": 96,
    "headline": "URGENT PARITY FIX: Agoda.com is undercutting 1 Hotel South Beach by $115/nt (-10.3%)",
-   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling 1 Hotel South Beach at $997/nt ($1181 out-the-door) against your $1112/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With The Betsy Hotel holding $436/nt and South Beach averaging $340/nt, raise Thu-Sat Direct BAR to $1168/nt (+$4,201,300/yr projected RevPAR + direct shift).",
-   "voice_note_15_sec": "Hey 1 Hotel South Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-14: your direct site is at $1112, Agoda.com is showing $997, and The Betsy Hotel next door is at $436. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
+   "gm_executive_memo": "1) Lock Wholesale Parity: Agoda.com is publicly selling 1 Hotel South Beach at $997/nt ($1181 out-the-door) against your $1112/nt Direct BAR. Suppress static bedbank/wholesale discounting on Agoda.com today to recover 18% OTA margin. 2) Corridor Yield Move: With The Betsy Hotel holding $478/nt and South Beach averaging $354/nt, raise Thu-Sat Direct BAR to $1168/nt (+$4,201,300/yr projected RevPAR + direct shift).",
+   "voice_note_15_sec": "Hey 1 Hotel South Beach team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-14: your direct site is at $1112, Agoda.com is showing $997, and The Betsy Hotel next door is at $478. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
   },
   "memory": {
    "hotel_id": 41,
@@ -19678,10 +19679,10 @@
    "current_bar": 1112,
    "prev_bar": 982,
    "delta_pct": 13.2,
-   "comp_avg_bar": 413,
-   "recommended_bar": 762,
-   "strategy_action": "CLOSE OTA LEAK & ALIGN BAR ($1112 -> $762/nt)",
-   "strategy_rationale": "Live quote shows a -10.3% third-party OTA undercut while corridor neighbors average $413/nt.",
+   "comp_avg_bar": 422,
+   "recommended_bar": 767,
+   "strategy_action": "CLOSE OTA LEAK & ALIGN BAR ($1112 -> $767/nt)",
+   "strategy_rationale": "Live quote shows a -10.3% third-party OTA undercut while corridor neighbors average $422/nt.",
    "occupancy": {
     "est_occupancy_pct": 71,
     "pricing_personality": "Passive Wholesale Leaker",
@@ -19750,13 +19751,13 @@
      "hotel_id": 38,
      "name": "The Betsy Hotel, South Beach",
      "area": "South Beach",
-     "bar": 436,
-     "prev_bar": 392,
-     "delta_pct": 11.2,
-     "undercut_pct": -20.6,
+     "bar": 478,
+     "prev_bar": 436,
+     "delta_pct": 9.6,
+     "undercut_pct": -22.2,
      "est_occupancy_pct": 64,
      "personality": "Passive Wholesale Leaker",
-     "decision_summary": "Live OTA undercut detected (-20.6% vs benchmark retail BAR $436). Algorithmic pressure index ~64% (0 live channels reporting)."
+     "decision_summary": "Live OTA undercut detected (-22.2% vs benchmark retail BAR $478). Algorithmic pressure index ~64% (0 live channels reporting)."
     },
     {
      "hotel_id": 48,
@@ -19860,7 +19861,7 @@
    },
    {
     "title": "2. Reputation-vs-Comp Positioning (+$56/nt Weekend Opportunity)",
-    "detail": "1 Hotel South Beach carries a 4.7\u2605 review score while The Betsy Hotel is live at $436/nt and Lennox Hotel Miami Beach is live at $191/nt (Comp Avg: $340/nt).",
+    "detail": "1 Hotel South Beach carries a 4.7\u2605 review score while The Betsy Hotel is live at $478/nt and Lennox Hotel Miami Beach is live at $191/nt (Comp Avg: $354/nt).",
     "impact": "Est. +$1,965,700/yr"
    },
    {
@@ -19991,7 +19992,7 @@
    },
    {
     "label": "SMS / WhatsApp #2 \u2014 Comp-Set Move Alert",
-    "text": "Morning 1 Hotel South Beach Team \u2014 The Betsy Hotel is live at $436/nt & Lennox Hotel Miami Beach at $191/nt in South Beach today. Happy to text your free 6 AM 1 Hotel South Beach rate brief for 7 days ($99/mo after if useful). Reply STOP to opt out."
+    "text": "Morning 1 Hotel South Beach Team \u2014 The Betsy Hotel is live at $478/nt & Lennox Hotel Miami Beach at $191/nt in South Beach today. Happy to text your free 6 AM 1 Hotel South Beach rate brief for 7 days ($99/mo after if useful). Reply STOP to opt out."
    }
   ],
   "instagram_dm": "Hey 1 Hotel South Beach team! Local Miami founder here \u2014 our scanner just checked Live 2026-12-14: $1112 retail BAR vs $997 on Agoda.com (-10.3% undercut). Can I send your GM our free 7-day 6 AM comp-set brief? ($99/mo flat if helpful).",
@@ -20001,13 +20002,13 @@
     "step": "Touch 1 (Day 1 \u00b7 YC 3-Sentence Rule) \u2014 Casual Subject + Live Proof + 1-Line Ask",
     "to": "1sb.info@1hotels.com",
     "subject": "1 hotel south beach rate on agoda.com today",
-    "body": "Hi 1 Hotel South Beach Team,\n\nI live right here in North Miami and built a daily 6 AM rate & OTA undercut tracker for independent South Beach hotels (Free $0 starter tier, or $99/mo flat with no contract).\n\nOur scanner caught Agoda.com quoting 1 Hotel South Beach at $997/nt vs your $1112/nt retail BAR for 2026-12-14 (-10.3% undercut), while The Betsy Hotel is at $436/nt and Lennox Hotel Miami Beach is at $191/nt.\n\nWant me to send you 1 Hotel South Beach's free 6 AM rate sheet tomorrow morning (or open 1 Hotel South Beach's private live demo panel at http://127.0.0.1:8317/portal?demo_hotel=41)?\n\nBest,\nJasmel Acosta\nHotel Rate Intelligence \u00b7 North Miami, FL (Reply STOP to opt out)"
+    "body": "Hi 1 Hotel South Beach Team,\n\nI live right here in North Miami and built a daily 6 AM rate & OTA undercut tracker for independent South Beach hotels (Free $0 starter tier, or $99/mo flat with no contract).\n\nOur scanner caught Agoda.com quoting 1 Hotel South Beach at $997/nt vs your $1112/nt retail BAR for 2026-12-14 (-10.3% undercut), while The Betsy Hotel is at $478/nt and Lennox Hotel Miami Beach is at $191/nt.\n\nWant me to send you 1 Hotel South Beach's free 6 AM rate sheet tomorrow morning (or open 1 Hotel South Beach's private live demo panel at http://127.0.0.1:8317/portal?demo_hotel=41)?\n\nBest,\nJasmel Acosta\nHotel Rate Intelligence \u00b7 North Miami, FL (Reply STOP to opt out)"
    },
    {
     "step": "Touch 2 (Day 4 \u00b7 YC Follow-Up #1) \u2014 Neighbor Rate Shift + 1-Line Ask",
     "to": "1sb.info@1hotels.com",
     "subject": "re: 1 hotel south beach rate on agoda.com today",
-    "body": "Hi 1 Hotel South Beach Team,\n\nQuick follow-up from North Miami \u2014 The Betsy Hotel ($436/nt) and Lennox Hotel Miami Beach ($191/nt) just updated their South Beach rates ahead of upcoming weekend compression.\n\nWe already unlocked a free ($0/mo) isolated rate portal for 1 Hotel South Beach so your desk doesn't spend 45+ hours a month checking OTAs by hand.\n\nShould I email over your free login link at http://127.0.0.1:8317/website?hotel_id=41#register, or reply YES and I'll send tomorrow's 6 AM sheet directly?\n\nBest,\nJasmel Acosta \u00b7 North Miami, FL (Reply STOP to opt out)"
+    "body": "Hi 1 Hotel South Beach Team,\n\nQuick follow-up from North Miami \u2014 The Betsy Hotel ($478/nt) and Lennox Hotel Miami Beach ($191/nt) just updated their South Beach rates ahead of upcoming weekend compression.\n\nWe already unlocked a free ($0/mo) isolated rate portal for 1 Hotel South Beach so your desk doesn't spend 45+ hours a month checking OTAs by hand.\n\nShould I email over your free login link at http://127.0.0.1:8317/website?hotel_id=41#register, or reply YES and I'll send tomorrow's 6 AM sheet directly?\n\nBest,\nJasmel Acosta \u00b7 North Miami, FL (Reply STOP to opt out)"
    },
    {
     "step": "Touch 3 (Day 8 \u00b7 YC Follow-Up #2) \u2014 Compression Floor Check + Zero-Pressure Close",
@@ -22899,8 +22900,8 @@
      "tax": 0.0
     }
    ],
-   "comp_avg": 340,
-   "vs_comp_diff": 461,
+   "comp_avg": 354,
+   "vs_comp_diff": 447,
    "suggested_rate_bump": 40,
    "neighbors": [
     {
@@ -22932,9 +22933,9 @@
      "stars": 4.5,
      "est_rooms": 130,
      "review_rating": 4.7,
-     "price": 436,
-     "prev_price": 392,
-     "delta_pct": 11.2
+     "price": 478,
+     "prev_price": 436,
+     "delta_pct": 9.6
     }
    ]
   },
@@ -22952,8 +22953,8 @@
    "model_used": "gemini-2.5-flash-lite (Hybrid Deterministic + Cached Engine)",
    "cost_usd": 0.0,
    "confidence_score": 93,
-   "headline": "YIELD EXPANSION READY: The Villa Casa Casuarina is in parity and priced $461/nt below South Beach comp ceiling",
-   "gm_executive_memo": "1) Parity Protected: Direct BAR ($801/nt, $958 out-the-door) is holding clean parity across OTAs. 2) Capture Neighbor Rate Lift: The Standard Spa is at $394/nt (South Beach avg $340/nt). Given your 4.2\u2605 guest score, nudge weekend BAR up by +$40/nt to capture +$33,600/yr without occupancy loss.",
+   "headline": "YIELD EXPANSION READY: The Villa Casa Casuarina is in parity and priced $447/nt below South Beach comp ceiling",
+   "gm_executive_memo": "1) Parity Protected: Direct BAR ($801/nt, $958 out-the-door) is holding clean parity across OTAs. 2) Capture Neighbor Rate Lift: The Standard Spa is at $394/nt (South Beach avg $354/nt). Given your 4.2\u2605 guest score, nudge weekend BAR up by +$40/nt to capture +$33,600/yr without occupancy loss.",
    "voice_note_15_sec": "Hey The Villa Casa Casuarina team, Jasmel here in Miami\u2014quick 15-second heads up for 2026-12-14: your direct site is at $801, Booking.com is showing $801, and The Standard Spa next door is at $394. I just printed your 1-page South Beach rate sheet\u2014want me to text it over?"
   },
   "memory": {
@@ -22963,7 +22964,7 @@
    "current_bar": 801,
    "prev_bar": 724,
    "delta_pct": 10.6,
-   "comp_avg_bar": 278,
+   "comp_avg_bar": 286,
    "recommended_bar": 833,
    "strategy_action": "HOLD WEEKDAY ($801) & LIFT FRI-SAT TO $833/nt",
    "strategy_rationale": "Hold mid-week floor near $801/nt and lift weekends toward $833/nt.",
@@ -23021,13 +23022,13 @@
      "hotel_id": 38,
      "name": "The Betsy Hotel, South Beach",
      "area": "South Beach",
-     "bar": 436,
-     "prev_bar": 392,
-     "delta_pct": 11.2,
-     "undercut_pct": -20.6,
+     "bar": 478,
+     "prev_bar": 436,
+     "delta_pct": 9.6,
+     "undercut_pct": -22.2,
      "est_occupancy_pct": 64,
      "personality": "Passive Wholesale Leaker",
-     "decision_summary": "Live OTA undercut detected (-20.6% vs benchmark retail BAR $436). Algorithmic pressure index ~64% (0 live channels reporting)."
+     "decision_summary": "Live OTA undercut detected (-22.2% vs benchmark retail BAR $478). Algorithmic pressure index ~64% (0 live channels reporting)."
     },
     {
      "hotel_id": 21,
@@ -23131,7 +23132,7 @@
    },
    {
     "title": "2. Reputation-vs-Comp Positioning (+$40/nt Weekend Opportunity)",
-    "detail": "The Villa Casa Casuarina carries a 4.2\u2605 review score while The Standard Spa is live at $394/nt and Lennox Hotel Miami Beach is live at $191/nt (Comp Avg: $340/nt).",
+    "detail": "The Villa Casa Casuarina carries a 4.2\u2605 review score while The Standard Spa is live at $394/nt and Lennox Hotel Miami Beach is live at $191/nt (Comp Avg: $354/nt).",
     "impact": "Est. +$33,600/yr"
    },
    {
@@ -23230,10 +23231,10 @@
    "target_persona": "Chauncey Copeland (General Manager)",
    "target_person_verified": true,
    "target_person_source": "https://lmgfl.com",
-   "walk_in_script": "[Walk into The Villa Casa Casuarina at South Beach, FL \u00b7 Target: Chauncey Copeland (General Manager) (Nakash Group / Victor Hotels)]\n\nYOU:\n\"Good morning! I'm Jasmel \u2014 I'm local right here in North Miami / Miami Beach and run our daily Miami Hotel Rate & Parity Brief. Look at this 1-page live scan sheet I printed for Chauncey: Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $340/nt. Enterprise tools charge $500/month for this; we send independent South Beach hotels the daily 6 AM comp-set + OTA undercut brief for $99/month flat ($3.30/day, no contract). Can I send tomorrow's brief free for 7 mornings?\"",
-   "gatekeeper_bypass": "\"Hi there \u2014 good morning! Calling for Chauncey Copeland at The Villa Casa Casuarina. This is Jasmel locally here in Miami \u2014 not a guest booking call. Our live South Beach rate scanner pulled Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $340/nt, and I wanted to drop the 1-page comp-set & OTA check on Chauncey's screen. Are they around, or what's the best email?\"",
-   "gm_opener_30_sec": "\"Hi Chauncey, Jasmel here \u2014 local in North Miami / Miami Beach. Quick 25 seconds: In our live metasearch scan for 2026-12-14, The Villa Casa Casuarina is listed at $801/night (Booking.com: $801/night), while nearby South Beach competitors (The Standard Spa at $394 and Lennox Hotel Miami Beach at $191) average $340/night. Big chains pay $500/month for software to watch this daily. We built a flat $99/month ($3.30/day) 6 AM brief specifically for independent South Beach hotels \u2014 no contract. Want me to send tomorrow's sheet free for 7 mornings so you can judge it yourself?\"",
-   "voice_ai_prompt": "You are Jasmel Acosta's local Miami hospitality assistant calling The Villa Casa Casuarina on (305) 908-1462. Ask politely for Chauncey Copeland (General Manager). Share one verified live fact: Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $340/nt. Offer a 100% free 7-morning 6 AM rate & OTA parity email/WhatsApp brief ($99/mo flat if they keep it). Keep the call under 45 seconds.",
+   "walk_in_script": "[Walk into The Villa Casa Casuarina at South Beach, FL \u00b7 Target: Chauncey Copeland (General Manager) (Nakash Group / Victor Hotels)]\n\nYOU:\n\"Good morning! I'm Jasmel \u2014 I'm local right here in North Miami / Miami Beach and run our daily Miami Hotel Rate & Parity Brief. Look at this 1-page live scan sheet I printed for Chauncey: Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $354/nt. Enterprise tools charge $500/month for this; we send independent South Beach hotels the daily 6 AM comp-set + OTA undercut brief for $99/month flat ($3.30/day, no contract). Can I send tomorrow's brief free for 7 mornings?\"",
+   "gatekeeper_bypass": "\"Hi there \u2014 good morning! Calling for Chauncey Copeland at The Villa Casa Casuarina. This is Jasmel locally here in Miami \u2014 not a guest booking call. Our live South Beach rate scanner pulled Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $354/nt, and I wanted to drop the 1-page comp-set & OTA check on Chauncey's screen. Are they around, or what's the best email?\"",
+   "gm_opener_30_sec": "\"Hi Chauncey, Jasmel here \u2014 local in North Miami / Miami Beach. Quick 25 seconds: In our live metasearch scan for 2026-12-14, The Villa Casa Casuarina is listed at $801/night (Booking.com: $801/night), while nearby South Beach competitors (The Standard Spa at $394 and Lennox Hotel Miami Beach at $191) average $354/night. Big chains pay $500/month for software to watch this daily. We built a flat $99/month ($3.30/day) 6 AM brief specifically for independent South Beach hotels \u2014 no contract. Want me to send tomorrow's sheet free for 7 mornings so you can judge it yourself?\"",
+   "voice_ai_prompt": "You are Jasmel Acosta's local Miami hospitality assistant calling The Villa Casa Casuarina on (305) 908-1462. Ask politely for Chauncey Copeland (General Manager). Share one verified live fact: Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $354/nt. Offer a 100% free 7-morning 6 AM rate & OTA parity email/WhatsApp brief ($99/mo flat if they keep it). Keep the call under 45 seconds.",
    "discovery_questions": [
     "1. \"Who currently checks The Standard Spa, Lennox Hotel Miami Beach, and Agoda/Booking.com rates at The Villa Casa Casuarina each morning?\"",
     "2. \"Have you caught wholesalers or OTAs undercutting your SynXis / Sabre direct rate on weekends?\"",
@@ -23258,21 +23259,21 @@
   "sms_templates": [
    {
     "label": "SMS / WhatsApp #1 \u2014 Live Rate Proof + $99/mo Offer",
-    "text": "Hi Chauncey (The Villa Casa Casuarina) \u2014 Jasmel here locally in Miami. Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $340/nt. I track independent South Beach hotels for $99/mo flat (first 7 mornings free). Reply YES for your 1-page sheet or STOP to opt out."
+    "text": "Hi Chauncey (The Villa Casa Casuarina) \u2014 Jasmel here locally in Miami. Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $354/nt. I track independent South Beach hotels for $99/mo flat (first 7 mornings free). Reply YES for your 1-page sheet or STOP to opt out."
    },
    {
     "label": "SMS / WhatsApp #2 \u2014 Comp-Set Move Alert",
     "text": "Morning Chauncey \u2014 The Standard Spa is live at $394/nt & Lennox Hotel Miami Beach at $191/nt in South Beach today. Happy to text your free 6 AM The Villa Casa Casuarina rate brief for 7 days ($99/mo after if useful). Reply STOP to opt out."
    }
   ],
-  "instagram_dm": "Hey The Villa Casa Casuarina team! Local Miami founder here \u2014 our scanner just checked Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $340/nt. Can I send your GM (Chauncey Copeland) our free 7-day 6 AM comp-set brief? ($99/mo flat if helpful).",
-  "linkedin_dm": "Hi Chauncey \u2014 I'm local here in North Miami and built a $99/mo flat daily rate & OTA parity brief for independent South Beach hotels (Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $340/nt). Happy to send The Villa Casa Casuarina's 1-page live scan sheet free!",
+  "instagram_dm": "Hey The Villa Casa Casuarina team! Local Miami founder here \u2014 our scanner just checked Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $354/nt. Can I send your GM (Chauncey Copeland) our free 7-day 6 AM comp-set brief? ($99/mo flat if helpful).",
+  "linkedin_dm": "Hi Chauncey \u2014 I'm local here in North Miami and built a $99/mo flat daily rate & OTA parity brief for independent South Beach hotels (Live 2026-12-14: The Villa Casa Casuarina $801/nt vs South Beach comp avg $354/nt). Happy to send The Villa Casa Casuarina's 1-page live scan sheet free!",
   "emails": [
    {
     "step": "Touch 1 (Day 1 \u00b7 YC 3-Sentence Rule) \u2014 Casual Subject + Live Proof + 1-Line Ask",
     "to": "",
     "subject": "quick south beach rate check for the villa casa casuarina",
-    "body": "Hi Chauncey,\n\nI live right here in North Miami and built a daily 6 AM rate & OTA undercut tracker for independent South Beach hotels (Free $0 starter tier, or $99/mo flat with no contract).\n\nFor 2026-12-14, The Villa Casa Casuarina is live at $801/nt (Booking.com: $801/nt) while right down the street The Standard Spa is at $394/nt and Lennox Hotel Miami Beach is at $191/nt (South Beach avg: $340/nt).\n\nWant me to send you The Villa Casa Casuarina's free 6 AM rate sheet tomorrow morning (or open The Villa Casa Casuarina's private live demo panel at http://127.0.0.1:8317/portal?demo_hotel=48)?\n\nBest,\nJasmel Acosta\nHotel Rate Intelligence \u00b7 North Miami, FL (Reply STOP to opt out)"
+    "body": "Hi Chauncey,\n\nI live right here in North Miami and built a daily 6 AM rate & OTA undercut tracker for independent South Beach hotels (Free $0 starter tier, or $99/mo flat with no contract).\n\nFor 2026-12-14, The Villa Casa Casuarina is live at $801/nt (Booking.com: $801/nt) while right down the street The Standard Spa is at $394/nt and Lennox Hotel Miami Beach is at $191/nt (South Beach avg: $354/nt).\n\nWant me to send you The Villa Casa Casuarina's free 6 AM rate sheet tomorrow morning (or open The Villa Casa Casuarina's private live demo panel at http://127.0.0.1:8317/portal?demo_hotel=48)?\n\nBest,\nJasmel Acosta\nHotel Rate Intelligence \u00b7 North Miami, FL (Reply STOP to opt out)"
    },
    {
     "step": "Touch 2 (Day 4 \u00b7 YC Follow-Up #1) \u2014 Neighbor Rate Shift + 1-Line Ask",

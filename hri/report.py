@@ -1,5 +1,6 @@
 """Daily Telegram & Email Report Dispatcher + Executive Rate Strategy Brief (`hri/report.py`)."""
 import json
+import os
 import smtplib
 import time
 from email.mime.multipart import MIMEMultipart
@@ -73,7 +74,8 @@ def build_brief(db_path, market="Greater Miami & Beaches"):
 
 def send_telegram(cfg, text):
     tg = cfg.get("telegram") or {}
-    tok, chat = (tg.get("bot_token") or "").strip(), (tg.get("chat_id") or "").strip()
+    tok = (tg.get("bot_token") or os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip()
+    chat = (tg.get("chat_id") or os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
     if not tok or not chat:
         return False, "Telegram bot_token or chat_id not configured in Settings"
     try:
@@ -90,15 +92,38 @@ def send_telegram(cfg, text):
 
 def send_email_report(cfg, text):
     em = cfg.get("email_report") or {}
+    out_cfg = cfg.get("outreach") or {}
     host = (em.get("smtp_host") or "").strip()
     port = int(em.get("smtp_port") or 587)
     user = (em.get("smtp_user") or "").strip()
     pw = (em.get("smtp_pass") or "").strip()
-    from_addr = (em.get("from_email") or user or "rates@miamihotelintel.com").strip()
+    from_addr = (em.get("from_email") or user or "jasmel@hotelrateintel.com").strip()
     to_addr = (em.get("to_email") or "").strip()
+    resend_key = (out_cfg.get("resend_api_key") or os.environ.get("RESEND_API_KEY") or "").strip()
+
+    if resend_key and to_addr and (out_cfg.get("email_provider") == "resend" or not (user and pw)):
+        try:
+            html_body = f"<pre style='font:13px/1.55 monospace;color:#0F172A;background:#F8FAFC;padding:18px;border-radius:12px'>{text}</pre>"
+            req = request.Request(
+                "https://api.resend.com/emails",
+                data=json.dumps({
+                    "from": f"HRI Daily Brief <{from_addr}>",
+                    "to": [to_addr],
+                    "subject": f"HRI Daily Hotel Rate, Occupancy & Strategy Report — {time.strftime('%b %d, %Y')}",
+                    "text": text,
+                    "html": html_body,
+                }).encode("utf-8"),
+                headers={"Authorization": f"Bearer {resend_key}", "Content-Type": "application/json", "User-Agent": "HRI/1.0"},
+                method="POST",
+            )
+            with request.urlopen(req, timeout=12) as r:
+                return (200 <= r.status < 300), f"Sent daily report email via Resend to {to_addr}"
+        except Exception as e:
+            if not (host and user and pw):
+                return False, f"Resend error: {str(e)[:120]}"
 
     if not host or not user or not pw or not to_addr:
-        return False, "SMTP credentials not configured yet (set them in Settings tab to enable live email dispatch)"
+        return False, "SMTP or Resend credentials not configured yet (set them in Setup tab to enable live email dispatch)"
     try:
         msg = MIMEMultipart("alternative")
         msg["Subject"] = f"HRI Daily Hotel Rate, Occupancy & Strategy Report — {time.strftime('%b %d, %Y')}"

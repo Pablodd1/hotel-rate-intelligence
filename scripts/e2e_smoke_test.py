@@ -44,7 +44,7 @@ def _http_post(url, payload, headers=None):
         headers=hdrs,
     )
     try:
-        with urllib.request.urlopen(req, timeout=15) as r:
+        with urllib.request.urlopen(req, timeout=30) as r:
             return r.status, json.loads(r.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
         raw = e.read().decode("utf-8", errors="replace")

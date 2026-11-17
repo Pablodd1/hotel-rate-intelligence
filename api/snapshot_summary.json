@@ -4,12 +4,12 @@
  "kpis": {
   "hotels": 49,
   "contacts": 498,
-  "rates": 158,
-  "memory_events": 212,
+  "rates": 159,
+  "memory_events": 216,
   "calls_logged": 0,
   "hot_prospects": 45,
   "parity_undercuts": 31,
-  "avg_adr": 308,
+  "avg_adr": 309,
   "avg_occupancy_pct": 57
  },
  "rates": [
@@ -1868,56 +1868,50 @@
    "management_group": "The Betsy South Beach",
    "website_status": "http_200",
    "deal_stage": "new",
-   "price": 436.0,
+   "price": 478.0,
    "currency": "USD",
    "source": "xotelo_live_ota",
-   "checkin": "2026-12-16",
-   "checkout": "2026-12-19",
-   "room_type": "Standard Room (2026-12-16)",
-   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 346.0, \"tax\": 0.0}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 413.0, \"tax\": 0.0}, {\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 433.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 436.0, \"tax\": 0.0}]",
+   "checkin": "2026-12-17",
+   "checkout": "2026-12-20",
+   "room_type": "Standard Room (2026-12-17)",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 372.0, \"tax\": 0.0}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 468.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 478.0, \"tax\": 0.0}]",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -20.6,
-   "scraped_at": 1794844111.7649133,
-   "prev_price": 392.0,
-   "prev_scraped_at": 1794774154.572842,
+   "undercut_pct": -22.2,
+   "scraped_at": 1794932917.739247,
+   "prev_price": 436.0,
+   "prev_scraped_at": 1794844111.7649133,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 346.0,
+     "rate": 372.0,
      "tax": 0.0
     },
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 413.0,
-     "tax": 0.0
-    },
-    {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 433.0,
+     "rate": 468.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 436.0,
+     "rate": 478.0,
      "tax": 0.0
     }
    ],
-   "delta_dollar": 44.0,
-   "delta_pct": 11.2,
-   "est_occupancy_pct": 64,
+   "delta_dollar": 42.0,
+   "delta_pct": 9.6,
+   "est_occupancy_pct": 68,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Live OTA undercut detected (-20.6% vs benchmark retail BAR $436). Algorithmic pressure index ~64% (4 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-22.2% vs benchmark retail BAR $478). Algorithmic pressure index ~68% (3 live channels reporting).",
    "call_verified_occ": null,
    "call_rooms_left": null,
    "call_walkin_rate": null,
    "call_time": "Not Called Yet",
    "is_my_hotel": false,
-   "gap_vs_my_hotel": 212,
-   "my_rate_recommendation": "OTA leak (-20.6%); hold My BAR at $232 and win direct"
+   "gap_vs_my_hotel": 254,
+   "my_rate_recommendation": "OTA leak (-22.2%); hold My BAR at $232 and win direct"
   },
   {
    "hotel_id": 51,
@@ -3469,18 +3463,6 @@
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
-   "hotel_id": 38,
-   "name": "The Betsy Hotel, South Beach",
-   "area": "South Beach",
-   "price": 436.0,
-   "prev_price": 392.0,
-   "delta_pct": 11.2,
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -20.6,
-   "est_occupancy_pct": 64,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
    "hotel_id": 48,
    "name": "The Villa Casa Casuarina",
    "area": "South Beach",
@@ -3503,6 +3485,18 @@
    "undercut_pct": 0.0,
    "est_occupancy_pct": 46,
    "pricing_personality": "Last-Minute Discounter"
+  },
+  {
+   "hotel_id": 38,
+   "name": "The Betsy Hotel, South Beach",
+   "area": "South Beach",
+   "price": 478.0,
+   "prev_price": 436.0,
+   "delta_pct": 9.6,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -22.2,
+   "est_occupancy_pct": 68,
+   "pricing_personality": "Passive Wholesale Leaker"
   },
   {
    "hotel_id": 19,
@@ -3588,16 +3582,16 @@
     "4.5\u2605 \u2014 high price-sensitivity comp tier",
     "dense micro-market (South Beach)",
     "verified decision-maker contacts captured",
-    "OTA parity leak (-20.6% undercut vs BAR)"
+    "OTA parity leak (-22.2% undercut vs BAR)"
    ],
-   "est_annual_upside": 819300,
+   "est_annual_upside": 898200,
    "name": "The Betsy Hotel, South Beach",
    "area": "South Beach",
    "stars": 4.5,
    "est_rooms": 130,
    "booking_engine": "SynXis / Sabre",
    "deal_stage": "new",
-   "est_occupancy_pct": 64,
+   "est_occupancy_pct": 68,
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
@@ -4636,6 +4630,18 @@
  ],
  "runs": [
   {
+   "id": 7,
+   "started": 1794932917.739247,
+   "finished": 1794932917.739247,
+   "mode": "live-web-auditor",
+   "status": "ok",
+   "hotels_attempted": 1,
+   "hotels_ok": 1,
+   "contacts_new": 0,
+   "rates_new": 1,
+   "notes": ""
+  },
+  {
    "id": 6,
    "started": 1794844111.7633805,
    "finished": 1794844111.7649133,
@@ -4881,12 +4887,10 @@
   ],
   "channels": {
    "email": {
-    "ready": false,
-    "provider": "smtp",
+    "ready": true,
+    "provider": "resend",
     "cost_estimate": "$0/mo (Brevo 300/day or Resend 3k/mo free tier)",
-    "missing": [
-     "brevo_api_key OR resend_api_key OR smtp_user+smtp_pass"
-    ]
+    "missing": []
    },
    "sms": {
     "ready": false,
@@ -5045,9 +5049,9 @@
    "app_base_url": "https://hotelrateintel.com",
    "sender_location": "North Miami / Miami Beach, FL",
    "physical_address": "North Miami, FL 33161",
-   "email_provider": "smtp",
+   "email_provider": "resend",
    "brevo_api_key": "",
-   "resend_api_key": "",
+   "resend_api_key": "***configured***",
    "twilio_account_sid": "",
    "twilio_auth_token": "",
    "twilio_from_phone": "",
