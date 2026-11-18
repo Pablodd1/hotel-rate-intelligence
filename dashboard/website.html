@@ -4,15 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/assets/logo.png" />
-  <title>HotelRateIntel · Save 45–68 Staff Hrs/Mo &amp; Stop OTA Undercuts</title>
+  <title>HotelRateIntel · Hospitality Rate Parity, Margin Recovery &amp; Custom AI Engineering</title>
+  <meta name="description" content="Spot OTA parity leaks by 6 AM, save 45–68 staff hrs/mo, and capture +$58k/yr in direct bookings. Built by AI Dynamic Pro Miami — custom AI agents & $99 48-Hr Workflow Audit." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "HotelRateIntel",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "url": "https://hotelrateintel.com",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "creator": {
+      "@type": "Organization",
+      "name": "AI Dynamic Pro",
+      "url": "https://www.aidynamic.pro",
+      "founder": {"@type": "Person", "name": "Jasmel Acosta"},
+      "sameAs": [
+        "https://www.aidynamic.pro",
+        "https://www.aidynamic.pro/offer",
+        "https://www.aidynamic.pro/blog"
+      ]
+    }
+  }
+  </script>
   <style>
     :root {
-      --bg-card: rgba(255, 255, 255, 0.78);
-      --bg-strong: rgba(255, 255, 255, 0.94);
+      --bg-card: rgba(255, 255, 255, 0.80);
+      --bg-strong: rgba(255, 255, 255, 0.95);
       --border: rgba(255, 255, 255, 0.95);
       --line: rgba(15, 23, 42, 0.10);
       --ink: #0F172A;
-      --sub: #475569;
+      --sub: #334155;
       --muted: #64748B;
       --accent: #2563EB;
       --accent-soft: rgba(37, 99, 235, 0.10);
@@ -22,48 +45,52 @@
       --radius: 22px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      min-height: 100%;
+    html { scroll-behavior: smooth; overflow-x: clip; background: #E6EDF6; }
+    body {
+      min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 12% 10%, rgba(37, 99, 235, 0.10), transparent 42%),
-        radial-gradient(circle at 88% 82%, rgba(14, 165, 233, 0.10), transparent 44%),
-        linear-gradient(135deg, #EEF2F7 0%, #E2E8F0 52%, #EFF6FF 100%);
-      overflow-x: hidden;
+      background-color: #E6EDF6;
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(37, 99, 235, 0.11), transparent 36%),
+        radial-gradient(circle at 88% 36%, rgba(14, 165, 233, 0.10), transparent 38%),
+        radial-gradient(circle at 20% 78%, rgba(37, 99, 235, 0.08), transparent 40%),
+        linear-gradient(160deg, #EEF2F7 0%, #E2E8F0 50%, #EFF6FF 100%);
+      overflow-x: clip;
+      line-height: 1.5;
     }
     a { color: inherit; text-decoration: none; }
-    .shell { max-width: 1320px; margin: 0 auto; padding: 14px 18px 92px; }
+    .shell { max-width: 1320px; margin: 0 auto; padding: 14px 18px 96px; }
 
-    /* Clean Light Glass Header */
+    /* Sticky Clean Light Glass Header */
     .topbar {
-      display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
-      background: rgba(255, 255, 255, 0.76);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: nowrap;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
       border: 1.5px solid var(--border);
-      border-radius: 24px;
+      border-radius: 22px;
       padding: 8px 14px;
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
       position: sticky; top: 10px; z-index: 40;
-      margin-bottom: 14px;
+      margin-bottom: 18px;
     }
-    .brand { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 13.5px; letter-spacing: -0.02em; }
+    .brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 13.5px; letter-spacing: -0.02em; white-space: nowrap; flex-shrink: 0; }
     .brand img.logo-mark {
       width: 28px; height: 28px; border-radius: 8px; object-fit: cover;
       border: 1px solid rgba(15, 23, 42, 0.08); background: #fff;
     }
 
-    /* 5-Section Navigation Pills */
-    .reel-tabs { display: flex; align-items: center; gap: 3px; flex-wrap: wrap; }
-    .reel-tab {
-      border: none; background: transparent; color: var(--sub);
-      font-size: 11.5px; font-weight: 700; padding: 6px 11px; border-radius: 999px; cursor: pointer;
+    .nav-links { display: flex; align-items: center; gap: 2px; flex-wrap: nowrap; }
+    .nav-pill {
+      color: var(--sub); font-size: 11.5px; font-weight: 700; padding: 6px 9px; border-radius: 999px;
       transition: all .15s ease; white-space: nowrap;
     }
-    .reel-tab.active { background: var(--navy); color: #fff; box-shadow: 0 4px 12px rgba(15,23,42,0.18); }
-    .reel-tab:hover:not(.active) { background: rgba(255,255,255,0.85); color: var(--ink); }
+    .nav-pill:hover { background: #fff; color: var(--accent); box-shadow: 0 2px 8px rgba(15,23,42,0.06); }
 
-    .nav-ctas { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .nav-ctas { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; flex-shrink: 0; }
+    @media (max-width: 1080px) {
+      .topbar, .nav-links, .nav-ctas { flex-wrap: wrap; }
+    }
     .btn {
       display: inline-flex; align-items: center; gap: 5px;
       border: none; cursor: pointer; border-radius: 999px;
@@ -73,21 +100,23 @@
     .btn:hover { transform: translateY(-1px); opacity: 0.94; }
     .btn.primary { background: var(--accent); color: #fff; }
     .btn.ok { background: var(--ok); color: #fff; }
-    .btn.ghost { background: rgba(255,255,255,0.88); color: var(--navy); border: 1px solid var(--line); }
+    .btn.ghost { background: rgba(255,255,255,0.92); color: var(--navy); border: 1px solid var(--line); }
     .btn.sm { padding: 6px 11px; font-size: 11px; }
 
-    /* Frosted Glass Main Window */
-    .glass-window {
-      background: rgba(255, 255, 255, 0.56);
-      backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+    /* Sections & Glass Containers */
+    .sec {
+      background: rgba(255, 255, 255, 0.54);
+      backdrop-filter: blur(26px); -webkit-backdrop-filter: blur(26px);
       border: 1.5px solid var(--border);
       border-radius: 28px;
-      padding: 20px;
-      box-shadow: 0 24px 64px rgba(15, 23, 42, 0.08);
+      padding: 24px;
+      box-shadow: 0 20px 54px rgba(15, 23, 42, 0.07);
+      margin-bottom: 22px;
+      scroll-margin-top: 76px;
     }
-    .slide { display: none; }
-    .slide.active { display: block; animation: fadeIn .18s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .sec-head { margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+    .sec-head h2 { font-size: 24px; font-weight: 900; letter-spacing: -0.025em; margin-top: 4px; }
+    .sec-head p { font-size: 13px; color: var(--sub); max-width: 720px; }
 
     .card {
       background: var(--bg-card);
@@ -99,7 +128,7 @@
     .card.dark {
       background: var(--navy); color: #F8FAFC;
       border-color: rgba(255,255,255,0.12);
-      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.16);
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.18);
     }
 
     .badge {
@@ -112,30 +141,44 @@
     .badge.ok { background: rgba(21,128,61,0.12); color: var(--ok); }
     .badge.danger { background: rgba(220,38,38,0.12); color: var(--danger); }
 
-    .grid-2 { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 14px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .grid-2 { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 16px; }
+    .grid-even { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
     @media (max-width: 960px) {
-      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .grid-2, .grid-even, .grid-3, .grid-4 { grid-template-columns: 1fr; }
     }
 
     .inp {
       width: 100%; padding: 9px 12px; border-radius: 12px;
-      border: 1px solid rgba(15, 23, 42, 0.14); background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(15, 23, 42, 0.14); background: rgba(255,255,255,0.94);
       font-size: 12.5px; color: var(--ink); font-family: inherit;
     }
     .card.dark .inp { color: var(--ink); }
     .lbl { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 3px; }
 
+    ul.clean { list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: var(--sub); }
+    ul.clean li strong { color: var(--ink); }
+
     table.cmp { width: 100%; border-collapse: collapse; font-size: 12px; }
     table.cmp th { text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); padding: 9px 8px; border-bottom: 1.5px solid var(--line); }
     table.cmp td { padding: 10px 8px; border-bottom: 1px solid rgba(15, 23, 42, 0.07); }
 
-    .reel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
-    .r-dot { width: 28px; height: 5px; border-radius: 99px; background: rgba(15, 23, 42, 0.14); cursor: pointer; }
-    .r-dot.active { width: 46px; background: var(--accent); }
+    /* Blog Deep Read Cards */
+    .blog-body { font-size: 12.5px; color: var(--sub); line-height: 1.62; display: flex; flex-direction: column; gap: 9px; margin: 10px 0 14px; }
+    .blog-stat { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+    .blog-stat div { background: rgba(241,245,249,0.92); border: 1px solid var(--line); border-radius: 12px; padding: 8px; text-align: center; }
+    .blog-stat b { font-size: 17px; color: var(--accent); display: block; }
+    .blog-stat span { font-size: 10.5px; color: var(--muted); }
+    .backlink-chip {
+      display: inline-flex; align-items: center; gap: 5px; padding: 6px 11px;
+      border-radius: 999px; font-size: 11px; font-weight: 700;
+      background: rgba(37,99,235,0.09); color: #1D4ED8; border: 1px solid rgba(37,99,235,0.22);
+      transition: background .12s ease;
+    }
+    .backlink-chip:hover { background: rgba(37,99,235,0.17); }
 
-    /* Floating Closer Chatbot */
+    /* Floating Revenue Concierge Chatbot */
     .chat-launcher {
       position: fixed; right: 20px; bottom: 18px; z-index: 90;
       display: flex; align-items: center; gap: 8px;
@@ -170,359 +213,524 @@
 <body>
 <div class="shell">
 
-  <!-- CLEAN LIGHT GLASS TOP NAVIGATION -->
+  <!-- STICKY TOP NAVIGATION -->
   <header class="topbar">
     <div class="brand">
       <img class="logo-mark" src="/assets/logo.png" alt="HotelRateIntel Logo" onerror="this.style.display='none'" />
       <span>HotelRateIntel</span>
-      <span class="badge blue">$0 FREE → $99/MO</span>
+      <span class="badge blue">BY <a href="https://www.aidynamic.pro" target="_blank" rel="noopener">AI DYNAMIC PRO</a></span>
     </div>
 
-    <nav class="reel-tabs">
-      <button class="reel-tab active" data-slide="0" onclick="goSlide(0)">01 · Save Money &amp; Time</button>
-      <button class="reel-tab" data-slide="1" onclick="goSlide(1)">02 · Live Website Auditor</button>
-      <button class="reel-tab" data-slide="2" onclick="goSlide(2)">03 · Core Features</button>
-      <button class="reel-tab" data-slide="3" onclick="goSlide(3)">04 · Why Us</button>
-      <button class="reel-tab" data-slide="4" onclick="goSlide(4)">05 · Pricing &amp; Signup</button>
+    <nav class="nav-links">
+      <a class="nav-pill" href="#industry-roi">Industry &amp; Profit</a>
+      <a class="nav-pill" href="#auditor">Live Auditor</a>
+      <a class="nav-pill" href="#pricing">Pricing ($0–$99)</a>
+      <a class="nav-pill" href="#aidynamic-consultation">$99 AI Consultation</a>
+      <a class="nav-pill" href="#blogs">3 AI Blogs</a>
     </nav>
 
     <div class="nav-ctas">
-      <a class="btn ghost sm" href="/portal?demo=1">Sample Demo Panel ↗</a>
+      <a class="btn ghost sm" href="/portal?demo=1">Sample Demo ↗</a>
       <button class="btn primary sm" onclick="toggleChat(true, true)">📞 Request Call</button>
       <a class="btn sm" href="/mission-control">Owner Login</a>
     </div>
   </header>
 
-  <main class="glass-window">
-
-    <!-- ================================================================
-         SLIDE 01: SAVE MONEY & TIME + ILLUSTRATIVE SAMPLE DEMO LAUNCHER
-         ================================================================ -->
-    <section class="slide active" id="slide-0">
-      <div class="grid-2" style="align-items:stretch;">
-        <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; background:rgba(255,255,255,0.88);">
-          <div>
-            <span class="badge blue">FOR 15–75 ROOM BOUTIQUE HOTELS &amp; RESERVATIONS TEAMS · ILLUSTRATIVE EXAMPLES</span>
-            <h1 style="font-size:31px; font-weight:900; letter-spacing:-0.03em; line-height:1.12; margin:10px 0 8px;">
-              Spot OTA undercuts by 6 AM. Save your Reservations Desk 45–68 hrs/mo.
-            </h1>
-            <p style="font-size:13.5px; color:var(--sub); line-height:1.55; margin-bottom:14px;">
-              Built for independent Reservations &amp; Front Office teams using SynXis, Cloudbeds, TravelClick &amp; Mews — see neighbor BARs, Agoda/Vio parity leaks, pricing memory &amp; courtesy call scripts for <b>$0 Free</b> or <b>$99/mo</b> (not $500–$900/mo suites).
-            </p>
-
-            <!-- Illustrative Sample Demo Switcher (Public Showcase) -->
-            <div style="background:rgba(241,245,249,0.92); border:1px solid var(--line); border-radius:16px; padding:12px; margin-bottom:14px;">
-              <label class="lbl">PREVIEW AN ILLUSTRATIVE SAMPLE DEMO PANEL OR AUDIT YOUR OWN WEBSITE URL</label>
-              <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
-                <select class="inp" id="heroHotelPicker" style="flex:1; min-width:220px;">
-                  <option value="1">Sample Demo #1 · North Beach All-Suites</option>
-                </select>
-                <button class="btn primary" onclick="openSelectedHotelDemo()">🚀 Open Sample Demo →</button>
-                <button class="btn ghost" onclick="runSelectedHotelAudit()">🔍 Scan Your Own Website</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid-4">
-            <div style="background:var(--bg-strong); border-radius:14px; padding:10px; border:1px solid var(--line);">
-              <div class="lbl">LABOR SAVED</div>
-              <div style="font-size:20px; font-weight:900; color:var(--ok);">45–68 hrs</div>
-              <div style="font-size:10.5px; color:var(--muted);">$1,125–$1,700/mo staff time back</div>
-            </div>
-            <div style="background:var(--bg-strong); border-radius:14px; padding:10px; border:1px solid var(--line);">
-              <div class="lbl">OTA PARITY BENCHMARK</div>
-              <div style="font-size:20px; font-weight:900; color:var(--accent);" id="heroUndercutStat">Live OTA</div>
-              <div style="font-size:10.5px; color:var(--muted);">public rate parity benchmark</div>
-            </div>
-            <div style="background:var(--bg-strong); border-radius:14px; padding:10px; border:1px solid var(--line);">
-              <div class="lbl">EST. ANNUAL ROI</div>
-              <div style="font-size:20px; font-weight:900; color:var(--ok);">+$58k/yr</div>
-              <div style="font-size:10.5px; color:var(--muted);">ADR lift + OTA fees saved</div>
-            </div>
-            <div style="background:var(--navy); color:#fff; border-radius:14px; padding:10px;">
-              <div class="lbl" style="color:#93C5FD;">FLAT COST</div>
-              <div style="font-size:20px; font-weight:900; color:#fff;">$0 → $99</div>
-              <div style="font-size:10.5px; color:#CBD5E1;">vs $450–$900/mo legacy tools</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Time & Money Calculator + Clean Cost Comparison SVG -->
-        <div class="card dark" style="display:flex; flex-direction:column; justify-content:space-between;">
-          <div>
-            <span class="badge blue-solid">INTERACTIVE TIME &amp; MONEY ROI CALCULATOR</span>
-            <h2 style="font-size:19px; font-weight:800; margin:8px 0 10px;">Estimate Your Monthly Net Gain</h2>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px;">
-              <div>
-                <label class="lbl" style="color:#CBD5E1;">ROOMS IN HOTEL</label>
-                <input class="inp" type="number" id="roiRooms" value="48" oninput="recalcRoi()">
-              </div>
-              <div>
-                <label class="lbl" style="color:#CBD5E1;">AVG NIGHTLY ADR ($)</label>
-                <input class="inp" type="number" id="roiAdr" value="225" oninput="recalcRoi()">
-              </div>
-            </div>
-
-            <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.10); border-radius:14px; padding:12px; margin-bottom:10px;">
-              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
-                <span>Manual Rate Shopping Replaced (45 hrs × $25/hr)</span>
-                <b style="color:#93C5FD;">$1,125/mo saved</b>
-              </div>
-              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
-                <span>Direct-Booking Shift &amp; ADR Recovery</span>
-                <b style="color:#4ADE80;" id="roiRevMo">+$4,200/mo</b>
-              </div>
-              <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:900; border-top:1px solid rgba(255,255,255,0.14); padding-top:6px; margin-top:6px;">
-                <span>NET MONTHLY GAIN ON $99/MO</span>
-                <span style="color:#60A5FA;" id="roiTotalMo">+$5,226/mo (53x ROI)</span>
-              </div>
-            </div>
-
-            <svg viewBox="0 0 460 128" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(255,255,255,0.05);border-radius:14px;border:1px solid rgba(255,255,255,0.08);">
-              <text x="14" y="20" font-size="10.5" font-weight="800" fill="#93C5FD">MONTHLY COST &amp; STAFF TIME VS LEGACY TOOLS</text>
-              <text x="14" y="45" font-size="11" fill="#E2E8F0">Manual Front Desk (60 hrs/mo)</text>
-              <rect x="195" y="34" width="215" height="14" rx="7" fill="#EF4444"/>
-              <text x="416" y="45" font-size="10.5" font-weight="800" fill="#FCA5A5">$1,500</text>
-              <text x="14" y="72" font-size="11" fill="#E2E8F0">Enterprise Rate Shopper</text>
-              <rect x="195" y="61" width="128" height="14" rx="7" fill="#64748B"/>
-              <text x="329" y="72" font-size="10.5" font-weight="800" fill="#CBD5E1">$650/mo</text>
-              <text x="14" y="99" font-size="11" font-weight="800" fill="#FFFFFF">HotelRateIntel Core Plan</text>
-              <rect x="195" y="88" width="28" height="14" rx="7" fill="#2563EB"/>
-              <text x="230" y="99" font-size="11" font-weight="800" fill="#93C5FD">$99/mo · 0 hrs manual</text>
-            </svg>
-          </div>
-
-          <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
-            <button class="btn primary" style="flex:1; justify-content:center;" onclick="goSlide(1)">🔍 Scan My Hotel Website →</button>
-            <button class="btn ghost" onclick="toggleChat(true, true)">📞 Request Call</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         SLIDE 02: LIVE HOTEL WEBSITE AUDITOR (SCAN YOUR OWN SITE OR DEMO)
-         ================================================================ -->
-    <section class="slide" id="slide-1">
-      <div class="card" style="margin-bottom:12px; background:var(--bg-strong);">
-        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:10px; flex-wrap:wrap;">
-          <div style="flex:1; min-width:250px;">
-            <span class="badge blue">LIVE HOTEL WEBSITE AUDITOR · PUBLIC OFFER SCAN + SVG GRAPHICS + DECISION ASSISTANT</span>
-            <h2 style="font-size:20px; font-weight:900; margin-top:4px;">Scan Your Hotel Website or Inspect an Illustrative Demo Benchmark</h2>
-          </div>
-          <div style="display:flex; gap:8px; flex:1.3; flex-wrap:wrap;">
-            <input class="inp" id="auditUrlInput" type="text" placeholder="https://yourhotel.com (paste your hotel website URL)..." style="flex:1; min-width:220px;">
-            <select class="inp" id="auditHotelSelect" style="max-width:230px;">
-              <option value="1">Sample Demo #1 · North Beach</option>
-            </select>
-            <button class="btn primary" id="btnRunAudit" onclick="executeLiveAudit()">⚡ Scan Website &amp; Rates</button>
-          </div>
-        </div>
-        <div id="auditStatusLine" style="font-size:11.5px; font-weight:600; color:var(--sub); margin-top:6px;">
-          Checks your booking engine stack, public contact channels, and public multi-OTA pricing, then populates your audit brief &amp; charts below.
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <h3 style="font-size:15px; font-weight:800;">1. Property Audit Form &amp; Brief Delivery</h3>
-            <span class="badge blue" id="auditStackBadge">Ready to Scan</span>
-          </div>
-
-          <input type="hidden" id="afHotelId" value="">
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
-            <div>
-              <label class="lbl">HOTEL / PROPERTY</label>
-              <input class="inp" id="afHotelName" placeholder="Auto-filled from live scan">
-            </div>
-            <div>
-              <label class="lbl">CORRIDOR / MARKET</label>
-              <input class="inp" id="afArea" placeholder="Miami Beach / Market">
-            </div>
-            <div>
-              <label class="lbl">WEBSITE URL</label>
-              <input class="inp" id="afWebsite" placeholder="https://...">
-            </div>
-            <div>
-              <label class="lbl">FRONT DESK / CALLBACK PHONE</label>
-              <input class="inp" id="afPhone" placeholder="+1 (305) ...">
-            </div>
-          </div>
-
-          <div style="margin-bottom:8px;">
-            <label class="lbl">PUBLIC ROLE CONTACTS FOUND</label>
-            <div id="afPeopleList" style="font-size:11.5px; background:rgba(241,245,249,0.9); border:1px solid var(--line); border-radius:10px; padding:8px; min-height:36px;">
-              Paste your hotel website above to detect booking stack &amp; public contact routing.
-            </div>
-          </div>
-
-          <div style="margin-bottom:8px;">
-            <label class="lbl">SEND AUDIT REPORT + GRAPHICS TO (YOUR TEAM EMAILS)</label>
-            <input class="inp" id="afEmails" placeholder="gm@yourhotel.com, revenue@yourhotel.com">
-          </div>
-
-          <div style="margin-bottom:10px;">
-            <label class="lbl">EXECUTIVE AUDIT SUMMARY</label>
-            <textarea class="inp" id="afSummary" rows="4" placeholder="Executive audit summary will auto-populate..."></textarea>
-          </div>
-
-          <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            <button class="btn" id="btnAuditorCall" onclick="triggerAuditorCall()">📞 Request Auditor Call</button>
-            <button class="btn primary" id="btnSendAuditEmail" onclick="sendAuditEmail()">✉️ Send Audit + Graphics</button>
-            <a class="btn ok" id="afDemoPanelBtn" href="/portal?demo=1">🚀 Open Demo Panel →</a>
-            <a class="btn ghost sm" id="afPrintableBtn" href="/audit?hotel_id=1" target="_blank">📄 Printable Brief</a>
-          </div>
-          <div id="afActionFeedback" style="font-size:11.5px; font-weight:700; margin-top:8px;"></div>
-        </div>
-
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div class="card dark">
-            <span class="badge blue-solid">DECISION-MAKING ASSISTANT</span>
-            <h3 style="font-size:16px; font-weight:900; margin:6px 0 4px;" id="daVerdict">Paste Your URL or Pick a Sample Demo to Run</h3>
-            <div style="font-size:12px; color:#CBD5E1; margin-bottom:8px;" id="daStats">Recommended Direct BAR &amp; annual ROI projection appear automatically after scanning.</div>
-            <ul id="daActions" style="font-size:11.5px; line-height:1.45; padding-left:16px; color:#F8FAFC;"></ul>
-          </div>
-
-          <div class="card" style="padding:10px;" id="auditOtaSvgWrap">
-            <div style="font-size:11.5px; color:var(--muted); padding:10px;">Channel Rate Ladder SVG Graphic renders here...</div>
-          </div>
-          <div class="card" style="padding:10px;" id="auditCompSvgWrap">
-            <div style="font-size:11.5px; color:var(--muted); padding:10px;">Corridor Comp-Set Positioning SVG Graphic renders here...</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         SLIDE 03: CORE FEATURES
-         ================================================================ -->
-    <section class="slide" id="slide-2">
-      <div class="card" style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+  <!-- ================================================================
+       SECTION 1: HERO & EXECUTIVE ROI CALCULATOR
+       ================================================================ -->
+  <section class="sec" id="top">
+    <div class="grid-2" style="align-items:stretch;">
+      <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; background:var(--bg-strong);">
         <div>
-          <span class="badge blue">BUILT FOR INDEPENDENT HOTELS</span>
-          <h2 style="font-size:21px; font-weight:900; margin-top:3px;">Cut Front-Desk Rate Shopping &amp; Recover Direct Bookings</h2>
-        </div>
-        <a class="btn primary" href="/portal?demo=1">Open Interactive Demo Panel →</a>
-      </div>
+          <span class="badge blue">FOR 15–75 ROOM BOUTIQUE HOTELS &amp; RESERVATIONS TEAMS · MIAMI &amp; BEYOND</span>
+          <h1 style="font-size:32px; font-weight:900; letter-spacing:-0.03em; line-height:1.12; margin:10px 0 8px;">
+            Stop Losing 18%–44% on OTA Undercuts. Make Direct Revenue While Saving 45–68 Staff Hrs/Mo.
+          </h1>
+          <p style="font-size:13.5px; color:var(--sub); line-height:1.6; margin-bottom:14px;">
+            Built for independent Reservations &amp; Front Office teams running <b>SynXis, Cloudbeds, TravelClick &amp; Mews</b>. Every morning at 6:00 AM, know exactly which OTA is undercutting your Best Available Rate, what your nearest competitors loaded, and what rate puts more direct profit on your books—starting at <b>$0/mo</b> or <b>$99/mo flat</b>.
+          </p>
 
-      <div class="grid-3">
-        <div class="card">
-          <span class="badge dark">01 · LIVE MULTI-OTA SCRAPER</span>
-          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Real-Time Parity &amp; Undercut Radar</h3>
-          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Compares Booking.com, Expedia, Agoda, Vio.com &amp; direct JSON-LD every morning and highlights exact OTA undercuts.</p>
-        </div>
-        <div class="card">
-          <span class="badge blue">02 · DECISION-MAKING ASSISTANT</span>
-          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Daily BAR &amp; Compression Commands</h3>
-          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Recommends direct BAR adjustments against your assigned corridor neighbors and major local compression dates.</p>
-        </div>
-        <div class="card">
-          <span class="badge ok">03 · AUDITOR &amp; COURTESY CALLS</span>
-          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Night-Audit Verification Desk</h3>
-          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Standardized courtesy call scripts &amp; voice logs capture occupancy pace and walk-in BAR cleanly inside your isolated account.</p>
-        </div>
-        <div class="card">
-          <span class="badge dark">04 · PRICING MEMORY &amp; TAGS</span>
-          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Understand Neighbor Pricing Patterns</h3>
-          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Tracks historical rate changes per competitor so you know who discounts late vs who holds rates firm.</p>
-        </div>
-        <div class="card">
-          <span class="badge blue">05 · 6 AM EMAIL &amp; TELEGRAM BRIEFS</span>
-          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Visual Reports Before Shift Huddle</h3>
-          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Delivers clean SVG rate charts and actionable pricing steps straight to GMs, Owners, and Revenue Managers.</p>
-        </div>
-        <div class="card">
-          <span class="badge ok">06 · STRICT COMP-SET ISOLATION</span>
-          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Private Login Per Hotel Brand</h3>
-          <p style="font-size:12px; color:var(--sub); line-height:1.45;">Your notes, occupancy logs, and comp-set strategies stay 100% isolated inside your hotel's own credentialed workspace.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         SLIDE 04: WHY US VS OTHERS
-         ================================================================ -->
-    <section class="slide" id="slide-3">
-      <div class="card">
-        <span class="badge dark">HEAD-TO-HEAD BENCHMARK</span>
-        <h2 style="font-size:21px; font-weight:900; margin:4px 0 12px;">Why Boutique Hotels Switch From $500+/mo Enterprise Suites</h2>
-        <div style="overflow-x:auto;">
-          <table class="cmp">
-            <thead>
-              <tr>
-                <th>Capability</th>
-                <th style="background:rgba(37,99,235,0.10); color:#1D4ED8;">HotelRateIntel ($0 / $99)</th>
-                <th>Enterprise Suites ($450–$900/mo)</th>
-                <th>Manual Front-Desk Spreadsheets</th>
-              </tr>
-            </thead>
-            <tbody id="whyUsTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         SLIDE 05: PRICING TIERS ($0 FREE -> $99 -> $199) & REGISTRATION
-         ================================================================ -->
-    <section class="slide" id="slide-4">
-      <div class="grid-3" id="websiteTiersGrid" style="margin-bottom:14px;"></div>
-
-      <div class="card" id="register">
-        <div class="grid-2" style="align-items:center;">
-          <div>
-            <span class="badge blue">INSTANT ISOLATED PORTAL PROVISIONING</span>
-            <h2 style="font-size:20px; font-weight:900; margin:4px 0;">Claim Your Hotel's Free ($0/mo) Account</h2>
-            <p style="font-size:12.5px; color:var(--sub); line-height:1.5;">
-              Zero credit card required. Enter your hotel name and work email to unlock your private comp-set portal immediately.
-            </p>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-            <div>
-              <label class="lbl">HOTEL / PROPERTY NAME</label>
-              <input class="inp" id="regHotelName" placeholder="Hotel Name">
-            </div>
-            <div>
-              <label class="lbl">YOUR WORK EMAIL</label>
-              <input class="inp" id="regEmail" type="email" placeholder="gm@hotel.com">
-            </div>
-            <div>
-              <label class="lbl">USERNAME</label>
-              <input class="inp" id="regUser" placeholder="myhotel305">
-            </div>
-            <div>
-              <label class="lbl">PLAN TIER</label>
-              <select class="inp" id="regTier">
-                <option value="free">Tier 1 · Free ($0/mo)</option>
-                <option value="core_99">Tier 2 · Core ($99/mo)</option>
-                <option value="pro_199">Tier 3 · Pro ($199/mo)</option>
+          <div style="background:rgba(241,245,249,0.92); border:1px solid var(--line); border-radius:16px; padding:12px; margin-bottom:14px;">
+            <label class="lbl">TEST AN ILLUSTRATIVE DEMO PANEL OR AUDIT YOUR OWN HOTEL URL RIGHT NOW</label>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
+              <select class="inp" id="heroHotelPicker" style="flex:1; min-width:255px;">
+                <option value="1">Sample Demo #1 · North Beach All-Suites</option>
               </select>
-            </div>
-            <input type="hidden" id="regHotelId" value="">
-            <div style="grid-column:span 2; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-              <button class="btn primary" style="flex:1; justify-content:center;" onclick="submitRegistration()">🚀 Create My Isolated Portal Now →</button>
-              <span id="regFeedback" style="font-size:11.5px; font-weight:800;"></span>
+              <button class="btn primary" onclick="openSelectedHotelDemo()">🚀 Open Demo →</button>
+              <button class="btn ghost" onclick="runSelectedHotelAudit()">🔍 Scan URL</button>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <div class="reel-dots">
-      <div class="r-dot active" data-dot="0" onclick="goSlide(0)"></div>
-      <div class="r-dot" data-dot="1" onclick="goSlide(1)"></div>
-      <div class="r-dot" data-dot="2" onclick="goSlide(2)"></div>
-      <div class="r-dot" data-dot="3" onclick="goSlide(3)"></div>
-      <div class="r-dot" data-dot="4" onclick="goSlide(4)"></div>
+        <div class="grid-4">
+          <div style="background:#fff; border-radius:14px; padding:10px; border:1px solid var(--line);">
+            <div class="lbl">LABOR SAVED</div>
+            <div style="font-size:20px; font-weight:900; color:var(--ok);">45–68 hrs</div>
+            <div style="font-size:10.5px; color:var(--muted);">$1,125–$1,700/mo payroll freed</div>
+          </div>
+          <div style="background:#fff; border-radius:14px; padding:10px; border:1px solid var(--line);">
+            <div class="lbl">OTA PARITY RADAR</div>
+            <div style="font-size:20px; font-weight:900; color:var(--accent);" id="heroUndercutStat">Live OTA</div>
+            <div style="font-size:10.5px; color:var(--muted);">public rate parity benchmark</div>
+          </div>
+          <div style="background:#fff; border-radius:14px; padding:10px; border:1px solid var(--line);">
+            <div class="lbl">DIRECT YIELD GAIN</div>
+            <div style="font-size:20px; font-weight:900; color:var(--ok);">+$58k/yr</div>
+            <div style="font-size:10.5px; color:var(--muted);">commission saved + ADR lift</div>
+          </div>
+          <div style="background:var(--navy); color:#fff; border-radius:14px; padding:10px;">
+            <div class="lbl" style="color:#93C5FD;">FLAT SAAS COST</div>
+            <div style="font-size:20px; font-weight:900; color:#fff;">$0 → $99</div>
+            <div style="font-size:10.5px; color:#CBD5E1;">vs $450–$900/mo enterprise</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive ROI Profit Calculator + Cost Graphic -->
+      <div class="card dark" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge blue-solid">INTERACTIVE PROFIT &amp; PAYROLL CALCULATOR</span>
+          <h2 style="font-size:19px; font-weight:800; margin:8px 0 10px;">How Much You Make &amp; Save Every Month</h2>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px;">
+            <div>
+              <label class="lbl" style="color:#CBD5E1;">ROOMS IN HOTEL</label>
+              <input class="inp" type="number" id="roiRooms" value="48" oninput="recalcRoi()">
+            </div>
+            <div>
+              <label class="lbl" style="color:#CBD5E1;">AVG NIGHTLY ADR ($)</label>
+              <input class="inp" type="number" id="roiAdr" value="225" oninput="recalcRoi()">
+            </div>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.10); border-radius:14px; padding:12px; margin-bottom:10px;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px;">
+              <span>Payroll Saved (45 hrs manual shopping × $25/hr)</span>
+              <b style="color:#93C5FD;">$1,125/mo saved</b>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px;">
+              <span>New Profit (Direct Bookings + +4% Wknd ADR Lift)</span>
+              <b style="color:#4ADE80;" id="roiRevMo">+$4,200/mo made</b>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:900; border-top:1px solid rgba(255,255,255,0.14); padding-top:7px; margin-top:6px;">
+              <span>NET MONTHLY BENEFIT ON $99/MO</span>
+              <span style="color:#60A5FA;" id="roiTotalMo">+$5,226/mo (53x ROI)</span>
+            </div>
+          </div>
+
+          <svg viewBox="0 0 460 128" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(255,255,255,0.05);border-radius:14px;border:1px solid rgba(255,255,255,0.08);">
+            <text x="14" y="20" font-size="10.5" font-weight="800" fill="#93C5FD">MONTHLY SOFTWARE &amp; LABOR COST COMPARISON</text>
+            <text x="14" y="45" font-size="11" fill="#E2E8F0">Manual Desk Shopping (60 hrs)</text>
+            <rect x="195" y="34" width="215" height="14" rx="7" fill="#EF4444"/>
+            <text x="416" y="45" font-size="10.5" font-weight="800" fill="#FCA5A5">$1,500</text>
+            <text x="14" y="72" font-size="11" fill="#E2E8F0">Legacy Rate Suites</text>
+            <rect x="195" y="61" width="128" height="14" rx="7" fill="#64748B"/>
+            <text x="329" y="72" font-size="10.5" font-weight="800" fill="#CBD5E1">$650/mo</text>
+            <text x="14" y="99" font-size="11" font-weight="800" fill="#FFFFFF">HotelRateIntel Core Plan</text>
+            <rect x="195" y="88" width="28" height="14" rx="7" fill="#2563EB"/>
+            <text x="230" y="99" font-size="11" font-weight="800" fill="#93C5FD">$99/mo · Automated</text>
+          </svg>
+        </div>
+
+        <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+          <a class="btn primary" style="flex:1; justify-content:center;" href="#auditor">🔍 Run Live Website Audit →</a>
+          <a class="btn ghost" href="#aidynamic-consultation">🔥 $99 48-Hr Custom AI Audit</a>
+        </div>
+      </div>
     </div>
-  </main>
+  </section>
+
+  <!-- ================================================================
+       SECTION 2: INDUSTRY SOLUTION — HOW HOTELS MAKE MONEY & SAVE MONEY
+       ================================================================ -->
+  <section class="sec" id="industry-roi">
+    <div class="sec-head">
+      <div>
+        <span class="badge blue">THE HOSPITALITY REVENUE &amp; MARGIN ENGINE</span>
+        <h2>What We Solve for Independent Hotels: Make More Per Room, Cut Manual Overhead</h2>
+        <p>Enterprise chains spend $10,000+/year on revenue suites. Boutique 15–75 room properties either fly blind or pay Reservations &amp; Night Audit staff to open 20 browser tabs every morning. HotelRateIntel fixes both in one automated morning workflow.</p>
+      </div>
+      <a class="btn primary" href="/portal?demo=1">Open Sample Client Portal →</a>
+    </div>
+
+    <!-- Make Money vs Save Money Deep Breakdown -->
+    <div class="grid-even" style="margin-bottom:16px;">
+      <div class="card" style="background:var(--bg-strong); border-left:4px solid var(--ok);">
+        <span class="badge ok">TOP-LINE REVENUE ENGINE · HOW YOU MAKE MONEY</span>
+        <h3 style="font-size:18px; font-weight:900; margin:8px 0 10px;">Capture Higher ADR &amp; Shift OTAs to Direct Bookings</h3>
+        <ul class="clean">
+          <li><strong>1. Plug 18%–44% Wholesale/FIT OTA Leaks:</strong> When Agoda, Vio.com, or Trip.com sells a wholesale room under your website BAR, Google Hotels routes guests to the OTA—costing you 15%–22% commission plus brand margin. We flag the exact channel &amp; dollar gap at 6:00 AM.</li>
+          <li><strong>2. Event &amp; Compression Rate Lifts (+4% to +15% ADR):</strong> Automatically tracks local demand spikes (Art Basel, F1, Boat Show, concerts, weekend compression) against neighbors so you never sell out at weekday BAR while the street sells at $350+.</li>
+          <li><strong>3. Competitor Pricing Memory:</strong> Stores historical neighbor moves to expose who panics and discounts at 4:00 PM vs who holds firm—helping your Reservations desk time increases instead of racing to the bottom.</li>
+          <li><strong>4. Capture Missed Calls &amp; Direct Desk Inquiries:</strong> Pair rate intelligence with <a href="https://www.aidynamic.pro/projects/ai-voice-receptionist" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:underline;">AI Dynamic Pro's 24/7 Bilingual Concierge</a> so every direct guest inquiry converts into a commission-free booking.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="background:var(--bg-strong); border-left:4px solid var(--accent);">
+        <span class="badge blue">BOTTOM-LINE COST CUTS · HOW YOU SAVE MONEY</span>
+        <h3 style="font-size:18px; font-weight:900; margin:8px 0 10px;">Free 45–68 Staff Hours/Mo &amp; Ditch Bloated Enterprise Fees</h3>
+        <ul class="clean">
+          <li><strong>1. Eliminate Daily Tab-Checking (Saves $1,125–$1,700/mo Payroll):</strong> Replaces 90–120 minutes/day of front-desk/reservations staff manually checking Expedia, Booking.com, and 8 neighbor hotel websites every single morning.</li>
+          <li><strong>2. Replace $450–$900/mo Software for $0 Free or $99/mo:</strong> Start on the Free Starter Tier ($0, 3 neighbors) or upgrade to Boutique Core ($99/mo, 10 neighbors + 6 AM briefs) with zero annual lock-in.</li>
+          <li><strong>3. Pre-Built Night-Audit Courtesy Call Scripts:</strong> Gives your overnight auditor standardized scripts and instant logging for quick neighbor occupancy &amp; walk-in checks without awkward phone calls.</li>
+          <li><strong>4. One-Screen Shift-Huddle Decision Brief:</strong> Instead of raw spreadsheets, GMs and Reservations Leads open one visual HTML/Telegram card at 6:00 AM with exact <em>Hold / Raise / Fix Parity</em> moves ready for SynXis, Cloudbeds, TravelClick, or Mews.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6-Card Operational Capabilities + Competitive Matrix -->
+    <div class="grid-3" style="margin-bottom:16px;">
+      <div class="card">
+        <span class="badge dark">01 · MULTI-OTA PARITY LADDER</span>
+        <h4 style="font-size:14.5px; font-weight:800; margin:6px 0 4px;">Live Direct vs Wholesaler Comparison</h4>
+        <p style="font-size:12px; color:var(--sub);">Verifies live Xotelo metasearch &amp; schema.org JSON-LD pricing side-by-side and flags exact dollar undercuts.</p>
+      </div>
+      <div class="card">
+        <span class="badge blue">02 · DECISION-MAKING ASSISTANT</span>
+        <h4 style="font-size:14.5px; font-weight:800; margin:6px 0 4px;">Actionable Daily BAR Target</h4>
+        <p style="font-size:12px; color:var(--sub);">Calculates recommended BAR against your assigned street comp-set plus resort fee &amp; out-the-door totals.</p>
+      </div>
+      <div class="card">
+        <span class="badge ok">03 · ISOLATED CLIENT WORKSPACE</span>
+        <h4 style="font-size:14.5px; font-weight:800; margin:6px 0 4px;">Strict Account Separation (/portal)</h4>
+        <p style="font-size:12px; color:var(--sub);">Every property gets its own login, custom strategy tags, call logs, and locked competitor group—zero data sharing.</p>
+      </div>
+    </div>
+
+    <div class="card" style="overflow-x:auto;">
+      <h3 style="font-size:16px; font-weight:800; margin-bottom:10px;">Head-to-Head Industry Comparison</h3>
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th>Hospitality Requirement</th>
+            <th style="background:rgba(37,99,235,0.06); color:#1D4ED8;">Free Starter ($0/mo)</th>
+            <th style="background:rgba(37,99,235,0.12); color:#1D4ED8;">Boutique Core ($99/mo)</th>
+            <th>Enterprise Suites ($450–$750+/mo)</th>
+            <th>Manual Front-Desk Spreadsheets</th>
+          </tr>
+        </thead>
+        <tbody id="whyUsTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTION 3: LIVE HOTEL WEBSITE AUDITOR + GRAPHICS
+       ================================================================ -->
+  <section class="sec" id="auditor">
+    <div class="card" style="margin-bottom:14px; background:var(--bg-strong);">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:12px; flex-wrap:wrap;">
+        <div style="flex:1 1 360px;">
+          <span class="badge blue">INTERACTIVE LIVE AUDITOR · PUBLIC OFFER SCAN + SVG GRAPHICS + DECISION ASSISTANT</span>
+          <h2 style="font-size:21px; font-weight:900; margin-top:4px;">Scan Your Hotel Website or Inspect an Illustrative Benchmark</h2>
+        </div>
+        <div style="display:flex; gap:8px; flex:1.4 1 480px; flex-wrap:wrap; align-items:center;">
+          <input class="inp" id="auditUrlInput" type="text" placeholder="https://yourhotel.com (paste your hotel URL)..." style="flex:1.2 1 220px;">
+          <select class="inp" id="auditHotelSelect" style="flex:1 1 200px;">
+            <option value="1">Sample Demo #1 · North Beach</option>
+          </select>
+          <button class="btn primary" id="btnRunAudit" style="flex-shrink:0;" onclick="executeLiveAudit()">⚡ Scan Website &amp; Rates</button>
+        </div>
+      </div>
+      <div id="auditStatusLine" style="font-size:11.5px; font-weight:600; color:var(--sub); margin-top:6px;">
+        Detects booking engine stack, public contact channels &amp; multi-OTA pricing ladder, then populates your brief &amp; charts below.
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 style="font-size:15px; font-weight:800;">1. Property Audit Form &amp; Brief Delivery</h3>
+          <span class="badge blue" id="auditStackBadge">Ready to Scan</span>
+        </div>
+
+        <input type="hidden" id="afHotelId" value="">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+          <div>
+            <label class="lbl">HOTEL / PROPERTY</label>
+            <input class="inp" id="afHotelName" placeholder="Auto-filled from live scan">
+          </div>
+          <div>
+            <label class="lbl">CORRIDOR / MARKET</label>
+            <input class="inp" id="afArea" placeholder="Miami Beach / Market">
+          </div>
+          <div>
+            <label class="lbl">WEBSITE URL</label>
+            <input class="inp" id="afWebsite" placeholder="https://...">
+          </div>
+          <div>
+            <label class="lbl">FRONT DESK / CALLBACK PHONE</label>
+            <input class="inp" id="afPhone" placeholder="+1 (305) ...">
+          </div>
+        </div>
+
+        <div style="margin-bottom:8px;">
+          <label class="lbl">PUBLIC ROLE CONTACTS FOUND</label>
+          <div id="afPeopleList" style="font-size:11.5px; background:rgba(241,245,249,0.9); border:1px solid var(--line); border-radius:10px; padding:8px; min-height:36px;">
+            Paste your hotel URL above to detect booking stack &amp; public contact routing.
+          </div>
+        </div>
+
+        <div style="margin-bottom:8px;">
+          <label class="lbl">SEND AUDIT REPORT + GRAPHICS TO (YOUR TEAM EMAILS)</label>
+          <input class="inp" id="afEmails" placeholder="gm@yourhotel.com, revenue@yourhotel.com">
+        </div>
+
+        <div style="margin-bottom:10px;">
+          <label class="lbl">EXECUTIVE AUDIT SUMMARY</label>
+          <textarea class="inp" id="afSummary" rows="4" placeholder="Executive audit summary will auto-populate..."></textarea>
+        </div>
+
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button class="btn" id="btnAuditorCall" onclick="triggerAuditorCall()">📞 Request Auditor Call</button>
+          <button class="btn primary" id="btnSendAuditEmail" onclick="sendAuditEmail()">✉️ Send Audit + Graphics</button>
+          <a class="btn ok" id="afDemoPanelBtn" href="/portal?demo=1">🚀 Open Demo Panel →</a>
+          <a class="btn ghost sm" id="afPrintableBtn" href="/audit?hotel_id=1" target="_blank">📄 Printable Brief</a>
+        </div>
+        <div id="afActionFeedback" style="font-size:11.5px; font-weight:700; margin-top:8px;"></div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div class="card dark">
+          <span class="badge blue-solid">DECISION-MAKING ASSISTANT</span>
+          <h3 style="font-size:16px; font-weight:900; margin:6px 0 4px;" id="daVerdict">Paste Your URL or Pick a Sample Demo to Run</h3>
+          <div style="font-size:12px; color:#CBD5E1; margin-bottom:8px;" id="daStats">Recommended Direct BAR &amp; annual ROI projection appear automatically after scanning.</div>
+          <ul id="daActions" style="font-size:11.5px; line-height:1.45; padding-left:16px; color:#F8FAFC;"></ul>
+        </div>
+
+        <div class="card" style="padding:10px;" id="auditOtaSvgWrap">
+          <div style="font-size:11.5px; color:var(--muted); padding:10px;">Channel Rate Ladder SVG Graphic renders here after scanning...</div>
+        </div>
+        <div class="card" style="padding:10px;" id="auditCompSvgWrap">
+          <div style="font-size:11.5px; color:var(--muted); padding:10px;">Corridor Comp-Set Positioning SVG Graphic renders here after scanning...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTION 4: PRICING TIERS ($0 -> $99 -> $199) + SELF-SERVE SIGNUP
+       ================================================================ -->
+  <section class="sec" id="pricing">
+    <div class="sec-head">
+      <div>
+        <span class="badge blue">TRANSPARENT MONTH-TO-MONTH PRICING</span>
+        <h2>Start Free ($0/mo) &amp; Upgrade Only When It Pays for Itself</h2>
+        <p>Zero setup fee, zero 12-month lock-in. Test live OTA rate checks with 3 neighbors on Free Starter or unlock full 10-hotel comp-sets &amp; 6:00 AM daily briefs for $99/mo.</p>
+      </div>
+    </div>
+
+    <div class="grid-3" id="websiteTiersGrid" style="margin-bottom:16px;"></div>
+
+    <div class="card" id="register" style="background:var(--bg-strong);">
+      <div class="grid-2" style="align-items:center;">
+        <div>
+          <span class="badge ok">INSTANT ISOLATED PORTAL PROVISIONING</span>
+          <h3 style="font-size:20px; font-weight:900; margin:6px 0;">Claim Your Hotel's Free ($0/mo) Account</h3>
+          <p style="font-size:12.5px; color:var(--sub); line-height:1.55;">
+            Enter your hotel name and work email to unlock your private comp-set dashboard immediately. Every customer account is isolated strictly to its own assigned competitors, pricing memory, and courtesy call logs.
+          </p>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div>
+            <label class="lbl">HOTEL / PROPERTY NAME</label>
+            <input class="inp" id="regHotelName" placeholder="Hotel Name">
+          </div>
+          <div>
+            <label class="lbl">YOUR WORK EMAIL</label>
+            <input class="inp" id="regEmail" type="email" placeholder="reservations@hotel.com">
+          </div>
+          <div>
+            <label class="lbl">USERNAME</label>
+            <input class="inp" id="regUser" placeholder="myhotel305">
+          </div>
+          <div>
+            <label class="lbl">PLAN TIER</label>
+            <select class="inp" id="regTier">
+              <option value="free">Tier 1 · Free ($0/mo)</option>
+              <option value="core_99">Tier 2 · Core ($99/mo)</option>
+              <option value="pro_199">Tier 3 · Pro ($199/mo)</option>
+            </select>
+          </div>
+          <input type="hidden" id="regHotelId" value="">
+          <div style="grid-column:span 2; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+            <button class="btn primary" style="flex:1; justify-content:center;" onclick="submitRegistration()">🚀 Create My Isolated Portal Now →</button>
+            <span id="regFeedback" style="font-size:11.5px; font-weight:800;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTION 5: AI DEVELOPERS, AGGRESSIVE CONSULTATION ($99 48-HR GUARANTEE)
+       & AI DYNAMIC PRO ECOSYSTEM BACKLINKS
+       ================================================================ -->
+  <section class="sec" id="aidynamic-consultation">
+    <div class="sec-head">
+      <div>
+        <span class="badge blue">POWERED BY AI DYNAMIC PRO · MIAMI SENIOR AI DEVELOPERS</span>
+        <h2>Want Custom AI Built Inside Your Hotel or Company in 48 Hours?</h2>
+        <p>
+          HotelRateIntel is engineered by <a href="https://www.aidynamic.pro" target="_blank" rel="noopener" style="color:var(--accent);font-weight:800;text-decoration:underline;">AI Dynamic Pro (aidynamic.pro)</a>—Miami's applied AI engineering &amp; staff multiplication team led by <b>Jasmel Acosta</b> (Founder &amp; CEO · 15+ yrs, 150+ projects, $2M+ delivered value) &amp; <b>Juan Diaz</b> (Co-Founder &amp; CTO · 10+ yrs ML &amp; Systems Architecture, 80+ projects).
+        </p>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <a class="btn primary" href="https://www.aidynamic.pro/offer" target="_blank" rel="noopener">Book $99 48-Hr AI Prototype ↗</a>
+        <a class="btn ghost" href="https://www.aidynamic.pro/projects" target="_blank" rel="noopener">Explore 22+ AI Systems ↗</a>
+      </div>
+    </div>
+
+    <!-- Aggressive Consultation Guarantee Tiers -->
+    <div class="grid-3" style="margin-bottom:16px;">
+      <div class="card dark" style="border:1.5px solid #3B82F6;">
+        <span class="badge blue-solid">AGGRESSIVE CONSULTATION GUARANTEE</span>
+        <h3 style="font-size:18px; font-weight:900; margin:8px 0 4px;">48-Hour AI Workflow Audit + Live Prototype</h3>
+        <div style="font-size:32px; font-weight:900; color:#60A5FA; margin:4px 0;">$99 <span style="font-size:12px; color:#CBD5E1; font-weight:600;">one-time · $0 risk</span></div>
+        <p style="font-size:12px; color:#E2E8F0; line-height:1.55; margin-bottom:10px;">
+          <b>Ironclad Guarantee:</b> Book a 60-minute executive process &amp; margin teardown with our lead architects and receive a <b>working custom AI prototype in 48 hours</b>—guaranteed to uncover at least <b>$2,500/month ($30,000/year)</b> in payroll and workflow savings, or you pay <b>$0 (100% refunded)</b>. Plus 100% of your $99 credits toward deployment.
+        </p>
+        <a class="btn primary" style="width:100%; justify-content:center;" href="https://www.aidynamic.pro/booking" target="_blank" rel="noopener">Claim $99 Audit + Free Prototype →</a>
+      </div>
+
+      <div class="card" style="background:var(--bg-strong);">
+        <span class="badge ok">MULTIPLIER &amp; TURNKEY AI DEVELOPERS</span>
+        <h3 style="font-size:17px; font-weight:800; margin:8px 0 6px;">Deploy Custom Voice, CRM &amp; Staff Training</h3>
+        <ul class="clean" style="margin-bottom:12px;">
+          <li><strong>Department AI Bootcamp ($497 flat, up to 15 staff):</strong> Half-day live hands-on workflow training so <em>1 trained employee produces the output of 5</em> (with 30-day engineering Q&amp;A).</li>
+          <li><strong>Turnkey Private AI Agent &amp; Voice ($997 launch / 7–14 days):</strong> Zero-training private RAG + <b>JAss 24/7 Bilingual Voice &amp; WhatsApp Receptionist</b> ($297/mo managed) connected to your PMS &amp; CRM.</li>
+          <li><strong>Matchman Suite ($2,500/mo) &amp; Sovereign AI Overlord ($5,000/mo):</strong> Dedicated private VPS/Docker LLMs (Claude, Gemini, OpenAI, Nous Hermes, Llama 3), YOLOv8/DINOv2 vision &amp; full <em>Agents of Agents</em> orchestration.</li>
+        </ul>
+        <a class="btn" style="width:100%; justify-content:center;" href="https://www.aidynamic.pro/offer" target="_blank" rel="noopener">See Full Engineering Plans on aidynamic.pro →</a>
+      </div>
+
+      <div class="card" style="background:var(--bg-strong); display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge blue">DIRECT DEVELOPER ACCESS &amp; ECOSYSTEM</span>
+          <h3 style="font-size:17px; font-weight:800; margin:8px 0 6px;">Senior AI Builders · Brickell &amp; North Miami</h3>
+          <p style="font-size:12px; color:var(--sub); line-height:1.5; margin-bottom:10px;">
+            We build sovereign production software across hospitality, healthcare, legal, real estate, and construction:
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+            <a class="backlink-chip" href="https://www.aidynamic.pro/" target="_blank" rel="noopener">AI Dynamic Pro ↗</a>
+            <a class="backlink-chip" href="https://www.chatbuildinginnovation.us/" target="_blank" rel="noopener">Chat Building Innovation ↗</a>
+            <a class="backlink-chip" href="https://pocketscribe.online/" target="_blank" rel="noopener">PocketScribe AI ↗</a>
+            <a class="backlink-chip" href="https://realestatedates.com/" target="_blank" rel="noopener">Real Estate Dates ↗</a>
+            <a class="backlink-chip" href="https://medicalbillingmb.com/" target="_blank" rel="noopener">Medical Billing MB ↗</a>
+            <a class="backlink-chip" href="https://jasmiamimethod.fit/" target="_blank" rel="noopener">JAS Miami Method ↗</a>
+          </div>
+        </div>
+        <div style="background:rgba(241,245,249,0.95); border:1px solid var(--line); border-radius:14px; padding:10px; font-size:11.5px;">
+          <div style="font-weight:800; margin-bottom:6px;">Direct Consultation Channels (EN / ES):</div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <a class="btn primary sm" href="tel:+17869708366">📞 Call (786) 970-8366</a>
+            <a class="btn ok sm" href="https://wa.me/17869708366" target="_blank" rel="noopener">💬 WhatsApp</a>
+            <a class="btn ghost sm" href="https://t.me/+17869708366" target="_blank" rel="noopener">✈️ Telegram</a>
+            <a class="btn ghost sm" href="mailto:jasmelacosta@gmail.com">✉️ Email Team</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTION 6: 3 ELABORATED BLOGS FROM AIDYNAMIC.PRO (SEO BACKLINKS)
+       ================================================================ -->
+  <section class="sec" id="blogs">
+    <div class="sec-head">
+      <div>
+        <span class="badge blue">EXECUTIVE AI KNOWLEDGE HUB · SYNDICATED FROM <a href="https://www.aidynamic.pro/blog" target="_blank" rel="noopener" style="text-decoration:underline;">AIDYNAMIC.PRO/BLOG</a></span>
+        <h2>3 In-Depth Architecture Briefs on Revenue Automation &amp; Applied AI</h2>
+        <p>Deep technical playbooks written by our Miami AI engineering team—showing how bilingual voice agents, multi-agent workflow orchestration, and sub-5-minute intake convert into measurable profit across hospitality, clinics, and commercial firms.</p>
+      </div>
+      <a class="btn ghost" href="https://www.aidynamic.pro/blog" target="_blank" rel="noopener">All Articles on AI Dynamic Pro ↗</a>
+    </div>
+
+    <div class="grid-3">
+      <!-- BLOG 1 -->
+      <article class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge blue">BLOG 01 · VOICE AI &amp; HOSPITALITY DESKS</span>
+          <h3 style="font-size:16.5px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
+            Why Miami Hotels &amp; Businesses Are Switching to 24/7 Bilingual AI Phone Receptionists
+          </h3>
+          <div class="blog-stat">
+            <div><b>68%+</b><span>EN / ES Miami Callers</span></div>
+            <div><b>&lt; 0.4s</b><span>Ring-1 Voice Latency</span></div>
+          </div>
+          <div class="blog-body">
+            <p>In South Florida hospitality and service businesses, over <b>68% of inbound commercial callers</b> speak Spanish or code-switch smoothly between English and Spanish. Every call routed to voicemail after 5:00 PM or during check-in rush doesn't just vanish—it books straight into an OTA or competitor across the street.</p>
+            <p>AI Dynamic Pro engineers <b>JAss 24/7 Bilingual Voice &amp; CRM Pipelines</b> ($997 Turnkey launch in 7–14 days) that answer on Ring 1 in fluent English or Spanish, quote direct walk-in BAR accurately without OTA commission loss, trigger night-audit courtesy checks, and log every inquiry cleanly into your CRM.</p>
+            <p>Combined with HotelRateIntel's 6:00 AM parity dashboard, an independent 45-room property replaces costly third-party call centers and captures high-intent direct phone reservations totaling <b>$35,000+/year in saved labor and retained bookings</b>.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:10px;">
+          <a class="backlink-chip" href="https://www.aidynamic.pro/blog/ai-phone-receptionist-miami" target="_blank" rel="noopener">Read Full Article on AI Dynamic Pro ↗</a>
+          <a class="backlink-chip" href="https://www.aidynamic.pro/projects/ai-voice-receptionist" target="_blank" rel="noopener">Voice AI Specs ↗</a>
+        </div>
+      </article>
+
+      <!-- BLOG 2 -->
+      <article class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge ok">BLOG 02 · MULTI-AGENT OPS &amp; REVENUE CYCLE</span>
+          <h3 style="font-size:16.5px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
+            Sovereign 'Agents of Agents': Cutting Front-Desk Overhead 45% &amp; No-Shows 42%
+          </h3>
+          <div class="blog-stat">
+            <div><b>-42%</b><span>No-Show Reduction</span></div>
+            <div><b>-45%</b><span>Admin Overhead Cut</span></div>
+          </div>
+          <div class="blog-body">
+            <p>Whether running an outpatient clinic in Brickell or a 50-room Miami Beach boutique hotel, front-desk staff routinely lose <b>65% of shift hours</b> to repetitive verification—copy-pasting rates, chasing confirmation messages, and checking portal tabs by hand.</p>
+            <p>Across <a href="https://medicalbillingmb.com/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:underline;">Medical Billing Miami Beach</a> and <a href="https://pocketscribe.online/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:underline;">PocketScribe Clinical AI</a>, our engineering team deployed sovereign zero-training <b>Agents of Agents (AoA)</b> pipelines that automate interactive SMS confirmations (-42% no-shows), instant OCR verification, and pre-submission revenue scrubbing.</p>
+            <p>That exact production architecture now drives HotelRateIntel: scheduled collectors fetch live multi-OTA quotes overnight, update historical pricing memory, detect parity leaks automatically, and hand your Reservations team a clean decision sheet before shift huddle.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:10px;">
+          <a class="backlink-chip" href="https://www.aidynamic.pro/blog/medical-clinic-automation" target="_blank" rel="noopener">Read Full Automation Study ↗</a>
+          <a class="backlink-chip" href="https://www.aidynamic.pro/projects/medical-billing-rcm-automation" target="_blank" rel="noopener">RCM &amp; Workflow AI ↗</a>
+        </div>
+      </article>
+
+      <!-- BLOG 3 -->
+      <article class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge dark">BLOG 03 · SPEED-TO-LEAD &amp; SOVEREIGN RAG</span>
+          <h3 style="font-size:16.5px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
+            Sub-5-Minute Response &amp; Private RAG: Turning Group Inquiries Into Signed Contracts
+          </h3>
+          <div class="blog-stat">
+            <div><b>&lt; 5 min</b><span>Quote to Retainer Speed</span></div>
+            <div><b>$0 Risk</b><span>$2.5k/mo Savings Guarantee</span></div>
+          </div>
+          <div class="blog-body">
+            <p>In South Florida corporate group bookings, real estate closings (<a href="https://realestatedates.com/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:underline;">Real Estate Dates</a>), and law firm retainers, <b>speed-to-lead decides who gets paid</b>: if your team takes more than 15 minutes to verify rates or contract terms, the buyer books down the street.</p>
+            <p>Our Zero-Training Private RAG pipelines let firms audit contracts, RFP group blocks, and property schedules inside encrypted databases while an AI intake agent qualifies inquiries in under 60 seconds and triggers automated follow-up sequences.</p>
+            <p>Want our senior developers to map your slowest operational bottleneck first? Book our <b>$99 60-Minute Department Audit</b>—we build and ship a live custom prototype in <b>48 hours</b> backed by our $2,500/mo documented savings guarantee.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:10px;">
+          <a class="backlink-chip" href="https://www.aidynamic.pro/blog/legal-intake-automation" target="_blank" rel="noopener">Read Full Speed-to-Lead Guide ↗</a>
+          <a class="backlink-chip" href="https://www.aidynamic.pro/offer" target="_blank" rel="noopener">$99 48-Hr Audit Offer ↗</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER WITH CLEAN ECOSYSTEM LINKS -->
+  <footer style="text-align:center; font-size:11.5px; color:var(--muted); padding:10px 0 24px;">
+    <b>HotelRateIntel</b> · North Miami, FL 33161 · Engineered by <a href="https://www.aidynamic.pro" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;">AI Dynamic Pro</a> ·
+    <a href="/portal?demo=1" style="text-decoration:underline;">Sample Client Portal</a> ·
+    <a href="/mission-control" style="text-decoration:underline;">Owner Mission Control</a> ·
+    <a href="https://www.aidynamic.pro/offer" target="_blank" rel="noopener" style="text-decoration:underline;">$99 AI Workflow Audit</a>
+  </footer>
 </div>
 
-<!-- FLOATING CLOSER CHATBOT + INSTANT CALLBACK -->
+<!-- FLOATING REVENUE CONCIERGE CHATBOT -->
 <button class="chat-launcher" id="chatLauncherBtn" onclick="toggleChat()">
   <span class="chat-pulse"></span>
-  <span>Revenue Assistant · Live Scan &amp; Calls</span>
+  <span>Revenue &amp; AI Concierge · Live Scan &amp; Calls</span>
 </button>
 
 <div class="chat-drawer" id="closerChatDrawer">
@@ -535,20 +743,20 @@
   </div>
   <div class="chat-msgs" id="chatMsgsBox">
     <div class="c-msg bot">
-      Paste your hotel website URL below and I'll benchmark your live OTA parity and open a custom Demo Panel in seconds — or tap <b>📞 Request a Call</b> to speak with Jasmel directly!
+      Paste your hotel website URL below and I'll benchmark your live OTA parity and open a custom Demo Panel in seconds — or tap <b>📞 Request a Call</b> to reach Jasmel &amp; our Miami AI team directly!
     </div>
   </div>
   <div class="chat-actions" id="chatQuickActions">
     <button class="btn primary sm" onclick="toggleCallbackForm(true)">📞 Request a Call</button>
-    <button class="btn ghost sm" onclick="quickChatAsk('How do we stop OTA undercuts?')">💸 Stop OTA Leaks</button>
-    <button class="btn ghost sm" onclick="quickChatAsk('How much time and money does $99 save?')">⏱️ Time &amp; ROI</button>
+    <button class="btn ghost sm" onclick="quickChatAsk('How do hotels make money and stop OTA undercuts?')">💸 Make Money &amp; ROI</button>
+    <button class="btn ghost sm" onclick="quickChatAsk('Tell me about the $99 48-hour AI consultation and developers')">⚡ $99 48-Hr Audit</button>
     <a class="btn ok sm" id="directCallOwnerBtn" style="display:none;" href="#">📱 Call Direct</a>
   </div>
   <div class="callback-box" id="callbackInlineBox">
     <div style="font-size:10.5px; font-weight:800; color:#93C5FD; margin-bottom:5px;">GET A DIRECT CALL FROM OUR MIAMI DESK:</div>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:5px;">
       <input class="inp" id="cbPhoneInp" placeholder="+1 (305) 555-0199" style="padding:6px 8px;font-size:11.5px;">
-      <input class="inp" id="cbNameInp" placeholder="Your Name / Title" style="padding:6px 8px;font-size:11.5px;">
+      <input class="inp" id="cbNameInp" placeholder="Your Name / Hotel" style="padding:6px 8px;font-size:11.5px;">
     </div>
     <div style="display:flex; gap:6px; align-items:center;">
       <button class="btn primary sm" style="flex:1;justify-content:center;" onclick="submitCallbackRequest()">📲 Request Instant Call →</button>
@@ -558,7 +766,7 @@
   </div>
   <div class="chat-foot">
     <div style="display:flex; gap:6px;">
-      <input class="inp" id="chatInput" placeholder="Paste your hotel URL, or phone #..." onkeydown="if(event.key==='Enter')sendCloserChat()">
+      <input class="inp" id="chatInput" placeholder="Paste hotel URL, question, or phone #..." onkeydown="if(event.key==='Enter')sendCloserChat()">
       <button class="btn primary" onclick="sendCloserChat()">Send</button>
     </div>
   </div>
@@ -568,9 +776,9 @@
   let landingData = null;
 
   function goSlide(idx) {
-    document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === idx));
-    document.querySelectorAll('.reel-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
-    document.querySelectorAll('.r-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+    const anchors = ['#top', '#auditor', '#industry-roi', '#industry-roi', '#pricing'];
+    const target = document.querySelector(anchors[idx] || '#top');
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
   }
 
   function recalcRoi() {
@@ -581,7 +789,7 @@
     const laborSaved = 1125;
     const netMo = revMo + laborSaved - 99;
     const mult = Math.max(1, Math.round(netMo / 99));
-    document.getElementById('roiRevMo').textContent = '+$' + revMo.toLocaleString('en-US') + '/mo';
+    document.getElementById('roiRevMo').textContent = '+$' + revMo.toLocaleString('en-US') + '/mo made';
     document.getElementById('roiTotalMo').textContent = '+$' + netMo.toLocaleString('en-US') + `/mo (${mult}x ROI)`;
   }
 
@@ -626,10 +834,11 @@
       const whyBody = document.getElementById('whyUsTableBody');
       whyBody.innerHTML = (d.comparison_matrix || []).map(row => `
         <tr>
-          <td><b>${row.capability}</b></td>
-          <td style="background:rgba(37,99,235,0.08);font-weight:800;color:#0F172A;">${row.hri}</td>
-          <td style="color:var(--sub);">${row.ota_insight}</td>
-          <td style="color:var(--muted);">${row.spreadsheet}</td>
+          <td><b>${row.feature || row.capability || ''}</b></td>
+          <td style="background:rgba(37,99,235,0.04);font-weight:700;color:#1E3A8A;">${row.us_free || ''}</td>
+          <td style="background:rgba(37,99,235,0.10);font-weight:800;color:#0F172A;">${row.us_core || row.hri || ''}</td>
+          <td style="color:var(--sub);">${row.enterprise || row.ota_insight || ''}</td>
+          <td style="color:var(--muted);">${row.spreadsheets || row.spreadsheet || ''}</td>
         </tr>
       `).join('');
 
@@ -651,12 +860,12 @@
         </div>
       `).join('');
 
+      await executeLiveAudit();
       const reqSlide = params.get('slide');
-      if (window.location.hash === '#register' || reqSlide === '4') {
-        goSlide(4);
-      } else if (reqSlide !== null && /^\d+$/.test(reqSlide)) {
-        goSlide(Number(reqSlide));
-        if (reqSlide === '1' && reqHid) await executeLiveAudit();
+      if (reqSlide === '1') {
+        goSlide(1);
+      } else if (window.location.hash === '#register') {
+        document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
       }
       if (params.get('chat') === '1') toggleChat(true, false);
     } catch (e) {}
@@ -690,7 +899,7 @@
     const ppl = af.important_people || [];
     document.getElementById('afPeopleList').innerHTML = ppl.length
       ? ppl.map(p => `<span class="badge blue" style="margin:2px;">${p.name} · ${p.title}</span>`).join(' ')
-      : '<span style="color:var(--muted);">General Manager / Revenue Team (Website Verified)</span>';
+      : '<span style="color:var(--muted);">General Manager / Reservations Team (Website Verified)</span>';
 
     const da = d.decision_assistant || {};
     document.getElementById('daVerdict').textContent = da.verdict || 'Audit Complete';
