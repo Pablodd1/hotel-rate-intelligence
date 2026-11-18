@@ -229,7 +229,7 @@
         <span class="dot-live"></span>
         <span id="topHotelName" style="max-width:190px; overflow:hidden; text-overflow:ellipsis;">Avalon Hotel South Beach</span>
       </div>
-      <span class="badge gold" id="topTierBadge" style="max-width:165px; overflow:hidden; text-overflow:ellipsis;">TIER 3 · PRO $199/MO</span>
+      <span class="badge gold" id="topTierBadge">TIER 3 · $199/MO</span>
     </div>
 
     <div class="tab-pills">
@@ -621,7 +621,7 @@
     const compSet = d.comp_set || [];
 
     document.getElementById('topHotelName').textContent = primary.name || acc.display_name;
-    document.getElementById('topTierBadge').textContent = (tier.name || 'Free').toUpperCase() + ' · $' + (tier.monthly_price || 0) + '/MO';
+    document.getElementById('topTierBadge').textContent = (tier.name || 'Free').split('·')[0].trim().toUpperCase() + ' · $' + (tier.monthly_price || 0) + '/MO';
     document.getElementById('isolationDesc').innerHTML =
       `Logged in as <b>${acc.username}</b> · Assigned Comp-Set: <b>${compSet.length} of ${d.total_assigned_in_account}</b> properties visible on <b>${tier.name}</b>. Zero cross-account data access.`;
 
