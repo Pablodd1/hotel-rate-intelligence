@@ -9,3 +9,10 @@ graphify-out/
 __pycache__/
 .vercel
 .env*
+media-pack/*.mp4
+media-pack/**/*.mp4
+media-pack/**/*.webm
+media-pack/**/*.wav
+media-pack/**/*.mp3
+media-pack/_tmp/
+media-pack/_reel_assets/

@@ -30,34 +30,38 @@
   </script>
   <style>
     :root {
-      --bg-card: rgba(255, 255, 255, 0.80);
-      --bg-strong: rgba(255, 255, 255, 0.95);
-      --border: rgba(255, 255, 255, 0.95);
-      --line: rgba(15, 23, 42, 0.10);
+      --bg-card: rgba(255, 255, 255, 0.78);
+      --bg-strong: rgba(255, 255, 255, 0.90);
+      --border: rgba(255, 255, 255, 0.92);
+      --line: rgba(15, 23, 42, 0.11);
       --ink: #0F172A;
       --sub: #334155;
-      --muted: #64748B;
+      --muted: #475569;
       --accent: #2563EB;
-      --accent-soft: rgba(37, 99, 235, 0.10);
-      --navy: #0F172A;
+      --accent-deep: #1E40AF;
+      --accent-soft: rgba(37, 99, 235, 0.11);
+      --slate-action: #1E3A8A;
       --ok: #15803D;
       --danger: #DC2626;
       --radius: 22px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: clip; background: #E6EDF6; }
+    html { scroll-behavior: smooth; overflow-x: clip; background: #EFF4FA; }
     body {
       min-height: 100vh;
+      position: relative;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
       color: var(--ink);
-      background-color: #E6EDF6;
-      background-image:
-        radial-gradient(circle at 12% 8%, rgba(37, 99, 235, 0.11), transparent 36%),
-        radial-gradient(circle at 88% 36%, rgba(14, 165, 233, 0.10), transparent 38%),
-        radial-gradient(circle at 20% 78%, rgba(37, 99, 235, 0.08), transparent 40%),
-        linear-gradient(160deg, #EEF2F7 0%, #E2E8F0 50%, #EFF6FF 100%);
+      background: linear-gradient(160deg, rgba(241, 245, 249, 0.65) 0%, rgba(232, 240, 250, 0.58) 55%, rgba(244, 248, 255, 0.65) 100%);
       overflow-x: clip;
       line-height: 1.5;
+    }
+    .hotel-bg-backdrop {
+      position: fixed; inset: -16px; z-index: -1; pointer-events: none;
+      background-image: url('/assets/hotel-bg-blur.jpg');
+      background-size: cover; background-position: center center;
+      opacity: 0.72;
+      filter: blur(4px) saturate(0.95);
     }
     a { color: inherit; text-decoration: none; }
     .shell { max-width: 1320px; margin: 0 auto; padding: 14px 18px 96px; }
@@ -65,12 +69,12 @@
     /* Sticky Clean Light Glass Header */
     .topbar {
       display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: nowrap;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.86);
       backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
       border: 1.5px solid var(--border);
       border-radius: 22px;
       padding: 8px 14px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      box-shadow: 0 10px 30px rgba(30, 58, 138, 0.06);
       position: sticky; top: 10px; z-index: 40;
       margin-bottom: 18px;
     }
@@ -85,7 +89,7 @@
       color: var(--sub); font-size: 11.5px; font-weight: 700; padding: 6px 9px; border-radius: 999px;
       transition: all .15s ease; white-space: nowrap;
     }
-    .nav-pill:hover { background: #fff; color: var(--accent); box-shadow: 0 2px 8px rgba(15,23,42,0.06); }
+    .nav-pill:hover { background: #fff; color: var(--accent); box-shadow: 0 2px 8px rgba(30,58,138,0.08); }
 
     .nav-ctas { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; flex-shrink: 0; }
     @media (max-width: 1080px) {
@@ -95,40 +99,41 @@
       display: inline-flex; align-items: center; gap: 5px;
       border: none; cursor: pointer; border-radius: 999px;
       padding: 8px 14px; font-size: 12px; font-weight: 700;
-      background: var(--navy); color: #fff; transition: transform .12s ease, opacity .12s ease; white-space: nowrap;
+      background: var(--slate-action); color: #fff; transition: transform .12s ease, opacity .12s ease; white-space: nowrap;
     }
     .btn:hover { transform: translateY(-1px); opacity: 0.94; }
     .btn.primary { background: var(--accent); color: #fff; }
     .btn.ok { background: var(--ok); color: #fff; }
-    .btn.ghost { background: rgba(255,255,255,0.92); color: var(--navy); border: 1px solid var(--line); }
+    .btn.ghost { background: rgba(255,255,255,0.90); color: var(--ink); border: 1px solid rgba(30, 58, 138, 0.16); }
     .btn.sm { padding: 6px 11px; font-size: 11px; }
 
     /* Sections & Glass Containers */
     .sec {
-      background: rgba(255, 255, 255, 0.54);
-      backdrop-filter: blur(26px); -webkit-backdrop-filter: blur(26px);
+      background: rgba(255, 255, 255, 0.62);
+      backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
       border: 1.5px solid var(--border);
       border-radius: 28px;
       padding: 24px;
-      box-shadow: 0 20px 54px rgba(15, 23, 42, 0.07);
+      box-shadow: 0 18px 48px rgba(30, 58, 138, 0.06);
       margin-bottom: 22px;
       scroll-margin-top: 76px;
     }
     .sec-head { margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
-    .sec-head h2 { font-size: 24px; font-weight: 900; letter-spacing: -0.025em; margin-top: 4px; }
-    .sec-head p { font-size: 13px; color: var(--sub); max-width: 720px; }
+    .sec-head h2 { font-size: 24px; font-weight: 900; letter-spacing: -0.025em; margin-top: 4px; color: var(--ink); }
+    .sec-head p { font-size: 13px; color: var(--sub); max-width: 740px; }
 
     .card {
       background: var(--bg-card);
       backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
       border: 1.5px solid var(--border);
       border-radius: var(--radius); padding: 18px;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+      box-shadow: 0 8px 24px rgba(30, 58, 138, 0.05);
     }
     .card.dark {
-      background: var(--navy); color: #F8FAFC;
-      border-color: rgba(255,255,255,0.12);
-      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.18);
+      background: linear-gradient(155deg, rgba(235, 244, 255, 0.92) 0%, rgba(220, 234, 254, 0.89) 100%);
+      color: var(--ink);
+      border: 1.5px solid rgba(37, 99, 235, 0.28);
+      box-shadow: 0 12px 32px rgba(30, 58, 138, 0.09);
     }
 
     .badge {
@@ -137,7 +142,7 @@
     }
     .badge.blue { background: var(--accent-soft); color: #1D4ED8; }
     .badge.blue-solid { background: var(--accent); color: #fff; }
-    .badge.dark { background: var(--navy); color: #fff; }
+    .badge.dark { background: rgba(30, 58, 138, 0.11); color: #1E3A8A; border: 1px solid rgba(30, 58, 138, 0.18); }
     .badge.ok { background: rgba(21,128,61,0.12); color: var(--ok); }
     .badge.danger { background: rgba(220,38,38,0.12); color: var(--danger); }
 
@@ -182,35 +187,37 @@
     .chat-launcher {
       position: fixed; right: 20px; bottom: 18px; z-index: 90;
       display: flex; align-items: center; gap: 8px;
-      background: var(--navy); color: #fff; border: 1.5px solid rgba(37, 99, 235, 0.75);
+      background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%); color: #fff;
+      border: 1.5px solid rgba(191, 219, 254, 0.85);
       border-radius: 999px; padding: 10px 16px; cursor: pointer;
-      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.25); font-size: 12.5px; font-weight: 700;
+      box-shadow: 0 14px 36px rgba(30, 64, 175, 0.28); font-size: 12.5px; font-weight: 700;
     }
-    .chat-pulse { width: 9px; height: 9px; border-radius: 50%; background: #38BDF8; animation: pulse 1.4s infinite; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(56,189,248,0.7); } 100% { box-shadow: 0 0 0 10px rgba(56,189,248,0); } }
+    .chat-pulse { width: 9px; height: 9px; border-radius: 50%; background: #BAE6FD; animation: pulse 1.4s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(186,230,253,0.8); } 100% { box-shadow: 0 0 0 10px rgba(186,230,253,0); } }
 
     .chat-drawer {
       position: fixed; right: 20px; bottom: 72px; z-index: 95;
       width: min(390px, calc(100vw - 24px));
-      background: rgba(15, 23, 42, 0.96); color: #F8FAFC;
+      background: rgba(255, 255, 255, 0.96); color: #0F172A;
       backdrop-filter: blur(24px);
-      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      border: 1.5px solid rgba(37, 99, 235, 0.28);
       border-radius: 22px; overflow: hidden;
-      box-shadow: 0 26px 70px rgba(15, 23, 42, 0.38);
+      box-shadow: 0 24px 64px rgba(30, 58, 138, 0.20);
       display: none; flex-direction: column; max-height: 78vh;
     }
     .chat-drawer.open { display: flex; }
-    .chat-head { padding: 12px 14px; background: rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .chat-head { padding: 12px 14px; background: rgba(235, 244, 255, 0.92); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(37, 99, 235, 0.14); }
     .chat-msgs { padding: 12px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 8px; max-height: 310px; }
     .c-msg { font-size: 12px; line-height: 1.45; padding: 9px 11px; border-radius: 14px; max-width: 92%; }
-    .c-msg.bot { background: rgba(255,255,255,0.09); align-self: flex-start; border-bottom-left-radius: 4px; }
+    .c-msg.bot { background: #EFF6FF; color: #0F172A; border: 1px solid rgba(37,99,235,0.16); align-self: flex-start; border-bottom-left-radius: 4px; }
     .c-msg.user { background: var(--accent); color: #fff; font-weight: 600; align-self: flex-end; border-bottom-right-radius: 4px; }
     .chat-actions { display: flex; gap: 5px; flex-wrap: wrap; padding: 0 12px 8px; }
-    .chat-foot { padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 6px; }
-    .callback-box { background: rgba(37,99,235,0.16); border: 1px solid rgba(96,165,250,0.4); border-radius: 12px; padding: 8px; display: none; }
+    .chat-foot { padding: 10px 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; background: rgba(248, 250, 252, 0.90); }
+    .callback-box { background: rgba(235,244,255,0.92); border: 1px solid rgba(37,99,235,0.28); border-radius: 12px; padding: 8px; display: none; margin: 0 12px 8px; }
   </style>
 </head>
 <body>
+<div class="hotel-bg-backdrop" aria-hidden="true"></div>
 <div class="shell">
 
   <!-- STICKY TOP NAVIGATION -->
@@ -226,7 +233,7 @@
       <a class="nav-pill" href="#auditor">Live Auditor</a>
       <a class="nav-pill" href="#pricing">Pricing ($0–$99)</a>
       <a class="nav-pill" href="#aidynamic-consultation">$99 AI Consultation</a>
-      <a class="nav-pill" href="#blogs">3 AI Blogs</a>
+      <a class="nav-pill" href="#blogs">Blogs</a>
     </nav>
 
     <div class="nav-ctas">
@@ -279,10 +286,10 @@
             <div style="font-size:20px; font-weight:900; color:var(--ok);">+$58k/yr</div>
             <div style="font-size:10.5px; color:var(--muted);">commission saved + ADR lift</div>
           </div>
-          <div style="background:var(--navy); color:#fff; border-radius:14px; padding:10px;">
-            <div class="lbl" style="color:#93C5FD;">FLAT SAAS COST</div>
-            <div style="font-size:20px; font-weight:900; color:#fff;">$0 → $99</div>
-            <div style="font-size:10.5px; color:#CBD5E1;">vs $450–$900/mo enterprise</div>
+          <div style="background:rgba(235, 243, 255, 0.94); border:1.5px solid rgba(37, 99, 235, 0.24); color:var(--ink); border-radius:14px; padding:10px;">
+            <div class="lbl" style="color:#1E40AF;">FLAT SAAS COST</div>
+            <div style="font-size:20px; font-weight:900; color:#1D4ED8;">$0 → $99</div>
+            <div style="font-size:10.5px; color:#475569;">vs $450–$900/mo enterprise</div>
           </div>
         </div>
       </div>
@@ -291,44 +298,44 @@
       <div class="card dark" style="display:flex; flex-direction:column; justify-content:space-between;">
         <div>
           <span class="badge blue-solid">INTERACTIVE PROFIT &amp; PAYROLL CALCULATOR</span>
-          <h2 style="font-size:19px; font-weight:800; margin:8px 0 10px;">How Much You Make &amp; Save Every Month</h2>
+          <h2 style="font-size:19px; font-weight:900; color:#0F172A; margin:8px 0 10px;">How Much You Make &amp; Save Every Month</h2>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px;">
             <div>
-              <label class="lbl" style="color:#CBD5E1;">ROOMS IN HOTEL</label>
+              <label class="lbl" style="color:#334155;">ROOMS IN HOTEL</label>
               <input class="inp" type="number" id="roiRooms" value="48" oninput="recalcRoi()">
             </div>
             <div>
-              <label class="lbl" style="color:#CBD5E1;">AVG NIGHTLY ADR ($)</label>
+              <label class="lbl" style="color:#334155;">AVG NIGHTLY ADR ($)</label>
               <input class="inp" type="number" id="roiAdr" value="225" oninput="recalcRoi()">
             </div>
           </div>
 
-          <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.10); border-radius:14px; padding:12px; margin-bottom:10px;">
-            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px;">
+          <div style="background:rgba(255,255,255,0.78); border:1px solid rgba(37,99,235,0.18); border-radius:14px; padding:12px; margin-bottom:10px;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; color:#1E293B; margin-bottom:5px;">
               <span>Payroll Saved (45 hrs manual shopping × $25/hr)</span>
-              <b style="color:#93C5FD;">$1,125/mo saved</b>
+              <b style="color:#1D4ED8;">$1,125/mo saved</b>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; color:#1E293B; margin-bottom:5px;">
               <span>New Profit (Direct Bookings + +4% Wknd ADR Lift)</span>
-              <b style="color:#4ADE80;" id="roiRevMo">+$4,200/mo made</b>
+              <b style="color:#15803D;" id="roiRevMo">+$4,200/mo made</b>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:900; border-top:1px solid rgba(255,255,255,0.14); padding-top:7px; margin-top:6px;">
+            <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:900; color:#0F172A; border-top:1px solid rgba(37,99,235,0.16); padding-top:7px; margin-top:6px;">
               <span>NET MONTHLY BENEFIT ON $99/MO</span>
-              <span style="color:#60A5FA;" id="roiTotalMo">+$5,226/mo (53x ROI)</span>
+              <span style="color:#1E40AF;" id="roiTotalMo">+$5,226/mo (53x ROI)</span>
             </div>
           </div>
 
-          <svg viewBox="0 0 460 128" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(255,255,255,0.05);border-radius:14px;border:1px solid rgba(255,255,255,0.08);">
-            <text x="14" y="20" font-size="10.5" font-weight="800" fill="#93C5FD">MONTHLY SOFTWARE &amp; LABOR COST COMPARISON</text>
-            <text x="14" y="45" font-size="11" fill="#E2E8F0">Manual Desk Shopping (60 hrs)</text>
-            <rect x="195" y="34" width="215" height="14" rx="7" fill="#EF4444"/>
-            <text x="416" y="45" font-size="10.5" font-weight="800" fill="#FCA5A5">$1,500</text>
-            <text x="14" y="72" font-size="11" fill="#E2E8F0">Legacy Rate Suites</text>
+          <svg viewBox="0 0 460 128" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:rgba(255,255,255,0.82);border-radius:14px;border:1px solid rgba(37,99,235,0.16);">
+            <text x="14" y="20" font-size="10.5" font-weight="800" fill="#1E40AF">MONTHLY SOFTWARE &amp; LABOR COST COMPARISON</text>
+            <text x="14" y="45" font-size="11" font-weight="600" fill="#334155">Manual Desk Shopping (60 hrs)</text>
+            <rect x="195" y="34" width="210" height="14" rx="7" fill="#DC2626"/>
+            <text x="411" y="45" font-size="10.5" font-weight="800" fill="#B91C1C">$1,500</text>
+            <text x="14" y="72" font-size="11" font-weight="600" fill="#334155">Legacy Rate Suites</text>
             <rect x="195" y="61" width="128" height="14" rx="7" fill="#64748B"/>
-            <text x="329" y="72" font-size="10.5" font-weight="800" fill="#CBD5E1">$650/mo</text>
-            <text x="14" y="99" font-size="11" font-weight="800" fill="#FFFFFF">HotelRateIntel Core Plan</text>
+            <text x="329" y="72" font-size="10.5" font-weight="800" fill="#475569">$650/mo</text>
+            <text x="14" y="99" font-size="11" font-weight="800" fill="#0F172A">HotelRateIntel Core Plan</text>
             <rect x="195" y="88" width="28" height="14" rx="7" fill="#2563EB"/>
-            <text x="230" y="99" font-size="11" font-weight="800" fill="#93C5FD">$99/mo · Automated</text>
+            <text x="230" y="99" font-size="11" font-weight="800" fill="#1D4ED8">$99/mo · Automated</text>
           </svg>
         </div>
 
@@ -493,9 +500,9 @@
       <div style="display:flex; flex-direction:column; gap:10px;">
         <div class="card dark">
           <span class="badge blue-solid">DECISION-MAKING ASSISTANT</span>
-          <h3 style="font-size:16px; font-weight:900; margin:6px 0 4px;" id="daVerdict">Paste Your URL or Pick a Sample Demo to Run</h3>
-          <div style="font-size:12px; color:#CBD5E1; margin-bottom:8px;" id="daStats">Recommended Direct BAR &amp; annual ROI projection appear automatically after scanning.</div>
-          <ul id="daActions" style="font-size:11.5px; line-height:1.45; padding-left:16px; color:#F8FAFC;"></ul>
+          <h3 style="font-size:16px; font-weight:900; color:#0F172A; margin:6px 0 4px;" id="daVerdict">Paste Your URL or Pick a Sample Demo to Run</h3>
+          <div style="font-size:12px; color:#334155; margin-bottom:8px;" id="daStats">Recommended Direct BAR &amp; annual ROI projection appear automatically after scanning.</div>
+          <ul id="daActions" style="font-size:11.5px; line-height:1.45; padding-left:16px; color:#1E293B;"></ul>
         </div>
 
         <div class="card" style="padding:10px;" id="auditOtaSvgWrap">
@@ -583,11 +590,11 @@
 
     <!-- Aggressive Consultation Guarantee Tiers -->
     <div class="grid-3" style="margin-bottom:16px;">
-      <div class="card dark" style="border:1.5px solid #3B82F6;">
+      <div class="card dark" style="border:1.5px solid rgba(37, 99, 235, 0.35);">
         <span class="badge blue-solid">AGGRESSIVE CONSULTATION GUARANTEE</span>
-        <h3 style="font-size:18px; font-weight:900; margin:8px 0 4px;">48-Hour AI Workflow Audit + Live Prototype</h3>
-        <div style="font-size:32px; font-weight:900; color:#60A5FA; margin:4px 0;">$99 <span style="font-size:12px; color:#CBD5E1; font-weight:600;">one-time · $0 risk</span></div>
-        <p style="font-size:12px; color:#E2E8F0; line-height:1.55; margin-bottom:10px;">
+        <h3 style="font-size:18px; font-weight:900; color:#0F172A; margin:8px 0 4px;">48-Hour AI Workflow Audit + Live Prototype</h3>
+        <div style="font-size:32px; font-weight:900; color:#1D4ED8; margin:4px 0;">$99 <span style="font-size:12px; color:#475569; font-weight:700;">one-time · $0 risk</span></div>
+        <p style="font-size:12px; color:#1E293B; line-height:1.55; margin-bottom:10px;">
           <b>Ironclad Guarantee:</b> Book a 60-minute executive process &amp; margin teardown with our lead architects and receive a <b>working custom AI prototype in 48 hours</b>—guaranteed to uncover at least <b>$2,500/month ($30,000/year)</b> in payroll and workflow savings, or you pay <b>$0 (100% refunded)</b>. Plus 100% of your $99 credits toward deployment.
         </p>
         <a class="btn primary" style="width:100%; justify-content:center;" href="https://www.aidynamic.pro/booking" target="_blank" rel="noopener">Claim $99 Audit + Free Prototype →</a>
@@ -634,95 +641,159 @@
   </section>
 
   <!-- ================================================================
-       SECTION 6: 3 ELABORATED BLOGS FROM AIDYNAMIC.PRO (SEO BACKLINKS)
+       SECTION 6: BLOGS FROM AIDYNAMIC.PRO (GENERAL + CASE STUDIES)
        ================================================================ -->
   <section class="sec" id="blogs">
     <div class="sec-head">
       <div>
-        <span class="badge blue">EXECUTIVE AI KNOWLEDGE HUB · SYNDICATED FROM <a href="https://www.aidynamic.pro/blog" target="_blank" rel="noopener" style="text-decoration:underline;">AIDYNAMIC.PRO/BLOG</a></span>
-        <h2>3 In-Depth Architecture Briefs on Revenue Automation &amp; Applied AI</h2>
-        <p>Deep technical playbooks written by our Miami AI engineering team—showing how bilingual voice agents, multi-agent workflow orchestration, and sub-5-minute intake convert into measurable profit across hospitality, clinics, and commercial firms.</p>
+        <span class="badge blue">BLOGS · FROM <a href="https://www.aidynamic.pro/blog" target="_blank" rel="noopener" style="text-decoration:underline;">AIDYNAMIC.PRO/BLOG</a></span>
+        <h2>Blogs</h2>
+        <p>General AI architecture guides &amp; real Miami implementation stories from AI Dynamic Pro—covering agentic websites, AI SEO &amp; Answer Engine Optimization, business simulation, predictive research, and 24/7 bilingual AI systems.</p>
       </div>
-      <a class="btn ghost" href="https://www.aidynamic.pro/blog" target="_blank" rel="noopener">All Articles on AI Dynamic Pro ↗</a>
+      <a class="btn ghost" href="https://www.aidynamic.pro/blog" target="_blank" rel="noopener">All Blogs on AI Dynamic Pro ↗</a>
     </div>
 
     <div class="grid-3">
-      <!-- BLOG 1 -->
+      <!-- BLOG 1 (GENERAL: AGENTIC WEBSITES) -->
       <article class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
         <div>
-          <span class="badge blue">BLOG 01 · VOICE AI &amp; HOSPITALITY DESKS</span>
-          <h3 style="font-size:16.5px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
-            Why Miami Hotels &amp; Businesses Are Switching to 24/7 Bilingual AI Phone Receptionists
+          <span class="badge blue">BLOG · AGENTIC WEBSITES</span>
+          <h3 style="font-size:16px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
+            Agentic Websites: The Future of Self-Optimizing Web Presence
+          </h3>
+          <div class="blog-stat">
+            <div><b>24/7</b><span>Live UX Optimization</span></div>
+            <div><b>Auto A/B</b><span>Dynamic CTA Adaptation</span></div>
+          </div>
+          <div class="blog-body">
+            <p>Static business and hotel websites show the exact same brochure to every visitor regardless of buying intent. <b>Agentic websites</b> measure live visitor behavior, auto-generate metadata, test high-converting CTA placements, and adapt page paths dynamically without manual developer bottlenecks.</p>
+            <p>That self-optimizing architecture powers how our web portals turn anonymous traffic directly into booked consultations and live property audits.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:10px;">
+          <a class="backlink-chip" href="https://www.aidynamic.pro/agentic-website" target="_blank" rel="noopener">Read Agentic Websites Blog ↗</a>
+          <a class="backlink-chip" href="https://www.aidynamic.pro/projects/agentic-self-learning-websites" target="_blank" rel="noopener">System Architecture ↗</a>
+        </div>
+      </article>
+
+      <!-- BLOG 2 (GENERAL: AI SEO & AEO) -->
+      <article class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge ok">BLOG · AI SEO &amp; AEO</span>
+          <h3 style="font-size:16px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
+            AI SEO &amp; Answer Engine Optimization: Dominating Rankings in 2026
+          </h3>
+          <div class="blog-stat">
+            <div><b>AEO / GEO</b><span>LLM Citation Visibility</span></div>
+            <div><b>Predictive</b><span>Intent-First Content</span></div>
+          </div>
+          <div class="blog-body">
+            <p>Modern discovery runs inside <b>Google AI Overviews, ChatGPT Search, Perplexity, and Claude</b>. Optimizing solely for legacy keywords misses how answer engines evaluate structured entities, schema.org JSON-LD graphs, and intent-first answers.</p>
+            <p>AI Dynamic Pro builds automated AI SEO &amp; AEO content pipelines that continuously adapt to shifting search behavior so local businesses get cited directly as trusted authorities.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:10px;">
+          <a class="backlink-chip" href="https://www.aidynamic.pro/ai-seo" target="_blank" rel="noopener">Read AI SEO &amp; AEO Blog ↗</a>
+          <a class="backlink-chip" href="https://www.aidynamic.pro/blog" target="_blank" rel="noopener">AI Dynamic Knowledge Hub ↗</a>
+        </div>
+      </article>
+
+      <!-- BLOG 3 (GENERAL: BUSINESS SIMULATION & ZERO-G) -->
+      <article class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge dark">BLOG · ZERO-G &amp; SIMULATION</span>
+          <h3 style="font-size:16px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
+            AI Business Simulation &amp; Zero-G: Test Pricing Before You Spend
+          </h3>
+          <div class="blog-stat">
+            <div><b>10,000+</b><span>Simulated Decisions</span></div>
+            <div><b>$0 Risk</b><span>Pre-Spend Modeling</span></div>
+          </div>
+          <div class="blog-body">
+            <p>Before deploying capital on price moves, market expansion, or ad budgets, AI Dynamic Pro's <b>Zero-G &amp; Business Simulation</b> models thousands of real market scenarios—including <b>5,000+ pricing elasticity trials</b>, <b>3,000 market-entry runs</b>, and competitive responses.</p>
+            <p>For hotels and multi-location operators, stress-testing BAR strategies in simulation prevents premature discounting and protects margin year-round.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:10px;">
+          <a class="backlink-chip" href="https://www.aidynamic.pro/simulation" target="_blank" rel="noopener">Read Simulation Blog ↗</a>
+          <a class="backlink-chip" href="https://www.aidynamic.pro/zero-g" target="_blank" rel="noopener">Explore Zero-G Platform ↗</a>
+        </div>
+      </article>
+
+      <!-- BLOG 4 (GENERAL: PREDICTIVE AI MARKET RESEARCH) -->
+      <article class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge blue">BLOG · AI MARKET RESEARCH</span>
+          <h3 style="font-size:16px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
+            AI-Powered Market Research: Deep Customer Intent Discovery
+          </h3>
+          <div class="blog-stat">
+            <div><b>Predictive</b><span>Early Buyer Intent</span></div>
+            <div><b>Florida Focus</b><span>Real Demand Signals</span></div>
+          </div>
+          <div class="blog-body">
+            <p>Most companies discover market shifts after competitors already captured the bookings. Deep learning models analyze local sentiment, purchasing cadence, and cross-channel touchpoints to isolate ready-to-buy customers before they even run a search.</p>
+            <p>Paired with HotelRateIntel's live corridor price intelligence, operators act on concrete street-level signals instead of rearview spreadsheets.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:10px;">
+          <a class="backlink-chip" href="https://www.aidynamic.pro/research" target="_blank" rel="noopener">Read AI Research Blog ↗</a>
+          <a class="backlink-chip" href="https://www.aidynamic.pro/projects/ai-market-business-research" target="_blank" rel="noopener">Market Intel Specs ↗</a>
+        </div>
+      </article>
+
+      <!-- BLOG 5 (MIAMI BILINGUAL AI RECEPTIONISTS) -->
+      <article class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge ok">BLOG · 24/7 BILINGUAL VOICE AI</span>
+          <h3 style="font-size:16px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
+            Why Miami Hotels &amp; Businesses Switch to 24/7 Bilingual AI Phone Receptionists
           </h3>
           <div class="blog-stat">
             <div><b>68%+</b><span>EN / ES Miami Callers</span></div>
             <div><b>&lt; 0.4s</b><span>Ring-1 Voice Latency</span></div>
           </div>
           <div class="blog-body">
-            <p>In South Florida hospitality and service businesses, over <b>68% of inbound commercial callers</b> speak Spanish or code-switch smoothly between English and Spanish. Every call routed to voicemail after 5:00 PM or during check-in rush doesn't just vanish—it books straight into an OTA or competitor across the street.</p>
-            <p>AI Dynamic Pro engineers <b>JAss 24/7 Bilingual Voice &amp; CRM Pipelines</b> ($997 Turnkey launch in 7–14 days) that answer on Ring 1 in fluent English or Spanish, quote direct walk-in BAR accurately without OTA commission loss, trigger night-audit courtesy checks, and log every inquiry cleanly into your CRM.</p>
-            <p>Combined with HotelRateIntel's 6:00 AM parity dashboard, an independent 45-room property replaces costly third-party call centers and captures high-intent direct phone reservations totaling <b>$35,000+/year in saved labor and retained bookings</b>.</p>
+            <p>Over <b>68% of South Florida inbound callers</b> speak Spanish or switch effortlessly between English and Spanish. Every unanswered call during peak check-in or after 5 PM shifts bookings straight to OTAs or competing businesses.</p>
+            <p><b>JAss 24/7 Bilingual Voice &amp; CRM Pipelines</b> ($997 turnkey launch) answer Ring 1, quote accurate BAR rates without commission loss, and save properties <b>$35,000+/year</b>.</p>
           </div>
         </div>
         <div style="display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:10px;">
-          <a class="backlink-chip" href="https://www.aidynamic.pro/blog/ai-phone-receptionist-miami" target="_blank" rel="noopener">Read Full Article on AI Dynamic Pro ↗</a>
+          <a class="backlink-chip" href="https://www.aidynamic.pro/blog/ai-phone-receptionist-miami" target="_blank" rel="noopener">Read Full Voice AI Blog ↗</a>
           <a class="backlink-chip" href="https://www.aidynamic.pro/projects/ai-voice-receptionist" target="_blank" rel="noopener">Voice AI Specs ↗</a>
         </div>
       </article>
 
-      <!-- BLOG 2 -->
+      <!-- BLOG 6 (SOVEREIGN AGENTS OF AGENTS & SPEED-TO-LEAD) -->
       <article class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
         <div>
-          <span class="badge ok">BLOG 02 · MULTI-AGENT OPS &amp; REVENUE CYCLE</span>
-          <h3 style="font-size:16.5px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
-            Sovereign 'Agents of Agents': Cutting Front-Desk Overhead 45% &amp; No-Shows 42%
+          <span class="badge dark">BLOG · AGENTS OF AGENTS &amp; RAG</span>
+          <h3 style="font-size:16px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
+            Sovereign 'Agents of Agents': Sub-5-Minute Intake &amp; 45% Lower Overhead
           </h3>
           <div class="blog-stat">
-            <div><b>-42%</b><span>No-Show Reduction</span></div>
-            <div><b>-45%</b><span>Admin Overhead Cut</span></div>
+            <div><b>-45%</b><span>Front-Desk Overhead</span></div>
+            <div><b>&lt; 5 min</b><span>Speed-to-Contract</span></div>
           </div>
           <div class="blog-body">
-            <p>Whether running an outpatient clinic in Brickell or a 50-room Miami Beach boutique hotel, front-desk staff routinely lose <b>65% of shift hours</b> to repetitive verification—copy-pasting rates, chasing confirmation messages, and checking portal tabs by hand.</p>
-            <p>Across <a href="https://medicalbillingmb.com/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:underline;">Medical Billing Miami Beach</a> and <a href="https://pocketscribe.online/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:underline;">PocketScribe Clinical AI</a>, our engineering team deployed sovereign zero-training <b>Agents of Agents (AoA)</b> pipelines that automate interactive SMS confirmations (-42% no-shows), instant OCR verification, and pre-submission revenue scrubbing.</p>
-            <p>That exact production architecture now drives HotelRateIntel: scheduled collectors fetch live multi-OTA quotes overnight, update historical pricing memory, detect parity leaks automatically, and hand your Reservations team a clean decision sheet before shift huddle.</p>
+            <p>Across South Florida businesses—from <a href="https://medicalbillingmb.com/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:underline;">medical clinics</a> (-42% no-shows) to <a href="https://realestatedates.com/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:underline;">real estate</a> and law firms (sub-5-min speed-to-retainer)—zero-training Private RAG &amp; multi-agent workflows replace 65% of manual portal checking.</p>
+            <p>See our full enterprise case studies or book our <b>$99 48-Hour AI Workflow Audit</b> backed by a $2,500/mo savings guarantee.</p>
           </div>
         </div>
         <div style="display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:10px;">
-          <a class="backlink-chip" href="https://www.aidynamic.pro/blog/medical-clinic-automation" target="_blank" rel="noopener">Read Full Automation Study ↗</a>
-          <a class="backlink-chip" href="https://www.aidynamic.pro/projects/medical-billing-rcm-automation" target="_blank" rel="noopener">RCM &amp; Workflow AI ↗</a>
-        </div>
-      </article>
-
-      <!-- BLOG 3 -->
-      <article class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
-        <div>
-          <span class="badge dark">BLOG 03 · SPEED-TO-LEAD &amp; SOVEREIGN RAG</span>
-          <h3 style="font-size:16.5px; font-weight:900; margin:8px 0 8px; line-height:1.3;">
-            Sub-5-Minute Response &amp; Private RAG: Turning Group Inquiries Into Signed Contracts
-          </h3>
-          <div class="blog-stat">
-            <div><b>&lt; 5 min</b><span>Quote to Retainer Speed</span></div>
-            <div><b>$0 Risk</b><span>$2.5k/mo Savings Guarantee</span></div>
-          </div>
-          <div class="blog-body">
-            <p>In South Florida corporate group bookings, real estate closings (<a href="https://realestatedates.com/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:underline;">Real Estate Dates</a>), and law firm retainers, <b>speed-to-lead decides who gets paid</b>: if your team takes more than 15 minutes to verify rates or contract terms, the buyer books down the street.</p>
-            <p>Our Zero-Training Private RAG pipelines let firms audit contracts, RFP group blocks, and property schedules inside encrypted databases while an AI intake agent qualifies inquiries in under 60 seconds and triggers automated follow-up sequences.</p>
-            <p>Want our senior developers to map your slowest operational bottleneck first? Book our <b>$99 60-Minute Department Audit</b>—we build and ship a live custom prototype in <b>48 hours</b> backed by our $2,500/mo documented savings guarantee.</p>
-          </div>
-        </div>
-        <div style="display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:10px;">
-          <a class="backlink-chip" href="https://www.aidynamic.pro/blog/legal-intake-automation" target="_blank" rel="noopener">Read Full Speed-to-Lead Guide ↗</a>
-          <a class="backlink-chip" href="https://www.aidynamic.pro/offer" target="_blank" rel="noopener">$99 48-Hr Audit Offer ↗</a>
+          <a class="backlink-chip" href="https://www.aidynamic.pro/blog/medical-clinic-automation" target="_blank" rel="noopener">Clinic Agents Blog ↗</a>
+          <a class="backlink-chip" href="https://www.aidynamic.pro/blog/legal-intake-automation" target="_blank" rel="noopener">Speed-to-Lead Blog ↗</a>
         </div>
       </article>
     </div>
   </section>
 
   <!-- FOOTER WITH CLEAN ECOSYSTEM LINKS -->
-  <footer style="text-align:center; font-size:11.5px; color:var(--muted); padding:10px 0 24px;">
+  <footer style="text-align:center; font-size:11.5px; color:var(--sub); padding:10px 0 24px;">
     <b>HotelRateIntel</b> · North Miami, FL 33161 · Engineered by <a href="https://www.aidynamic.pro" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;">AI Dynamic Pro</a> ·
     <a href="/portal?demo=1" style="text-decoration:underline;">Sample Client Portal</a> ·
     <a href="/mission-control" style="text-decoration:underline;">Owner Mission Control</a> ·
+    <a href="https://www.aidynamic.pro/blog" target="_blank" rel="noopener" style="text-decoration:underline;">Blogs</a> ·
     <a href="https://www.aidynamic.pro/offer" target="_blank" rel="noopener" style="text-decoration:underline;">$99 AI Workflow Audit</a>
   </footer>
 </div>
@@ -736,10 +807,10 @@
 <div class="chat-drawer" id="closerChatDrawer">
   <div class="chat-head">
     <div>
-      <div style="font-size:12.5px; font-weight:900; color:#93C5FD;">Marco · Revenue Concierge ⚡</div>
-      <div style="font-size:10px; color:#CBD5E1;">Live Website Scan · Demo Launcher · Direct Callbacks</div>
+      <div style="font-size:12.5px; font-weight:900; color:#1E40AF;">Marco · Revenue Concierge ⚡</div>
+      <div style="font-size:10px; color:#475569;">Live Website Scan · Demo Launcher · Direct Callbacks</div>
     </div>
-    <button onclick="toggleChat(false)" style="background:none;border:none;color:#fff;font-size:16px;cursor:pointer;">✕</button>
+    <button onclick="toggleChat(false)" style="background:none;border:none;color:#0F172A;font-size:16px;cursor:pointer;font-weight:800;">✕</button>
   </div>
   <div class="chat-msgs" id="chatMsgsBox">
     <div class="c-msg bot">
@@ -753,7 +824,7 @@
     <a class="btn ok sm" id="directCallOwnerBtn" style="display:none;" href="#">📱 Call Direct</a>
   </div>
   <div class="callback-box" id="callbackInlineBox">
-    <div style="font-size:10.5px; font-weight:800; color:#93C5FD; margin-bottom:5px;">GET A DIRECT CALL FROM OUR MIAMI DESK:</div>
+    <div style="font-size:10.5px; font-weight:800; color:#1E40AF; margin-bottom:5px;">GET A DIRECT CALL FROM OUR MIAMI DESK:</div>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:5px;">
       <input class="inp" id="cbPhoneInp" placeholder="+1 (305) 555-0199" style="padding:6px 8px;font-size:11.5px;">
       <input class="inp" id="cbNameInp" placeholder="Your Name / Hotel" style="padding:6px 8px;font-size:11.5px;">
@@ -762,7 +833,7 @@
       <button class="btn primary sm" style="flex:1;justify-content:center;" onclick="submitCallbackRequest()">📲 Request Instant Call →</button>
       <button class="btn ghost sm" onclick="toggleCallbackForm(false)">Cancel</button>
     </div>
-    <div id="cbStatusMsg" style="font-size:10.5px; margin-top:4px; color:#4ADE80;"></div>
+    <div id="cbStatusMsg" style="font-size:10.5px; margin-top:4px; color:#15803D; font-weight:700;"></div>
   </div>
   <div class="chat-foot">
     <div style="display:flex; gap:6px;">
@@ -904,7 +975,7 @@
     const da = d.decision_assistant || {};
     document.getElementById('daVerdict').textContent = da.verdict || 'Audit Complete';
     document.getElementById('daStats').innerHTML =
-      `Recommended Direct BAR: <b style="color:#93C5FD;">$${da.recommended_bar || '—'}/nt</b> · Est. Annual Impact: <b>+$${Number(da.total_annual_roi || 0).toLocaleString('en-US')}/yr</b> · <b>${da.staff_hours_saved_mo || 45} staff hrs/mo saved</b>`;
+      `Recommended Direct BAR: <b style="color:#1D4ED8;">$${da.recommended_bar || '—'}/nt</b> · Est. Annual Impact: <b>+$${Number(da.total_annual_roi || 0).toLocaleString('en-US')}/yr</b> · <b>${da.staff_hours_saved_mo || 45} staff hrs/mo saved</b>`;
     document.getElementById('daActions').innerHTML = (da.actions || []).map(a => `<li>${a}</li>`).join('');
 
     const gfx = d.graphics || {};
@@ -1073,7 +1144,7 @@
       body: JSON.stringify({ phone: ph, name: nm, hotel_id: hid, hotel_name: hname })
     });
     const d = await r.json();
-    msgEl.style.color = d.ok ? '#4ADE80' : '#FCA5A5';
+    msgEl.style.color = d.ok ? '#15803D' : '#DC2626';
     msgEl.textContent = d.ok ? d.message : (d.error || 'Enter valid phone #');
   }
 
