@@ -189,7 +189,8 @@ def _send_live_email(cfg: dict, to_email: str, subject: str, body_text: str, htm
     em_cfg = cfg.get("email_report") or {}
     phys_addr = out_cfg.get("physical_address") or "North Miami, FL 33161"
     sender_name = out_cfg.get("sender_name") or "Jasmel Acosta"
-    from_email = (em_cfg.get("from_email") or em_cfg.get("smtp_user") or "rates@miamihotelintel.com").strip()
+    from_email = (em_cfg.get("from_email") or em_cfg.get("smtp_user") or "jasmel@hotelrateintel.com").strip()
+    reply_to = (out_cfg.get("reply_to_email") or em_cfg.get("to_email") or "jasmelacosta@gmail.com").strip()
     full_body = f"{body_text.rstrip()}\n\n--\n{sender_name} | {phys_addr}\nReply STOP to opt out of future local rate briefs."
 
     pref = (out_cfg.get("email_provider") or "smtp").lower()
@@ -200,6 +201,7 @@ def _send_live_email(cfg: dict, to_email: str, subject: str, body_text: str, htm
         payload_b = {
             "sender": {"name": sender_name, "email": from_email},
             "to": [{"email": to_email}],
+            "replyTo": {"email": reply_to},
             "subject": subject,
             "textContent": full_body,
         }
@@ -213,7 +215,7 @@ def _send_live_email(cfg: dict, to_email: str, subject: str, body_text: str, htm
         return {"ok": ok, "provider": "brevo", "msg_id": resp.get("messageId", ""), "error": resp.get("error") or resp.get("message", "")}
 
     if resend_key:
-        payload_r = {"from": f"{sender_name} <{from_email}>", "to": [to_email], "subject": subject, "text": full_body}
+        payload_r = {"from": f"{sender_name} <{from_email}>", "to": [to_email], "reply_to": [reply_to], "subject": subject, "text": full_body}
         if html_body:
             payload_r["html"] = html_body
         ok, code, resp = _http_json(
@@ -233,6 +235,7 @@ def _send_live_email(cfg: dict, to_email: str, subject: str, body_text: str, htm
             msg["Subject"] = subject
             msg["From"] = f"{sender_name} <{from_email}>"
             msg["To"] = to_email
+            msg["Reply-To"] = reply_to
             msg.attach(MIMEText(full_body, "plain", "utf-8"))
             if html_body:
                 msg.attach(MIMEText(html_body, "html", "utf-8"))

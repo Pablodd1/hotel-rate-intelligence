@@ -57,6 +57,7 @@ DEFAULTS = {
         "sender_name": "Jasmel Acosta",
         "sender_company": "Hotel Rate Intelligence Miami",
         "sender_phone": "",
+        "reply_to_email": "jasmelacosta@gmail.com",
         "app_base_url": "https://hotelrateintel.com",
         "sender_location": "North Miami / Miami Beach, FL",
         "physical_address": "North Miami, FL 33161",

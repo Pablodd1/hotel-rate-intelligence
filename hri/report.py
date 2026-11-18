@@ -103,12 +103,14 @@ def send_email_report(cfg, text):
 
     if resend_key and to_addr and (out_cfg.get("email_provider") == "resend" or not (user and pw)):
         try:
+            reply_to = (out_cfg.get("reply_to_email") or to_addr or "jasmelacosta@gmail.com").strip()
             html_body = f"<pre style='font:13px/1.55 monospace;color:#0F172A;background:#F8FAFC;padding:18px;border-radius:12px'>{text}</pre>"
             req = request.Request(
                 "https://api.resend.com/emails",
                 data=json.dumps({
                     "from": f"HRI Daily Brief <{from_addr}>",
                     "to": [to_addr],
+                    "reply_to": [reply_to],
                     "subject": f"HRI Daily Hotel Rate, Occupancy & Strategy Report — {time.strftime('%b %d, %Y')}",
                     "text": text,
                     "html": html_body,
