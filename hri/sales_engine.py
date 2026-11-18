@@ -576,8 +576,8 @@ def build_ota_ladder_svg(hotel_name: str, direct_bar: float, channels: list) -> 
     if not items:
         return (
             '<svg viewBox="0 0 540 96" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:system-ui,sans-serif;">'
-            '<rect width="540" height="96" rx="14" fill="#f5f0e6"/>'
-            '<text x="20" y="54" font-size="13" font-weight="700" fill="#57534e">'
+            '<rect width="540" height="96" rx="14" fill="#f8fafc" stroke="#cbd5e1"/>'
+            '<text x="20" y="54" font-size="13" font-weight="700" fill="#475569">'
             'No live OTA quotes returned for this exact check-in window — run live scan or pick check-in date.'
             '</text></svg>'
         )
@@ -587,18 +587,18 @@ def build_ota_ladder_svg(hotel_name: str, direct_bar: float, channels: list) -> 
     height = 36 + len(items) * row_h
     parts = [
         f'<svg viewBox="0 0 540 {height}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:system-ui,-apple-system,sans-serif;">',
-        f'<rect width="540" height="{height}" rx="16" fill="#faf7f2" stroke="#e7e0d4"/>',
-        f'<text x="16" y="22" font-size="11" font-weight="800" fill="#44403c">CHANNEL RATE LADDER · {html_lib.escape(hotel_name[:34].upper())}</text>',
+        f'<rect width="540" height="{height}" rx="16" fill="#f8fafc" stroke="#cbd5e1"/>',
+        f'<text x="16" y="22" font-size="11" font-weight="800" fill="#1e40af">CHANNEL RATE LADDER · {html_lib.escape(hotel_name[:34].upper())}</text>',
     ]
     bar_x = 158
     bar_max_w = 275
     for idx, (nm, rt, is_under, is_direct) in enumerate(items):
         y = 32 + idx * row_h
         w = max(36, round((rt / max_val) * bar_max_w))
-        fill = "#dc2626" if is_under else ("#facc15" if is_direct else "#1c1917")
-        txt_col = "#991b1b" if is_under else "#1c1917"
+        fill = "#dc2626" if is_under else ("#2563eb" if is_direct else "#334155")
+        txt_col = "#b91c1c" if is_under else ("#1d4ed8" if is_direct else "#0f172a")
         tag = f"LEAK -{round((direct_bar - rt) / direct_bar * 100)}%" if (is_under and direct_bar) else ("DIRECT" if is_direct else "PARITY")
-        parts.append(f'<text x="16" y="{y + 18}" font-size="11.5" font-weight="700" fill="#1c1917">{html_lib.escape(nm)}</text>')
+        parts.append(f'<text x="16" y="{y + 18}" font-size="11.5" font-weight="700" fill="#0f172a">{html_lib.escape(nm)}</text>')
         parts.append(f'<rect x="{bar_x}" y="{y + 5}" width="{w}" height="18" rx="9" fill="{fill}"/>')
         parts.append(f'<text x="{bar_x + w + 8}" y="{y + 18}" font-size="11.5" font-weight="900" fill="{txt_col}">${rt} · {tag}</text>')
     parts.append("</svg>")
@@ -622,18 +622,18 @@ def build_comp_set_svg(hotel_name: str, my_bar: float, neighbors: list) -> str:
     height = 36 + len(items) * row_h
     parts = [
         f'<svg viewBox="0 0 540 {height}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:system-ui,-apple-system,sans-serif;">',
-        f'<rect width="540" height="{height}" rx="16" fill="#faf7f2" stroke="#e7e0d4"/>',
-        '<text x="16" y="22" font-size="11" font-weight="800" fill="#44403c">CORRIDOR COMP-SET POSITIONING ($ / NIGHT)</text>',
+        f'<rect width="540" height="{height}" rx="16" fill="#f8fafc" stroke="#cbd5e1"/>',
+        '<text x="16" y="22" font-size="11" font-weight="800" fill="#1e40af">CORRIDOR COMP-SET POSITIONING ($ / NIGHT)</text>',
     ]
     bar_x = 178
     bar_max_w = 270
     for idx, (nm, rt, is_mine) in enumerate(items):
         y = 32 + idx * row_h
         w = max(36, round((rt / max_val) * bar_max_w))
-        fill = "#facc15" if is_mine else "#44403c"
-        parts.append(f'<text x="16" y="{y + 18}" font-size="11.5" font-weight="{"900" if is_mine else "600"}" fill="#1c1917">{html_lib.escape(nm)}</text>')
-        parts.append(f'<rect x="{bar_x}" y="{y + 5}" width="{w}" height="18" rx="9" fill="{fill}" stroke="{"#ca8a04" if is_mine else "none"}"/>')
-        parts.append(f'<text x="{bar_x + w + 8}" y="{y + 18}" font-size="11.5" font-weight="900" fill="#1c1917">${rt}/nt</text>')
+        fill = "#2563eb" if is_mine else "#475569"
+        parts.append(f'<text x="16" y="{y + 18}" font-size="11.5" font-weight="{"900" if is_mine else "600"}" fill="#0f172a">{html_lib.escape(nm)}</text>')
+        parts.append(f'<rect x="{bar_x}" y="{y + 5}" width="{w}" height="18" rx="9" fill="{fill}" stroke="{"#1d4ed8" if is_mine else "none"}"/>')
+        parts.append(f'<text x="{bar_x + w + 8}" y="{y + 18}" font-size="11.5" font-weight="900" fill="{"#1d4ed8" if is_mine else "#0f172a"}">${rt}/nt</text>')
     parts.append("</svg>")
     return "".join(parts)
 

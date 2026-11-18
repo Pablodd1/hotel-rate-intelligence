@@ -6,150 +6,172 @@
 <title>Administrator Mission Control — Jasmel Acosta · Leads, Marketing Approvals & Multi-Tenant Command</title>
 <style>
   :root {
-    --charcoal: #1c1917;
-    --gold: #facc15;
-    --gold-deep: #eab308;
-    --txt: #1c1917;
-    --sub: #44403c;
-    --muted: #57534e;
-    --ok: #15803d;
-    --danger: #dc2626;
-    --glass-window: rgba(232, 222, 206, 0.46);
-    --glass-card: rgba(255, 255, 255, 0.64);
-    --glass-border: rgba(255, 255, 255, 0.88);
+    --ink: #0F172A;
+    --sub: #334155;
+    --muted: #475569;
+    --accent: #2563EB;
+    --accent-deep: #1E40AF;
+    --accent-soft: rgba(37, 99, 235, 0.11);
+    --slate-action: #1E3A8A;
+    --ok: #15803D;
+    --danger: #DC2626;
+    --glass-window: rgba(255, 255, 255, 0.64);
+    --glass-card: rgba(255, 255, 255, 0.84);
+    --glass-border: rgba(255, 255, 255, 0.94);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { overflow-x: clip; background: #EFF4FA; }
   body {
     min-height: 100vh;
-    background:
-      radial-gradient(circle at 75% 20%, rgba(255, 252, 240, 0.22), rgba(180, 164, 140, 0.16)),
-      url('/assets/v4-living-room-bg.jpg') center center / cover fixed no-repeat,
-      linear-gradient(145deg, #dfd5c6 0%, #efe9df 50%, #d5c8b6 100%);
-    color: var(--txt);
+    position: relative;
+    background: linear-gradient(160deg, rgba(241, 245, 249, 0.65) 0%, rgba(232, 240, 250, 0.58) 55%, rgba(244, 248, 255, 0.65) 100%);
+    color: var(--ink);
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
-    padding: 12px 18px 40px;
+    padding: 12px 18px 44px;
+    overflow-x: clip;
+  }
+  .hotel-bg-backdrop {
+    position: fixed; inset: -16px; z-index: -1; pointer-events: none;
+    background-image: url('/assets/hotel-bg-blur.jpg');
+    background-size: cover; background-position: center center;
+    opacity: 0.72;
+    filter: blur(4px) saturate(0.95);
   }
 
   /* ── Top Mission Control Bar ── */
   .mc-topbar {
-    background: rgba(245, 239, 230, 0.84);
-    backdrop-filter: blur(24px) saturate(150%);
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(22px) saturate(145%);
     border: 1.5px solid var(--glass-border);
-    border-radius: 26px;
+    border-radius: 22px;
     padding: 7px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
     flex-wrap: wrap;
-    box-shadow: 0 10px 30px rgba(28, 25, 23, 0.09);
+    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.06);
     margin-bottom: 12px;
   }
   .mc-brand {
     display: inline-flex; align-items: center; gap: 7px;
-    background: var(--charcoal); color: #ffffff;
-    padding: 6px 12px; border-radius: 999px; font-weight: 800; font-size: 11.5px; white-space: nowrap;
+    background: rgba(235, 244, 255, 0.96); color: var(--accent-deep);
+    border: 1px solid rgba(37, 99, 235, 0.22);
+    padding: 5px 12px 5px 7px; border-radius: 999px; font-weight: 800; font-size: 11.5px; white-space: nowrap;
   }
-  .mc-brand span.crown { color: var(--gold); }
+  .logo-mark {
+    width: 24px; height: 24px; border-radius: 7px; object-fit: cover;
+    border: 1px solid rgba(15, 23, 42, 0.08); background: #fff;
+  }
+  .mc-brand span.crown { color: var(--accent); }
   .mc-tabs {
-    display: inline-flex; gap: 3px; flex-wrap: wrap; background: rgba(255, 255, 255, 0.85);
-    padding: 3px 5px; border-radius: 999px; border: 1px solid #fff;
+    display: inline-flex; gap: 3px; flex-wrap: wrap; background: rgba(241, 245, 249, 0.92);
+    padding: 4px 5px; border-radius: 999px; border: 1px solid rgba(37, 99, 235, 0.12);
   }
   .mc-tab {
     border: none; background: transparent; color: var(--sub);
     font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 999px;
-    cursor: pointer; white-space: nowrap;
+    cursor: pointer; white-space: nowrap; transition: all .15s ease;
   }
-  .mc-tab.active { background: var(--charcoal); color: #ffffff; font-weight: 800; }
+  .mc-tab.active { background: var(--accent); color: #ffffff; font-weight: 800; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22); }
   .mc-tab .cnt {
-    background: var(--gold); color: var(--charcoal); font-weight: 900;
+    background: rgba(37, 99, 235, 0.14); color: var(--accent-deep); font-weight: 900;
     padding: 1px 6px; border-radius: 99px; font-size: 9.5px; margin-left: 3px;
   }
+  .mc-tab.active .cnt { background: rgba(255,255,255,0.24); color: #ffffff; }
 
   .btn {
-    border: none; border-radius: 999px; padding: 6px 12px; font-size: 11px; font-weight: 800;
+    border: none; border-radius: 999px; padding: 6px 12px; font-size: 11px; font-weight: 700;
     cursor: pointer; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;
-    background: var(--charcoal); color: #fff; white-space: nowrap;
+    background: var(--slate-action); color: #fff; white-space: nowrap; transition: transform .12s ease, opacity .12s ease;
   }
-  .btn.gold { background: var(--gold); color: var(--charcoal); border: 1px solid #eab308; }
+  .btn:hover { transform: translateY(-1px); opacity: 0.94; }
+  .btn.gold { background: var(--accent); color: #fff; border: 1px solid rgba(37, 99, 235, 0.25); }
   .btn.ok { background: #15803d; color: #fff; }
   .btn.danger { background: #dc2626; color: #fff; }
-  .btn.ghost { background: rgba(255,255,255,0.88); color: var(--charcoal); border: 1px solid rgba(28,25,23,0.16); }
+  .btn.ghost { background: rgba(255,255,255,0.92); color: var(--ink); border: 1px solid rgba(30, 58, 138, 0.18); }
   .btn.xs { padding: 4px 8px; font-size: 10px; }
 
   /* ── Outer Frosted Spatial Window ── */
   .mc-window {
     background: var(--glass-window);
-    backdrop-filter: blur(28px) saturate(145%);
+    backdrop-filter: blur(22px) saturate(140%);
     border: 1.5px solid var(--glass-border);
-    border-radius: 30px;
+    border-radius: 28px;
     padding: 18px 22px;
-    box-shadow: 0 24px 64px rgba(28, 25, 23, 0.15);
+    box-shadow: 0 20px 56px rgba(30, 58, 138, 0.08);
   }
   .mc-pane { display: none; }
   .mc-pane.active { display: block; }
 
   .glass-card {
     background: var(--glass-card);
-    backdrop-filter: blur(20px);
-    border: 1.5px solid rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(18px);
+    border: 1.5px solid var(--glass-border);
     border-radius: 22px;
     padding: 15px 18px;
-    box-shadow: 0 8px 24px rgba(28, 25, 23, 0.06);
+    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.05);
     margin-bottom: 14px;
   }
-  .glass-card.dark { background: var(--charcoal); color: #ffffff; border-color: rgba(255,255,255,0.16); }
+  .glass-card.dark {
+    background: linear-gradient(155deg, rgba(235, 244, 255, 0.94) 0%, rgba(220, 234, 254, 0.90) 100%);
+    color: var(--ink);
+    border: 1.5px solid rgba(37, 99, 235, 0.28);
+  }
 
   .kpi-strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 14px; }
+  @media (max-width: 1120px) { .kpi-strip { grid-template-columns: repeat(3, 1fr); } }
   .kpi-card {
-    background: rgba(255,255,255,0.82); border: 1px solid #fff; border-radius: 18px; padding: 12px 14px;
+    background: rgba(255,255,255,0.88); border: 1.5px solid var(--glass-border); border-radius: 18px; padding: 12px 14px;
+    box-shadow: 0 4px 14px rgba(30, 58, 138, 0.04);
   }
   .kpi-card .lbl { font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--muted); }
-  .kpi-card .val { font-size: 24px; font-weight: 900; margin-top: 2px; letter-spacing: -0.02em; }
+  .kpi-card .val { font-size: 24px; font-weight: 900; margin-top: 2px; letter-spacing: -0.02em; color: var(--ink); }
   .kpi-card .sub { font-size: 10.5px; color: var(--sub); margin-top: 2px; }
 
   table.mc-tbl { width: 100%; border-collapse: collapse; font-size: 11.5px; }
   table.mc-tbl th {
     text-align: left; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.05em;
-    color: var(--muted); padding: 7px 8px; border-bottom: 1px solid rgba(28,25,23,0.14);
+    color: var(--muted); padding: 7px 8px; border-bottom: 1.5px solid rgba(15, 23, 42, 0.11);
   }
-  table.mc-tbl td { padding: 8px; border-bottom: 1px solid rgba(28,25,23,0.08); vertical-align: middle; }
+  table.mc-tbl td { padding: 8px; border-bottom: 1px solid rgba(15, 23, 42, 0.07); vertical-align: middle; color: var(--ink); }
 
   .badge {
-    display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 999px;
     font-size: 9.5px; font-weight: 800; white-space: nowrap;
   }
-  .badge.ok { background: rgba(21, 128, 61, 0.15); color: #166534; }
-  .badge.danger { background: rgba(220, 38, 38, 0.15); color: #991b1b; }
-  .badge.gold { background: var(--gold); color: var(--charcoal); }
-  .badge.dark { background: var(--charcoal); color: #fff; }
+  .badge.ok { background: rgba(21, 128, 61, 0.13); color: #15803D; }
+  .badge.danger { background: rgba(220, 38, 38, 0.13); color: #DC2626; }
+  .badge.gold { background: rgba(37, 99, 235, 0.12); color: #1D4ED8; border: 1px solid rgba(37, 99, 235, 0.22); }
+  .badge.dark { background: rgba(30, 58, 138, 0.11); color: #1E3A8A; border: 1px solid rgba(30, 58, 138, 0.18); }
 
   .inp {
-    width: 100%; padding: 8px 11px; border-radius: 11px; border: 1px solid rgba(28,25,23,0.2);
-    background: #fff; font-size: 12px; font-weight: 600; color: var(--charcoal);
+    width: 100%; padding: 8px 11px; border-radius: 11px; border: 1px solid rgba(15, 23, 42, 0.15);
+    background: #fff; font-size: 12px; font-weight: 600; color: var(--ink);
   }
 
   /* ── Admin Login Gate Overlay ── */
   .admin-login-overlay {
     position: fixed; inset: 0; z-index: 600;
-    background: rgba(15, 13, 11, 0.72); backdrop-filter: blur(18px);
+    background: rgba(226, 232, 240, 0.72); backdrop-filter: blur(18px);
     display: none; align-items: center; justify-content: center; padding: 20px;
   }
   .admin-login-card {
     width: 100%; max-width: 450px;
-    background: rgba(248, 244, 237, 0.97); border: 2px solid #fff;
-    border-radius: 28px; padding: 26px; box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    background: rgba(255, 255, 255, 0.96); border: 1.5px solid rgba(37, 99, 235, 0.24);
+    border-radius: 28px; padding: 26px; box-shadow: 0 28px 72px rgba(30, 58, 138, 0.18);
   }
 </style>
 </head>
 <body>
+<div class="hotel-bg-backdrop" aria-hidden="true"></div>
 
   <!-- OWNER / ADMINISTRATOR LOGIN MODAL -->
   <div class="admin-login-overlay" id="adminLoginOverlay">
     <div class="admin-login-card">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
         <span class="badge dark">👑 OWNER MISSION CONTROL</span>
-        <a href="/website" style="font-size:11.5px; font-weight:800; color:var(--charcoal); text-decoration:none;">← Public Website</a>
+        <a href="/website" style="font-size:11.5px; font-weight:800; color:var(--accent); text-decoration:none;">← Public Website</a>
       </div>
       <h2 style="font-size:22px; font-weight:900; letter-spacing:-0.02em;">Administrator Login</h2>
       <p style="font-size:12px; color:var(--sub); margin:4px 0 14px;">
@@ -175,6 +197,7 @@
   <!-- TOP MISSION CONTROL BAR -->
   <header class="mc-topbar">
     <div class="mc-brand">
+      <img class="logo-mark" src="/assets/logo.png" alt="HotelRateIntel" onerror="this.style.display='none'" />
       <span class="crown">👑</span>
       <span>MISSION CONTROL · JASMEL</span>
     </div>
@@ -222,40 +245,40 @@
           <div class="val" id="ovClientAccounts">3</div>
           <div class="sub">Demo #1 + Free + Core samples</div>
         </div>
-        <div class="kpi-card" style="background:rgba(250,204,21,0.26); border-color:#eab308;">
-          <div class="lbl">CAMPAIGNS PENDING APPROVAL</div>
-          <div class="val" id="ovPendingCamps">14</div>
+        <div class="kpi-card" style="background:rgba(235, 244, 255, 0.94); border-color:rgba(37, 99, 235, 0.24);">
+          <div class="lbl" style="color:var(--accent-deep);">CAMPAIGNS PENDING APPROVAL</div>
+          <div class="val" id="ovPendingCamps" style="color:var(--accent);">14</div>
           <div class="sub">Ready for 1-click dispatch</div>
         </div>
-        <div class="kpi-card" style="background:var(--charcoal); color:#fff;">
-          <div class="lbl" style="color:var(--gold);">30 / 100 HOTEL MRR ($99)</div>
-          <div class="val" style="color:var(--gold);">$2.97k</div>
-          <div class="sub" style="color:#d6d3d1;">$9,900/mo at 100 hotels</div>
+        <div class="kpi-card" style="background:linear-gradient(155deg, rgba(235, 244, 255, 0.95) 0%, rgba(220, 234, 254, 0.92) 100%); border-color:rgba(37, 99, 235, 0.28);">
+          <div class="lbl" style="color:var(--accent-deep);">30 / 100 HOTEL MRR ($99)</div>
+          <div class="val" style="color:var(--accent);">$2.97k</div>
+          <div class="sub" style="color:var(--sub);">$9,900/mo at 100 hotels</div>
         </div>
       </div>
 
       <!-- 3-Portal Architecture Strip -->
       <div class="glass-card dark" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;">
-        <div style="background:rgba(255,255,255,0.07); padding:13px 15px; border-radius:16px;">
+        <div style="background:rgba(255,255,255,0.86); border:1px solid rgba(37,99,235,0.16); padding:13px 15px; border-radius:16px;">
           <span class="badge gold">PORTAL 1 · PUBLIC WEBSITE</span>
-          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Instagram Reel UI Landing &amp; Signup</h3>
-          <p style="font-size:11.5px; color:#d6d3d1; line-height:1.45; margin-bottom:10px;">
+          <h3 style="font-size:15px; font-weight:800; color:var(--ink); margin:6px 0 4px;">Clean Light Glass Marketing &amp; Auditor</h3>
+          <p style="font-size:11.5px; color:var(--sub); line-height:1.45; margin-bottom:10px;">
             Explains all features, staff labor/money calculator, why us vs. $500/mo tools, Free→$99→$199 tiers, and self-serve hotel registration.
           </p>
           <a class="btn gold" href="/website">Open Public Website (/website) ↗</a>
         </div>
-        <div style="background:rgba(255,255,255,0.07); padding:13px 15px; border-radius:16px;">
+        <div style="background:rgba(255,255,255,0.86); border:1px solid rgba(37,99,235,0.16); padding:13px 15px; border-radius:16px;">
           <span class="badge ok">PORTAL 2 · ISOLATED CLIENT PORTAL</span>
-          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Independent Per-Hotel Account</h3>
-          <p style="font-size:11.5px; color:#d6d3d1; line-height:1.45; margin-bottom:10px;">
+          <h3 style="font-size:15px; font-weight:800; color:var(--ink); margin:6px 0 4px;">Independent Per-Hotel Account</h3>
+          <p style="font-size:11.5px; color:var(--sub); line-height:1.45; margin-bottom:10px;">
             Each hotel has its own login &amp; password and can only scrape and compare the competitors assigned to its account.
           </p>
           <a class="btn ghost" href="/portal?demo=1">Open Mock Demo Client #1 (/portal?demo=1) ↗</a>
         </div>
-        <div style="background:rgba(255,255,255,0.07); padding:13px 15px; border-radius:16px;">
+        <div style="background:rgba(255,255,255,0.86); border:1px solid rgba(37,99,235,0.16); padding:13px 15px; border-radius:16px;">
           <span class="badge gold">PORTAL 3 · ADMIN MISSION CONTROL</span>
-          <h3 style="font-size:15px; font-weight:800; margin:6px 0 4px;">Jasmel's Owner Command Center</h3>
-          <p style="font-size:11.5px; color:#d6d3d1; line-height:1.45; margin-bottom:10px;">
+          <h3 style="font-size:15px; font-weight:800; color:var(--ink); margin:6px 0 4px;">Jasmel's Owner Command Center</h3>
+          <p style="font-size:11.5px; color:var(--sub); line-height:1.45; margin-bottom:10px;">
             You control all 49 leads, approve &amp; send marketing campaigns, assign comp-sets to client accounts, and compare all tiers.
           </p>
           <button class="btn gold" onclick="switchMcTab('campaigns')">Review Marketing Approvals →</button>
@@ -664,7 +687,7 @@
     if (cbCountEl) cbCountEl.textContent = cbs.length + ' Logged';
     if (cbListEl) {
       cbListEl.innerHTML = cbs.length ? cbs.slice(0, 6).map(cb => `
-        <div style="background:rgba(255,255,255,0.85); border:1px solid rgba(28,25,23,0.10); border-radius:12px; padding:8px 10px; display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+        <div style="background:rgba(255,255,255,0.88); border:1px solid rgba(37,99,235,0.14); border-radius:12px; padding:8px 10px; display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
           <div><b>${cb.hotel_name || 'Website Lead'}</b> · <span class="badge gold">${cb.caller_mode || 'Callback'}</span> <span style="font-weight:700;">${cb.phone_dialed || ''}</span></div>
           <div style="font-size:11px; color:var(--sub);">${(cb.transcript || cb.questions_asked || '').slice(0, 110)}</div>
         </div>
@@ -674,7 +697,7 @@
     // Render Tiers Grid on Overview
     const tiersGrid = document.getElementById('ovTiersGrid');
     tiersGrid.innerHTML = (d.tiers || []).map(t => `
-      <div style="background:rgba(255,255,255,0.88); border:1.5px solid rgba(28,25,23,0.14); border-radius:18px; padding:13px;">
+      <div style="background:${t.monthly_price === 99 ? 'linear-gradient(155deg, rgba(235, 244, 255, 0.94) 0%, rgba(220, 234, 254, 0.90) 100%)' : 'rgba(255,255,255,0.88)'}; border:1.5px solid ${t.monthly_price === 99 ? 'rgba(37,99,235,0.28)' : 'rgba(15,23,42,0.10)'}; border-radius:18px; padding:13px;">
         <span class="badge ${t.monthly_price === 99 ? 'gold' : 'dark'}">${t.badge}</span>
         <h4 style="font-size:15px; font-weight:800; margin-top:5px;">${t.name}</h4>
         <div style="font-size:26px; font-weight:900; margin:3px 0;">$${t.monthly_price}<span style="font-size:11px;font-weight:600;">/mo</span></div>

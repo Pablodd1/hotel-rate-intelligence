@@ -6,156 +6,181 @@
 <title>Hotel Client Portal — Isolated Comp-Set Rate Scraper, Memory & Strategy</title>
 <style>
   :root {
-    --charcoal: #1c1917;
-    --gold: #facc15;
-    --gold-deep: #eab308;
-    --txt: #1c1917;
-    --sub: #44403c;
-    --muted: #57534e;
-    --ok: #15803d;
-    --danger: #dc2626;
-    --glass-window: rgba(232, 222, 206, 0.44);
-    --glass-card: rgba(255, 255, 255, 0.62);
-    --glass-border: rgba(255, 255, 255, 0.86);
+    --ink: #0F172A;
+    --sub: #334155;
+    --muted: #475569;
+    --accent: #2563EB;
+    --accent-deep: #1E40AF;
+    --accent-soft: rgba(37, 99, 235, 0.11);
+    --slate-action: #1E3A8A;
+    --ok: #15803D;
+    --danger: #DC2626;
+    --glass-window: rgba(255, 255, 255, 0.64);
+    --glass-card: rgba(255, 255, 255, 0.84);
+    --glass-border: rgba(255, 255, 255, 0.94);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { overflow-x: clip; background: #EFF4FA; }
   body {
     min-height: 100vh;
-    background:
-      radial-gradient(circle at 75% 20%, rgba(255, 252, 240, 0.22), rgba(180, 164, 140, 0.16)),
-      url('/assets/v4-living-room-bg.jpg') center center / cover fixed no-repeat,
-      linear-gradient(145deg, #dfd5c6 0%, #efe9df 50%, #d5c8b6 100%);
-    color: var(--txt);
+    position: relative;
+    background: linear-gradient(160deg, rgba(241, 245, 249, 0.65) 0%, rgba(232, 240, 250, 0.58) 55%, rgba(244, 248, 255, 0.65) 100%);
+    color: var(--ink);
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
-    padding: 14px 20px 40px;
+    padding: 14px 20px 44px;
+    overflow-x: clip;
+  }
+  .hotel-bg-backdrop {
+    position: fixed; inset: -16px; z-index: -1; pointer-events: none;
+    background-image: url('/assets/hotel-bg-blur.jpg');
+    background-size: cover; background-position: center center;
+    opacity: 0.72;
+    filter: blur(4px) saturate(0.95);
   }
 
   /* ── Top Frosted Client Navigation Bar ── */
   .client-topbar {
-    background: rgba(245, 239, 230, 0.78);
-    backdrop-filter: blur(24px) saturate(150%);
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(22px) saturate(145%);
     border: 1.5px solid var(--glass-border);
-    border-radius: 999px;
-    padding: 8px 16px;
+    border-radius: 22px;
+    padding: 8px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-    box-shadow: 0 10px 30px rgba(28, 25, 23, 0.08);
+    gap: 8px;
+    flex-wrap: nowrap;
+    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.06);
     margin-bottom: 12px;
   }
+  @media (max-width: 1180px) { .client-topbar { flex-wrap: wrap; } }
   .brand-pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255, 255, 255, 0.86); border: 1px solid #fff;
-    padding: 6px 14px; border-radius: 999px; font-weight: 800; font-size: 13px;
+    display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+    background: rgba(255, 255, 255, 0.94); border: 1px solid rgba(37, 99, 235, 0.16);
+    padding: 5px 11px 5px 6px; border-radius: 999px; font-weight: 800; font-size: 12px; color: var(--ink);
   }
-  .dot-live { width: 9px; height: 9px; border-radius: 50%; background: #16a34a; box-shadow: 0 0 8px #16a34a; }
+  .logo-mark {
+    width: 22px; height: 22px; border-radius: 6px; object-fit: cover;
+    border: 1px solid rgba(15, 23, 42, 0.08); background: #fff;
+  }
+  .dot-live { width: 8px; height: 8px; border-radius: 50%; background: #16a34a; box-shadow: 0 0 8px rgba(22, 163, 74, 0.65); }
   .tab-pills {
-    display: inline-flex; gap: 4px; background: rgba(255, 255, 255, 0.82);
-    padding: 4px; border-radius: 999px; border: 1px solid #fff;
+    display: inline-flex; gap: 3px; background: rgba(241, 245, 249, 0.90);
+    padding: 3px; border-radius: 999px; border: 1px solid rgba(37, 99, 235, 0.12); flex-wrap: nowrap;
   }
   .tab-btn {
-    border: none; background: transparent; color: var(--sub);
-    font-size: 11.5px; font-weight: 700; padding: 6px 13px; border-radius: 999px; cursor: pointer;
+    border: none; background: transparent; color: var(--sub); white-space: nowrap;
+    font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 999px; cursor: pointer;
+    transition: all .15s ease;
   }
-  .tab-btn.active { background: var(--charcoal); color: #fff; font-weight: 800; }
+  .tab-btn.active { background: var(--accent); color: #fff; font-weight: 800; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); }
 
   .btn {
-    border: none; border-radius: 999px; padding: 7px 14px; font-size: 11.5px; font-weight: 800;
+    border: none; border-radius: 999px; padding: 6px 11px; font-size: 11px; font-weight: 700; white-space: nowrap;
     cursor: pointer; display: inline-flex; align-items: center; gap: 5px; text-decoration: none;
-    background: var(--charcoal); color: #fff;
+    background: var(--slate-action); color: #fff; transition: transform .12s ease, opacity .12s ease;
   }
-  .btn.gold { background: var(--gold); color: var(--charcoal); border: 1px solid #eab308; }
-  .btn.ghost { background: rgba(255,255,255,0.85); color: var(--charcoal); border: 1px solid rgba(28,25,23,0.16); }
+  .btn:hover { transform: translateY(-1px); opacity: 0.94; }
+  .btn.gold { background: var(--accent); color: #fff; border: 1px solid rgba(37, 99, 235, 0.25); }
+  .btn.ghost { background: rgba(255,255,255,0.92); color: var(--ink); border: 1px solid rgba(30, 58, 138, 0.18); }
   .btn.xs { padding: 4px 9px; font-size: 10.5px; }
 
   /* ── Tier Switcher & Isolation Banner ── */
   .isolation-strip {
-    background: rgba(28, 25, 23, 0.92); color: #ffffff;
+    background: linear-gradient(135deg, rgba(235, 244, 255, 0.94) 0%, rgba(221, 235, 254, 0.90) 100%);
+    color: var(--ink);
+    border: 1.5px solid rgba(37, 99, 235, 0.26);
     border-radius: 20px; padding: 10px 18px; margin-bottom: 12px;
     display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.06);
   }
   .tier-switch-pills { display: inline-flex; gap: 5px; align-items: center; flex-wrap: wrap; }
   .tier-pill {
-    border: 1px solid rgba(255,255,255,0.22); background: rgba(255,255,255,0.08); color: #e7e5e4;
+    border: 1px solid rgba(37, 99, 235, 0.24); background: rgba(255, 255, 255, 0.92); color: var(--ink);
     font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 999px; cursor: pointer;
   }
-  .tier-pill.active { background: var(--gold); color: var(--charcoal); border-color: var(--gold); font-weight: 900; }
+  .tier-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 800; }
 
   /* ── Main Spatial Window ── */
   .portal-window {
     background: var(--glass-window);
-    backdrop-filter: blur(28px) saturate(145%);
+    backdrop-filter: blur(22px) saturate(140%);
     border: 1.5px solid var(--glass-border);
-    border-radius: 30px;
+    border-radius: 28px;
     padding: 20px 24px;
-    box-shadow: 0 24px 64px rgba(28, 25, 23, 0.14);
+    box-shadow: 0 20px 56px rgba(30, 58, 138, 0.08);
   }
   .tab-pane { display: none; }
   .tab-pane.active { display: block; }
 
   .glass-card {
     background: var(--glass-card);
-    backdrop-filter: blur(20px);
-    border: 1.5px solid rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(18px);
+    border: 1.5px solid var(--glass-border);
     border-radius: 22px;
     padding: 16px 18px;
-    box-shadow: 0 8px 24px rgba(28, 25, 23, 0.06);
+    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.05);
     margin-bottom: 14px;
   }
-  .glass-card.dark { background: var(--charcoal); color: #ffffff; border-color: rgba(255,255,255,0.15); }
+  .glass-card.dark {
+    background: linear-gradient(155deg, rgba(235, 244, 255, 0.94) 0%, rgba(220, 234, 254, 0.90) 100%);
+    color: var(--ink);
+    border: 1.5px solid rgba(37, 99, 235, 0.28);
+  }
 
   .kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 14px; }
+  @media (max-width: 1020px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
   .kpi-box {
-    background: rgba(255,255,255,0.78); border: 1px solid #fff; border-radius: 18px; padding: 13px 15px;
+    background: rgba(255,255,255,0.88); border: 1.5px solid var(--glass-border); border-radius: 18px; padding: 13px 15px;
+    box-shadow: 0 4px 14px rgba(30, 58, 138, 0.04);
   }
   .kpi-box .lbl { font-size: 10.5px; font-weight: 800; text-transform: uppercase; color: var(--muted); }
-  .kpi-box .val { font-size: 25px; font-weight: 900; margin-top: 3px; letter-spacing: -0.02em; }
+  .kpi-box .val { font-size: 25px; font-weight: 900; margin-top: 3px; letter-spacing: -0.02em; color: var(--ink); }
   .kpi-box .sub { font-size: 11px; color: var(--sub); margin-top: 2px; }
 
   table.portal-tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
   table.portal-tbl th {
     text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em;
-    color: var(--muted); padding: 8px 9px; border-bottom: 1px solid rgba(28,25,23,0.14);
+    color: var(--muted); padding: 8px 9px; border-bottom: 1.5px solid rgba(15, 23, 42, 0.11);
   }
-  table.portal-tbl td { padding: 9px; border-bottom: 1px solid rgba(28,25,23,0.08); vertical-align: middle; }
-  table.portal-tbl tr.my-row { background: rgba(250, 204, 21, 0.22); font-weight: 700; }
+  table.portal-tbl td { padding: 9px; border-bottom: 1px solid rgba(15, 23, 42, 0.07); vertical-align: middle; color: var(--ink); }
+  table.portal-tbl tr.my-row { background: rgba(37, 99, 235, 0.09); box-shadow: inset 3px 0 0 #2563EB; font-weight: 700; }
 
   .badge {
-    display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 999px;
     font-size: 10px; font-weight: 800; white-space: nowrap;
   }
-  .badge.ok { background: rgba(21, 128, 61, 0.15); color: #166534; }
-  .badge.danger { background: rgba(220, 38, 38, 0.15); color: #991b1b; }
-  .badge.gold { background: var(--gold); color: var(--charcoal); }
-  .badge.dark { background: var(--charcoal); color: #fff; }
+  .badge.ok { background: rgba(21, 128, 61, 0.13); color: #15803D; }
+  .badge.danger { background: rgba(220, 38, 38, 0.13); color: #DC2626; }
+  .badge.gold { background: rgba(37, 99, 235, 0.12); color: #1D4ED8; border: 1px solid rgba(37, 99, 235, 0.22); }
+  .badge.dark { background: rgba(30, 58, 138, 0.11); color: #1E3A8A; border: 1px solid rgba(30, 58, 138, 0.18); }
 
   /* ── Login Modal Gate ── */
   .login-overlay {
     position: fixed; inset: 0; z-index: 500;
-    background: rgba(15, 13, 11, 0.68); backdrop-filter: blur(18px);
+    background: rgba(226, 232, 240, 0.72); backdrop-filter: blur(18px);
     display: none; align-items: center; justify-content: center; padding: 20px;
   }
   .login-card {
     width: 100%; max-width: 480px;
-    background: rgba(248, 244, 237, 0.96); border: 2px solid #fff;
-    border-radius: 28px; padding: 26px; box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    background: rgba(255, 255, 255, 0.96); border: 1.5px solid rgba(37, 99, 235, 0.24);
+    border-radius: 28px; padding: 26px; box-shadow: 0 28px 72px rgba(30, 58, 138, 0.18);
   }
   .inp {
-    width: 100%; padding: 9px 12px; border-radius: 12px; border: 1px solid rgba(28,25,23,0.2);
-    background: #fff; font-size: 12.5px; font-weight: 600; color: var(--charcoal);
+    width: 100%; padding: 9px 12px; border-radius: 12px; border: 1px solid rgba(15, 23, 42, 0.15);
+    background: #fff; font-size: 12.5px; font-weight: 600; color: var(--ink);
   }
 </style>
 </head>
 <body>
+<div class="hotel-bg-backdrop" aria-hidden="true"></div>
 
   <!-- HOTEL CLIENT LOGIN OVERLAY -->
   <div class="login-overlay" id="clientLoginOverlay">
     <div class="login-card">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
         <span class="badge gold">ISOLATED HOTEL ACCOUNT LOGIN</span>
-        <a href="/website" style="font-size:11.5px; font-weight:800; color:var(--charcoal); text-decoration:none;">← Back to Website</a>
+        <a href="/website" style="font-size:11.5px; font-weight:800; color:var(--accent); text-decoration:none;">← Back to Website</a>
       </div>
       <h2 style="font-size:22px; font-weight:900; letter-spacing:-0.02em;">Sign In to Your Hotel Portal</h2>
       <p style="font-size:12px; color:var(--sub); margin:4px 0 14px;">
@@ -176,7 +201,7 @@
         🔐 Sign In to Isolated Hotel Account →
       </button>
 
-      <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(28,25,23,0.12);">
+      <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(15,23,42,0.10);">
         <div style="font-size:11px; font-weight:800; color:var(--muted); margin-bottom:8px; text-transform:uppercase;">1-Click Showcase Accounts (Compare Free → $99 → $199):</div>
         <div style="display:flex; flex-direction:column; gap:6px;">
           <button class="btn gold" style="width:100%; justify-content:space-between;" onclick="quickDemoLogin('avalon','demo1234')">
@@ -198,25 +223,26 @@
 
   <!-- TOP NAVIGATION BAR -->
   <header class="client-topbar">
-    <div style="display:flex; align-items:center; gap:8px;">
+    <div style="display:flex; align-items:center; gap:6px; min-width:0;">
       <div class="brand-pill">
+        <img class="logo-mark" src="/assets/logo.png" alt="HotelRateIntel" onerror="this.style.display='none'" />
         <span class="dot-live"></span>
-        <span id="topHotelName">Avalon Hotel South Beach</span>
+        <span id="topHotelName" style="max-width:190px; overflow:hidden; text-overflow:ellipsis;">Avalon Hotel South Beach</span>
       </div>
-      <span class="badge gold" id="topTierBadge">TIER 3 · PRO $199/MO</span>
+      <span class="badge gold" id="topTierBadge" style="max-width:165px; overflow:hidden; text-overflow:ellipsis;">TIER 3 · PRO $199/MO</span>
     </div>
 
     <div class="tab-pills">
-      <button class="tab-btn active" id="cbtn-comp" onclick="switchClientTab('comp')">1. My Comp-Set &amp; Rates</button>
-      <button class="tab-btn" id="cbtn-memory" onclick="switchClientTab('memory')">2. Pricing Memory &amp; Tags</button>
-      <button class="tab-btn" id="cbtn-calls" onclick="switchClientTab('calls')">3. Courtesy Call Desk</button>
-      <button class="tab-btn" id="cbtn-tiers" onclick="switchClientTab('tiers')">4. Compare Tiers ($0 → $99 → $199)</button>
+      <button class="tab-btn active" id="cbtn-comp" onclick="switchClientTab('comp')">1. Comp-Set &amp; Rates</button>
+      <button class="tab-btn" id="cbtn-memory" onclick="switchClientTab('memory')">2. Memory &amp; Tags</button>
+      <button class="tab-btn" id="cbtn-calls" onclick="switchClientTab('calls')">3. Call Desk</button>
+      <button class="tab-btn" id="cbtn-tiers" onclick="switchClientTab('tiers')">4. Compare Tiers ($0–$199)</button>
     </div>
 
-    <div style="display:flex; align-items:center; gap:6px;">
+    <div style="display:flex; align-items:center; gap:5px; flex-shrink:0;">
       <button class="btn gold" onclick="triggerClientCompScrape()" id="btnClientScrape">⚡ Scrape My Comp-Set</button>
       <a class="btn ghost" href="/website">🌐 Website</a>
-      <button class="btn ghost" onclick="showLoginModal()">⇄ Switch Hotel Account</button>
+      <button class="btn ghost" onclick="showLoginModal()">⇄ Switch Account</button>
     </div>
   </header>
 
@@ -229,7 +255,7 @@
       </span>
     </div>
     <div class="tier-switch-pills">
-      <span style="font-size:11px; color:#a8a29e; font-weight:700;">Compare Tier Experience Live:</span>
+      <span style="font-size:11px; color:var(--sub); font-weight:700;">Compare Tier Experience Live:</span>
       <button class="tier-pill" id="tpill-free" onclick="previewClientTier('free')">Tier 1: Free ($0)</button>
       <button class="tier-pill" id="tpill-core_99" onclick="previewClientTier('core_99')">Tier 2: Core ($99)</button>
       <button class="tier-pill active" id="tpill-pro_199" onclick="previewClientTier('pro_199')">Tier 3: Pro ($199)</button>
@@ -244,9 +270,9 @@
          ==================================================================== -->
     <section class="tab-pane active" id="ctab-comp">
       <div class="kpi-row">
-        <div class="kpi-box" style="background:rgba(250,204,21,0.25); border-color:#eab308;">
-          <div class="lbl">MY LIVE BAR RATE</div>
-          <div class="val" id="kpiMyBar">$219</div>
+        <div class="kpi-box" style="background:rgba(235, 244, 255, 0.94); border-color:rgba(37, 99, 235, 0.28);">
+          <div class="lbl" style="color:var(--accent-deep);">MY LIVE BAR RATE</div>
+          <div class="val" id="kpiMyBar" style="color:var(--accent);">$219</div>
           <div class="sub" id="kpiMyName">Avalon Hotel South Beach</div>
         </div>
         <div class="kpi-box">
@@ -264,10 +290,10 @@
           <div class="val" id="kpiHoursSaved" style="color:var(--ok);">68 hrs/mo</div>
           <div class="sub" id="kpiLaborUsd">$1,700/mo front-desk time saved</div>
         </div>
-        <div class="kpi-box" style="background:var(--charcoal); color:#fff;">
-          <div class="lbl" style="color:var(--gold);">TODAY'S STRATEGY CALL</div>
-          <div class="val" id="kpiRecAction" style="font-size:17px; color:var(--gold); margin-top:6px;">RAISE BAR +$25/NT</div>
-          <div class="sub" id="kpiRecTarget" style="color:#d6d3d1;">Target BAR: $244</div>
+        <div class="kpi-box" style="background:linear-gradient(155deg, rgba(235, 244, 255, 0.95) 0%, rgba(220, 234, 254, 0.92) 100%); border-color:rgba(37, 99, 235, 0.30);">
+          <div class="lbl" style="color:var(--accent-deep);">TODAY'S STRATEGY CALL</div>
+          <div class="val" id="kpiRecAction" style="font-size:17px; color:var(--accent); margin-top:6px;">RAISE BAR +$25/NT</div>
+          <div class="sub" id="kpiRecTarget" style="color:var(--sub);">Target BAR: $244</div>
         </div>
       </div>
 
@@ -352,7 +378,7 @@
           <button class="btn" onclick="saveClientTag()">+ Save Strategy Tag to My Account</button>
           <div id="tagFeedback" style="font-size:11.5px; font-weight:700; margin-top:6px;"></div>
 
-          <hr style="border:none; border-top:1px solid rgba(28,25,23,0.12); margin:14px 0;">
+          <hr style="border:none; border-top:1px solid rgba(15,23,42,0.10); margin:14px 0;">
           <h4 style="font-size:13px; font-weight:800; margin-bottom:8px;">Saved Strategy Tags on Your Account</h4>
           <div id="clientTagsList" style="display:flex; flex-direction:column; gap:7px;"></div>
         </div>
@@ -388,8 +414,8 @@
       <div id="callsTierLockBanner" class="glass-card dark" style="display:none; justify-content:space-between; align-items:center; gap:12px;">
         <div>
           <span class="badge gold">PRO $199/MO FEATURE PREVIEW</span>
-          <h3 style="font-size:16px; font-weight:800; margin-top:4px;">Overnight Courtesy Call-Around Occupancy Desk</h3>
-          <p style="font-size:12px; color:#d6d3d1;">Upgrade to Tier 3 Pro ($199/mo) to unlock automated overnight occupancy call-arounds and instant SMS undercut alerts.</p>
+          <h3 style="font-size:16px; font-weight:800; margin-top:4px; color:var(--ink);">Overnight Courtesy Call-Around Occupancy Desk</h3>
+          <p style="font-size:12px; color:var(--sub);">Upgrade to Tier 3 Pro ($199/mo) to unlock automated overnight occupancy call-arounds and instant SMS undercut alerts.</p>
         </div>
         <button class="btn gold" onclick="previewClientTier('pro_199')">Preview Pro ($199) Unlocked →</button>
       </div>
@@ -713,7 +739,7 @@
       const barTxt = c.quoted_walkin_rate ? ('$' + Math.round(c.quoted_walkin_rate)) : '—';
       return `<tr>
         <td><b>${c.hotel_name}</b></td>
-        <td><a href="tel:${c.phone_dialed || ''}" style="color:var(--charcoal);font-weight:700;">${c.phone_dialed || 'Front Desk'}</a></td>
+        <td><a href="tel:${c.phone_dialed || ''}" style="color:var(--ink);font-weight:700;">${c.phone_dialed || 'Front Desk'}</a></td>
         <td>${occTxt}</td>
         <td><b>${barTxt}</b></td>
         <td style="font-size:11px;"><span class="badge gold">${c.status}</span> ${c.transcript || ''}</td>
@@ -724,13 +750,13 @@
     const tiersGrid = document.getElementById('clientTiersComparisonGrid');
     tiersGrid.innerHTML = (d.all_tiers || []).map(t => {
       const isCurrent = t.tier_id === tier.tier_id;
-      return `<div style="background:${isCurrent ? '#1c1917' : 'rgba(255,255,255,0.85)'}; color:${isCurrent ? '#fff' : '#1c1917'}; border:2px solid ${isCurrent ? '#facc15' : 'rgba(28,25,23,0.12)'}; border-radius:20px; padding:15px; display:flex; flex-direction:column; justify-content:space-between;">
+      return `<div style="background:${isCurrent ? 'linear-gradient(155deg, rgba(235, 244, 255, 0.96) 0%, rgba(219, 234, 254, 0.92) 100%)' : 'rgba(255,255,255,0.88)'}; color:var(--ink); border:2px solid ${isCurrent ? '#2563EB' : 'rgba(15,23,42,0.10)'}; border-radius:20px; padding:15px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:${isCurrent ? '0 10px 28px rgba(37, 99, 235, 0.14)' : 'none'};">
         <div>
           <span class="badge ${isCurrent ? 'gold' : 'dark'}">${t.badge}</span>
           <h4 style="font-size:16px; font-weight:800; margin-top:6px;">${t.name}</h4>
-          <div style="font-size:28px; font-weight:900; margin:4px 0;">$${t.monthly_price}<span style="font-size:12px;font-weight:600;">/mo</span></div>
-          <div style="font-size:11px; margin-bottom:8px; opacity:0.85;">Saves ~${t.staff_hours_saved_mo} hrs/mo ($${t.labor_dollars_saved_mo}/mo labor)</div>
-          <ul style="list-style:none; font-size:11px; line-height:1.45; display:flex; flex-direction:column; gap:4px; margin-bottom:12px;">
+          <div style="font-size:28px; font-weight:900; margin:4px 0; color:${isCurrent ? '#1D4ED8' : 'var(--ink)'};">$${t.monthly_price}<span style="font-size:12px;font-weight:600;color:var(--muted);">/mo</span></div>
+          <div style="font-size:11px; margin-bottom:8px; color:var(--sub);">Saves ~${t.staff_hours_saved_mo} hrs/mo ($${t.labor_dollars_saved_mo}/mo labor)</div>
+          <ul style="list-style:none; font-size:11px; line-height:1.45; display:flex; flex-direction:column; gap:4px; margin-bottom:12px; color:var(--sub);">
             ${(t.features || []).map(f => `<li>✓ ${f}</li>`).join('')}
           </ul>
         </div>
