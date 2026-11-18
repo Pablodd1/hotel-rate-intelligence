@@ -539,7 +539,7 @@
    "price_max": 385.0,
    "deal_stage": "new",
    "created": 1793731050.3744152,
-   "est_occupancy_pct": 50,
+   "est_occupancy_pct": 84,
    "pricing_personality": "Passive Wholesale Leaker",
    "management_group": null,
    "website_status": "http_200",
@@ -626,36 +626,30 @@
     }
    ],
    "contact_count": 10,
-   "price": 123.0,
-   "prev_price": 206.0,
-   "delta_pct": -40.3,
-   "checkin": "2026-12-14",
+   "price": 190.0,
+   "prev_price": 123.0,
+   "delta_pct": 54.5,
+   "checkin": "2026-12-18",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -44.7,
+   "undercut_pct": -45.8,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 68.0,
-     "tax": 0.0
-    },
-    {
-     "code": "CtripTA",
-     "name": "Trip.com",
-     "rate": 111.0,
+     "rate": 103.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 123.0,
+     "rate": 190.0,
      "tax": 0.0
     }
    ],
-   "decision_logic": "Live OTA undercut detected (-44.7% vs benchmark retail BAR $123). Algorithmic pressure index ~50% (3 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-45.8% vs benchmark retail BAR $190). Algorithmic pressure index ~84% (2 live channels reporting).",
    "score": 100,
    "tier": "hot",
-   "est_annual_upside": 133300
+   "est_annual_upside": 206000
   },
   {
    "id": 47,
@@ -676,7 +670,7 @@
    "price_max": 197.0,
    "deal_stage": "new",
    "created": 1794682069.5668166,
-   "est_occupancy_pct": 59,
+   "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
    "management_group": "Estefan Enterprises",
    "website_status": "http_200",
@@ -731,36 +725,36 @@
     }
    ],
    "contact_count": 6,
-   "price": 125.0,
-   "prev_price": 342.0,
-   "delta_pct": -63.5,
-   "checkin": "2026-12-14",
+   "price": 277.0,
+   "prev_price": 125.0,
+   "delta_pct": 121.6,
+   "checkin": "2026-12-18",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -15.2,
+   "undercut_pct": -6.5,
    "ota_channels": [
     {
      "code": "Vio",
      "name": "Vio.com",
-     "rate": 106.0,
+     "rate": 259.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 125.0,
+     "rate": 277.0,
      "tax": 0.0
     },
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 136.0,
+     "rate": 277.0,
      "tax": 0.0
     }
    ],
-   "decision_logic": "Live OTA undercut detected (-15.2% vs benchmark retail BAR $125). Algorithmic pressure index ~59% (3 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-6.5% vs benchmark retail BAR $277). Algorithmic pressure index ~97% (3 live channels reporting).",
    "score": 100,
    "tier": "hot",
-   "est_annual_upside": 74100
+   "est_annual_upside": 164200
   },
   {
    "id": 50,
@@ -835,7 +829,7 @@
    "price_max": 469.0,
    "deal_stage": "new",
    "created": 1793731050.2173269,
-   "est_occupancy_pct": 61,
+   "est_occupancy_pct": 66,
    "pricing_personality": "Steady Tier Holder",
    "management_group": null,
    "website_status": "unreachable",
@@ -890,36 +884,30 @@
     }
    ],
    "contact_count": 6,
-   "price": 264.0,
-   "prev_price": 277.0,
-   "delta_pct": -4.7,
-   "checkin": "2026-12-14",
+   "price": 258.0,
+   "prev_price": 264.0,
+   "delta_pct": -2.3,
+   "checkin": "2026-12-18",
    "parity_status": "UNDERCUT",
    "undercut_pct": -2.7,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 257.0,
+     "rate": 251.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 264.0,
-     "tax": 0.0
-    },
-    {
-     "code": "CtripTA",
-     "name": "Trip.com",
-     "rate": 301.0,
+     "rate": 258.0,
      "tax": 0.0
     }
    ],
-   "decision_logic": "Holding $264/nt across live scans (pressure index ~61%, band $209-$469).",
+   "decision_logic": "Holding $258/nt across live scans (pressure index ~66%, band $209-$469).",
    "score": 100,
    "tier": "hot",
-   "est_annual_upside": 190800
+   "est_annual_upside": 186500
   },
   {
    "id": 24,
@@ -940,7 +928,7 @@
    "price_max": 445.0,
    "deal_stage": "new",
    "created": 1793731050.3637524,
-   "est_occupancy_pct": 44,
+   "est_occupancy_pct": 75,
    "pricing_personality": "Passive Wholesale Leaker",
    "management_group": null,
    "website_status": "http_200",
@@ -1035,42 +1023,42 @@
     }
    ],
    "contact_count": 11,
-   "price": 132.0,
-   "prev_price": 211.0,
-   "delta_pct": -37.4,
-   "checkin": "2026-12-14",
+   "price": 217.0,
+   "prev_price": 132.0,
+   "delta_pct": 64.4,
+   "checkin": "2026-12-18",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -22.7,
+   "undercut_pct": -20.7,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 102.0,
+     "rate": 172.0,
      "tax": 0.0
     },
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 113.0,
+     "rate": 178.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 128.0,
+     "rate": 199.0,
      "tax": 0.0
     },
     {
      "code": "Siteminder",
      "name": "Official Site",
-     "rate": 132.0,
+     "rate": 217.0,
      "tax": 0.0
     }
    ],
-   "decision_logic": "Live OTA undercut detected (-22.7% vs benchmark retail BAR $132). Algorithmic pressure index ~44% (4 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-20.7% vs benchmark retail BAR $217). Algorithmic pressure index ~75% (4 live channels reporting).",
    "score": 100,
    "tier": "hot",
-   "est_annual_upside": 85900
+   "est_annual_upside": 141100
   },
   {
    "id": 13,
@@ -1234,7 +1222,7 @@
    "price_max": 431.0,
    "deal_stage": "new",
    "created": 1793731050.650938,
-   "est_occupancy_pct": 53,
+   "est_occupancy_pct": 85,
    "pricing_personality": "Passive Wholesale Leaker",
    "management_group": "Jesta Group",
    "website_status": "http_200",
@@ -1321,36 +1309,36 @@
     }
    ],
    "contact_count": 10,
-   "price": 170.0,
-   "prev_price": 280.0,
-   "delta_pct": -39.3,
-   "checkin": "2026-12-14",
+   "price": 265.0,
+   "prev_price": 170.0,
+   "delta_pct": 55.9,
+   "checkin": "2026-12-18",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -44.7,
+   "undercut_pct": -59.2,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 94.0,
+     "rate": 108.0,
      "tax": 0.0
     },
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 143.0,
+     "rate": 200.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 170.0,
+     "rate": 265.0,
      "tax": 0.0
     }
    ],
-   "decision_logic": "Live OTA undercut detected (-44.7% vs benchmark retail BAR $170). Algorithmic pressure index ~53% (3 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-59.2% vs benchmark retail BAR $265). Algorithmic pressure index ~85% (3 live channels reporting).",
    "score": 100,
    "tier": "hot",
-   "est_annual_upside": 147400
+   "est_annual_upside": 229800
   },
   {
    "id": 36,
@@ -2942,8 +2930,8 @@
    "price_max": 576.0,
    "deal_stage": "new",
    "created": 1793731050.2012424,
-   "est_occupancy_pct": 44,
-   "pricing_personality": "Passive Wholesale Leaker",
+   "est_occupancy_pct": 72,
+   "pricing_personality": "Steady Tier Holder",
    "management_group": null,
    "website_status": "http_200",
    "contacts": [
@@ -3717,48 +3705,42 @@
     }
    ],
    "contact_count": 96,
-   "price": 208.0,
-   "prev_price": 287.0,
-   "delta_pct": -27.5,
-   "checkin": "2026-12-14",
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -11.1,
+   "price": 270.0,
+   "prev_price": 208.0,
+   "delta_pct": 29.8,
+   "checkin": "2026-12-18",
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0,
    "ota_channels": [
-    {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 185.0,
-     "tax": 0.0
-    },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 208.0,
+     "rate": 270.0,
      "tax": 0.0
     },
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 208.0,
+     "rate": 270.0,
      "tax": 0.0
     },
     {
-     "code": "IHG",
-     "name": "Kimpton",
-     "rate": 208.0,
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 275.0,
      "tax": 0.0
     },
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 214.0,
+     "rate": 275.0,
      "tax": 0.0
     }
    ],
-   "decision_logic": "Live OTA undercut detected (-11.1% vs benchmark retail BAR $208). Algorithmic pressure index ~44% (5 live channels reporting).",
+   "decision_logic": "Holding $270/nt across live scans (pressure index ~72%, band $203-$576).",
    "score": 100,
    "tier": "hot",
-   "est_annual_upside": 213500
+   "est_annual_upside": 277100
   },
   {
    "id": 5,
@@ -4835,7 +4817,7 @@
    "price_max": 174.0,
    "deal_stage": "new",
    "created": 1793731050.1294603,
-   "est_occupancy_pct": 49,
+   "est_occupancy_pct": 90,
    "pricing_personality": "Passive Wholesale Leaker",
    "management_group": null,
    "website_status": "http_200",
@@ -4906,42 +4888,36 @@
     }
    ],
    "contact_count": 8,
-   "price": 82.0,
-   "prev_price": 130.0,
-   "delta_pct": -36.9,
-   "checkin": "2026-12-14",
+   "price": 128.0,
+   "prev_price": 82.0,
+   "delta_pct": 56.1,
+   "checkin": "2026-12-18",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -18.3,
+   "undercut_pct": -24.2,
    "ota_channels": [
-    {
-     "code": "Agoda",
-     "name": "Agoda.com",
-     "rate": 67.0,
-     "tax": 0.0
-    },
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 69.0,
+     "rate": 97.0,
      "tax": 0.0
     },
     {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 72.0,
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 99.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 82.0,
+     "rate": 128.0,
      "tax": 0.0
     }
    ],
-   "decision_logic": "Live OTA undercut detected (-18.3% vs benchmark retail BAR $82). Algorithmic pressure index ~49% (4 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-24.2% vs benchmark retail BAR $128). Algorithmic pressure index ~90% (3 live channels reporting).",
    "score": 91,
    "tier": "hot",
-   "est_annual_upside": 37900
+   "est_annual_upside": 59200
   },
   {
    "id": 20,
@@ -4962,7 +4938,7 @@
    "price_max": 378.0,
    "deal_stage": "new",
    "created": 1793731050.3004422,
-   "est_occupancy_pct": 52,
+   "est_occupancy_pct": 79,
    "pricing_personality": "Passive Wholesale Leaker",
    "management_group": "Colony Boutique Cluster",
    "website_status": "http_200",
@@ -5049,30 +5025,30 @@
     }
    ],
    "contact_count": 10,
-   "price": 114.0,
-   "prev_price": 217.0,
-   "delta_pct": -47.5,
-   "checkin": "2026-12-14",
+   "price": 169.0,
+   "prev_price": 114.0,
+   "delta_pct": 48.2,
+   "checkin": "2026-12-18",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -13.2,
+   "undercut_pct": -10.1,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 99.0,
+     "rate": 152.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 114.0,
+     "rate": 169.0,
      "tax": 0.0
     }
    ],
-   "decision_logic": "Live OTA undercut detected (-13.2% vs benchmark retail BAR $114). Algorithmic pressure index ~52% (2 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-10.1% vs benchmark retail BAR $169). Algorithmic pressure index ~79% (2 live channels reporting).",
    "score": 100,
    "tier": "hot",
-   "est_annual_upside": 82400
+   "est_annual_upside": 122100
   },
   {
    "id": 40,
@@ -5218,7 +5194,7 @@
    "price_max": 521.0,
    "deal_stage": "new",
    "created": 1793731050.4060097,
-   "est_occupancy_pct": 47,
+   "est_occupancy_pct": 81,
    "pricing_personality": "Passive Wholesale Leaker",
    "management_group": "MRK Hotel Collection",
    "website_status": "http_200",
@@ -5281,42 +5257,42 @@
     }
    ],
    "contact_count": 7,
-   "price": 189.0,
-   "prev_price": 308.0,
-   "delta_pct": -38.6,
-   "checkin": "2026-12-14",
+   "price": 322.0,
+   "prev_price": 189.0,
+   "delta_pct": 70.4,
+   "checkin": "2026-12-18",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -28.6,
+   "undercut_pct": -30.7,
    "ota_channels": [
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 135.0,
+     "rate": 223.0,
      "tax": 0.0
     },
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 138.0,
+     "rate": 245.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 184.0,
+     "rate": 317.0,
      "tax": 0.0
     },
     {
      "code": "TravelClickCPA",
      "name": "Official Hotel",
-     "rate": 189.0,
+     "rate": 322.0,
      "tax": 0.0
     }
    ],
-   "decision_logic": "Live OTA undercut detected (-28.6% vs benchmark retail BAR $189). Algorithmic pressure index ~47% (4 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-30.7% vs benchmark retail BAR $322). Algorithmic pressure index ~81% (4 live channels reporting).",
    "score": 100,
    "tier": "hot",
-   "est_annual_upside": 90100
+   "est_annual_upside": 153600
   },
   {
    "id": 12,
@@ -6556,8 +6532,8 @@
    "price_max": 206.0,
    "deal_stage": "new",
    "created": 1793731050.0340202,
-   "est_occupancy_pct": 44,
-   "pricing_personality": "Passive Wholesale Leaker",
+   "est_occupancy_pct": 79,
+   "pricing_personality": "Early Compression Yielder",
    "management_group": "South Beach Group / Think",
    "website_status": "http_200",
    "contacts": [
@@ -6651,42 +6627,48 @@
     }
    ],
    "contact_count": 11,
-   "price": 79.0,
-   "prev_price": 139.0,
-   "delta_pct": -43.2,
-   "checkin": "2026-12-14",
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -6.3,
+   "price": 129.0,
+   "prev_price": 79.0,
+   "delta_pct": 63.3,
+   "checkin": "2026-12-18",
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0,
    "ota_channels": [
-    {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 74.0,
-     "tax": 0.0
-    },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 79.0,
+     "rate": 129.0,
      "tax": 0.0
     },
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 79.0,
+     "rate": 129.0,
      "tax": 0.0
     },
     {
      "code": "TravelClickCPA",
      "name": "Official Hotel",
-     "rate": 79.0,
+     "rate": 129.0,
+     "tax": 0.0
+    },
+    {
+     "code": "Priceline",
+     "name": "Priceline",
+     "rate": 129.0,
+     "tax": 0.0
+    },
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 135.0,
      "tax": 0.0
     }
    ],
-   "decision_logic": "Live OTA undercut detected (-6.3% vs benchmark retail BAR $79). Algorithmic pressure index ~44% (4 live channels reporting).",
+   "decision_logic": "Rate rose +63.3% across live scans to $129 (pressure index ~79%).",
    "score": 100,
    "tier": "hot",
-   "est_annual_upside": 56000
+   "est_annual_upside": 91400
   },
   {
    "id": 28,

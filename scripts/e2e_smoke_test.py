@@ -194,7 +194,7 @@ def main():
     created_log_ids = []
     expected_prefix = {"email": "mailto:", "sms": "sms:", "whatsapp": "https://wa.me/", "voice": "tel:"}
     for ch, pref in expected_prefix.items():
-        st, resp = _http_post(base + "/api/outreach/send", {"hotel_id": hid, "channel": ch, "price_monthly": 99})
+        st, resp = _http_post(base + "/api/outreach/send", {"hotel_id": hid, "channel": ch, "price_monthly": 99, "mode": "dry_run"})
         assert st == 200 and resp.get("ok"), f"{ch} outreach failed: {resp}"
         assert resp.get("status") != "sent_live", f"Unexpected sent_live without live API keys on {ch}"
         assert (resp.get("deep_link") or "").startswith(pref), f"Missing {pref} deep link: {resp.get('deep_link')}"
@@ -204,7 +204,7 @@ def main():
     test_opt_email = target_lead["email"]
     st, ores = _http_post(base + "/api/opt-out", {"value": test_opt_email, "channel": "email", "reason": "smoke_test"})
     assert st == 200 and ores.get("ok")
-    st, blk = _http_post(base + "/api/outreach/send", {"hotel_id": hid, "channel": "email", "price_monthly": 99})
+    st, blk = _http_post(base + "/api/outreach/send", {"hotel_id": hid, "channel": "email", "price_monthly": 99, "mode": "dry_run"})
     assert blk.get("status") == "opted_out", f"Opt-out guard failed: {blk}"
 
     # Clean temporary smoke-test rows from outreach_log & do_not_contact
@@ -275,7 +275,7 @@ def main():
     st_ac, ac_res = _http_post(base + "/api/audit/call", {"hotel_id": 38})
     assert st_ac == 200 and ac_res.get("ok"), f"/api/audit/call failed: {ac_res}"
 
-    st_ae, ae_res = _http_post(base + "/api/audit/send-email", {"hotel_id": 38})
+    st_ae, ae_res = _http_post(base + "/api/audit/send-email", {"hotel_id": 38, "mode": "dry_run"})
     assert st_ae == 200 and ae_res.get("ok"), f"/api/audit/send-email failed: {ae_res}"
     assert "DECISION-MAKING ASSISTANT" in (ae_res.get("html_preview") or "")
 

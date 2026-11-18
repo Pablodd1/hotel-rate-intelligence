@@ -527,6 +527,8 @@ def send_audit_email_to_leaders(conn, cfg: dict, payload: dict) -> dict:
             provider = send_res.get("provider", provider)
             msg_id = send_res.get("msg_id", "")
             err_detail = send_res.get("error", "")
+            if status == "sent_live":
+                conn.execute("UPDATE hotels SET deal_stage='contacted' WHERE id=? AND deal_stage='new'", (hid,))
 
         cur = conn.execute(
             """INSERT INTO outreach_log(hotel_id,channel,recipient,person_name,offer_price_monthly,offer_label,

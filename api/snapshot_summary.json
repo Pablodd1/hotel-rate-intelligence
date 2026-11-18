@@ -4,13 +4,13 @@
  "kpis": {
   "hotels": 49,
   "contacts": 498,
-  "rates": 159,
-  "memory_events": 219,
+  "rates": 169,
+  "memory_events": 230,
   "calls_logged": 0,
   "hot_prospects": 45,
-  "parity_undercuts": 31,
-  "avg_adr": 309,
-  "avg_occupancy_pct": 57
+  "parity_undercuts": 29,
+  "avg_adr": 326,
+  "avg_occupancy_pct": 63
  },
  "rates": [
   {
@@ -266,50 +266,44 @@
    "management_group": null,
    "website_status": "http_200",
    "deal_stage": "new",
-   "price": 123.0,
+   "price": 190.0,
    "currency": "USD",
    "source": "xotelo_live_ota",
-   "checkin": "2026-12-14",
-   "checkout": "2026-12-17",
-   "room_type": "Standard Room (2026-12-14)",
-   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 68.0, \"tax\": 0.0}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 111.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 123.0, \"tax\": 0.0}]",
+   "checkin": "2026-12-18",
+   "checkout": "2026-12-21",
+   "room_type": "Standard Room (2026-12-18)",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 103.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 190.0, \"tax\": 0.0}]",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -44.7,
-   "scraped_at": 1794682127.577995,
-   "prev_price": 206.0,
-   "prev_scraped_at": 1794681827.5062244,
+   "undercut_pct": -45.8,
+   "scraped_at": 1795014697.361771,
+   "prev_price": 123.0,
+   "prev_scraped_at": 1794682127.577995,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 68.0,
-     "tax": 0.0
-    },
-    {
-     "code": "CtripTA",
-     "name": "Trip.com",
-     "rate": 111.0,
+     "rate": 103.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 123.0,
+     "rate": 190.0,
      "tax": 0.0
     }
    ],
-   "delta_dollar": -83.0,
-   "delta_pct": -40.3,
-   "est_occupancy_pct": 50,
+   "delta_dollar": 67.0,
+   "delta_pct": 54.5,
+   "est_occupancy_pct": 84,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Live OTA undercut detected (-44.7% vs benchmark retail BAR $123). Algorithmic pressure index ~50% (3 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-45.8% vs benchmark retail BAR $190). Algorithmic pressure index ~84% (2 live channels reporting).",
    "call_verified_occ": null,
    "call_rooms_left": null,
    "call_walkin_rate": null,
    "call_time": "Not Called Yet",
    "is_my_hotel": false,
-   "gap_vs_my_hotel": -101,
-   "my_rate_recommendation": "OTA leak (-44.7%); hold My BAR at $232 and win direct"
+   "gap_vs_my_hotel": -34,
+   "my_rate_recommendation": "OTA leak (-45.8%); hold My BAR at $232 and win direct"
   },
   {
    "hotel_id": 47,
@@ -328,50 +322,50 @@
    "management_group": "Estefan Enterprises",
    "website_status": "http_200",
    "deal_stage": "new",
-   "price": 125.0,
+   "price": 277.0,
    "currency": "USD",
    "source": "xotelo_live_ota",
-   "checkin": "2026-12-14",
-   "checkout": "2026-12-17",
-   "room_type": "Standard Room (2026-12-14)",
-   "ota_json": "[{\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 106.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 125.0, \"tax\": 0.0}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 136.0, \"tax\": 0.0}]",
+   "checkin": "2026-12-18",
+   "checkout": "2026-12-21",
+   "room_type": "Standard Room (2026-12-18)",
+   "ota_json": "[{\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 259.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 277.0, \"tax\": 0.0}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 277.0, \"tax\": 0.0}]",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -15.2,
-   "scraped_at": 1794682153.182229,
-   "prev_price": 342.0,
-   "prev_scraped_at": 1794681853.175983,
+   "undercut_pct": -6.5,
+   "scraped_at": 1795014677.3804204,
+   "prev_price": 125.0,
+   "prev_scraped_at": 1794682153.182229,
    "ota_channels": [
     {
      "code": "Vio",
      "name": "Vio.com",
-     "rate": 106.0,
+     "rate": 259.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 125.0,
+     "rate": 277.0,
      "tax": 0.0
     },
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 136.0,
+     "rate": 277.0,
      "tax": 0.0
     }
    ],
-   "delta_dollar": -217.0,
-   "delta_pct": -63.5,
-   "est_occupancy_pct": 59,
+   "delta_dollar": 152.0,
+   "delta_pct": 121.6,
+   "est_occupancy_pct": 97,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Live OTA undercut detected (-15.2% vs benchmark retail BAR $125). Algorithmic pressure index ~59% (3 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-6.5% vs benchmark retail BAR $277). Algorithmic pressure index ~97% (3 live channels reporting).",
    "call_verified_occ": null,
    "call_rooms_left": null,
    "call_walkin_rate": null,
    "call_time": "Not Called Yet",
    "is_my_hotel": false,
-   "gap_vs_my_hotel": -99,
-   "my_rate_recommendation": "OTA leak (-15.2%); hold My BAR at $232 and win direct"
+   "gap_vs_my_hotel": 53,
+   "my_rate_recommendation": "OTA leak (-6.5%); hold My BAR at $232 and win direct"
   },
   {
    "hotel_id": 50,
@@ -433,49 +427,43 @@
    "management_group": null,
    "website_status": "unreachable",
    "deal_stage": "new",
-   "price": 264.0,
+   "price": 258.0,
    "currency": "USD",
    "source": "xotelo_live_ota",
-   "checkin": "2026-12-14",
-   "checkout": "2026-12-17",
-   "room_type": "Standard Room (2026-12-14)",
-   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 257.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 264.0, \"tax\": 0.0}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 301.0, \"tax\": 0.0}]",
+   "checkin": "2026-12-18",
+   "checkout": "2026-12-21",
+   "room_type": "Standard Room (2026-12-18)",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 251.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 258.0, \"tax\": 0.0}]",
    "parity_status": "UNDERCUT",
    "undercut_pct": -2.7,
-   "scraped_at": 1794682115.570613,
-   "prev_price": 277.0,
-   "prev_scraped_at": 1794681815.5654309,
+   "scraped_at": 1795014715.8967228,
+   "prev_price": 264.0,
+   "prev_scraped_at": 1794682115.570613,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 257.0,
+     "rate": 251.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 264.0,
-     "tax": 0.0
-    },
-    {
-     "code": "CtripTA",
-     "name": "Trip.com",
-     "rate": 301.0,
+     "rate": 258.0,
      "tax": 0.0
     }
    ],
-   "delta_dollar": -13.0,
-   "delta_pct": -4.7,
-   "est_occupancy_pct": 61,
+   "delta_dollar": -6.0,
+   "delta_pct": -2.3,
+   "est_occupancy_pct": 66,
    "pricing_personality": "Steady Tier Holder",
-   "decision_logic": "Holding $264/nt across live scans (pressure index ~61%, band $209-$469).",
+   "decision_logic": "Holding $258/nt across live scans (pressure index ~66%, band $209-$469).",
    "call_verified_occ": null,
    "call_rooms_left": null,
    "call_walkin_rate": null,
    "call_time": "Not Called Yet",
    "is_my_hotel": false,
-   "gap_vs_my_hotel": 40,
+   "gap_vs_my_hotel": 34,
    "my_rate_recommendation": "OTA leak (-2.7%); hold My BAR at $232 and win direct"
   },
   {
@@ -495,56 +483,56 @@
    "management_group": null,
    "website_status": "http_200",
    "deal_stage": "new",
-   "price": 132.0,
+   "price": 217.0,
    "currency": "USD",
    "source": "xotelo_live+direct",
-   "checkin": "2026-12-14",
-   "checkout": "2026-12-17",
-   "room_type": "Standard Room (2026-12-14)",
-   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 102.0, \"tax\": 0.0}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 113.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 128.0, \"tax\": 0.0}, {\"code\": \"Siteminder\", \"name\": \"Official Site\", \"rate\": 132.0, \"tax\": 0.0}]",
+   "checkin": "2026-12-18",
+   "checkout": "2026-12-21",
+   "room_type": "Standard Room (2026-12-18)",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 172.0, \"tax\": 0.0}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 178.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 199.0, \"tax\": 0.0}, {\"code\": \"Siteminder\", \"name\": \"Official Site\", \"rate\": 217.0, \"tax\": 0.0}]",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -22.7,
-   "scraped_at": 1794682127.3973486,
-   "prev_price": 211.0,
-   "prev_scraped_at": 1794681827.2230437,
+   "undercut_pct": -20.7,
+   "scraped_at": 1795014701.626867,
+   "prev_price": 132.0,
+   "prev_scraped_at": 1794682127.3973486,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 102.0,
+     "rate": 172.0,
      "tax": 0.0
     },
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 113.0,
+     "rate": 178.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 128.0,
+     "rate": 199.0,
      "tax": 0.0
     },
     {
      "code": "Siteminder",
      "name": "Official Site",
-     "rate": 132.0,
+     "rate": 217.0,
      "tax": 0.0
     }
    ],
-   "delta_dollar": -79.0,
-   "delta_pct": -37.4,
-   "est_occupancy_pct": 44,
+   "delta_dollar": 85.0,
+   "delta_pct": 64.4,
+   "est_occupancy_pct": 75,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Live OTA undercut detected (-22.7% vs benchmark retail BAR $132). Algorithmic pressure index ~44% (4 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-20.7% vs benchmark retail BAR $217). Algorithmic pressure index ~75% (4 live channels reporting).",
    "call_verified_occ": null,
    "call_rooms_left": null,
    "call_walkin_rate": null,
    "call_time": "Not Called Yet",
    "is_my_hotel": false,
-   "gap_vs_my_hotel": -92,
-   "my_rate_recommendation": "OTA leak (-22.7%); hold My BAR at $232 and win direct"
+   "gap_vs_my_hotel": -7,
+   "my_rate_recommendation": "OTA leak (-20.7%); hold My BAR at $232 and win direct"
   },
   {
    "hotel_id": 13,
@@ -631,50 +619,50 @@
    "management_group": "Jesta Group",
    "website_status": "http_200",
    "deal_stage": "new",
-   "price": 170.0,
+   "price": 265.0,
    "currency": "USD",
    "source": "xotelo_live_ota",
-   "checkin": "2026-12-14",
-   "checkout": "2026-12-17",
-   "room_type": "Standard Room (2026-12-14)",
-   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 94.0, \"tax\": 0.0}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 143.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 170.0, \"tax\": 0.0}]",
+   "checkin": "2026-12-18",
+   "checkout": "2026-12-21",
+   "room_type": "Standard Room (2026-12-18)",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 108.0, \"tax\": 0.0}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 200.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 265.0, \"tax\": 0.0}]",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -44.7,
-   "scraped_at": 1794682145.1216848,
-   "prev_price": 280.0,
-   "prev_scraped_at": 1794681845.1038918,
+   "undercut_pct": -59.2,
+   "scraped_at": 1795014666.3472602,
+   "prev_price": 170.0,
+   "prev_scraped_at": 1794682145.1216848,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 94.0,
+     "rate": 108.0,
      "tax": 0.0
     },
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 143.0,
+     "rate": 200.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 170.0,
+     "rate": 265.0,
      "tax": 0.0
     }
    ],
-   "delta_dollar": -110.0,
-   "delta_pct": -39.3,
-   "est_occupancy_pct": 53,
+   "delta_dollar": 95.0,
+   "delta_pct": 55.9,
+   "est_occupancy_pct": 85,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Live OTA undercut detected (-44.7% vs benchmark retail BAR $170). Algorithmic pressure index ~53% (3 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-59.2% vs benchmark retail BAR $265). Algorithmic pressure index ~85% (3 live channels reporting).",
    "call_verified_occ": null,
    "call_rooms_left": null,
    "call_walkin_rate": null,
    "call_time": "Not Called Yet",
    "is_my_hotel": false,
-   "gap_vs_my_hotel": -54,
-   "my_rate_recommendation": "OTA leak (-44.7%); hold My BAR at $232 and win direct"
+   "gap_vs_my_hotel": 41,
+   "my_rate_recommendation": "OTA leak (-59.2%); hold My BAR at $232 and win direct"
   },
   {
    "hotel_id": 36,
@@ -1460,62 +1448,56 @@
    "management_group": null,
    "website_status": "http_200",
    "deal_stage": "new",
-   "price": 208.0,
+   "price": 270.0,
    "currency": "USD",
    "source": "xotelo_live_ota",
-   "checkin": "2026-12-14",
-   "checkout": "2026-12-17",
-   "room_type": "Standard Room (2026-12-14)",
-   "ota_json": "[{\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 185.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 208.0, \"tax\": 0.0}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 208.0, \"tax\": 0.0}, {\"code\": \"IHG\", \"name\": \"Kimpton\", \"rate\": 208.0, \"tax\": 0.0}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 214.0, \"tax\": 0.0}]",
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -11.1,
-   "scraped_at": 1794682120.0422618,
-   "prev_price": 287.0,
-   "prev_scraped_at": 1794681820.0311546,
+   "checkin": "2026-12-18",
+   "checkout": "2026-12-21",
+   "room_type": "Standard Room (2026-12-18)",
+   "ota_json": "[{\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 270.0, \"tax\": 0.0}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 270.0, \"tax\": 0.0}, {\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 275.0, \"tax\": 0.0}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 275.0, \"tax\": 0.0}]",
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0,
+   "scraped_at": 1795014711.1747057,
+   "prev_price": 208.0,
+   "prev_scraped_at": 1794682120.0422618,
    "ota_channels": [
-    {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 185.0,
-     "tax": 0.0
-    },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 208.0,
+     "rate": 270.0,
      "tax": 0.0
     },
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 208.0,
+     "rate": 270.0,
      "tax": 0.0
     },
     {
-     "code": "IHG",
-     "name": "Kimpton",
-     "rate": 208.0,
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 275.0,
      "tax": 0.0
     },
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 214.0,
+     "rate": 275.0,
      "tax": 0.0
     }
    ],
-   "delta_dollar": -79.0,
-   "delta_pct": -27.5,
-   "est_occupancy_pct": 44,
-   "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Live OTA undercut detected (-11.1% vs benchmark retail BAR $208). Algorithmic pressure index ~44% (5 live channels reporting).",
+   "delta_dollar": 62.0,
+   "delta_pct": 29.8,
+   "est_occupancy_pct": 72,
+   "pricing_personality": "Steady Tier Holder",
+   "decision_logic": "Holding $270/nt across live scans (pressure index ~72%, band $203-$576).",
    "call_verified_occ": null,
    "call_rooms_left": null,
    "call_walkin_rate": null,
    "call_time": "Not Called Yet",
    "is_my_hotel": false,
-   "gap_vs_my_hotel": -16,
-   "my_rate_recommendation": "OTA leak (-11.1%); hold My BAR at $232 and win direct"
+   "gap_vs_my_hotel": 46,
+   "my_rate_recommendation": "Priced +$46 above us ($270) \u2192 Room to raise My BAR +$23"
   },
   {
    "hotel_id": 5,
@@ -1998,56 +1980,50 @@
    "management_group": null,
    "website_status": "http_200",
    "deal_stage": "new",
-   "price": 82.0,
+   "price": 128.0,
    "currency": "USD",
    "source": "xotelo_live_ota",
-   "checkin": "2026-12-14",
-   "checkout": "2026-12-17",
-   "room_type": "Standard Room (2026-12-14)",
-   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 67.0, \"tax\": 0.0}, {\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 69.0, \"tax\": 0.0}, {\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 72.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 82.0, \"tax\": 0.0}]",
+   "checkin": "2026-12-18",
+   "checkout": "2026-12-21",
+   "room_type": "Standard Room (2026-12-18)",
+   "ota_json": "[{\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 97.0, \"tax\": 0.0}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 99.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 128.0, \"tax\": 0.0}]",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -18.3,
-   "scraped_at": 1794682117.1813703,
-   "prev_price": 130.0,
-   "prev_scraped_at": 1794681817.1622102,
+   "undercut_pct": -24.2,
+   "scraped_at": 1795014705.818463,
+   "prev_price": 82.0,
+   "prev_scraped_at": 1794682117.1813703,
    "ota_channels": [
-    {
-     "code": "Agoda",
-     "name": "Agoda.com",
-     "rate": 67.0,
-     "tax": 0.0
-    },
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 69.0,
+     "rate": 97.0,
      "tax": 0.0
     },
     {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 72.0,
+     "code": "Agoda",
+     "name": "Agoda.com",
+     "rate": 99.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 82.0,
+     "rate": 128.0,
      "tax": 0.0
     }
    ],
-   "delta_dollar": -48.0,
-   "delta_pct": -36.9,
-   "est_occupancy_pct": 49,
+   "delta_dollar": 46.0,
+   "delta_pct": 56.1,
+   "est_occupancy_pct": 90,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Live OTA undercut detected (-18.3% vs benchmark retail BAR $82). Algorithmic pressure index ~49% (4 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-24.2% vs benchmark retail BAR $128). Algorithmic pressure index ~90% (3 live channels reporting).",
    "call_verified_occ": null,
    "call_rooms_left": null,
    "call_walkin_rate": null,
    "call_time": "Not Called Yet",
    "is_my_hotel": false,
-   "gap_vs_my_hotel": -142,
-   "my_rate_recommendation": "OTA leak (-18.3%); hold My BAR at $232 and win direct"
+   "gap_vs_my_hotel": -96,
+   "my_rate_recommendation": "OTA leak (-24.2%); hold My BAR at $232 and win direct"
   },
   {
    "hotel_id": 20,
@@ -2066,44 +2042,44 @@
    "management_group": "Colony Boutique Cluster",
    "website_status": "http_200",
    "deal_stage": "new",
-   "price": 114.0,
+   "price": 169.0,
    "currency": "USD",
    "source": "xotelo_live_ota",
-   "checkin": "2026-12-14",
-   "checkout": "2026-12-17",
-   "room_type": "Standard Room (2026-12-14)",
-   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 99.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 114.0, \"tax\": 0.0}]",
+   "checkin": "2026-12-18",
+   "checkout": "2026-12-21",
+   "room_type": "Standard Room (2026-12-18)",
+   "ota_json": "[{\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 152.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 169.0, \"tax\": 0.0}]",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -13.2,
-   "scraped_at": 1794682122.1455421,
-   "prev_price": 217.0,
-   "prev_scraped_at": 1794681822.1383083,
+   "undercut_pct": -10.1,
+   "scraped_at": 1795014685.883124,
+   "prev_price": 114.0,
+   "prev_scraped_at": 1794682122.1455421,
    "ota_channels": [
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 99.0,
+     "rate": 152.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 114.0,
+     "rate": 169.0,
      "tax": 0.0
     }
    ],
-   "delta_dollar": -103.0,
-   "delta_pct": -47.5,
-   "est_occupancy_pct": 52,
+   "delta_dollar": 55.0,
+   "delta_pct": 48.2,
+   "est_occupancy_pct": 79,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Live OTA undercut detected (-13.2% vs benchmark retail BAR $114). Algorithmic pressure index ~52% (2 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-10.1% vs benchmark retail BAR $169). Algorithmic pressure index ~79% (2 live channels reporting).",
    "call_verified_occ": null,
    "call_rooms_left": null,
    "call_walkin_rate": null,
    "call_time": "Not Called Yet",
    "is_my_hotel": false,
-   "gap_vs_my_hotel": -110,
-   "my_rate_recommendation": "OTA leak (-13.2%); hold My BAR at $232 and win direct"
+   "gap_vs_my_hotel": -55,
+   "my_rate_recommendation": "OTA leak (-10.1%); hold My BAR at $232 and win direct"
   },
   {
    "hotel_id": 40,
@@ -2196,56 +2172,56 @@
    "management_group": "MRK Hotel Collection",
    "website_status": "http_200",
    "deal_stage": "new",
-   "price": 189.0,
+   "price": 322.0,
    "currency": "USD",
    "source": "xotelo_live+direct",
-   "checkin": "2026-12-14",
-   "checkout": "2026-12-17",
-   "room_type": "Standard Room (2026-12-14)",
-   "ota_json": "[{\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 135.0, \"tax\": 0.0}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 138.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 184.0, \"tax\": 0.0}, {\"code\": \"TravelClickCPA\", \"name\": \"Official Hotel\", \"rate\": 189.0, \"tax\": 0.0}]",
+   "checkin": "2026-12-18",
+   "checkout": "2026-12-21",
+   "room_type": "Standard Room (2026-12-18)",
+   "ota_json": "[{\"code\": \"CtripTA\", \"name\": \"Trip.com\", \"rate\": 223.0, \"tax\": 0.0}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 245.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 317.0, \"tax\": 0.0}, {\"code\": \"TravelClickCPA\", \"name\": \"Official Hotel\", \"rate\": 322.0, \"tax\": 0.0}]",
    "parity_status": "UNDERCUT",
-   "undercut_pct": -28.6,
-   "scraped_at": 1794682132.891628,
-   "prev_price": 308.0,
-   "prev_scraped_at": 1794681832.72491,
+   "undercut_pct": -30.7,
+   "scraped_at": 1795014670.6355443,
+   "prev_price": 189.0,
+   "prev_scraped_at": 1794682132.891628,
    "ota_channels": [
     {
      "code": "CtripTA",
      "name": "Trip.com",
-     "rate": 135.0,
+     "rate": 223.0,
      "tax": 0.0
     },
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 138.0,
+     "rate": 245.0,
      "tax": 0.0
     },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 184.0,
+     "rate": 317.0,
      "tax": 0.0
     },
     {
      "code": "TravelClickCPA",
      "name": "Official Hotel",
-     "rate": 189.0,
+     "rate": 322.0,
      "tax": 0.0
     }
    ],
-   "delta_dollar": -119.0,
-   "delta_pct": -38.6,
-   "est_occupancy_pct": 47,
+   "delta_dollar": 133.0,
+   "delta_pct": 70.4,
+   "est_occupancy_pct": 81,
    "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Live OTA undercut detected (-28.6% vs benchmark retail BAR $189). Algorithmic pressure index ~47% (4 live channels reporting).",
+   "decision_logic": "Live OTA undercut detected (-30.7% vs benchmark retail BAR $322). Algorithmic pressure index ~81% (4 live channels reporting).",
    "call_verified_occ": null,
    "call_rooms_left": null,
    "call_walkin_rate": null,
    "call_time": "Not Called Yet",
    "is_my_hotel": false,
-   "gap_vs_my_hotel": -35,
-   "my_rate_recommendation": "OTA leak (-28.6%); hold My BAR at $232 and win direct"
+   "gap_vs_my_hotel": 98,
+   "my_rate_recommendation": "OTA leak (-30.7%); hold My BAR at $232 and win direct"
   },
   {
    "hotel_id": 12,
@@ -2946,56 +2922,62 @@
    "management_group": "South Beach Group / Think",
    "website_status": "http_200",
    "deal_stage": "new",
-   "price": 79.0,
+   "price": 129.0,
    "currency": "USD",
    "source": "xotelo_live+direct",
-   "checkin": "2026-12-14",
-   "checkout": "2026-12-17",
-   "room_type": "Standard Room (2026-12-14)",
-   "ota_json": "[{\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 74.0, \"tax\": 0.0}, {\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 79.0, \"tax\": 0.0}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 79.0, \"tax\": 0.0}, {\"code\": \"TravelClickCPA\", \"name\": \"Official Hotel\", \"rate\": 79.0, \"tax\": 0.0}]",
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -6.3,
-   "scraped_at": 1794682107.910612,
-   "prev_price": 139.0,
-   "prev_scraped_at": 1794681807.9046104,
+   "checkin": "2026-12-18",
+   "checkout": "2026-12-21",
+   "room_type": "Standard Room (2026-12-18)",
+   "ota_json": "[{\"code\": \"BookingCom\", \"name\": \"Booking.com\", \"rate\": 129.0, \"tax\": 0.0}, {\"code\": \"Agoda\", \"name\": \"Agoda.com\", \"rate\": 129.0, \"tax\": 0.0}, {\"code\": \"TravelClickCPA\", \"name\": \"Official Hotel\", \"rate\": 129.0, \"tax\": 0.0}, {\"code\": \"Priceline\", \"name\": \"Priceline\", \"rate\": 129.0, \"tax\": 0.0}, {\"code\": \"Vio\", \"name\": \"Vio.com\", \"rate\": 135.0, \"tax\": 0.0}]",
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0,
+   "scraped_at": 1795014693.2358239,
+   "prev_price": 79.0,
+   "prev_scraped_at": 1794682107.910612,
    "ota_channels": [
-    {
-     "code": "Vio",
-     "name": "Vio.com",
-     "rate": 74.0,
-     "tax": 0.0
-    },
     {
      "code": "BookingCom",
      "name": "Booking.com",
-     "rate": 79.0,
+     "rate": 129.0,
      "tax": 0.0
     },
     {
      "code": "Agoda",
      "name": "Agoda.com",
-     "rate": 79.0,
+     "rate": 129.0,
      "tax": 0.0
     },
     {
      "code": "TravelClickCPA",
      "name": "Official Hotel",
-     "rate": 79.0,
+     "rate": 129.0,
+     "tax": 0.0
+    },
+    {
+     "code": "Priceline",
+     "name": "Priceline",
+     "rate": 129.0,
+     "tax": 0.0
+    },
+    {
+     "code": "Vio",
+     "name": "Vio.com",
+     "rate": 135.0,
      "tax": 0.0
     }
    ],
-   "delta_dollar": -60.0,
-   "delta_pct": -43.2,
-   "est_occupancy_pct": 44,
-   "pricing_personality": "Passive Wholesale Leaker",
-   "decision_logic": "Live OTA undercut detected (-6.3% vs benchmark retail BAR $79). Algorithmic pressure index ~44% (4 live channels reporting).",
+   "delta_dollar": 50.0,
+   "delta_pct": 63.3,
+   "est_occupancy_pct": 79,
+   "pricing_personality": "Early Compression Yielder",
+   "decision_logic": "Rate rose +63.3% across live scans to $129 (pressure index ~79%).",
    "call_verified_occ": null,
    "call_rooms_left": null,
    "call_walkin_rate": null,
    "call_time": "Not Called Yet",
    "is_my_hotel": false,
-   "gap_vs_my_hotel": -145,
-   "my_rate_recommendation": "OTA leak (-6.3%); hold My BAR at $232 and win direct"
+   "gap_vs_my_hotel": -95,
+   "my_rate_recommendation": "Priced -$95 below us ($129) \u2192 Hold floor or match mid-week"
   },
   {
    "hotel_id": 28,
@@ -3043,6 +3025,18 @@
  ],
  "movers": [
   {
+   "hotel_id": 47,
+   "name": "Cardozo South Beach",
+   "area": "South Beach",
+   "price": 277.0,
+   "prev_price": 125.0,
+   "delta_pct": 121.6,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -6.5,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
    "hotel_id": 13,
    "name": "Circa 39 Hotel",
    "area": "Mid-Beach",
@@ -3055,16 +3049,40 @@
    "pricing_personality": "Last-Minute Discounter"
   },
   {
-   "hotel_id": 47,
-   "name": "Cardozo South Beach",
+   "hotel_id": 27,
+   "name": "The Marlin Hotel",
    "area": "South Beach",
-   "price": 125.0,
-   "prev_price": 342.0,
-   "delta_pct": -63.5,
+   "price": 322.0,
+   "prev_price": 189.0,
+   "delta_pct": 70.4,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -15.2,
-   "est_occupancy_pct": 59,
+   "undercut_pct": -30.7,
+   "est_occupancy_pct": 81,
    "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
+   "hotel_id": 24,
+   "name": "Cavalier South Beach Hotel",
+   "area": "South Beach",
+   "price": 217.0,
+   "prev_price": 132.0,
+   "delta_pct": 64.4,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -20.7,
+   "est_occupancy_pct": 75,
+   "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
+   "hotel_id": 2,
+   "name": "Waterside Hotel & Suites",
+   "area": "North Beach",
+   "price": 129.0,
+   "prev_price": 79.0,
+   "delta_pct": 63.3,
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0,
+   "est_occupancy_pct": 79,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 31,
@@ -3079,15 +3097,51 @@
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
+   "hotel_id": 9,
+   "name": "The Biscayne Hotel (MiMo)",
+   "area": "Miami (MiMo / Biscayne)",
+   "price": 128.0,
+   "prev_price": 82.0,
+   "delta_pct": 56.1,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -24.2,
+   "est_occupancy_pct": 90,
+   "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
+   "hotel_id": 42,
+   "name": "Clevelander South Beach Hotel",
+   "area": "South Beach",
+   "price": 265.0,
+   "prev_price": 170.0,
+   "delta_pct": 55.9,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -59.2,
+   "est_occupancy_pct": 85,
+   "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
+   "hotel_id": 25,
+   "name": "Beacon South Beach Hotel",
+   "area": "South Beach",
+   "price": 190.0,
+   "prev_price": 123.0,
+   "delta_pct": 54.5,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -45.8,
+   "est_occupancy_pct": 84,
+   "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
    "hotel_id": 20,
    "name": "The Colony Hotel",
    "area": "South Beach",
-   "price": 114.0,
-   "prev_price": 217.0,
-   "delta_pct": -47.5,
+   "price": 169.0,
+   "prev_price": 114.0,
+   "delta_pct": 48.2,
    "parity_status": "UNDERCUT",
-   "undercut_pct": -13.2,
-   "est_occupancy_pct": 52,
+   "undercut_pct": -10.1,
+   "est_occupancy_pct": 79,
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
@@ -3127,18 +3181,6 @@
    "pricing_personality": "Last-Minute Discounter"
   },
   {
-   "hotel_id": 2,
-   "name": "Waterside Hotel & Suites",
-   "area": "North Beach",
-   "price": 79.0,
-   "prev_price": 139.0,
-   "delta_pct": -43.2,
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -6.3,
-   "est_occupancy_pct": 44,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
    "hotel_id": 46,
    "name": "Uma House by Yurbban South Beach",
    "area": "South Beach",
@@ -3160,18 +3202,6 @@
    "parity_status": "UNDERCUT",
    "undercut_pct": -21.1,
    "est_occupancy_pct": 48,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
-   "hotel_id": 25,
-   "name": "Beacon South Beach Hotel",
-   "area": "South Beach",
-   "price": 123.0,
-   "prev_price": 206.0,
-   "delta_pct": -40.3,
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -44.7,
-   "est_occupancy_pct": 50,
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
@@ -3199,18 +3229,6 @@
    "pricing_personality": "Last-Minute Discounter"
   },
   {
-   "hotel_id": 42,
-   "name": "Clevelander South Beach Hotel",
-   "area": "South Beach",
-   "price": 170.0,
-   "prev_price": 280.0,
-   "delta_pct": -39.3,
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -44.7,
-   "est_occupancy_pct": 53,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
    "hotel_id": 30,
    "name": "The Savoy Hotel & Beach Club",
    "area": "South Beach",
@@ -3223,18 +3241,6 @@
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
-   "hotel_id": 27,
-   "name": "The Marlin Hotel",
-   "area": "South Beach",
-   "price": 189.0,
-   "prev_price": 308.0,
-   "delta_pct": -38.6,
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -28.6,
-   "est_occupancy_pct": 47,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
    "hotel_id": 26,
    "name": "Waldorf Towers South Beach",
    "area": "South Beach",
@@ -3244,30 +3250,6 @@
    "parity_status": "UNDERCUT",
    "undercut_pct": -26.3,
    "est_occupancy_pct": 89,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
-   "hotel_id": 24,
-   "name": "Cavalier South Beach Hotel",
-   "area": "South Beach",
-   "price": 132.0,
-   "prev_price": 211.0,
-   "delta_pct": -37.4,
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -22.7,
-   "est_occupancy_pct": 44,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
-   "hotel_id": 9,
-   "name": "The Biscayne Hotel (MiMo)",
-   "area": "Miami (MiMo / Biscayne)",
-   "price": 82.0,
-   "prev_price": 130.0,
-   "delta_pct": -36.9,
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -18.3,
-   "est_occupancy_pct": 49,
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
@@ -3331,6 +3313,18 @@
    "pricing_personality": "Last-Minute Discounter"
   },
   {
+   "hotel_id": 14,
+   "name": "Palihouse Miami Beach",
+   "area": "Mid-Beach",
+   "price": 270.0,
+   "prev_price": 208.0,
+   "delta_pct": 29.8,
+   "parity_status": "PARITY",
+   "undercut_pct": 0.0,
+   "est_occupancy_pct": 72,
+   "pricing_personality": "Steady Tier Holder"
+  },
+  {
    "hotel_id": 32,
    "name": "Hotel Greystone",
    "area": "South Beach",
@@ -3340,18 +3334,6 @@
    "parity_status": "UNDERCUT",
    "undercut_pct": -32.3,
    "est_occupancy_pct": 51,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
-   "hotel_id": 14,
-   "name": "Palihouse Miami Beach",
-   "area": "Mid-Beach",
-   "price": 208.0,
-   "prev_price": 287.0,
-   "delta_pct": -27.5,
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -11.1,
-   "est_occupancy_pct": 44,
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
@@ -3523,18 +3505,6 @@
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
-   "hotel_id": 15,
-   "name": "Casa Faena",
-   "area": "Mid-Beach",
-   "price": 264.0,
-   "prev_price": 277.0,
-   "delta_pct": -4.7,
-   "parity_status": "UNDERCUT",
-   "undercut_pct": -2.7,
-   "est_occupancy_pct": 61,
-   "pricing_personality": "Steady Tier Holder"
-  },
-  {
    "hotel_id": 6,
    "name": "Grand Beach Hotel Surfside / Miami Beach",
    "area": "North Beach",
@@ -3545,6 +3515,18 @@
    "undercut_pct": -20.3,
    "est_occupancy_pct": 62,
    "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
+   "hotel_id": 15,
+   "name": "Casa Faena",
+   "area": "Mid-Beach",
+   "price": 258.0,
+   "prev_price": 264.0,
+   "delta_pct": -2.3,
+   "parity_status": "UNDERCUT",
+   "undercut_pct": -2.7,
+   "est_occupancy_pct": 66,
+   "pricing_personality": "Steady Tier Holder"
   },
   {
    "hotel_id": 51,
@@ -3749,6 +3731,28 @@
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
+   "hotel_id": 14,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "71 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (Mid-Beach)",
+    "verified decision-maker contacts captured",
+    "live multi-OTA rate data flowing"
+   ],
+   "est_annual_upside": 277100,
+   "name": "Palihouse Miami Beach",
+   "area": "Mid-Beach",
+   "stars": 4.0,
+   "est_rooms": 71,
+   "booking_engine": "SynXis / Palisociety",
+   "deal_stage": "new",
+   "est_occupancy_pct": 72,
+   "pricing_personality": "Steady Tier Holder"
+  },
+  {
    "hotel_id": 11,
    "score": 100,
    "tier": "hot",
@@ -3793,25 +3797,47 @@
    "pricing_personality": "Last-Minute Discounter"
   },
   {
-   "hotel_id": 14,
+   "hotel_id": 42,
    "score": 100,
    "tier": "hot",
    "signals": [
     "independent \u2014 no corporate brand RMS desk",
-    "71 rooms \u2014 sweet-spot for outsourced rate intel",
-    "4.0\u2605 \u2014 high price-sensitivity comp tier",
-    "dense micro-market (Mid-Beach)",
+    "60 rooms \u2014 sweet-spot for outsourced rate intel",
+    "3.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
     "verified decision-maker contacts captured",
-    "OTA parity leak (-11.1% undercut vs BAR)"
+    "OTA parity leak (-59.2% undercut vs BAR)"
    ],
-   "est_annual_upside": 213500,
-   "name": "Palihouse Miami Beach",
-   "area": "Mid-Beach",
-   "stars": 4.0,
-   "est_rooms": 71,
-   "booking_engine": "SynXis / Palisociety",
+   "est_annual_upside": 229800,
+   "name": "Clevelander South Beach Hotel",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 60,
+   "booking_engine": "SynXis / Sabre",
    "deal_stage": "new",
-   "est_occupancy_pct": 44,
+   "est_occupancy_pct": 85,
+   "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
+   "hotel_id": 25,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "75 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-45.8% undercut vs BAR)"
+   ],
+   "est_annual_upside": 206000,
+   "name": "Beacon South Beach Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 75,
+   "booking_engine": "SynXis / Sabre",
+   "deal_stage": "new",
+   "est_occupancy_pct": 84,
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
@@ -3892,14 +3918,14 @@
     "verified decision-maker contacts captured",
     "OTA parity leak (-2.7% undercut vs BAR)"
    ],
-   "est_annual_upside": 190800,
+   "est_annual_upside": 186500,
    "name": "Casa Faena",
    "area": "Mid-Beach",
    "stars": 4.0,
    "est_rooms": 50,
    "booking_engine": "SynXis / Sabre",
    "deal_stage": "new",
-   "est_occupancy_pct": 61,
+   "est_occupancy_pct": 66,
    "pricing_personality": "Steady Tier Holder"
   },
   {
@@ -3925,47 +3951,91 @@
    "pricing_personality": "Last-Minute Discounter"
   },
   {
-   "hotel_id": 42,
+   "hotel_id": 47,
    "score": 100,
    "tier": "hot",
    "signals": [
     "independent \u2014 no corporate brand RMS desk",
-    "60 rooms \u2014 sweet-spot for outsourced rate intel",
-    "3.5\u2605 \u2014 high price-sensitivity comp tier",
-    "dense micro-market (South Beach)",
-    "verified decision-maker contacts captured",
-    "OTA parity leak (-44.7% undercut vs BAR)"
-   ],
-   "est_annual_upside": 147400,
-   "name": "Clevelander South Beach Hotel",
-   "area": "South Beach",
-   "stars": 3.5,
-   "est_rooms": 60,
-   "booking_engine": "SynXis / Sabre",
-   "deal_stage": "new",
-   "est_occupancy_pct": 53,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
-   "hotel_id": 25,
-   "score": 100,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no corporate brand RMS desk",
-    "75 rooms \u2014 sweet-spot for outsourced rate intel",
+    "41 rooms \u2014 sweet-spot for outsourced rate intel",
     "4.0\u2605 \u2014 high price-sensitivity comp tier",
     "dense micro-market (South Beach)",
     "verified decision-maker contacts captured",
-    "OTA parity leak (-44.7% undercut vs BAR)"
+    "OTA parity leak (-6.5% undercut vs BAR)"
    ],
-   "est_annual_upside": 133300,
-   "name": "Beacon South Beach Hotel",
+   "est_annual_upside": 164200,
+   "name": "Cardozo South Beach",
    "area": "South Beach",
    "stars": 4.0,
-   "est_rooms": 75,
+   "est_rooms": 41,
    "booking_engine": "SynXis / Sabre",
    "deal_stage": "new",
-   "est_occupancy_pct": 50,
+   "est_occupancy_pct": 97,
+   "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
+   "hotel_id": 27,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "33 rooms \u2014 sweet-spot for outsourced rate intel",
+    "4.0\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-30.7% undercut vs BAR)"
+   ],
+   "est_annual_upside": 153600,
+   "name": "The Marlin Hotel",
+   "area": "South Beach",
+   "stars": 4.0,
+   "est_rooms": 33,
+   "booking_engine": "TravelClick / iHotelier",
+   "deal_stage": "new",
+   "est_occupancy_pct": 81,
+   "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
+   "hotel_id": 24,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "45 rooms \u2014 sweet-spot for outsourced rate intel",
+    "3.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-20.7% undercut vs BAR)"
+   ],
+   "est_annual_upside": 141100,
+   "name": "Cavalier South Beach Hotel",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 45,
+   "booking_engine": "Marriott / CRS",
+   "deal_stage": "new",
+   "est_occupancy_pct": 75,
+   "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
+   "hotel_id": 20,
+   "score": 100,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "50 rooms \u2014 sweet-spot for outsourced rate intel",
+    "3.5\u2605 \u2014 high price-sensitivity comp tier",
+    "dense micro-market (South Beach)",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-10.1% undercut vs BAR)"
+   ],
+   "est_annual_upside": 122100,
+   "name": "The Colony Hotel",
+   "area": "South Beach",
+   "stars": 3.5,
+   "est_rooms": 50,
+   "booking_engine": "Cloudbeds",
+   "deal_stage": "new",
+   "est_occupancy_pct": 79,
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
@@ -4035,94 +4105,6 @@
    "pricing_personality": "Last-Minute Discounter"
   },
   {
-   "hotel_id": 27,
-   "score": 100,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no corporate brand RMS desk",
-    "33 rooms \u2014 sweet-spot for outsourced rate intel",
-    "4.0\u2605 \u2014 high price-sensitivity comp tier",
-    "dense micro-market (South Beach)",
-    "verified decision-maker contacts captured",
-    "OTA parity leak (-28.6% undercut vs BAR)"
-   ],
-   "est_annual_upside": 90100,
-   "name": "The Marlin Hotel",
-   "area": "South Beach",
-   "stars": 4.0,
-   "est_rooms": 33,
-   "booking_engine": "TravelClick / iHotelier",
-   "deal_stage": "new",
-   "est_occupancy_pct": 47,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
-   "hotel_id": 24,
-   "score": 100,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no corporate brand RMS desk",
-    "45 rooms \u2014 sweet-spot for outsourced rate intel",
-    "3.5\u2605 \u2014 high price-sensitivity comp tier",
-    "dense micro-market (South Beach)",
-    "verified decision-maker contacts captured",
-    "OTA parity leak (-22.7% undercut vs BAR)"
-   ],
-   "est_annual_upside": 85900,
-   "name": "Cavalier South Beach Hotel",
-   "area": "South Beach",
-   "stars": 3.5,
-   "est_rooms": 45,
-   "booking_engine": "Marriott / CRS",
-   "deal_stage": "new",
-   "est_occupancy_pct": 44,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
-   "hotel_id": 20,
-   "score": 100,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no corporate brand RMS desk",
-    "50 rooms \u2014 sweet-spot for outsourced rate intel",
-    "3.5\u2605 \u2014 high price-sensitivity comp tier",
-    "dense micro-market (South Beach)",
-    "verified decision-maker contacts captured",
-    "OTA parity leak (-13.2% undercut vs BAR)"
-   ],
-   "est_annual_upside": 82400,
-   "name": "The Colony Hotel",
-   "area": "South Beach",
-   "stars": 3.5,
-   "est_rooms": 50,
-   "booking_engine": "Cloudbeds",
-   "deal_stage": "new",
-   "est_occupancy_pct": 52,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
-   "hotel_id": 47,
-   "score": 100,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no corporate brand RMS desk",
-    "41 rooms \u2014 sweet-spot for outsourced rate intel",
-    "4.0\u2605 \u2014 high price-sensitivity comp tier",
-    "dense micro-market (South Beach)",
-    "verified decision-maker contacts captured",
-    "OTA parity leak (-15.2% undercut vs BAR)"
-   ],
-   "est_annual_upside": 74100,
-   "name": "Cardozo South Beach",
-   "area": "South Beach",
-   "stars": 4.0,
-   "est_rooms": 41,
-   "booking_engine": "SynXis / Sabre",
-   "deal_stage": "new",
-   "est_occupancy_pct": 59,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
    "hotel_id": 2,
    "score": 100,
    "tier": "hot",
@@ -4132,17 +4114,17 @@
     "3.5\u2605 \u2014 high price-sensitivity comp tier",
     "dense micro-market (North Beach)",
     "verified decision-maker contacts captured",
-    "OTA parity leak (-6.3% undercut vs BAR)"
+    "live multi-OTA rate data flowing"
    ],
-   "est_annual_upside": 56000,
+   "est_annual_upside": 91400,
    "name": "Waterside Hotel & Suites",
    "area": "North Beach",
    "stars": 3.5,
    "est_rooms": 49,
    "booking_engine": "TravelClick / iHotelier",
    "deal_stage": "new",
-   "est_occupancy_pct": 44,
-   "pricing_personality": "Passive Wholesale Leaker"
+   "est_occupancy_pct": 79,
+   "pricing_personality": "Early Compression Yielder"
   },
   {
    "hotel_id": 1,
@@ -4255,6 +4237,27 @@
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
+   "hotel_id": 9,
+   "score": 91,
+   "tier": "hot",
+   "signals": [
+    "independent \u2014 no corporate brand RMS desk",
+    "32 rooms \u2014 sweet-spot for outsourced rate intel",
+    "3.5\u2605 \u2014 high price-sensitivity comp tier",
+    "verified decision-maker contacts captured",
+    "OTA parity leak (-24.2% undercut vs BAR)"
+   ],
+   "est_annual_upside": 59200,
+   "name": "The Biscayne Hotel (MiMo)",
+   "area": "Miami (MiMo / Biscayne)",
+   "stars": 3.5,
+   "est_rooms": 32,
+   "booking_engine": "Mews",
+   "deal_stage": "new",
+   "est_occupancy_pct": 90,
+   "pricing_personality": "Passive Wholesale Leaker"
+  },
+  {
    "hotel_id": 8,
    "score": 91,
    "tier": "hot",
@@ -4273,27 +4276,6 @@
    "booking_engine": "Cloudbeds / Direct",
    "deal_stage": "new",
    "est_occupancy_pct": 54,
-   "pricing_personality": "Passive Wholesale Leaker"
-  },
-  {
-   "hotel_id": 9,
-   "score": 91,
-   "tier": "hot",
-   "signals": [
-    "independent \u2014 no corporate brand RMS desk",
-    "32 rooms \u2014 sweet-spot for outsourced rate intel",
-    "3.5\u2605 \u2014 high price-sensitivity comp tier",
-    "verified decision-maker contacts captured",
-    "OTA parity leak (-18.3% undercut vs BAR)"
-   ],
-   "est_annual_upside": 37900,
-   "name": "The Biscayne Hotel (MiMo)",
-   "area": "Miami (MiMo / Biscayne)",
-   "stars": 3.5,
-   "est_rooms": 32,
-   "booking_engine": "Mews",
-   "deal_stage": "new",
-   "est_occupancy_pct": 49,
    "pricing_personality": "Passive Wholesale Leaker"
   },
   {
@@ -4630,6 +4612,18 @@
  ],
  "runs": [
   {
+   "id": 8,
+   "started": 1795014634.423502,
+   "finished": 1795014715.8973064,
+   "mode": "wave1-live-refresh",
+   "status": "ok",
+   "hotels_attempted": 10,
+   "hotels_ok": 10,
+   "contacts_new": 0,
+   "rates_new": 10,
+   "notes": ""
+  },
+  {
    "id": 7,
    "started": 1794932917.739247,
    "finished": 1794932917.739247,
@@ -4728,15 +4722,15 @@
   "current_bar": 224,
   "resort_fee": 15.0,
   "out_the_door_bar": 272,
-  "corridor_old_avg": 186,
-  "corridor_new_avg": 139,
-  "corridor_move_pct": -25.3,
-  "corridor_avg_occupancy": 51,
+  "corridor_old_avg": 174,
+  "corridor_new_avg": 149,
+  "corridor_move_pct": -14.4,
+  "corridor_avg_occupancy": 58,
   "recommended_tonight_walkin": 234,
   "recommended_30d_bar": 232,
   "recommended_weekend_bar": 267,
   "strategy_stance": "BALANCED YIELD \u2014 STEP ABOVE CORRIDOR PEERS",
-  "assistant_explanation": "Your corridor moved from $186 to $139 across live scans. Hold $234/nt walk-in for your remaining 10 rooms, set Direct BAR to $232/nt, and lock $267/nt for Fri\u2013Sat."
+  "assistant_explanation": "Your corridor moved from $174 to $149 across live scans. Hold $234/nt walk-in for your remaining 10 rooms, set Direct BAR to $232/nt, and lock $267/nt for Fri\u2013Sat."
  },
  "call_logs": [],
  "call_templates": [
@@ -4843,7 +4837,7 @@
   }
  ],
  "outreach_readiness": {
-  "mode": "dry_run",
+  "mode": "live",
   "daily_send_cap": 50,
   "default_price_monthly": 99,
   "offer_plans": [
@@ -5039,7 +5033,7 @@
    "to_email": "jasmelacosta@gmail.com"
   },
   "outreach": {
-   "mode": "dry_run",
+   "mode": "live",
    "default_price_monthly": 99,
    "promo_first_month_price": 49,
    "trial_days": 7,
