@@ -490,6 +490,8 @@ def send_audit_email_to_leaders(conn, cfg: dict, payload: dict) -> dict:
     reg_link = f"{base}/website?hotel_id={hid}#register"
     leader_name = af["important_people"][0]["name"] if af.get("important_people") else f"{short_h} Team"
     greeting = leader_name.split("/")[0].split("(")[0].strip()
+    if "&" in greeting:
+        greeting = f"{short_h} Team"
 
     plain_body = (
         f"Hi {greeting},\n\n"

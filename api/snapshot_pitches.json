@@ -18171,6 +18171,18 @@
    ],
    "memory_logs": [
     {
+     "id": 64,
+     "hotel_id": 38,
+     "event_type": "overnight_call",
+     "old_price": 478.0,
+     "new_price": 249.0,
+     "delta_pct": -47.9,
+     "est_occupancy_pct": 81,
+     "competitor_pattern": "MANUAL_CALL_VERIFIED",
+     "ai_recommendation": "Staff verified courtesy call: 81% occupancy, 7 rooms left, $249 walk-in rate.",
+     "recorded_at": 1795014862.1954148
+    },
+    {
      "id": 63,
      "hotel_id": 38,
      "event_type": "overnight_call",
@@ -18277,18 +18289,6 @@
      "competitor_pattern": "MANUAL_CALL_VERIFIED",
      "ai_recommendation": "Staff verified courtesy call: 81% occupancy, 7 rooms left, $249 walk-in rate.",
      "recorded_at": 1794774221.7328806
-    },
-    {
-     "id": 54,
-     "hotel_id": 38,
-     "event_type": "overnight_call",
-     "old_price": 392.0,
-     "new_price": 249.0,
-     "delta_pct": -36.5,
-     "est_occupancy_pct": 81,
-     "competitor_pattern": "MANUAL_CALL_VERIFIED",
-     "ai_recommendation": "Staff verified courtesy call: 81% occupancy, 7 rooms left, $249 walk-in rate.",
-     "recorded_at": 1794774032.9930935
     }
    ]
   },
