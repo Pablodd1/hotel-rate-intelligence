@@ -110,6 +110,12 @@ def app(environ, start_response):
                 return _reply(start_response, "200 OK", _load_asset(rel), ctype=ctype)
             except FileNotFoundError:
                 return _reply(start_response, "404 Not Found", b"not found", ctype="text/plain")
+        if path == "/robots.txt":
+            return _reply(start_response, "200 OK", _dashboard(os.path.join(_HERE, "dashboard", "robots.txt")), ctype="text/plain; charset=utf-8")
+        if path == "/sitemap.xml":
+            return _reply(start_response, "200 OK", _dashboard(os.path.join(_HERE, "dashboard", "sitemap.xml")), ctype="application/xml; charset=utf-8")
+        if path == "/llms.txt":
+            return _reply(start_response, "200 OK", _dashboard(os.path.join(_HERE, "dashboard", "llms.txt")), ctype="text/plain; charset=utf-8")
         if path in ("/", "/website", "/website.html", "/landing"):
             return _reply(start_response, "200 OK", _dashboard(_WEBSITE_PATH), ctype="text/html; charset=utf-8")
         if path in ("/portal", "/client", "/client_portal.html"):

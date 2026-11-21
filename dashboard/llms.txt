@@ -1,0 +1,24 @@
+# HotelRateIntel (Hotel Rate Intelligence)
+
+> Competitive multi-OTA rate parity monitoring, direct-website BAR comparison, undercut alerts, and RevPAR margin recovery for boutique hotels. Built in Miami Beach by AI Dynamic Pro.
+
+- **Website:** https://hotelrateintel.com/
+- **Creator:** AI Dynamic Pro (https://www.aidynamic.pro) — Founded by Jasmel Acosta
+- **Primary Market:** Miami Beach boutique hotels (portable to any hospitality micro-market)
+
+## Core Capabilities
+1. **Live Multi-OTA Rate Ladder:** Compares Booking.com, Agoda, Expedia, Hotels.com, and Vio against each hotel's official Direct BAR.
+2. **OTA Parity Violation Detection:** Flags `PARITY`, `DIRECT_WIN`, and `UNDERCUT` alerts by 6:00 AM daily.
+3. **Booking Engine & CRS Fingerprinting:** Detects SynXis/Sabre, Cloudbeds, Mews, TravelClick, and Opera.
+4. **RevPAR & Commission Recovery Math:** Quantifies estimated annual direct-booking commission recovery ($45,000–$140,000+/yr).
+
+## SaaS Pricing Tiers
+- **Starter:** $299/month
+- **Growth:** $599/month
+- **Enterprise / Multi-Property:** $1,499/month
+- Includes a 7-day trial and complimentary rate-parity audit.
+
+## Key URLs
+- Landing & Overview: https://hotelrateintel.com/
+- Interactive Client Demo Portal: https://hotelrateintel.com/portal
+- XML Sitemap: https://hotelrateintel.com/sitemap.xml
