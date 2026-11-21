@@ -171,6 +171,65 @@ CREATE TABLE IF NOT EXISTS marketing_campaigns (
   created_at REAL NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_campaigns_status ON marketing_campaigns(approval_status, created_at);
+CREATE TABLE IF NOT EXISTS room_inventory_ops (
+  hotel_id INTEGER PRIMARY KEY REFERENCES hotels(id),
+  total_rooms INTEGER NOT NULL DEFAULT 45,
+  rooms_sold INTEGER NOT NULL DEFAULT 32,
+  ooo_rooms INTEGER NOT NULL DEFAULT 0,
+  oos_rooms INTEGER NOT NULL DEFAULT 0,
+  housekeeping_hold INTEGER NOT NULL DEFAULT 0,
+  status_flags TEXT DEFAULT '[]',
+  operational_tags TEXT DEFAULT '[]',
+  room_types_json TEXT DEFAULT '[]',
+  notes TEXT DEFAULT '',
+  updated_by TEXT DEFAULT 'Reservations Desk',
+  updated_at REAL NOT NULL
+);
+CREATE TABLE IF NOT EXISTS auto_pricing_rules (
+  hotel_id INTEGER PRIMARY KEY REFERENCES hotels(id),
+  mode TEXT NOT NULL DEFAULT 'semi_auto',
+  min_bar_floor REAL NOT NULL DEFAULT 119,
+  max_bar_ceiling REAL NOT NULL DEFAULT 699,
+  compression_occ_threshold INTEGER NOT NULL DEFAULT 85,
+  compression_lift_pct REAL NOT NULL DEFAULT 12.0,
+  parity_auto_protect INTEGER NOT NULL DEFAULT 1,
+  comp_position_target TEXT NOT NULL DEFAULT 'match_avg',
+  telegram_alerts_enabled INTEGER NOT NULL DEFAULT 1,
+  telegram_chat_id TEXT DEFAULT '',
+  alert_tags TEXT DEFAULT '["#OOO","#ParityLeak","#Compression","#Housekeeping"]',
+  updated_at REAL NOT NULL
+);
+CREATE TABLE IF NOT EXISTS pricing_actions_log (
+  id INTEGER PRIMARY KEY,
+  hotel_id INTEGER NOT NULL REFERENCES hotels(id),
+  room_category TEXT DEFAULT 'All Room Types (BAR)',
+  old_bar REAL,
+  new_bar REAL,
+  sellable_rooms INTEGER,
+  net_occupancy_pct REAL,
+  trigger_tags TEXT DEFAULT '[]',
+  reason TEXT NOT NULL,
+  action_status TEXT NOT NULL DEFAULT 'applied',
+  pms_payload TEXT,
+  created_at REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_pricing_actions_hotel ON pricing_actions_log(hotel_id, created_at);
+CREATE TABLE IF NOT EXISTS competitor_inquiries (
+  id INTEGER PRIMARY KEY,
+  requester_hotel_id INTEGER NOT NULL REFERENCES hotels(id),
+  target_hotel_id INTEGER REFERENCES hotels(id),
+  target_hotel_name TEXT NOT NULL,
+  target_email TEXT,
+  inquiry_type TEXT NOT NULL DEFAULT 'courtesy_rate_swap',
+  checkin TEXT,
+  rooms_requested INTEGER DEFAULT 1,
+  subject TEXT,
+  body TEXT NOT NULL,
+  quoted_rate REAL,
+  status TEXT NOT NULL DEFAULT 'drafted',
+  created_at REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_comp_inquiries_req ON competitor_inquiries(requester_hotel_id, created_at);
 """
 
 MIGRATIONS = [
@@ -202,7 +261,7 @@ def open_db(path):
     conn.execute("PRAGMA busy_timeout=15000")
     conn.execute("PRAGMA journal_mode=WAL")
     has_schema = conn.execute(
-        "SELECT 1 FROM sqlite_master WHERE type='table' AND name='marketing_campaigns'"
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name='competitor_inquiries'"
     ).fetchone()
     if not has_schema:
         conn.executescript(SCHEMA)

@@ -13,6 +13,7 @@ _DASH_PATH = os.path.join(_HERE, "dashboard", "index.html")
 _WEBSITE_PATH = os.path.join(_HERE, "dashboard", "website.html")
 _PORTAL_PATH = os.path.join(_HERE, "dashboard", "client_portal.html")
 _MC_PATH = os.path.join(_HERE, "dashboard", "mission_control.html")
+_THEMES_PATH = os.path.join(_HERE, "dashboard", "themes_gallery.html")
 _KEY = os.environ.get("HRI_AUTH_KEY", "hri-miami-2026")
 _dash_cache = None
 
@@ -118,6 +119,8 @@ def app(environ, start_response):
             return _reply(start_response, "200 OK", _dashboard(os.path.join(_HERE, "dashboard", "llms.txt")), ctype="text/plain; charset=utf-8")
         if path in ("/", "/website", "/website.html", "/landing"):
             return _reply(start_response, "200 OK", _dashboard(_WEBSITE_PATH), ctype="text/html; charset=utf-8")
+        if path in ("/themes", "/themes.html", "/design-versions"):
+            return _reply(start_response, "200 OK", _dashboard(_THEMES_PATH), ctype="text/html; charset=utf-8")
         if path in ("/portal", "/client", "/client_portal.html"):
             return _reply(start_response, "200 OK", _dashboard(_PORTAL_PATH), ctype="text/html; charset=utf-8")
         if path in ("/mission-control", "/admin", "/dashboard", "/index.html"):
@@ -296,6 +299,68 @@ def app(environ, start_response):
             "tags": [],
             "compression_events": MIAMI_COMPRESSION_EVENTS,
         }))
+    if path.startswith("/api/client/ops"):
+        import tempfile, time as _t
+        from hri import db as dbmod
+        from hri.ops_engine import (
+            compute_ai_pricing_plan, update_room_ops, update_auto_pricing_rules,
+            apply_ai_pricing_action, send_custom_telegram_ops_alert,
+            list_competitor_inquiries, create_competitor_inquiry, INQUIRY_TEMPLATES,
+        )
+        dh = (params.get("demo_hotel") or [""])[0].strip()
+        tok = (environ.get("HTTP_X_CLIENT_TOKEN") or (params.get("token") or [""])[0]).strip()
+        if not dh and tok.startswith("demo-hotel-"):
+            dh = tok.replace("demo-hotel-", "")
+        hid = int(dh) if dh.isdigit() else 1
+        tmp_db = os.path.join(tempfile.gettempdir(), "hri_vercel_ops.db")
+        conn = dbmod.open_db(tmp_db)
+        try:
+            # Ensure snapshot hotels exist in ephemeral Vercel DB
+            if conn.execute("SELECT COUNT(*) c FROM hotels").fetchone()["c"] == 0:
+                all_hotels = json.loads(_load("snapshot_hotels.json")).get("hotels") or []
+                now_ts = _t.time()
+                for h in all_hotels:
+                    conn.execute(
+                        "INSERT OR IGNORE INTO hotels(id,name,area,est_rooms,booking_engine,est_occupancy_pct,created) VALUES(?,?,?,?,?,?,?)",
+                        (int(h["id"]), h.get("name") or f"Hotel #{h['id']}", h.get("area") or "Miami Beach",
+                         int(h.get("est_rooms") or 45), h.get("booking_engine") or "Direct / SynXis",
+                         int(h.get("est_occupancy_pct") or 74), now_ts),
+                    )
+                    if h.get("price") is not None:
+                        conn.execute(
+                            "INSERT INTO rates(hotel_id,source,nightly_price,parity_status,undercut_pct,scraped_at) VALUES(?,?,?,?,?,?)",
+                            (int(h["id"]), "xotelo", float(h["price"]), h.get("parity_status") or "PARITY",
+                             float(h.get("undercut_pct") or 0.0), now_ts),
+                        )
+                conn.commit()
+            method = environ.get("REQUEST_METHOD", "GET")
+            cfg_min = {"telegram": {"bot_token": os.environ.get("TELEGRAM_BOT_TOKEN", ""), "chat_id": os.environ.get("TELEGRAM_CHAT_ID", "")}}
+            if method == "POST" and path.startswith("/api/client/ops/inventory"):
+                ops = update_room_ops(conn, hid, body)
+                plan = compute_ai_pricing_plan(conn, hid)
+                return _reply(start_response, "200 OK", json.dumps({"ok": True, "ops": ops, "plan": plan}))
+            if method == "POST" and path.startswith("/api/client/ops/rules"):
+                rules = update_auto_pricing_rules(conn, hid, body)
+                plan = compute_ai_pricing_plan(conn, hid)
+                return _reply(start_response, "200 OK", json.dumps({"ok": True, "rules": rules, "plan": plan}))
+            if method == "POST" and path.startswith("/api/client/ops/apply-pricing"):
+                res = apply_ai_pricing_action(conn, cfg_min, hid, body)
+                return _reply(start_response, "200 OK", json.dumps(res))
+            if method == "POST" and path.startswith("/api/client/ops/telegram-alert"):
+                res = send_custom_telegram_ops_alert(conn, cfg_min, hid, message=str(body.get("message") or ""), tags=body.get("tags"))
+                return _reply(start_response, "200 OK", json.dumps(res))
+            if method == "POST" and path.startswith("/api/client/ops/comp-inquiry"):
+                res = create_competitor_inquiry(conn, hid, body)
+                return _reply(start_response, "200 OK", json.dumps(res))
+            plan = compute_ai_pricing_plan(conn, hid)
+            return _reply(start_response, "200 OK", json.dumps({
+                "ok": True,
+                "plan": plan,
+                "inquiries": list_competitor_inquiries(conn, hid),
+                "inquiry_templates": INQUIRY_TEMPLATES,
+            }))
+        finally:
+            conn.close()
     if path.startswith("/api/client/"):
         return _reply(start_response, "200 OK", json.dumps({"ok": True, "status": "preview_saved"}))
     if path.startswith("/api/audit/run") and environ.get("REQUEST_METHOD") == "POST":

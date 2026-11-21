@@ -31,10 +31,10 @@
         "description": "Multi-OTA rate parity monitoring, direct-website BAR comparison, undercut alerts, and RevPAR margin recovery platform for boutique hotels.",
         "offers": {
           "@type": "AggregateOffer",
-          "lowPrice": "299",
-          "highPrice": "1499",
+          "lowPrice": "0",
+          "highPrice": "399",
           "priceCurrency": "USD",
-          "offerCount": "3"
+          "offerCount": "4"
         },
         "creator": {
           "@type": "Organization",
@@ -63,7 +63,7 @@
             "name": "How much does HotelRateIntel cost?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "HotelRateIntel offers three SaaS tiers: $299/month, $599/month, and $1,499/month, with a 7-day trial and complimentary rate-parity audit for boutique hotels."
+              "text": "HotelRateIntel starts with a $0/month Free Starter tier (3 comps), Core at $99/month (10 comps + 6 AM briefs), Pro at $199/month (20 comps + overnight call desk), and Portfolio at $399/month — month-to-month with zero annual lock-in."
             }
           },
           {
@@ -80,67 +80,152 @@
   }
   </script>
   <style>
-    :root {
-      --bg-card: rgba(255, 255, 255, 0.78);
-      --bg-strong: rgba(255, 255, 255, 0.90);
-      --border: rgba(255, 255, 255, 0.92);
-      --line: rgba(15, 23, 42, 0.11);
-      --ink: #0F172A;
-      --sub: #334155;
-      --muted: #475569;
-      --accent: #2563EB;
-      --accent-deep: #1E40AF;
-      --accent-soft: rgba(37, 99, 235, 0.11);
-      --slate-action: #1E3A8A;
-      --ok: #15803D;
-      --danger: #DC2626;
-      --radius: 22px;
+    /* =========================================================================
+       5 MINIMALISTIC, NON-AI HOSPITALITY DESIGN THEMES
+       Default: Version 1 — Warm Limestone & Espresso (Editorial Boutique)
+       Switch live via ?theme=limestone|swiss|linen|sage|graphite or /themes
+       ========================================================================= */
+    :root, [data-theme="limestone"] {
+      --page-bg: #FAF8F5;
+      --bg-card: #FFFFFF;
+      --bg-strong: #FFFFFF;
+      --sec-bg: rgba(255, 255, 255, 0.94);
+      --border: #E7E2DA;
+      --line: #E7E2DA;
+      --ink: #1C1917;
+      --sub: #57534E;
+      --muted: #78716C;
+      --accent: #8C4A2F;
+      --accent-deep: #6D3720;
+      --accent-soft: #F5ECE7;
+      --slate-action: #1C1917;
+      --ok: #1F5E3B;
+      --danger: #B42318;
+      --radius: 14px;
+      --bg-photo-opacity: 0.10;
+    }
+    [data-theme="swiss"] {
+      --page-bg: #F6F6F4;
+      --bg-card: #FFFFFF;
+      --bg-strong: #FFFFFF;
+      --sec-bg: #FFFFFF;
+      --border: #E2E2DC;
+      --line: #E2E2DC;
+      --ink: #111111;
+      --sub: #4A4A46;
+      --muted: #6E6E68;
+      --accent: #1B4332;
+      --accent-deep: #122E22;
+      --accent-soft: #EAF2EE;
+      --slate-action: #111111;
+      --ok: #1B4332;
+      --danger: #A61C1C;
+      --radius: 8px;
+      --bg-photo-opacity: 0.04;
+    }
+    [data-theme="linen"] {
+      --page-bg: #F9F8F6;
+      --bg-card: #FFFFFF;
+      --bg-strong: #FFFFFF;
+      --sec-bg: rgba(255, 255, 255, 0.95);
+      --border: #E5E0D8;
+      --line: #E5E0D8;
+      --ink: #14213D;
+      --sub: #475569;
+      --muted: #64748B;
+      --accent: #9A6B2F;
+      --accent-deep: #7B5321;
+      --accent-soft: #F7F1E6;
+      --slate-action: #14213D;
+      --ok: #1D6142;
+      --danger: #B91C1C;
+      --radius: 12px;
+      --bg-photo-opacity: 0.12;
+    }
+    [data-theme="sage"] {
+      --page-bg: #F3F5F2;
+      --bg-card: #FFFFFF;
+      --bg-strong: #FFFFFF;
+      --sec-bg: rgba(255, 255, 255, 0.95);
+      --border: #DCE2DA;
+      --line: #DCE2DA;
+      --ink: #1E2823;
+      --sub: #4A5A52;
+      --muted: #687870;
+      --accent: #3A6351;
+      --accent-deep: #2B4C3E;
+      --accent-soft: #E9F1ED;
+      --slate-action: #1E2823;
+      --ok: #2D6A4F;
+      --danger: #B42318;
+      --radius: 14px;
+      --bg-photo-opacity: 0.08;
+    }
+    [data-theme="graphite"] {
+      --page-bg: #FAFAFA;
+      --bg-card: #FFFFFF;
+      --bg-strong: #FFFFFF;
+      --sec-bg: #FFFFFF;
+      --border: #E5E5E5;
+      --line: #E5E5E5;
+      --ink: #171717;
+      --sub: #525252;
+      --muted: #737373;
+      --accent: #B4432C;
+      --accent-deep: #8F3320;
+      --accent-soft: #FBECE9;
+      --slate-action: #171717;
+      --ok: #166534;
+      --danger: #B91C1C;
+      --radius: 10px;
+      --bg-photo-opacity: 0.03;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: clip; background: #EFF4FA; }
+    html { scroll-behavior: smooth; overflow-x: clip; background: var(--page-bg); }
     body {
       min-height: 100vh;
       position: relative;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--ink);
-      background: linear-gradient(160deg, rgba(241, 245, 249, 0.65) 0%, rgba(232, 240, 250, 0.58) 55%, rgba(244, 248, 255, 0.65) 100%);
+      background: var(--page-bg);
       overflow-x: clip;
-      line-height: 1.5;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
     }
     .hotel-bg-backdrop {
       position: fixed; inset: -16px; z-index: -1; pointer-events: none;
       background-image: url('/assets/hotel-bg-blur.jpg');
       background-size: cover; background-position: center center;
-      opacity: 0.72;
-      filter: blur(4px) saturate(0.95);
+      opacity: var(--bg-photo-opacity, 0.10);
+      filter: blur(8px) grayscale(20%);
     }
     a { color: inherit; text-decoration: none; }
-    .shell { max-width: 1320px; margin: 0 auto; padding: 14px 18px 96px; }
+    .shell { max-width: 1260px; margin: 0 auto; padding: 14px 18px 96px; }
 
-    /* Sticky Clean Light Glass Header */
+    /* Minimalistic Architectural Header */
     .topbar {
       display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: nowrap;
-      background: rgba(255, 255, 255, 0.86);
-      backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
-      border: 1.5px solid var(--border);
-      border-radius: 22px;
-      padding: 8px 14px;
-      box-shadow: 0 10px 30px rgba(30, 58, 138, 0.06);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 9px 16px;
+      box-shadow: 0 2px 10px rgba(28, 25, 23, 0.04);
       position: sticky; top: 10px; z-index: 40;
       margin-bottom: 18px;
     }
     .brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 13.5px; letter-spacing: -0.02em; white-space: nowrap; flex-shrink: 0; }
     .brand img.logo-mark {
-      width: 28px; height: 28px; border-radius: 8px; object-fit: cover;
-      border: 1px solid rgba(15, 23, 42, 0.08); background: #fff;
+      width: 28px; height: 28px; border-radius: 6px; object-fit: cover;
+      border: 1px solid var(--border); background: #fff;
     }
 
     .nav-links { display: flex; align-items: center; gap: 2px; flex-wrap: nowrap; }
     .nav-pill {
-      color: var(--sub); font-size: 11.5px; font-weight: 700; padding: 6px 9px; border-radius: 999px;
-      transition: all .15s ease; white-space: nowrap;
+      color: var(--sub); font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 8px;
+      transition: background .15s ease, color .15s ease; white-space: nowrap;
     }
-    .nav-pill:hover { background: #fff; color: var(--accent); box-shadow: 0 2px 8px rgba(30,58,138,0.08); }
+    .nav-pill:hover { background: var(--accent-soft); color: var(--accent); }
 
     .nav-ctas { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; flex-shrink: 0; }
     @media (max-width: 1080px) {
@@ -148,30 +233,47 @@
     }
     .btn {
       display: inline-flex; align-items: center; gap: 5px;
-      border: none; cursor: pointer; border-radius: 999px;
-      padding: 8px 14px; font-size: 12px; font-weight: 700;
-      background: var(--slate-action); color: #fff; transition: transform .12s ease, opacity .12s ease; white-space: nowrap;
+      border: none; cursor: pointer; border-radius: 8px;
+      padding: 8px 14px; font-size: 12px; font-weight: 600;
+      background: var(--slate-action); color: #fff; transition: opacity .15s ease; white-space: nowrap;
     }
-    .btn:hover { transform: translateY(-1px); opacity: 0.94; }
+    .btn:hover { opacity: 0.88; }
     .btn.primary { background: var(--accent); color: #fff; }
     .btn.ok { background: var(--ok); color: #fff; }
-    .btn.ghost { background: rgba(255,255,255,0.90); color: var(--ink); border: 1px solid rgba(30, 58, 138, 0.16); }
+    .btn.ghost { background: #FFFFFF; color: var(--ink); border: 1px solid var(--border); }
     .btn.sm { padding: 6px 11px; font-size: 11px; }
 
-    /* Sections & Glass Containers */
+    /* Minimalistic Theme Switcher Pill (Bottom-Left) */
+    .theme-switcher-dock {
+      position: fixed; left: 16px; bottom: 16px; z-index: 60;
+      display: flex; align-items: center; gap: 5px; flex-wrap: wrap;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 999px; padding: 5px 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      font-size: 11px;
+    }
+    .theme-dot-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      border: 1px solid var(--border); background: #fff; color: var(--ink);
+      border-radius: 999px; padding: 4px 9px; font-size: 11px; font-weight: 600; cursor: pointer;
+    }
+    .theme-dot-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .theme-swatch { width: 9px; height: 9px; border-radius: 50%; display: inline-block; border: 1px solid rgba(0,0,0,0.18); }
+
+    /* Clean Architectural Sections */
     .sec {
-      background: rgba(255, 255, 255, 0.62);
-      backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
-      border: 1.5px solid var(--border);
-      border-radius: 28px;
-      padding: 24px;
-      box-shadow: 0 18px 48px rgba(30, 58, 138, 0.06);
-      margin-bottom: 22px;
+      background: var(--sec-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: 0 2px 12px rgba(28, 25, 23, 0.03);
+      margin-bottom: 20px;
       scroll-margin-top: 76px;
     }
     .sec-head { margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
-    .sec-head h2 { font-size: 24px; font-weight: 900; letter-spacing: -0.025em; margin-top: 4px; color: var(--ink); }
-    .sec-head p { font-size: 13px; color: var(--sub); max-width: 740px; }
+    .sec-head h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.025em; margin-top: 4px; color: var(--ink); }
+    .sec-head p { font-size: 13.5px; color: var(--sub); max-width: 740px; }
 
     .card {
       background: var(--bg-card);
@@ -641,33 +743,33 @@
 
     <!-- Aggressive Consultation Guarantee Tiers -->
     <div class="grid-3" style="margin-bottom:16px;">
-      <div class="card dark" style="border:1.5px solid rgba(37, 99, 235, 0.35);">
-        <span class="badge blue-solid">AGGRESSIVE CONSULTATION GUARANTEE</span>
-        <h3 style="font-size:18px; font-weight:900; color:#0F172A; margin:8px 0 4px;">48-Hour AI Workflow Audit + Live Prototype</h3>
-        <div style="font-size:32px; font-weight:900; color:#1D4ED8; margin:4px 0;">$99 <span style="font-size:12px; color:#475569; font-weight:700;">one-time · $0 risk</span></div>
-        <p style="font-size:12px; color:#1E293B; line-height:1.55; margin-bottom:10px;">
-          <b>Ironclad Guarantee:</b> Book a 60-minute executive process &amp; margin teardown with our lead architects and receive a <b>working custom AI prototype in 48 hours</b>—guaranteed to uncover at least <b>$2,500/month ($30,000/year)</b> in payroll and workflow savings, or you pay <b>$0 (100% refunded)</b>. Plus 100% of your $99 credits toward deployment.
+      <div class="card" style="background:var(--accent-soft); border:1.5px solid var(--accent);">
+        <span class="badge blue-solid" style="background:var(--accent); color:#fff;">$99 HOSPITALITY AI AUDIT · 48-HR PROTOTYPE</span>
+        <h3 style="font-size:18px; font-weight:800; color:var(--ink); margin:8px 0 4px;">48-Hour Hotel Workflow &amp; RevPAR Teardown</h3>
+        <div style="font-size:32px; font-weight:900; color:var(--accent); margin:4px 0;">$99 <span style="font-size:12px; color:var(--sub); font-weight:600;">one-time · $0 risk</span></div>
+        <p style="font-size:12.5px; color:var(--ink); line-height:1.55; margin-bottom:10px;">
+          <b>Ironclad Hotelier Guarantee:</b> Sit down for 60 minutes with our Miami hospitality engineers. We audit your <b>PMS, CRS, Channel Manager, Night Audit, and OTA parity</b> and deliver a <b>working custom prototype in 48 hours</b>—guaranteed to uncover at least <b>$2,500/month ($30,000/yr)</b> in RevPAR lift &amp; front-office payroll savings, or <b>100% refunded</b>. Credits 100% toward deployment.
         </p>
-        <a class="btn primary" style="width:100%; justify-content:center;" href="https://www.aidynamic.pro/booking" target="_blank" rel="noopener">Claim $99 Audit + Free Prototype →</a>
+        <a class="btn primary" style="width:100%; justify-content:center;" href="https://www.aidynamic.pro/booking" target="_blank" rel="noopener">Book $99 Hospitality AI Audit →</a>
       </div>
 
       <div class="card" style="background:var(--bg-strong);">
-        <span class="badge ok">MULTIPLIER &amp; TURNKEY AI DEVELOPERS</span>
-        <h3 style="font-size:17px; font-weight:800; margin:8px 0 6px;">Deploy Custom Voice, CRM &amp; Staff Training</h3>
+        <span class="badge ok">TURNKEY HOTEL AI SOLUTIONS (BUILT FOR FRONT OFFICE)</span>
+        <h3 style="font-size:17px; font-weight:800; margin:8px 0 6px;">Custom PMS, Voice Concierge &amp; Yield Automation</h3>
         <ul class="clean" style="margin-bottom:12px;">
-          <li><strong>Department AI Bootcamp ($497 flat, up to 15 staff):</strong> Half-day live hands-on workflow training so <em>1 trained employee produces the output of 5</em> (with 30-day engineering Q&amp;A).</li>
-          <li><strong>Turnkey Private AI Agent &amp; Voice ($997 launch / 7–14 days):</strong> Zero-training private RAG + <b>JAss 24/7 Bilingual Voice &amp; WhatsApp Receptionist</b> ($297/mo managed) connected to your PMS &amp; CRM.</li>
-          <li><strong>Matchman Suite ($2,500/mo) &amp; Sovereign AI Overlord ($5,000/mo):</strong> Dedicated private VPS/Docker LLMs (Claude, Gemini, OpenAI, Nous Hermes, Llama 3), YOLOv8/DINOv2 vision &amp; full <em>Agents of Agents</em> orchestration.</li>
+          <li><strong>Front-Office &amp; Reservations AI Bootcamp ($497 flat, up to 15 staff):</strong> Half-day live training for Reservations, Front Desk &amp; Night Audit so <em>1 shift lead runs comp-set yield, group RFPs &amp; parity disputes 5× faster</em>.</li>
+          <li><strong>24/7 Bilingual Hotel Voice &amp; WhatsApp Desk ($997 launch / 7–14 days):</strong> Answers late-night walk-in BAR checks, early check-in/late check-out requests, resort-fee questions &amp; direct bookings straight into Opera, Cloudbeds, Mews, or SynXis.</li>
+          <li><strong>Custom Yield &amp; Portfolio Agents ($2,500–$5,000/mo):</strong> Dedicated private Docker/VPS agents for multi-property owners: automated <b>STR/Comp-Set indexing, bedbank parity policing, and group wash forecasting</b>.</li>
         </ul>
-        <a class="btn" style="width:100%; justify-content:center;" href="https://www.aidynamic.pro/offer" target="_blank" rel="noopener">See Full Engineering Plans on aidynamic.pro →</a>
+        <a class="btn" style="width:100%; justify-content:center;" href="https://www.aidynamic.pro/offer" target="_blank" rel="noopener">Explore Custom Hospitality AI Plans →</a>
       </div>
 
       <div class="card" style="background:var(--bg-strong); display:flex; flex-direction:column; justify-content:space-between;">
         <div>
-          <span class="badge blue">DIRECT DEVELOPER ACCESS &amp; ECOSYSTEM</span>
-          <h3 style="font-size:17px; font-weight:800; margin:8px 0 6px;">Senior AI Builders · Brickell &amp; North Miami</h3>
+          <span class="badge blue">SUPPORT YOUR LOCAL MIAMI HOSPITALITY</span>
+          <h3 style="font-size:17px; font-weight:800; margin:8px 0 6px;">Built in Miami-Dade · Direct Founder Access</h3>
           <p style="font-size:12px; color:var(--sub); line-height:1.5; margin-bottom:10px;">
-            We build sovereign production software across hospitality, healthcare, legal, real estate, and construction:
+            Local Miami engineers building sovereign production systems for independent hotels, healthcare, legal, and real estate:
           </p>
           <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
             <a class="backlink-chip" href="https://www.aidynamic.pro/" target="_blank" rel="noopener">AI Dynamic Pro ↗</a>
@@ -678,14 +780,57 @@
             <a class="backlink-chip" href="https://jasmiamimethod.fit/" target="_blank" rel="noopener">JAS Miami Method ↗</a>
           </div>
         </div>
-        <div style="background:rgba(241,245,249,0.95); border:1px solid var(--line); border-radius:14px; padding:10px; font-size:11.5px;">
-          <div style="font-weight:800; margin-bottom:6px;">Direct Consultation Channels (EN / ES):</div>
+        <div style="background:var(--page-bg); border:1px solid var(--line); border-radius:10px; padding:10px; font-size:11.5px;">
+          <div style="font-weight:800; margin-bottom:6px;">Direct Miami Consultation Desk (EN / ES):</div>
           <div style="display:flex; gap:6px; flex-wrap:wrap;">
             <a class="btn primary sm" href="tel:+17869708366">📞 Call (786) 970-8366</a>
             <a class="btn ok sm" href="https://wa.me/17869708366" target="_blank" rel="noopener">💬 WhatsApp</a>
             <a class="btn ghost sm" href="https://t.me/+17869708366" target="_blank" rel="noopener">✈️ Telegram</a>
             <a class="btn ghost sm" href="mailto:jasmelacosta@gmail.com">✉️ Email Team</a>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real Hotel Industry Solutions Using Authentic Hospitality Jargon -->
+    <div class="card" style="background:var(--bg-strong); margin-top:4px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+        <div>
+          <span class="badge dark">BUILT FOR HOTELIERS · REAL FRONT-OFFICE &amp; REVENUE TERMINOLOGY</span>
+          <h3 style="font-size:17px; font-weight:800; margin-top:4px;">6 Hotel-Specific Operations We Automate Out of the Box</h3>
+        </div>
+        <a class="btn ghost sm" href="/portal?demo=1">Test Live in Client WebApp →</a>
+      </div>
+      <div class="grid-3">
+        <div style="padding:12px; border:1px solid var(--line); border-radius:10px; background:var(--page-bg);">
+          <div style="font-size:11px; font-weight:800; color:var(--accent); text-transform:uppercase;">01 · OOO / OOS / Housekeeping Hold</div>
+          <div style="font-size:13.5px; font-weight:800; margin:3px 0;">True Net Sellable Inventory &amp; Compression</div>
+          <p style="font-size:12px; color:var(--sub);">Deducts Out-of-Order (AC/plumbing), Out-of-Service, and dirty housekeeping holds live—recalculating true occupancy &amp; triggering Stop-Sell before you walk a guest.</p>
+        </div>
+        <div style="padding:12px; border:1px solid var(--line); border-radius:10px; background:var(--page-bg);">
+          <div style="font-size:11px; font-weight:800; color:var(--accent); text-transform:uppercase;">02 · BAR / RACK &amp; AI Auto-Pricing</div>
+          <div style="font-size:13.5px; font-weight:800; margin:3px 0;">Guardrailed Yield + CTA / Min-LOS Rules</div>
+          <p style="font-size:12px; color:var(--sub);">Protects floor/ceiling BAR, applies Closed-to-Arrival (CTA) or 2-night Min-LOS on compression weekends, and exports ready-to-load SynXis, Cloudbeds &amp; Mews payloads.</p>
+        </div>
+        <div style="padding:12px; border:1px solid var(--line); border-radius:10px; background:var(--page-bg);">
+          <div style="font-size:11px; font-weight:800; color:var(--accent); text-transform:uppercase;">03 · Bedbank &amp; Wholesale Parity Shield</div>
+          <div style="font-size:13.5px; font-weight:800; margin:3px 0;">Catch Vio / Agoda / FIT Undercuts</div>
+          <p style="font-size:12px; color:var(--sub);">Flags static wholesale leaks undercutting your direct BAR &amp; true out-the-door checkout (BAR + resort fee + 14% Miami-Dade tax) so you reclaim 18% OTA commissions.</p>
+        </div>
+        <div style="padding:12px; border:1px solid var(--line); border-radius:10px; background:var(--page-bg);">
+          <div style="font-size:11px; font-weight:800; color:var(--accent); text-transform:uppercase;">04 · Night Audit Courtesy Call-Around</div>
+          <div style="font-size:13.5px; font-weight:800; margin:3px 0;">Overnight Walk-In BAR &amp; Overflow Swap</div>
+          <p style="font-size:12px; color:var(--sub);">Standardized 11:30 PM–3:00 AM front-desk call scripts and 1-click neighbor rate-swap emails to verify real-time sold-out status and walk-in RACK rates on your strip.</p>
+        </div>
+        <div style="padding:12px; border:1px solid var(--line); border-radius:10px; background:var(--page-bg);">
+          <div style="font-size:11px; font-weight:800; color:var(--accent); text-transform:uppercase;">05 · Room-Type Mix &amp; Suite Switches</div>
+          <div style="font-size:13.5px; font-weight:800; margin:3px 0;">Dynamic Inventory &amp; Per-Category Stop-Sell</div>
+          <p style="font-size:12px; color:var(--sub);">Modify Standard Queen, Deluxe King, and connecting Ocean Suite counts on the fly during renovations, group blocks, or complimentary upgrades.</p>
+        </div>
+        <div style="padding:12px; border:1px solid var(--line); border-radius:10px; background:var(--page-bg);">
+          <div style="font-size:11px; font-weight:800; color:var(--accent); text-transform:uppercase;">06 · Tagged Telegram Shift Alerts</div>
+          <div style="font-size:13.5px; font-weight:800; margin:3px 0;">#OOO · #Housekeeping · #ParityLeak</div>
+          <p style="font-size:12px; color:var(--sub);">Zero-cost instant Telegram handoffs between Night Audit, Housekeeping, Front Office Manager, and GM whenever occupancy spikes or a parity leak hits.</p>
         </div>
       </div>
     </div>
@@ -1199,7 +1344,32 @@
     msgEl.textContent = d.ok ? d.message : (d.error || 'Enter valid phone #');
   }
 
+  function setMinimalTheme(themeName) {
+    const valid = ['limestone', 'swiss', 'linen', 'sage', 'graphite'];
+    const t = valid.includes(themeName) ? themeName : 'limestone';
+    document.documentElement.setAttribute('data-theme', t);
+    localStorage.setItem('hri_minimal_theme', t);
+    document.querySelectorAll('.theme-dot-btn').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-t') === t);
+    });
+  }
+  (function initMinimalTheme() {
+    const p = new URLSearchParams(window.location.search);
+    const qTheme = p.get('theme');
+    const saved = localStorage.getItem('hri_minimal_theme') || 'limestone';
+    setMinimalTheme(qTheme || saved);
+  })();
+
   initWebsite();
 </script>
+<div class="theme-switcher-dock" aria-label="Minimalistic Design Versions">
+  <span style="font-weight:700; color:var(--muted); margin-right:2px;">Design:</span>
+  <button class="theme-dot-btn" data-t="limestone" onclick="setMinimalTheme('limestone')"><span class="theme-swatch" style="background:#8C4A2F;"></span>1. Limestone</button>
+  <button class="theme-dot-btn" data-t="swiss" onclick="setMinimalTheme('swiss')"><span class="theme-swatch" style="background:#1B4332;"></span>2. Swiss</button>
+  <button class="theme-dot-btn" data-t="linen" onclick="setMinimalTheme('linen')"><span class="theme-swatch" style="background:#14213D;"></span>3. Linen</button>
+  <button class="theme-dot-btn" data-t="sage" onclick="setMinimalTheme('sage')"><span class="theme-swatch" style="background:#3A6351;"></span>4. Sage</button>
+  <button class="theme-dot-btn" data-t="graphite" onclick="setMinimalTheme('graphite')"><span class="theme-swatch" style="background:#B4432C;"></span>5. Graphite</button>
+  <a href="/themes" style="font-weight:700; color:var(--accent); padding:0 5px;">Compare All 5 →</a>
+</div>
 </body>
 </html>

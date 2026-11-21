@@ -5,28 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hotel Client Portal — Isolated Comp-Set Rate Scraper, Memory & Strategy</title>
 <style>
-  :root {
-    --ink: #0F172A;
-    --sub: #334155;
-    --muted: #475569;
-    --accent: #2563EB;
-    --accent-deep: #1E40AF;
-    --accent-soft: rgba(37, 99, 235, 0.11);
-    --slate-action: #1E3A8A;
-    --ok: #15803D;
-    --danger: #DC2626;
-    --glass-window: rgba(255, 255, 255, 0.64);
-    --glass-card: rgba(255, 255, 255, 0.84);
-    --glass-border: rgba(255, 255, 255, 0.94);
+  :root, [data-theme="limestone"] {
+    --page-bg: #FAF8F5;
+    --ink: #1C1917;
+    --sub: #57534E;
+    --muted: #78716C;
+    --accent: #8C4A2F;
+    --accent-deep: #6D3720;
+    --accent-soft: #F5ECE7;
+    --slate-action: #1C1917;
+    --ok: #1F5E3B;
+    --danger: #B42318;
+    --glass-window: #FFFFFF;
+    --glass-card: #FFFFFF;
+    --glass-border: #E7E2DA;
+  }
+  [data-theme="swiss"] {
+    --page-bg: #F6F6F4; --ink: #111111; --sub: #4A4A46; --muted: #6E6E68;
+    --accent: #1B4332; --accent-deep: #122E22; --accent-soft: #EAF2EE;
+    --slate-action: #111111; --ok: #1B4332; --danger: #A61C1C;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E2E2DC;
+  }
+  [data-theme="linen"] {
+    --page-bg: #F9F8F6; --ink: #14213D; --sub: #475569; --muted: #64748B;
+    --accent: #9A6B2F; --accent-deep: #7B5321; --accent-soft: #F7F1E6;
+    --slate-action: #14213D; --ok: #1D6142; --danger: #B91C1C;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E5E0D8;
+  }
+  [data-theme="sage"] {
+    --page-bg: #F3F5F2; --ink: #1E2823; --sub: #4A5A52; --muted: #687870;
+    --accent: #3A6351; --accent-deep: #2B4C3E; --accent-soft: #E9F1ED;
+    --slate-action: #1E2823; --ok: #2D6A4F; --danger: #B42318;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #DCE2DA;
+  }
+  [data-theme="graphite"] {
+    --page-bg: #FAFAFA; --ink: #171717; --sub: #525252; --muted: #737373;
+    --accent: #B4432C; --accent-deep: #8F3320; --accent-soft: #FBECE9;
+    --slate-action: #171717; --ok: #166534; --danger: #B91C1C;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E5E5E5;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { overflow-x: clip; background: #EFF4FA; }
+  html { overflow-x: clip; background: var(--page-bg); }
   body {
     min-height: 100vh;
     position: relative;
-    background: linear-gradient(160deg, rgba(241, 245, 249, 0.65) 0%, rgba(232, 240, 250, 0.58) 55%, rgba(244, 248, 255, 0.65) 100%);
+    background: var(--page-bg);
     color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     padding: 14px 20px 44px;
     overflow-x: clip;
   }
@@ -34,69 +59,67 @@
     position: fixed; inset: -16px; z-index: -1; pointer-events: none;
     background-image: url('/assets/hotel-bg-blur.jpg');
     background-size: cover; background-position: center center;
-    opacity: 0.72;
-    filter: blur(4px) saturate(0.95);
+    opacity: 0.06;
+    filter: blur(8px) grayscale(25%);
   }
 
-  /* ── Top Frosted Client Navigation Bar ── */
+  /* ── Top Minimalist Client Navigation Bar ── */
   .client-topbar {
-    background: rgba(255, 255, 255, 0.86);
-    backdrop-filter: blur(22px) saturate(145%);
-    border: 1.5px solid var(--glass-border);
-    border-radius: 22px;
-    padding: 8px 14px;
+    background: #FFFFFF;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 9px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
     flex-wrap: nowrap;
-    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.06);
+    box-shadow: 0 2px 10px rgba(28, 25, 23, 0.04);
     margin-bottom: 12px;
   }
   @media (max-width: 1180px) { .client-topbar { flex-wrap: wrap; } }
   .brand-pill {
     display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
-    background: rgba(255, 255, 255, 0.94); border: 1px solid rgba(37, 99, 235, 0.16);
-    padding: 5px 11px 5px 6px; border-radius: 999px; font-weight: 800; font-size: 12px; color: var(--ink);
+    background: var(--page-bg); border: 1px solid var(--glass-border);
+    padding: 5px 11px 5px 6px; border-radius: 8px; font-weight: 800; font-size: 12px; color: var(--ink);
   }
   .logo-mark {
-    width: 22px; height: 22px; border-radius: 6px; object-fit: cover;
-    border: 1px solid rgba(15, 23, 42, 0.08); background: #fff;
+    width: 22px; height: 22px; border-radius: 5px; object-fit: cover;
+    border: 1px solid var(--glass-border); background: #fff;
   }
-  .dot-live { width: 8px; height: 8px; border-radius: 50%; background: #16a34a; box-shadow: 0 0 8px rgba(22, 163, 74, 0.65); }
+  .dot-live { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
   .tab-pills {
-    display: inline-flex; gap: 3px; background: rgba(241, 245, 249, 0.90);
-    padding: 3px; border-radius: 999px; border: 1px solid rgba(37, 99, 235, 0.12); flex-wrap: nowrap;
+    display: inline-flex; gap: 3px; background: var(--page-bg);
+    padding: 3px; border-radius: 10px; border: 1px solid var(--glass-border); flex-wrap: nowrap;
   }
   .tab-btn {
     border: none; background: transparent; color: var(--sub); white-space: nowrap;
-    font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 999px; cursor: pointer;
+    font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 7px; cursor: pointer;
     transition: all .15s ease;
   }
-  .tab-btn.active { background: var(--accent); color: #fff; font-weight: 800; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); }
+  .tab-btn.active { background: var(--slate-action); color: #fff; font-weight: 700; }
 
   .btn {
-    border: none; border-radius: 999px; padding: 6px 11px; font-size: 11px; font-weight: 700; white-space: nowrap;
+    border: none; border-radius: 8px; padding: 7px 12px; font-size: 11.5px; font-weight: 600; white-space: nowrap;
     cursor: pointer; display: inline-flex; align-items: center; gap: 5px; text-decoration: none;
-    background: var(--slate-action); color: #fff; transition: transform .12s ease, opacity .12s ease;
+    background: var(--slate-action); color: #fff; transition: opacity .15s ease;
   }
-  .btn:hover { transform: translateY(-1px); opacity: 0.94; }
-  .btn.gold { background: var(--accent); color: #fff; border: 1px solid rgba(37, 99, 235, 0.25); }
-  .btn.ghost { background: rgba(255,255,255,0.92); color: var(--ink); border: 1px solid rgba(30, 58, 138, 0.18); }
+  .btn:hover { opacity: 0.88; }
+  .btn.gold { background: var(--accent); color: #fff; }
+  .btn.ghost { background: #FFFFFF; color: var(--ink); border: 1px solid var(--glass-border); }
   .btn.xs { padding: 4px 9px; font-size: 10.5px; }
 
   /* ── Tier Switcher & Isolation Banner ── */
   .isolation-strip {
-    background: linear-gradient(135deg, rgba(235, 244, 255, 0.94) 0%, rgba(221, 235, 254, 0.90) 100%);
+    background: var(--accent-soft);
     color: var(--ink);
-    border: 1.5px solid rgba(37, 99, 235, 0.26);
-    border-radius: 20px; padding: 10px 18px; margin-bottom: 12px;
+    border: 1px solid var(--glass-border);
+    border-radius: 12px; padding: 10px 16px; margin-bottom: 12px;
     display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.06);
   }
   .tier-switch-pills { display: inline-flex; gap: 5px; align-items: center; flex-wrap: wrap; }
   .tier-pill {
-    border: 1px solid rgba(37, 99, 235, 0.24); background: rgba(255, 255, 255, 0.92); color: var(--ink);
+    border: 1px solid var(--glass-border); background: #FFFFFF; color: var(--ink);
     font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 999px; cursor: pointer;
   }
   .tier-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 800; }
@@ -233,10 +256,12 @@
     </div>
 
     <div class="tab-pills">
-      <button class="tab-btn active" id="cbtn-comp" onclick="switchClientTab('comp')">1. Comp-Set &amp; Rates</button>
-      <button class="tab-btn" id="cbtn-memory" onclick="switchClientTab('memory')">2. Memory &amp; Tags</button>
-      <button class="tab-btn" id="cbtn-calls" onclick="switchClientTab('calls')">3. Call Desk</button>
-      <button class="tab-btn" id="cbtn-tiers" onclick="switchClientTab('tiers')">4. Compare Tiers ($0–$199)</button>
+      <button class="tab-btn active" id="cbtn-comp" onclick="switchClientTab('comp')">1. Comp-Set</button>
+      <button class="tab-btn" id="cbtn-ops" onclick="switchClientTab('ops')">2. Room Ops (OOO/OOS)</button>
+      <button class="tab-btn" id="cbtn-autoprice" onclick="switchClientTab('autoprice')">3. AI Auto-Price</button>
+      <button class="tab-btn" id="cbtn-memory" onclick="switchClientTab('memory')">4. Memory &amp; Tags</button>
+      <button class="tab-btn" id="cbtn-calls" onclick="switchClientTab('calls')">5. Call &amp; Email Desk</button>
+      <button class="tab-btn" id="cbtn-tiers" onclick="switchClientTab('tiers')">6. Tiers</button>
     </div>
 
     <div style="display:flex; align-items:center; gap:5px; flex-shrink:0;">
@@ -507,6 +532,240 @@
       </div>
     </section>
 
+    <!-- ====================================================================
+         TAB: ROOM INVENTORY OPS (OOO / OOS / HOUSEKEEPING / ROOM SWITCHES)
+         ==================================================================== -->
+    <section class="tab-pane" id="ctab-ops">
+      <div class="kpi-row">
+        <div class="kpi-box">
+          <div class="lbl">Total Physical Rooms</div>
+          <div class="val" id="opsKpiTotal">45</div>
+          <div class="sub">Editable anytime (switches / reno)</div>
+        </div>
+        <div class="kpi-box">
+          <div class="lbl">Offline (OOO + OOS + HK)</div>
+          <div class="val" id="opsKpiOffline" style="color:#dc2626;">0</div>
+          <div class="sub" id="opsKpiOfflineSub">0 OOO · 0 OOS · 0 HK Hold</div>
+        </div>
+        <div class="kpi-box">
+          <div class="lbl">True Sellable Rooms</div>
+          <div class="val" id="opsKpiSellable">45</div>
+          <div class="sub" id="opsKpiLeft">13 rooms left to sell</div>
+        </div>
+        <div class="kpi-box">
+          <div class="lbl">True Net Occupancy</div>
+          <div class="val" id="opsKpiNetOcc">74%</div>
+          <div class="sub" id="opsKpiGrossDelta">Gross 74% (+0% compression)</div>
+        </div>
+        <div class="kpi-box">
+          <div class="lbl">AI Pricing Verdict</div>
+          <div class="val" id="opsKpiAiBar" style="font-size:21px;">$220</div>
+          <div class="sub" id="opsKpiVerdict">HOLD_BAR</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap:14px;">
+        <div class="glass-card">
+          <span class="badge gold">LIVE RESERVATIONS INVENTORY DESK</span>
+          <h3 style="font-size:16px; font-weight:800; margin:6px 0 4px;">Adjust Rooms, OOO, OOS &amp; Housekeeping Holds</h3>
+          <p style="font-size:12px; color:var(--sub); margin-bottom:12px;">
+            When an AC breaks (OOO), a room is pulled for paint (OOS), housekeeping is short-staffed, or suites are switched, update below. True occupancy and AI pricing recalculate immediately.
+          </p>
+
+          <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:8px; margin-bottom:12px;">
+            <div>
+              <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px;">TOTAL ROOMS</label>
+              <input class="inp" type="number" id="opsTotalRooms" min="1" value="45">
+            </div>
+            <div>
+              <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px;">ROOMS SOLD</label>
+              <input class="inp" type="number" id="opsRoomsSold" min="0" value="32">
+            </div>
+            <div>
+              <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px; color:#dc2626;">OOO (OUT OF ORDER)</label>
+              <input class="inp" type="number" id="opsOooRooms" min="0" value="0">
+            </div>
+            <div>
+              <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px; color:#b45309;">OOS (OUT OF SERVICE)</label>
+              <input class="inp" type="number" id="opsOosRooms" min="0" value="0">
+            </div>
+            <div>
+              <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px; color:#7c3aed;">HK HOLD (DIRTY)</label>
+              <input class="inp" type="number" id="opsHkHold" min="0" value="0">
+            </div>
+          </div>
+
+          <div style="margin-bottom:10px;">
+            <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:5px;">ACTIVE HOTEL STATUS FLAGS</label>
+            <div id="opsFlagsWrap" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+          </div>
+
+          <div style="margin-bottom:10px;">
+            <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:5px;">OPERATIONAL / TELEGRAM TAGS</label>
+            <div id="opsTagsWrap" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+          </div>
+
+          <div style="margin-bottom:10px;">
+            <label style="font-size:10.5px; font-weight:800; display:block; margin-bottom:3px;">SHIFT HANDOFF NOTE (FRONT DESK / HOUSEKEEPING / MAINTENANCE)</label>
+            <input class="inp" type="text" id="opsNotesInput" placeholder="e.g. Rm 204 & 208 AC down (OOO), 3 housekeepers out -> close discount OTAs">
+          </div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+            <button class="btn" onclick="saveRoomOpsInventory()">Save Inventory &amp; Recalculate AI Pricing</button>
+            <button class="btn gold" onclick="sendTelegramOpsAlertNow()">Send Telegram Shift Alert</button>
+            <span id="opsSaveMsg" style="font-size:11.5px; font-weight:700;"></span>
+          </div>
+          <pre id="opsTelegramPreview" style="display:none; margin-top:10px; padding:10px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; font-size:11px; white-space:pre-wrap;"></pre>
+        </div>
+
+        <div class="glass-card">
+          <span class="badge dark">ROOM CATEGORY MIX &amp; SWITCHER</span>
+          <h3 style="font-size:16px; font-weight:800; margin:6px 0 4px;">Per-Room-Type Inventory, OOO &amp; Stop-Sell</h3>
+          <p style="font-size:12px; color:var(--sub); margin-bottom:10px;">
+            Modify room counts when switching connecting rooms or upgrading suites, and toggle Stop-Sell per room category.
+          </p>
+          <table class="portal-tbl">
+            <thead>
+              <tr>
+                <th>Room Category</th>
+                <th>Total</th>
+                <th>OOO</th>
+                <th>OOS</th>
+                <th>Current BAR</th>
+                <th>Stop-Sell</th>
+              </tr>
+            </thead>
+            <tbody id="opsRoomTypesBody"></tbody>
+          </table>
+          <div style="margin-top:10px; display:flex; gap:8px;">
+            <button class="btn ghost" onclick="addRoomCategoryRow()">+ Add Room Category</button>
+            <button class="btn" onclick="saveRoomOpsInventory()">Update Room Categories</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB: AI AUTO-PRICING STRATEGY ENGINE & COMPETITOR EMAIL INQUIRY DESK
+         ==================================================================== -->
+    <section class="tab-pane" id="ctab-autoprice">
+      <div style="display:grid; grid-template-columns: 1.05fr 1.25fr; gap:14px;">
+        <!-- Left: Guardrails & Mode -->
+        <div class="glass-card">
+          <span class="badge gold">AI AUTO-PRICING GUARDRAILS</span>
+          <h3 style="font-size:16px; font-weight:800; margin:6px 0 4px;">Automated Pricing Rules &amp; Telegram Alerts</h3>
+          <p style="font-size:12px; color:var(--sub); margin-bottom:12px;">
+            Control exactly how the AI reacts to competitor moves, OTA undercuts, and OOO/Housekeeping occupancy compression.
+          </p>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:10px;">
+            <div>
+              <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px;">EXECUTION MODE</label>
+              <select class="inp" id="ruleMode">
+                <option value="advisory">Advisory Only (Recommend)</option>
+                <option value="semi_auto">Semi-Auto (1-Click Apply)</option>
+                <option value="auto_pilot">Auto-Pilot (Within Guardrails)</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px;">COMP-SET POSITIONING</label>
+              <select class="inp" id="ruleCompPos">
+                <option value="match_avg">Match Corridor Average</option>
+                <option value="below_avg_5pct">Undercut Corridor Avg (-5%)</option>
+                <option value="above_avg_5pct">Premium Above Corridor (+5%)</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px;">MIN BAR FLOOR ($)</label>
+              <input class="inp" type="number" id="ruleFloor" value="119">
+            </div>
+            <div>
+              <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px;">MAX BAR CEILING ($)</label>
+              <input class="inp" type="number" id="ruleCeiling" value="699">
+            </div>
+            <div>
+              <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px;">COMPRESSION TRIGGER (%)</label>
+              <input class="inp" type="number" id="ruleCompThr" value="85">
+            </div>
+            <div>
+              <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px;">COMPRESSION LIFT (+%)</label>
+              <input class="inp" type="number" id="ruleCompLift" value="12">
+            </div>
+          </div>
+          <div style="margin-bottom:10px;">
+            <label style="font-size:10px; font-weight:800; display:block; margin-bottom:3px;">TELEGRAM ALERT CHAT ID (OPTIONAL OVERRIDE)</label>
+            <input class="inp" type="text" id="ruleTgChat" placeholder="e.g. -1001234567890 or @miami_res_desk">
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <button class="btn" onclick="saveAutoPricingRules()">Save Guardrails</button>
+            <span id="ruleSaveMsg" style="font-size:11.5px; font-weight:700;"></span>
+          </div>
+
+          <hr style="border:none; border-top:1px solid rgba(15,23,42,0.10); margin:14px 0;">
+          <span class="badge dark">COMPETITOR EMAIL RATE INQUIRY DESK</span>
+          <h4 style="font-size:14px; font-weight:800; margin:6px 0 4px;">Email a Competitor for Walk-In / Group Rates</h4>
+          <p style="font-size:11.5px; color:var(--sub); margin-bottom:8px;">
+            Complement overnight phone call-arounds by drafting polite courtesy rate-swap or overflow inquiry emails to your assigned comp-set and logging their quoted rates.
+          </p>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
+            <select class="inp" id="inqTargetHotel"></select>
+            <select class="inp" id="inqType">
+              <option value="courtesy_rate_swap">Courtesy Neighbor Rate Swap</option>
+              <option value="group_overflow_check">Small Group / Overflow Inquiry</option>
+            </select>
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr auto; gap:8px; margin-bottom:8px;">
+            <input class="inp" type="number" id="inqRooms" value="2" min="1" placeholder="Rooms">
+            <input class="inp" type="number" id="inqQuotedRate" placeholder="Logged Reply Rate ($) optional">
+            <button class="btn gold" onclick="submitCompetitorInquiry()">Draft / Log Inquiry</button>
+          </div>
+          <div id="inqFeedback" style="font-size:11.5px; font-weight:700; margin-bottom:6px;"></div>
+          <div id="inqHistoryList" style="display:flex; flex-direction:column; gap:6px; max-height:180px; overflow-y:auto;"></div>
+        </div>
+
+        <!-- Right: Live AI Pricing Decision & PMS Sync -->
+        <div class="glass-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+            <div>
+              <span class="badge ok" id="aiVerdictBadge">HOLD_BAR</span>
+              <h3 style="font-size:17px; font-weight:900; margin-top:4px;">Live AI Auto-Pricing Decision &amp; PMS Sync</h3>
+            </div>
+            <button class="btn" onclick="applyAiPricingNow()">Apply AI Price Change &amp; Alert Telegram</button>
+          </div>
+
+          <div id="aiReasonsBox" style="background:rgba(255,255,255,0.85); border:1px solid rgba(15,23,42,0.12); border-radius:14px; padding:12px; font-size:12.5px; line-height:1.55; margin-bottom:12px;"></div>
+
+          <table class="portal-tbl" style="margin-bottom:12px;">
+            <thead>
+              <tr>
+                <th>Room Category</th>
+                <th>Sellable</th>
+                <th>Current BAR</th>
+                <th>AI Recommended</th>
+                <th>Delta</th>
+                <th>Channel Status</th>
+              </tr>
+            </thead>
+            <tbody id="aiRoomRecsBody"></tbody>
+          </table>
+
+          <div id="aiApplyFeedback" style="font-size:12px; font-weight:700; margin-bottom:10px;"></div>
+
+          <h4 style="font-size:12.5px; font-weight:800; margin-bottom:6px;">Applied AI Pricing Audit Log</h4>
+          <table class="portal-tbl">
+            <thead>
+              <tr>
+                <th>Old → New BAR</th>
+                <th>Sellable / Net Occ</th>
+                <th>Tags</th>
+                <th>Reason</th>
+              </tr>
+            </thead>
+            <tbody id="aiActionsLogBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
   </main>
 
 <script>
@@ -515,10 +774,15 @@
   let activePreviewTier = null;
 
   function switchClientTab(tabKey) {
-    ['comp', 'memory', 'calls', 'tiers'].forEach(k => {
-      document.getElementById('ctab-' + k).classList.toggle('active', k === tabKey);
-      document.getElementById('cbtn-' + k).classList.toggle('active', k === tabKey);
+    ['comp', 'ops', 'autoprice', 'memory', 'calls', 'tiers'].forEach(k => {
+      const pane = document.getElementById('ctab-' + k);
+      const btn = document.getElementById('cbtn-' + k);
+      if (pane) pane.classList.toggle('active', k === tabKey);
+      if (btn) btn.classList.toggle('active', k === tabKey);
     });
+    if (tabKey === 'ops' || tabKey === 'autoprice') {
+      loadClientOps();
+    }
   }
 
   function showLoginModal() {
@@ -917,6 +1181,316 @@
     }
   }
 
+  let currentOpsPlan = null;
+  let activeOpsFlags = new Set();
+  let activeOpsTags = new Set();
+
+  function _clientAuthQuery() {
+    const params = new URLSearchParams(window.location.search);
+    const dh = params.get('demo_hotel');
+    if (dh) return '?demo_hotel=' + encodeURIComponent(dh);
+    return clientToken ? '' : '?demo=1';
+  }
+
+  async function loadClientOps() {
+    try {
+      const r = await fetch('/api/client/ops' + _clientAuthQuery(), {
+        headers: clientToken ? { 'X-Client-Token': clientToken } : {}
+      });
+      const d = await r.json();
+      if (!d.ok || !d.plan) return;
+      currentOpsPlan = d.plan;
+      renderOpsAndAutoPrice(d.plan, d.inquiries || []);
+    } catch (e) {
+      console.warn('ops load error', e);
+    }
+  }
+
+  function renderOpsAndAutoPrice(plan, inquiries) {
+    const ops = plan.ops || {};
+    const rules = plan.rules || {};
+    activeOpsFlags = new Set(ops.status_flags || []);
+    activeOpsTags = new Set(ops.operational_tags || []);
+
+    // KPIs
+    document.getElementById('opsKpiTotal').textContent = ops.total_rooms ?? 45;
+    document.getElementById('opsKpiOffline').textContent = ops.offline_rooms ?? 0;
+    document.getElementById('opsKpiOfflineSub').textContent = `${ops.ooo_rooms||0} OOO · ${ops.oos_rooms||0} OOS · ${ops.housekeeping_hold||0} HK Hold`;
+    document.getElementById('opsKpiSellable').textContent = ops.sellable_rooms ?? 45;
+    document.getElementById('opsKpiLeft').textContent = `${ops.remaining_to_sell ?? 0} rooms left to sell`;
+    document.getElementById('opsKpiNetOcc').textContent = `${ops.net_occupancy_pct ?? 0}%`;
+    document.getElementById('opsKpiGrossDelta').textContent = `Gross ${ops.gross_occupancy_pct ?? 0}% (${(ops.occupancy_compression_delta||0) >= 0 ? '+' : ''}${ops.occupancy_compression_delta||0}% compression)`;
+    document.getElementById('opsKpiAiBar').textContent = `$${plan.recommended_bar}`;
+    document.getElementById('opsKpiVerdict').textContent = plan.action_verdict;
+
+    // Inputs
+    document.getElementById('opsTotalRooms').value = ops.total_rooms ?? 45;
+    document.getElementById('opsRoomsSold').value = ops.rooms_sold ?? 32;
+    document.getElementById('opsOooRooms').value = ops.ooo_rooms ?? 0;
+    document.getElementById('opsOosRooms').value = ops.oos_rooms ?? 0;
+    document.getElementById('opsHkHold').value = ops.housekeeping_hold ?? 0;
+    document.getElementById('opsNotesInput').value = ops.notes || '';
+
+    // Flags
+    const flagsWrap = document.getElementById('opsFlagsWrap');
+    flagsWrap.innerHTML = (plan.status_flag_catalog || []).map(f => {
+      const on = activeOpsFlags.has(f.id);
+      return `<button type="button" class="tier-pill ${on ? 'active' : ''}" onclick="toggleOpsFlag('${f.id}')">${on ? '✓ ' : ''}${f.label}</button>`;
+    }).join('');
+
+    // Tags
+    const tagsWrap = document.getElementById('opsTagsWrap');
+    tagsWrap.innerHTML = (plan.default_ops_tags || []).map(t => {
+      const on = activeOpsTags.has(t);
+      return `<button type="button" class="tier-pill ${on ? 'active' : ''}" onclick="toggleOpsTag('${t}')">${t}</button>`;
+    }).join('');
+
+    // Room Types editable table
+    const rtBody = document.getElementById('opsRoomTypesBody');
+    rtBody.innerHTML = (ops.room_types || []).map((rt, idx) => `
+      <tr data-rt-idx="${idx}">
+        <td><input class="inp" style="padding:5px 7px;" value="${rt.name}" data-field="name"><input type="hidden" value="${rt.code}" data-field="code"></td>
+        <td><input class="inp" style="width:58px;padding:5px;" type="number" min="0" value="${rt.total}" data-field="total"></td>
+        <td><input class="inp" style="width:52px;padding:5px;" type="number" min="0" value="${rt.ooo||0}" data-field="ooo"></td>
+        <td><input class="inp" style="width:52px;padding:5px;" type="number" min="0" value="${rt.oos||0}" data-field="oos"></td>
+        <td><input class="inp" style="width:70px;padding:5px;" type="number" min="49" value="${rt.bar||199}" data-field="bar"></td>
+        <td style="text-align:center;"><input type="checkbox" ${rt.stop_sell ? 'checked' : ''} data-field="stop_sell"></td>
+      </tr>
+    `).join('');
+
+    // Rules
+    document.getElementById('ruleMode').value = rules.mode || 'semi_auto';
+    document.getElementById('ruleCompPos').value = rules.comp_position_target || 'match_avg';
+    document.getElementById('ruleFloor').value = rules.min_bar_floor ?? 119;
+    document.getElementById('ruleCeiling').value = rules.max_bar_ceiling ?? 699;
+    document.getElementById('ruleCompThr').value = rules.compression_occ_threshold ?? 85;
+    document.getElementById('ruleCompLift').value = rules.compression_lift_pct ?? 12;
+    document.getElementById('ruleTgChat').value = rules.telegram_chat_id || '';
+
+    // AI Verdict & Room Recs
+    const vb = document.getElementById('aiVerdictBadge');
+    vb.textContent = `${plan.action_verdict} · ${plan.channel_directive}`;
+    vb.className = 'badge ' + (plan.action_verdict.includes('STOP') || plan.action_verdict.includes('PARITY') ? 'danger' : 'ok');
+
+    document.getElementById('aiReasonsBox').innerHTML =
+      `<div style="font-weight:800; margin-bottom:4px;">Current BAR: $${plan.current_bar} → AI Recommended: <span style="color:#15803d;">$${plan.recommended_bar}</span> (${plan.delta_dollars >= 0 ? '+' : ''}$${plan.delta_dollars} / ${plan.delta_pct >= 0 ? '+' : ''}${plan.delta_pct}%) · Comp Avg: $${plan.comp_avg}</div>` +
+      (plan.reasons || []).map(x => `<div style="margin-top:3px;">• ${x}</div>`).join('') +
+      `<div style="margin-top:6px; font-size:11px; color:var(--sub);">Active Tags: <b>${(plan.trigger_tags || []).join(' ')}</b></div>`;
+
+    document.getElementById('aiRoomRecsBody').innerHTML = (plan.room_recommendations || []).map(r => `
+      <tr>
+        <td><b>${r.name}</b> <span style="font-size:10px;color:var(--muted);">(${r.code})</span></td>
+        <td>${r.sellable} / ${r.total}</td>
+        <td>$${r.current_bar}</td>
+        <td><b>$${r.recommended_bar}</b></td>
+        <td style="color:${r.delta > 0 ? '#15803d' : (r.delta < 0 ? '#dc2626' : '#475569')}; font-weight:800;">${r.delta >= 0 ? '+' : ''}$${r.delta}</td>
+        <td>${r.stop_sell ? '<span class="badge danger">STOP-SELL</span>' : '<span class="badge ok">OPEN</span>'}</td>
+      </tr>
+    `).join('');
+
+    // Recent AI Actions Log
+    document.getElementById('aiActionsLogBody').innerHTML = (plan.recent_actions || []).length
+      ? plan.recent_actions.map(a => `
+          <tr>
+            <td><b>$${a.old_bar} → $${a.new_bar}</b></td>
+            <td>${a.sellable_rooms} rms · ${a.net_occupancy_pct}%</td>
+            <td style="font-size:11px;">${(JSON.parse(a.trigger_tags || '[]')).join(' ')}</td>
+            <td style="font-size:11px; color:var(--sub);">${(a.reason || '').slice(0, 120)}</td>
+          </tr>
+        `).join('')
+      : '<tr><td colspan="4" style="color:var(--muted); text-align:center;">No applied price changes yet. Click "Apply AI Price Change" to log & sync.</td></tr>';
+
+    // Populate Competitor Email Inquiry select from comp-set
+    const inqSel = document.getElementById('inqTargetHotel');
+    if (currentPortalData && currentPortalData.comp_set && inqSel) {
+      const comps = currentPortalData.comp_set.filter(h => !h.is_primary);
+      inqSel.innerHTML = comps.map(h => `<option value="${h.hotel_id}">${h.name} (${h.area || 'Miami'})</option>`).join('');
+    }
+    renderInquiryHistory(inquiries);
+  }
+
+  function renderInquiryHistory(inquiries) {
+    const el = document.getElementById('inqHistoryList');
+    if (!el) return;
+    el.innerHTML = inquiries.length
+      ? inquiries.map(i => `
+          <div style="background:rgba(255,255,255,0.88); border:1px solid rgba(15,23,42,0.1); border-radius:10px; padding:8px 10px; font-size:11.5px;">
+            <div style="display:flex; justify-content:space-between;">
+              <b>${i.target_hotel_name}</b>
+              <span class="badge ${i.quoted_rate ? 'ok' : 'gold'}">${i.quoted_rate ? 'Quoted $' + i.quoted_rate : i.status}</span>
+            </div>
+            <div style="color:var(--sub); margin-top:2px;">${i.subject || ''}</div>
+            ${i.target_email ? `<a href="mailto:${encodeURIComponent(i.target_email)}?subject=${encodeURIComponent(i.subject||'')}&body=${encodeURIComponent(i.body||'')}" style="font-size:11px; font-weight:700; color:var(--accent);">Open in Email Client (${i.target_email}) →</a>` : ''}
+          </div>
+        `).join('')
+      : '<div style="font-size:11.5px; color:var(--muted);">No competitor email inquiries drafted yet.</div>';
+  }
+
+  function toggleOpsFlag(id) {
+    if (activeOpsFlags.has(id)) activeOpsFlags.delete(id); else activeOpsFlags.add(id);
+    if (currentOpsPlan) {
+      currentOpsPlan.ops.status_flags = Array.from(activeOpsFlags);
+      renderOpsAndAutoPrice(currentOpsPlan, []);
+    }
+  }
+
+  function toggleOpsTag(tag) {
+    if (activeOpsTags.has(tag)) activeOpsTags.delete(tag); else activeOpsTags.add(tag);
+    if (currentOpsPlan) {
+      currentOpsPlan.ops.operational_tags = Array.from(activeOpsTags);
+      renderOpsAndAutoPrice(currentOpsPlan, []);
+    }
+  }
+
+  function addRoomCategoryRow() {
+    const tb = document.getElementById('opsRoomTypesBody');
+    const idx = tb.querySelectorAll('tr').length;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><input class="inp" style="padding:5px 7px;" value="Connecting Suite" data-field="name"><input type="hidden" value="RM${idx+1}" data-field="code"></td>
+      <td><input class="inp" style="width:58px;padding:5px;" type="number" min="0" value="4" data-field="total"></td>
+      <td><input class="inp" style="width:52px;padding:5px;" type="number" min="0" value="0" data-field="ooo"></td>
+      <td><input class="inp" style="width:52px;padding:5px;" type="number" min="0" value="0" data-field="oos"></td>
+      <td><input class="inp" style="width:70px;padding:5px;" type="number" min="49" value="289" data-field="bar"></td>
+      <td style="text-align:center;"><input type="checkbox" data-field="stop_sell"></td>
+    `;
+    tb.appendChild(tr);
+  }
+
+  function _collectRoomTypes() {
+    const rows = document.querySelectorAll('#opsRoomTypesBody tr');
+    return Array.from(rows).map(tr => ({
+      code: tr.querySelector('[data-field="code"]').value,
+      name: tr.querySelector('[data-field="name"]').value,
+      total: Number(tr.querySelector('[data-field="total"]').value || 0),
+      ooo: Number(tr.querySelector('[data-field="ooo"]').value || 0),
+      oos: Number(tr.querySelector('[data-field="oos"]').value || 0),
+      bar: Number(tr.querySelector('[data-field="bar"]').value || 199),
+      stop_sell: tr.querySelector('[data-field="stop_sell"]').checked,
+    }));
+  }
+
+  async function saveRoomOpsInventory() {
+    const fb = document.getElementById('opsSaveMsg');
+    fb.textContent = 'Saving...';
+    const payload = {
+      total_rooms: Number(document.getElementById('opsTotalRooms').value || 45),
+      rooms_sold: Number(document.getElementById('opsRoomsSold').value || 0),
+      ooo_rooms: Number(document.getElementById('opsOooRooms').value || 0),
+      oos_rooms: Number(document.getElementById('opsOosRooms').value || 0),
+      housekeeping_hold: Number(document.getElementById('opsHkHold').value || 0),
+      status_flags: Array.from(activeOpsFlags),
+      operational_tags: Array.from(activeOpsTags),
+      notes: document.getElementById('opsNotesInput').value.trim(),
+      room_types: _collectRoomTypes(),
+    };
+    const r = await fetch('/api/client/ops/inventory' + _clientAuthQuery(), {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, clientToken ? { 'X-Client-Token': clientToken } : {}),
+      body: JSON.stringify(payload)
+    });
+    const d = await r.json();
+    if (d.ok && d.plan) {
+      fb.style.color = '#15803d';
+      fb.textContent = `✓ Saved! True Sellable: ${d.ops.sellable_rooms} rms · Net Occ: ${d.ops.net_occupancy_pct}% · AI Rec: $${d.plan.recommended_bar}`;
+      currentOpsPlan = d.plan;
+      renderOpsAndAutoPrice(d.plan, []);
+    } else {
+      fb.style.color = '#dc2626';
+      fb.textContent = d.error || 'Save failed';
+    }
+  }
+
+  async function saveAutoPricingRules() {
+    const fb = document.getElementById('ruleSaveMsg');
+    const payload = {
+      mode: document.getElementById('ruleMode').value,
+      comp_position_target: document.getElementById('ruleCompPos').value,
+      min_bar_floor: Number(document.getElementById('ruleFloor').value || 119),
+      max_bar_ceiling: Number(document.getElementById('ruleCeiling').value || 699),
+      compression_occ_threshold: Number(document.getElementById('ruleCompThr').value || 85),
+      compression_lift_pct: Number(document.getElementById('ruleCompLift').value || 12),
+      telegram_chat_id: document.getElementById('ruleTgChat').value.trim(),
+    };
+    const r = await fetch('/api/client/ops/rules' + _clientAuthQuery(), {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, clientToken ? { 'X-Client-Token': clientToken } : {}),
+      body: JSON.stringify(payload)
+    });
+    const d = await r.json();
+    if (d.ok && d.plan) {
+      fb.style.color = '#15803d';
+      fb.textContent = '✓ Guardrails updated!';
+      currentOpsPlan = d.plan;
+      renderOpsAndAutoPrice(d.plan, []);
+    }
+  }
+
+  async function applyAiPricingNow() {
+    const fb = document.getElementById('aiApplyFeedback');
+    fb.textContent = 'Applying AI pricing & generating PMS sync payload...';
+    const r = await fetch('/api/client/ops/apply-pricing' + _clientAuthQuery(), {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, clientToken ? { 'X-Client-Token': clientToken } : {}),
+      body: JSON.stringify({ send_telegram: true })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      fb.style.color = '#15803d';
+      fb.textContent = `✓ Applied BAR $${d.old_bar} → $${d.new_bar} (${d.delta_pct >= 0 ? '+' : ''}${d.delta_pct}%) · Telegram: ${d.telegram_sent ? 'Sent Live' : 'Ready (connect Bot Token in Setup)'}`;
+      currentOpsPlan = d.plan;
+      renderOpsAndAutoPrice(d.plan, []);
+    }
+  }
+
+  async function sendTelegramOpsAlertNow() {
+    const pre = document.getElementById('opsTelegramPreview');
+    const r = await fetch('/api/client/ops/telegram-alert' + _clientAuthQuery(), {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, clientToken ? { 'X-Client-Token': clientToken } : {}),
+      body: JSON.stringify({
+        message: document.getElementById('opsNotesInput').value.trim(),
+        tags: Array.from(activeOpsTags),
+      })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      pre.style.display = 'block';
+      pre.textContent = `[Telegram Status: ${d.status}]\n\n` + d.message_preview;
+    }
+  }
+
+  async function submitCompetitorInquiry() {
+    const fb = document.getElementById('inqFeedback');
+    const sel = document.getElementById('inqTargetHotel');
+    const targetId = sel && sel.value ? Number(sel.value) : null;
+    const quoted = document.getElementById('inqQuotedRate').value.trim();
+    const r = await fetch('/api/client/ops/comp-inquiry' + _clientAuthQuery(), {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, clientToken ? { 'X-Client-Token': clientToken } : {}),
+      body: JSON.stringify({
+        target_hotel_id: targetId,
+        inquiry_type: document.getElementById('inqType').value,
+        rooms_requested: Number(document.getElementById('inqRooms').value || 2),
+        quoted_rate: quoted ? Number(quoted) : null,
+      })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      fb.style.color = '#15803d';
+      fb.textContent = `✓ Inquiry ready for ${d.target_hotel_name} (${d.status}).`;
+      document.getElementById('inqQuotedRate').value = '';
+      renderInquiryHistory(d.inquiries || []);
+    } else {
+      fb.style.color = '#dc2626';
+      fb.textContent = d.error || 'Could not create inquiry.';
+    }
+  }
+
+  (function syncPortalTheme() {
+    const t = new URLSearchParams(window.location.search).get('theme') || localStorage.getItem('hri_minimal_theme') || 'limestone';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
   loadClientPortal();
 </script>
 </body>

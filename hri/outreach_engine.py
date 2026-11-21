@@ -33,6 +33,171 @@ OFFER_PLANS = [
     {"id": "portfolio_399", "label": "$399 Group", "price_monthly": 399, "note": "Multi-property owners (up to 5 Miami hotels)"},
 ]
 
+# 5 Rotating Comparative Angles — every outreach email highlights DIFFERENT capabilities
+# that Lighthouse, RateGain, IDeaS, and manual spreadsheets do NOT offer, plus Support Local Miami.
+COMPARATIVE_EMAIL_ANGLES = [
+    {
+        "angle_id": "price_and_zero_lockin",
+        "headline": "Flat Local Pricing vs. Corporate Per-Room Lock-In",
+        "rows": [
+            ("Monthly Cost (45-Room Boutique)", "$0 Free / $99 Core", "$350–$1,200/mo", "$1,200+/mo staff time"),
+            ("Annual Contract / Setup Fee", "None — Month-to-Month", "12–36 mo lock-in", "N/A"),
+            ("Built Locally in Miami-Dade", "Yes (Support Local)", "Out-of-state / EU HQ", "Manual tabs"),
+            ("Live Setup Time", "60 seconds (no PMS IT)", "2–6 weeks IT setup", "2 hrs every morning"),
+        ],
+    },
+    {
+        "angle_id": "overnight_call_and_email_inquiry",
+        "headline": "Overnight Courtesy Call-Around + Competitor Email Inquiry Desk",
+        "rows": [
+            ("Overnight Front-Desk Call Desk", "Built-in scripts & log", "Not offered", "Pen & paper notes"),
+            ("Competitor Rate Inquiry Emails", "1-Click draft & reply log", "Not offered", "Manual Gmail"),
+            ("Walk-In & Sold-Out Referral Log", "Included (Miami Strip)", "Not offered", "None"),
+            ("Starting Price", "$0 Free / $99 Core", "$350–$900/mo", "68 hrs/mo labor"),
+        ],
+    },
+    {
+        "angle_id": "reservations_ops_ooo_oos",
+        "headline": "Real Reservations Ops (OOO / OOS / Housekeeping) -> AI Auto-Pricing",
+        "rows": [
+            ("Live OOO / OOS / Housekeeping Hold", "Instant net-occ recalc", "Not in rate shoppers", "Manual mental math"),
+            ("Dynamic Room Count & Suite Switches", "Edit live in 5 seconds", "Locked PMS mapping", "Broken formulas"),
+            ("AI Auto-Pricing & Stop-Sell Guardrails", "Auto BAR + PMS payload", "Black-box ($900+/mo)", "Guesswork"),
+            ("Instant Telegram Shift Alerts (#OOO)", "Included ($0/mo)", "Not offered", "Group texts"),
+        ],
+    },
+    {
+        "angle_id": "wholesale_parity_and_miami_otd",
+        "headline": "Rogue Wholesale Undercut Radar + True Miami Out-the-Door Math",
+        "rows": [
+            ("Vio / Agoda / Trip.com Leak Proof", "Exact URL & $ gap daily", "Buried in BI exports", "Often missed"),
+            ("Miami 14% Tax + Resort Fee OTD Math", "Built-in per corridor", "Generic headline only", "Manual calc"),
+            ("Competitor Pricing Memory & Tags", "Remembers every move", "Raw table snapshot", "Forgotten next shift"),
+            ("Support Local Miami Hospitality", "Miami team, $0–$99/mo", "Corporate call center", "In-house only"),
+        ],
+    },
+    {
+        "angle_id": "zero_pms_instant_brief",
+        "headline": "6:00 AM Shift-Ready Brief Without Touching Your PMS",
+        "rows": [
+            ("Public Website & OTA Scraping", "Safe public data, 0 IT", "Requires PMS credentials", "20 browser tabs"),
+            ("6:00 AM Email + Telegram Brief", "Plain-English verdict", "Complex BI login", "None"),
+            ("Personalized 1-Click Live Demo", "Ready right now (0 login)", "30-min sales demo call", "N/A"),
+            ("Local Miami Support", "Direct local founder", "Ticket queue", "Self-managed"),
+        ],
+    },
+]
+
+
+def build_comparative_outreach_email(pitch: dict, price_monthly: int = 99, variant_index: int = None) -> dict:
+    """Build a zero-hallucination local Miami outreach email with a rotating comparative table
+    showing capabilities competitors don't offer, plus Support Your Local Miami messaging."""
+    h = pitch["hotel"]
+    ri = pitch["rate_intel"]
+    hid = int(h["id"])
+    angle = COMPARATIVE_EMAIL_ANGLES[(hid if variant_index is None else int(variant_index)) % len(COMPARATIVE_EMAIL_ANGLES)]
+
+    short_name = h.get("short_name") or h["name"]
+    area = h.get("area") or "Miami Beach"
+    greeting = h.get("greeting_name") or f"{short_name} Team"
+    bar = ri.get("direct_bar")
+    ota_p = ri.get("lowest_ota_price")
+    ota_n = ri.get("lowest_ota_name") or "OTAs"
+    comp_avg = ri.get("comp_avg")
+    demo_url = f"https://hotelrateintel.com/portal?demo_hotel={hid}"
+
+    if ri.get("parity_status") == "UNDERCUT" and bar and ota_p:
+        proof_line = (
+            f"Live scan for {short_name} ({area}): {ota_n} is currently listing ${ota_p}/nt "
+            f"against your ${bar}/nt Direct BAR ({ri.get('undercut_pct', 0):+.1f}% leak), while nearby comps average ${comp_avg}/nt."
+        )
+    elif bar and comp_avg:
+        proof_line = (
+            f"Live scan for {short_name} ({area}): your Direct BAR is ${bar}/nt vs the local corridor average of ${comp_avg}/nt."
+        )
+    else:
+        proof_line = f"We track independent boutique corridors across {area} every morning at 6:00 AM."
+
+    subject = f"quick local note — {short_name} rates ({area})"
+
+    # Plain-text table
+    txt_rows = "\n".join(
+        f"  - {feat}: US = {us} | Enterprise Tools = {ent} | Spreadsheets = {spr}"
+        for feat, us, ent, spr in angle["rows"]
+    )
+    body_text = (
+        f"Hi {greeting},\n\n"
+        f"{proof_line}\n\n"
+        f"We built HotelRateIntel right here in Miami-Dade specifically for independent local hotels (Support Your Local Hospitality — "
+        f"no out-of-state corporate per-room contracts).\n\n"
+        f"Why Miami Reservations Teams switch ({angle['headline']}):\n"
+        f"{txt_rows}\n\n"
+        f"Your live interactive comp-set, OOO/OOS room ops & AI pricing demo is already loaded (zero login needed):\n"
+        f"{demo_url}\n\n"
+        f"You can start on our $0/mo Free Starter tier forever (or Core at ${price_monthly}/mo, month-to-month). "
+        f"Mind if I send over your 1-page printable {area} rate audit for the front desk?\n\n"
+        f"Best — supporting local Miami hotels,\n"
+        f"Jasmel Acosta | HotelRateIntel (Miami, FL)\n"
+        f"Call / WhatsApp: +1 (786) 970-8366"
+    )
+
+    # Minimalist Editorial HTML email (Warm Limestone & Espresso — zero AI gradients)
+    html_tr = "".join(
+        f"<tr>"
+        f"<td style='padding:8px 10px;border-bottom:1px solid #e7e2da;font-size:13px;color:#1c1917;font-weight:600;'>{feat}</td>"
+        f"<td style='padding:8px 10px;border-bottom:1px solid #e7e2da;font-size:13px;color:#1b4332;font-weight:700;background:#f4f7f5;'>{us}</td>"
+        f"<td style='padding:8px 10px;border-bottom:1px solid #e7e2da;font-size:13px;color:#57534e;'>{ent}</td>"
+        f"<td style='padding:8px 10px;border-bottom:1px solid #e7e2da;font-size:13px;color:#78716c;'>{spr}</td>"
+        f"</tr>"
+        for feat, us, ent, spr in angle["rows"]
+    )
+    html_body = f"""<!doctype html><html><body style="margin:0;padding:24px;background:#faf8f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1c1917;">
+<div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e7e2da;border-radius:10px;padding:28px;">
+  <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#8c4a2f;font-weight:700;margin-bottom:8px;">
+    SUPPORT YOUR LOCAL MIAMI HOSPITALITY · BUILT IN MIAMI-DADE
+  </div>
+  <p style="font-size:15px;line-height:1.6;margin:0 0 12px;">Hi {greeting},</p>
+  <p style="font-size:15px;line-height:1.6;margin:0 0 14px;background:#faf8f5;border-left:3px solid #8c4a2f;padding:10px 14px;">{proof_line}</p>
+  <p style="font-size:14px;line-height:1.6;color:#44403c;margin:0 0 16px;">
+    We built <strong>HotelRateIntel</strong> locally for independent Miami boutique hotels and their Reservations &amp; Front Office teams — including real-world tools corporate rate shoppers don't offer (overnight courtesy call-arounds, competitor email rate inquiries, live OOO/OOS/housekeeping room adjustments, and AI auto-pricing).
+  </p>
+  <div style="font-size:13px;font-weight:700;color:#1c1917;margin-bottom:8px;">How We Compare — {angle['headline']}</div>
+  <table style="width:100%;border-collapse:collapse;border:1px solid #e7e2da;margin-bottom:18px;">
+    <thead>
+      <tr style="background:#f5f2ec;text-align:left;">
+        <th style="padding:8px 10px;font-size:11px;text-transform:uppercase;color:#57534e;border-bottom:1px solid #e7e2da;">Capability</th>
+        <th style="padding:8px 10px;font-size:11px;text-transform:uppercase;color:#1b4332;border-bottom:1px solid #e7e2da;">HotelRateIntel (Local)</th>
+        <th style="padding:8px 10px;font-size:11px;text-transform:uppercase;color:#57534e;border-bottom:1px solid #e7e2da;">Lighthouse / IDeaS</th>
+        <th style="padding:8px 10px;font-size:11px;text-transform:uppercase;color:#57534e;border-bottom:1px solid #e7e2da;">Spreadsheets</th>
+      </tr>
+    </thead>
+    <tbody>{html_tr}</tbody>
+  </table>
+  <div style="margin:18px 0;">
+    <a href="{demo_url}" style="display:inline-block;background:#1c1917;color:#ffffff;text-decoration:none;padding:11px 18px;border-radius:6px;font-size:14px;font-weight:600;">
+      Open Your Live {short_name} Rate &amp; Ops Radar (No Login) &rarr;
+    </a>
+  </div>
+  <p style="font-size:13px;line-height:1.6;color:#57534e;margin:0 0 16px;">
+    Start on our <strong>$0/mo Free Starter</strong> forever, or upgrade to <strong>Core (${price_monthly}/mo, month-to-month)</strong>. Mind if I send over your 1-page printable {area} rate audit?
+  </p>
+  <hr style="border:none;border-top:1px solid #e7e2da;margin:18px 0;" />
+  <div style="font-size:12px;color:#78716c;line-height:1.5;">
+    <strong>Jasmel Acosta</strong> · Founder, HotelRateIntel (North Miami, FL 33161)<br/>
+    Supporting Independent Miami Hotels · Call / WhatsApp: +1 (786) 970-8366<br/>
+    <span style="font-size:11px;">Reply STOP to opt out of future local rate briefs.</span>
+  </div>
+</div>
+</body></html>"""
+
+    return {
+        "angle_id": angle["angle_id"],
+        "angle_headline": angle["headline"],
+        "subject": subject,
+        "body_text": body_text,
+        "html_body": html_body,
+    }
+
 
 def _e164(phone: str) -> str:
     digits = re.sub(r"\D", "", phone or "")
@@ -378,15 +543,21 @@ def send_or_queue_outreach(conn, cfg: dict, payload: dict) -> dict:
     recipient = ""
     deep_link = ""
 
+    html_body = ""
     if channel == "email":
         recipient = (payload.get("recipient") or h.get("primary_email") or "").strip().lower()
         if not recipient:
             return {"ok": False, "hotel_id": hid, "error": f"No verified email stored for {h['name']}"}
         if not verify_email_mx(recipient):
             return {"ok": False, "hotel_id": hid, "error": f"Email domain failed DNS MX check: {recipient}"}
-        em_tpl = pitch["emails"][min(step_idx, len(pitch["emails"]) - 1)]
-        subject = subject or em_tpl["subject"]
-        body_text = body_text or em_tpl["body"]
+        comp_em = build_comparative_outreach_email(
+            pitch,
+            price_monthly=price_monthly,
+            variant_index=payload.get("variant_index") if payload.get("variant_index") is not None else (hid + step_idx),
+        )
+        subject = subject or comp_em["subject"]
+        body_text = body_text or comp_em["body_text"]
+        html_body = payload.get("html_body") or comp_em["html_body"]
         deep_link = f"mailto:{urllib.parse.quote(recipient)}?subject={urllib.parse.quote(subject)}&body={urllib.parse.quote(body_text)}"
     elif channel in ("sms", "whatsapp"):
         recipient = _e164(payload.get("recipient") or h.get("primary_phone") or "")
@@ -436,7 +607,7 @@ def send_or_queue_outreach(conn, cfg: dict, payload: dict) -> dict:
             err_detail = f"Live credentials not set: {', '.join(chan_state.get('missing') or [])}"
         else:
             if channel == "email":
-                res = _send_live_email(cfg, recipient, subject, body_text)
+                res = _send_live_email(cfg, recipient, subject, body_text, html_body=html_body)
             elif channel == "sms":
                 res = _send_live_twilio(cfg, recipient, body_text, whatsapp=False)
             elif channel == "whatsapp":

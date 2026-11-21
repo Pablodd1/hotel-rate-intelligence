@@ -5,28 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Administrator Mission Control — Jasmel Acosta · Leads, Marketing Approvals & Multi-Tenant Command</title>
 <style>
-  :root {
-    --ink: #0F172A;
-    --sub: #334155;
-    --muted: #475569;
-    --accent: #2563EB;
-    --accent-deep: #1E40AF;
-    --accent-soft: rgba(37, 99, 235, 0.11);
-    --slate-action: #1E3A8A;
-    --ok: #15803D;
-    --danger: #DC2626;
-    --glass-window: rgba(255, 255, 255, 0.64);
-    --glass-card: rgba(255, 255, 255, 0.84);
-    --glass-border: rgba(255, 255, 255, 0.94);
+  :root, [data-theme="limestone"] {
+    --page-bg: #FAF8F5;
+    --ink: #1C1917;
+    --sub: #57534E;
+    --muted: #78716C;
+    --accent: #8C4A2F;
+    --accent-deep: #6D3720;
+    --accent-soft: #F5ECE7;
+    --slate-action: #1C1917;
+    --ok: #1F5E3B;
+    --danger: #B42318;
+    --glass-window: #FFFFFF;
+    --glass-card: #FFFFFF;
+    --glass-border: #E7E2DA;
+  }
+  [data-theme="swiss"] {
+    --page-bg: #F6F6F4; --ink: #111111; --sub: #4A4A46; --muted: #6E6E68;
+    --accent: #1B4332; --accent-deep: #122E22; --accent-soft: #EAF2EE;
+    --slate-action: #111111; --ok: #1B4332; --danger: #A61C1C;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E2E2DC;
+  }
+  [data-theme="linen"] {
+    --page-bg: #F9F8F6; --ink: #14213D; --sub: #475569; --muted: #64748B;
+    --accent: #9A6B2F; --accent-deep: #7B5321; --accent-soft: #F7F1E6;
+    --slate-action: #14213D; --ok: #1D6142; --danger: #B91C1C;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E5E0D8;
+  }
+  [data-theme="sage"] {
+    --page-bg: #F3F5F2; --ink: #1E2823; --sub: #4A5A52; --muted: #687870;
+    --accent: #3A6351; --accent-deep: #2B4C3E; --accent-soft: #E9F1ED;
+    --slate-action: #1E2823; --ok: #2D6A4F; --danger: #B42318;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #DCE2DA;
+  }
+  [data-theme="graphite"] {
+    --page-bg: #FAFAFA; --ink: #171717; --sub: #525252; --muted: #737373;
+    --accent: #B4432C; --accent-deep: #8F3320; --accent-soft: #FBECE9;
+    --slate-action: #171717; --ok: #166534; --danger: #B91C1C;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E5E5E5;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { overflow-x: clip; background: #EFF4FA; }
+  html { overflow-x: clip; background: var(--page-bg); }
   body {
     min-height: 100vh;
     position: relative;
-    background: linear-gradient(160deg, rgba(241, 245, 249, 0.65) 0%, rgba(232, 240, 250, 0.58) 55%, rgba(244, 248, 255, 0.65) 100%);
+    background: var(--page-bg);
     color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     padding: 12px 18px 44px;
     overflow-x: clip;
   }
@@ -34,69 +59,67 @@
     position: fixed; inset: -16px; z-index: -1; pointer-events: none;
     background-image: url('/assets/hotel-bg-blur.jpg');
     background-size: cover; background-position: center center;
-    opacity: 0.72;
-    filter: blur(4px) saturate(0.95);
+    opacity: 0.05;
+    filter: blur(8px) grayscale(25%);
   }
 
   /* ── Top Mission Control Bar ── */
   .mc-topbar {
-    background: rgba(255, 255, 255, 0.86);
-    backdrop-filter: blur(22px) saturate(145%);
-    border: 1.5px solid var(--glass-border);
-    border-radius: 22px;
-    padding: 7px 14px;
+    background: #FFFFFF;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 8px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
     flex-wrap: wrap;
-    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.06);
+    box-shadow: 0 2px 10px rgba(28, 25, 23, 0.04);
     margin-bottom: 12px;
   }
   .mc-brand {
     display: inline-flex; align-items: center; gap: 7px;
-    background: rgba(235, 244, 255, 0.96); color: var(--accent-deep);
-    border: 1px solid rgba(37, 99, 235, 0.22);
-    padding: 5px 12px 5px 7px; border-radius: 999px; font-weight: 800; font-size: 11.5px; white-space: nowrap;
+    background: var(--accent-soft); color: var(--accent-deep);
+    border: 1px solid var(--glass-border);
+    padding: 5px 12px 5px 7px; border-radius: 8px; font-weight: 800; font-size: 11.5px; white-space: nowrap;
   }
   .logo-mark {
-    width: 24px; height: 24px; border-radius: 7px; object-fit: cover;
-    border: 1px solid rgba(15, 23, 42, 0.08); background: #fff;
+    width: 24px; height: 24px; border-radius: 6px; object-fit: cover;
+    border: 1px solid var(--glass-border); background: #fff;
   }
   .mc-brand span.crown { color: var(--accent); }
   .mc-tabs {
-    display: inline-flex; gap: 3px; flex-wrap: wrap; background: rgba(241, 245, 249, 0.92);
-    padding: 4px 5px; border-radius: 999px; border: 1px solid rgba(37, 99, 235, 0.12);
+    display: inline-flex; gap: 3px; flex-wrap: wrap; background: var(--page-bg);
+    padding: 3px 4px; border-radius: 10px; border: 1px solid var(--glass-border);
   }
   .mc-tab {
     border: none; background: transparent; color: var(--sub);
-    font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 7px;
     cursor: pointer; white-space: nowrap; transition: all .15s ease;
   }
-  .mc-tab.active { background: var(--accent); color: #ffffff; font-weight: 800; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22); }
+  .mc-tab.active { background: var(--slate-action); color: #ffffff; font-weight: 700; }
   .mc-tab .cnt {
-    background: rgba(37, 99, 235, 0.14); color: var(--accent-deep); font-weight: 900;
+    background: var(--accent-soft); color: var(--accent-deep); font-weight: 800;
     padding: 1px 6px; border-radius: 99px; font-size: 9.5px; margin-left: 3px;
   }
-  .mc-tab.active .cnt { background: rgba(255,255,255,0.24); color: #ffffff; }
+  .mc-tab.active .cnt { background: rgba(255,255,255,0.22); color: #ffffff; }
 
   .btn {
-    border: none; border-radius: 999px; padding: 6px 12px; font-size: 11px; font-weight: 700;
+    border: none; border-radius: 8px; padding: 6px 12px; font-size: 11px; font-weight: 600;
     cursor: pointer; display: inline-flex; align-items: center; gap: 4px; text-decoration: none;
-    background: var(--slate-action); color: #fff; white-space: nowrap; transition: transform .12s ease, opacity .12s ease;
+    background: var(--slate-action); color: #fff; white-space: nowrap; transition: opacity .15s ease;
   }
-  .btn:hover { transform: translateY(-1px); opacity: 0.94; }
-  .btn.gold { background: var(--accent); color: #fff; border: 1px solid rgba(37, 99, 235, 0.25); }
-  .btn.ok { background: #15803d; color: #fff; }
-  .btn.danger { background: #dc2626; color: #fff; }
-  .btn.ghost { background: rgba(255,255,255,0.92); color: var(--ink); border: 1px solid rgba(30, 58, 138, 0.18); }
+  .btn:hover { opacity: 0.88; }
+  .btn.gold { background: var(--accent); color: #fff; }
+  .btn.ok { background: var(--ok); color: #fff; }
+  .btn.danger { background: var(--danger); color: #fff; }
+  .btn.ghost { background: #FFFFFF; color: var(--ink); border: 1px solid var(--glass-border); }
   .btn.xs { padding: 4px 8px; font-size: 10px; }
 
-  /* ── Outer Frosted Spatial Window ── */
+  /* ── Outer Minimalist Window ── */
   .mc-window {
     background: var(--glass-window);
-    backdrop-filter: blur(22px) saturate(140%);
-    border: 1.5px solid var(--glass-border);
+    border: 1px solid var(--glass-border);
     border-radius: 28px;
     padding: 18px 22px;
     box-shadow: 0 20px 56px rgba(30, 58, 138, 0.08);

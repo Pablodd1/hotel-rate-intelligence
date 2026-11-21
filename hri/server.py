@@ -42,6 +42,16 @@ from .outreach_engine import (
     send_or_queue_outreach,
 )
 from .report import build_brief, send_telegram, send_email_report
+from .ops_engine import (
+    compute_ai_pricing_plan,
+    update_room_ops,
+    update_auto_pricing_rules,
+    apply_ai_pricing_action,
+    send_custom_telegram_ops_alert,
+    list_competitor_inquiries,
+    create_competitor_inquiry,
+    INQUIRY_TEMPLATES,
+)
 from .tenant_engine import (
     TIER_CATALOG,
     COMPETITOR_COMPARISON_MATRIX,
@@ -68,6 +78,7 @@ DASH_PATH = os.path.join(DASH_DIR, "index.html")
 WEBSITE_PATH = os.path.join(DASH_DIR, "website.html")
 CLIENT_PORTAL_PATH = os.path.join(DASH_DIR, "client_portal.html")
 MISSION_CONTROL_PATH = os.path.join(DASH_DIR, "mission_control.html")
+THEMES_GALLERY_PATH = os.path.join(DASH_DIR, "themes_gallery.html")
 
 
 def _summary(conn, cfg):
@@ -281,6 +292,11 @@ def make_handler(cfg):
                 self._serve_file(target)
                 return
 
+            if path in ("/themes", "/themes.html", "/design-versions"):
+                target = THEMES_GALLERY_PATH if os.path.exists(THEMES_GALLERY_PATH) else WEBSITE_PATH
+                self._serve_file(target)
+                return
+
             if path in ("/portal", "/client", "/client_portal.html"):
                 target = CLIENT_PORTAL_PATH if os.path.exists(CLIENT_PORTAL_PATH) else DASH_PATH
                 self._serve_file(target)
@@ -296,6 +312,20 @@ def make_handler(cfg):
                 ensure_seed_accounts_and_campaigns(conn, cfg)
                 if path.startswith("/api/public/landing"):
                     self._json(get_public_website_payload(conn, cfg))
+                elif path.startswith("/api/client/ops"):
+                    acc = self._resolve_client(conn, q=q)
+                    if not acc:
+                        self._json({"ok": False, "error": "Client login required."}, 401)
+                        return
+                    primary_id = int(acc["primary_hotel_id"])
+                    comp_ids = [int(x) for x in (acc.get("assigned_hotel_ids") or [])]
+                    plan = compute_ai_pricing_plan(conn, primary_id, comp_hotel_ids=comp_ids)
+                    self._json({
+                        "ok": True,
+                        "plan": plan,
+                        "inquiries": list_competitor_inquiries(conn, primary_id),
+                        "inquiry_templates": INQUIRY_TEMPLATES,
+                    })
                 elif path.startswith("/api/client/portal"):
                     acc = self._resolve_client(conn, q=q)
                     if not acc:
@@ -517,6 +547,43 @@ def make_handler(cfg):
                     acc = self._resolve_client(conn, q=q_post, body=body)
                     if not acc:
                         self._json({"ok": False, "error": "Client login required."}, 401)
+                        return
+                    if path.startswith("/api/client/ops/inventory"):
+                        primary_id = int(acc["primary_hotel_id"])
+                        comp_ids = [int(x) for x in (acc.get("assigned_hotel_ids") or [])]
+                        ops = update_room_ops(conn, primary_id, body, updated_by=acc.get("display_name") or "Reservations Desk")
+                        plan = compute_ai_pricing_plan(conn, primary_id, comp_hotel_ids=comp_ids)
+                        self._json({"ok": True, "ops": ops, "plan": plan})
+                        return
+                    if path.startswith("/api/client/ops/rules"):
+                        primary_id = int(acc["primary_hotel_id"])
+                        comp_ids = [int(x) for x in (acc.get("assigned_hotel_ids") or [])]
+                        rules = update_auto_pricing_rules(conn, primary_id, body)
+                        plan = compute_ai_pricing_plan(conn, primary_id, comp_hotel_ids=comp_ids)
+                        self._json({"ok": True, "rules": rules, "plan": plan})
+                        return
+                    if path.startswith("/api/client/ops/apply-pricing"):
+                        primary_id = int(acc["primary_hotel_id"])
+                        res = apply_ai_pricing_action(conn, cfg, primary_id, body)
+                        self._json(res)
+                        return
+                    if path.startswith("/api/client/ops/telegram-alert"):
+                        primary_id = int(acc["primary_hotel_id"])
+                        res = send_custom_telegram_ops_alert(
+                            conn, cfg, primary_id,
+                            message=str(body.get("message") or ""),
+                            tags=body.get("tags"),
+                        )
+                        self._json(res)
+                        return
+                    if path.startswith("/api/client/ops/comp-inquiry"):
+                        primary_id = int(acc["primary_hotel_id"])
+                        target_hid = body.get("target_hotel_id")
+                        if target_hid and int(target_hid) not in [int(x) for x in (acc.get("assigned_hotel_ids") or [])]:
+                            self._json({"ok": False, "error": "Access Denied: target hotel is not in your assigned comp-set.", "forbidden": True}, 403)
+                            return
+                        res = create_competitor_inquiry(conn, primary_id, body)
+                        self._json(res)
                         return
                     if path.startswith("/api/client/scrape"):
                         res = client_scrape_comp_set(conn, cfg, acc)
