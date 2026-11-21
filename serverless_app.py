@@ -117,10 +117,8 @@ def app(environ, start_response):
             return _reply(start_response, "200 OK", _dashboard(os.path.join(_HERE, "dashboard", "sitemap.xml")), ctype="application/xml; charset=utf-8")
         if path == "/llms.txt":
             return _reply(start_response, "200 OK", _dashboard(os.path.join(_HERE, "dashboard", "llms.txt")), ctype="text/plain; charset=utf-8")
-        if path in ("/", "/website", "/website.html", "/landing"):
+        if path in ("/", "/website", "/website.html", "/landing", "/themes", "/themes.html", "/design-versions"):
             return _reply(start_response, "200 OK", _dashboard(_WEBSITE_PATH), ctype="text/html; charset=utf-8")
-        if path in ("/themes", "/themes.html", "/design-versions"):
-            return _reply(start_response, "200 OK", _dashboard(_THEMES_PATH), ctype="text/html; charset=utf-8")
         if path in ("/portal", "/client", "/client_portal.html"):
             return _reply(start_response, "200 OK", _dashboard(_PORTAL_PATH), ctype="text/html; charset=utf-8")
         if path in ("/mission-control", "/admin", "/dashboard", "/index.html"):

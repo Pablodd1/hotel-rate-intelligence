@@ -37,61 +37,61 @@ OFFER_PLANS = [
 # that Lighthouse, RateGain, IDeaS, and manual spreadsheets do NOT offer, plus Support Local Miami.
 COMPARATIVE_EMAIL_ANGLES = [
     {
-        "angle_id": "price_and_zero_lockin",
-        "headline": "Flat Local Pricing vs. Corporate Per-Room Lock-In",
+        "angle_id": "suite_vs_suite_equivalency",
+        "headline": "Exact Room Equivalency (Suite vs. Suite, Double Occ, Rollaways & HK)",
         "rows": [
-            ("Monthly Cost (45-Room Boutique)", "$0 Free / $99 Core", "$350–$1,200/mo", "$1,200+/mo staff time"),
-            ("Annual Contract / Setup Fee", "None — Month-to-Month", "12–36 mo lock-in", "N/A"),
-            ("Built Locally in Miami-Dade", "Yes (Support Local)", "Out-of-state / EU HQ", "Manual tabs"),
-            ("Live Setup Time", "60 seconds (no PMS IT)", "2–6 weeks IT setup", "2 hrs every morning"),
+            ("Suite-vs-Suite & Double-Double Match", "Exact room equivalent", "Mixes entry vs suite", "Manual tab guessing"),
+            ("Rollaway Beds, Resort Fees & 14% Tax", "True Out-the-Door total", "Headline BAR only", "Manual calculator"),
+            ("Housekeeping Cadence Normalization", "Daily vs On-Request HK", "Not tracked", "None"),
+            ("Monthly Cost (45-Room Boutique)", "$0 Free / $99 Core", "$350–$1,200/mo", "68 hrs/mo payroll"),
         ],
     },
     {
-        "angle_id": "overnight_call_and_email_inquiry",
-        "headline": "Overnight Courtesy Call-Around + Competitor Email Inquiry Desk",
+        "angle_id": "overnight_pre_audit_call_desk",
+        "headline": "Pre-Audit (11:30 PM) Call-Around + Competitor Email Inquiry Desk",
         "rows": [
-            ("Overnight Front-Desk Call Desk", "Built-in scripts & log", "Not offered", "Pen & paper notes"),
-            ("Competitor Rate Inquiry Emails", "1-Click draft & reply log", "Not offered", "Manual Gmail"),
-            ("Walk-In & Sold-Out Referral Log", "Included (Miami Strip)", "Not offered", "None"),
-            ("Starting Price", "$0 Free / $99 Core", "$350–$900/mo", "68 hrs/mo labor"),
+            ("Pre-Audit (11:30 PM) & Post-Audit Desk", "Built-in scripts & log", "Not offered", "Pen & paper notes"),
+            ("1-Click Neighbor Rate-Swap Emails", "Draft & reply logger", "Not offered", "Manual Gmail"),
+            ("Same-Night Walk-In BAR & Overflow Log", "Included (Miami Strip)", "Not offered", "None"),
+            ("Annual Lock-In Contract", "None — Month-to-Month", "12–36 mo lock-in", "N/A"),
         ],
     },
     {
         "angle_id": "reservations_ops_ooo_oos",
         "headline": "Real Reservations Ops (OOO / OOS / Housekeeping) -> AI Auto-Pricing",
         "rows": [
-            ("Live OOO / OOS / Housekeeping Hold", "Instant net-occ recalc", "Not in rate shoppers", "Manual mental math"),
-            ("Dynamic Room Count & Suite Switches", "Edit live in 5 seconds", "Locked PMS mapping", "Broken formulas"),
-            ("AI Auto-Pricing & Stop-Sell Guardrails", "Auto BAR + PMS payload", "Black-box ($900+/mo)", "Guesswork"),
-            ("Instant Telegram Shift Alerts (#OOO)", "Included ($0/mo)", "Not offered", "Group texts"),
+            ("Live OOO / OOS / Housekeeping Hold", "Instant net-occ recalc", "Not in rate shoppers", "Mental math"),
+            ("Dynamic Room Mix & Suite Switches", "Edit live in 5 seconds", "Locked PMS mapping", "Broken formulas"),
+            ("AI Auto-Pricing + CTA / Stop-Sell", "Auto BAR + PMS payload", "Black-box ($900+/mo)", "Guesswork"),
+            ("Tagged Telegram Shift Alerts (#OOO)", "Included ($0/mo)", "Not offered", "Group texts"),
         ],
     },
     {
         "angle_id": "wholesale_parity_and_miami_otd",
-        "headline": "Rogue Wholesale Undercut Radar + True Miami Out-the-Door Math",
+        "headline": "Bedbank / Wholesale Undercut Shield + True Miami Checkout Math",
         "rows": [
-            ("Vio / Agoda / Trip.com Leak Proof", "Exact URL & $ gap daily", "Buried in BI exports", "Often missed"),
-            ("Miami 14% Tax + Resort Fee OTD Math", "Built-in per corridor", "Generic headline only", "Manual calc"),
-            ("Competitor Pricing Memory & Tags", "Remembers every move", "Raw table snapshot", "Forgotten next shift"),
-            ("Support Local Miami Hospitality", "Miami team, $0–$99/mo", "Corporate call center", "In-house only"),
+            ("Vio / Agoda / FIT Bedbank Leak Proof", "Exact URL & $ gap daily", "Buried in CSV exports", "Missed leaks"),
+            ("Miami Resort Fee + 14% Tax OTD Math", "Built-in per corridor", "Generic headline only", "Manual calc"),
+            ("Competitor Pricing Memory & Tags", "Remembers every move", "Raw snapshot", "Lost next shift"),
+            ("Support Local Miami Hospitality", "Miami hoteliers, $0–$99", "Out-of-state / EU HQ", "In-house only"),
         ],
     },
     {
-        "angle_id": "zero_pms_instant_brief",
-        "headline": "6:00 AM Shift-Ready Brief Without Touching Your PMS",
+        "angle_id": "zero_pms_and_99_ai_audit",
+        "headline": "6:00 AM Shift Brief (Zero PMS IT) + $99 48-Hr Hospitality AI Audit",
         "rows": [
-            ("Public Website & OTA Scraping", "Safe public data, 0 IT", "Requires PMS credentials", "20 browser tabs"),
-            ("6:00 AM Email + Telegram Brief", "Plain-English verdict", "Complex BI login", "None"),
-            ("Personalized 1-Click Live Demo", "Ready right now (0 login)", "30-min sales demo call", "N/A"),
-            ("Local Miami Support", "Direct local founder", "Ticket queue", "Self-managed"),
+            ("Public Website & OTA Scraping", "Safe public data, 0 IT", "2–6 wks PMS IT setup", "20 browser tabs"),
+            ("6:00 AM Email + Telegram Huddle Brief", "Plain-English BAR move", "Complex BI dashboard", "None"),
+            ("$99 48-Hr Custom Hotel AI Prototype", "$2,500/mo guarantee", "$10k+ consulting", "Not available"),
+            ("Founder Pedigree", "20 yrs luxury hotels", "Tech-only vendors", "Self-managed"),
         ],
     },
 ]
 
 
 def build_comparative_outreach_email(pitch: dict, price_monthly: int = 99, variant_index: int = None) -> dict:
-    """Build a zero-hallucination local Miami outreach email with a rotating comparative table
-    showing capabilities competitors don't offer, plus Support Your Local Miami messaging."""
+    """Build a zero-hallucination local Miami outreach email in Bento style with a rotating comparative table,
+    Made by Hoteliers (20 yrs luxury service) authority, and Support Your Local Miami messaging."""
     h = pitch["hotel"]
     ri = pitch["rate_intel"]
     hid = int(h["id"])
@@ -118,73 +118,75 @@ def build_comparative_outreach_email(pitch: dict, price_monthly: int = 99, varia
     else:
         proof_line = f"We track independent boutique corridors across {area} every morning at 6:00 AM."
 
-    subject = f"quick local note — {short_name} rates ({area})"
+    subject = f"quick local hotelier note — {short_name} BAR & comp-set ({area})"
 
-    # Plain-text table
     txt_rows = "\n".join(
-        f"  - {feat}: US = {us} | Enterprise Tools = {ent} | Spreadsheets = {spr}"
+        f"  - {feat}: HotelRateIntel = {us} | Enterprise = {ent} | Spreadsheets = {spr}"
         for feat, us, ent, spr in angle["rows"]
     )
     body_text = (
         f"Hi {greeting},\n\n"
         f"{proof_line}\n\n"
-        f"We built HotelRateIntel right here in Miami-Dade specifically for independent local hotels (Support Your Local Hospitality — "
-        f"no out-of-state corporate per-room contracts).\n\n"
-        f"Why Miami Reservations Teams switch ({angle['headline']}):\n"
+        f"Made by Hoteliers (20 years in luxury hotels & residential concierge service) and powered by AI — "
+        f"we built HotelRateIntel right here in Miami-Dade for independent local Reservations, Front Office & Night Audit teams "
+        f"(Support Your Local Miami Hospitality — zero annual lock-in).\n\n"
+        f"What we include that corporate rate shoppers don't ({angle['headline']}):\n"
         f"{txt_rows}\n\n"
-        f"Your live interactive comp-set, OOO/OOS room ops & AI pricing demo is already loaded (zero login needed):\n"
+        f"Your live {short_name} portal (Suite-vs-Suite matching, OOO/OOS room ops & AI auto-pricing) is ready with zero login:\n"
         f"{demo_url}\n\n"
-        f"You can start on our $0/mo Free Starter tier forever (or Core at ${price_monthly}/mo, month-to-month). "
-        f"Mind if I send over your 1-page printable {area} rate audit for the front desk?\n\n"
+        f"Start on our $0/mo Free Starter forever, Core at ${price_monthly}/mo (month-to-month), or book our $99 48-Hour Hospitality AI Audit. "
+        f"Mind if I send over your 1-page {area} parity & Suite-vs-Suite sheet?\n\n"
         f"Best — supporting local Miami hotels,\n"
-        f"Jasmel Acosta | HotelRateIntel (Miami, FL)\n"
+        f"Jasmel Acosta | HotelRateIntel (North Miami, FL 33161)\n"
         f"Call / WhatsApp: +1 (786) 970-8366"
     )
 
-    # Minimalist Editorial HTML email (Warm Limestone & Espresso — zero AI gradients)
+    # Liquid Bento HTML Email (#F3F4F6 canvas, #FFFFFF 20px Bento card, #0F766E emerald-teal accent, #0F172A ink)
     html_tr = "".join(
         f"<tr>"
-        f"<td style='padding:8px 10px;border-bottom:1px solid #e7e2da;font-size:13px;color:#1c1917;font-weight:600;'>{feat}</td>"
-        f"<td style='padding:8px 10px;border-bottom:1px solid #e7e2da;font-size:13px;color:#1b4332;font-weight:700;background:#f4f7f5;'>{us}</td>"
-        f"<td style='padding:8px 10px;border-bottom:1px solid #e7e2da;font-size:13px;color:#57534e;'>{ent}</td>"
-        f"<td style='padding:8px 10px;border-bottom:1px solid #e7e2da;font-size:13px;color:#78716c;'>{spr}</td>"
+        f"<td style='padding:9px 11px;border-bottom:1px solid #e2e8f0;font-size:13px;color:#0f172a;font-weight:600;'>{feat}</td>"
+        f"<td style='padding:9px 11px;border-bottom:1px solid #e2e8f0;font-size:13px;color:#0f766e;font-weight:700;background:#f0fdfa;'>{us}</td>"
+        f"<td style='padding:9px 11px;border-bottom:1px solid #e2e8f0;font-size:13px;color:#475569;'>{ent}</td>"
+        f"<td style='padding:9px 11px;border-bottom:1px solid #e2e8f0;font-size:13px;color:#64748b;'>{spr}</td>"
         f"</tr>"
         for feat, us, ent, spr in angle["rows"]
     )
-    html_body = f"""<!doctype html><html><body style="margin:0;padding:24px;background:#faf8f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1c1917;">
-<div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e7e2da;border-radius:10px;padding:28px;">
-  <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#8c4a2f;font-weight:700;margin-bottom:8px;">
-    SUPPORT YOUR LOCAL MIAMI HOSPITALITY · BUILT IN MIAMI-DADE
+    html_body = f"""<!doctype html><html><body style="margin:0;padding:24px;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,sans-serif;color:#0f172a;">
+<div style="max-width:650px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:20px;padding:28px;box-shadow:0 8px 24px rgba(15,23,42,0.04);">
+  <div style="display:inline-block;background:#ccfbf1;color:#0f766e;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:12px;">
+    MADE BY HOTELIERS (20 YRS LUXURY SERVICE) · SUPPORT LOCAL MIAMI
   </div>
   <p style="font-size:15px;line-height:1.6;margin:0 0 12px;">Hi {greeting},</p>
-  <p style="font-size:15px;line-height:1.6;margin:0 0 14px;background:#faf8f5;border-left:3px solid #8c4a2f;padding:10px 14px;">{proof_line}</p>
-  <p style="font-size:14px;line-height:1.6;color:#44403c;margin:0 0 16px;">
-    We built <strong>HotelRateIntel</strong> locally for independent Miami boutique hotels and their Reservations &amp; Front Office teams — including real-world tools corporate rate shoppers don't offer (overnight courtesy call-arounds, competitor email rate inquiries, live OOO/OOS/housekeeping room adjustments, and AI auto-pricing).
+  <div style="font-size:14.5px;line-height:1.6;margin:0 0 14px;background:#f8fafc;border:1px solid #e2e8f0;border-left:4px solid #0f766e;border-radius:10px;padding:12px 14px;">
+    {proof_line}
+  </div>
+  <p style="font-size:14px;line-height:1.6;color:#334155;margin:0 0 16px;">
+    Built right here in Miami-Dade from 20 years of luxury hotel &amp; residential hospitality experience, <strong>HotelRateIntel</strong> gives your Reservations, Front Office &amp; Night Audit team real operational tools corporate software leaves out: <strong>Suite-vs-Suite &amp; Double-vs-Double matching</strong> (with rollaways, resort fees &amp; HK cadence), <strong>OOO/OOS live inventory auto-pricing</strong>, and a <strong>Pre-Audit (11:30 PM) Courtesy Call &amp; Email Inquiry Desk</strong>.
   </p>
-  <div style="font-size:13px;font-weight:700;color:#1c1917;margin-bottom:8px;">How We Compare — {angle['headline']}</div>
-  <table style="width:100%;border-collapse:collapse;border:1px solid #e7e2da;margin-bottom:18px;">
+  <div style="font-size:13px;font-weight:800;color:#0f172a;margin-bottom:8px;">Side-by-Side Comparison — {angle['headline']}</div>
+  <table style="width:100%;border-collapse:collapse;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin-bottom:18px;">
     <thead>
-      <tr style="background:#f5f2ec;text-align:left;">
-        <th style="padding:8px 10px;font-size:11px;text-transform:uppercase;color:#57534e;border-bottom:1px solid #e7e2da;">Capability</th>
-        <th style="padding:8px 10px;font-size:11px;text-transform:uppercase;color:#1b4332;border-bottom:1px solid #e7e2da;">HotelRateIntel (Local)</th>
-        <th style="padding:8px 10px;font-size:11px;text-transform:uppercase;color:#57534e;border-bottom:1px solid #e7e2da;">Lighthouse / IDeaS</th>
-        <th style="padding:8px 10px;font-size:11px;text-transform:uppercase;color:#57534e;border-bottom:1px solid #e7e2da;">Spreadsheets</th>
+      <tr style="background:#f8fafc;text-align:left;">
+        <th style="padding:9px 11px;font-size:11px;text-transform:uppercase;color:#475569;border-bottom:1px solid #e2e8f0;">Hospitality Need</th>
+        <th style="padding:9px 11px;font-size:11px;text-transform:uppercase;color:#0f766e;border-bottom:1px solid #e2e8f0;">HotelRateIntel (Miami)</th>
+        <th style="padding:9px 11px;font-size:11px;text-transform:uppercase;color:#475569;border-bottom:1px solid #e2e8f0;">Lighthouse / IDeaS</th>
+        <th style="padding:9px 11px;font-size:11px;text-transform:uppercase;color:#475569;border-bottom:1px solid #e2e8f0;">Spreadsheets</th>
       </tr>
     </thead>
     <tbody>{html_tr}</tbody>
   </table>
   <div style="margin:18px 0;">
-    <a href="{demo_url}" style="display:inline-block;background:#1c1917;color:#ffffff;text-decoration:none;padding:11px 18px;border-radius:6px;font-size:14px;font-weight:600;">
-      Open Your Live {short_name} Rate &amp; Ops Radar (No Login) &rarr;
+    <a href="{demo_url}" style="display:inline-block;background:#0f766e;color:#ffffff;text-decoration:none;padding:12px 20px;border-radius:10px;font-size:14px;font-weight:700;">
+      Open Live {short_name} Portal (Suite-vs-Suite &amp; OOO Ops) &rarr;
     </a>
   </div>
-  <p style="font-size:13px;line-height:1.6;color:#57534e;margin:0 0 16px;">
-    Start on our <strong>$0/mo Free Starter</strong> forever, or upgrade to <strong>Core (${price_monthly}/mo, month-to-month)</strong>. Mind if I send over your 1-page printable {area} rate audit?
+  <p style="font-size:13px;line-height:1.6;color:#475569;margin:0 0 16px;">
+    Start on our <strong>$0/mo Free Starter</strong> forever, upgrade to <strong>Core (${price_monthly}/mo, month-to-month)</strong>, or book our <strong>$99 48-Hour Hospitality AI Audit</strong> ($2,500/mo savings guarantee or 100% refunded). Mind if I send over your 1-page printable {area} audit?
   </p>
-  <hr style="border:none;border-top:1px solid #e7e2da;margin:18px 0;" />
-  <div style="font-size:12px;color:#78716c;line-height:1.5;">
+  <hr style="border:none;border-top:1px solid #e2e8f0;margin:18px 0;" />
+  <div style="font-size:12px;color:#64748b;line-height:1.55;">
     <strong>Jasmel Acosta</strong> · Founder, HotelRateIntel (North Miami, FL 33161)<br/>
-    Supporting Independent Miami Hotels · Call / WhatsApp: +1 (786) 970-8366<br/>
+    Made by Hoteliers · Powered by AI · Call / WhatsApp: +1 (786) 970-8366<br/>
     <span style="font-size:11px;">Reply STOP to opt out of future local rate briefs.</span>
   </div>
 </div>
