@@ -5,44 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Administrator Mission Control — Jasmel Acosta · Leads, Marketing Approvals & Multi-Tenant Command</title>
 <style>
-  :root, [data-theme="limestone"] {
-    --page-bg: #FAF8F5;
-    --ink: #1C1917;
-    --sub: #57534E;
-    --muted: #78716C;
-    --accent: #8C4A2F;
-    --accent-deep: #6D3720;
-    --accent-soft: #F5ECE7;
-    --slate-action: #1C1917;
-    --ok: #1F5E3B;
-    --danger: #B42318;
-    --glass-window: #FFFFFF;
-    --glass-card: #FFFFFF;
-    --glass-border: #E7E2DA;
+  :root, [data-theme="glass"] {
+    --page-bg: #EFECE6; --ink: #1A1715; --sub: #44403C; --muted: #67615A;
+    --accent: #9A6B2F; --accent-deep: #7A5220; --accent-soft: rgba(154, 107, 47, 0.12);
+    --slate-action: #1C1917; --ok: #1B5E3A; --danger: #B42318;
+    --glass-window: rgba(255, 255, 255, 0.64); --glass-card: rgba(255, 255, 255, 0.80); --glass-border: rgba(255, 255, 255, 0.88);
   }
-  [data-theme="swiss"] {
-    --page-bg: #F6F6F4; --ink: #111111; --sub: #4A4A46; --muted: #6E6E68;
-    --accent: #1B4332; --accent-deep: #122E22; --accent-soft: #EAF2EE;
-    --slate-action: #111111; --ok: #1B4332; --danger: #A61C1C;
-    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E2E2DC;
+  [data-theme="bento"] {
+    --page-bg: #F3F4F6; --ink: #0F172A; --sub: #475569; --muted: #64748B;
+    --accent: #0F766E; --accent-deep: #115E59; --accent-soft: #CCFBF1;
+    --slate-action: #0F172A; --ok: #047857; --danger: #DC2626;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: rgba(15, 23, 42, 0.08);
   }
-  [data-theme="linen"] {
-    --page-bg: #F9F8F6; --ink: #14213D; --sub: #475569; --muted: #64748B;
-    --accent: #9A6B2F; --accent-deep: #7B5321; --accent-soft: #F7F1E6;
-    --slate-action: #14213D; --ok: #1D6142; --danger: #B91C1C;
-    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E5E0D8;
+  [data-theme="neumorph"] {
+    --page-bg: #ECEFF4; --ink: #1E293B; --sub: #475569; --muted: #64748B;
+    --accent: #B85037; --accent-deep: #963C27; --accent-soft: rgba(184, 80, 55, 0.12);
+    --slate-action: #1E293B; --ok: #15803D; --danger: #B91C1C;
+    --glass-window: #ECEFF4; --glass-card: #F2F4F8; --glass-border: rgba(255, 255, 255, 0.78);
   }
-  [data-theme="sage"] {
-    --page-bg: #F3F5F2; --ink: #1E2823; --sub: #4A5A52; --muted: #687870;
-    --accent: #3A6351; --accent-deep: #2B4C3E; --accent-soft: #E9F1ED;
-    --slate-action: #1E2823; --ok: #2D6A4F; --danger: #B42318;
-    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #DCE2DA;
+  [data-theme="editorial"] {
+    --page-bg: #FAF7F2; --ink: #1F1916; --sub: #574E47; --muted: #7C7167;
+    --accent: #6B2D38; --accent-deep: #502029; --accent-soft: #F6ECEE;
+    --slate-action: #1F1916; --ok: #1F5E3B; --danger: #A61C1C;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E6DFD3;
   }
-  [data-theme="graphite"] {
-    --page-bg: #FAFAFA; --ink: #171717; --sub: #525252; --muted: #737373;
-    --accent: #B4432C; --accent-deep: #8F3320; --accent-soft: #FBECE9;
-    --slate-action: #171717; --ok: #166534; --danger: #B91C1C;
-    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E5E5E5;
+  [data-theme="architectural"] {
+    --page-bg: #F2F3F5; --ink: #111315; --sub: #3F4650; --muted: #636B75;
+    --accent: #164E3F; --accent-deep: #0F392E; --accent-soft: #E6F2EE;
+    --slate-action: #111315; --ok: #164E3F; --danger: #B91C1C;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #D4D8DF;
+  }
+  [data-theme="coastal"] {
+    --page-bg: #E9F1F2; --ink: #0F2933; --sub: #33525E; --muted: #56737E;
+    --accent: #0E7490; --accent-deep: #155E75; --accent-soft: rgba(14, 116, 144, 0.12);
+    --slate-action: #0F2933; --ok: #15803D; --danger: #B91C1C;
+    --glass-window: rgba(255, 255, 255, 0.64); --glass-card: rgba(255, 255, 255, 0.80); --glass-border: rgba(255, 255, 255, 0.90);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { overflow-x: clip; background: var(--page-bg); }

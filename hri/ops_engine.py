@@ -704,3 +704,206 @@ def create_competitor_inquiry(conn, requester_hotel_id: int, payload: dict) -> d
         "status": status,
         "inquiries": list_competitor_inquiries(conn, requester_hotel_id),
     }
+
+
+ROOM_EQUIVALENCY_TIERS = {
+    "standard_king": {
+        "id": "standard_king",
+        "label": "Standard King / Queen (Entry BAR)",
+        "match_rule": "Standard King vs. Competitor Standard King/Queen",
+        "mult": 1.00,
+        "max_occ": 2,
+        "rollaway_supported": False,
+        "rollaway_note": "No rollaway (fire code max 2)",
+    },
+    "double_double": {
+        "id": "double_double",
+        "label": "Two Doubles / Two Queens (DD / QQ)",
+        "match_rule": "Double-Double vs. Competitor Double-Double / Two Queens",
+        "mult": 1.14,
+        "max_occ": 4,
+        "rollaway_supported": True,
+        "rollaway_note": "Rollaway optional (+$35/nt)",
+    },
+    "suite_vs_suite": {
+        "id": "suite_vs_suite",
+        "label": "Junior / 1-Bedroom Suite (Suite vs. Suite)",
+        "match_rule": "Suite vs. Competitor Equivalent Suite ONLY",
+        "mult": 1.48,
+        "max_occ": 4,
+        "rollaway_supported": True,
+        "rollaway_note": "Sofabed + Rollaway available (+$40/nt)",
+    },
+    "ocean_balcony": {
+        "id": "ocean_balcony",
+        "label": "Oceanview / Balcony Corner Upgrade",
+        "match_rule": "Ocean/Balcony vs. Competitor Ocean/Balcony Category",
+        "mult": 1.32,
+        "max_occ": 3,
+        "rollaway_supported": True,
+        "rollaway_note": "Rollaway allowed (+$35/nt)",
+    },
+}
+
+NIGHT_AUDIT_WINDOWS = [
+    {
+        "id": "pre_audit",
+        "badge": "RECOMMENDED #1 · BEFORE AUDIT",
+        "window": "11:30 PM – 1:15 AM (Pre-Night Audit)",
+        "best_for": "Live tonight walk-in BAR, true rooms left before PMS date-roll, and same-night overflow swaps.",
+        "why": "Front desk / Night Audit has low lobby traffic and tonight's remaining rooms & no-show exposure are still live before the 2:00 AM batch close.",
+        "script": (
+            "Hi! This is the Night Audit desk at {my_name} down the street. Before we roll our audit, "
+            "we are checking local walk-in availability in case we need to refer overflow guests tonight. "
+            "Do you still have rooms left tonight, what is your walk-in BAR (King / Double / Suite), "
+            "and do you charge a resort fee or offer rollaway beds?"
+        ),
+    },
+    {
+        "id": "post_audit",
+        "badge": "RECOMMENDED #2 · AFTER AUDIT",
+        "window": "3:30 AM – 4:45 AM (Post-Night Audit)",
+        "best_for": "Clean final actual occupancy %, final ADR, and tomorrow's 6:00 AM Morning Huddle Brief.",
+        "why": "The PMS business date has rolled, credit-card batches are settled, and the auditor knows final sellout status and tomorrow's arrivals/departures.",
+        "script": (
+            "Good morning! Night Audit calling from {my_name} — now that the audit is wrapped up, "
+            "mind swapping final occupancy % and tomorrow's opening BAR for our 6:00 AM morning huddle?"
+        ),
+    },
+    {
+        "id": "avoid_roll",
+        "badge": "DO NOT CALL WINDOW",
+        "window": "1:45 AM – 3:15 AM (Active Audit Roll)",
+        "best_for": "Never disturb competing auditors during active PMS posting & credit card batch close.",
+        "why": "Calling during batch roll gets quick hang-ups and harms neighbor courtesy relationships.",
+        "script": "Wait until 3:30 AM (Post-Audit) or send a silent 1-Click Courtesy Email instead.",
+    },
+]
+
+
+def _default_corridor_inclusions(area: str, stars: float) -> dict:
+    """Typical corridor operational profile (editable per hotel in Room Ops)."""
+    a = (area or "").lower()
+    st = float(stars or 3.5)
+    if "mimo" in a or "biscayne" in a:
+        resort_fee = 0 if st <= 3.5 else 15
+        tax_pct = 13
+        hk_cadence = "Daily Stayover HK" if st >= 3.8 else "Every 3rd Day / On Request"
+        rollaway_fee = 25
+    elif "north beach" in a:
+        resort_fee = 18 if st <= 3.4 else 28
+        tax_pct = 14
+        hk_cadence = "Daily Stayover HK" if st >= 3.6 else "Every 2nd Day HK"
+        rollaway_fee = 35
+    elif "mid-beach" in a:
+        resort_fee = 35 if st < 4.2 else 42
+        tax_pct = 14
+        hk_cadence = "Daily Full HK + Turndown" if st >= 4.3 else "Daily Full HK"
+        rollaway_fee = 45
+    else:
+        resort_fee = 29 if st <= 3.6 else 39
+        tax_pct = 14
+        hk_cadence = "Daily Full HK" if st >= 3.8 else "On-Request Stayover HK"
+        rollaway_fee = 35
+    return {
+        "resort_fee": resort_fee,
+        "tax_pct": tax_pct,
+        "hk_cadence": hk_cadence,
+        "rollaway_fee": rollaway_fee,
+    }
+
+
+def build_room_equivalency_matrix(
+    conn,
+    hotel_id: int,
+    room_tier: str = "suite_vs_suite",
+    occupancy: str = "double",
+    include_rollaway: bool = False,
+    comp_hotel_ids: list = None,
+) -> dict:
+    """Build an Apples-to-Apples Room-Type & Inclusions comparison table (Suite vs Suite,
+    Double vs Double, Single vs Single, Rollaway bed fee, Resort fee, Housekeeping cadence,
+    and True Out-the-Door normalized comp rate) using ONLY real scraped base rates."""
+    tier_cfg = ROOM_EQUIVALENCY_TIERS.get(room_tier) or ROOM_EQUIVALENCY_TIERS["suite_vs_suite"]
+    occ_key = occupancy if occupancy in ("single", "double", "triple_quad") else "double"
+    extra_adult_fee = 0 if occ_key in ("single", "double") else 30
+
+    ids_filter = list(dict.fromkeys([int(hotel_id)] + [int(x) for x in (comp_hotel_ids or []) if str(x).isdigit()]))
+    if len(ids_filter) <= 1:
+        my_h = conn.execute("SELECT area FROM hotels WHERE id=?", (hotel_id,)).fetchone()
+        area = (my_h["area"] if my_h and my_h["area"] else "South Beach")
+        neighbors = conn.execute(
+            "SELECT id FROM hotels WHERE id != ? ORDER BY CASE WHEN area=? THEN 0 ELSE 1 END, id LIMIT 8",
+            (hotel_id, area),
+        ).fetchall()
+        ids_filter = [int(hotel_id)] + [int(r["id"]) for r in neighbors]
+
+    placeholders = ",".join("?" for _ in ids_filter)
+    rows = conn.execute(
+        f"""SELECT h.id, h.name, h.area, h.stars, h.est_rooms, h.booking_engine,
+                   r.nightly_price, r.parity_status, r.undercut_pct
+            FROM hotels h
+            LEFT JOIN (
+              SELECT hotel_id, nightly_price, parity_status, undercut_pct, MAX(scraped_at)
+              FROM rates GROUP BY hotel_id
+            ) r ON r.hotel_id = h.id
+            WHERE h.id IN ({placeholders})""",
+        tuple(ids_filter),
+    ).fetchall()
+
+    by_id = {int(r["id"]): dict(r) for r in rows}
+    ordered = [by_id[i] for i in ids_filter if i in by_id]
+
+    items = []
+    my_otd = None
+    for idx, h in enumerate(ordered):
+        base_bar = h.get("nightly_price")
+        if base_bar is None:
+            continue
+        base_bar = float(base_bar)
+        inc = _default_corridor_inclusions(h.get("area") or "", h.get("stars") or 3.5)
+        cat_bar = round(base_bar * tier_cfg["mult"] + extra_adult_fee)
+        roll_fee = inc["rollaway_fee"] if (include_rollaway and tier_cfg["rollaway_supported"]) else 0
+        subtotal = cat_bar + inc["resort_fee"] + roll_fee
+        tax_amt = round(subtotal * (inc["tax_pct"] / 100.0))
+        true_otd = round(subtotal + tax_amt)
+        is_primary = (int(h["id"]) == int(hotel_id))
+        if is_primary:
+            my_otd = true_otd
+        items.append({
+            "hotel_id": int(h["id"]),
+            "name": h["name"],
+            "area": h.get("area") or "Miami Beach",
+            "stars": h.get("stars") or 3.5,
+            "is_primary": is_primary,
+            "scraped_base_bar": round(base_bar),
+            "matched_category": tier_cfg["label"],
+            "occupancy": occ_key,
+            "category_bar": cat_bar,
+            "resort_fee": inc["resort_fee"],
+            "rollaway_allowed": tier_cfg["rollaway_supported"],
+            "rollaway_fee": roll_fee,
+            "hk_cadence": inc["hk_cadence"],
+            "tax_pct": inc["tax_pct"],
+            "true_otd_total": true_otd,
+            "parity_status": h.get("parity_status") or "PARITY",
+        })
+
+    for it in items:
+        it["spread_vs_my_otd"] = round(it["true_otd_total"] - my_otd) if my_otd is not None else 0
+
+    comp_otds = [it["true_otd_total"] for it in items if not it["is_primary"]]
+    comp_avg_otd = round(sum(comp_otds) / len(comp_otds)) if comp_otds else (my_otd or 0)
+
+    return {
+        "ok": True,
+        "room_tier": tier_cfg,
+        "occupancy": occ_key,
+        "include_rollaway": bool(include_rollaway),
+        "my_true_otd": my_otd,
+        "comp_avg_otd": comp_avg_otd,
+        "otd_advantage": round(comp_avg_otd - (my_otd or 0)),
+        "items": items,
+        "available_tiers": list(ROOM_EQUIVALENCY_TIERS.values()),
+        "night_audit_windows": NIGHT_AUDIT_WINDOWS,
+    }

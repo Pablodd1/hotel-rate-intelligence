@@ -81,104 +81,153 @@
   </script>
   <style>
     /* =========================================================================
-       5 MINIMALISTIC, NON-AI HOSPITALITY DESIGN THEMES
-       Default: Version 1 — Warm Limestone & Espresso (Editorial Boutique)
-       Switch live via ?theme=limestone|swiss|linen|sage|graphite or /themes
+       6 DISTINCT LUXURY HOSPITALITY UI DESIGN SYSTEMS
+       Default: Style 1 — Crystal Glassmorphism (Frosted Architectural Glass)
+       Switch live via ?theme=glass|bento|neumorph|editorial|architectural|coastal or /themes
        ========================================================================= */
-    :root, [data-theme="limestone"] {
-      --page-bg: #FAF8F5;
-      --bg-card: #FFFFFF;
-      --bg-strong: #FFFFFF;
-      --sec-bg: rgba(255, 255, 255, 0.94);
-      --border: #E7E2DA;
-      --line: #E7E2DA;
-      --ink: #1C1917;
-      --sub: #57534E;
-      --muted: #78716C;
-      --accent: #8C4A2F;
-      --accent-deep: #6D3720;
-      --accent-soft: #F5ECE7;
+    :root, [data-theme="glass"] {
+      --page-bg: #EFECE6;
+      --bg-card: rgba(255, 255, 255, 0.72);
+      --bg-strong: rgba(255, 255, 255, 0.84);
+      --sec-bg: rgba(255, 255, 255, 0.56);
+      --border: rgba(255, 255, 255, 0.85);
+      --line: rgba(28, 25, 23, 0.11);
+      --ink: #1A1715;
+      --sub: #44403C;
+      --muted: #67615A;
+      --accent: #9A6B2F;
+      --accent-deep: #7A5220;
+      --accent-soft: rgba(154, 107, 47, 0.12);
       --slate-action: #1C1917;
-      --ok: #1F5E3B;
+      --ok: #1B5E3A;
       --danger: #B42318;
-      --radius: 14px;
-      --bg-photo-opacity: 0.10;
+      --radius: 22px;
+      --sec-blur: blur(26px) saturate(185%);
+      --sec-shadow: 0 20px 50px rgba(28, 25, 23, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+      --card-shadow: 0 10px 28px rgba(28, 25, 23, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      --bg-photo-opacity: 0.44;
+      --bg-photo-filter: blur(6px) saturate(0.95) brightness(1.06);
+      --heading-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", sans-serif;
     }
-    [data-theme="swiss"] {
-      --page-bg: #F6F6F4;
+    [data-theme="bento"] {
+      --page-bg: #F3F4F6;
       --bg-card: #FFFFFF;
       --bg-strong: #FFFFFF;
       --sec-bg: #FFFFFF;
-      --border: #E2E2DC;
-      --line: #E2E2DC;
-      --ink: #111111;
-      --sub: #4A4A46;
-      --muted: #6E6E68;
-      --accent: #1B4332;
-      --accent-deep: #122E22;
-      --accent-soft: #EAF2EE;
-      --slate-action: #111111;
-      --ok: #1B4332;
-      --danger: #A61C1C;
-      --radius: 8px;
-      --bg-photo-opacity: 0.04;
-    }
-    [data-theme="linen"] {
-      --page-bg: #F9F8F6;
-      --bg-card: #FFFFFF;
-      --bg-strong: #FFFFFF;
-      --sec-bg: rgba(255, 255, 255, 0.95);
-      --border: #E5E0D8;
-      --line: #E5E0D8;
-      --ink: #14213D;
+      --border: rgba(15, 23, 42, 0.07);
+      --line: rgba(15, 23, 42, 0.08);
+      --ink: #0F172A;
       --sub: #475569;
       --muted: #64748B;
-      --accent: #9A6B2F;
-      --accent-deep: #7B5321;
-      --accent-soft: #F7F1E6;
-      --slate-action: #14213D;
-      --ok: #1D6142;
+      --accent: #0F766E;
+      --accent-deep: #115E59;
+      --accent-soft: #CCFBF1;
+      --slate-action: #0F172A;
+      --ok: #047857;
+      --danger: #DC2626;
+      --radius: 28px;
+      --sec-blur: none;
+      --sec-shadow: 0 12px 32px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.04);
+      --card-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      --bg-photo-opacity: 0.04;
+      --bg-photo-filter: blur(10px) grayscale(40%);
+      --heading-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+    }
+    [data-theme="neumorph"] {
+      --page-bg: #ECEFF4;
+      --bg-card: #ECEFF4;
+      --bg-strong: #F2F4F8;
+      --sec-bg: #ECEFF4;
+      --border: rgba(255, 255, 255, 0.72);
+      --line: rgba(148, 163, 184, 0.25);
+      --ink: #1E293B;
+      --sub: #475569;
+      --muted: #64748B;
+      --accent: #B85037;
+      --accent-deep: #963C27;
+      --accent-soft: rgba(184, 80, 55, 0.12);
+      --slate-action: #1E293B;
+      --ok: #15803D;
       --danger: #B91C1C;
-      --radius: 12px;
-      --bg-photo-opacity: 0.12;
+      --radius: 24px;
+      --sec-blur: none;
+      --sec-shadow: 10px 10px 22px #D4DAE3, -10px -10px 22px #FFFFFF;
+      --card-shadow: 6px 6px 14px #D4DAE3, -6px -6px 14px #FFFFFF;
+      --bg-photo-opacity: 0.02;
+      --bg-photo-filter: blur(12px) grayscale(60%);
+      --heading-font: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
     }
-    [data-theme="sage"] {
-      --page-bg: #F3F5F2;
-      --bg-card: #FFFFFF;
-      --bg-strong: #FFFFFF;
-      --sec-bg: rgba(255, 255, 255, 0.95);
-      --border: #DCE2DA;
-      --line: #DCE2DA;
-      --ink: #1E2823;
-      --sub: #4A5A52;
-      --muted: #687870;
-      --accent: #3A6351;
-      --accent-deep: #2B4C3E;
-      --accent-soft: #E9F1ED;
-      --slate-action: #1E2823;
-      --ok: #2D6A4F;
-      --danger: #B42318;
-      --radius: 14px;
-      --bg-photo-opacity: 0.08;
-    }
-    [data-theme="graphite"] {
-      --page-bg: #FAFAFA;
+    [data-theme="editorial"] {
+      --page-bg: #FAF7F2;
       --bg-card: #FFFFFF;
       --bg-strong: #FFFFFF;
       --sec-bg: #FFFFFF;
-      --border: #E5E5E5;
-      --line: #E5E5E5;
-      --ink: #171717;
-      --sub: #525252;
-      --muted: #737373;
-      --accent: #B4432C;
-      --accent-deep: #8F3320;
-      --accent-soft: #FBECE9;
-      --slate-action: #171717;
-      --ok: #166534;
+      --border: #E6DFD3;
+      --line: #E6DFD3;
+      --ink: #1F1916;
+      --sub: #574E47;
+      --muted: #7C7167;
+      --accent: #6B2D38;
+      --accent-deep: #502029;
+      --accent-soft: #F6ECEE;
+      --slate-action: #1F1916;
+      --ok: #1F5E3B;
+      --danger: #A61C1C;
+      --radius: 6px;
+      --sec-blur: none;
+      --sec-shadow: 0 2px 10px rgba(31, 25, 22, 0.03);
+      --card-shadow: none;
+      --bg-photo-opacity: 0.08;
+      --bg-photo-filter: blur(8px) sepia(15%);
+      --heading-font: Georgia, "Palatino Linotype", "Times New Roman", serif;
+    }
+    [data-theme="architectural"] {
+      --page-bg: #F2F3F5;
+      --bg-card: #FFFFFF;
+      --bg-strong: #FFFFFF;
+      --sec-bg: #FFFFFF;
+      --border: #D4D8DF;
+      --line: #D4D8DF;
+      --ink: #111315;
+      --sub: #3F4650;
+      --muted: #636B75;
+      --accent: #164E3F;
+      --accent-deep: #0F392E;
+      --accent-soft: #E6F2EE;
+      --slate-action: #111315;
+      --ok: #164E3F;
       --danger: #B91C1C;
-      --radius: 10px;
-      --bg-photo-opacity: 0.03;
+      --radius: 4px;
+      --sec-blur: none;
+      --sec-shadow: 0 1px 0 rgba(17, 19, 21, 0.06);
+      --card-shadow: none;
+      --bg-photo-opacity: 0.02;
+      --bg-photo-filter: blur(10px) grayscale(100%);
+      --heading-font: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", sans-serif;
+    }
+    [data-theme="coastal"] {
+      --page-bg: #E9F1F2;
+      --bg-card: rgba(255, 255, 255, 0.74);
+      --bg-strong: rgba(255, 255, 255, 0.88);
+      --sec-bg: rgba(255, 255, 255, 0.60);
+      --border: rgba(255, 255, 255, 0.88);
+      --line: rgba(15, 41, 51, 0.11);
+      --ink: #0F2933;
+      --sub: #33525E;
+      --muted: #56737E;
+      --accent: #0E7490;
+      --accent-deep: #155E75;
+      --accent-soft: rgba(14, 116, 144, 0.12);
+      --slate-action: #0F2933;
+      --ok: #15803D;
+      --danger: #B91C1C;
+      --radius: 22px;
+      --sec-blur: blur(24px) saturate(165%);
+      --sec-shadow: 0 18px 44px rgba(15, 41, 51, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      --card-shadow: 0 8px 24px rgba(15, 41, 51, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      --bg-photo-opacity: 0.40;
+      --bg-photo-filter: blur(6px) saturate(0.9) brightness(1.05);
+      --heading-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: clip; background: var(--page-bg); }
@@ -192,32 +241,33 @@
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
+    h1, h2, h3 { font-family: var(--heading-font); }
     .hotel-bg-backdrop {
       position: fixed; inset: -16px; z-index: -1; pointer-events: none;
       background-image: url('/assets/hotel-bg-blur.jpg');
       background-size: cover; background-position: center center;
-      opacity: var(--bg-photo-opacity, 0.10);
-      filter: blur(8px) grayscale(20%);
+      opacity: var(--bg-photo-opacity, 0.44);
+      filter: var(--bg-photo-filter, blur(6px) saturate(0.95));
     }
     a { color: inherit; text-decoration: none; }
     .shell { max-width: 1260px; margin: 0 auto; padding: 14px 18px 96px; }
 
-    /* Minimalistic Architectural Header */
+    /* Adaptive Header (Glassmorphism / Bento / Neumorph / Editorial / Architectural) */
     .topbar {
       display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: nowrap;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
+      background: var(--bg-strong);
+      backdrop-filter: var(--sec-blur); -webkit-backdrop-filter: var(--sec-blur);
+      border: 1.5px solid var(--border);
       border-radius: var(--radius);
       padding: 9px 16px;
-      box-shadow: 0 2px 10px rgba(28, 25, 23, 0.04);
+      box-shadow: var(--card-shadow);
       position: sticky; top: 10px; z-index: 40;
       margin-bottom: 18px;
     }
     .brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 13.5px; letter-spacing: -0.02em; white-space: nowrap; flex-shrink: 0; }
     .brand img.logo-mark {
       width: 28px; height: 28px; border-radius: 6px; object-fit: cover;
-      border: 1px solid var(--border); background: #fff;
+      border: 1px solid var(--line); background: #fff;
     }
 
     .nav-links { display: flex; align-items: center; gap: 2px; flex-wrap: nowrap; }
@@ -233,41 +283,52 @@
     }
     .btn {
       display: inline-flex; align-items: center; gap: 5px;
-      border: none; cursor: pointer; border-radius: 8px;
-      padding: 8px 14px; font-size: 12px; font-weight: 600;
-      background: var(--slate-action); color: #fff; transition: opacity .15s ease; white-space: nowrap;
+      border: none; cursor: pointer; border-radius: 10px;
+      padding: 8px 14px; font-size: 12px; font-weight: 700;
+      background: var(--slate-action); color: #fff; transition: transform .12s ease, opacity .15s ease; white-space: nowrap;
     }
-    .btn:hover { opacity: 0.88; }
+    .btn:hover { opacity: 0.90; transform: translateY(-1px); }
     .btn.primary { background: var(--accent); color: #fff; }
     .btn.ok { background: var(--ok); color: #fff; }
-    .btn.ghost { background: #FFFFFF; color: var(--ink); border: 1px solid var(--border); }
+    .btn.ghost { background: var(--bg-strong); color: var(--ink); border: 1px solid var(--line); }
     .btn.sm { padding: 6px 11px; font-size: 11px; }
 
-    /* Minimalistic Theme Switcher Pill (Bottom-Left) */
+    /* Live Voice Equalizer Animation for Instant-Voice Concierge */
+    .voice-eq { display: inline-flex; align-items: center; gap: 2px; height: 14px; margin-left: 4px; }
+    .voice-eq span { width: 3px; height: 4px; background: currentColor; border-radius: 2px; transition: height .15s; }
+    .voice-eq.active span { animation: eqPulse 0.7s infinite ease-in-out alternate; }
+    .voice-eq.active span:nth-child(2) { animation-delay: 0.15s; }
+    .voice-eq.active span:nth-child(3) { animation-delay: 0.3s; }
+    .voice-eq.active span:nth-child(4) { animation-delay: 0.45s; }
+    @keyframes eqPulse { from { height: 4px; } to { height: 14px; } }
+
+    /* UI Design Switcher Dock (Bottom-Left) */
     .theme-switcher-dock {
       position: fixed; left: 16px; bottom: 16px; z-index: 60;
       display: flex; align-items: center; gap: 5px; flex-wrap: wrap;
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--line);
       border-radius: 999px; padding: 5px 10px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.10);
       font-size: 11px;
     }
     .theme-dot-btn {
       display: inline-flex; align-items: center; gap: 5px;
-      border: 1px solid var(--border); background: #fff; color: var(--ink);
-      border-radius: 999px; padding: 4px 9px; font-size: 11px; font-weight: 600; cursor: pointer;
+      border: 1px solid var(--line); background: #fff; color: var(--ink);
+      border-radius: 999px; padding: 4px 9px; font-size: 11px; font-weight: 700; cursor: pointer;
     }
     .theme-dot-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
     .theme-swatch { width: 9px; height: 9px; border-radius: 50%; display: inline-block; border: 1px solid rgba(0,0,0,0.18); }
 
-    /* Clean Architectural Sections */
+    /* Adaptive Section & Card Surfaces */
     .sec {
       background: var(--sec-bg);
-      border: 1px solid var(--border);
+      backdrop-filter: var(--sec-blur); -webkit-backdrop-filter: var(--sec-blur);
+      border: 1.5px solid var(--border);
       border-radius: var(--radius);
       padding: 26px;
-      box-shadow: 0 2px 12px rgba(28, 25, 23, 0.03);
+      box-shadow: var(--sec-shadow);
       margin-bottom: 20px;
       scroll-margin-top: 76px;
     }
@@ -403,12 +464,12 @@
     <div class="grid-2" style="align-items:stretch;">
       <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; background:var(--bg-strong);">
         <div>
-          <span class="badge blue">FOR 15–75 ROOM BOUTIQUE HOTELS &amp; RESERVATIONS TEAMS · MIAMI &amp; BEYOND</span>
+          <span class="badge blue">MADE BY HOTELIERS (20 YRS LUXURY HOSPITALITY) · POWERED BY AI</span>
           <h1 style="font-size:32px; font-weight:900; letter-spacing:-0.03em; line-height:1.12; margin:10px 0 8px;">
-            Stop Losing 18%–44% on OTA Undercuts. Make Direct Revenue While Saving 45–68 Staff Hrs/Mo.
+            Made by Hoteliers. Powered by AI. Protect BAR, Match Suite-to-Suite &amp; Save 45–68 Hrs/Mo.
           </h1>
           <p style="font-size:13.5px; color:var(--sub); line-height:1.6; margin-bottom:14px;">
-            Built for independent Reservations &amp; Front Office teams running <b>SynXis, Cloudbeds, TravelClick &amp; Mews</b>. Every morning at 6:00 AM, know exactly which OTA is undercutting your Best Available Rate, what your nearest competitors loaded, and what rate puts more direct profit on your books—starting at <b>$0/mo</b> or <b>$99/mo flat</b>.
+            Crafted from <b>20 years in luxury hotels &amp; residential concierge service</b> for <b>Reservations, Front Office, Revenue Management, Housekeeping &amp; Night Audit</b> teams running <b>Opera, SynXis, Cloudbeds, TravelClick &amp; Mews</b>. Compare exact room equivalents (<b>Suite vs. Suite, Double vs. Double, Single Occ, rollaway beds, resort fees &amp; HK cadence</b>), sync live <b>OOO/OOS</b> rooms into AI Auto-Pricing, and run Pre-Audit/Post-Audit call-arounds—starting at <b>$0/mo</b> or <b>$99/mo flat</b>.
           </p>
 
           <div style="background:rgba(241,245,249,0.92); border:1px solid var(--line); border-radius:16px; padding:12px; margin-bottom:14px;">
@@ -994,33 +1055,42 @@
   </footer>
 </div>
 
-<!-- FLOATING REVENUE CONCIERGE CHATBOT -->
+<!-- FLOATING INSTANT-VOICE HOSPITALITY AI CONCIERGE (LIVE SHOWCASE) -->
 <button class="chat-launcher" id="chatLauncherBtn" onclick="toggleChat()">
   <span class="chat-pulse"></span>
-  <span>Revenue &amp; AI Concierge · Live Scan &amp; Calls</span>
+  <span>🎙️ Live Voice Concierge · Tap to Hear AI Demo</span>
 </button>
 
 <div class="chat-drawer" id="closerChatDrawer">
   <div class="chat-head">
     <div>
-      <div style="font-size:12.5px; font-weight:900; color:#1E40AF;">Marco · Revenue Concierge ⚡</div>
-      <div style="font-size:10px; color:#475569;">Live Website Scan · Demo Launcher · Direct Callbacks</div>
+      <div style="font-size:12.5px; font-weight:900; color:var(--ink); display:flex; align-items:center; gap:5px;">
+        <span>Hospitality AI Concierge</span>
+        <span class="voice-eq" id="conciergeVoiceEq"><span></span><span></span><span></span><span></span></span>
+      </div>
+      <div style="font-size:10px; color:var(--sub);">Made by Hoteliers (20 Yrs Luxury Service) · Live Voice Showcase</div>
     </div>
-    <button onclick="toggleChat(false)" style="background:none;border:none;color:#0F172A;font-size:16px;cursor:pointer;font-weight:800;">✕</button>
+    <div style="display:flex; align-items:center; gap:4px;">
+      <button id="btnConciergeLang" onclick="toggleConciergeLang()" class="btn ghost sm" style="padding:3px 7px;font-size:10px;">EN</button>
+      <button id="btnConciergeMute" onclick="toggleConciergeVoice()" class="btn ghost sm" style="padding:3px 7px;font-size:10px;" title="Toggle Voice">🔊</button>
+      <button onclick="toggleChat(false)" style="background:none;border:none;color:var(--ink);font-size:16px;cursor:pointer;font-weight:800;margin-left:4px;">✕</button>
+    </div>
   </div>
   <div class="chat-msgs" id="chatMsgsBox">
     <div class="c-msg bot">
-      Paste your hotel website URL below and I'll benchmark your live OTA parity and open a custom Demo Panel in seconds — or tap <b>📞 Request a Call</b> to reach Jasmel &amp; our Miami AI team directly!
+      <b>Welcome to HotelRateIntel</b> — Made by Hoteliers (20 years in luxury hotels &amp; residential concierge service), powered by AI. Tap the <b>🎙️ Speak</b> button or pick a hospitality topic below to test our live voice concierge!
     </div>
   </div>
   <div class="chat-actions" id="chatQuickActions">
-    <button class="btn primary sm" onclick="toggleCallbackForm(true)">📞 Request a Call</button>
-    <button class="btn ghost sm" onclick="quickChatAsk('How do hotels make money and stop OTA undercuts?')">💸 Make Money &amp; ROI</button>
-    <button class="btn ghost sm" onclick="quickChatAsk('Tell me about the $99 48-hour AI consultation and developers')">⚡ $99 48-Hr Audit</button>
+    <button class="btn ghost sm" onclick="quickChatAsk('How do you compare Suite vs Suite, Double occ, rollaways, resort fees and HK?')">🛏️ Suite vs Suite &amp; Fees</button>
+    <button class="btn ghost sm" onclick="quickChatAsk('Do you have overnight shift calls and is before or after night audit better?')">🌙 Pre vs Post Night Audit</button>
+    <button class="btn ghost sm" onclick="quickChatAsk('How do OOO, OOS and housekeeping holds work with AI auto pricing?')">🔧 OOO/OOS Auto-Price</button>
+    <button class="btn primary sm" onclick="quickChatAsk('Tell me about the $99 hospitality AI consultation audit')">⚡ $99 AI Audit</button>
+    <button class="btn ok sm" onclick="toggleCallbackForm(true)">📞 Request Call</button>
     <a class="btn ok sm" id="directCallOwnerBtn" style="display:none;" href="#">📱 Call Direct</a>
   </div>
   <div class="callback-box" id="callbackInlineBox">
-    <div style="font-size:10.5px; font-weight:800; color:#1E40AF; margin-bottom:5px;">GET A DIRECT CALL FROM OUR MIAMI DESK:</div>
+    <div style="font-size:10.5px; font-weight:800; color:var(--accent); margin-bottom:5px;">GET A DIRECT CALL FROM OUR MIAMI HOSPITALITY DESK:</div>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:5px;">
       <input class="inp" id="cbPhoneInp" placeholder="+1 (305) 555-0199" style="padding:6px 8px;font-size:11.5px;">
       <input class="inp" id="cbNameInp" placeholder="Your Name / Hotel" style="padding:6px 8px;font-size:11.5px;">
@@ -1029,13 +1099,15 @@
       <button class="btn primary sm" style="flex:1;justify-content:center;" onclick="submitCallbackRequest()">📲 Request Instant Call →</button>
       <button class="btn ghost sm" onclick="toggleCallbackForm(false)">Cancel</button>
     </div>
-    <div id="cbStatusMsg" style="font-size:10.5px; margin-top:4px; color:#15803D; font-weight:700;"></div>
+    <div id="cbStatusMsg" style="font-size:10.5px; margin-top:4px; color:var(--ok); font-weight:700;"></div>
   </div>
   <div class="chat-foot">
-    <div style="display:flex; gap:6px;">
-      <input class="inp" id="chatInput" placeholder="Paste hotel URL, question, or phone #..." onkeydown="if(event.key==='Enter')sendCloserChat()">
+    <div style="display:flex; gap:5px; align-items:center;">
+      <button class="btn ghost sm" id="btnConciergeMic" onclick="startConciergeVoiceInput()" title="Speak to AI Concierge" style="padding:8px 10px;">🎙️</button>
+      <input class="inp" id="chatInput" placeholder="Ask about Suite-vs-Suite, Night Audit, OOO, or paste hotel URL..." onkeydown="if(event.key==='Enter')sendCloserChat()">
       <button class="btn primary" onclick="sendCloserChat()">Send</button>
     </div>
+    <div id="conciergeVoiceStatus" style="font-size:10px; color:var(--muted); margin-top:4px;">Instant Voice Ready · Click 🎙️ to speak hands-free (EN / ES)</div>
   </div>
 </div>
 
@@ -1285,11 +1357,101 @@
     setTimeout(() => { window.location.href = d.portal_url || ('/portal?token=' + encodeURIComponent(d.token)); }, 500);
   }
 
+  let conciergeVoiceOn = true;
+  let conciergeLang = 'en';
+  let conciergeSpokeWelcome = false;
+  let conciergeRecognition = null;
+
+  function _pickBestVoice(langCode) {
+    if (!('speechSynthesis' in window)) return null;
+    const voices = window.speechSynthesis.getVoices() || [];
+    const prefix = langCode === 'es' ? 'es' : 'en';
+    const preferred = voices.find(v => v.lang.toLowerCase().startsWith(prefix) && /natural|neural|google|samantha|daniel|monica|paulina|aria|guy/i.test(v.name));
+    return preferred || voices.find(v => v.lang.toLowerCase().startsWith(prefix)) || voices[0] || null;
+  }
+
+  function speakConcierge(text, langOverride) {
+    if (!conciergeVoiceOn || !('speechSynthesis' in window) || !text) return;
+    try {
+      window.speechSynthesis.cancel();
+      const clean = text.replace(/[*_`#→⚡📞🛏️🌙🔧🎙️]/g, '').replace(/\s+/g, ' ').trim();
+      const u = new SpeechSynthesisUtterance(clean);
+      const lang = langOverride || conciergeLang;
+      u.lang = lang === 'es' ? 'es-US' : 'en-US';
+      u.rate = 1.02;
+      u.pitch = 1.0;
+      const v = _pickBestVoice(lang);
+      if (v) u.voice = v;
+      const eq = document.getElementById('conciergeVoiceEq');
+      const st = document.getElementById('conciergeVoiceStatus');
+      u.onstart = () => {
+        if (eq) eq.classList.add('active');
+        if (st) st.textContent = lang === 'es' ? '🔊 Concierge hablando en vivo...' : '🔊 AI Concierge speaking live...';
+      };
+      u.onend = u.onerror = () => {
+        if (eq) eq.classList.remove('active');
+        if (st) st.textContent = lang === 'es' ? 'Voz lista · Pulsa 🎙️ para hablar' : 'Instant Voice Ready · Click 🎙️ to speak hands-free (EN / ES)';
+      };
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+
+  function toggleConciergeVoice() {
+    conciergeVoiceOn = !conciergeVoiceOn;
+    document.getElementById('btnConciergeMute').textContent = conciergeVoiceOn ? '🔊' : '🔇';
+    if (!conciergeVoiceOn && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+  }
+
+  function toggleConciergeLang() {
+    conciergeLang = conciergeLang === 'en' ? 'es' : 'en';
+    document.getElementById('btnConciergeLang').textContent = conciergeLang.toUpperCase();
+    const greet = conciergeLang === 'es'
+      ? 'Modo español activado. Bienvenido a HotelRateIntel, creado por hoteleros con veinte años en hospitalidad de lujo y potenciado con inteligencia artificial. ¿Qué hotel manejas hoy?'
+      : 'English mode active. Welcome to HotelRateIntel, made by hoteliers with twenty years in luxury hospitality and powered by AI. How can I assist your Reservations or Front Office team today?';
+    speakConcierge(greet, conciergeLang);
+  }
+
+  function startConciergeVoiceInput() {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const st = document.getElementById('conciergeVoiceStatus');
+    const micBtn = document.getElementById('btnConciergeMic');
+    if (!SR) {
+      if (st) st.textContent = 'Voice mic requires Chrome/Edge/Safari — type your question below.';
+      return;
+    }
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    conciergeRecognition = new SR();
+    conciergeRecognition.lang = conciergeLang === 'es' ? 'es-US' : 'en-US';
+    conciergeRecognition.interimResults = false;
+    conciergeRecognition.maxAlternatives = 1;
+    micBtn.textContent = '🔴';
+    if (st) st.textContent = conciergeLang === 'es' ? '🎙️ Escuchando... habla ahora' : '🎙️ Listening... speak now';
+    conciergeRecognition.onresult = (ev) => {
+      const transcript = ev.results[0][0].transcript;
+      document.getElementById('chatInput').value = transcript;
+      micBtn.textContent = '🎙️';
+      sendCloserChat();
+    };
+    conciergeRecognition.onerror = conciergeRecognition.onend = () => {
+      micBtn.textContent = '🎙️';
+    };
+    conciergeRecognition.start();
+  }
+
   function toggleChat(forceState, openCallback) {
     const el = document.getElementById('closerChatDrawer');
     const willOpen = forceState !== undefined ? forceState : !el.classList.contains('open');
     el.classList.toggle('open', willOpen);
     if (openCallback) toggleCallbackForm(true);
+    if (willOpen && conciergeVoiceOn && !conciergeSpokeWelcome) {
+      conciergeSpokeWelcome = true;
+      const welcomeSpeech = conciergeLang === 'es'
+        ? 'Bienvenido a HotelRateIntel, hecho por hoteleros con veinte años en hospitalidad de lujo y potenciado con inteligencia artificial. Puedo auditar tus tarifas OTA en vivo, comparar Suite contra Suite con resort fees y camas extra, o mostrarte nuestra auditoría hotelera de noventa y nueve dólares. ¿Qué propiedad manejas?'
+        : 'Welcome to HotelRateIntel, made by hoteliers with twenty years in luxury hospitality and powered by AI. I can audit your live OTA parity, compare Suite to Suite rates including rollaway beds and resort fees, or walk you through our ninety nine dollar hospitality AI audit. What property are you managing today?';
+      speakConcierge(welcomeSpeech, conciergeLang);
+    } else if (!willOpen && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
   }
   function toggleCallbackForm(show) {
     document.getElementById('callbackInlineBox').style.display = show ? 'block' : 'none';
@@ -1311,11 +1473,13 @@
     const r = await fetch('/api/public/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: msg, hotel_id: selHid })
+      body: JSON.stringify({ message: msg, hotel_id: selHid, lang: conciergeLang })
     });
     const d = await r.json();
     if (d.audit) applyAuditPayloadToForm(d.audit);
-    box.innerHTML += `<div class="c-msg bot">${(d.reply || '').replace(/</g, '&lt;')}</div>`;
+    const replyText = d.reply || '';
+    box.innerHTML += `<div class="c-msg bot">${replyText.replace(/</g, '&lt;')}</div>`;
+    speakConcierge(replyText, d.lang || conciergeLang);
     const actEl = document.getElementById('chatQuickActions');
     if (d.actions && d.actions.length) {
       actEl.innerHTML = d.actions.map(a => {
@@ -1342,11 +1506,12 @@
     const d = await r.json();
     msgEl.style.color = d.ok ? '#15803D' : '#DC2626';
     msgEl.textContent = d.ok ? d.message : (d.error || 'Enter valid phone #');
+    if (d.ok) speakConcierge('Your callback request has been received by our Miami hospitality desk.', conciergeLang);
   }
 
   function setMinimalTheme(themeName) {
-    const valid = ['limestone', 'swiss', 'linen', 'sage', 'graphite'];
-    const t = valid.includes(themeName) ? themeName : 'limestone';
+    const valid = ['glass', 'bento', 'neumorph', 'editorial', 'architectural', 'coastal'];
+    const t = valid.includes(themeName) ? themeName : 'glass';
     document.documentElement.setAttribute('data-theme', t);
     localStorage.setItem('hri_minimal_theme', t);
     document.querySelectorAll('.theme-dot-btn').forEach(b => {
@@ -1356,20 +1521,21 @@
   (function initMinimalTheme() {
     const p = new URLSearchParams(window.location.search);
     const qTheme = p.get('theme');
-    const saved = localStorage.getItem('hri_minimal_theme') || 'limestone';
+    const saved = localStorage.getItem('hri_minimal_theme') || 'glass';
     setMinimalTheme(qTheme || saved);
   })();
 
   initWebsite();
 </script>
-<div class="theme-switcher-dock" aria-label="Minimalistic Design Versions">
-  <span style="font-weight:700; color:var(--muted); margin-right:2px;">Design:</span>
-  <button class="theme-dot-btn" data-t="limestone" onclick="setMinimalTheme('limestone')"><span class="theme-swatch" style="background:#8C4A2F;"></span>1. Limestone</button>
-  <button class="theme-dot-btn" data-t="swiss" onclick="setMinimalTheme('swiss')"><span class="theme-swatch" style="background:#1B4332;"></span>2. Swiss</button>
-  <button class="theme-dot-btn" data-t="linen" onclick="setMinimalTheme('linen')"><span class="theme-swatch" style="background:#14213D;"></span>3. Linen</button>
-  <button class="theme-dot-btn" data-t="sage" onclick="setMinimalTheme('sage')"><span class="theme-swatch" style="background:#3A6351;"></span>4. Sage</button>
-  <button class="theme-dot-btn" data-t="graphite" onclick="setMinimalTheme('graphite')"><span class="theme-swatch" style="background:#B4432C;"></span>5. Graphite</button>
-  <a href="/themes" style="font-weight:700; color:var(--accent); padding:0 5px;">Compare All 5 →</a>
+<div class="theme-switcher-dock" aria-label="6 Hospitality UI Design Systems">
+  <span style="font-weight:800; color:var(--muted); margin-right:2px;">UI Style:</span>
+  <button class="theme-dot-btn" data-t="glass" onclick="setMinimalTheme('glass')"><span class="theme-swatch" style="background:#9A6B2F;"></span>1. Glassmorphism</button>
+  <button class="theme-dot-btn" data-t="bento" onclick="setMinimalTheme('bento')"><span class="theme-swatch" style="background:#0F766E;"></span>2. Bento</button>
+  <button class="theme-dot-btn" data-t="neumorph" onclick="setMinimalTheme('neumorph')"><span class="theme-swatch" style="background:#B85037;"></span>3. Neumorph</button>
+  <button class="theme-dot-btn" data-t="editorial" onclick="setMinimalTheme('editorial')"><span class="theme-swatch" style="background:#6B2D38;"></span>4. Editorial</button>
+  <button class="theme-dot-btn" data-t="architectural" onclick="setMinimalTheme('architectural')"><span class="theme-swatch" style="background:#164E3F;"></span>5. Architectural</button>
+  <button class="theme-dot-btn" data-t="coastal" onclick="setMinimalTheme('coastal')"><span class="theme-swatch" style="background:#0E7490;"></span>6. Coastal Glass</button>
+  <a href="/themes" style="font-weight:800; color:var(--accent); padding:0 5px;">Gallery →</a>
 </div>
 </body>
 </html>

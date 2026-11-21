@@ -167,6 +167,166 @@ def _try_gemini_closer(message: str, facts_context: str) -> str:
         return ""
 
 
+def generate_hospitality_concierge_reply(msg: str, lang: str = "en", matched_hotel: dict = None, rate_intel: dict = None) -> dict:
+    """Advanced Luxury Hospitality AI Concierge — 'Made by Hoteliers, Powered by AI'.
+    Serves as a live showcase for hotel GMs, Revenue Managers, Front Office & Night Audit teams.
+    Supports English & Spanish, authentic hotel jargon, and real operational guidance.
+    """
+    low = (msg or "").lower().strip()
+    is_es = (lang == "es") or any(w in low for w in ("hola", "precio", "habitacion", "tarifa", "auditoria", "espanol", "español", "cuanto", "noches", "recepcion"))
+
+    if matched_hotel:
+        h = matched_hotel
+        ri = rate_intel or {}
+        bar = ri.get("direct_bar") or ri.get("direct_price") or "Live"
+        ota_n = ri.get("lowest_ota_name") or "OTAs"
+        ota_p = ri.get("lowest_ota_price") or "Live"
+        hid = h.get("id", 1)
+        if is_es:
+            reply = (
+                f"Excelente elección. Ya tenemos el radar en vivo para {h['name']} ({h.get('area', 'Miami Beach')}): "
+                f"tu tarifa BAR directa está en ${bar}/noche frente a {ota_n} en ${ota_p}/noche. "
+                f"Puedes abrir ahora mismo tu panel privado para comparar Suite contra Suite, ajustar habitaciones OOO/OOS o solicitar nuestra Auditoría de IA Hotelera de $99."
+            )
+        else:
+            reply = (
+                f"We already track {h['name']} ({h.get('area', 'Miami Beach')}) live: your Direct BAR is ${bar}/night "
+                f"versus {ota_n} at ${ota_p}/night. Open your isolated hospitality portal below to compare exact Suite-to-Suite "
+                f"and Double-to-Double rates (including resort fees, rollaway beds, and housekeeping cadence), adjust OOO/OOS rooms, or book our $99 Hospitality AI Audit."
+            )
+        return {
+            "ok": True,
+            "persona": "Hospitality AI Concierge · Made by Hoteliers (20 Yrs Luxury Service)",
+            "lang": "es" if is_es else "en",
+            "hotel_id": hid,
+            "reply": reply,
+            "actions": [
+                {"label": f"Open {h['name'][:18]} Portal →", "type": "link", "url": f"/portal?demo_hotel={hid}"},
+                {"label": "Book $99 AI Audit", "type": "link", "url": "https://www.aidynamic.pro/booking"},
+                {"label": "Request Instant Callback", "type": "callback_form"},
+            ],
+        }
+
+    # Suite vs Suite / Double / Single / Rollaway / Resort Fee / Housekeeping
+    if any(k in low for k in ("suite", "double", "single", "rollaway", "roller", "resort fee", "housekeeping", "hk", "apples", "equivalent", "room type", "habitacion")):
+        if is_es:
+            reply = (
+                "Comparamos exactamente habitación por habitación: Suite contra Suite, Doble contra Doble y King contra King — nunca tarifas mezcladas. "
+                "Además normalizamos el precio real 'Out-the-Door' incluyendo camas extra (rollaway), resort fees de Miami, impuestos del 14% y frecuencia de housekeeping (diario o bajo solicitud). "
+                "Abre el Portal Cliente para probar el comparador equivalente en vivo."
+            )
+        else:
+            reply = (
+                "Generic rate shoppers compare a neighbor's entry room against your suite—which misleads Reservations. "
+                "HotelRateIntel matches exact room equivalents: Suite vs. Suite, Double-Double vs. Double-Double, and Single vs. Double occupancy, "
+                "normalizing rollaway bed fees, Miami resort fees, 14% occupancy tax, and housekeeping cadence (Daily vs. On-Request) into one true Out-the-Door rate."
+            )
+        return {
+            "ok": True,
+            "persona": "Hospitality AI Concierge · Made by Hoteliers (20 Yrs Luxury Service)",
+            "lang": "es" if is_es else "en",
+            "reply": reply,
+            "actions": [
+                {"label": "Test Suite-vs-Suite Comparator →", "type": "link", "url": "/portal?demo_hotel=1"},
+                {"label": "Request Callback", "type": "callback_form"},
+            ],
+        }
+
+    # Night Audit / Overnight Shift Calls (Pre-Audit vs Post-Audit)
+    if any(k in low for k in ("audit", "overnight", "night", "shift", "receptionist", "call", "auditoria", "nocturn", "before", "after")):
+        if is_es:
+            reply = (
+                "Sí, incluimos el Escritorio de Llamadas de Cortesía Nocturnas para el Night Audit. "
+                "El mejor horario #1 es ANTES de la auditoría (11:30 PM a 1:15 AM) cuando el inventario y walk-in BAR de hoy siguen abiertos para vender las últimas habitaciones. "
+                "El horario #2 es DESPUÉS de la auditoría (3:30 AM a 4:45 AM) para recoger ocupación final limpia para el brief de las 6:00 AM. Nunca llames entre 1:45 AM y 3:15 AM durante el cierre de lotes."
+            )
+        else:
+            reply = (
+                "Yes — our Overnight Courtesy Call-Around Desk is built specifically for Night Auditors and overnight receptionists. "
+                "Window #1 (Best) is BEFORE Night Audit (11:30 PM–1:15 AM), while tonight's remaining inventory and walk-in BAR are still live before the PMS date roll. "
+                "Window #2 is AFTER Night Audit (3:30 AM–4:45 AM) to capture clean final occupancy for your 6:00 AM morning huddle. Never call between 1:45 AM and 3:15 AM during batch close."
+            )
+        return {
+            "ok": True,
+            "persona": "Hospitality AI Concierge · Made by Hoteliers (20 Yrs Luxury Service)",
+            "lang": "es" if is_es else "en",
+            "reply": reply,
+            "actions": [
+                {"label": "Open Overnight Call Desk →", "type": "link", "url": "/portal?demo_hotel=1"},
+                {"label": "Request Instant Callback", "type": "callback_form"},
+            ],
+        }
+
+    # OOO / OOS / Housekeeping Hold / AI Auto-Pricing
+    if any(k in low for k in ("ooo", "oos", "out of order", "out of service", "auto", "pricing", "stop sell", "cta", "min-los", "telegram")):
+        reply = (
+            "Inside our Reservations Operations Desk, your team can update Out-of-Order (OOO) rooms, Out-of-Service (OOS) holds, "
+            "housekeeping shortages, and suite switches in 5 seconds. The AI immediately recalculates true net sellable occupancy, "
+            "triggers guardrailed BAR lifts or Stop-Sell/CTA rules, exports a SynXis/Cloudbeds/Mews payload, and pushes tagged #OOO / #Compression alerts to Telegram at $0 cost."
+        )
+        return {
+            "ok": True,
+            "persona": "Hospitality AI Concierge · Made by Hoteliers (20 Yrs Luxury Service)",
+            "lang": "es" if is_es else "en",
+            "reply": reply,
+            "actions": [
+                {"label": "Open Room Ops (OOO/OOS) →", "type": "link", "url": "/portal?demo_hotel=1"},
+                {"label": "Book $99 Hospitality AI Audit", "type": "link", "url": "https://www.aidynamic.pro/booking"},
+            ],
+        }
+
+    # Pricing / $99 Consultation / 20 Years Luxury Hospitality
+    if any(k in low for k in ("price", "cost", "$99", "99", "free", "consult", "founder", "luxury", "20 year", "precio", "costo")):
+        reply = (
+            "Founded by hospitality veterans with 20 years in luxury hotels and residential concierge service, HotelRateIntel starts with a $0/month Free Starter (3 comps), "
+            "Boutique Core at $99/month (10 comps + 6 AM briefs, month-to-month), and Pro at $199/month (20 comps + Overnight Call Desk). "
+            "Or book our $99 48-Hour Hospitality AI Audit — we build a custom working prototype for your property guaranteed to uncover $2,500+/month in RevPAR & payroll savings, or 100% refunded."
+        )
+        return {
+            "ok": True,
+            "persona": "Hospitality AI Concierge · Made by Hoteliers (20 Yrs Luxury Service)",
+            "lang": "es" if is_es else "en",
+            "reply": reply,
+            "actions": [
+                {"label": "Book $99 Hospitality AI Audit →", "type": "link", "url": "https://www.aidynamic.pro/booking"},
+                {"label": "Start Free ($0/mo)", "type": "link", "url": "/portal?demo_hotel=1"},
+                {"label": "Call Founder (786) 970-8366", "type": "callback_form"},
+            ],
+        }
+
+    # Default executive hospitality welcome / AI response
+    facts = (
+        "Brand: HotelRateIntel — Made by Hoteliers (20 years luxury hotels & residential hospitality), Powered by AI. "
+        "Features: Suite-vs-Suite & Double-vs-Double room comparison (rollaways, resort fees, HK cadence), "
+        "OOO/OOS/Housekeeping live inventory -> AI Auto-Pricing + Telegram tags, Overnight Courtesy Call-Around Desk "
+        "(Pre-Audit 11:30 PM-1:15 AM & Post-Audit 3:30 AM-4:45 AM), Competitor Email Rate Inquiry, $0 Free / $99 Core / $199 Pro, "
+        "and $99 48-Hour Hospitality AI Audit."
+    )
+    ai_txt = _try_gemini_closer(msg, facts)
+    if is_es:
+        fallback = (
+            "Bienvenido a HotelRateIntel — creado por hoteleros con 20 años de experiencia en hospitalidad de lujo y potenciado con IA. "
+            "Puedo auditar tu paridad OTA en vivo, comparar habitaciones Suite contra Suite con resort fees y camas extra, o explicarte cómo nuestra Auditoría Hotelera de $99 ahorra más de 45 horas al mes a tu departamento de Reservas. ¿Qué hotel manejas?"
+        )
+    else:
+        fallback = (
+            "Welcome to HotelRateIntel — Made by Hoteliers with 20 years in luxury hotel and residential service, powered by AI. "
+            "I can audit your property's live OTA parity, demonstrate apples-to-apples Suite-vs-Suite rate matching (with resort fees, rollaways, and housekeeping), "
+            "or walk you through Pre-Audit vs. Post-Audit Night Audit calls and our $99 48-Hour Hospitality AI Audit. Which property are you managing?"
+        )
+    return {
+        "ok": True,
+        "persona": "Hospitality AI Concierge · Made by Hoteliers (20 Yrs Luxury Service)",
+        "lang": "es" if is_es else "en",
+        "reply": ai_txt or fallback,
+        "actions": [
+            {"label": "Test Suite-vs-Suite Portal →", "type": "link", "url": "/portal?demo_hotel=1"},
+            {"label": "Book $99 Hospitality AI Audit", "type": "link", "url": "https://www.aidynamic.pro/booking"},
+            {"label": "Request Instant Callback", "type": "callback_form"},
+        ],
+    }
+
+
 def generate_closer_chat_reply(conn, cfg: dict, payload: dict) -> dict:
     """Handle one turn of the Website Closer Chatbot with live hotel scanning & callback detection."""
     msg = (payload.get("message") or "").strip()
@@ -271,48 +431,8 @@ def generate_closer_chat_reply(conn, cfg: dict, payload: dict) -> dict:
             "owner_direct_phone": owner_phone,
         }
 
-    # 4) Objection & Intent Handling
-    low = msg.lower()
-    if any(k in low for k in ("price", "cost", "expensive", "how much", "$99", "free", "tier")):
-        reply = (
-            "STOP PAYING $500–$750/MONTH TO BLOATED ENTERPRISE TOOLS!! We start you at $0 FOREVER (Free Starter: your hotel + 3 neighbors), "
-            "our Core plan is JUST $99/MONTH FLAT ($49 your first month — literally less than ONE-THIRD of ONE sold room night!), "
-            "and Pro with Overnight Courtesy Call-Around + SMS Leak Alerts is only $199/mo! One caught Agoda undercut pays for the ENTIRE YEAR. "
-            "Want your Free ($0) account live in 15 seconds, or want Jasmel to call you?"
-        )
-    elif any(k in low for k in ("time", "hours", "staff", "labor", "excel", "manual", "cloudbeds", "pms")):
-        reply = (
-            "HERE IS THE BRUTAL TRUTH: manual morning rate checking on Booking, Expedia, and Agoda burns 45 to 68 STAFF HOURS EVERY MONTH "
-            "— that's $1,125 to $1,700/mo in front-desk payroll wasted clicking tabs while wholesale OTAs undercut you behind your back! "
-            "We scrape EVERY morning at 6:00 AM, remember every competitor's pattern, and tell your team EXACTLY what rate to set (RAISE +$18 / HOLD / FIX LEAK). "
-            "Drop your hotel URL or claim Free ($0) right now!"
-        )
-    elif any(k in low for k in ("call", "phone", "talk", "jasmel", "human", "speak", "auditor")):
-        reply = (
-            "LET'S GET ON THE PHONE RIGHT NOW!! Click 'Get Called Right Now' below and punch in your number — "
-            "your request hits our live Mission Control desk in North Miami immediately so Jasmel can dial you or run a live Auditor Verification Call on your hotel!"
-            + (f" You can also dial Jasmel direct right now at {owner_phone}!" if owner_phone else "")
-        )
-    else:
-        facts = (
-            f"Database: {summary.get('total_hotels', 49)} Miami hotels, {summary.get('live_undercuts', 31)} active OTA undercuts, "
-            f"tiers Free $0 / Core $99 ($49 M1) / Pro $199 / Portfolio $399. Art Basel starts Dec 3-6, 2026."
-        )
-        ai_txt = _try_gemini_closer(msg, facts)
-        reply = ai_txt or (
-            f"ART BASEL IS RIGHT AROUND THE CORNER — DON'T LEAVE MONEY ON THE TABLE!! Out of {summary.get('total_hotels', 49)} Miami properties we monitor, "
-            f"{summary.get('live_undercuts', 31)} are leaking margin on OTAs TODAY while manual rate checks burn 45+ hrs/mo of staff payroll! "
-            f"Tell me your hotel name or paste your website URL right here — I'll pull live rates, fill your audit graphics, and open your FREE private Demo Panel in seconds!"
-        )
-
-    return {
-        "ok": True,
-        "persona": "Marco · Miami Revenue Hawk (Aggressive Closer)",
-        "reply": reply,
-        "actions": [
-            {"label": "🔍 Audit Any Website Free", "type": "slide", "slide": 1},
-            {"label": "🚀 Open Demo Client #1", "type": "link", "url": "/portal?demo=1"},
-            {"label": "📞 Call Me Now!", "type": "callback_form"},
-        ],
-        "owner_direct_phone": owner_phone,
-    }
+    # 4) Hospitality Jargon, Operations, Night Audit, Room Equivalency & Pricing Concierge
+    lang = (payload.get("lang") or "en").strip().lower()
+    concierge_res = generate_hospitality_concierge_reply(msg, lang=lang)
+    concierge_res["owner_direct_phone"] = owner_phone or "+1 (786) 970-8366"
+    return concierge_res

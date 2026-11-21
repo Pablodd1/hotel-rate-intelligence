@@ -167,30 +167,16 @@ def app(environ, start_response):
         }))
     if path.startswith("/api/public/chat") and environ.get("REQUEST_METHOD") == "POST":
         msg = (body.get("message") or "").strip()
+        lang = (body.get("lang") or "en").strip().lower()
         pitches = json.loads(_load("snapshot_pitches.json"))
-        matched = next((p for p in pitches.values() if msg and msg.lower() in (p.get("hotel", {}).get("name", "").lower())), None)
+        matched = next((p for p in pitches.values() if msg and len(msg) >= 4 and msg.lower() in (p.get("hotel", {}).get("name", "").lower())), None)
+        from hri.sales_chatbot import generate_hospitality_concierge_reply
         if matched:
-            h = matched["hotel"]
-            ri = matched.get("rate_intel") or {}
-            return _reply(start_response, "200 OK", json.dumps({
-                "ok": True,
-                "persona": "Marco · Miami Revenue Hawk (Aggressive Closer)",
-                "hotel_id": h["id"],
-                "reply": (
-                    f"BOOM!! {h['name']} ({h.get('area')}) live benchmark: Direct BAR ${ri.get('direct_bar') or 'N/A'}/nt "
-                    f"vs {ri.get('lowest_ota_name') or 'OTA'} ${ri.get('lowest_ota_price') or 'N/A'}/nt! "
-                    f"Launch their isolated Demo Panel below or drop your phone # for an instant Miami callback!"
-                ),
-                "actions": [{"label": f"🚀 Open {h['name'][:18]} Demo", "type": "link", "url": f"/portal?demo_hotel={h['id']}"}],
-                "owner_direct_phone": "",
-            }))
-        return _reply(start_response, "200 OK", json.dumps({
-            "ok": True,
-            "persona": "Marco · Miami Revenue Hawk (Aggressive Closer)",
-            "reply": "LET'S GO!! Live Miami rates for 49 boutique hotels are pre-loaded right here — open any hotel's Demo Panel or click Live Website Auditor to inspect OTA parity & ROI!",
-            "actions": [{"label": "🚀 Launch Demo Client #1", "type": "link", "url": "/portal?demo=1"}],
-            "owner_direct_phone": "",
-        }))
+            res = generate_hospitality_concierge_reply(msg, lang=lang, matched_hotel=matched["hotel"], rate_intel=matched.get("rate_intel") or {})
+        else:
+            res = generate_hospitality_concierge_reply(msg, lang=lang)
+        res["owner_direct_phone"] = "+1 (786) 970-8366"
+        return _reply(start_response, "200 OK", json.dumps(res))
     if path.startswith("/api/public/callback") and environ.get("REQUEST_METHOD") == "POST":
         ph = (body.get("phone") or "").strip()
         nm = (body.get("name") or "Hotel Lead").strip()
@@ -299,13 +285,14 @@ def app(environ, start_response):
             "tags": [],
             "compression_events": MIAMI_COMPRESSION_EVENTS,
         }))
-    if path.startswith("/api/client/ops"):
+    if path.startswith("/api/client/ops") or path.startswith("/api/client/room-compare"):
         import tempfile, time as _t
         from hri import db as dbmod
         from hri.ops_engine import (
             compute_ai_pricing_plan, update_room_ops, update_auto_pricing_rules,
             apply_ai_pricing_action, send_custom_telegram_ops_alert,
-            list_competitor_inquiries, create_competitor_inquiry, INQUIRY_TEMPLATES,
+            list_competitor_inquiries, create_competitor_inquiry,
+            build_room_equivalency_matrix, INQUIRY_TEMPLATES, NIGHT_AUDIT_WINDOWS,
         )
         dh = (params.get("demo_hotel") or [""])[0].strip()
         tok = (environ.get("HTTP_X_CLIENT_TOKEN") or (params.get("token") or [""])[0]).strip()
@@ -321,10 +308,10 @@ def app(environ, start_response):
                 now_ts = _t.time()
                 for h in all_hotels:
                     conn.execute(
-                        "INSERT OR IGNORE INTO hotels(id,name,area,est_rooms,booking_engine,est_occupancy_pct,created) VALUES(?,?,?,?,?,?,?)",
+                        "INSERT OR IGNORE INTO hotels(id,name,area,stars,est_rooms,booking_engine,est_occupancy_pct,created) VALUES(?,?,?,?,?,?,?,?)",
                         (int(h["id"]), h.get("name") or f"Hotel #{h['id']}", h.get("area") or "Miami Beach",
-                         int(h.get("est_rooms") or 45), h.get("booking_engine") or "Direct / SynXis",
-                         int(h.get("est_occupancy_pct") or 74), now_ts),
+                         float(h.get("stars") or 3.5), int(h.get("est_rooms") or 45),
+                         h.get("booking_engine") or "Direct / SynXis", int(h.get("est_occupancy_pct") or 74), now_ts),
                     )
                     if h.get("price") is not None:
                         conn.execute(
@@ -333,6 +320,13 @@ def app(environ, start_response):
                              float(h.get("undercut_pct") or 0.0), now_ts),
                         )
                 conn.commit()
+            if path.startswith("/api/client/room-compare"):
+                tier = (params.get("tier") or ["suite_vs_suite"])[0]
+                occ = (params.get("occ") or ["double"])[0]
+                roll = (params.get("rollaway") or ["0"])[0] in ("1", "true", "yes")
+                return _reply(start_response, "200 OK", json.dumps(
+                    build_room_equivalency_matrix(conn, hid, room_tier=tier, occupancy=occ, include_rollaway=roll)
+                ))
             method = environ.get("REQUEST_METHOD", "GET")
             cfg_min = {"telegram": {"bot_token": os.environ.get("TELEGRAM_BOT_TOKEN", ""), "chat_id": os.environ.get("TELEGRAM_CHAT_ID", "")}}
             if method == "POST" and path.startswith("/api/client/ops/inventory"):
@@ -358,6 +352,7 @@ def app(environ, start_response):
                 "plan": plan,
                 "inquiries": list_competitor_inquiries(conn, hid),
                 "inquiry_templates": INQUIRY_TEMPLATES,
+                "night_audit_windows": NIGHT_AUDIT_WINDOWS,
             }))
         finally:
             conn.close()

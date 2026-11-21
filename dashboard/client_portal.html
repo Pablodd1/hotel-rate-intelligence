@@ -5,44 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hotel Client Portal — Isolated Comp-Set Rate Scraper, Memory & Strategy</title>
 <style>
-  :root, [data-theme="limestone"] {
-    --page-bg: #FAF8F5;
-    --ink: #1C1917;
-    --sub: #57534E;
-    --muted: #78716C;
-    --accent: #8C4A2F;
-    --accent-deep: #6D3720;
-    --accent-soft: #F5ECE7;
-    --slate-action: #1C1917;
-    --ok: #1F5E3B;
-    --danger: #B42318;
-    --glass-window: #FFFFFF;
-    --glass-card: #FFFFFF;
-    --glass-border: #E7E2DA;
+  :root, [data-theme="glass"] {
+    --page-bg: #EFECE6; --ink: #1A1715; --sub: #44403C; --muted: #67615A;
+    --accent: #9A6B2F; --accent-deep: #7A5220; --accent-soft: rgba(154, 107, 47, 0.12);
+    --slate-action: #1C1917; --ok: #1B5E3A; --danger: #B42318;
+    --glass-window: rgba(255, 255, 255, 0.62); --glass-card: rgba(255, 255, 255, 0.78); --glass-border: rgba(255, 255, 255, 0.88);
   }
-  [data-theme="swiss"] {
-    --page-bg: #F6F6F4; --ink: #111111; --sub: #4A4A46; --muted: #6E6E68;
-    --accent: #1B4332; --accent-deep: #122E22; --accent-soft: #EAF2EE;
-    --slate-action: #111111; --ok: #1B4332; --danger: #A61C1C;
-    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E2E2DC;
+  [data-theme="bento"] {
+    --page-bg: #F3F4F6; --ink: #0F172A; --sub: #475569; --muted: #64748B;
+    --accent: #0F766E; --accent-deep: #115E59; --accent-soft: #CCFBF1;
+    --slate-action: #0F172A; --ok: #047857; --danger: #DC2626;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: rgba(15, 23, 42, 0.08);
   }
-  [data-theme="linen"] {
-    --page-bg: #F9F8F6; --ink: #14213D; --sub: #475569; --muted: #64748B;
-    --accent: #9A6B2F; --accent-deep: #7B5321; --accent-soft: #F7F1E6;
-    --slate-action: #14213D; --ok: #1D6142; --danger: #B91C1C;
-    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E5E0D8;
+  [data-theme="neumorph"] {
+    --page-bg: #ECEFF4; --ink: #1E293B; --sub: #475569; --muted: #64748B;
+    --accent: #B85037; --accent-deep: #963C27; --accent-soft: rgba(184, 80, 55, 0.12);
+    --slate-action: #1E293B; --ok: #15803D; --danger: #B91C1C;
+    --glass-window: #ECEFF4; --glass-card: #F2F4F8; --glass-border: rgba(255, 255, 255, 0.78);
   }
-  [data-theme="sage"] {
-    --page-bg: #F3F5F2; --ink: #1E2823; --sub: #4A5A52; --muted: #687870;
-    --accent: #3A6351; --accent-deep: #2B4C3E; --accent-soft: #E9F1ED;
-    --slate-action: #1E2823; --ok: #2D6A4F; --danger: #B42318;
-    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #DCE2DA;
+  [data-theme="editorial"] {
+    --page-bg: #FAF7F2; --ink: #1F1916; --sub: #574E47; --muted: #7C7167;
+    --accent: #6B2D38; --accent-deep: #502029; --accent-soft: #F6ECEE;
+    --slate-action: #1F1916; --ok: #1F5E3B; --danger: #A61C1C;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E6DFD3;
   }
-  [data-theme="graphite"] {
-    --page-bg: #FAFAFA; --ink: #171717; --sub: #525252; --muted: #737373;
-    --accent: #B4432C; --accent-deep: #8F3320; --accent-soft: #FBECE9;
-    --slate-action: #171717; --ok: #166534; --danger: #B91C1C;
-    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #E5E5E5;
+  [data-theme="architectural"] {
+    --page-bg: #F2F3F5; --ink: #111315; --sub: #3F4650; --muted: #636B75;
+    --accent: #164E3F; --accent-deep: #0F392E; --accent-soft: #E6F2EE;
+    --slate-action: #111315; --ok: #164E3F; --danger: #B91C1C;
+    --glass-window: #FFFFFF; --glass-card: #FFFFFF; --glass-border: #D4D8DF;
+  }
+  [data-theme="coastal"] {
+    --page-bg: #E9F1F2; --ink: #0F2933; --sub: #33525E; --muted: #56737E;
+    --accent: #0E7490; --accent-deep: #155E75; --accent-soft: rgba(14, 116, 144, 0.12);
+    --slate-action: #0F2933; --ok: #15803D; --danger: #B91C1C;
+    --glass-window: rgba(255, 255, 255, 0.64); --glass-card: rgba(255, 255, 255, 0.80); --glass-border: rgba(255, 255, 255, 0.90);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { overflow-x: clip; background: var(--page-bg); }
@@ -373,6 +370,49 @@
           <tbody id="clientCompTableBody"></tbody>
         </table>
       </div>
+
+      <!-- Apples-to-Apples Room-Type & Inclusions Comparator (Suite vs Suite, Double/Single, Rollaway, Resort Fee, HK) -->
+      <div class="glass-card" style="overflow-x:auto;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+          <div>
+            <span class="badge gold">APPLES-TO-APPLES ROOM EQUIVALENCY · MADE BY HOTELIERS</span>
+            <h3 style="font-size:16px; font-weight:800; margin-top:4px;">Exact Room-Type Match: Suite vs. Suite · Double vs. Double · Rollaways, Resort Fees &amp; HK</h3>
+            <p style="font-size:11.5px; color:var(--sub);">Compare equivalent room categories only—normalizing Single/Double/Quad occupancy, rollaway beds, Miami resort fees, 14% tax, and housekeeping cadence into True Out-the-Door comp rates.</p>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+            <select class="inp" id="eqRoomTier" style="width:auto;" onchange="loadRoomEquivalency()">
+              <option value="suite_vs_suite">Suite vs. Suite (1-BR / Jr Suite)</option>
+              <option value="double_double">Two Doubles / Two Queens (DD/QQ)</option>
+              <option value="standard_king">Standard King / Queen (Entry)</option>
+              <option value="ocean_balcony">Oceanview / Balcony Upgrade</option>
+            </select>
+            <select class="inp" id="eqOccupancy" style="width:auto;" onchange="loadRoomEquivalency()">
+              <option value="single">Single Occ (1 Adult)</option>
+              <option value="double" selected>Double Occ (2 Adults)</option>
+              <option value="triple_quad">Triple / Quad (3–4 Adults)</option>
+            </select>
+            <label style="display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; padding:6px 10px; border:1px solid var(--glass-border); border-radius:8px; background:#fff; cursor:pointer;">
+              <input type="checkbox" id="eqRollaway" onchange="loadRoomEquivalency()"> + Rollaway Bed
+            </label>
+          </div>
+        </div>
+        <div id="eqSummaryStrip" style="font-size:12px; font-weight:700; margin-bottom:10px; padding:8px 12px; border-radius:8px; background:var(--accent-soft); color:var(--ink);"></div>
+        <table class="portal-tbl">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Matched Room Equivalent</th>
+              <th>Category BAR</th>
+              <th>Resort Fee</th>
+              <th>Rollaway Bed</th>
+              <th>Housekeeping (HK)</th>
+              <th>True Out-the-Door</th>
+              <th>vs. My OTD</th>
+            </tr>
+          </thead>
+          <tbody id="eqRoomTableBody"></tbody>
+        </table>
+      </div>
     </section>
 
     <!-- ====================================================================
@@ -443,6 +483,29 @@
           <p style="font-size:12px; color:var(--sub);">Upgrade to Tier 3 Pro ($199/mo) to unlock automated overnight occupancy call-arounds and instant SMS undercut alerts.</p>
         </div>
         <button class="btn gold" onclick="previewClientTier('pro_199')">Preview Pro ($199) Unlocked →</button>
+      </div>
+
+      <!-- Night Audit Best-Practice Calling Windows (Pre-Audit vs Post-Audit) -->
+      <div class="glass-card" style="margin-bottom:14px;">
+        <span class="badge gold">NIGHT AUDIT TIMING PLAYBOOK · 20 YRS HOTELIER BEST PRACTICE</span>
+        <h3 style="font-size:15.5px; font-weight:800; margin:5px 0 8px;">When Should Overnight Reception / Night Audit Call Neighbors?</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:10px; font-size:12px;">
+          <div style="padding:11px; border:1px solid var(--glass-border); border-left:4px solid var(--ok); border-radius:10px; background:var(--page-bg);">
+            <div style="font-weight:800; color:var(--ok); font-size:11px;">WINDOW #1 (BEST) · BEFORE NIGHT AUDIT</div>
+            <div style="font-weight:800; margin:2px 0;">11:30 PM – 1:15 AM</div>
+            <p style="color:var(--sub);">Tonight's remaining inventory &amp; no-show exposure are still live before the 2 AM PMS date roll. Best for live walk-in BAR, Suite/Double availability, and same-night overflow swaps.</p>
+          </div>
+          <div style="padding:11px; border:1px solid var(--glass-border); border-left:4px solid var(--accent); border-radius:10px; background:var(--page-bg);">
+            <div style="font-weight:800; color:var(--accent); font-size:11px;">WINDOW #2 · AFTER NIGHT AUDIT</div>
+            <div style="font-weight:800; margin:2px 0;">3:30 AM – 4:45 AM</div>
+            <p style="color:var(--sub);">PMS date has rolled and batches are closed. Best for swapping clean final actual occupancy %, final ADR, and tomorrow's opening BAR for the 6:00 AM Morning Huddle Brief.</p>
+          </div>
+          <div style="padding:11px; border:1px solid var(--glass-border); border-left:4px solid var(--danger); border-radius:10px; background:var(--page-bg);">
+            <div style="font-weight:800; color:var(--danger); font-size:11px;">DO NOT CALL WINDOW</div>
+            <div style="font-weight:800; margin:2px 0;">1:45 AM – 3:15 AM (Audit Roll)</div>
+            <p style="color:var(--sub);">Never disturb neighboring auditors during active PMS posting &amp; credit-card batch close. Use our silent 1-Click Competitor Email Inquiry instead.</p>
+          </div>
+        </div>
       </div>
 
       <div style="display:grid; grid-template-columns: 1fr 1.25fr; gap:14px;">
@@ -1487,11 +1550,44 @@
     }
   }
 
+  async function loadRoomEquivalency() {
+    const tierEl = document.getElementById('eqRoomTier');
+    const occEl = document.getElementById('eqOccupancy');
+    const rollEl = document.getElementById('eqRollaway');
+    if (!tierEl) return;
+    const baseQ = _clientAuthQuery();
+    const sep = baseQ ? '&' : '?';
+    const url = `/api/client/room-compare${baseQ}${sep}tier=${encodeURIComponent(tierEl.value)}&occ=${encodeURIComponent(occEl.value)}&rollaway=${rollEl.checked ? '1' : '0'}`;
+    try {
+      const r = await fetch(url, { headers: clientToken ? { 'X-Client-Token': clientToken } : {} });
+      const d = await r.json();
+      if (!d.ok) return;
+      const sum = document.getElementById('eqSummaryStrip');
+      const adv = d.otd_advantage || 0;
+      sum.textContent = `${d.room_tier.match_rule} · Occupancy: ${d.occupancy.toUpperCase()} · My True Out-the-Door: $${d.my_true_otd || 0}/nt vs Comp Avg: $${d.comp_avg_otd || 0}/nt (${adv >= 0 ? 'We sit $' + adv + ' below comp OTD' : 'We sit $' + Math.abs(adv) + ' above comp OTD'})`;
+      const tb = document.getElementById('eqRoomTableBody');
+      tb.innerHTML = (d.items || []).map(it => `
+        <tr class="${it.is_primary ? 'my-row' : ''}">
+          <td><b>${it.name}</b> ${it.is_primary ? '<span class="badge gold">MY HOTEL</span>' : ''}<div style="font-size:10.5px;color:var(--muted);">${it.area} · ${it.stars}★</div></td>
+          <td style="font-size:11.5px; font-weight:700;">${it.matched_category}</td>
+          <td><b>$${it.category_bar}</b></td>
+          <td>${it.resort_fee > 0 ? '$' + it.resort_fee + '/nt' : '<span class="badge ok">$0 Fee</span>'}</td>
+          <td style="font-size:11px;">${it.rollaway_allowed ? (it.rollaway_fee > 0 ? '+$' + it.rollaway_fee + '/nt (Included)' : 'Available') : 'Not Allowed'}</td>
+          <td style="font-size:11px;">${it.hk_cadence}</td>
+          <td><b>$${it.true_otd_total}</b> <span style="font-size:10px;color:var(--muted);">(incl. ${it.tax_pct}% tax)</span></td>
+          <td style="font-weight:800; color:${it.is_primary ? 'var(--ink)' : (it.spread_vs_my_otd >= 0 ? '#15803d' : '#dc2626')};">${it.is_primary ? 'Baseline' : ((it.spread_vs_my_otd >= 0 ? '+' : '') + '$' + it.spread_vs_my_otd)}</td>
+        </tr>
+      `).join('');
+    } catch (e) {
+      console.warn('room compare error', e);
+    }
+  }
+
   (function syncPortalTheme() {
-    const t = new URLSearchParams(window.location.search).get('theme') || localStorage.getItem('hri_minimal_theme') || 'limestone';
+    const t = new URLSearchParams(window.location.search).get('theme') || localStorage.getItem('hri_minimal_theme') || 'glass';
     document.documentElement.setAttribute('data-theme', t);
   })();
-  loadClientPortal();
+  loadClientPortal().then(() => loadRoomEquivalency());
 </script>
 </body>
 </html>

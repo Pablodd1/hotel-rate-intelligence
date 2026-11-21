@@ -50,7 +50,9 @@ from .ops_engine import (
     send_custom_telegram_ops_alert,
     list_competitor_inquiries,
     create_competitor_inquiry,
+    build_room_equivalency_matrix,
     INQUIRY_TEMPLATES,
+    NIGHT_AUDIT_WINDOWS,
 )
 from .tenant_engine import (
     TIER_CATALOG,
@@ -312,6 +314,17 @@ def make_handler(cfg):
                 ensure_seed_accounts_and_campaigns(conn, cfg)
                 if path.startswith("/api/public/landing"):
                     self._json(get_public_website_payload(conn, cfg))
+                elif path.startswith("/api/client/room-compare"):
+                    acc = self._resolve_client(conn, q=q)
+                    if not acc:
+                        self._json({"ok": False, "error": "Client login required."}, 401)
+                        return
+                    primary_id = int(acc["primary_hotel_id"])
+                    comp_ids = [int(x) for x in (acc.get("assigned_hotel_ids") or [])]
+                    tier = (q.get("tier") or ["suite_vs_suite"])[0]
+                    occ = (q.get("occ") or ["double"])[0]
+                    roll = (q.get("rollaway") or ["0"])[0] in ("1", "true", "yes")
+                    self._json(build_room_equivalency_matrix(conn, primary_id, room_tier=tier, occupancy=occ, include_rollaway=roll, comp_hotel_ids=comp_ids))
                 elif path.startswith("/api/client/ops"):
                     acc = self._resolve_client(conn, q=q)
                     if not acc:
@@ -325,6 +338,7 @@ def make_handler(cfg):
                         "plan": plan,
                         "inquiries": list_competitor_inquiries(conn, primary_id),
                         "inquiry_templates": INQUIRY_TEMPLATES,
+                        "night_audit_windows": NIGHT_AUDIT_WINDOWS,
                     })
                 elif path.startswith("/api/client/portal"):
                     acc = self._resolve_client(conn, q=q)
