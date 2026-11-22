@@ -5,6 +5,7 @@ __pycache__
 *.log
 data
 node_modules
+frontend
 graphify-out
 media-pack/videos
 media-pack/reels

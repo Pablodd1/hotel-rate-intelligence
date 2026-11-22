@@ -14,6 +14,8 @@ _WEBSITE_PATH = os.path.join(_HERE, "dashboard", "website.html")
 _PORTAL_PATH = os.path.join(_HERE, "dashboard", "client_portal.html")
 _MC_PATH = os.path.join(_HERE, "dashboard", "mission_control.html")
 _THEMES_PATH = os.path.join(_HERE, "dashboard", "themes_gallery.html")
+_APP_DIST_DIR = os.path.join(_HERE, "dashboard", "app")
+_APP_INDEX_PATH = os.path.join(_APP_DIST_DIR, "index.html")
 _KEY = os.environ.get("HRI_AUTH_KEY", "hri-miami-2026")
 _dash_cache = None
 
@@ -31,8 +33,8 @@ def _load(name):
         return f.read().encode("utf-8")
 
 
-def _reply(start_response, status, body, ctype="application/json; charset=utf-8"):
-    headers = [("Content-Type", ctype), ("Cache-Control", "no-store")]
+def _reply(start_response, status, body, ctype="application/json; charset=utf-8", cache_control="no-store"):
+    headers = [("Content-Type", ctype), ("Cache-Control", cache_control)]
     if isinstance(body, str):
         body = body.encode("utf-8")
     headers.append(("Content-Length", str(len(body))))
@@ -51,6 +53,12 @@ def _read_body(environ):
 
 def _load_asset(rel_name):
     fp = os.path.join(_HERE, "dashboard", "assets", os.path.basename(rel_name))
+    with open(fp, "rb") as f:
+        return f.read()
+
+
+def _load_app_asset(rel_name):
+    fp = os.path.join(_APP_DIST_DIR, "app-assets", os.path.basename(rel_name))
     with open(fp, "rb") as f:
         return f.read()
 
@@ -104,6 +112,32 @@ def app(environ, start_response):
                       json.dumps({"error": "auth key required: ?k=<key>"}, indent=1))
 
     if not path.startswith("/api/"):
+        if path.startswith("/app-assets/"):
+            rel = os.path.basename(path)
+            try:
+                if rel.endswith(".js"):
+                    ctype = "application/javascript; charset=utf-8"
+                elif rel.endswith(".css"):
+                    ctype = "text/css; charset=utf-8"
+                elif rel.endswith(".svg"):
+                    ctype = "image/svg+xml"
+                elif rel.endswith(".png"):
+                    ctype = "image/png"
+                elif rel.endswith(".jpg") or rel.endswith(".jpeg"):
+                    ctype = "image/jpeg"
+                elif rel.endswith(".woff2"):
+                    ctype = "font/woff2"
+                else:
+                    ctype = "application/octet-stream"
+                return _reply(
+                    start_response,
+                    "200 OK",
+                    _load_app_asset(rel),
+                    ctype=ctype,
+                    cache_control="public, max-age=31536000, immutable",
+                )
+            except FileNotFoundError:
+                return _reply(start_response, "404 Not Found", b"not found", ctype="text/plain")
         if path.startswith("/assets/"):
             rel = os.path.basename(path)
             try:
@@ -118,9 +152,11 @@ def app(environ, start_response):
         if path == "/llms.txt":
             return _reply(start_response, "200 OK", _dashboard(os.path.join(_HERE, "dashboard", "llms.txt")), ctype="text/plain; charset=utf-8")
         if path in ("/", "/website", "/website.html", "/landing", "/themes", "/themes.html", "/design-versions"):
-            return _reply(start_response, "200 OK", _dashboard(_WEBSITE_PATH), ctype="text/html; charset=utf-8")
-        if path in ("/portal", "/client", "/client_portal.html"):
-            return _reply(start_response, "200 OK", _dashboard(_PORTAL_PATH), ctype="text/html; charset=utf-8")
+            target = _APP_INDEX_PATH if os.path.exists(_APP_INDEX_PATH) else _WEBSITE_PATH
+            return _reply(start_response, "200 OK", _dashboard(target), ctype="text/html; charset=utf-8")
+        if path in ("/portal", "/client", "/client_portal.html") or path.startswith("/portal/"):
+            target = _APP_INDEX_PATH if os.path.exists(_APP_INDEX_PATH) else _PORTAL_PATH
+            return _reply(start_response, "200 OK", _dashboard(target), ctype="text/html; charset=utf-8")
         if path in ("/mission-control", "/admin", "/dashboard", "/index.html"):
             return _reply(start_response, "200 OK", _dashboard(_MC_PATH), ctype="text/html; charset=utf-8")
         if path.startswith("/audit"):
@@ -138,6 +174,7 @@ def app(environ, start_response):
         hotels = json.loads(_load("snapshot_hotels.json")).get("hotels") or []
         from hri.tenant_engine import TIER_CATALOG, COMPETITOR_COMPARISON_MATRIX
         sample_labels = {
+            23: "Avalon Hotel South Beach",
             1: "Sample Demo #1 · North Beach All-Suites",
             2: "Sample Demo #2 · Boutique Beachfront",
             4: "Sample Demo #3 · South Beach Art Deco",
@@ -233,7 +270,7 @@ def app(environ, start_response):
         tok = (environ.get("HTTP_X_CLIENT_TOKEN") or (params.get("token") or [""])[0]).strip()
         if not dh and tok.startswith("demo-hotel-"):
             dh = tok.replace("demo-hotel-", "")
-        hid = int(dh) if dh.isdigit() else 1
+        hid = int(dh) if dh.isdigit() else 23
         all_hotels = json.loads(_load("snapshot_hotels.json")).get("hotels") or []
         pitches = json.loads(_load("snapshot_pitches.json"))
         primary = next((h for h in all_hotels if int(h["id"]) == hid), all_hotels[0] if all_hotels else {})
@@ -244,6 +281,7 @@ def app(environ, start_response):
             h["tags"] = []
         from hri.sales_engine import build_comp_set_svg, build_ota_ladder_svg, MIAMI_COMPRESSION_EVENTS
         from hri.tenant_engine import TIER_CATALOG, TIER_BY_ID
+        from hri.call_assistant import COURTESY_CALL_TEMPLATES
         ptier = (params.get("preview_tier") or ["pro_199"])[0]
         tier_meta = TIER_BY_ID.get(ptier, TIER_CATALOG[2])
         comp = comp[: 1 + int(tier_meta.get("max_competitors") or 8)]
@@ -279,7 +317,7 @@ def app(environ, start_response):
             },
             "memory_events": (pitch.get("memory") or {}).get("events") or [],
             "call_logs": [],
-            "call_templates": [],
+            "call_templates": COURTESY_CALL_TEMPLATES,
             "tags": [],
             "compression_events": MIAMI_COMPRESSION_EVENTS,
         }))
@@ -296,7 +334,7 @@ def app(environ, start_response):
         tok = (environ.get("HTTP_X_CLIENT_TOKEN") or (params.get("token") or [""])[0]).strip()
         if not dh and tok.startswith("demo-hotel-"):
             dh = tok.replace("demo-hotel-", "")
-        hid = int(dh) if dh.isdigit() else 1
+        hid = int(dh) if dh.isdigit() else 23
         tmp_db = os.path.join(tempfile.gettempdir(), "hri_vercel_ops.db")
         conn = dbmod.open_db(tmp_db)
         try:

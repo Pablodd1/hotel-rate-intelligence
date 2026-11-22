@@ -81,6 +81,8 @@ WEBSITE_PATH = os.path.join(DASH_DIR, "website.html")
 CLIENT_PORTAL_PATH = os.path.join(DASH_DIR, "client_portal.html")
 MISSION_CONTROL_PATH = os.path.join(DASH_DIR, "mission_control.html")
 THEMES_GALLERY_PATH = os.path.join(DASH_DIR, "themes_gallery.html")
+APP_DIST_DIR = os.path.join(DASH_DIR, "app")
+APP_INDEX_PATH = os.path.join(APP_DIST_DIR, "index.html")
 
 
 def _summary(conn, cfg):
@@ -282,6 +284,26 @@ def make_handler(cfg):
             path = parsed.path
             q = parse_qs(parsed.query)
 
+            if path.startswith("/app-assets/"):
+                rel = os.path.basename(path)
+                asset_fp = os.path.join(APP_DIST_DIR, "app-assets", rel)
+                if rel.endswith(".js"):
+                    ctype = "application/javascript; charset=utf-8"
+                elif rel.endswith(".css"):
+                    ctype = "text/css; charset=utf-8"
+                elif rel.endswith(".svg"):
+                    ctype = "image/svg+xml"
+                elif rel.endswith(".png"):
+                    ctype = "image/png"
+                elif rel.endswith(".jpg") or rel.endswith(".jpeg"):
+                    ctype = "image/jpeg"
+                elif rel.endswith(".woff2"):
+                    ctype = "font/woff2"
+                else:
+                    ctype = "application/octet-stream"
+                self._serve_file(asset_fp, content_type=ctype)
+                return
+
             if path.startswith("/assets/"):
                 rel = os.path.basename(path)
                 asset_fp = os.path.join(DASH_DIR, "assets", rel)
@@ -290,12 +312,12 @@ def make_handler(cfg):
                 return
 
             if path in ("/", "/website", "/website.html", "/landing", "/themes", "/themes.html", "/design-versions"):
-                target = WEBSITE_PATH if os.path.exists(WEBSITE_PATH) else DASH_PATH
+                target = APP_INDEX_PATH if os.path.exists(APP_INDEX_PATH) else (WEBSITE_PATH if os.path.exists(WEBSITE_PATH) else DASH_PATH)
                 self._serve_file(target)
                 return
 
-            if path in ("/portal", "/client", "/client_portal.html"):
-                target = CLIENT_PORTAL_PATH if os.path.exists(CLIENT_PORTAL_PATH) else DASH_PATH
+            if path in ("/portal", "/client", "/client_portal.html") or path.startswith("/portal/"):
+                target = APP_INDEX_PATH if os.path.exists(APP_INDEX_PATH) else (CLIENT_PORTAL_PATH if os.path.exists(CLIENT_PORTAL_PATH) else DASH_PATH)
                 self._serve_file(target)
                 return
 
