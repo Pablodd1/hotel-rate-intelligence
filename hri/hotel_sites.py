@@ -30,7 +30,34 @@ SKIP_EMAIL_DOMAINS = {
     "w3.org", "latofonts.com", "mysite.com", "placeholder.com",
 }
 SKIP_EMAIL_EXTS = (".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".js", ".css", ".woff", ".woff2")
-CONTACT_HINTS = ("contact", "about", "location", "directions", "meet", "team", "staff", "management", "leadership", "events", "press")
+CONTACT_HINTS = (
+    "contact", "about", "location", "directions", "meet", "team", "staff",
+    "management", "leadership", "events", "press", "reservations", "groups",
+    "weddings", "concierge", "careers", "jobs", "rooms", "front-desk", "faq",
+    "privacy", "terms",
+)
+
+
+def classify_department(kind: str, value: str, context: str = "", person_title: str = "") -> str:
+    """Classify a hotel email, phone, or person into a hospitality operating department."""
+    blob = f"{(value or '').split('@')[0] if kind == 'email' else (value or '')} {context or ''} {person_title or ''}".lower()
+    if any(k in blob for k in ("night audit", "nightaudit", "overnight", "audit")):
+        return "night_audit"
+    if any(k in blob for k in ("revenue", "yield", "pricing", "distribution")):
+        return "revenue_mgmt"
+    if any(k in blob for k in ("general manager", "managing director", "gm@", "gm ", "owner", "founder", "ceo", "coo", "principal", "president", "director of operations")):
+        return "gm_executive"
+    if any(k in blob for k in ("reserv", "booking", "book@")):
+        return "reservations"
+    if any(k in blob for k in ("front desk", "frontdesk", "front office", "frontoffice", "fd@", "mod", "manager on duty", "director of rooms", "rooms division", "guest services", "reception")):
+        return "front_office_mod"
+    if any(k in blob for k in ("housekeep", "hk ", "maintenance", "engineering")):
+        return "housekeeping_ops"
+    if any(k in blob for k in ("concierge", "vip", "bell")):
+        return "concierge"
+    if any(k in blob for k in ("sale", "group", "event", "meet", "wed", "cater", "mice", "ventas", "marketing", "pr@")):
+        return "sales_groups"
+    return "general_info"
 
 BOOKING_ENGINE_SIGNATURES = [
     ("Cloudbeds", ("cloudbeds.com", "hotels.cloudbeds.com")),

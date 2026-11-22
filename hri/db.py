@@ -252,6 +252,11 @@ MIGRATIONS = [
     ("rates", "undercut_pct", "REAL DEFAULT 0"),
     ("rates", "est_occupancy_pct", "INTEGER DEFAULT 74"),
     ("prospects", "est_annual_upside", "INTEGER DEFAULT 0"),
+    ("contacts", "department", "TEXT DEFAULT 'general_info'"),
+    ("outreach_log", "delivery_status", "TEXT DEFAULT 'pending'"),
+    ("outreach_log", "opened_at", "REAL"),
+    ("outreach_log", "clicked_at", "REAL"),
+    ("outreach_log", "bounced_at", "REAL"),
 ]
 
 
@@ -265,6 +270,10 @@ def open_db(path):
     ).fetchone()
     if not has_schema:
         conn.executescript(SCHEMA)
+    # Ensure latest columns exist idempotently
+    existing_contact_cols = {r["name"] for r in conn.execute("PRAGMA table_info(contacts)").fetchall()}
+    existing_outreach_cols = {r["name"] for r in conn.execute("PRAGMA table_info(outreach_log)").fetchall()}
+    if "department" not in existing_contact_cols or "delivery_status" not in existing_outreach_cols or not has_schema:
         for table, col, coldef in MIGRATIONS:
             try:
                 conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {coldef}")

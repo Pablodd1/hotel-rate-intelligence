@@ -188,13 +188,6 @@ export const EmberShell: React.FC<EmberShellProps> = ({ children }) => {
           <ArrowLeft className="w-3.5 h-3.5" />
           Public Website
         </button>
-        <a
-          href="/mission-control"
-          className="w-full px-3 py-1.5 text-[10.5px] font-semibold text-blue-300/70 hover:text-white flex items-center justify-center gap-1"
-        >
-          Owner Mission Control
-          <ExternalLink className="w-3 h-3" />
-        </a>
       </div>
     </div>
   )

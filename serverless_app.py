@@ -102,6 +102,7 @@ def app(environ, start_response):
     is_public_or_token_path = (
         not path.startswith("/api/")
         or path.startswith("/api/public/")
+        or path.startswith("/api/webhooks/")
         or path.startswith("/api/accounts/register")
         or path.startswith("/api/client/")
         or path.startswith("/api/audit/")
@@ -212,22 +213,37 @@ def app(environ, start_response):
             res = generate_hospitality_concierge_reply(msg, lang=lang)
         res["owner_direct_phone"] = "+1 (786) 970-8366"
         return _reply(start_response, "200 OK", json.dumps(res))
+    if path.startswith("/api/webhooks/resend") and environ.get("REQUEST_METHOD") == "POST":
+        ev_type = str(body.get("type") or "unknown")
+        ev_data = body.get("data") or {}
+        to_addr = ev_data.get("to") or []
+        subj = str(ev_data.get("subject") or "")
+        email_id = str(ev_data.get("email_id") or "")
+        if ev_type in ("email.bounced", "email.complained", "email.clicked"):
+            _notify_owner_resend(
+                f"EMAIL MONITOR ({ev_type.upper()}): {', '.join(to_addr) if isinstance(to_addr, list) else to_addr}",
+                f"Resend event received on hotelrateintel.com:\n\nEvent: {ev_type}\nTo: {to_addr}\nSubject: {subj}\nEmail ID: {email_id}",
+            )
+        return _reply(start_response, "200 OK", json.dumps({"ok": True, "received": ev_type, "email_id": email_id}))
     if path.startswith("/api/public/callback") and environ.get("REQUEST_METHOD") == "POST":
         ph = (body.get("phone") or "").strip()
+        em = (body.get("email") or "").strip()
         nm = (body.get("name") or "Hotel Lead").strip()
         hn = (body.get("hotel_name") or "Website Visitor").strip()
-        if not ph:
-            return _reply(start_response, "400 Bad Request", json.dumps({"ok": False, "error": "Enter a valid phone number."}))
+        role = (body.get("role") or "").strip()
+        notes = (body.get("notes") or "").strip()
+        if not ph and not em:
+            return _reply(start_response, "400 Bad Request", json.dumps({"ok": False, "error": "Enter a valid phone number or work email."}))
         _notify_owner_resend(
-            f"HOT WEBSITE CALLBACK: {hn} ({ph})",
-            f"New callback request on hotelrateintel.com:\n\nHotel: {hn}\nName: {nm}\nPhone: {ph}\nHotel ID: {body.get('hotel_id') or ''}",
+            f"HOT WEBSITE INQUIRY: {hn} ({ph or em})",
+            f"New Miami hotel inquiry on hotelrateintel.com:\n\nHotel: {hn}\nName: {nm}\nRole: {role or 'Not specified'}\nPhone: {ph or 'Not provided'}\nEmail: {em or 'Not provided'}\nNotes: {notes or 'None'}\nHotel ID: {body.get('hotel_id') or ''}",
             skip=("555-0199" in ph or "5550199" in ph),
         )
         return _reply(start_response, "200 OK", json.dumps({
             "ok": True,
-            "phone_e164": ph,
+            "phone_e164": ph or em,
             "status": "owner_notified",
-            "message": f"Locked in! Your callback request for {hn} ({ph}) was sent straight to Jasmel in Miami.",
+            "message": f"Locked in! Your inquiry for {hn} ({ph or em}) was sent straight to Jasmel in Miami.",
         }))
     if path.startswith("/api/accounts/register") and environ.get("REQUEST_METHOD") == "POST":
         em = (body.get("email") or "").strip()

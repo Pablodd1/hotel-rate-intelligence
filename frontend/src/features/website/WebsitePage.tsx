@@ -66,6 +66,52 @@ export const WebsitePage: React.FC = () => {
     { id: 38, name: 'The Betsy Hotel South Beach', price: 478 },
   ])
   const [isLiveApi, setIsLiveApi] = useState(false)
+  const [contactName, setContactName] = useState('')
+  const [contactRole, setContactRole] = useState('General Manager / Owner')
+  const [contactHotel, setContactHotel] = useState('')
+  const [contactPhone, setContactPhone] = useState('')
+  const [contactEmail, setContactEmail] = useState('')
+  const [contactNote, setContactNote] = useState('')
+  const [contactSending, setContactSending] = useState(false)
+  const [contactConfirmation, setContactConfirmation] = useState('')
+
+  const handleDirectContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!contactPhone.trim() && !contactEmail.trim()) {
+      pushToast({ tone: 'warning', title: 'Add Phone or Email', detail: 'Enter a phone number or work email so our Miami desk can reach you.' })
+      return
+    }
+    setContactSending(true)
+    setContactConfirmation('')
+    try {
+      const res = await fetch('/api/public/callback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: `${contactName || 'Miami Hotel Leader'} (${contactRole})`,
+          hotel_name: contactHotel || 'Miami Boutique Property',
+          phone: contactPhone || contactEmail,
+          email: contactEmail,
+          role: contactRole,
+          notes: contactNote,
+          hotel_id: Number(selectedSampleId || 23),
+        }),
+      })
+      const d = await res.json()
+      const msg = d.ok ? d.message : d.error || 'Request received by our Miami team.'
+      setContactConfirmation(msg)
+      pushToast({ tone: 'success', title: 'Message Sent to Miami Desk', detail: 'Jasmel received your inquiry via instant alert.' })
+      setContactName('')
+      setContactHotel('')
+      setContactPhone('')
+      setContactEmail('')
+      setContactNote('')
+    } catch {
+      setContactConfirmation('Received! You can also call or WhatsApp our Miami desk directly at +1 (786) 970-8366.')
+    } finally {
+      setContactSending(false)
+    }
+  }
 
   const {
     register,
@@ -237,21 +283,22 @@ export const WebsitePage: React.FC = () => {
           </div>
 
           <nav className="hidden md:flex items-center gap-1 text-xs font-semibold text-blue-100">
-            <a href="#industry-roi" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Industry &amp; Jargon</a>
+            <a href="#industry-roi" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Miami Hotel Features</a>
             <a href="#auditor" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Live Auditor</a>
             <a href="#pricing" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Pricing ($0–$399)</a>
-            <a href="#consultation" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">$99 AI Consultation</a>
+            <a href="#consultation" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">$99 AI Audit</a>
+            <a href="#contact-desk" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Contact Us</a>
             <a href="#blogs" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Blogs</a>
           </nav>
 
           <div className="flex items-center gap-2">
-            <span
-              className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold border ${
-                isLiveApi ? 'bg-emerald-500/20 text-emerald-200 border-emerald-400/30' : 'bg-blue-500/20 text-blue-100 border-blue-300/30'
-              }`}
+            <a
+              href="tel:+17869708366"
+              className="hidden lg:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[11px] font-bold text-blue-100"
             >
-              {isLiveApi ? 'Live DB' : 'Demo Data'}
-            </span>
+              <Phone className="w-3 h-3 text-emerald-300" />
+              (786) 970-8366
+            </a>
             <button
               type="button"
               onClick={() => navigate(`/portal?demo_hotel=${selectedSampleId}`)}
@@ -260,10 +307,10 @@ export const WebsitePage: React.FC = () => {
               Open Client Portal →
             </button>
             <a
-              href="/mission-control"
-              className="hidden sm:inline-block px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-blue-100"
+              href="#contact-desk"
+              className="hidden sm:inline-block px-3 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-xs font-bold text-white transition"
             >
-              Owner Login
+              Contact Miami Desk
             </a>
           </div>
         </header>
@@ -832,6 +879,136 @@ export const WebsitePage: React.FC = () => {
           </div>
         </section>
 
+        {/* SECTION 5B: EASY MIAMI HOTEL CONTACT DESK (MONITORED INSTANT ALERTS) */}
+        <section id="contact-desk" className="rounded-[26px] ember-canvas-panel p-5 sm:p-7">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+            <div className="lg:col-span-5 ember-card p-6 flex flex-col justify-between gap-4">
+              <div className="space-y-2.5">
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-extrabold uppercase">
+                  Local Miami Hospitality Desk · South Beach to Sunny Isles
+                </span>
+                <h2 className="text-xl sm:text-2xl font-black text-[#0B1B3B] leading-tight">
+                  Contact Us Directly — Real Miami Hoteliers Answer.
+                </h2>
+                <p className="text-xs text-[#475B80] leading-relaxed">
+                  Serving independent boutique hotels across <b>South Beach, Mid-Beach, North Beach, Brickell, Wynwood, Coral Gables &amp; Sunny Isles</b>. Reach out for a free 1-page rate parity check, Suite-vs-Suite walkthrough, or overnight Night Audit call desk demo.
+                </p>
+                <div className="space-y-2 pt-1 text-xs">
+                  <div className="ember-subtle-card p-3 flex items-center justify-between gap-2">
+                    <span className="font-bold text-[#0B1B3B]">Direct Call / Text (EN &amp; ES)</span>
+                    <a href="tel:+17869708366" className="font-extrabold text-blue-700 hover:underline">+1 (786) 970-8366</a>
+                  </div>
+                  <div className="ember-subtle-card p-3 flex items-center justify-between gap-2">
+                    <span className="font-bold text-[#0B1B3B]">Direct Email</span>
+                    <a href="mailto:jasmelacosta@gmail.com" className="font-extrabold text-blue-700 hover:underline">jasmelacosta@gmail.com</a>
+                  </div>
+                  <div className="ember-subtle-card p-3 flex items-center justify-between gap-2">
+                    <span className="font-bold text-[#0B1B3B]">WhatsApp Hospitality Desk</span>
+                    <a href="https://wa.me/17869708366" target="_blank" rel="noreferrer" className="font-extrabold text-emerald-700 hover:underline">Message on WhatsApp →</a>
+                  </div>
+                </div>
+              </div>
+              <div className="text-[11px] text-[#6D81A8]">
+                Every website inquiry is logged &amp; monitored immediately by our North Miami team (typical reply under 15 minutes).
+              </div>
+            </div>
+
+            <form onSubmit={handleDirectContactSubmit} className="lg:col-span-7 ember-card p-6 space-y-3">
+              <div>
+                <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-blue-700">
+                  15-Second Callback &amp; Parity Audit Request
+                </span>
+                <h3 className="text-base font-extrabold text-[#0B1B3B]">Request a Free Miami Hotel Parity Review or Call</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[11px] font-bold text-[#475B80] mb-1">Your Name</label>
+                  <input
+                    value={contactName}
+                    onChange={(e) => setContactName(e.target.value)}
+                    placeholder="e.g., Maria Lopez"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-[#DCE7F8] bg-[#F7FAFF]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-bold text-[#475B80] mb-1">Hotel Department / Role</label>
+                  <select
+                    value={contactRole}
+                    onChange={(e) => setContactRole(e.target.value)}
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-[#DCE7F8] bg-[#F7FAFF] font-semibold"
+                  >
+                    <option>General Manager / Owner</option>
+                    <option>Reservations Manager</option>
+                    <option>Director of Revenue / Yield</option>
+                    <option>Front Office Manager / MOD</option>
+                    <option>Night Audit / Overnight Staff</option>
+                    <option>Director of Sales &amp; Groups</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-[11px] font-bold text-[#475B80] mb-1">Miami Hotel Name</label>
+                  <input
+                    value={contactHotel}
+                    onChange={(e) => setContactHotel(e.target.value)}
+                    placeholder="e.g., Avalon Hotel South Beach"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-[#DCE7F8] bg-[#F7FAFF]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-bold text-[#475B80] mb-1">Phone / WhatsApp</label>
+                  <input
+                    value={contactPhone}
+                    onChange={(e) => setContactPhone(e.target.value)}
+                    placeholder="+1 (305) 555-0199"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-[#DCE7F8] bg-[#F7FAFF]"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-[11px] font-bold text-[#475B80] mb-1">Work Email (for 1-Page Parity PDF)</label>
+                  <input
+                    type="email"
+                    value={contactEmail}
+                    onChange={(e) => setContactEmail(e.target.value)}
+                    placeholder="gm@yourmiamihotel.com"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-[#DCE7F8] bg-[#F7FAFF]"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-[11px] font-bold text-[#475B80] mb-1">What would you like to inspect?</label>
+                  <input
+                    value={contactNote}
+                    onChange={(e) => setContactNote(e.target.value)}
+                    placeholder="OTA undercut check, Suite-vs-Suite setup, OOO/OOS AI auto-pricing, or $99 AI Audit..."
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-[#DCE7F8] bg-[#F7FAFF]"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <button
+                  type="submit"
+                  disabled={contactSending}
+                  className="px-5 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-extrabold hover:bg-blue-700 disabled:opacity-60 transition"
+                >
+                  {contactSending ? 'Sending to Miami Desk...' : 'Send to Miami Hospitality Desk →'}
+                </button>
+                <a
+                  href="https://wa.me/17869708366"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition"
+                >
+                  Chat on WhatsApp Now
+                </a>
+              </div>
+              {contactConfirmation && (
+                <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-800">
+                  {contactConfirmation}
+                </div>
+              )}
+            </form>
+          </div>
+        </section>
+
         {/* SECTION 6: BLOGS FROM AIDYNAMIC.PRO */}
         <section id="blogs" className="rounded-[26px] ember-canvas-panel p-5 sm:p-7 space-y-4">
           <div className="flex flex-wrap items-end justify-between gap-3">
@@ -888,11 +1065,13 @@ export const WebsitePage: React.FC = () => {
         <footer className="text-center text-xs text-blue-100/90 py-4 space-x-3">
           <b>HotelRateIntel · North Miami, FL 33161</b>
           <span>·</span>
+          <a href="tel:+17869708366" className="underline">+1 (786) 970-8366</a>
+          <span>·</span>
+          <a href="#contact-desk" className="underline">Contact Miami Desk</a>
+          <span>·</span>
           <a href="https://www.aidynamic.pro" target="_blank" rel="noreferrer" className="underline">AI Dynamic Pro</a>
           <span>·</span>
           <button type="button" onClick={() => navigate('/portal')} className="underline">Client WebApp</button>
-          <span>·</span>
-          <a href="/mission-control" className="underline">Owner Mission Control</a>
         </footer>
       </div>
 
