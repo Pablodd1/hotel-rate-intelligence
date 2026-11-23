@@ -205,58 +205,124 @@ export const HOTEL_JARGON_SOLUTIONS = [
 
 export const BLOGS_SEED = [
   {
-    tag: 'BLOG · AGENTIC WEBSITES',
-    title: 'Agentic Websites: The Future of Self-Optimizing Web Presence',
-    stat1: { v: '24/7', l: 'Live UX Adaptation' },
-    stat2: { v: 'Auto A/B', l: 'Intent-Driven CTAs' },
+    tag: 'RESERVATIONS & REVENUE',
+    readTime: '4 min read',
+    title: 'Miami Resort Fees & 14% Tax: Why Entry-Room Rate Shoppers Mislead Boutique Hotels',
+    stat1: { v: '14% Tax', l: 'Miami Beach Checkout' },
+    stat2: { v: 'OTD Math', l: 'Suite-vs-Suite Match' },
     summary:
-      'Static business and hotel sites show the same brochure to every visitor. Agentic websites adapt paths dynamically from real buyer intent to convert traffic directly into live audits and bookings.',
-    url: 'https://www.aidynamic.pro/agentic-website',
-  },
-  {
-    tag: 'BLOG · AI SEO & AEO',
-    title: 'AI SEO & Answer Engine Optimization: Dominating Rankings in 2026',
-    stat1: { v: 'AEO / GEO', l: 'LLM Citation Visibility' },
-    stat2: { v: 'JSON-LD', l: 'Entity Authority Graph' },
-    summary:
-      'Discovery now runs inside Google AI Overviews, ChatGPT Search, Perplexity, and Claude. Structured schema.org entities and 40–60 word FAQ answers win direct high-intent bookings.',
+      'A neighbor listing $219 headline BAR with a $42 resort fee is not cheaper than your $245 rate with $0 resort fee. Compare True Out-the-Door rates by exact room equivalent.',
+    takeaways: [
+      'Match Suite to Suite and Two Doubles to Two Doubles — never benchmark a King Suite against an entry Queen.',
+      'Normalize resort fees, rollaway charges ($30–$45/nt), and 14% Miami-Dade lodging tax before cutting BAR.',
+      'Factor daily vs. on-request housekeeping cadence when evaluating why a neighbor holds a $20 ADR premium.',
+    ],
+    body: [
+      'Most corporate rate shoppers pull the lowest available entry room from each competitor and average them. On Collins Avenue or Ocean Drive, that mixes a windowless Petite Queen with a Junior Suite and ignores $35–$55 mandatory resort fees.',
+      'Guests book based on the final checkout total. When your property charges $245 with no resort fee and the boutique next door advertises $219 plus a $42 resort fee, your direct checkout is actually $16 lower before tax.',
+      'Inside HotelRateIntel Suite-vs-Suite Match, every corridor hotel is normalized by identical room class, occupancy count (Single, Double, Triple/Quad), rollaway availability, resort fee, and 14% tax so Reservations adjusts BAR with real checkout math.',
+    ],
     url: 'https://www.aidynamic.pro/blog',
   },
   {
-    tag: 'BLOG · ZERO-G & SIMULATION',
-    title: 'Digital Twin Hospitality Simulation Before Touching Live Rates',
-    stat1: { v: '0 Risk', l: 'Guardrail Testing' },
-    stat2: { v: '100%', l: 'RevPAR Traceability' },
+    tag: 'NIGHT AUDIT & FRONT OFFICE',
+    readTime: '3 min read',
+    title: 'Before vs. After Night Audit: The Right Time for Overnight Courtesy Call-Arounds',
+    stat1: { v: '11:30 PM', l: 'Pre-Audit Window' },
+    stat2: { v: '3:30 AM', l: 'Post-Audit Window' },
     summary:
-      'Test compression lifts, CTA restrictions, and OOO room holds inside a deterministic yield simulator before pushing BAR changes to SynXis, Cloudbeds, or Mews.',
-    url: 'https://www.aidynamic.pro/projects',
-  },
-  {
-    tag: 'BLOG · VOICE CONCIERGE',
-    title: '24/7 Bilingual Hotel Voice & WhatsApp Receptionist (EN / ES)',
-    stat1: { v: '<1.2s', l: 'Voice Response Latency' },
-    stat2: { v: '18%', l: 'Commission Saved' },
-    summary:
-      'Capture after-hours walk-in BAR checks, early check-in inquiries, and direct bookings automatically without transferring guests to commission-heavy OTAs.',
-    url: 'https://www.aidynamic.pro/projects/ai-voice-receptionist',
-  },
-  {
-    tag: 'BLOG · AI MARKET RESEARCH',
-    title: 'Hyper-Local Corridor Scraping Without Touching PMS Credentials',
-    stat1: { v: '49+', l: 'Miami Boutiques Mapped' },
-    stat2: { v: '6:00 AM', l: 'Daily Shift Brief' },
-    summary:
-      'Combine Xotelo metasearch feeds, official schema.org JSON-LD direct BAR scans, and Night Audit courtesy calls into one unified morning rate sheet.',
+      'Calling a neighbor desk at 2:15 AM during PMS date-roll gets you hung up on. Use Window #1 (11:30 PM–1:15 AM) for tonight walk-in BAR and Window #2 (3:30–4:45 AM) for 6 AM huddle accuracy.',
+    takeaways: [
+      'Window #1 (11:30 PM–1:15 AM): Captures remaining rooms, walk-in BAR, and same-night overflow swaps before audit roll.',
+      'Blackout Window (1:45 AM–3:15 AM): Never call while the Night Auditor is running PMS date-roll and credit card batch.',
+      'Window #2 (3:30 AM–4:45 AM): Clean final occupancy and early arrivals for the 6:00 AM GM & Reservations brief.',
+    ],
+    body: [
+      'Every experienced Miami front-office manager knows the unspoken etiquette of overnight courtesy call-arounds: never interrupt a Night Auditor while Opera, Cloudbeds, or Mews is mid-roll.',
+      'Between 11:30 PM and 1:15 AM, late arrivals are mostly settled and the desk still has live visibility into walk-in pricing and whether a neighboring property needs to walk overflow guests.',
+      'HotelRateIntel logs every Pre-Audit and Post-Audit call alongside 1-click neighbor rate-swap email drafts so shift intelligence is never lost on a sticky note at 7:00 AM.',
+    ],
     url: 'https://www.aidynamic.pro/blog',
   },
   {
-    tag: 'BLOG · AGENTS OF AGENTS',
-    title: 'Multi-Agent Hospitality Operations: Reservations + Housekeeping + Night Audit',
-    stat1: { v: '45–68h', l: 'Staff Hrs Saved / Mo' },
-    stat2: { v: '53x', l: 'Typical Core ROI' },
+    tag: 'HOUSEKEEPING & ROOMS OPS',
+    readTime: '3 min read',
+    title: 'How 4 Out-of-Order Rooms Flip a 45-Room Boutique Into Compression',
+    stat1: { v: 'OOO / OOS', l: 'Live Net Sellable' },
+    stat2: { v: 'Stop-Sell', l: 'Before Walk Risk' },
     summary:
-      'Connect housekeeping holds (#OOO/#HK), parity monitors (#ParityLeak), and auto-pricing rules so an independent 45-room team operates with corporate precision.',
-    url: 'https://www.aidynamic.pro/offer',
+      'On a 45-room property, 38 sold rooms looks like 84% gross occupancy — until 4 AC/plumbing OOO rooms drop sellable inventory to 41 and push true net occupancy to 92.7%.',
+    takeaways: [
+      'Gross occupancy hides real compression whenever Maintenance or Housekeeping holds rooms offline.',
+      'Recalculate True Net Occupancy (Sold ÷ True Sellable) before deciding whether to lift BAR or close discount OTAs.',
+      'Send tagged Telegram shift alerts (#OOO, #HK, #Compression) so Reservations and Front Office stay aligned.',
+    ],
+    body: [
+      'Enterprise rate shoppers assume every physical room in your building is sellable. In a real boutique hotel, one AC leak, two deep-clean OOS holds, and one short-staffed housekeeping section instantly change your yield posture.',
+      'At 92.7% true net occupancy with only 3 rooms left to sell, discounting on Expedia or leaving wholesale channels open costs you both ADR and a potential guest walk.',
+      'HotelRateIntel lets Reservations or the MOD toggle OOO, OOS, and Housekeeping holds in five seconds and automatically recalculates guardrailed BAR targets and Stop-Sell flags.',
+    ],
+    url: 'https://www.aidynamic.pro/blog',
+  },
+  {
+    tag: 'REVENUE & DISTRIBUTION',
+    readTime: '4 min read',
+    title: 'Spotting Agoda & Vio.com Bedbank Leaks Before Your 6:00 AM Huddle',
+    stat1: { v: '6:00 AM', l: 'Daily Parity Scan' },
+    stat2: { v: '18%–22%', l: 'OTA Commission Gap' },
+    summary:
+      'Static wholesale bedbank contracts often leak onto Agoda or Vio.com $18–$35 below your Direct BAR, silently draining your highest-margin direct website bookings.',
+    takeaways: [
+      'Check metasearch & OTA channels daily (Booking.com, Expedia, Agoda, Vio.com, Trip.com) against Direct BAR.',
+      'Capture the exact channel name and dollar gap so you have proof when contacting your wholesale/FIT partner.',
+      'Protect direct conversion first before lowering your own retail BAR to match an unauthorized undercut.',
+    ],
+    body: [
+      'When a guest searches your hotel name on Google and sees Agoda or Vio.com $24 cheaper than your own website, you lose the direct booking and pay 18%–22% commission on a guest who already searched for you by name.',
+      'Most independent hotels only discover these leaks days later when a guest asks for a price match at check-in.',
+      'HotelRateIntel flags every channel undercutting your Direct BAR in the Live Multi-OTA Parity Ladder so you can close the leak or adjust distribution before morning pickup starts.',
+    ],
+    url: 'https://www.aidynamic.pro/blog',
+  },
+  {
+    tag: 'GM & PMS SECURITY',
+    readTime: '4 min read',
+    title: 'How Secure 2-Way PMS & Channel Manager Rate Pushes Actually Work',
+    stat1: { v: 'OAuth 2.0', l: 'Scoped API Auth' },
+    stat2: { v: 'Floor/Cap', l: 'Hard BAR Guardrails' },
+    summary:
+      'Start with zero-IT public scraping today, then connect Cloudbeds, Mews, Channex, or SynXis via scoped API tokens with hard floor/ceiling guardrails and 1-click rollback.',
+    takeaways: [
+      'Cloudbeds (PUT /putRate), Mews (rates/updatePrice), and Channex (/api/v1/restrictions) all support official ARI pushes.',
+      'Never run unguarded auto-pricing: enforce Min BAR Floor, Max BAR Ceiling, and Max Daily Swing caps.',
+      'Use Advisory or 1-Click GM Approval mode first, then graduate to Guardrailed Auto-Pilot once verified.',
+    ],
+    body: [
+      'Hotels rightly hesitate to hand full PMS write access to a new vendor on day one. That is why HotelRateIntel works in two phases: zero-IT public rate monitoring on Day 1, and optional live 2-way PMS/Channel Manager API push when you are ready.',
+      'For independent Miami properties on Cloudbeds, Mews, or multi-OTA channel managers like Channex and SiteMinder, official REST and OTA XML APIs allow safe, idempotent rate and restriction updates (BAR, Min-LOS, CTA, Stop-Sell).',
+      'Every outbound update is clamped inside your hotel’s Floor and Ceiling guardrails, logged with an immutable audit trail, and reversible in one click.',
+    ],
+    url: 'https://www.aidynamic.pro/blog',
+  },
+  {
+    tag: 'OWNERSHIP & BUDGET',
+    readTime: '3 min read',
+    title: 'Month-to-Month Rate Intelligence vs. $500+/mo Annual RMS Contracts',
+    stat1: { v: '$0 → $99', l: 'Month-to-Month' },
+    stat2: { v: '0 Lock-In', l: 'Cancel Anytime' },
+    summary:
+      'Enterprise RMS tools like Atomize start around $500/mo and annual contracts lock small hotels in. Independent 15–75 room properties need transparent flat pricing that pays for itself in one room night.',
+    takeaways: [
+      'At $99/mo ($3.30/day), recovering a single direct booking or $12 ADR lift on one weekend covers the entire month.',
+      'Start on the $0/mo Free Starter tier with 3 local comps before spending a dollar.',
+      'Keep full control with month-to-month billing and local Miami hotelier support in English and Spanish.',
+    ],
+    body: [
+      'A 45-room Miami Beach boutique does not have the corporate IT budget of a 400-key flagged resort — yet it competes on the exact same Booking.com and Google Hotel Search results.',
+      'Most automated RMS platforms require annual commitments and $300–$600+/month minimum fees, leaving smaller properties stuck checking 15 browser tabs manually every morning.',
+      'HotelRateIntel was built locally in Miami to give independent owners and GMs real rate parity, Suite-vs-Suite math, and OOO/OOS yield tools starting at $0 Free and $99/mo Core.',
+    ],
+    url: 'https://www.aidynamic.pro/blog',
   },
 ]
 

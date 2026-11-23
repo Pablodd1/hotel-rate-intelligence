@@ -19,6 +19,8 @@ import {
   Clock,
   DollarSign,
   ExternalLink,
+  Mail,
+  MessageSquare,
   Phone,
   Search,
   ShieldCheck,
@@ -36,6 +38,7 @@ import {
 import type { PublicAuditResponse, TierPlan } from '../../types/hospitality'
 import { usePortalStore } from '../../store/usePortalStore'
 import { VoiceConcierge } from '../../components/concierge/VoiceConcierge'
+import { ModalDialog } from '../../components/ui/ModalDialog'
 
 const registerSchema = z.object({
   hotel_name: z.string().min(2, 'Enter your hotel name'),
@@ -71,9 +74,16 @@ export const WebsitePage: React.FC = () => {
   const [contactHotel, setContactHotel] = useState('')
   const [contactPhone, setContactPhone] = useState('')
   const [contactEmail, setContactEmail] = useState('')
+  const [contactChannel, setContactChannel] = useState<'sms' | 'email' | 'call' | 'whatsapp'>('sms')
   const [contactNote, setContactNote] = useState('')
   const [contactSending, setContactSending] = useState(false)
   const [contactConfirmation, setContactConfirmation] = useState('')
+  const [activeBlogIndex, setActiveBlogIndex] = useState<number | null>(null)
+
+  const openCoordinatedContact = (channel: 'sms' | 'email' | 'call' | 'whatsapp') => {
+    setContactChannel(channel)
+    document.getElementById('contact-desk')?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   const handleDirectContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -93,6 +103,7 @@ export const WebsitePage: React.FC = () => {
           phone: contactPhone || contactEmail,
           email: contactEmail,
           role: contactRole,
+          preferred_channel: contactChannel,
           notes: contactNote,
           hotel_id: Number(selectedSampleId || 23),
         }),
@@ -291,7 +302,23 @@ export const WebsitePage: React.FC = () => {
             <a href="#blogs" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Blogs</a>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <a
+              href="sms:+17869708366?&body=Hi%20HotelRateIntel%20Miami%2C%20I%27d%20like%20a%20rate%20parity%20check%20for%20my%20hotel."
+              className="hidden xl:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[11px] font-bold text-blue-100"
+              title="Text our Miami desk directly"
+            >
+              <MessageSquare className="w-3 h-3 text-emerald-300" />
+              Text Us
+            </a>
+            <a
+              href="mailto:jasmelacosta@gmail.com?subject=Miami%20Hotel%20Rate%20Parity%20Check"
+              className="hidden xl:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[11px] font-bold text-blue-100"
+              title="Email our Miami desk directly"
+            >
+              <Mail className="w-3 h-3 text-blue-200" />
+              Email Us
+            </a>
             <a
               href="tel:+17869708366"
               className="hidden lg:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[11px] font-bold text-blue-100"
@@ -306,12 +333,13 @@ export const WebsitePage: React.FC = () => {
             >
               Open Client Portal →
             </button>
-            <a
-              href="#contact-desk"
+            <button
+              type="button"
+              onClick={() => openCoordinatedContact('sms')}
               className="hidden sm:inline-block px-3 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-xs font-bold text-white transition"
             >
-              Contact Miami Desk
-            </a>
+              We&apos;ll Text / Email You
+            </button>
           </div>
         </header>
 
@@ -325,15 +353,30 @@ export const WebsitePage: React.FC = () => {
                   MADE BY HOTELIERS (20 YRS LUXURY SERVICE) · POWERED BY AI
                 </div>
                 <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-[#0B1B3B] leading-[1.12]">
-                  Protect Direct BAR, Compare Suite-to-Suite &amp; Automate Reservations Ops.
+                  Catch OTA Undercuts, Compare Exact Suite-to-Suite &amp; Price Live OOO/OOS Rooms — Built for Miami Hotels.
                 </h1>
                 <p className="text-xs sm:text-sm text-[#475B80] leading-relaxed">
-                  Built from <b className="text-[#0B1B3B]">20 years in luxury hotels &amp; residential concierge service</b> for{' '}
-                  <b className="text-[#0B1B3B]">Reservations, Front Office, Revenue, Housekeeping &amp; Night Audit</b> running{' '}
-                  <b>Opera, SynXis, Cloudbeds, TravelClick &amp; Mews</b>. Match exact room equivalents (Suite vs. Suite,
-                  Double vs. Double, Single Occ, rollaways, resort fees &amp; HK cadence), feed live <b>OOO/OOS</b> into{' '}
-                  <b>AI Auto-Pricing</b>, and run <b>Pre-Audit (11:30 PM) &amp; Post-Audit</b> courtesy call-arounds.
+                  Built in Miami from <b className="text-[#0B1B3B]">20 years in luxury hotel &amp; residential hospitality</b> for{' '}
+                  <b className="text-[#0B1B3B]">Reservations, Front Office, Night Audit &amp; Housekeeping</b>. Unlike corporate rate shoppers that only average entry-room prices:
                 </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11.5px]">
+                  <div className="flex items-start gap-1.5 p-2 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
+                    <span><b>Exact Suite-vs-Suite &amp; DD-vs-DD:</b> Normalizes rollaways, Miami resort fees, 14% tax &amp; HK cadence.</span>
+                  </div>
+                  <div className="flex items-start gap-1.5 p-2 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
+                    <span><b>Live OOO / OOS / HK Hold → AI BAR:</b> Recalculates true net sellable occupancy before you walk a guest.</span>
+                  </div>
+                  <div className="flex items-start gap-1.5 p-2 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
+                    <span><b>Pre-Audit (11:30 PM) &amp; Post-Audit Desk:</b> Overnight courtesy call scripts &amp; neighbor rate-swap emails.</span>
+                  </div>
+                  <div className="flex items-start gap-1.5 p-2 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
+                    <span><b>$0 Starter · Month-to-Month:</b> Zero annual lock-in, live public scans today + PMS API push when ready.</span>
+                  </div>
+                </div>
 
                 <div className="ember-subtle-card p-3.5 space-y-2">
                   <div className="text-[10.5px] font-extrabold uppercase tracking-wider text-[#475B80]">
@@ -895,12 +938,16 @@ export const WebsitePage: React.FC = () => {
                 </p>
                 <div className="space-y-2 pt-1 text-xs">
                   <div className="ember-subtle-card p-3 flex items-center justify-between gap-2">
-                    <span className="font-bold text-[#0B1B3B]">Direct Call / Text (EN &amp; ES)</span>
+                    <span className="font-bold text-[#0B1B3B]">Call Us Direct (EN / ES)</span>
                     <a href="tel:+17869708366" className="font-extrabold text-blue-700 hover:underline">+1 (786) 970-8366</a>
                   </div>
                   <div className="ember-subtle-card p-3 flex items-center justify-between gap-2">
-                    <span className="font-bold text-[#0B1B3B]">Direct Email</span>
-                    <a href="mailto:jasmelacosta@gmail.com" className="font-extrabold text-blue-700 hover:underline">jasmelacosta@gmail.com</a>
+                    <span className="font-bold text-[#0B1B3B]">Text Us Now (SMS)</span>
+                    <a href="sms:+17869708366?&body=Hi%20HotelRateIntel%20Miami%2C%20I%27d%20like%20a%20parity%20audit." className="font-extrabold text-blue-700 hover:underline">Text (786) 970-8366 →</a>
+                  </div>
+                  <div className="ember-subtle-card p-3 flex items-center justify-between gap-2">
+                    <span className="font-bold text-[#0B1B3B]">Email Us Direct</span>
+                    <a href="mailto:jasmelacosta@gmail.com?subject=Miami%20Hotel%20Parity%20Check" className="font-extrabold text-blue-700 hover:underline">jasmelacosta@gmail.com</a>
                   </div>
                   <div className="ember-subtle-card p-3 flex items-center justify-between gap-2">
                     <span className="font-bold text-[#0B1B3B]">WhatsApp Hospitality Desk</span>
@@ -916,9 +963,30 @@ export const WebsitePage: React.FC = () => {
             <form onSubmit={handleDirectContactSubmit} className="lg:col-span-7 ember-card p-6 space-y-3">
               <div>
                 <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-blue-700">
-                  15-Second Callback &amp; Parity Audit Request
+                  Prefer That We Reach Out? Pick How You Want to Hear From Us
                 </span>
-                <h3 className="text-base font-extrabold text-[#0B1B3B]">Request a Free Miami Hotel Parity Review or Call</h3>
+                <h3 className="text-base font-extrabold text-[#0B1B3B]">We&apos;ll Text You, Email You, or Call You Directly</h3>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {[
+                  { id: 'sms' as const, label: "I'll Text You (SMS)" },
+                  { id: 'email' as const, label: "I'll Email You" },
+                  { id: 'call' as const, label: "I'll Call You" },
+                  { id: 'whatsapp' as const, label: "I'll WhatsApp You" },
+                ].map((opt) => (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onClick={() => setContactChannel(opt.id)}
+                    className={`px-3 py-1.5 rounded-xl text-[11px] font-extrabold border transition ${
+                      contactChannel === opt.id
+                        ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                        : 'bg-[#F5F9FF] text-[#475B80] border-[#DCE7F8] hover:bg-blue-50'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
@@ -1032,9 +1100,12 @@ export const WebsitePage: React.FC = () => {
             {BLOGS_SEED.map((b, i) => (
               <article key={i} className="ember-card p-5 flex flex-col justify-between gap-3">
                 <div className="space-y-2.5">
-                  <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-extrabold uppercase">
-                    {b.tag}
-                  </span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-extrabold uppercase">
+                      {b.tag}
+                    </span>
+                    <span className="text-[10px] font-bold text-[#6D81A8]">{b.readTime}</span>
+                  </div>
                   <h3 className="text-sm font-extrabold text-[#0B1B3B] leading-snug">{b.title}</h3>
                   <div className="grid grid-cols-2 gap-2">
                     <div className="ember-subtle-card p-2 text-center">
@@ -1048,19 +1119,80 @@ export const WebsitePage: React.FC = () => {
                   </div>
                   <p className="text-xs text-[#475B80] leading-relaxed">{b.summary}</p>
                 </div>
-                <a
-                  href={b.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-xs font-bold text-blue-700 hover:underline inline-flex items-center gap-1 pt-2 border-t border-[#EAF1FC]"
-                >
-                  Read Full Guide on aidynamic.pro
-                  <ExternalLink className="w-3 h-3" />
-                </a>
+                <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#EAF1FC]">
+                  <button
+                    type="button"
+                    onClick={() => setActiveBlogIndex(i)}
+                    className="text-xs font-extrabold text-blue-700 hover:underline inline-flex items-center gap-1"
+                  >
+                    Read Full Guide →
+                  </button>
+                  <a
+                    href={b.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[11px] font-bold text-[#6D81A8] hover:text-blue-700 inline-flex items-center gap-1"
+                  >
+                    aidynamic.pro
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
               </article>
             ))}
           </div>
         </section>
+
+        <ModalDialog
+          open={activeBlogIndex !== null}
+          onClose={() => setActiveBlogIndex(null)}
+          title={activeBlogIndex !== null ? BLOGS_SEED[activeBlogIndex].title : ''}
+          subtitle={
+            activeBlogIndex !== null
+              ? `${BLOGS_SEED[activeBlogIndex].tag} · ${BLOGS_SEED[activeBlogIndex].readTime} · Miami Hospitality Field Guide`
+              : ''
+          }
+        >
+          {activeBlogIndex !== null && (
+            <div className="space-y-4 text-xs text-[#334155] leading-relaxed">
+              <div className="p-3.5 rounded-2xl bg-[#F5F9FF] border border-[#DCE7F8] space-y-1.5">
+                <div className="text-[10.5px] font-extrabold uppercase text-blue-700">Key Operational Takeaways</div>
+                {BLOGS_SEED[activeBlogIndex].takeaways.map((t, idx) => (
+                  <div key={idx} className="flex items-start gap-2 font-semibold text-[#0B1B3B]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>{t}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="space-y-3">
+                {BLOGS_SEED[activeBlogIndex].body.map((para, idx) => (
+                  <p key={idx}>{para}</p>
+                ))}
+              </div>
+              <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-[#EAF1FC]">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveBlogIndex(null)
+                    navigate(`/portal?demo_hotel=${selectedSampleId}`)
+                  }}
+                  className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700"
+                >
+                  Try This Live in Client Portal →
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveBlogIndex(null)
+                    openCoordinatedContact('email')
+                  }}
+                  className="px-4 py-2 rounded-xl bg-[#F2F6FD] border border-[#DCE7F8] text-[#0B1B3B] text-xs font-bold hover:bg-blue-50"
+                >
+                  Ask Our Miami Desk
+                </button>
+              </div>
+            </div>
+          )}
+        </ModalDialog>
 
         <footer className="text-center text-xs text-blue-100/90 py-4 space-x-3">
           <b>HotelRateIntel · North Miami, FL 33161</b>

@@ -231,19 +231,22 @@ def app(environ, start_response):
         nm = (body.get("name") or "Hotel Lead").strip()
         hn = (body.get("hotel_name") or "Website Visitor").strip()
         role = (body.get("role") or "").strip()
+        pref = (body.get("preferred_channel") or "call").strip().lower()
         notes = (body.get("notes") or "").strip()
         if not ph and not em:
             return _reply(start_response, "400 Bad Request", json.dumps({"ok": False, "error": "Enter a valid phone number or work email."}))
         _notify_owner_resend(
-            f"HOT WEBSITE INQUIRY: {hn} ({ph or em})",
-            f"New Miami hotel inquiry on hotelrateintel.com:\n\nHotel: {hn}\nName: {nm}\nRole: {role or 'Not specified'}\nPhone: {ph or 'Not provided'}\nEmail: {em or 'Not provided'}\nNotes: {notes or 'None'}\nHotel ID: {body.get('hotel_id') or ''}",
+            f"HOT WEBSITE INQUIRY [{pref.upper()}]: {hn} ({ph or em})",
+            f"New Miami hotel inquiry on hotelrateintel.com:\n\nPreferred Reply Channel: {pref.upper()}\nHotel: {hn}\nName: {nm}\nRole: {role or 'Not specified'}\nPhone: {ph or 'Not provided'}\nEmail: {em or 'Not provided'}\nNotes: {notes or 'None'}\nHotel ID: {body.get('hotel_id') or ''}",
             skip=("555-0199" in ph or "5550199" in ph),
         )
+        chan_label = {"sms": "text you", "email": "email you", "whatsapp": "WhatsApp you", "call": "call you"}.get(pref, "reach out")
         return _reply(start_response, "200 OK", json.dumps({
             "ok": True,
             "phone_e164": ph or em,
+            "preferred_channel": pref,
             "status": "owner_notified",
-            "message": f"Locked in! Your inquiry for {hn} ({ph or em}) was sent straight to Jasmel in Miami.",
+            "message": f"Locked in! We'll {chan_label} shortly regarding {hn} ({ph or em}).",
         }))
     if path.startswith("/api/accounts/register") and environ.get("REQUEST_METHOD") == "POST":
         em = (body.get("email") or "").strip()

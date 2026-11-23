@@ -18,7 +18,7 @@ describe('HotelRateIntel Ember V20 Application', () => {
         <AppRoutes />
       </MemoryRouter>
     )
-    expect(screen.getByText(/Protect Direct BAR, Compare Suite-to-Suite/i)).toBeInTheDocument()
+    expect(screen.getByText(/Catch OTA Undercuts, Compare Exact Suite-to-Suite/i)).toBeInTheDocument()
     expect(screen.getByText(/6 Hotel-Specific Operations Corporate Rate Shoppers Leave Out/i)).toBeInTheDocument()
     expect(screen.getByText(/Live Voice Concierge/i)).toBeInTheDocument()
 
