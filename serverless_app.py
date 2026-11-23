@@ -142,8 +142,43 @@ def app(environ, start_response):
         if path.startswith("/assets/"):
             rel = os.path.basename(path)
             try:
-                ctype = "image/jpeg" if rel.endswith(".jpg") else ("image/png" if rel.endswith(".png") else "application/octet-stream")
-                return _reply(start_response, "200 OK", _load_asset(rel), ctype=ctype)
+                raw_bytes = _load_asset(rel)
+                if rel.endswith(".mp4"):
+                    ctype = "video/mp4"
+                elif rel.endswith(".jpg") or rel.endswith(".jpeg"):
+                    ctype = "image/jpeg"
+                elif rel.endswith(".png"):
+                    ctype = "image/png"
+                elif rel.endswith(".svg"):
+                    ctype = "image/svg+xml"
+                else:
+                    ctype = "application/octet-stream"
+                total_len = len(raw_bytes)
+                rng = environ.get("HTTP_RANGE", "")
+                if rel.endswith(".mp4") and rng.startswith("bytes="):
+                    part = rng.replace("bytes=", "").split(",")[0].strip()
+                    s_str, e_str = (part.split("-", 1) + [""])[:2]
+                    start = int(s_str) if s_str.isdigit() else 0
+                    end = int(e_str) if e_str.isdigit() else total_len - 1
+                    end = min(end, total_len - 1)
+                    chunk = raw_bytes[start : end + 1]
+                    headers = [
+                        ("Content-Type", ctype),
+                        ("Accept-Ranges", "bytes"),
+                        ("Content-Range", f"bytes {start}-{end}/{total_len}"),
+                        ("Content-Length", str(len(chunk))),
+                        ("Cache-Control", "public, max-age=86400"),
+                    ]
+                    start_response("206 Partial Content", headers)
+                    return [chunk]
+                headers = [
+                    ("Content-Type", ctype),
+                    ("Accept-Ranges", "bytes"),
+                    ("Content-Length", str(total_len)),
+                    ("Cache-Control", "public, max-age=86400"),
+                ]
+                start_response("200 OK", headers)
+                return [raw_bytes]
             except FileNotFoundError:
                 return _reply(start_response, "404 Not Found", b"not found", ctype="text/plain")
         if path == "/robots.txt":
@@ -213,18 +248,76 @@ def app(environ, start_response):
             res = generate_hospitality_concierge_reply(msg, lang=lang)
         res["owner_direct_phone"] = "+1 (786) 970-8366"
         return _reply(start_response, "200 OK", json.dumps(res))
+    if path.startswith("/api/public/unsubscribe"):
+        import hashlib, hmac, time as _t, tempfile
+        em = ((params.get("email") or [""])[0] or (body.get("email") or "")).strip().lower()
+        sig = ((params.get("sig") or [""])[0] or (body.get("sig") or "")).strip().lower()
+        secret = (os.environ.get("HRI_UNSUB_SECRET") or _KEY).encode("utf-8")
+        expected = hmac.new(secret, em.encode("utf-8"), hashlib.sha256).hexdigest()[:16] if em else ""
+        if not em or (sig and sig != expected):
+            return _reply(start_response, "400 Bad Request", "Invalid unsubscribe link.", ctype="text/plain; charset=utf-8")
+        try:
+            ev_path = os.path.join(tempfile.gettempdir(), "hri_email_events.jsonl")
+            with open(ev_path, "a", encoding="utf-8") as ef:
+                ef.write(json.dumps({"ts": _t.time(), "type": "unsubscribed", "email": em}) + "\n")
+        except Exception:
+            pass
+        _notify_owner_resend(
+            f"UNSUBSCRIBE CONFIRMED (AUTO-SUPPRESS): {em}",
+            f"Recipient clicked 1-click unsubscribe on hotelrateintel.com:\n\nEmail: {em}\nAction: Permanently add to suppression list via `python -m hri.campaign_engine suppress {em} --reason unsubscribed`.",
+            skip=("smoke@" in em or "example.com" in em),
+        )
+        if environ.get("REQUEST_METHOD") == "POST":
+            return _reply(start_response, "200 OK", json.dumps({"ok": True, "unsubscribed": em}))
+        html_ok = f"""<!doctype html><html><body style="font-family:Inter,sans-serif;background:#f2f6fd;padding:48px;text-align:center;color:#0b1b3b;">
+        <div style="max-width:480px;margin:0 auto;background:#fff;border:1px solid #dce7f8;border-radius:20px;padding:32px;">
+          <h2 style="margin:0 0 10px;">You&apos;re Unsubscribed</h2>
+          <p style="font-size:14px;color:#475b80;line-height:1.6;"><b>{em}</b> has been removed from HotelRateIntel Miami rate briefs. You will not receive future campaign emails.</p>
+          <p style="font-size:12px;color:#6d81a8;margin-top:20px;">HotelRateIntel · North Miami, FL 33161</p>
+        </div></body></html>"""
+        return _reply(start_response, "200 OK", html_ok, ctype="text/html; charset=utf-8")
     if path.startswith("/api/webhooks/resend") and environ.get("REQUEST_METHOD") == "POST":
-        ev_type = str(body.get("type") or "unknown")
+        import tempfile, time as _t
+        ev_type = str(body.get("type") or "unknown").lower()
         ev_data = body.get("data") or {}
-        to_addr = ev_data.get("to") or []
+        to_raw = ev_data.get("to") or []
+        to_list = [str(x).lower() for x in to_raw] if isinstance(to_raw, list) else ([str(to_raw).lower()] if to_raw else [])
         subj = str(ev_data.get("subject") or "")
         email_id = str(ev_data.get("email_id") or "")
-        if ev_type in ("email.bounced", "email.complained", "email.clicked"):
+        bounce_obj = ev_data.get("bounce") if isinstance(ev_data.get("bounce"), dict) else {}
+        bounce_type = str(bounce_obj.get("type") or bounce_obj.get("subType") or ("soft" if ev_type == "email.delivery_delayed" else "")).lower()
+        bounce_msg = str(bounce_obj.get("message") or "")
+        action_taken = "logged"
+        if ev_type == "email.complained":
+            action_taken = "suppress_domain_permanently"
+        elif ev_type == "email.bounced":
+            action_taken = "soft_bounce_increment" if ("soft" in bounce_type or "transient" in bounce_type) else "hard_bounce_suppress"
+        elif ev_type == "email.delivery_delayed":
+            action_taken = "soft_bounce_delayed"
+        record = {
+            "ts": _t.time(),
+            "type": ev_type,
+            "email_id": email_id,
+            "to": to_list,
+            "subject": subj,
+            "bounce_type": bounce_type,
+            "bounce_message": bounce_msg,
+            "action": action_taken,
+        }
+        try:
+            ev_path = os.path.join(tempfile.gettempdir(), "hri_email_events.jsonl")
+            with open(ev_path, "a", encoding="utf-8") as ef:
+                ef.write(json.dumps(record) + "\n")
+        except Exception:
+            pass
+        if ev_type in ("email.bounced", "email.complained", "email.delivery_delayed", "email.clicked"):
+            target_str = ", ".join(to_list)
             _notify_owner_resend(
-                f"EMAIL MONITOR ({ev_type.upper()}): {', '.join(to_addr) if isinstance(to_addr, list) else to_addr}",
-                f"Resend event received on hotelrateintel.com:\n\nEvent: {ev_type}\nTo: {to_addr}\nSubject: {subj}\nEmail ID: {email_id}",
+                f"EMAIL MONITOR [{ev_type.upper()}]: {target_str}",
+                f"Resend Deliverability Event on hotelrateintel.com:\n\nEvent: {ev_type}\nAction: {action_taken}\nTo: {target_str}\nSubject: {subj}\nBounce Type: {bounce_type or 'n/a'}\nDetail: {bounce_msg or 'n/a'}\nEmail ID: {email_id}",
+                skip=("example.com" in target_str or "verify-" in email_id),
             )
-        return _reply(start_response, "200 OK", json.dumps({"ok": True, "received": ev_type, "email_id": email_id}))
+        return _reply(start_response, "200 OK", json.dumps({"ok": True, "received": ev_type, "action": action_taken, "email_id": email_id}))
     if path.startswith("/api/public/callback") and environ.get("REQUEST_METHOD") == "POST":
         ph = (body.get("phone") or "").strip()
         em = (body.get("email") or "").strip()

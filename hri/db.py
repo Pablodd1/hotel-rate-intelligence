@@ -280,6 +280,45 @@ def open_db(path):
             except sqlite3.OperationalError:
                 pass
         conn.commit()
+    # Ensure standards-compliant email bounce/block/suppression & event tracking tables exist
+    conn.executescript(
+        """
+        CREATE TABLE IF NOT EXISTS email_suppressions (
+          email TEXT PRIMARY KEY,
+          domain TEXT,
+          reason TEXT NOT NULL,
+          soft_bounce_count INTEGER DEFAULT 0,
+          suppress_domain INTEGER DEFAULT 0,
+          detail TEXT,
+          updated_at REAL NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS email_events (
+          id INTEGER PRIMARY KEY,
+          resend_id TEXT,
+          email TEXT,
+          event_type TEXT NOT NULL,
+          bounce_type TEXT,
+          subject TEXT,
+          raw_json TEXT,
+          received_at REAL NOT NULL
+        );
+        CREATE INDEX IF NOT EXISTS idx_email_events_email ON email_events(email, received_at);
+        CREATE TABLE IF NOT EXISTS campaign_sends (
+          id INTEGER PRIMARY KEY,
+          hotel_id INTEGER NOT NULL,
+          email TEXT NOT NULL,
+          department TEXT,
+          step_number INTEGER NOT NULL,
+          subject TEXT,
+          resend_id TEXT,
+          status TEXT NOT NULL,
+          delivery_status TEXT DEFAULT 'sent',
+          sent_at REAL NOT NULL,
+          UNIQUE(email, step_number)
+        );
+        """
+    )
+    conn.commit()
     return conn
 
 

@@ -12,7 +12,8 @@ media-pack/reels
 media-pack/screen-recordings
 media-pack/_tmp
 media-pack/_reel_assets
-*.mp4
+media-pack/*.mp4
+media-pack/**/*.mp4
 *.webm
 *.wav
 *.mp3

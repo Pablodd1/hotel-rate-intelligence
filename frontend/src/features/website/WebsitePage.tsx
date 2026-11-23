@@ -1077,12 +1077,12 @@ export const WebsitePage: React.FC = () => {
           </div>
         </section>
 
-        {/* SECTION 6: BLOGS FROM AIDYNAMIC.PRO */}
-        <section id="blogs" className="rounded-[26px] ember-canvas-panel p-5 sm:p-7 space-y-4">
+        {/* SECTION 6: BLOGS & 10-SECOND WALKTHROUGH VIDEO */}
+        <section id="blogs" className="rounded-[26px] ember-canvas-panel p-5 sm:p-7 space-y-5">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
               <span className="text-[11px] font-extrabold uppercase tracking-wider text-blue-700">
-                From AI Dynamic Pro Engineering Journal
+                10-Second Walkthrough &amp; Miami Hospitality Field Guides
               </span>
               <h2 className="text-2xl font-black text-[#0B1B3B] mt-0.5">Blogs</h2>
             </div>
@@ -1094,6 +1094,52 @@ export const WebsitePage: React.FC = () => {
             >
               All Articles on aidynamic.pro ↗
             </a>
+          </div>
+
+          {/* 10-Second Minimalist Overview Video Card */}
+          <div id="blogs-video" className="ember-card p-4 sm:p-5 grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+            <div className="lg:col-span-7">
+              <div className="rounded-2xl overflow-hidden border border-[#DCE7F8] bg-[#F2F6FD] shadow-sm">
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster="/assets/hri_10s_poster.png"
+                  aria-label="HotelRateIntel 10-Second Miami Hotel Rate Comparison Overview"
+                  className="w-full aspect-video object-cover block"
+                >
+                  <source src="/assets/hri_10s_overview.mp4" type="video/mp4" />
+                  Your browser does not support HTML5 video.
+                </video>
+              </div>
+            </div>
+            <div className="lg:col-span-5 space-y-3">
+              <span className="inline-block px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-[10px] font-extrabold uppercase text-blue-700">
+                0:10 Minimalist Walkthrough · Miami Hotels
+              </span>
+              <h3 className="text-lg sm:text-xl font-black text-[#0B1B3B] leading-snug">
+                See How HotelRateIntel Compares Your Rates in 10 Seconds
+              </h3>
+              <p className="text-xs text-[#475B80] leading-relaxed">
+                Every morning at <b>6:00 AM</b>, we automatically scan Booking.com, Expedia, Agoda, Vio.com, Trip.com, and competing Miami hotel websites — then line up exact <b>Suite-vs-Suite</b> pricing and live <b>OOO/OOS</b> room holds on one calm screen.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-1">
+                <button
+                  type="button"
+                  onClick={() => navigate(`/portal?demo_hotel=${selectedSampleId}`)}
+                  className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition"
+                >
+                  Open Live Client Portal →
+                </button>
+                <button
+                  type="button"
+                  onClick={() => openCoordinatedContact('sms')}
+                  className="px-3.5 py-2 rounded-xl bg-[#F2F6FD] border border-[#DCE7F8] text-[#0B1B3B] text-xs font-bold hover:bg-blue-50 transition"
+                >
+                  Text / Email Miami Desk
+                </button>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

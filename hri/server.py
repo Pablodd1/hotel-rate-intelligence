@@ -307,7 +307,14 @@ def make_handler(cfg):
             if path.startswith("/assets/"):
                 rel = os.path.basename(path)
                 asset_fp = os.path.join(DASH_DIR, "assets", rel)
-                ctype = "image/jpeg" if rel.endswith(".jpg") else ("image/png" if rel.endswith(".png") else "application/octet-stream")
+                if rel.endswith(".mp4"):
+                    ctype = "video/mp4"
+                elif rel.endswith(".jpg") or rel.endswith(".jpeg"):
+                    ctype = "image/jpeg"
+                elif rel.endswith(".png"):
+                    ctype = "image/png"
+                else:
+                    ctype = "application/octet-stream"
                 self._serve_file(asset_fp, content_type=ctype)
                 return
 
