@@ -318,7 +318,11 @@ def make_handler(cfg):
                 self._serve_file(asset_fp, content_type=ctype)
                 return
 
-            if path in ("/", "/website", "/website.html", "/landing", "/themes", "/themes.html", "/design-versions"):
+            if path in (
+                "/", "/website", "/website.html", "/landing",
+                "/pricing", "/contact", "/blog", "/blogs", "/demo",
+                "/privacy", "/terms", "/themes", "/themes.html", "/design-versions",
+            ):
                 target = APP_INDEX_PATH if os.path.exists(APP_INDEX_PATH) else (WEBSITE_PATH if os.path.exists(WEBSITE_PATH) else DASH_PATH)
                 self._serve_file(target)
                 return
@@ -328,7 +332,7 @@ def make_handler(cfg):
                 self._serve_file(target)
                 return
 
-            if path in ("/mission-control", "/admin", "/dashboard", "/index.html"):
+            if path in ("/mission-control", "/admin"):
                 target = MISSION_CONTROL_PATH if os.path.exists(MISSION_CONTROL_PATH) else DASH_PATH
                 self._serve_file(target)
                 return

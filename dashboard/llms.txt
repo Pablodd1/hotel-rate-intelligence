@@ -4,24 +4,28 @@
 
 - **Website:** https://hotelrateintel.com/
 - **Creator:** AI Dynamic Pro (https://www.aidynamic.pro) — Founded by Jasmel Acosta
-- **Contact:** jasmelacosta@gmail.com | +1 (786) 970-8366
+- **Contact:** jasmel@hotelrateintel.com | +1 (786) 970-8366
 - **Primary Market:** Miami Beach boutique hotels (15–75 rooms; portable to any hospitality micro-market)
 
 ## Core Capabilities
-1. **Live Multi-OTA Rate Ladder & Bedbank Shield:** Compares Booking.com, Agoda, Expedia, Trip.com, and Vio.com against each hotel's official Direct BAR by 6:00 AM daily.
+1. **Live Multi-OTA Rate Ladder & Bedbank Shield:** Compares Booking.com, Agoda, Expedia, Trip.com, and Vio.com against each hotel's official Direct BAR at 6:00 AM EST daily.
 2. **Exact Room Equivalency Comparator:** Matches Suite vs. Suite, Double vs. Double, and Single Occupancy while normalizing rollaway beds, resort fees, 14% tax, and housekeeping cadence.
 3. **Live Room Ops (OOO / OOS / HK Hold) & AI Auto-Pricing:** Tracks Out-of-Order, Out-of-Service, and Housekeeping holds to recalculate true net sellable occupancy, apply guardrailed floor/ceiling BAR + CTA/Min-LOS rules, and dispatch Telegram shift alerts.
 4. **Overnight Night Audit Courtesy Call-Around & Competitor Inquiry Desk:** Pre-Audit (11:30 PM–1:15 AM) and Post-Audit (3:30 AM–4:45 AM) scripts plus competitor group/corporate inquiry tracking.
-5. **Booking Engine & PMS Compatibility:** Ready-to-load payloads for Opera, SynXis/Sabre, Cloudbeds, Mews, and TravelClick.
+5. **Booking Engine & PMS Compatibility:** Ready-to-load payloads for Opera, SynXis/Sabre, Cloudbeds, Mews, Channex, and TravelClick.
+6. **Typical 45-Room Boutique Benchmark Impact:** +$3,400/mo direct booking & ADR recovery + $1,125/mo (45 hrs) staff time freed = +$4,525/mo (+$54,300/yr).
 
 ## Transparent Month-to-Month Pricing Tiers (No Annual Lock-In)
-- **Free Starter:** $0/month (3 comp-set properties, live parity checks)
-- **Boutique Core:** $99/month (10 comp-set properties, 6:00 AM parity & yield briefs, Suite-vs-Suite matching, OOO/OOS Room Ops)
-- **Boutique Pro:** $199/month (20 comp-set properties, Overnight Courtesy Call-Around Desk, AI Auto-Pricing rules, instant SMS/Telegram undercut alerts)
-- **Portfolio:** $399/month (Up to 5 boutique properties under unified multi-property revenue oversight)
-- **48-Hr Hospitality AI Consultation & Audit:** $99 one-time custom property audit
+- **Free Starter:** $0/month forever (3 comp-set properties, live parity checks)
+- **Boutique Core:** $99/month ($49 Month 1 intro · 10 comp-set properties, 6:00 AM EST briefs, Suite-vs-Suite matching, OOO/OOS Room Ops)
+- **Pro Revenue & Call Desk:** $199/month (20 comp-set properties, Overnight Courtesy Call-Around Desk, AI Auto-Pricing rules, instant SMS/WhatsApp alerts)
+- **Multi-Property Group:** $399/month (Up to 5 boutique properties under unified cluster oversight)
+- **Optional 48-Hr Custom Setup & AI Audit:** $99 one-time ($0 risk guarantee)
 
 ## Key URLs
 - Public Website & Live Auditor: https://hotelrateintel.com/
-- Interactive Client WebApp Demo: https://hotelrateintel.com/portal?demo_hotel=23
+- Pricing & Registration: https://hotelrateintel.com/pricing
+- Interactive Client Demo Sandbox: https://hotelrateintel.com/demo
+- Field Guides & Walkthrough Video: https://hotelrateintel.com/blog
+- Privacy Policy & Terms: https://hotelrateintel.com/privacy | https://hotelrateintel.com/terms
 - XML Sitemap: https://hotelrateintel.com/sitemap.xml

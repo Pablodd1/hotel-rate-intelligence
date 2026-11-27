@@ -131,7 +131,7 @@ export const VoiceConcierge: React.FC<VoiceConciergeProps> = ({ selectedHotelId 
       stopMic()
       window.speechSynthesis.cancel()
       const clean = rawText
-        .replace(/[*_`#→⚡📞🛏️🌙🔧🎙️]/g, '')
+        .replace(/[*_`#→]/g, '')
         .replace(/\$(\d+)/g, '$1 dollars')
         .replace(/\s+/g, ' ')
         .trim()

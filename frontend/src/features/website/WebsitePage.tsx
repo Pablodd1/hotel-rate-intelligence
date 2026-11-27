@@ -14,17 +14,20 @@ import {
   Cell,
 } from 'recharts'
 import {
+  ArrowRight,
   Building2,
+  Calendar,
   CheckCircle2,
   Clock,
   DollarSign,
   ExternalLink,
+  Lock,
   Mail,
   MessageSquare,
   Phone,
+  Play,
   Search,
   ShieldCheck,
-  Sparkles,
   TrendingUp,
   Zap,
 } from 'lucide-react'
@@ -51,7 +54,11 @@ const registerSchema = z.object({
 
 type RegisterFormValues = z.infer<typeof registerSchema>
 
-export const WebsitePage: React.FC = () => {
+interface WebsitePageProps {
+  initialSection?: string
+}
+
+export const WebsitePage: React.FC<WebsitePageProps> = ({ initialSection }) => {
   const navigate = useNavigate()
   const { pushToast, setAuthParams, hydratePortal } = usePortalStore()
 
@@ -64,7 +71,8 @@ export const WebsitePage: React.FC = () => {
   const [tiers, setTiers] = useState<TierPlan[]>(TIER_SEED)
   const [compMatrix, setCompMatrix] = useState(COMPARISON_MATRIX_SEED)
   const [demoDirectory, setDemoDirectory] = useState<Array<{ id: number; name: string; price?: number | null }>>([
-    { id: 23, name: 'Avalon Hotel South Beach (Sample #1)', price: 238 },
+    { id: 23, name: 'Avalon Hotel South Beach', price: 238 },
+    { id: 4, name: 'Oceanside Hotel & Suites North Beach', price: 71 },
     { id: 1, name: 'Seaside All Suites North Beach', price: 82 },
     { id: 38, name: 'The Betsy Hotel South Beach', price: 478 },
   ])
@@ -79,6 +87,52 @@ export const WebsitePage: React.FC = () => {
   const [contactSending, setContactSending] = useState(false)
   const [contactConfirmation, setContactConfirmation] = useState('')
   const [activeBlogIndex, setActiveBlogIndex] = useState<number | null>(null)
+  const [schedSlot, setSchedSlot] = useState('Tomorrow · 9:30 AM EST')
+  const [schedHotel, setSchedHotel] = useState('')
+  const [schedContact, setSchedContact] = useState('')
+  const [schedSending, setSchedSending] = useState(false)
+  const [schedConfirmed, setSchedConfirmed] = useState('')
+
+  useEffect(() => {
+    if (!initialSection) return
+    const timer = setTimeout(() => {
+      document.getElementById(initialSection)?.scrollIntoView({ behavior: 'smooth' })
+    }, 80)
+    return () => clearTimeout(timer)
+  }, [initialSection])
+
+  const handleScheduleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!schedContact.trim()) {
+      pushToast({ tone: 'warning', title: 'Add Phone or Email', detail: 'Enter your phone number or email to lock in a 15-minute walkthrough.' })
+      return
+    }
+    setSchedSending(true)
+    setSchedConfirmed('')
+    try {
+      const res = await fetch('/api/public/callback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: schedHotel.trim() || 'Miami Hotel Demo Request',
+          hotel_name: schedHotel.trim() || 'Miami Independent Hotel',
+          phone: schedContact.trim(),
+          email: schedContact.includes('@') ? schedContact.trim() : '',
+          preferred_channel: 'call',
+          notes: `Scheduled 15-min walkthrough slot: ${schedSlot}`,
+          hotel_id: Number(selectedSampleId || 23),
+        }),
+      })
+      const d = await res.json()
+      setSchedConfirmed(d?.message || `Confirmed for ${schedSlot}. Jasmel will reach out at ${schedContact}.`)
+      setSchedHotel('')
+      setSchedContact('')
+    } catch {
+      setSchedConfirmed(`Demo request queued for ${schedSlot}. Direct Miami desk: +1 (786) 970-8366.`)
+    } finally {
+      setSchedSending(false)
+    }
+  }
 
   const openCoordinatedContact = (channel: 'sms' | 'email' | 'call' | 'whatsapp') => {
     setContactChannel(channel)
@@ -171,10 +225,10 @@ export const WebsitePage: React.FC = () => {
   }, [rooms, adr])
 
   const costComparisonChart = [
-    { name: 'Manual Tabs (60h)', cost: 1500, fill: '#E11D48' },
-    { name: 'Enterprise RMS', cost: 650, fill: '#64748B' },
+    { name: 'Manual Checks (45h)', cost: 1125, fill: '#E11D48' },
+    { name: 'Legacy RMS', cost: 425, fill: '#64748B' },
     { name: 'HRI Core', cost: 99, fill: '#2563EB' },
-    { name: 'HRI Free Starter', cost: 0, fill: '#059669' },
+    { name: 'HRI Free', cost: 0, fill: '#059669' },
   ]
 
   const runLiveAudit = async (explicitHotelId?: number) => {
@@ -289,36 +343,19 @@ export const WebsitePage: React.FC = () => {
             </div>
             <span className="text-sm font-extrabold tracking-tight">HotelRateIntel</span>
             <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-blue-500/25 border border-blue-300/30 text-[10px] font-bold text-blue-100">
-              MADE BY HOTELIERS · POWERED BY AI
+              MIAMI HOTELIERS · SINCE 2006
             </span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-1 text-xs font-semibold text-blue-100">
-            <a href="#industry-roi" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Miami Hotel Features</a>
-            <a href="#auditor" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Live Auditor</a>
-            <a href="#pricing" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Pricing ($0–$399)</a>
-            <a href="#consultation" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">$99 AI Audit</a>
-            <a href="#contact-desk" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Contact Us</a>
-            <a href="#blogs" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Blogs</a>
+          <nav aria-label="Primary navigation" className="hidden md:flex items-center gap-1 text-xs font-semibold text-blue-100">
+            <a href="#industry-roi" className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Product</a>
+            <button type="button" onClick={() => navigate('/pricing')} className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Pricing</button>
+            <button type="button" onClick={() => navigate('/demo')} className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Live Demo</button>
+            <button type="button" onClick={() => navigate('/blog')} className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Blogs</button>
+            <button type="button" onClick={() => navigate('/contact')} className="px-2.5 py-1.5 rounded-lg hover:bg-white/10">Contact</button>
           </nav>
 
           <div className="flex items-center gap-1.5 flex-wrap">
-            <a
-              href="sms:+17869708366?&body=Hi%20HotelRateIntel%20Miami%2C%20I%27d%20like%20a%20rate%20parity%20check%20for%20my%20hotel."
-              className="hidden xl:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[11px] font-bold text-blue-100"
-              title="Text our Miami desk directly"
-            >
-              <MessageSquare className="w-3 h-3 text-emerald-300" />
-              Text Us
-            </a>
-            <a
-              href="mailto:jasmelacosta@gmail.com?subject=Miami%20Hotel%20Rate%20Parity%20Check"
-              className="hidden xl:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[11px] font-bold text-blue-100"
-              title="Email our Miami desk directly"
-            >
-              <Mail className="w-3 h-3 text-blue-200" />
-              Email Us
-            </a>
             <a
               href="tel:+17869708366"
               className="hidden lg:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[11px] font-bold text-blue-100"
@@ -328,59 +365,60 @@ export const WebsitePage: React.FC = () => {
             </a>
             <button
               type="button"
-              onClick={() => navigate(`/portal?demo_hotel=${selectedSampleId}`)}
-              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold shadow-lg hover:brightness-110 transition"
+              onClick={() => navigate('/portal')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition"
             >
-              Open Client Portal →
+              <Lock className="w-3 h-3 text-blue-200" />
+              Client Login
             </button>
             <button
               type="button"
-              onClick={() => openCoordinatedContact('sms')}
-              className="hidden sm:inline-block px-3 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-xs font-bold text-white transition"
+              onClick={() => navigate(`/portal?demo_hotel=${selectedSampleId}`)}
+              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold shadow-lg hover:brightness-110 transition"
             >
-              We&apos;ll Text / Email You
+              See Rates Free →
             </button>
           </div>
         </header>
 
-        {/* SECTION 1: HERO & EMBER PROFIT CALCULATOR */}
+        {/* SECTION 1: OPTION A PLAIN-ENGLISH HERO & ROI VISUAL */}
         <section className="rounded-[26px] ember-canvas-panel p-5 sm:p-7">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
             <div className="lg:col-span-7 ember-card p-6 flex flex-col justify-between gap-5">
               <div className="space-y-3">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[11px] font-extrabold text-blue-800">
                   <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
-                  MADE BY HOTELIERS (20 YRS LUXURY SERVICE) · POWERED BY AI
+                  BUILT FOR MIAMI BOUTIQUE HOTELS (15–75 ROOMS) · BY HOTELIERS
                 </div>
                 <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-[#0B1B3B] leading-[1.12]">
-                  Catch OTA Undercuts, Compare Exact Suite-to-Suite &amp; Price Live OOO/OOS Rooms — Built for Miami Hotels.
+                  See What Nearby Miami Hotels &amp; Booking Sites Charge — Every Morning at 6:00 AM.
                 </h1>
                 <p className="text-xs sm:text-sm text-[#475B80] leading-relaxed">
-                  Built in Miami from <b className="text-[#0B1B3B]">20 years in luxury hotel &amp; residential hospitality</b> for{' '}
-                  <b className="text-[#0B1B3B]">Reservations, Front Office, Night Audit &amp; Housekeeping</b>. Unlike corporate rate shoppers that only average entry-room prices:
+                  Stop wasting 45 minutes every morning checking Booking.com, Expedia, Agoda, Vio.com, and nearby hotels by hand.
+                  Compare <b className="text-[#0B1B3B]">exact matching rooms</b>, catch hidden OTA undercuts before guests book elsewhere, and update rates automatically when rooms break.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11.5px]">
-                  <div className="flex items-start gap-1.5 p-2 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
+                  <div className="flex items-start gap-1.5 p-2.5 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
                     <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
-                    <span><b>Exact Suite-vs-Suite &amp; DD-vs-DD:</b> Normalizes rollaways, Miami resort fees, 14% tax &amp; HK cadence.</span>
+                    <span><b>Real Apples-to-Apples Rooms:</b> Matches Suite-vs-Suite and Double-vs-Double including Miami resort fees &amp; 14% tax.</span>
                   </div>
-                  <div className="flex items-start gap-1.5 p-2 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
+                  <div className="flex items-start gap-1.5 p-2.5 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
                     <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
-                    <span><b>Live OOO / OOS / HK Hold → AI BAR:</b> Recalculates true net sellable occupancy before you walk a guest.</span>
+                    <span><b>Smart Price Adjustments When Rooms Break:</b> Recalculates true sellable occupancy when rooms go OOO or OOS.</span>
                   </div>
-                  <div className="flex items-start gap-1.5 p-2 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
+                  <div className="flex items-start gap-1.5 p-2.5 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
                     <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
-                    <span><b>Pre-Audit (11:30 PM) &amp; Post-Audit Desk:</b> Overnight courtesy call scripts &amp; neighbor rate-swap emails.</span>
+                    <span><b>Overnight Night Audit Helper (11:30 PM &amp; 3:30 AM):</b> Gives overnight staff clear call scripts &amp; shift logs.</span>
                   </div>
-                  <div className="flex items-start gap-1.5 p-2 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
+                  <div className="flex items-start gap-1.5 p-2.5 rounded-xl bg-[#F5F9FF] border border-[#DCE7F8]">
                     <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
-                    <span><b>$0 Starter · Month-to-Month:</b> Zero annual lock-in, live public scans today + PMS API push when ready.</span>
+                    <span><b>Free $0 Starter · Month-to-Month:</b> Zero annual contracts, transparent pricing, and direct email support.</span>
                   </div>
                 </div>
 
                 <div className="ember-subtle-card p-3.5 space-y-2">
                   <div className="text-[10.5px] font-extrabold uppercase tracking-wider text-[#475B80]">
-                    Launch Isolated Property Portal or Scan Own Hotel URL
+                    Explore a Live Miami Hotel Workspace or Jump to Your Pricing Tier
                   </div>
                   <div className="flex flex-wrap gap-2">
                     <select
@@ -398,58 +436,81 @@ export const WebsitePage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => navigate(`/portal?demo_hotel=${selectedSampleId}`)}
-                      className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition"
+                      className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition inline-flex items-center gap-1.5"
                     >
-                      Open Client WebApp →
+                      See Your Hotel&apos;s Live Rates
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        document.getElementById('auditor')?.scrollIntoView({ behavior: 'smooth' })
-                        runLiveAudit(Number(selectedSampleId))
-                      }}
-                      className="px-3.5 py-2 rounded-xl bg-white border border-[#DCE7F8] text-xs font-bold text-[#0B1B3B] hover:bg-blue-50"
+                    <a
+                      href="#blogs-video"
+                      className="px-3.5 py-2 rounded-xl bg-white border border-[#DCE7F8] text-xs font-bold text-[#0B1B3B] hover:bg-blue-50 inline-flex items-center gap-1.5"
                     >
-                      Run URL Audit
-                    </button>
+                      <Play className="w-3.5 h-3.5 text-blue-600" />
+                      10-Sec Video
+                    </a>
                   </div>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 <div className="ember-subtle-card p-3">
-                  <div className="text-[10px] font-extrabold text-[#6D81A8] uppercase">Labor Saved</div>
-                  <div className="text-lg font-black text-emerald-700 tabular-nums">45–68 hrs</div>
-                  <div className="text-[10.5px] text-[#475B80]">$1,125–$1,700/mo freed</div>
+                  <div className="text-[10px] font-extrabold text-[#6D81A8] uppercase">Staff Time Saved</div>
+                  <div className="text-lg font-black text-emerald-700 tabular-nums">45 hrs/mo</div>
+                  <div className="text-[10.5px] text-[#475B80]">$1,125/mo in payroll freed</div>
                 </div>
                 <div className="ember-subtle-card p-3">
                   <div className="text-[10px] font-extrabold text-[#6D81A8] uppercase">OTA Leak Radar</div>
                   <div className="text-lg font-black text-rose-600 tabular-nums">18%–44%</div>
-                  <div className="text-[10.5px] text-[#475B80]">Vio &amp; Agoda undercuts caught</div>
+                  <div className="text-[10.5px] text-[#475B80]">Vio &amp; Agoda undercuts spotted</div>
                 </div>
                 <div className="ember-subtle-card p-3">
-                  <div className="text-[10px] font-extrabold text-[#6D81A8] uppercase">Direct Margin</div>
-                  <div className="text-lg font-black text-blue-700 tabular-nums">+$58k/yr</div>
-                  <div className="text-[10.5px] text-[#475B80]">Direct shift + ADR lift</div>
+                  <div className="text-[10px] font-extrabold text-[#6D81A8] uppercase">Benchmark Lift</div>
+                  <div className="text-lg font-black text-blue-700 tabular-nums">+$54,300/yr</div>
+                  <div className="text-[10.5px] text-[#475B80]">+$4,525/mo direct profit + time</div>
                 </div>
                 <div className="rounded-2xl p-3 bg-gradient-to-br from-[#0D255B] to-[#2563EB] text-white">
                   <div className="text-[10px] font-bold text-blue-200 uppercase">Month-to-Month</div>
                   <div className="text-lg font-black tabular-nums">$0 → $99</div>
-                  <div className="text-[10.5px] text-blue-100">vs $650/mo corporate suites</div>
+                  <div className="text-[10.5px] text-blue-100">vs $350–$500+/mo legacy suites</div>
                 </div>
               </div>
             </div>
 
-            {/* Right ROI & Cost Comparison Recharts Widget */}
-            <div className="lg:col-span-5 ember-card p-6 bg-gradient-to-br from-white to-blue-50/40 flex flex-col justify-between gap-4">
+            {/* Right Real Photography + Live Portal Preview + ROI Calculator */}
+            <div className="lg:col-span-5 ember-card p-5 bg-gradient-to-br from-white to-blue-50/40 flex flex-col justify-between gap-4">
+              <div className="relative rounded-2xl overflow-hidden border border-[#DCE7F8] bg-[#0B1B3B] group">
+                <img
+                  src="/assets/hotel-bg-blur.jpg"
+                  alt="Miami boutique hotel beachfront facade"
+                  className="absolute inset-0 w-full h-full object-cover opacity-25"
+                />
+                <div className="relative p-2.5 space-y-2">
+                  <div className="flex items-center justify-between text-[10px] font-extrabold text-blue-100 px-1">
+                    <span>LIVE CLIENT PORTAL PREVIEW · 6:00 AM BRIEF</span>
+                    <button
+                      type="button"
+                      onClick={() => navigate(`/portal?demo_hotel=${selectedSampleId}`)}
+                      className="text-amber-300 hover:underline"
+                    >
+                      Open Interactive Demo →
+                    </button>
+                  </div>
+                  <img
+                    src="/assets/hri_10s_poster.png"
+                    alt="HotelRateIntel client dashboard showing OTA rate ladder and comp-set monitor"
+                    className="w-full h-[132px] object-cover object-top rounded-xl border border-white/20 shadow-md"
+                  />
+                </div>
+              </div>
+
               <div>
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-extrabold uppercase">
                   <DollarSign className="w-3 h-3" />
                   Interactive Hotelier ROI Calculator
                 </span>
-                <h2 className="text-lg font-extrabold text-[#0B1B3B] mt-2">Monthly Profit + Payroll Savings</h2>
+                <h2 className="text-base font-extrabold text-[#0B1B3B] mt-1.5">Estimate Monthly Profit + Payroll Savings</h2>
 
-                <div className="grid grid-cols-2 gap-3 mt-3">
+                <div className="grid grid-cols-2 gap-3 mt-2.5">
                   <div>
                     <label htmlFor="roiRooms" className="block text-[10.5px] font-extrabold text-[#475B80] uppercase mb-1">
                       Sellable Rooms
@@ -518,15 +579,15 @@ export const WebsitePage: React.FC = () => {
           </div>
         </section>
 
-        {/* SECTION 2: HOSPITALITY JARGON OPERATIONS & HEAD-TO-HEAD COMPARISON */}
+        {/* SECTION 2: PLAIN-ENGLISH OPERATIONS, GLOSSARY & COMPARISON */}
         <section id="industry-roi" className="rounded-[26px] ember-canvas-panel p-5 sm:p-7 space-y-5">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
               <span className="text-[11px] font-extrabold uppercase tracking-wider text-blue-700">
-                Built for Real Hotel Departments · Reservations · Front Office · Night Audit · Housekeeping
+                Made for Reservations, Front Office, Night Audit &amp; Housekeeping
               </span>
               <h2 className="text-2xl font-black text-[#0B1B3B] tracking-tight mt-0.5">
-                6 Hotel-Specific Operations Corporate Rate Shoppers Leave Out
+                6 Everyday Hotel Problems We Solve Before 6:00 AM
               </h2>
             </div>
             <button
@@ -548,9 +609,36 @@ export const WebsitePage: React.FC = () => {
             ))}
           </div>
 
+          <div className="ember-subtle-card p-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-[11px]">
+            <div>
+              <div className="font-extrabold text-[#0B1B3B]">BAR (Best Available Rate)</div>
+              <div className="text-[#475B80]">Your public direct nightly rate before discounts.</div>
+            </div>
+            <div>
+              <div className="font-extrabold text-[#0B1B3B]">Rate Parity</div>
+              <div className="text-[#475B80]">Ensuring OTAs never sell cheaper than your direct site.</div>
+            </div>
+            <div>
+              <div className="font-extrabold text-[#0B1B3B]">OOO / OOS</div>
+              <div className="text-[#475B80]">Out-of-Order / Out-of-Service maintenance room holds.</div>
+            </div>
+            <div>
+              <div className="font-extrabold text-[#0B1B3B]">DD-vs-DD Match</div>
+              <div className="text-[#475B80]">Double-Double room matched fairly against Double-Double.</div>
+            </div>
+            <div>
+              <div className="font-extrabold text-[#0B1B3B]">Bedbank Leak</div>
+              <div className="text-[#475B80]">Wholesale inventory resold publicly on Agoda or Vio.</div>
+            </div>
+            <div>
+              <div className="font-extrabold text-[#0B1B3B]">6:00 AM Brief</div>
+              <div className="text-[#475B80]">Scheduled daily rate &amp; occupancy report sent before shift start.</div>
+            </div>
+          </div>
+
           <div className="ember-card p-5 overflow-x-auto">
             <h3 className="text-base font-extrabold text-[#0B1B3B] mb-3">
-              Head-to-Head Industry Comparison (Support Your Local Miami Hospitality)
+              Head-to-Head Industry Comparison (Boutique Hotels 15–75 Rooms)
             </h3>
             <table className="w-full text-left border-collapse text-xs">
               <thead className="bg-[#F5F9FF] border-b border-[#DCE7F8]">
@@ -558,7 +646,7 @@ export const WebsitePage: React.FC = () => {
                   <th className="p-2.5 text-[10.5px] font-extrabold uppercase text-[#475B80]">Hospitality Requirement</th>
                   <th className="p-2.5 text-[10.5px] font-extrabold uppercase text-blue-700 bg-blue-50/60">Free Starter ($0)</th>
                   <th className="p-2.5 text-[10.5px] font-extrabold uppercase text-blue-900 bg-blue-100/60">Boutique Core ($99)</th>
-                  <th className="p-2.5 text-[10.5px] font-extrabold uppercase text-[#475B80]">Enterprise RMS ($450–$900+)</th>
+                  <th className="p-2.5 text-[10.5px] font-extrabold uppercase text-[#475B80]">Enterprise RMS ($350–$500+/mo)</th>
                   <th className="p-2.5 text-[10.5px] font-extrabold uppercase text-[#6D81A8]">Manual Spreadsheets</th>
                 </tr>
               </thead>
@@ -833,92 +921,152 @@ export const WebsitePage: React.FC = () => {
                 </div>
               </div>
             </form>
+            <div className="mt-4 pt-4 border-t border-[#DCE7F8] grid grid-cols-1 md:grid-cols-3 gap-3 text-[11.5px]">
+              <div className="flex items-start gap-2">
+                <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-black flex items-center justify-center shrink-0">1</span>
+                <div>
+                  <b className="text-[#0B1B3B]">Private Workspace Created Instantly:</b>
+                  <span className="text-[#475B80]"> Your comp set, OOO holds, and BAR rules live in your isolated portal immediately.</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-black flex items-center justify-center shrink-0">2</span>
+                <div>
+                  <b className="text-[#0B1B3B]">Sign In Anytime at /portal:</b>
+                  <span className="text-[#475B80]"> Re-open with your chosen username &amp; password; nothing is visible publicly.</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-black flex items-center justify-center shrink-0">3</span>
+                <div>
+                  <b className="text-[#0B1B3B]">Start Free, Upgrade Only If Useful:</b>
+                  <span className="text-[#475B80]"> No credit card required for Free Starter; paid plans are month-to-month.</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* SECTION 5: $99 HOSPITALITY AI CONSULTATION & DEVELOPERS */}
+        {/* SECTION 5: GUIDED SETUP AUDIT, BENCHMARK & 15-MIN DEMO SCHEDULER */}
         <section id="consultation" className="rounded-[26px] ember-canvas-panel p-5 sm:p-7 space-y-5">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <div className="rounded-2xl p-6 text-white bg-gradient-to-br from-[#06122E] via-[#0D255B] to-[#1744A6] space-y-3">
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-400/25 text-[10px] font-extrabold uppercase">
-                <Zap className="w-3 h-3 text-amber-300" />
-                Aggressive Consultation Guarantee
-              </span>
-              <h3 className="text-xl font-black">48-Hour Hotel AI Audit + Live Prototype</h3>
-              <div className="text-3xl font-black tabular-nums">
-                $99 <span className="text-xs font-medium text-blue-200">one-time · $0 risk</span>
-              </div>
-              <p className="text-xs text-blue-100 leading-relaxed">
-                Meet 60 minutes with our Miami hospitality engineers. We audit your PMS, Channel Manager, Night Audit &amp; OTA
-                parity and deliver a working custom prototype in 48 hours—guaranteed to uncover{' '}
-                <b className="text-white">$2,500+/mo ($30,000/yr)</b> in RevPAR &amp; payroll savings or 100% refunded.
-              </p>
-              <a
-                href="https://www.aidynamic.pro/booking"
-                target="_blank"
-                rel="noreferrer"
-                className="block text-center w-full py-2.5 rounded-xl bg-white text-[#0B1B3B] text-xs font-extrabold hover:bg-blue-50"
-              >
-                Book $99 Hospitality AI Audit →
-              </a>
-            </div>
-
-            <div className="ember-card p-6 space-y-3">
-              <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-extrabold uppercase">
-                Turnkey Hospitality AI Builders
-              </span>
-              <h3 className="text-base font-extrabold text-[#0B1B3B]">
-                Jasmel Acosta &amp; Juan Diaz — AI Dynamic Pro Miami
-              </h3>
-              <p className="text-xs text-[#475B80] leading-relaxed">
-                Combining <b>20 years of luxury hotel &amp; residential concierge leadership</b> with <b>10+ years of production ML &amp; agent engineering</b> across 80+ deployed systems.
-              </p>
-              <ul className="space-y-1.5 text-xs text-[#475B80]">
-                <li><b>$497 Front-Office AI Bootcamp:</b> Train up to 15 Reservations &amp; Night Audit staff to move 5x faster.</li>
-                <li><b>$997 24/7 Bilingual Voice &amp; WhatsApp Desk:</b> Direct bookings straight into SynXis, Cloudbeds or Mews.</li>
-                <li><b>$2,500–$5,000/mo Portfolio Agents:</b> Dedicated Docker/VPS automation for multi-hotel groups.</li>
-              </ul>
-            </div>
-
-            <div className="ember-card p-6 flex flex-col justify-between gap-4">
-              <div className="space-y-2.5">
-                <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-extrabold uppercase">
-                  Support Your Local Miami Ecosystem
+            <div className="rounded-2xl p-6 text-white bg-gradient-to-br from-[#06122E] via-[#0D255B] to-[#1744A6] space-y-3 flex flex-col justify-between">
+              <div className="space-y-3">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-400/25 text-[10px] font-extrabold uppercase">
+                  <Zap className="w-3 h-3 text-amber-300" />
+                  Guided Onboarding &amp; Audit Guarantee
                 </span>
-                <h3 className="text-base font-extrabold text-[#0B1B3B]">Direct Founder Channels (EN / ES)</h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {[
-                    { n: 'AI Dynamic Pro', u: 'https://www.aidynamic.pro/' },
-                    { n: 'Chat Building Innovation', u: 'https://www.chatbuildinginnovation.us/' },
-                    { n: 'PocketScribe AI', u: 'https://pocketscribe.online/' },
-                    { n: 'Real Estate Dates', u: 'https://realestatedates.com/' },
-                    { n: 'Medical Billing MB', u: 'https://medicalbillingmb.com/' },
-                  ].map((link) => (
-                    <a
-                      key={link.n}
-                      href={link.u}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-2.5 py-1 rounded-full bg-[#F2F6FD] border border-[#DCE7F8] text-[11px] font-bold text-blue-700 hover:bg-blue-100 inline-flex items-center gap-1"
-                    >
-                      {link.n}
-                      <ExternalLink className="w-2.5 h-2.5" />
-                    </a>
-                  ))}
+                <h3 className="text-xl font-black">48-Hour Hotel Rate Setup &amp; Custom Audit</h3>
+                <div className="text-3xl font-black tabular-nums">
+                  $99 <span className="text-xs font-medium text-blue-200">one-time setup · 100% refundable</span>
+                </div>
+                <p className="text-xs text-blue-100 leading-relaxed">
+                  Optional hands-on onboarding for busy GMs. We verify your direct booking engine, configure up to 8 local competitors, calibrate Suite-vs-Suite matching, and hand you a custom 48-hour rate recovery plan—guaranteed or refunded.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <a
+                  href="#register"
+                  className="block text-center w-full py-2.5 rounded-xl bg-white text-[#0B1B3B] text-xs font-extrabold hover:bg-blue-50"
+                >
+                  Start Free ($0) or Add $99 Setup →
+                </a>
+                <a
+                  href="/audit?hotel_id=23"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block text-center text-[11px] font-bold text-blue-200 hover:text-white underline"
+                >
+                  Prefer free? View Sample 1-Page Public Audit ↗
+                </a>
+              </div>
+            </div>
+
+            <div className="ember-card p-6 space-y-3 flex flex-col justify-between">
+              <div className="space-y-2.5">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-extrabold uppercase">
+                  <TrendingUp className="w-3 h-3" />
+                  Public Market Benchmark · Miami Beach
+                </span>
+                <h3 className="text-base font-extrabold text-[#0B1B3B]">
+                  Avalon Hotel South Beach — Before vs. After Rate Check
+                </h3>
+                <p className="text-xs text-[#475B80] leading-relaxed">
+                  Using live public Miami Beach market data as our transparent reference benchmark (not a paid endorsement):
+                </p>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="ember-subtle-card p-2.5">
+                    <div className="text-[10px] font-extrabold text-rose-700 uppercase">Before (Unmonitored)</div>
+                    <div className="font-bold text-[#0B1B3B] mt-0.5">Agoda / Vio at $218</div>
+                    <div className="text-[11px] text-[#475B80]">8.4% below direct $238 BAR</div>
+                  </div>
+                  <div className="ember-subtle-card p-2.5 border-emerald-200 bg-emerald-50/50">
+                    <div className="text-[10px] font-extrabold text-emerald-700 uppercase">After 6 AM Parity Radar</div>
+                    <div className="font-bold text-[#0B1B3B] mt-0.5">$265 Corridor Match</div>
+                    <div className="text-[11px] text-[#475B80]">45 hrs/mo morning checks saved</div>
+                  </div>
                 </div>
               </div>
-              <div className="ember-subtle-card p-3 flex flex-wrap gap-2">
-                <a href="tel:+17869708366" className="px-3 py-1.5 rounded-xl bg-blue-600 text-white text-xs font-bold inline-flex items-center gap-1">
-                  <Phone className="w-3 h-3" /> (786) 970-8366
-                </a>
-                <a href="https://wa.me/17869708366" target="_blank" rel="noreferrer" className="px-3 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-bold">
-                  WhatsApp
-                </a>
-                <a href="mailto:jasmelacosta@gmail.com" className="px-3 py-1.5 rounded-xl bg-white border border-[#DCE7F8] text-xs font-bold text-[#0B1B3B]">
-                  Email Team
-                </a>
-              </div>
+              <button
+                type="button"
+                onClick={() => navigate('/portal?demo_hotel=23')}
+                className="w-full py-2.5 rounded-xl bg-[#0D255B] text-white text-xs font-bold hover:bg-blue-800 transition"
+              >
+                Inspect Avalon Benchmark Live →
+              </button>
             </div>
+
+            <form onSubmit={handleScheduleSubmit} className="ember-card p-6 flex flex-col justify-between gap-3">
+              <div className="space-y-2.5">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-extrabold uppercase">
+                  <Calendar className="w-3 h-3" />
+                  Book a 15-Min Miami Demo
+                </span>
+                <h3 className="text-base font-extrabold text-[#0B1B3B]">Schedule a Live Property Walkthrough</h3>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {['Today · 2:00 PM EST', 'Today · 4:30 PM EST', 'Tomorrow · 9:30 AM EST', 'Tomorrow · 1:00 PM EST'].map((slot) => (
+                    <button
+                      key={slot}
+                      type="button"
+                      onClick={() => setSchedSlot(slot)}
+                      className={`px-2 py-1.5 rounded-lg text-[10.5px] font-bold border text-left transition ${
+                        schedSlot === slot
+                          ? 'bg-blue-600 text-white border-blue-600'
+                          : 'bg-[#F5F9FF] text-[#475B80] border-[#DCE7F8] hover:bg-blue-50'
+                      }`}
+                    >
+                      {slot}
+                    </button>
+                  ))}
+                </div>
+                <input
+                  value={schedHotel}
+                  onChange={(e) => setSchedHotel(e.target.value)}
+                  placeholder="Your Hotel Name (optional)"
+                  className="w-full px-3 py-1.5 text-xs rounded-xl border border-[#DCE7F8] bg-[#F7FAFF]"
+                />
+                <input
+                  value={schedContact}
+                  onChange={(e) => setSchedContact(e.target.value)}
+                  placeholder="Phone or work email (e.g. gm@hotel.com)"
+                  className="w-full px-3 py-1.5 text-xs rounded-xl border border-[#DCE7F8] bg-[#F7FAFF]"
+                />
+              </div>
+              <div className="space-y-2">
+                <button
+                  type="submit"
+                  disabled={schedSending}
+                  className="w-full py-2.5 rounded-xl bg-blue-600 text-white text-xs font-extrabold hover:bg-blue-700 disabled:opacity-60 transition"
+                >
+                  {schedSending ? 'Booking Walkthrough...' : `Confirm ${schedSlot.split('·')[0].trim()} Walkthrough →`}
+                </button>
+                {schedConfirmed && (
+                  <div className="p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-[11px] font-bold text-emerald-800">
+                    {schedConfirmed}
+                  </div>
+                )}
+              </div>
+            </form>
           </div>
         </section>
 
@@ -947,7 +1095,7 @@ export const WebsitePage: React.FC = () => {
                   </div>
                   <div className="ember-subtle-card p-3 flex items-center justify-between gap-2">
                     <span className="font-bold text-[#0B1B3B]">Email Us Direct</span>
-                    <a href="mailto:jasmelacosta@gmail.com?subject=Miami%20Hotel%20Parity%20Check" className="font-extrabold text-blue-700 hover:underline">jasmelacosta@gmail.com</a>
+                    <a href="mailto:jasmel@hotelrateintel.com?subject=Miami%20Hotel%20Parity%20Check" className="font-extrabold text-blue-700 hover:underline">jasmel@hotelrateintel.com</a>
                   </div>
                   <div className="ember-subtle-card p-3 flex items-center justify-between gap-2">
                     <span className="font-bold text-[#0B1B3B]">WhatsApp Hospitality Desk</span>
@@ -1084,16 +1232,15 @@ export const WebsitePage: React.FC = () => {
               <span className="text-[11px] font-extrabold uppercase tracking-wider text-blue-700">
                 10-Second Walkthrough &amp; Miami Hospitality Field Guides
               </span>
-              <h2 className="text-2xl font-black text-[#0B1B3B] mt-0.5">Blogs</h2>
+              <h2 className="text-2xl font-black text-[#0B1B3B] mt-0.5">Miami Hotelier Field Guides &amp; Blog</h2>
             </div>
-            <a
-              href="https://www.aidynamic.pro/blog"
-              target="_blank"
-              rel="noreferrer"
+            <button
+              type="button"
+              onClick={() => navigate('/portal?demo_hotel=23')}
               className="px-3.5 py-1.5 rounded-xl bg-white border border-[#DCE7F8] text-xs font-bold text-blue-700 hover:bg-blue-50"
             >
-              All Articles on aidynamic.pro ↗
-            </a>
+              Inspect Interactive Portal →
+            </button>
           </div>
 
           {/* 10-Second Minimalist Overview Video Card */}
@@ -1153,6 +1300,9 @@ export const WebsitePage: React.FC = () => {
                     <span className="text-[10px] font-bold text-[#6D81A8]">{b.readTime}</span>
                   </div>
                   <h3 className="text-sm font-extrabold text-[#0B1B3B] leading-snug">{b.title}</h3>
+                  <div className="text-[10.5px] font-semibold text-[#6D81A8]">
+                    By {b.author} · {b.publishedAt}
+                  </div>
                   <div className="grid grid-cols-2 gap-2">
                     <div className="ember-subtle-card p-2 text-center">
                       <div className="text-sm font-black text-blue-700">{b.stat1.v}</div>
@@ -1173,15 +1323,13 @@ export const WebsitePage: React.FC = () => {
                   >
                     Read Full Guide →
                   </button>
-                  <a
-                    href={b.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-[11px] font-bold text-[#6D81A8] hover:text-blue-700 inline-flex items-center gap-1"
+                  <button
+                    type="button"
+                    onClick={() => navigate(`/portal?demo_hotel=${selectedSampleId}`)}
+                    className="text-[11px] font-bold text-[#6D81A8] hover:text-blue-700"
                   >
-                    aidynamic.pro
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
+                    Live Demo ↗
+                  </button>
                 </div>
               </article>
             ))}
@@ -1194,7 +1342,7 @@ export const WebsitePage: React.FC = () => {
           title={activeBlogIndex !== null ? BLOGS_SEED[activeBlogIndex].title : ''}
           subtitle={
             activeBlogIndex !== null
-              ? `${BLOGS_SEED[activeBlogIndex].tag} · ${BLOGS_SEED[activeBlogIndex].readTime} · Miami Hospitality Field Guide`
+              ? `${BLOGS_SEED[activeBlogIndex].tag} · By ${BLOGS_SEED[activeBlogIndex].author} · ${BLOGS_SEED[activeBlogIndex].publishedAt}`
               : ''
           }
         >
@@ -1240,16 +1388,31 @@ export const WebsitePage: React.FC = () => {
           )}
         </ModalDialog>
 
-        <footer className="text-center text-xs text-blue-100/90 py-4 space-x-3">
+        <footer className="text-center text-xs text-blue-100/90 py-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
           <b>HotelRateIntel · North Miami, FL 33161</b>
           <span>·</span>
-          <a href="tel:+17869708366" className="underline">+1 (786) 970-8366</a>
+          <a href="mailto:jasmel@hotelrateintel.com" className="underline hover:text-white">jasmel@hotelrateintel.com</a>
           <span>·</span>
-          <a href="#contact-desk" className="underline">Contact Miami Desk</a>
+          <a href="tel:+17869708366" className="underline hover:text-white">+1 (786) 970-8366</a>
           <span>·</span>
-          <a href="https://www.aidynamic.pro" target="_blank" rel="noreferrer" className="underline">AI Dynamic Pro</a>
+          <button type="button" onClick={() => navigate('/pricing')} className="underline hover:text-white">Pricing</button>
           <span>·</span>
-          <button type="button" onClick={() => navigate('/portal')} className="underline">Client WebApp</button>
+          <button type="button" onClick={() => navigate('/demo')} className="underline hover:text-white">Interactive Demo</button>
+          <span>·</span>
+          <button type="button" onClick={() => navigate('/portal')} className="underline hover:text-white">Client Sign In</button>
+          <span>·</span>
+          <button type="button" onClick={() => navigate('/privacy')} className="underline hover:text-white">Privacy Policy</button>
+          <span>·</span>
+          <button type="button" onClick={() => navigate('/terms')} className="underline hover:text-white">Terms</button>
+          <span>·</span>
+          <a
+            href="https://www.linkedin.com/in/ai-dynamic-75983a407/"
+            target="_blank"
+            rel="noreferrer"
+            className="underline hover:text-white inline-flex items-center gap-1"
+          >
+            LinkedIn <ExternalLink className="w-3 h-3" />
+          </a>
         </footer>
       </div>
 

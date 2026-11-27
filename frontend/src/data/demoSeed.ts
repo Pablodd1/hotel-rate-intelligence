@@ -131,7 +131,7 @@ export const COMPARISON_MATRIX_SEED = [
     feature: 'Monthly Cost for a 45-Room Boutique',
     us_free: '$0 / mo (Forever Starter)',
     us_core: '$99 / mo ($49 Month 1)',
-    enterprise: '$450 – $900+ / mo (12-mo lock-in)',
+    enterprise: '$350 – $500+ / mo (12-mo lock-in)',
     spreadsheets: '$1,125 – $1,700/mo staff labor',
   },
   {
@@ -206,6 +206,8 @@ export const HOTEL_JARGON_SOLUTIONS = [
 export const BLOGS_SEED = [
   {
     tag: 'RESERVATIONS & REVENUE',
+    author: 'Jasmel Acosta',
+    publishedAt: 'Nov 22, 2026',
     readTime: '4 min read',
     title: 'Miami Resort Fees & 14% Tax: Why Entry-Room Rate Shoppers Mislead Boutique Hotels',
     stat1: { v: '14% Tax', l: 'Miami Beach Checkout' },
@@ -226,6 +228,8 @@ export const BLOGS_SEED = [
   },
   {
     tag: 'NIGHT AUDIT & FRONT OFFICE',
+    author: 'Jasmel Acosta',
+    publishedAt: 'Nov 22, 2026',
     readTime: '3 min read',
     title: 'Before vs. After Night Audit: The Right Time for Overnight Courtesy Call-Arounds',
     stat1: { v: '11:30 PM', l: 'Pre-Audit Window' },
@@ -246,6 +250,8 @@ export const BLOGS_SEED = [
   },
   {
     tag: 'HOUSEKEEPING & ROOMS OPS',
+    author: 'Jasmel Acosta',
+    publishedAt: 'Nov 22, 2026',
     readTime: '3 min read',
     title: 'How 4 Out-of-Order Rooms Flip a 45-Room Boutique Into Compression',
     stat1: { v: 'OOO / OOS', l: 'Live Net Sellable' },
@@ -266,6 +272,8 @@ export const BLOGS_SEED = [
   },
   {
     tag: 'REVENUE & DISTRIBUTION',
+    author: 'Jasmel Acosta',
+    publishedAt: 'Nov 22, 2026',
     readTime: '4 min read',
     title: 'Spotting Agoda & Vio.com Bedbank Leaks Before Your 6:00 AM Huddle',
     stat1: { v: '6:00 AM', l: 'Daily Parity Scan' },
@@ -286,6 +294,8 @@ export const BLOGS_SEED = [
   },
   {
     tag: 'GM & PMS SECURITY',
+    author: 'Jasmel Acosta',
+    publishedAt: 'Nov 22, 2026',
     readTime: '4 min read',
     title: 'How Secure 2-Way PMS & Channel Manager Rate Pushes Actually Work',
     stat1: { v: 'OAuth 2.0', l: 'Scoped API Auth' },
@@ -306,12 +316,14 @@ export const BLOGS_SEED = [
   },
   {
     tag: 'OWNERSHIP & BUDGET',
+    author: 'Jasmel Acosta',
+    publishedAt: 'Nov 22, 2026',
     readTime: '3 min read',
-    title: 'Month-to-Month Rate Intelligence vs. $500+/mo Annual RMS Contracts',
+    title: 'Month-to-Month Rate Intelligence vs. $350–$500+/mo Annual RMS Contracts',
     stat1: { v: '$0 → $99', l: 'Month-to-Month' },
     stat2: { v: '0 Lock-In', l: 'Cancel Anytime' },
     summary:
-      'Enterprise RMS tools like Atomize start around $500/mo and annual contracts lock small hotels in. Independent 15–75 room properties need transparent flat pricing that pays for itself in one room night.',
+      'Enterprise RMS tools start around $350–$500/mo with annual contracts that lock small hotels in. Independent 15–75 room properties need transparent flat pricing that pays for itself in one room night.',
     takeaways: [
       'At $99/mo ($3.30/day), recovering a single direct booking or $12 ADR lift on one weekend covers the entire month.',
       'Start on the $0/mo Free Starter tier with 3 local comps before spending a dollar.',
@@ -319,7 +331,7 @@ export const BLOGS_SEED = [
     ],
     body: [
       'A 45-room Miami Beach boutique does not have the corporate IT budget of a 400-key flagged resort — yet it competes on the exact same Booking.com and Google Hotel Search results.',
-      'Most automated RMS platforms require annual commitments and $300–$600+/month minimum fees, leaving smaller properties stuck checking 15 browser tabs manually every morning.',
+      'Most automated RMS platforms require annual commitments and $350–$500+/month minimum fees, leaving smaller properties stuck checking 15–20 browser tabs manually every morning.',
       'HotelRateIntel was built locally in Miami to give independent owners and GMs real rate parity, Suite-vs-Suite math, and OOO/OOS yield tools starting at $0 Free and $99/mo Core.',
     ],
     url: 'https://www.aidynamic.pro/blog',
@@ -803,18 +815,18 @@ export const PUBLIC_AUDIT_SEED: PublicAuditResponse = {
   decision_assistant: {
     verdict: 'FIX AGODA -$20 PARITY LEAK & CAPTURE +$18 WKND LIFT',
     recommended_bar: 256,
-    total_annual_roi: 58400,
+    total_annual_roi: 54300,
     staff_hours_saved_mo: 45,
     comp_avg_bar: 268,
     actions: [
       'Agoda is undercutting Direct BAR ($238) by $20/nt (-8.4%). Close static bedbank allocation.',
       'Corridor comps average $268/nt — test +$18 weekend lift when net sellable occupancy exceeds 82%.',
-      'Automate 6:00 AM daily brief to reclaim ~45 hrs/mo ($1,125/mo) of front-office manual checking.',
+      'Automate 6:00 AM EST daily brief to reclaim ~45 hrs/mo ($1,125/mo) + ~$3,400/mo direct margin ($54,300/yr combined 45-room benchmark).',
     ],
   },
   urls: {
     demo_url: '/portal?demo_hotel=23',
     audit_url: '/audit?hotel_id=23',
   },
-  executive_summary: 'Avalon Hotel South Beach: Direct BAR $238/nt vs Agoda $218/nt (-8.4% leak). Recommended BAR: $256/nt (+$58,400/yr ROI).',
+  executive_summary: 'Avalon Hotel South Beach: Direct BAR $238/nt vs Agoda $218/nt (-8.4% leak). Recommended BAR: $256/nt (+$54,300/yr combined revenue & payroll benchmark).',
 }

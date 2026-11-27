@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { createColumnHelper, type ColumnDef } from '@tanstack/react-table'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts'
-import { BedDouble } from 'lucide-react'
+import { BedDouble, Star } from 'lucide-react'
 import { usePortalStore } from '../../store/usePortalStore'
 import type { RoomEquivalencyItem } from '../../types/hospitality'
 import { DataTable } from '../../components/ui/DataTable'
@@ -35,8 +35,9 @@ export const RoomMatchPage: React.FC = () => {
                   <span className="ml-1 px-1.5 py-0.5 rounded bg-blue-600 text-white text-[9px]">MY HOTEL</span>
                 )}
               </div>
-              <div className="text-[10.5px] text-[#6D81A8]">
-                {row.original.area} · {row.original.stars}★
+              <div className="text-[10.5px] text-[#6D81A8] inline-flex items-center gap-1">
+                <span>{row.original.area} · {row.original.stars}</span>
+                <Star className="w-3 h-3 text-amber-500 fill-amber-400" />
               </div>
             </div>
           ),

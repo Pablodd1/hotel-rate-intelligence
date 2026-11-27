@@ -158,7 +158,7 @@ COMPETITOR_COMPARISON_MATRIX = [
         "us_free": "$0 / mo (Forever Starter)",
         "us_core": "$99 / mo ($49 Month 1)",
         "us_pro": "$199 / mo",
-        "enterprise": "$450 – $750+ / mo",
+        "enterprise": "$350 – $500+ / mo",
         "spreadsheets": "$0 software, ~$1,125/mo in staff labor",
     },
     {
@@ -224,13 +224,26 @@ def verify_password(password: str, stored_hash: str) -> bool:
     return _hash_password(password) == stored_hash or password == stored_hash
 
 
-def verify_admin_credentials(cfg: dict, username: str, password: str) -> dict:
+def _compute_admin_token(cfg: dict) -> str:
+    import os as _os
     admin_cfg = cfg.get("admin_auth") or {}
-    expected_user = (admin_cfg.get("username") or "jasmel").strip().lower()
-    expected_pass = admin_cfg.get("password") or "admin305"
+    if _os.environ.get("HRI_ADMIN_TOKEN"):
+        return _os.environ["HRI_ADMIN_TOKEN"].strip()
+    if admin_cfg.get("session_token"):
+        return str(admin_cfg["session_token"]).strip()
+    user = (_os.environ.get("HRI_ADMIN_USER") or admin_cfg.get("username") or "jasmel").strip().lower()
+    pw = (_os.environ.get("HRI_ADMIN_PASSWORD") or admin_cfg.get("password") or "admin305").strip()
+    return hashlib.sha256(f"{user}:{pw}:hri-mc-2026".encode("utf-8")).hexdigest()[:32]
+
+
+def verify_admin_credentials(cfg: dict, username: str, password: str) -> dict:
+    import os as _os
+    admin_cfg = cfg.get("admin_auth") or {}
+    expected_user = (_os.environ.get("HRI_ADMIN_USER") or admin_cfg.get("username") or "jasmel").strip().lower()
+    expected_pass = (_os.environ.get("HRI_ADMIN_PASSWORD") or admin_cfg.get("password") or "admin305").strip()
     u_clean = (username or "").strip().lower()
-    if u_clean in (expected_user, "admin", "jasmel", "jasmelacosta@gmail.com") and password == expected_pass:
-        token = admin_cfg.get("session_token") or "mc-admin-jasmel-305"
+    if u_clean in (expected_user, "admin", "jasmel", "jasmel@hotelrateintel.com") and secrets.compare_digest(password or "", expected_pass):
+        token = _compute_admin_token(cfg)
         return {
             "ok": True,
             "role": "admin",
@@ -244,8 +257,8 @@ def verify_admin_credentials(cfg: dict, username: str, password: str) -> dict:
 def is_admin_token_valid(cfg: dict, token: str) -> bool:
     if not token:
         return False
-    expected = (cfg.get("admin_auth") or {}).get("session_token") or "mc-admin-jasmel-305"
-    return token.strip() == expected
+    expected = _compute_admin_token(cfg)
+    return secrets.compare_digest(token.strip(), expected)
 
 
 def _corridor_competitor_ids(conn, primary_hotel_id: int, limit: int = 8) -> list:

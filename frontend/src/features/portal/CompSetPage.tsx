@@ -70,7 +70,7 @@ export const CompSetPage: React.FC = () => {
           id: 'price',
           header: 'Live BAR',
           cell: ({ row }) => (
-            <span className="font-black text-sm tabular-nums text-[#0B1B3B]">
+            <span className="font-black text-sm tabular-nums text-[#0B1B3B] whitespace-nowrap">
               {row.original.price ? `$${Math.round(row.original.price)}` : '—'}
             </span>
           ),
@@ -80,7 +80,7 @@ export const CompSetPage: React.FC = () => {
           cell: ({ getValue }) => {
             const v = Number(getValue() || 0)
             return (
-              <span className={`font-bold tabular-nums ${v > 0 ? 'text-emerald-600' : v < 0 ? 'text-rose-600' : 'text-[#6D81A8]'}`}>
+              <span className={`font-bold tabular-nums whitespace-nowrap ${v > 0 ? 'text-emerald-600' : v < 0 ? 'text-rose-600' : 'text-[#6D81A8]'}`}>
                 {v >= 0 ? `+${v.toFixed(1)}%` : `${v.toFixed(1)}%`}
               </span>
             )
@@ -93,7 +93,7 @@ export const CompSetPage: React.FC = () => {
             const uc = Number(row.original.undercut_pct || 0)
             return (
               <span
-                className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold ${
+                className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold whitespace-nowrap inline-block ${
                   st === 'UNDERCUT'
                     ? 'bg-rose-50 text-rose-700'
                     : st === 'DIRECT_WIN'
@@ -108,7 +108,7 @@ export const CompSetPage: React.FC = () => {
         }),
         columnHelper.accessor('est_occupancy_pct', {
           header: 'Est. Occ',
-          cell: ({ getValue }) => <span className="font-bold tabular-nums">{getValue()}%</span>,
+          cell: ({ getValue }) => <span className="font-bold tabular-nums whitespace-nowrap">{getValue()}%</span>,
         }),
         columnHelper.accessor('pricing_personality', {
           header: 'Behavior Pattern',

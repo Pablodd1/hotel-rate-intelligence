@@ -4,6 +4,7 @@ import { EmberShell } from './components/layout/EmberShell'
 import { ToastViewport } from './components/ui/ToastViewport'
 import { WebsitePage } from './features/website/WebsitePage'
 import { OverviewPage } from './features/portal/OverviewPage'
+import { PortalLoginGate } from './features/portal/PortalLoginGate'
 import { CompSetPage } from './features/portal/CompSetPage'
 import { RoomMatchPage } from './features/portal/RoomMatchPage'
 import { RoomOpsPage } from './features/portal/RoomOpsPage'
@@ -13,28 +14,42 @@ import { MemoryTagsPage } from './features/portal/MemoryTagsPage'
 import { CallDeskPage } from './features/portal/CallDeskPage'
 import { PlansPage } from './features/portal/PlansPage'
 import { SettingsPage } from './features/portal/SettingsPage'
+import { NotFoundPage, PrivacyPolicyPage, TermsPage } from './features/website/LegalPages'
 import { usePortalStore } from './store/usePortalStore'
 import type { TierId } from './types/hospitality'
 
 const PortalRoutes: React.FC = () => {
   const [searchParams] = useSearchParams()
-  const { setAuthParams, hydratePortal, clientToken } = usePortalStore()
+  const { setAuthParams, hydratePortal, clientToken, demoHotelId } = usePortalStore()
+  const dhParam = searchParams.get('demo_hotel')
+  const tokParam = searchParams.get('token')
+  const demoParam = searchParams.get('demo')
+  const isAuthenticatedOrDemo = Boolean(
+    tokParam || dhParam || (demoParam && ['1', 'true', 'yes'].includes(demoParam)) || clientToken || demoHotelId
+  )
 
   useEffect(() => {
-    const dh = searchParams.get('demo_hotel')
-    const tok = searchParams.get('token')
     const pt = searchParams.get('preview_tier') as TierId | null
-    if (tok) {
-      setAuthParams(tok, null)
+    if (tokParam) {
+      setAuthParams(tokParam, null)
       hydratePortal(null, pt)
-    } else if (dh) {
-      setAuthParams('', dh)
-      hydratePortal(dh, pt)
-    } else {
-      hydratePortal(undefined, pt)
+    } else if (dhParam) {
+      setAuthParams('', dhParam)
+      hydratePortal(dhParam, pt)
+    } else if (demoParam && ['1', 'true', 'yes'].includes(demoParam)) {
+      setAuthParams('', '23')
+      hydratePortal('23', pt)
+    } else if (clientToken) {
+      hydratePortal(null, pt)
+    } else if (demoHotelId) {
+      hydratePortal(demoHotelId, pt)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams.get('demo_hotel'), searchParams.get('token'), clientToken])
+  }, [dhParam, tokParam, demoParam, clientToken, demoHotelId])
+
+  if (!isAuthenticatedOrDemo) {
+    return <PortalLoginGate />
+  }
 
   return (
     <EmberShell>
@@ -70,10 +85,17 @@ export const AppRoutes: React.FC = () => {
         <Route path="/website" element={<WebsitePage />} />
         <Route path="/website.html" element={<WebsitePage />} />
         <Route path="/landing" element={<WebsitePage />} />
+        <Route path="/pricing" element={<WebsitePage initialSection="pricing" />} />
+        <Route path="/blog" element={<WebsitePage initialSection="blogs" />} />
+        <Route path="/blogs" element={<WebsitePage initialSection="blogs" />} />
+        <Route path="/contact" element={<WebsitePage initialSection="contact-desk" />} />
+        <Route path="/demo" element={<Navigate to="/portal?demo_hotel=23" replace />} />
+        <Route path="/privacy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
         <Route path="/portal/*" element={<PortalRoutes />} />
         <Route path="/client" element={<Navigate to="/portal" replace />} />
         <Route path="/client_portal.html" element={<Navigate to="/portal" replace />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ToastViewport />
     </>

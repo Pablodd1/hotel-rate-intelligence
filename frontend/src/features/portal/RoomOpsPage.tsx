@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Plus, Send, Trash2, Wrench } from 'lucide-react'
+import { Check, Plus, Send, Trash2, Wrench } from 'lucide-react'
 import { usePortalStore } from '../../store/usePortalStore'
 import type { RoomCategoryItem } from '../../types/hospitality'
 import { MetricCard } from '../../components/ui/MetricCard'
@@ -206,11 +206,11 @@ export const RoomOpsPage: React.FC = () => {
                     key={f.id}
                     type="button"
                     onClick={() => toggleFlag(f.id)}
-                    className={`px-2.5 py-1 rounded-full text-[11px] font-bold border transition ${
+                    className={`px-2.5 py-1 rounded-full text-[11px] font-bold border transition inline-flex items-center gap-1 ${
                       on ? 'bg-blue-600 text-white border-blue-600' : 'bg-[#F7FAFF] text-[#475B80] border-[#DCE7F8] hover:bg-blue-50'
                     }`}
                   >
-                    {on ? '✓ ' : ''}
+                    {on && <Check className="w-3 h-3" />}
                     {f.label}
                   </button>
                 )

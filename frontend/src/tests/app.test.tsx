@@ -12,14 +12,14 @@ describe('HotelRateIntel Ember V20 Application', () => {
     usePortalStore.getState().resetDemoData()
   })
 
-  it('renders Public Website (/) with Made by Hoteliers positioning, ROI calculator & Instant Voice Concierge', () => {
+  it('renders Public Website (/) with Option A plain-English positioning, ROI calculator & Instant Voice Concierge', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <AppRoutes />
       </MemoryRouter>
     )
-    expect(screen.getByText(/Catch OTA Undercuts, Compare Exact Suite-to-Suite/i)).toBeInTheDocument()
-    expect(screen.getByText(/6 Hotel-Specific Operations Corporate Rate Shoppers Leave Out/i)).toBeInTheDocument()
+    expect(screen.getByText(/See What Nearby Miami Hotels & Booking Sites Charge/i)).toBeInTheDocument()
+    expect(screen.getByText(/6 Everyday Hotel Problems We Solve Before 6:00 AM/i)).toBeInTheDocument()
     expect(screen.getByText(/Live Voice Concierge/i)).toBeInTheDocument()
 
     // Test ROI calculator dynamic update
@@ -32,18 +32,44 @@ describe('HotelRateIntel Ember V20 Application', () => {
     expect(screen.getByText(/Suite vs. Suite & Fees/i)).toBeInTheDocument()
   })
 
-  it('renders all 10 interconnected Client Portal routes without errors', async () => {
+  it('requires sign-in on unauthenticated /portal and serves Legal + 404 routes cleanly', () => {
+    const portalUnauth = render(
+      <MemoryRouter initialEntries={['/portal']}>
+        <AppRoutes />
+      </MemoryRouter>
+    )
+    expect(screen.getByText(/Hotel Client Sign In/i)).toBeInTheDocument()
+    portalUnauth.unmount()
+
+    const privacyView = render(
+      <MemoryRouter initialEntries={['/privacy']}>
+        <AppRoutes />
+      </MemoryRouter>
+    )
+    expect(screen.getByText(/HotelRateIntel Privacy Policy/i)).toBeInTheDocument()
+    privacyView.unmount()
+
+    const notFoundView = render(
+      <MemoryRouter initialEntries={['/nonexistent-route-xyz']}>
+        <AppRoutes />
+      </MemoryRouter>
+    )
+    expect(screen.getByText(/We couldn't find that page/i)).toBeInTheDocument()
+    notFoundView.unmount()
+  })
+
+  it('renders all 10 interconnected Client Portal routes in sandbox mode without errors', async () => {
     const routes = [
-      { path: '/portal', match: /Reservations & Yield Overview/i },
-      { path: '/portal/comp-set', match: /Comp-Set Rate & Channel Monitor/i },
-      { path: '/portal/room-match', match: /Suite vs\. Suite & True Out-the-Door Comparator/i },
-      { path: '/portal/room-ops', match: /Live Room Ops: OOO, OOS, Housekeeping Holds/i },
-      { path: '/portal/auto-pricing', match: /Guardrailed AI Auto-Pricing & Channel Strategy/i },
-      { path: '/portal/analytics', match: /12-Month RevPAR, Direct Booking Share/i },
-      { path: '/portal/memory', match: /Competitor Pricing Memory & Private Strategy Tags/i },
-      { path: '/portal/call-desk', match: /Overnight Courtesy Call-Around & Competitor Email Inquiry Desk/i },
-      { path: '/portal/plans', match: /Compare Tiers Live & Monthly Payroll ROI/i },
-      { path: '/portal/settings', match: /Portal & Notification Settings/i },
+      { path: '/portal?demo_hotel=23', match: /Reservations & Yield Overview/i },
+      { path: '/portal/comp-set?demo_hotel=23', match: /Comp-Set Rate & Channel Monitor/i },
+      { path: '/portal/room-match?demo_hotel=23', match: /Suite vs\. Suite & True Out-the-Door Comparator/i },
+      { path: '/portal/room-ops?demo_hotel=23', match: /Live Room Ops: OOO, OOS, Housekeeping Holds/i },
+      { path: '/portal/auto-pricing?demo_hotel=23', match: /Guardrailed AI Auto-Pricing & Channel Strategy/i },
+      { path: '/portal/analytics?demo_hotel=23', match: /12-Month RevPAR, Direct Booking Share/i },
+      { path: '/portal/memory?demo_hotel=23', match: /Competitor Pricing Memory & Private Strategy Tags/i },
+      { path: '/portal/call-desk?demo_hotel=23', match: /Overnight Courtesy Call-Around & Competitor Email Inquiry Desk/i },
+      { path: '/portal/plans?demo_hotel=23', match: /Compare Tiers Live & Monthly Payroll ROI/i },
+      { path: '/portal/settings?demo_hotel=23', match: /Portal & Notification Settings/i },
     ]
 
     for (const r of routes) {
@@ -59,7 +85,7 @@ describe('HotelRateIntel Ember V20 Application', () => {
 
   it('supports Room Ops OOO/OOS net-occupancy recalculation, category add/delete & demo reset persistence', async () => {
     render(
-      <MemoryRouter initialEntries={['/portal/room-ops']}>
+      <MemoryRouter initialEntries={['/portal/room-ops?demo_hotel=23']}>
         <AppRoutes />
       </MemoryRouter>
     )
@@ -90,7 +116,7 @@ describe('HotelRateIntel Ember V20 Application', () => {
     expect(csv).toContain('"Avalon, SoBe",238')
 
     render(
-      <MemoryRouter initialEntries={['/portal/room-match']}>
+      <MemoryRouter initialEntries={['/portal/room-match?demo_hotel=23']}>
         <AppRoutes />
       </MemoryRouter>
     )
@@ -110,7 +136,7 @@ describe('HotelRateIntel Ember V20 Application', () => {
 
   it('supports Comp-Set Table searching, parity filter pills, and KPI reconciliation', async () => {
     render(
-      <MemoryRouter initialEntries={['/portal/comp-set']}>
+      <MemoryRouter initialEntries={['/portal/comp-set?demo_hotel=23']}>
         <AppRoutes />
       </MemoryRouter>
     )
